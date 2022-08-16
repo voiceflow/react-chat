@@ -1,0 +1,24 @@
+{
+  "specials": [
+    "bin",
+    "eslint",
+    "lint-staged",
+    "istanbul",
+    "commitizen",
+    "husky",
+    "prettier",
+    "ttypescript"
+  ],
+  "ignores": [
+    "@commitlint/*",
+    "@types/*",
+    "@voiceflow/commitlint-config",
+    "@voiceflow/git-branch-check",
+    "@voiceflow/tsconfig",
+    "eslint-import-resolver-typescript",
+    "fixpack",
+    "istanbul",
+    "husky",
+    "lint-staged"
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "name": "vf-oss-template",
+  "description": "update description here",
+  "version": "1.0.0",
+  "author": "Tyler Han",
+  "bugs": {
+    "url": "https://github.com/voiceflow/oss-template/issues"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@istanbuljs/nyc-config-typescript": "^1.0.1",
+    "@types/chai": "^4.2.15",
+    "@types/mocha": "^9.0.0",
+    "@voiceflow/commitlint-config": "1.1.1",
+    "@voiceflow/eslint-config": "3.5.0",
+    "@voiceflow/git-branch-check": "1.2.3",
+    "@voiceflow/prettier-config": "1.0.6",
+    "@voiceflow/tsconfig": "1.2.5",
+    "@zerollup/ts-transform-paths": "^1.7.18",
+    "chai": "^4.3.0",
+    "commitizen": "^4.2.3",
+    "cz-conventional-changelog": "^3.3.0",
+    "depcheck": "^1.4.2",
+    "eslint": "^7.20.0",
+    "eslint-output": "^3.0.1",
+    "fixpack": "^4.0.0",
+    "husky": "^4.3.8",
+    "istanbul": "^0.4.5",
+    "lint-staged": "^10.5.4",
+    "mocha": "^8.3.0",
+    "nyc": "^15.1.0",
+    "prettier": "^2.2.1",
+    "source-map-support": "^0.5.19",
+    "ts-mocha": "^8.0.0",
+    "ts-node": "^9.1.1",
+    "ttypescript": "^1.5.12",
+    "typescript": "^4.4.2"
+  },
+  "files": [
+    "build/"
+  ],
+  "homepage": "https://github.com/voiceflow/oss-template#readme",
+  "keywords": [
+    "combinedReducer",
+    "react",
+    "react-redux",
+    "reducer",
+    "redux",
+    "voiceflow"
+  ],
+  "license": "ISC",
+  "main": "build/index.js",
+  "prettier": "@voiceflow/prettier-config",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/voiceflow/oss-template.git"
+  },
+  "scripts": {
+    "build": "yarn clean && ttsc --project ./tsconfig.build.json --declaration",
+    "clean": "rimraf build",
+    "commit": "cz",
+    "eslint-output": "eslint-output",
+    "lint": "eslint '**/*.{js,ts}'",
+    "lint:output": "yarn run eslint-output --quiet \"**/*.{js,ts}\"",
+    "lint:quiet": "yarn lint --quiet",
+    "lint:report": "yarn lint:output",
+    "prepublishOnly": "yarn build",
+    "test": "yarn test:run",
+    "test:dependencies": "depcheck",
+    "test:integration": "NODE_ENV=test nyc --report-dir nyc_coverage_integration ts-mocha --paths --config ./config/test/.mocharc.yml 'test/**/*.it.ts'",
+    "test:run": "NODE_ENV=test nyc ts-mocha --paths --config ./config/test/.mocharc.yml 'test/**/*.{unit,it}.ts'",
+    "test:single": "NODE_ENV=test ts-mocha --paths --config ./config/test/.mocharc.yml",
+    "test:unit": "NODE_ENV=test nyc --report-dir=nyc_coverage_unit ts-mocha --paths --config ./config/test/.mocharc.yml 'test/**/*.unit.ts'"
+  },
+  "types": "build/index.d.ts"
+}

@@ -1,0 +1,32 @@
+version: 2.1
+
+orbs:
+  vfcommon: voiceflow/common@0.0.187
+
+jobs:
+  build-and-test:
+    executor: vfcommon/default-executor
+    steps:
+      - checkout
+      - vfcommon/install_node_modules
+      - vfcommon/lint_report
+      - vfcommon/dependency_tests:
+          step_name: Dependency Tests
+      - vfcommon/build
+      - vfcommon/unit_tests
+      - vfcommon/integration_tests
+
+workflows:
+
+  test-and-release:
+    jobs:
+      - build-and-test:
+          context: dev-test
+
+      - vfcommon/release:
+          context: dev-test
+          requires:
+            - build-and-test
+          filters:
+            branches:
+              only: master

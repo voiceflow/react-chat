@@ -1,0 +1,4 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["github>voiceflow/renovate-config:integrations", "github>voiceflow/renovate-config-private"]
+}

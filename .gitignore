@@ -1,0 +1,21 @@
+.DS_Store
+.idea
+node_modules
+dump.rdb
+
+coverage
+log/
+
+# dotenv environment variables files
+/.env*
+!/.env.example
+!/.env.test
+
+.nyc_output
+
+# build folder
+build
+
+#Sonar report
+sonar/
+nyc_coverage*
