@@ -17,7 +17,6 @@
     "@voiceflow/tsconfig",
     "eslint-import-resolver-typescript",
     "fixpack",
-    "istanbul",
     "husky",
     "lint-staged"
   ]

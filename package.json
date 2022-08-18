@@ -1,50 +1,55 @@
 {
-  "name": "vf-oss-template",
+  "name": "@voiceflow/react-chat",
   "description": "update description here",
   "version": "1.0.0",
-  "author": "Tyler Han",
+  "author": "Ben Teichman",
   "bugs": {
-    "url": "https://github.com/voiceflow/oss-template/issues"
+    "url": "https://github.com/voiceflow/react-chat/issues"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
+  "dependencies": {
+    "@stitches/react": "^1.2.8",
+    "type-fest": "^2.18.0"
+  },
   "devDependencies": {
-    "@commitlint/cli": "^11.0.0",
-    "@istanbuljs/nyc-config-typescript": "^1.0.1",
-    "@types/chai": "^4.2.15",
-    "@types/mocha": "^9.0.0",
-    "@voiceflow/commitlint-config": "1.1.1",
-    "@voiceflow/eslint-config": "3.5.0",
-    "@voiceflow/git-branch-check": "1.2.3",
-    "@voiceflow/prettier-config": "1.0.6",
-    "@voiceflow/tsconfig": "1.2.5",
+    "@commitlint/cli": "17.0.3",
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "@voiceflow/commitlint-config": "2.0.0",
+    "@voiceflow/eslint-config": "6.1.0",
+    "@voiceflow/git-branch-check": "1.4.0",
+    "@voiceflow/prettier-config": "1.2.1",
+    "@voiceflow/tsconfig": "1.4.8",
     "@zerollup/ts-transform-paths": "^1.7.18",
-    "chai": "^4.3.0",
-    "commitizen": "^4.2.3",
+    "commitizen": "4.2.5",
     "cz-conventional-changelog": "^3.3.0",
-    "depcheck": "^1.4.2",
-    "eslint": "^7.20.0",
+    "depcheck": "1.4.3",
+    "eslint": "8.22.0",
     "eslint-output": "^3.0.1",
     "fixpack": "^4.0.0",
-    "husky": "^4.3.8",
-    "istanbul": "^0.4.5",
-    "lint-staged": "^10.5.4",
-    "mocha": "^8.3.0",
-    "nyc": "^15.1.0",
-    "prettier": "^2.2.1",
-    "source-map-support": "^0.5.19",
-    "ts-mocha": "^8.0.0",
-    "ts-node": "^9.1.1",
-    "ttypescript": "^1.5.12",
-    "typescript": "^4.4.2"
+    "husky": "^8.0.0",
+    "lint-staged": "13.0.3",
+    "prettier": "2.7.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "ts-node": "10.9.1",
+    "ttypescript": "1.5.13",
+    "typescript": "4.7.4",
+    "vite": "^3.0.8",
+    "vite-plugin-fonts": "^0.6.0",
+    "vite-plugin-svgr": "^2.2.1",
+    "vite-react-jsx": "^1.1.2",
+    "vite-tsconfig-paths": "^3.5.0",
+    "vitest": "^0.22.0"
   },
   "files": [
     "build/"
   ],
-  "homepage": "https://github.com/voiceflow/oss-template#readme",
+  "homepage": "https://github.com/voiceflow/react-chat#readme",
   "keywords": [
     "combinedReducer",
     "react",
@@ -55,21 +60,28 @@
   ],
   "license": "ISC",
   "main": "build/index.js",
+  "peerDependencies": {
+    "react": "^18.2.0"
+  },
   "prettier": "@voiceflow/prettier-config",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/voiceflow/oss-template.git"
+    "url": "git+https://github.com/voiceflow/react-chat.git"
   },
   "scripts": {
-    "build": "yarn clean && ttsc --project ./tsconfig.build.json --declaration",
-    "clean": "rimraf build",
+    "build": "yarn clean && yarn build:package && yarn build:bundle",
+    "build:bundle": "vite build",
+    "build:package": "ttsc --project ./tsconfig.build.json --declaration",
+    "clean": "rimraf build dist",
     "commit": "cz",
     "eslint-output": "eslint-output",
     "lint": "eslint '**/*.{js,ts}'",
     "lint:output": "yarn run eslint-output --quiet \"**/*.{js,ts}\"",
     "lint:quiet": "yarn lint --quiet",
     "lint:report": "yarn lint:output",
+    "prepare": "husky install",
     "prepublishOnly": "yarn build",
+    "start": "cd example && vite --config vite.config.ts",
     "test": "yarn test:run",
     "test:dependencies": "depcheck",
     "test:integration": "NODE_ENV=test nyc --report-dir nyc_coverage_integration ts-mocha --paths --config ./config/test/.mocharc.yml 'test/**/*.it.ts'",

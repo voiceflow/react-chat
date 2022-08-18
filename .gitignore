@@ -13,8 +13,9 @@ log/
 
 .nyc_output
 
-# build folder
+# build folders
 build
+dist
 
 #Sonar report
 sonar/

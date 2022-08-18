@@ -1,14 +1,17 @@
 {
-  "extends": "@voiceflow/tsconfig",
+  "extends": "@voiceflow/tsconfig/web.json",
   "compilerOptions": {
-    "target": "es2017",
-    "baseUrl": "./src",
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "outDir": "build",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["src/*"]
     },
-    "types": ["@types/mocha"]
+    "types": []
   },
   "compileOnSave": false,
-  "include": ["src/**/*.ts", "typings/**/*.d.ts", "test/**/*.ts"],
-  "exclude": ["build/**", "node_modules/**"]
+  "exclude": [
+    "node_modules",
+    "build"
+  ]
 }
