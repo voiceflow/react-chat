@@ -24,12 +24,22 @@ export const Button = styled('button', {
 export const Container = styled('div', {
   display: 'inline-flex',
   flexDirection: 'column',
-  boxShadow: '0 1px 2px $shadow2',
 
   [`& ${Message.Debug}`]: {
-    borderBottom: 0,
-    borderBottomLeftRadius: 0,
-    borderBottomRightRadius: 0,
     boxShadow: 'none',
+  },
+
+  variants: {
+    withAction: {
+      true: {
+        boxShadow: '0 1px 2px $shadow2',
+
+        [`& ${Message.Debug}`]: {
+          borderBottom: 0,
+          borderBottomLeftRadius: 0,
+          borderBottomRightRadius: 0,
+        },
+      },
+    },
   },
 });

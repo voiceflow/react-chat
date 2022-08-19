@@ -10,7 +10,6 @@ export const Container = styled('section', {
   borderRadius: '$2',
   boxSizing: 'content-box',
   overflow: 'hidden',
-  fontFamily: '$default',
   backgroundColor: '$lightGrey',
 
   [`& ${Image.Base}`]: {
@@ -40,12 +39,12 @@ export const Content = styled('main', {
 
 export const Header = styled('h3', {
   margin: '0 0 $1 0',
-  fontSize: '$2',
+  typo: { weight: '$2' },
   color: '$black',
 });
 
 export const Description = styled('p', {
   margin: 0,
-  fontSize: '$1',
+  typo: { size: '$1' },
   color: '$darkGrey',
 });

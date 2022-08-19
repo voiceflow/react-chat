@@ -16,9 +16,7 @@ export const inputFocusStyles: CSS = {
 export const Container = styled('input', {
   ...inputStyles,
   padding: '0 $4',
-  fontFamily: '$default',
-  fontSize: '$2',
-  fontWeight: '$1',
+  typo: {},
   color: '$black',
 
   '&:focus': {

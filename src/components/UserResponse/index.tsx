@@ -1,3 +1,4 @@
+import ActionMessage from '@/components/ActionMessage';
 import Message from '@/components/Message';
 
 import { Container, Debug } from './styled';
@@ -24,6 +25,11 @@ const UserResponse: React.FC<UserResponseProps> = ({ message, debug }) => (
     {debug && (
       <>
         <Debug>{debug.message}</Debug>
+        {debug.reason && (
+          <ActionMessage label={debug.action?.label} onClick={debug.action?.onClick} orientation="right">
+            {debug.reason}
+          </ActionMessage>
+        )}
       </>
     )}
   </Container>

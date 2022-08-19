@@ -8,10 +8,7 @@ export const Spacer = styled('span', {
 });
 
 export const Timestamp = styled('span', {
-  fontFamily: '$default',
-  fontSize: 12,
-  fontWeight: '$1',
-  lineHeight: '17px',
+  typo: { size: 12, height: '17px' },
   color: '$darkGrey',
 });
 

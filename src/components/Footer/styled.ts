@@ -19,9 +19,7 @@ export const Watermark = styled('aside', {
   justifyContent: 'center',
   alignItems: 'center',
   height: 40,
-  fontFamily: '$default',
-  fontSize: 12,
-  lineHeight: '17px',
+  typo: { size: 12, height: '17px' },
   color: '$darkGrey',
 
   '& a': {

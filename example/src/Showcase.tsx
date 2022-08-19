@@ -42,6 +42,7 @@ export const Showcase: React.FC = () => {
         </Message>
       </div>
       <div>
+        <ActionMessage orientation="right">Lorem ipsum dolor sit, amet consectetur</ActionMessage>
         <ActionMessage label="Action Label" orientation="right">
           Lorem ipsum dolor sit, amet consectetur
         </ActionMessage>
@@ -93,6 +94,21 @@ export const Showcase: React.FC = () => {
       <div>
         <UserResponse message="Lorem ipsum dolor sit amet consectetur" />
         <UserResponse message="Lorem ipsum dolor sit amet consectetur" debug={{ message: 'Intent Name (97%)' }} />
+        <UserResponse
+          message="Lorem ipsum dolor sit amet consectetur"
+          debug={{
+            message: 'Intent Name (97%)',
+            reason: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem voluptas perspiciatis est quis dolores!',
+          }}
+        />
+        <UserResponse
+          message="Lorem ipsum dolor sit amet consectetur"
+          debug={{
+            message: 'Intent Name (97%)',
+            reason: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem voluptas perspiciatis est quis dolores!',
+            action: { label: 'Add Missing Utterance' },
+          }}
+        />
       </div>
       <div>
         <Footer />
@@ -107,6 +123,37 @@ export const Showcase: React.FC = () => {
             messages={['Lorem ipsum dolor sit amet consectetur', 'Lorem ipsum dolor sit amet consectetur', 'Lorem ipsum dolor sit amet consectetur']}
           />
           <UserResponse message="Lorem ipsum" />
+          <SystemResponse
+            image="https://source.unsplash.com/random/26x26"
+            timestamp={new Date().toISOString()}
+            messages={['Lorem ipsum dolor sit']}
+          />
+          <UserResponse message="Lorem ipsum dolor sit amet consectetur" debug={{ message: 'Intent Name (97%)' }} />
+          <SystemResponse
+            image="https://source.unsplash.com/random/26x26"
+            timestamp={new Date().toISOString()}
+            messages={['Lorem ipsum dolor sit']}
+          />
+          <UserResponse
+            message="Lorem ipsum dolor sit amet consectetur"
+            debug={{
+              message: 'Intent Name (97%)',
+              reason: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem voluptas perspiciatis est quis dolores!',
+            }}
+          />
+          <SystemResponse
+            image="https://source.unsplash.com/random/26x26"
+            timestamp={new Date().toISOString()}
+            messages={['Lorem ipsum dolor sit']}
+          />
+          <UserResponse
+            message="Lorem ipsum dolor sit amet consectetur"
+            debug={{
+              message: 'Intent Name (97%)',
+              reason: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+              action: { label: 'Debug Action' },
+            }}
+          />
           <SystemResponse
             image="https://source.unsplash.com/random/26x26"
             timestamp={new Date().toISOString()}

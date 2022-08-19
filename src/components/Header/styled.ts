@@ -3,10 +3,7 @@ import Icon from '@/components/Icon';
 import { styled } from '@/styles';
 
 export const Title = styled('h1', {
-  fontFamily: '$default',
-  fontSize: 17,
-  fontWeight: '$2',
-  lineHeight: '$2',
+  typo: { size: 17, weight: '$2', height: '$2' },
   color: 'rgba(255,255,255,0.95)',
 });
 
