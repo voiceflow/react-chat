@@ -12,7 +12,7 @@ export interface CardProps {
   title: string;
   description: string;
   image: string;
-  actions?: CardActionProps[];
+  actions?: CardActionProps[] | undefined;
 }
 
 const Card: React.FC<CardProps> = ({ title, description, image, actions = [] }) => (

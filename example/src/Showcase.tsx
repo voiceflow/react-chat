@@ -12,6 +12,7 @@ import {
   Image,
   Input,
   Message,
+  Prompt,
   SystemResponse,
   UserResponse,
 } from '@/components';
@@ -82,13 +83,70 @@ export const Showcase: React.FC = () => {
         <SystemResponse
           image="https://source.unsplash.com/random/26x26"
           timestamp={new Date().toISOString()}
-          messages={['Lorem ipsum dolor sit amet consectetur', 'Lorem ipsum dolor sit amet consectetur', 'Lorem ipsum dolor sit amet consectetur']}
+          messages={[
+            { type: 'text', value: 'Lorem ipsum dolor sit amet consectetur' },
+            { type: 'text', value: 'Lorem ipsum dolor sit amet consectetur' },
+            { type: 'text', value: 'Lorem ipsum dolor sit amet consectetur' },
+          ]}
         />
         <SystemResponse
           image="https://source.unsplash.com/random/26x26"
           timestamp={new Date().toISOString()}
-          messages={['Lorem ipsum dolor sit amet consectetur']}
+          messages={[{ type: 'text', value: 'Lorem ipsum dolor sit amet consectetur' }]}
           actions={[{ label: 'Button One' }, { label: 'Button Two' }, { label: 'Button Three' }]}
+        />
+        <SystemResponse
+          image="https://source.unsplash.com/random/26x26"
+          timestamp={new Date().toISOString()}
+          messages={[
+            {
+              type: 'card',
+              title: 'Action Card',
+              description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem voluptas perspiciatis est quis dolores!',
+              image: 'https://source.unsplash.com/random/248x150',
+            },
+          ]}
+        />
+        <SystemResponse
+          image="https://source.unsplash.com/random/26x26"
+          timestamp={new Date().toISOString()}
+          messages={[
+            {
+              type: 'card',
+              title: 'Action Card',
+              description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem voluptas perspiciatis est quis dolores!',
+              image: 'https://source.unsplash.com/random/248x150',
+              actions: [{ label: 'First Button' }, { label: 'Second Button' }, { label: 'Third Button' }],
+            },
+          ]}
+        />
+        <SystemResponse
+          image="https://source.unsplash.com/random/26x26"
+          timestamp={new Date().toISOString()}
+          messages={[
+            {
+              type: 'carousel',
+              cards: [
+                {
+                  title: 'First Card',
+                  description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem voluptas perspiciatis est quis dolores!',
+                  image: 'https://source.unsplash.com/random/248x150',
+                },
+                {
+                  title: 'Second Card',
+                  description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+                  image: 'https://source.unsplash.com/random/248x150',
+                  actions: [{ label: 'First Button' }, { label: 'Second Button' }],
+                },
+                {
+                  title: 'Third Card',
+                  description: 'Lorem ipsum dolor sit amet',
+                  image: 'https://source.unsplash.com/random/248x150',
+                  actions: [{ label: 'First Button' }, { label: 'Second Button' }, { label: 'Third Button' }],
+                },
+              ],
+            },
+          ]}
         />
       </div>
       <div>
@@ -115,24 +173,39 @@ export const Showcase: React.FC = () => {
         <Footer isRunning />
       </div>
       <div>
+        <Prompt accept={{ label: 'Accept Option' }} cancel={{ label: 'Cancel Option' }} />
+        <Prompt accept={{ label: 'Dangerous Option', type: 'warn' }} cancel={{ label: 'Cancel Option' }} />
+      </div>
+      <div>
         <Chat title="Chat Assistant" image="https://source.unsplash.com/random/72x72" description="Lorem ipsum dolor sit amet consectetur" />
         <Chat isRunning title="Chat Assistant" image="https://source.unsplash.com/random/72x72" description="Lorem ipsum dolor sit amet consectetur">
           <SystemResponse
             image="https://source.unsplash.com/random/26x26"
             timestamp={new Date().toISOString()}
-            messages={['Lorem ipsum dolor sit amet consectetur', 'Lorem ipsum dolor sit amet consectetur', 'Lorem ipsum dolor sit amet consectetur']}
+            messages={[
+              { type: 'text', value: 'Lorem ipsum dolor sit amet consectetur' },
+              { type: 'text', value: 'Lorem ipsum dolor sit amet consectetur' },
+              { type: 'text', value: 'Lorem ipsum dolor sit amet consectetur' },
+            ]}
           />
           <UserResponse message="Lorem ipsum" />
           <SystemResponse
             image="https://source.unsplash.com/random/26x26"
             timestamp={new Date().toISOString()}
-            messages={['Lorem ipsum dolor sit']}
+            messages={[{ type: 'text', value: 'Lorem ipsum dolor sit' }]}
           />
           <UserResponse message="Lorem ipsum dolor sit amet consectetur" debug={{ message: 'Intent Name (97%)' }} />
           <SystemResponse
             image="https://source.unsplash.com/random/26x26"
             timestamp={new Date().toISOString()}
-            messages={['Lorem ipsum dolor sit']}
+            messages={[
+              {
+                type: 'card',
+                title: 'Action Card',
+                description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem voluptas perspiciatis est quis dolores!',
+                image: 'https://source.unsplash.com/random/248x150',
+              },
+            ]}
           />
           <UserResponse
             message="Lorem ipsum dolor sit amet consectetur"
@@ -144,7 +217,43 @@ export const Showcase: React.FC = () => {
           <SystemResponse
             image="https://source.unsplash.com/random/26x26"
             timestamp={new Date().toISOString()}
-            messages={['Lorem ipsum dolor sit']}
+            messages={[
+              {
+                type: 'card',
+                title: 'Action Card',
+                description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem voluptas perspiciatis est quis dolores!',
+                image: 'https://source.unsplash.com/random/248x150',
+                actions: [{ label: 'First Button' }, { label: 'Second Button' }, { label: 'Third Button' }],
+              },
+            ]}
+          />
+          <SystemResponse
+            image="https://source.unsplash.com/random/26x26"
+            timestamp={new Date().toISOString()}
+            messages={[
+              {
+                type: 'carousel',
+                cards: [
+                  {
+                    title: 'Third Card',
+                    description: 'Lorem ipsum dolor sit amet',
+                    image: 'https://source.unsplash.com/random/248x150',
+                    actions: [{ label: 'First Button' }, { label: 'Second Button' }, { label: 'Third Button' }],
+                  },
+                  {
+                    title: 'First Card',
+                    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem voluptas perspiciatis est quis dolores!',
+                    image: 'https://source.unsplash.com/random/248x150',
+                  },
+                  {
+                    title: 'Second Card',
+                    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+                    image: 'https://source.unsplash.com/random/248x150',
+                    actions: [{ label: 'First Button' }, { label: 'Second Button' }],
+                  },
+                ],
+              },
+            ]}
           />
           <UserResponse
             message="Lorem ipsum dolor sit amet consectetur"
@@ -157,12 +266,12 @@ export const Showcase: React.FC = () => {
           <SystemResponse
             image="https://source.unsplash.com/random/26x26"
             timestamp={new Date().toISOString()}
-            messages={['Lorem ipsum dolor sit']}
+            messages={[{ type: 'text', value: 'Lorem ipsum dolor sit' }]}
           />
           <SystemResponse
             image="https://source.unsplash.com/random/26x26"
             timestamp={new Date().toISOString()}
-            messages={['Lorem ipsum dolor sit amet consectetur']}
+            messages={[{ type: 'text', value: 'Lorem ipsum dolor sit amet consectetur' }]}
             actions={[
               { label: 'Action One' },
               { label: 'Action Two' },

@@ -13,6 +13,8 @@
   },
   "dependencies": {
     "@stitches/react": "^1.2.8",
+    "remeda": "^1.0.1",
+    "ts-pattern": "^4.0.5",
     "type-fest": "^2.18.0"
   },
   "devDependencies": {
