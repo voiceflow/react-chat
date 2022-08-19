@@ -1,14 +1,14 @@
+import Icon from '@/components/Icon';
+import Input from '@/components/Input';
+import { inputFocusStyles, inputStyles } from '@/components/Input/styled';
 import { styled } from '@/styles';
-
-import Input from '../Input';
-import { inputFocusStyles, inputStyles } from '../Input/styled';
 
 export const ButtonContainer = styled('span', {
   ...inputStyles,
   display: 'inline-flex',
   justifyContent: 'center',
   alignItems: 'center',
-  width: '$lg',
+  width: '$md',
 });
 
 export const Container = styled('div', {
@@ -25,6 +25,10 @@ export const Container = styled('div', {
     borderLeftWidth: 0,
     borderTopLeftRadius: 0,
     borderBottomLeftRadius: 0,
+  },
+
+  [`& ${Icon.Frame}`]: {
+    color: '$white',
   },
 
   [`& ${Input.Container}:focus + ${ButtonContainer}`]: {

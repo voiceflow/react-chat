@@ -1,19 +1,18 @@
-import { Container, Frame } from './styled';
+import Icon, { IconProps } from '@/components/Icon';
+
+import { Container } from './styled';
 
 export interface BubbleProps extends React.ComponentProps<typeof Container> {
-  icon: React.FC<React.ComponentProps<'svg'>>;
+  svg: IconProps['svg'];
   iconColor?: string;
 }
 
-const Bubble: React.FC<BubbleProps> = ({ icon: Icon, iconColor, ...props }) => (
+const Bubble: React.FC<BubbleProps> = ({ svg, color, ...props }) => (
   <Container {...props}>
-    <Frame>
-      <Icon style={{ color: iconColor }} />
-    </Frame>
+    <Icon svg={svg} css={{ color, ...props.css }} />
   </Container>
 );
 
 export default Object.assign(Bubble, {
   Container,
-  Frame,
 });

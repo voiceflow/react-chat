@@ -1,17 +1,14 @@
+import Icon from '@/components/Icon';
 import { styled } from '@/styles';
-
-export const Frame = styled('div');
 
 export const Container = styled('button', {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-
-  border: '1px solid $shadow4',
+  border: 0,
   borderRadius: '$round',
   padding: 0,
   backgroundColor: '$primary',
-  boxShadow: '0 1px 6px $shadow6, 0 2px 24px $shadow8',
 
   '&:focus': {
     outline: 0,
@@ -24,22 +21,24 @@ export const Container = styled('button', {
   variants: {
     size: {
       small: {
-        height: '$sm',
-        width: '$sm',
+        height: '$xs',
+        width: '$xs',
 
-        [`& ${Frame}`]: {
-          width: '$xs',
-          height: '$xs',
+        [`& ${Icon.Frame}`]: {
+          width: '$xxs',
+          height: '$xxs',
         },
       },
 
       large: {
         height: '$xl',
         width: '$xl',
+        border: '1px solid $shadow4',
+        boxShadow: '0 1px 6px $shadow6, 0 2px 24px $shadow8',
 
-        [`& ${Frame}`]: {
-          width: '$md',
-          height: '$md',
+        [`& ${Icon.Frame}`]: {
+          width: '$sm',
+          height: '$sm',
         },
       },
     },

@@ -7,10 +7,8 @@ export const BaseButton = styled('button', {
   border: 0,
   padding: '0 14px',
   borderRadius: '$1',
-  fontFamily: '$default',
-  fontSize: '$2',
-  fontWeight: '$2',
-  lineHeight: '$1',
+  typo: { weight: '$2' },
+  whiteSpace: 'nowrap',
 
   '&:focus': {
     outline: 0,

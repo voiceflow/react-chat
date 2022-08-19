@@ -8,21 +8,4 @@ export const Container = styled('div', {
   fontSize: '$2',
   fontWeight: '$1',
   lineHeight: '$1',
-
-  variants: {
-    from: {
-      system: {
-        color: '$black',
-        backgroundColor: '$lightGrey',
-      },
-
-      user: {
-        color: '$white',
-        backgroundColor: '$primary',
-      },
-    },
-  },
-  defaultVariants: {
-    from: 'system',
-  },
 });

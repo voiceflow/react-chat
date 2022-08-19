@@ -1,5 +1,5 @@
-import { Chat } from '../../src';
+import { Showcase } from './Showcase';
 
-const App: React.FC = () => <Chat />;
+const App: React.FC = () => <Showcase />;
 
 export default App;

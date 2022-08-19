@@ -1,8 +1,7 @@
-import ArrowUpSVG from '@/assets/svg/arrow-up.svg';
+import Bubble from '@/components/Bubble';
 import Input, { InputProps } from '@/components/Input';
 import { createControlled } from '@/utils/controls';
 
-import Bubble from '../Bubble';
 import { ButtonContainer, Container } from './styled';
 
 export interface ChatInputProps extends InputProps {
@@ -20,7 +19,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSend, ...props }) => (
       }}
       {...props}
     />
-    <ButtonContainer>{!!props.value && <Bubble size="small" icon={ArrowUpSVG} iconColor="#fff" onClick={onSend} />}</ButtonContainer>
+    <ButtonContainer>{!!props.value && <Bubble size="small" svg="arrowUp" onClick={onSend} />}</ButtonContainer>
   </Container>
 );
 

@@ -1,7 +1,19 @@
+import { bindVariants } from '@/utils/variants';
+
+import { ChatMessage } from './ChatMessage';
+import { MessageVariant } from './constants';
+import { DebugMessage } from './DebugMesage';
 import { Container } from './styled';
 
-const Message: React.FC<React.ComponentProps<typeof Container>> = (props) => <Container {...props} />;
+const VARIANTS = {
+  [MessageVariant.CHAT]: ChatMessage,
+  [MessageVariant.DEBUG]: DebugMessage,
+};
+
+const Message = bindVariants(VARIANTS, MessageVariant.CHAT);
 
 export default Object.assign(Message, {
   Container,
+  Chat: ChatMessage,
+  Debug: DebugMessage,
 });

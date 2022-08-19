@@ -12,6 +12,6 @@ const Input: React.FC<InputProps> = ({ onValueChange, onChange, ...props }) => (
 );
 
 export default Object.assign(Input, {
-  Controlled: createControlled(Input, ''),
+  Controlled: createControlled(Input, { defaultValue: '' }),
   Container,
 });

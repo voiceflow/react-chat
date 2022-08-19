@@ -1,7 +1,7 @@
 import { CSS, styled } from '@/styles';
 
 export const inputStyles: CSS = {
-  height: '$lg',
+  height: '$md',
   boxSizing: 'border-box',
   border: '1px solid rgba(115,115,118,0.3)',
   borderRadius: '$1',

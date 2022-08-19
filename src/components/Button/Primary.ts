@@ -3,7 +3,7 @@ import { styled } from '@/styles';
 import { BaseButton } from './styled';
 
 export const PrimaryButton = styled(BaseButton, {
-  height: '$lg',
+  height: '$md',
   color: '$white',
 
   variants: {
