@@ -35,6 +35,7 @@ export const Button = styled('button', {
 
 export const Container = styled('header', {
   display: 'flex',
+  flexShrink: 0,
   alignItems: 'center',
   height: '$lg',
   padding: '0 $4 0 $5',

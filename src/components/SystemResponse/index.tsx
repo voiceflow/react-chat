@@ -3,60 +3,41 @@ import { match } from 'ts-pattern';
 
 import Avatar from '@/components/Avatar';
 import Button from '@/components/Button';
-import Card, { CardProps } from '@/components/Card';
+import Card from '@/components/Card';
 import Carousel from '@/components/Carousel';
+import Image from '@/components/Image';
 import Message from '@/components/Message';
-import { StringifiedEnum } from '@/types';
 
+import { MessageType } from './constants';
 import { Actions, Container, List, Spacer, Timestamp } from './styled';
+import { MessageProps } from './types';
 import { formatTime } from './utils';
-
-export enum MessageType {
-  TEXT = 'text',
-  CARD = 'card',
-  CAROUSEL = 'carousel',
-}
-
-export interface TextMessageProps {
-  type: StringifiedEnum<MessageType.TEXT>;
-  value: string;
-}
-
-export interface CardMessageProps extends CardProps {
-  type: StringifiedEnum<MessageType.CARD>;
-}
-
-export interface CarouselMessageProps {
-  type: StringifiedEnum<MessageType.CAROUSEL>;
-  cards: CardProps[];
-}
-
-export type MessageProps = TextMessageProps | CardMessageProps | CarouselMessageProps;
 
 export interface ResponseActionProps {
   label: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export interface ResponseProps {
+export interface SystemResponseProps {
   image: string;
   timestamp: string;
   messages: MessageProps[];
   actions?: ResponseActionProps[];
 }
 
-const Response: React.FC<ResponseProps> = ({ image, timestamp, messages, actions = [] }) => (
+const SystemResponse: React.FC<SystemResponseProps> = ({ image, timestamp, messages, actions = [] }) => (
   <>
     <Container>
       <Avatar image={image} />
       <List>
         {messages.map((message, index) =>
           match(message)
-            .with({ type: MessageType.TEXT }, ({ value }) => (
+            .with({ type: MessageType.TEXT }, ({ text }) => (
               <Message from="system" key={index}>
-                {value}
+                {text}
               </Message>
             ))
+            .with({ type: MessageType.IMAGE }, ({ url }) => <Image image={url} key={index} />)
             .with({ type: MessageType.CARD }, (props) => <Card {...R.omit(props, ['type'])} key={index} />)
             .with({ type: MessageType.CAROUSEL }, (props) => <Carousel {...R.omit(props, ['type'])} key={index} />)
             .otherwise(() => null)
@@ -77,7 +58,9 @@ const Response: React.FC<ResponseProps> = ({ image, timestamp, messages, actions
   </>
 );
 
-export default Object.assign(Response, {
+export default Object.assign(SystemResponse, {
+  Message: MessageType,
+
   Container,
   List,
   Spacer,

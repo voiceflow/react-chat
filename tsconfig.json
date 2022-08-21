@@ -1,6 +1,11 @@
 {
   "extends": "@voiceflow/tsconfig/web.json",
   "compilerOptions": {
+    "module": "commonjs",
+    "lib": [
+      "dom",
+      "es2019"
+    ],
     "jsx": "react-jsx",
     "baseUrl": ".",
     "outDir": "build",
@@ -12,6 +17,8 @@
   "compileOnSave": false,
   "exclude": [
     "node_modules",
-    "build"
+    "build",
+    "dist",
+    "docs"
   ]
 }

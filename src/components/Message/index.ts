@@ -13,6 +13,8 @@ const VARIANTS = {
 const Message = bindVariants(VARIANTS, MessageVariant.CHAT);
 
 export default Object.assign(Message, {
+  Variant: MessageVariant,
+
   Container,
   Chat: ChatMessage,
   Debug: DebugMessage,

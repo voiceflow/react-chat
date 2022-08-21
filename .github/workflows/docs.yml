@@ -1,0 +1,23 @@
+name: Build and Deploy
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.1
+        with:
+          persist-credentials: false
+      - name: Install and Build
+        run: | # Install npm packages and build the Storybook files
+          yarn install
+          yarn build:storybook
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@4.4.0
+        with:
+          branch: docs
+          folder: docs
+          clean: true

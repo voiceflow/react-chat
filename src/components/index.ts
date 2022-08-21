@@ -1,5 +1,4 @@
-export { default as ActionMessage } from './ActionMessage';
-export { default as AssistantHeader } from './AssistantHeader';
+export { default as AssistantInfo } from './AssistantInfo';
 export { default as Avatar } from './Avatar';
 export { default as Bubble } from './Bubble';
 export { default as Button } from './Button';
@@ -15,4 +14,5 @@ export { default as Input } from './Input';
 export { default as Message } from './Message';
 export { default as Prompt } from './Prompt';
 export { default as SystemResponse } from './SystemResponse';
+export { default as Tooltip } from './Tooltip';
 export { default as UserResponse } from './UserResponse';

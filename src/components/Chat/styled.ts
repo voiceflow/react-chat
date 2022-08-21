@@ -5,6 +5,8 @@ import { styled } from '@/styles';
 
 export const Container = styled('article', {
   position: 'relative',
+  display: 'flex',
+  flexDirection: 'column',
   width: 380,
   borderRadius: '$2',
   overflow: 'hidden',
@@ -31,8 +33,18 @@ export const Overlay = styled('div', {
 });
 
 export const Dialog = styled('main', {
-  [`& > *`]: {
+  overflowY: 'scroll',
+  overflowX: 'hidden',
+
+  [`
+    & > ${UserResponse.Container},
+    & > ${SystemResponse.Container}
+  `]: {
     padding: '0 $5',
+  },
+
+  [`& > ${SystemResponse.Actions}`]: {
+    padding: '0 $5 0 54px',
   },
 
   [`& ${SystemResponse.Container}`]: {
@@ -43,11 +55,14 @@ export const Dialog = styled('main', {
     },
   },
 
-  [`& ${SystemResponse.Container} + ${UserResponse.Container}`]: {
-    marginTop: '$5',
+  [`& ${UserResponse.Container} + ${UserResponse.Container}`]: {
+    marginTop: '$1',
   },
 
-  [`& ${UserResponse.Container} + ${SystemResponse.Container}`]: {
+  [`
+    & ${SystemResponse.Container} + ${UserResponse.Container},
+    & ${UserResponse.Container} + ${SystemResponse.Container}
+  `]: {
     marginTop: '$5',
   },
 });

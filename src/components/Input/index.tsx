@@ -7,9 +7,11 @@ import { Container } from './styled';
 
 export interface InputProps extends Merge<React.ComponentProps<typeof Container>, ControlProps<string>> {}
 
-const Input: React.FC<InputProps> = ({ onValueChange, onChange, ...props }) => (
-  <Container {...props} onChange={chain(onChange, (event) => onValueChange(event.target.value))} />
-);
+const Input: React.FC<InputProps> = ({ onValueChange, onChange, ...props }) => {
+  const handleChange = chain(onChange, (event) => onValueChange(event.target.value));
+
+  return <Container {...props} onChange={handleChange} />;
+};
 
 export default Object.assign(Input, {
   Controlled: createControlled(Input, { defaultValue: '' }),

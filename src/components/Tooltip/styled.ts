@@ -10,7 +10,7 @@ export const Button = styled('button', {
   borderTopRightRadius: 0,
   typo: { weight: '$2' },
   color: '$primary',
-  backgroundColor: 'rgba(223,223,223,0.12)',
+  backgroundColor: '#fbfbfb',
 
   '&:focus': {
     outline: 0,

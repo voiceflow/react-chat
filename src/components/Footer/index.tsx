@@ -14,7 +14,9 @@ export interface FooterProps {
 const Footer: React.FC<FooterProps> = ({ isRunning, onStart, onSend }) => {
   const [message, setMessage] = useState('');
 
-  const handleSend = () => {
+  const handleSend = (): void => {
+    if (!message) return;
+
     onSend?.(message);
     setMessage('');
   };
@@ -22,13 +24,14 @@ const Footer: React.FC<FooterProps> = ({ isRunning, onStart, onSend }) => {
   return (
     <Container>
       {isRunning ? (
-        <ChatInput value={message} placeholder="Message…" onValueChange={setMessage} onSend={handleSend} />
+        // eslint-disable-next-line jsx-a11y/no-autofocus
+        <ChatInput value={message} placeholder="Message…" autoFocus onValueChange={setMessage} onSend={handleSend} />
       ) : (
         <Button onClick={onStart}>Start New Chat</Button>
       )}
       <Watermark>
         Conversation ⚡️ by
-        <a target="_blank" href="https://voiceflow.com">
+        <a target="_blank" href="https://voiceflow.com" rel="noreferrer">
           Voiceflow
         </a>
       </Watermark>

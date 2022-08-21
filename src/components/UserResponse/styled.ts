@@ -1,4 +1,4 @@
-import ActionMessage from '@/components/ActionMessage';
+import Tooltip from '@/components/Tooltip';
 import { styled } from '@/styles';
 
 export const Debug = styled('aside', {
@@ -12,7 +12,7 @@ export const Container = styled('div', {
   flexDirection: 'column',
   alignItems: 'flex-end',
 
-  [`& > ${ActionMessage.Container}`]: {
+  [`& > ${Tooltip.Container}`]: {
     marginTop: '$1',
   },
 });

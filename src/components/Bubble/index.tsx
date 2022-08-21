@@ -4,7 +4,6 @@ import { Container } from './styled';
 
 export interface BubbleProps extends React.ComponentProps<typeof Container> {
   svg: IconProps['svg'];
-  iconColor?: string;
 }
 
 const Bubble: React.FC<BubbleProps> = ({ svg, color, ...props }) => (

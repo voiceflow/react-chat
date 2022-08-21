@@ -17,6 +17,9 @@ log/
 build
 dist
 
+# docs
+docs
+
 #Sonar report
 sonar/
 nyc_coverage*

@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { Children, memo, useState } from 'react';
 
-import AssistantHeader from '@/components/AssistantHeader';
+import AssistantInfo from '@/components/AssistantInfo';
 import Footer, { FooterProps } from '@/components/Footer';
 import Header, { HeaderProps } from '@/components/Header';
 import Prompt from '@/components/Prompt';
+import { useAutoScroll } from '@/hooks';
 import { chain } from '@/utils/functional';
 
 import { Container, Dialog, Overlay } from './styled';
@@ -15,10 +16,11 @@ export interface ChatProps extends HeaderProps, FooterProps, React.PropsWithChil
 }
 
 const Chat: React.FC<ChatProps> = ({ isRunning, title, image, description, onMinimize, onEnd, onStart, onSend, children }) => {
+  const dialogRef = useAutoScroll([Children.count(children)]);
   const [hasAlert, setAlert] = useState(false);
 
-  const handleClose = () => setAlert(true);
-  const handleResume = () => setAlert(false);
+  const handleClose = (): void => setAlert(true);
+  const handleResume = (): void => setAlert(false);
 
   return (
     <Container>
@@ -30,8 +32,10 @@ const Chat: React.FC<ChatProps> = ({ isRunning, title, image, description, onMin
           { svg: 'close', onClick: handleClose },
         ]}
       />
-      <AssistantHeader name={title} image={image} description={description} />
-      <Dialog>{children}</Dialog>
+      <Dialog ref={dialogRef}>
+        <AssistantInfo name={title} image={image} description={description} />
+        {children}
+      </Dialog>
       <Footer isRunning={isRunning} onStart={onStart} onSend={onSend} />
       {hasAlert && (
         <>
@@ -46,7 +50,7 @@ const Chat: React.FC<ChatProps> = ({ isRunning, title, image, description, onMin
   );
 };
 
-export default Object.assign(Chat, {
+export default Object.assign(memo(Chat), {
   Container,
   Dialog,
   Overlay,

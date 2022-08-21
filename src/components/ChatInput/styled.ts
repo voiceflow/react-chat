@@ -31,6 +31,10 @@ export const Container = styled('div', {
     color: '$white',
   },
 
+  [`& ${Input.Container}:focus`]: {
+    borderRightWidth: 0,
+  },
+
   [`& ${Input.Container}:focus + ${ButtonContainer}`]: {
     ...inputFocusStyles,
     borderLeftWidth: 0,
