@@ -29,6 +29,7 @@ const config: StorybookViteConfig = {
 
   viteFinal: (config) =>
     mergeConfig(config, {
+      base: '/react-chat/',
       plugins: createPlugins(__dirname),
     }),
 };
