@@ -87,8 +87,8 @@
   "scripts": {
     "build": "yarn clean && yarn build:package && yarn build:bundle",
     "build:bundle": "vite build",
+    "build:docs": "build-storybook -o docs --no-dll",
     "build:package": "ttsc --project ./tsconfig.build.json --declaration",
-    "build:storybook": "STORYBOOK_BASE_HREF=react-chat build-storybook -o docs",
     "clean": "rimraf build dist",
     "commit": "cz",
     "eslint-output": "eslint-output",

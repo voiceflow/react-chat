@@ -12,9 +12,9 @@ jobs:
         with:
           persist-credentials: false
       - name: Install and Build
-        run: | # Install npm packages and build the Storybook files
+        run: |
           yarn install
-          yarn build:storybook
+          yarn build:docs
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4.4.0
         with:
