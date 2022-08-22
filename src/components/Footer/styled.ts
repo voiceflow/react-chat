@@ -18,7 +18,6 @@ export const Watermark = styled('aside', {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  height: 40,
   padding: '10px 0 $3 0',
   typo: { size: 12, height: '17px' },
   color: '$darkGrey',
