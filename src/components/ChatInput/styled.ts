@@ -9,16 +9,33 @@ export const ButtonContainer = styled('span', {
   justifyContent: 'center',
   alignItems: 'center',
   width: '$md',
+
+  '& > *': {
+    transform: 'scale(0)',
+    trans: ['transform'],
+  },
+
+  variants: {
+    withContent: {
+      true: {
+        '& > *': {
+          transform: 'scale(1)',
+        },
+      },
+    },
+  },
 });
 
 export const Container = styled('div', {
   display: 'flex',
+  boxShadow: '0 1px 12px $shadow2',
 
   [`& ${Input.Container}`]: {
     borderRightWidth: 0,
     borderTopRightRadius: 0,
     borderBottomRightRadius: 0,
     paddingRight: 7,
+    boxShadow: 'none',
   },
 
   [`& ${ButtonContainer}`]: {

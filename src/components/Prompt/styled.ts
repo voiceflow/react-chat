@@ -10,5 +10,9 @@ export const Container = styled('div', {
   [`& ${Button.Base}`]: {
     width: '100%',
     marginTop: '$1',
+
+    '&:first-of-type': {
+      marginTop: 0,
+    },
   },
 });

@@ -5,7 +5,7 @@ import Chat from '@/components/Chat';
 import SystemResponse, { MessageProps } from '.';
 
 const CARD_IMAGE = 'https://source.unsplash.com/random/248x150';
-const TEXT_MESSAGE: MessageProps = { type: 'text', value: 'Lorem ipsum dolor sit amet consectetur' };
+const TEXT_MESSAGE: MessageProps = { type: 'text', text: 'Lorem ipsum dolor sit amet consectetur' };
 const CARD: MessageProps = {
   type: 'card',
   title: 'Card Message',

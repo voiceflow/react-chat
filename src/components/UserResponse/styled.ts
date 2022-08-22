@@ -2,7 +2,7 @@ import Tooltip from '@/components/Tooltip';
 import { styled } from '@/styles';
 
 export const Debug = styled('aside', {
-  typo: { size: '$1', height: '17px' },
+  typo: { size: '12px', height: '17px' },
   color: '$darkGrey',
   marginTop: '$2',
 });

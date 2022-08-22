@@ -15,8 +15,10 @@ export const Button = styled('button', {
   width: 32,
   marginLeft: 8,
   border: 0,
+  borderRadius: 6,
   padding: 0,
   background: 'none',
+  trans: ['background-color'],
 
   '&:focus': {
     outline: 0,
@@ -24,12 +26,18 @@ export const Button = styled('button', {
 
   '&:hover': {
     cursor: 'pointer',
+    backgroundColor: 'rgba(255,255,255,0.16)',
+
+    [`& ${Icon.Frame}`]: {
+      color: '$white',
+    },
   },
 
   [`& ${Icon.Frame}`]: {
     height: '$xxs',
     width: '$xxs',
-    color: 'RGBA(255,255,255,0.8)',
+    color: 'rgba(255,255,255,0.8)',
+    trans: ['color'],
   },
 });
 

@@ -19,7 +19,9 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSend, ...props }) => {
   return (
     <Container>
       <Input onKeyPress={handleKeyPress} {...props} />
-      <ButtonContainer>{!!props.value && <Bubble size="small" svg="arrowUp" onClick={onSend} />}</ButtonContainer>
+      <ButtonContainer withContent={!!props.value}>
+        <Bubble size="small" svg="arrowUp" onClick={onSend} />
+      </ButtonContainer>
     </Container>
   );
 };

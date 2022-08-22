@@ -8,6 +8,7 @@ export const SecondaryButton = styled(BaseButton, {
   color: '$primary',
   backgroundColor: '$white',
   boxShadow: '0 1px 2px $shadow2',
+  trans: ['border-color'],
 
   '&:hover': {
     borderColor: '$primary',

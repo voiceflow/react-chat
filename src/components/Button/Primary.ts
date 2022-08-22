@@ -19,6 +19,11 @@ export const PrimaryButton = styled(BaseButton, {
       subtle: {
         color: '$black',
         backgroundColor: 'inherit',
+        trans: ['color'],
+
+        '&:hover': {
+          color: '#000',
+        },
       },
     },
   },

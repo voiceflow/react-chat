@@ -33,8 +33,14 @@ export const Container = styled('div', {
   },
 
   [`& ${Timestamp}`]: {
-    margin: '11.5px 0 11.5px $3',
+    margin: '$3 0 $3 $3',
     whiteSpace: 'nowrap',
+    opacity: '0%',
+    trans: ['opacity'],
+  },
+
+  [`&:hover ${Timestamp}`]: {
+    opacity: '100%',
   },
 });
 

@@ -47,4 +47,5 @@ export const Description = styled('p', {
   margin: 0,
   typo: { size: '$1' },
   color: '$darkGrey',
+  whiteSpace: 'normal',
 });

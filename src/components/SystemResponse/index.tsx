@@ -13,6 +13,8 @@ import { Actions, Container, List, Spacer, Timestamp } from './styled';
 import { MessageProps } from './types';
 import { formatTime } from './utils';
 
+export * from './types';
+
 export interface ResponseActionProps {
   label: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
