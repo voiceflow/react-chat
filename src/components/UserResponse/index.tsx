@@ -1,7 +1,9 @@
+import { useLayoutEffect, useRef } from 'react';
+
 import Message from '@/components/Message';
 import Tooltip from '@/components/Tooltip';
 
-import { Container, Debug } from './styled';
+import { Container, Debug, Frame } from './styled';
 
 export interface DebugActionProps {
   label: string;
@@ -19,21 +21,38 @@ export interface UserResponseProps {
   debug?: DebugResponseProps;
 }
 
-const UserResponse: React.FC<UserResponseProps> = ({ message, debug }) => (
-  <Container>
-    <Message from="user">{message}</Message>
-    {debug && (
-      <>
-        <Debug>{debug.message}</Debug>
-        {debug.reason && (
-          <Tooltip label={debug.action?.label} onClick={debug.action?.onClick} orientation="right">
-            {debug.reason}
-          </Tooltip>
+const UserResponse: React.FC<UserResponseProps> = ({ message, debug }) => {
+  const frameRef = useRef<HTMLDivElement>(null);
+  const messageRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    const frameEl = frameRef.current;
+    const messageEl = messageRef.current;
+    if (!frameEl || !messageEl) return;
+
+    frameEl.style.width = `${messageEl.clientWidth}px`;
+  }, [message]);
+
+  return (
+    <Container>
+      <Frame ref={frameRef}>
+        <Message from="user" ref={messageRef}>
+          {message}
+        </Message>
+        {debug && (
+          <>
+            <Debug>{debug.message}</Debug>
+            {debug.reason && (
+              <Tooltip label={debug.action?.label} onClick={debug.action?.onClick} orientation="right">
+                {debug.reason}
+              </Tooltip>
+            )}
+          </>
         )}
-      </>
-    )}
-  </Container>
-);
+      </Frame>
+    </Container>
+  );
+};
 
 export default Object.assign(UserResponse, {
   Container,

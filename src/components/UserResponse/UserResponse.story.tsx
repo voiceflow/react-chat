@@ -33,7 +33,7 @@ export const DebugReason = Template.bind({});
 DebugReason.args = {
   debug: {
     ...Debug.args.debug!,
-    reason: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem voluptas perspiciatis est quis dolores!',
+    reason: 'Voluptatum quae, accusamus excepturi inventore ex quos veritatis eaque ab non?',
   },
 };
 

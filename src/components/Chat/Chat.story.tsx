@@ -63,7 +63,7 @@ Exhaustive.args = {
         message="Lorem ipsum dolor sit amet consectetur"
         debug={{
           message: 'Intent Name (97%)',
-          reason: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem voluptas perspiciatis est quis dolores!',
+          reason: 'Voluptatum quae, accusamus excepturi inventore ex quos veritatis eaque ab non?',
         }}
       />
       <SystemResponse
@@ -105,7 +105,7 @@ Exhaustive.args = {
         message="Lorem ipsum dolor sit amet consectetur"
         debug={{
           message: 'Intent Name (97%)',
-          reason: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+          reason: 'Voluptatum quae, accusamus excepturi inventore ex quos?',
           action: { label: 'Debug Action' },
         }}
       />

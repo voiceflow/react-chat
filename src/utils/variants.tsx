@@ -9,12 +9,12 @@ export type VariantProps<Variants extends Record<string, React.FC<any>>, Default
 export const bindVariants = <Variants extends Record<string, React.FC<any>>, Default extends keyof Variants = never>(
   variants: Variants,
   defaultVariant?: Default
-): React.FC<VariantProps<Variants, Default>> => {
-  return ({ variant = defaultVariant, ...props }) => {
+) => {
+  return React.forwardRef<HTMLElement, VariantProps<Variants, Default>>(({ variant = defaultVariant, ...props }, ref) => {
     const Variant = variants[variant];
 
     if (!Variant) return null;
 
-    return <Variant {...props} />;
-  };
+    return <Variant {...props} ref={ref} />;
+  });
 };
