@@ -30,7 +30,7 @@ export interface SystemResponseProps {
 const SystemResponse: React.FC<SystemResponseProps> = ({ image, timestamp, messages, actions = [] }) => (
   <>
     {messages.map((message, index) => (
-      <Container withImage={index === messages.length - 1} key={index}>
+      <Container withImage={index === messages.length - 1} scrollable={message.type === MessageType.CAROUSEL} key={index}>
         <Avatar image={image} />
         <List>
           {match(message)

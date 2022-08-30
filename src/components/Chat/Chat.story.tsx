@@ -77,12 +77,6 @@ Exhaustive.args = {
             image: 'https://source.unsplash.com/random/248x150',
             actions: [{ label: 'First Button' }, { label: 'Second Button' }, { label: 'Third Button' }],
           },
-        ]}
-      />
-      <SystemResponse
-        image="https://source.unsplash.com/random/26x26"
-        timestamp={new Date().toISOString()}
-        messages={[
           {
             type: 'carousel',
             cards: [
@@ -118,12 +112,10 @@ Exhaustive.args = {
       <SystemResponse
         image="https://source.unsplash.com/random/26x26"
         timestamp={new Date().toISOString()}
-        messages={[{ type: 'text', text: 'Lorem ipsum dolor sit' }]}
-      />
-      <SystemResponse
-        image="https://source.unsplash.com/random/26x26"
-        timestamp={new Date().toISOString()}
-        messages={[{ type: 'text', text: 'Lorem ipsum dolor sit amet consectetur' }]}
+        messages={[
+          { type: 'text', text: 'Lorem ipsum dolor sit' },
+          { type: 'text', text: 'Lorem ipsum dolor sit amet consectetur' },
+        ]}
         actions={[{ label: 'Action One' }, { label: 'Action Two' }, { label: 'Action Three' }, { label: 'Action Four' }, { label: 'Action Five' }]}
       />
     </>
