@@ -3,10 +3,6 @@ import Button from '@/components/Button';
 import Message from '@/components/Message';
 import { styled } from '@/styles';
 
-export const Spacer = styled('span', {
-  flex: 1,
-});
-
 export const Timestamp = styled('span', {
   typo: { size: 12, height: '17px' },
   color: '$darkGrey',
@@ -28,12 +24,14 @@ export const Container = styled('div', {
   display: 'flex',
 
   [`& ${Avatar.Container}`]: {
+    visibility: 'hidden',
     alignSelf: 'flex-end',
     margin: '7px 8px 7px 0',
   },
 
   [`& ${Timestamp}`]: {
-    margin: '$3 0 $3 $3',
+    alignSelf: 'center',
+    marginLeft: '$3',
     whiteSpace: 'nowrap',
     opacity: '0%',
     trans: ['opacity'],
@@ -41,6 +39,16 @@ export const Container = styled('div', {
 
   [`&:hover ${Timestamp}`]: {
     opacity: '100%',
+  },
+
+  variants: {
+    withImage: {
+      true: {
+        [`& ${Avatar.Container}`]: {
+          visibility: 'visible',
+        },
+      },
+    },
   },
 });
 

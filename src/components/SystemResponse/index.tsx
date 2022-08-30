@@ -9,7 +9,7 @@ import Image from '@/components/Image';
 import Message from '@/components/Message';
 
 import { MessageType } from './constants';
-import { Actions, Container, List, Spacer, Timestamp } from './styled';
+import { Actions, Container, List, Timestamp } from './styled';
 import { MessageProps } from './types';
 import { formatTime } from './utils';
 
@@ -29,25 +29,24 @@ export interface SystemResponseProps {
 
 const SystemResponse: React.FC<SystemResponseProps> = ({ image, timestamp, messages, actions = [] }) => (
   <>
-    <Container>
-      <Avatar image={image} />
-      <List>
-        {messages.map((message, index) =>
-          match(message)
+    {messages.map((message, index) => (
+      <Container withImage={index === messages.length - 1} key={index}>
+        <Avatar image={image} />
+        <List>
+          {match(message)
             .with({ type: MessageType.TEXT }, ({ text }) => (
               <Message from="system" key={index}>
                 {text}
               </Message>
             ))
-            .with({ type: MessageType.IMAGE }, ({ url }) => <Image image={url} key={index} />)
-            .with({ type: MessageType.CARD }, (props) => <Card {...R.omit(props, ['type'])} key={index} />)
-            .with({ type: MessageType.CAROUSEL }, (props) => <Carousel {...R.omit(props, ['type'])} key={index} />)
-            .otherwise(() => null)
-        )}
-      </List>
-      <Spacer />
-      <Timestamp>{formatTime(timestamp)}</Timestamp>
-    </Container>
+            .with({ type: MessageType.IMAGE }, ({ url }) => <Image image={url} />)
+            .with({ type: MessageType.CARD }, (props) => <Card {...R.omit(props, ['type'])} />)
+            .with({ type: MessageType.CAROUSEL }, (props) => <Carousel {...R.omit(props, ['type'])} />)
+            .otherwise(() => null)}
+        </List>
+        <Timestamp>{formatTime(timestamp)}</Timestamp>
+      </Container>
+    ))}
     {!!actions.length && (
       <Actions>
         {actions.map(({ label, onClick }, index) => (
@@ -65,7 +64,6 @@ export default Object.assign(SystemResponse, {
 
   Container,
   List,
-  Spacer,
   Timestamp,
   Actions,
 });
