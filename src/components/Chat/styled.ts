@@ -33,6 +33,8 @@ export const Overlay = styled('div', {
 });
 
 export const Dialog = styled('main', {
+  display: 'flex',
+  flexDirection: 'column',
   overflowY: 'scroll',
   overflowX: 'hidden',
 
@@ -65,4 +67,16 @@ export const Dialog = styled('main', {
   `]: {
     marginTop: '$5',
   },
+});
+
+export const Spacer = styled('div', {
+  flexGrow: 1,
+});
+
+export const Timestamp = styled('div', {
+  display: 'flex',
+  justifyContent: 'center',
+  paddingBottom: '$3',
+  typo: { size: 12 },
+  color: '$darkGrey',
 });

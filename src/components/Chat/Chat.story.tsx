@@ -12,6 +12,7 @@ export default {
     title: 'Assistant Name',
     image: 'https://source.unsplash.com/random/72x72',
     description: "Voiceflow's virtual assistant is here to help.",
+    startTime: new Date(),
   },
 } as ComponentMeta<typeof Chat>;
 
@@ -60,7 +61,7 @@ Exhaustive.args = {
         ]}
       />
       <UserResponse
-        message="Lorem ipsum dolor sit amet consectetur"
+        message="Lorem ipsum dolor sit amet"
         debug={{
           message: 'Intent Name (97%)',
           reason: 'Voluptatum quae, accusamus excepturi inventore ex quos veritatis eaque ab non?',

@@ -30,7 +30,9 @@ const UserResponse: React.FC<UserResponseProps> = ({ message, debug }) => {
     const messageEl = messageRef.current;
     if (!frameEl || !messageEl) return;
 
-    frameEl.style.width = `${messageEl.clientWidth}px`;
+    const { width } = messageEl.getBoundingClientRect();
+
+    frameEl.style.width = `${Math.ceil(width)}px`;
   }, [message]);
 
   return (

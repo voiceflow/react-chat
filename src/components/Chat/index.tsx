@@ -7,15 +7,18 @@ import Prompt from '@/components/Prompt';
 import { useAutoScroll } from '@/hooks';
 import { chain } from '@/utils/functional';
 
-import { Container, Dialog, Overlay } from './styled';
+import { useTimestamp } from './hooks';
+import { Container, Dialog, Overlay, Spacer, Timestamp } from './styled';
 
 export interface ChatProps extends HeaderProps, FooterProps, React.PropsWithChildren {
   description: string;
+  startTime: Date;
   onMinimize?: React.MouseEventHandler<HTMLButtonElement>;
   onEnd?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-const Chat: React.FC<ChatProps> = ({ isRunning, title, image, description, onMinimize, onEnd, onStart, onSend, children }) => {
+const Chat: React.FC<ChatProps> = ({ isRunning, title, image, description, startTime, onMinimize, onEnd, onStart, onSend, children }) => {
+  const timestamp = useTimestamp(startTime);
   const dialogRef = useAutoScroll([Children.count(children)]);
   const [hasAlert, setAlert] = useState(false);
 
@@ -34,6 +37,8 @@ const Chat: React.FC<ChatProps> = ({ isRunning, title, image, description, onMin
       />
       <Dialog ref={dialogRef}>
         <AssistantInfo name={title} image={image} description={description} />
+        <Spacer />
+        <Timestamp>{timestamp}</Timestamp>
         {children}
       </Dialog>
       <Footer isRunning={isRunning} onStart={onStart} onSend={onSend} />
@@ -54,4 +59,6 @@ export default Object.assign(memo(Chat), {
   Container,
   Dialog,
   Overlay,
+  Spacer,
+  Timestamp,
 });

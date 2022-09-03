@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 import * as R from 'remeda';
 import { match } from 'ts-pattern';
@@ -24,6 +24,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant }) => {
   const [isOpen, setOpen] = useState(false);
   const [isRunning, setRunning] = useState(false);
   const [turns, setTurns] = useState<TurnProps[]>([]);
+  const startTime = useMemo(() => new Date(), []);
 
   const handleOpen = (): void => setOpen(true);
   const handleMinimize = (): void => setOpen(false);
@@ -51,6 +52,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant }) => {
           title={assistant.name}
           description={assistant.description}
           image={assistant.image}
+          startTime={startTime}
           isRunning={isRunning}
           onStart={handleStart}
           onEnd={handleEnd}
