@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@stitches/react": "^1.2.8",
+    "chroma-js": "^2.4.2",
     "csstype": "^3.1.0",
     "dayjs": "^1.11.5",
     "react": "^18.2.0",
@@ -36,6 +37,7 @@
     "@storybook/react": "^6.5.10",
     "@storybook/testing-library": "^0.0.13",
     "@svgr/webpack": "5",
+    "@types/chroma-js": "^2.1.4",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.0.1",

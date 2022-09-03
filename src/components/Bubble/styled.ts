@@ -9,6 +9,7 @@ export const Container = styled('button', {
   borderRadius: '$round',
   padding: 0,
   backgroundColor: '$primary',
+  trans: ['background-color'],
 
   '&:focus': {
     outline: 0,
@@ -16,6 +17,7 @@ export const Container = styled('button', {
 
   '&:hover': {
     cursor: 'pointer',
+    backgroundColor: '$darkPrimary',
   },
 
   variants: {

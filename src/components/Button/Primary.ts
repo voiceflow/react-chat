@@ -5,15 +5,24 @@ import { BaseButton } from './styled';
 export const PrimaryButton = styled(BaseButton, {
   height: '$md',
   color: '$white',
+  trans: ['background-color'],
 
   variants: {
     type: {
       info: {
         backgroundColor: '$primary',
+
+        '&:hover': {
+          backgroundColor: '$darkPrimary',
+        },
       },
 
       warn: {
         backgroundColor: '$warn',
+
+        '&:hover': {
+          backgroundColor: '$darkWarn',
+        },
       },
 
       subtle: {

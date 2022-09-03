@@ -2,7 +2,8 @@ import { createStitches, CSS as BaseCSS } from '@stitches/react';
 import { PropertiesHyphen as CSSPropertiesHyphen } from 'csstype';
 import { StringKeyOf } from 'type-fest';
 
-import * as Font from './fonts';
+import * as Color from './color';
+import * as Font from './font';
 
 const ANIMATION_TIMING = '150ms';
 
@@ -16,31 +17,10 @@ export interface FontOptions {
   height?: BaseCSS['lineHeight'] | Token<typeof Font['LINE_HEIGHTS']>;
 }
 
-const shadows = {
-  shadow1: 'rgba(0,0,0,0.01)',
-  shadow2: 'rgba(0,0,0,0.02)',
-  shadow3: 'rgba(0,0,0,0.03)',
-  shadow4: 'rgba(0,0,0,0.04)',
-  shadow6: 'rgba(0,0,0,0.06)',
-  shadow8: 'rgba(0,0,0,0.08)',
-  shadow12: 'rgba(0,0,0,0.12)',
-  shadow16: 'rgba(0,0,0,0.16)',
-};
-
 export const { styled, config, keyframes } = createStitches({
   theme: {
-    colors: {
-      black: 'rgba(0,0,0,0.9)',
-      white: '#fff',
-      lightGrey: '#f4f4f4',
-      medGrey: '#dfdfdf',
-      darkGrey: '#737376',
-      primary: '#3d82e2',
-      warn: '#db1b42',
-
-      ...shadows,
-    },
-    shadows,
+    colors: Color.PALETTE,
+    shadows: Color.SHADOWS,
 
     space: {
       1: '4px',
