@@ -15,4 +15,5 @@ export { default as Message } from './Message';
 export { default as Prompt } from './Prompt';
 export { default as SystemResponse } from './SystemResponse';
 export { default as Tooltip } from './Tooltip';
+export { default as TypingIndicator } from './TypingIndicator';
 export { default as UserResponse } from './UserResponse';
