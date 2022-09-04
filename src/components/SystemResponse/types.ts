@@ -1,5 +1,5 @@
 import { CardProps } from '@/components/Card';
-import { StringifiedEnum } from '@/types';
+import { StringifiedEnum } from '@/types/util';
 
 import { MessageType } from './constants';
 

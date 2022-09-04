@@ -23,6 +23,10 @@ export const Container = styled('section', {
     boxShadow: '0 5px 8px -8px $shadow12, 0 2px 4px -3px $shadow12, 0 0 0 1px $shadow3, 0 1px 3px 1px $shadow1',
     marginBottom: '$2',
 
+    '&:hover': {
+      backgroundColor: '$white',
+    },
+
     '&:first-of-type': {
       marginTop: '$3',
     },

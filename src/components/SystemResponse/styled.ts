@@ -52,6 +52,7 @@ export const Container = styled('div', {
     scrollable: {
       true: {
         overflowX: 'scroll',
+        flexShrink: 0,
       },
     },
   },

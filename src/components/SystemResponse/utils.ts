@@ -1,5 +1,4 @@
-export const formatTime = (timestamp: string) => {
-  const date = new Date(timestamp);
+export const formatTime = (date: Date) => {
   const hours = date.getHours();
   const minutes = date.getMinutes();
 

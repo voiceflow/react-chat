@@ -27,7 +27,7 @@ Exhaustive.args = {
     <>
       <SystemResponse
         image="https://source.unsplash.com/random/26x26"
-        timestamp={new Date().toISOString()}
+        timestamp={new Date()}
         messages={[
           { type: 'text', text: 'Lorem ipsum dolor sit amet consectetur' },
           { type: 'text', text: 'Lorem ipsum dolor sit amet consectetur' },
@@ -37,20 +37,20 @@ Exhaustive.args = {
       <UserResponse message="Lorem ipsum" />
       <SystemResponse
         image="https://source.unsplash.com/random/26x26"
-        timestamp={new Date().toISOString()}
+        timestamp={new Date()}
         messages={[{ type: 'text', text: 'Lorem ipsum dolor sit' }]}
       />
       <UserResponse message="Lorem ipsum dolor sit amet consectetur" debug={{ message: 'Intent Name (97%)' }} />
       <SystemResponse
         image="https://source.unsplash.com/random/26x26"
-        timestamp={new Date().toISOString()}
+        timestamp={new Date()}
         messages={[{ type: 'image', url: 'https://source.unsplash.com/random/248x200' }]}
       />
       <UserResponse message="Lorem ipsum dolor sit amet consectetur" debug={{ message: 'Intent Name (97%)' }} />
       <UserResponse message="Lorem ipsum dolor sit amet consectetur" debug={{ message: 'Intent Name (97%)' }} />
       <SystemResponse
         image="https://source.unsplash.com/random/26x26"
-        timestamp={new Date().toISOString()}
+        timestamp={new Date()}
         messages={[
           {
             type: 'card',
@@ -69,7 +69,7 @@ Exhaustive.args = {
       />
       <SystemResponse
         image="https://source.unsplash.com/random/26x26"
-        timestamp={new Date().toISOString()}
+        timestamp={new Date()}
         messages={[
           {
             type: 'card',
@@ -112,7 +112,7 @@ Exhaustive.args = {
       />
       <SystemResponse
         image="https://source.unsplash.com/random/26x26"
-        timestamp={new Date().toISOString()}
+        timestamp={new Date()}
         messages={[
           { type: 'text', text: 'Lorem ipsum dolor sit' },
           { type: 'text', text: 'Lorem ipsum dolor sit amet consectetur' },

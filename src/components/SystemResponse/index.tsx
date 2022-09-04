@@ -22,7 +22,7 @@ export interface ResponseActionProps {
 
 export interface SystemResponseProps {
   image: string;
-  timestamp: string;
+  timestamp: Date;
   messages: MessageProps[];
   actions?: ResponseActionProps[];
 }

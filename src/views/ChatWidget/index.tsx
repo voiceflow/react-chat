@@ -7,10 +7,10 @@ import Bubble from '@/components/Bubble';
 import Chat from '@/components/Chat';
 import SystemResponse from '@/components/SystemResponse';
 import UserResponse from '@/components/UserResponse';
+import { useRuntime } from '@/hooks/useRuntime';
+import { TurnType } from '@/types';
 
-import { TurnType } from './constants';
 import { Container } from './styled';
-import { TurnProps } from './types';
 
 export interface ChatWidgetProps {
   assistant: {
@@ -23,27 +23,18 @@ export interface ChatWidgetProps {
 const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant }) => {
   const [isOpen, setOpen] = useState(false);
   const [isRunning, setRunning] = useState(false);
-  const [turns, setTurns] = useState<TurnProps[]>([]);
   const startTime = useMemo(() => new Date(), []);
 
   const handleOpen = (): void => setOpen(true);
   const handleMinimize = (): void => setOpen(false);
-  const handleStart = (): void => setRunning(true);
+  const handleStart = async (): Promise<void> => {
+    setRunning(true);
+    await runtime.launch();
+  };
   const handleEnd = (): void => {
     handleMinimize();
     setRunning(false);
   };
-  const handleSend = (message: string): void =>
-    setTurns([
-      ...turns,
-      { type: TurnType.USER, message },
-      {
-        type: TurnType.SYSTEM,
-        image: assistant.image,
-        timestamp: new Date().toISOString(),
-        messages: [{ type: 'text', text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit quisquam corrupti harum et, quos seq.' }],
-      },
-    ]);
 
   return createPortal(
     <Container>
@@ -56,13 +47,13 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant }) => {
           isRunning={isRunning}
           onStart={handleStart}
           onEnd={handleEnd}
-          onSend={handleSend}
+          onSend={runtime.sendMessage}
           onMinimize={handleMinimize}
         >
-          {turns.map((turn, index) =>
+          {runtime.turns.map((turn, index) =>
             match(turn)
               .with({ type: TurnType.USER }, (props) => <UserResponse {...R.omit(props, ['type'])} key={index} />)
-              .with({ type: TurnType.SYSTEM }, (props) => <SystemResponse {...R.omit(props, ['type'])} key={index} />)
+              .with({ type: TurnType.SYSTEM }, (props) => <SystemResponse {...R.omit(props, ['type'])} image={assistant.image} key={index} />)
               .exhaustive()
           )}
         </Chat>
@@ -75,7 +66,5 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant }) => {
 };
 
 export default Object.assign(ChatWidget, {
-  Turn: TurnType,
-
   Container,
 });
