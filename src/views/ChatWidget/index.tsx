@@ -7,7 +7,7 @@ import Bubble from '@/components/Bubble';
 import Chat from '@/components/Chat';
 import SystemResponse from '@/components/SystemResponse';
 import UserResponse from '@/components/UserResponse';
-import { RuntimeOptions, useRuntime } from '@/hooks/useRuntime';
+import { RuntimeOptions, useRuntime } from '@/hooks';
 import { TurnType } from '@/types';
 
 import { Container } from './styled';
