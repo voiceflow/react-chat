@@ -3665,6 +3665,13 @@
   resolved "https://registry.yarnpkg.com/@voiceflow/prettier-config/-/prettier-config-1.2.1.tgz#906bc852bcd8b2586fa62e4635392a0bea1fdb59"
   integrity sha512-J7wnJCwRWSNX33Ji2eLeBxtwXplAKIk9/aOfrHVfKmYrLHqXvOcrl2/7xa37jqnuTl8vw3+UsfFo3sMDY6weTg==
 
+"@voiceflow/runtime-sdk@1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@voiceflow/runtime-sdk/-/runtime-sdk-1.2.0.tgz#558fc0a60d178489d5e3752d469da6cd1ccaac39"
+  integrity sha512-J9imSoTgnt5uHGsgdMKqxc64PpwGlUsCkU/SjpgJiA42TxLUs51xwg5TEIE5bNtr8GH4TqWvp9e0MAkmAkasbg==
+  dependencies:
+    http-errors "^2.0.0"
+
 "@voiceflow/tsconfig@1.4.8":
   version "1.4.8"
   resolved "https://registry.yarnpkg.com/@voiceflow/tsconfig/-/tsconfig-1.4.8.tgz#02c833721978be6ab711b3697b785bd74d59ac6f"
@@ -8803,7 +8810,7 @@ htmlparser2@^7.1.2:
     domutils "^2.8.0"
     entities "^3.0.1"
 
-http-errors@2.0.0:
+http-errors@2.0.0, http-errors@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/http-errors/-/http-errors-2.0.0.tgz#b7774a1486ef73cf7667ac9ae0858c012c57b9d3"
   integrity sha512-FtwrG/euBzaEjYeRqOgly7G0qviiXoJWnvEH2Z1plBdXgbyjv34pHTSb9zoeHMyDy33+DWy5Wt9Wo+TURtOYSQ==

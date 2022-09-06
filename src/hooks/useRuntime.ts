@@ -40,15 +40,17 @@ const createContext = (): RuntimeContext => ({
 
 export const useRuntime = ({ url = RUNTIME_URL, versionID, ...options }: RuntimeOptions) => {
   const [turns, setTurns] = useState<TurnProps[]>([]);
-  // const [messages, setMessages] = useState<{ message: string; timestamp: Date }[]>([]);
   const sessionID = useMemo(() => cuid(), []);
-  // const contextRef = useRef<RuntimeContext>({});
 
   const runtime = useMemo(() => new VoiceflowRuntime<RuntimeContext>({ ...options, url }), [options.authorization]);
   const interact = async (action: RuntimeAction): Promise<void> => {
     const context = await runtime.interact(createContext(), { versionID, sessionID, action });
 
     setTurns((prev) => [...prev, { type: TurnType.SYSTEM, timestamp: new Date(), ...context }]);
+  };
+  const reply = async (message: string, action: RuntimeAction): Promise<void> => {
+    setTurns((prev) => [...prev, { type: TurnType.USER, message }]);
+    await interact(action);
   };
 
   runtime.registerStep(
@@ -67,7 +69,7 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, ...options }: Runtime
     ChoiceTraceComponent(({ context }, { payload: { buttons } }) => {
       context.actions = (buttons as { name: string; request: RuntimeAction }[]).map(({ name, request }) => ({
         label: name,
-        onClick: () => interact(request),
+        onClick: () => reply(name, request),
       }));
       return context;
     })
@@ -80,21 +82,21 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, ...options }: Runtime
         title,
         description: description.text,
         image: imageUrl,
-        actions: buttons.map(({ name, request }) => ({ label: name, onClick: () => interact(request) })),
+        actions: buttons.map(({ name, request }) => ({ label: name, onClick: () => reply(name, request) })),
       });
       return context;
     },
   });
   runtime.registerStep({
     canHandle: ({ type }) => type === 'carousel',
-    handle: ({ context }, { payload }: RuntimeTrace<never, CarouselTrace>) => {
+    handle: ({ context }, { payload: { cards } }: RuntimeTrace<never, CarouselTrace>) => {
       context.messages.push({
         type: 'carousel',
-        cards: payload.cards.map(({ title, description, imageUrl, buttons }) => ({
+        cards: cards.map(({ title, description, imageUrl, buttons }) => ({
           title,
           description: description.text,
-          image: imageUrl!,
-          actions: buttons.map(({ name, request }) => ({ label: name, onClick: () => interact(request) })),
+          image: imageUrl,
+          actions: buttons.map(({ name, request }) => ({ label: name, onClick: () => reply(name, request) })),
         })),
       });
       return context;
@@ -102,12 +104,7 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, ...options }: Runtime
   });
 
   const launch = async (): Promise<void> => interact({ type: 'launch', payload: null });
-  const sendMessage = async (message: string): Promise<void> => {
-    const context = await runtime.interact(createContext(), {
-      sessionID,
-      action: { type: 'text', payload: message },
-    });
-  };
+  const sendMessage = async (message: string): Promise<void> => interact({ type: 'text', payload: message });
 
   return {
     turns,

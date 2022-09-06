@@ -7,12 +7,12 @@ import Bubble from '@/components/Bubble';
 import Chat from '@/components/Chat';
 import SystemResponse from '@/components/SystemResponse';
 import UserResponse from '@/components/UserResponse';
-import { useRuntime } from '@/hooks/useRuntime';
+import { RuntimeOptions, useRuntime } from '@/hooks/useRuntime';
 import { TurnType } from '@/types';
 
 import { Container } from './styled';
 
-export interface ChatWidgetProps {
+export interface ChatWidgetProps extends RuntimeOptions {
   assistant: {
     name: string;
     description: string;
@@ -20,10 +20,11 @@ export interface ChatWidgetProps {
   };
 }
 
-const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant }) => {
+const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant, versionID, authorization }) => {
   const [isOpen, setOpen] = useState(false);
   const [isRunning, setRunning] = useState(false);
   const startTime = useMemo(() => new Date(), []);
+  const runtime = useRuntime({ versionID, authorization });
 
   const handleOpen = (): void => setOpen(true);
   const handleMinimize = (): void => setOpen(false);

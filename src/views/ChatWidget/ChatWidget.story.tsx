@@ -6,6 +6,8 @@ export default {
   title: 'Views/ChatWidget',
   component: ChatWidget,
   args: {
+    versionID: '',
+    authorization: '',
     assistant: {
       name: 'Assistant Name',
       image: 'https://source.unsplash.com/random/72x72',
