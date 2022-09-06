@@ -1,10 +1,10 @@
-import { Children, memo, useState } from 'react';
+import { memo, useRef, useState } from 'react';
 
 import AssistantInfo from '@/components/AssistantInfo';
 import Footer, { FooterProps } from '@/components/Footer';
 import Header, { HeaderProps } from '@/components/Header';
 import Prompt from '@/components/Prompt';
-import { useAutoScroll } from '@/hooks';
+import { AutoScrollProvider } from '@/contexts';
 import { chain } from '@/utils/functional';
 
 import { useTimestamp } from './hooks';
@@ -19,7 +19,7 @@ export interface ChatProps extends HeaderProps, FooterProps, React.PropsWithChil
 
 const Chat: React.FC<ChatProps> = ({ isRunning, title, image, description, startTime, onMinimize, onEnd, onStart, onSend, children }) => {
   const timestamp = useTimestamp(startTime);
-  const dialogRef = useAutoScroll([Children.count(children)]);
+  const dialogRef = useRef<HTMLElement>(null);
   const [hasAlert, setAlert] = useState(false);
 
   const handleClose = (): void => setAlert(true);
@@ -36,10 +36,12 @@ const Chat: React.FC<ChatProps> = ({ isRunning, title, image, description, start
         ]}
       />
       <Dialog ref={dialogRef}>
-        <AssistantInfo name={title} image={image} description={description} />
-        <Spacer />
-        <Timestamp>{timestamp}</Timestamp>
-        {children}
+        <AutoScrollProvider target={dialogRef}>
+          <AssistantInfo name={title} image={image} description={description} />
+          <Spacer />
+          <Timestamp>{timestamp}</Timestamp>
+          {children}
+        </AutoScrollProvider>
       </Dialog>
       <Footer isRunning={isRunning} onStart={onStart} onSend={onSend} />
       {hasAlert && (

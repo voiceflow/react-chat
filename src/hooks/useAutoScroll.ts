@@ -1,18 +1,11 @@
-import { useLayoutEffect, useRef } from 'react';
+import { useContext, useLayoutEffect } from 'react';
 
-export const useAutoScroll = <T extends HTMLElement>(dependencies: any[] = []): React.RefObject<T> => {
-  const ref = useRef<T>(null);
+import { AutoScrollContext } from '@/contexts';
+
+export const useAutoScroll = (dependencies: any[] = []): void => {
+  const { scrollToBottom } = useContext(AutoScrollContext);
 
   useLayoutEffect(() => {
-    const dialogEl = ref.current;
-    if (!dialogEl) return;
-
-    const { scrollTop, scrollHeight, clientHeight } = dialogEl;
-    const hiddenHeight = scrollHeight - clientHeight;
-    if (hiddenHeight === scrollTop) return;
-
-    dialogEl.scrollTo({ top: hiddenHeight });
+    scrollToBottom();
   }, dependencies);
-
-  return ref;
 };

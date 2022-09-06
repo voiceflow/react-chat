@@ -1,5 +1,5 @@
-import { SystemResponseProps } from '@/components/SystemResponse';
-import { UserResponseProps } from '@/components/UserResponse';
+import type { SystemResponseProps } from '@/components/SystemResponse';
+import type { UserResponseProps } from '@/components/UserResponse';
 
 export enum TurnType {
   USER = 'user',

@@ -54,7 +54,9 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant, versionID, authoriza
           {runtime.turns.map((turn, index) =>
             match(turn)
               .with({ type: TurnType.USER }, (props) => <UserResponse {...R.omit(props, ['type'])} key={index} />)
-              .with({ type: TurnType.SYSTEM }, (props) => <SystemResponse {...R.omit(props, ['type'])} image={assistant.image} key={index} />)
+              .with({ type: TurnType.SYSTEM }, (props) => (
+                <SystemResponse {...R.omit(props, ['type'])} image={assistant.image} animated key={index} />
+              ))
               .exhaustive()
           )}
         </Chat>

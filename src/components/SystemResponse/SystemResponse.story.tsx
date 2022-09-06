@@ -51,6 +51,12 @@ ActionableText.args = {
   actions: [{ label: 'Button One' }, { label: 'Button Two' }, { label: 'Button Three' }],
 };
 
+export const Animated = Template.bind({});
+Animated.args = {
+  messages: [TEXT_MESSAGE, TEXT_MESSAGE, TEXT_MESSAGE],
+  animated: true,
+};
+
 export const Card = Template.bind({});
 Card.args = {
   messages: [CARD],

@@ -2,6 +2,7 @@ import { useLayoutEffect, useRef } from 'react';
 
 import Message from '@/components/Message';
 import Tooltip from '@/components/Tooltip';
+import { useAutoScroll } from '@/hooks';
 
 import { Container, Debug, Frame } from './styled';
 
@@ -24,6 +25,8 @@ export interface UserResponseProps {
 const UserResponse: React.FC<UserResponseProps> = ({ message, debug }) => {
   const frameRef = useRef<HTMLDivElement>(null);
   const messageRef = useRef<HTMLDivElement>(null);
+
+  useAutoScroll();
 
   useLayoutEffect(() => {
     const frameEl = frameRef.current;

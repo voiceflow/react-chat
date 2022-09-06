@@ -11,7 +11,7 @@ import cuid from 'cuid';
 import { useMemo, useState } from 'react';
 import { SetOptional } from 'type-fest';
 
-import { SystemResponseProps } from '@/components/SystemResponse';
+import type { SystemResponseProps } from '@/components/SystemResponse';
 import { TurnProps, TurnType } from '@/types';
 
 const RUNTIME_URL = 'https://general-runtime.voiceflow.com';

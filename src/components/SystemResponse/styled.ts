@@ -55,6 +55,11 @@ export const Container = styled('div', {
         flexShrink: 0,
       },
     },
+    center: {
+      true: {
+        alignItems: 'center',
+      },
+    },
   },
 });
 
