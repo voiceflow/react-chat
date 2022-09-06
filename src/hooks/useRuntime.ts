@@ -6,7 +6,7 @@ import {
   VisualTraceComponent,
   VoiceflowRuntime,
   VoiceflowRuntimeOptions,
-} from '@voiceflow/runtime-sdk';
+} from '@voiceflow/sdk-runtime';
 import cuid from 'cuid';
 import { useMemo, useState } from 'react';
 import { SetOptional } from 'type-fest';
