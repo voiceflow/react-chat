@@ -3665,10 +3665,10 @@
   resolved "https://registry.yarnpkg.com/@voiceflow/prettier-config/-/prettier-config-1.2.1.tgz#906bc852bcd8b2586fa62e4635392a0bea1fdb59"
   integrity sha512-J7wnJCwRWSNX33Ji2eLeBxtwXplAKIk9/aOfrHVfKmYrLHqXvOcrl2/7xa37jqnuTl8vw3+UsfFo3sMDY6weTg==
 
-"@voiceflow/runtime-sdk@1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@voiceflow/runtime-sdk/-/runtime-sdk-1.2.0.tgz#558fc0a60d178489d5e3752d469da6cd1ccaac39"
-  integrity sha512-J9imSoTgnt5uHGsgdMKqxc64PpwGlUsCkU/SjpgJiA42TxLUs51xwg5TEIE5bNtr8GH4TqWvp9e0MAkmAkasbg==
+"@voiceflow/sdk-runtime@1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@voiceflow/sdk-runtime/-/sdk-runtime-1.2.1.tgz#19e0b439acd5c6a7f38a14bbd89c26eee2536c51"
+  integrity sha512-WggM6WedOZm031cnLDt4NTiY79Vvz5uMz4tDKkRKwwvOCD8kKzWXYNHhSZAc9wkmek2G64p+xXqs8TN5HXL4fw==
   dependencies:
     http-errors "^2.0.0"
 
