@@ -20,6 +20,7 @@
     "@voiceflow/tsconfig",
     "@svgr/webpack",
     "@emotion/core",
+    "@vitest/coverage-c8",
     "storybook-dark-mode",
     "eslint-import-resolver-typescript",
     "eslint-plugin-mdx",
