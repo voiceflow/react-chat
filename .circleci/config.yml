@@ -1,11 +1,11 @@
 version: 2.1
 
 orbs:
-  vfcommon: voiceflow/common@0.0.187
+  vfcommon: voiceflow/common@0.5.0
 
 jobs:
   build-and-test:
-    executor: vfcommon/default-executor
+    executor: vfcommon/node-executor
     steps:
       - checkout
       - vfcommon/install_node_modules
@@ -17,7 +17,6 @@ jobs:
       - vfcommon/integration_tests
 
 workflows:
-
   test-and-release:
     jobs:
       - build-and-test:
