@@ -80,8 +80,8 @@ You can use a simple JavaScript snippet to add the chat widget to any HTML page.
           description: "It's your friendly, neighborhood chat assistant!",
           image: 'https://source.unsplash.com/random/72x72'
         },
-        versionID: VERSION_ID,
-        authorization: API_KEY
+        versionID: 'abc123',
+        authorization: 'VF.DM.xxx123'
       })
     </script>
   </body>
