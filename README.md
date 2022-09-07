@@ -57,7 +57,7 @@ const App = () => {
     <main>
       <p>Welcome</p>
 
-      <ChatWidget assistant={assistant} versionID={VERSION_ID} apiKey={API_KEY} />
+      <ChatWidget assistant={assistant} versionID={VERSION_ID} authorization={API_KEY} />
     </main>
   )
 }
