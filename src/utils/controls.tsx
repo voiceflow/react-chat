@@ -14,7 +14,7 @@ export type ControlledProps<Props extends ControlProps<any>> = Omit<Props, keyof
 
 export interface ControlledOptions<Props extends ControlProps> {
   defaultValue?: ControlValue<Props>;
-  enrichProps?: <T extends Omit<Props, keyof ControlProps>>(props: T, state: ReturnType<typeof useState<ControlValue<Props>>>) => T;
+  enrichProps?: <T extends Omit<Props, keyof ControlProps>>(props: T, state: [ControlValue<Props>, (value: ControlValue<Props>) => void]) => T;
 }
 
 export const createControlled: {
@@ -25,9 +25,9 @@ export const createControlled: {
     SetRequired<ControlledProps<Props>, 'initialValue'>
   >;
 } =
-  (Component: React.FC<ControlProps<unknown>>, options?: ControlledOptions<ControlProps<unknown>>) =>
-  ({ initialValue, ...props }: ControlledProps<ControlProps<unknown>>) => {
-    const stateAPI = useState((initialValue ?? options?.defaultValue)!);
+  (Component: React.FC<ControlProps<any>>, options?: ControlledOptions<ControlProps<any>>) =>
+  ({ initialValue, ...props }: ControlledProps<ControlProps<any>>) => {
+    const stateAPI = useState<ControlProps<any>>((initialValue ?? options?.defaultValue)!);
     const enrichedProps = options?.enrichProps?.(props, stateAPI) ?? props;
     const [value, setValue] = stateAPI;
 

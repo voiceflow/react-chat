@@ -48,7 +48,6 @@
     "@voiceflow/git-branch-check": "1.4.0",
     "@voiceflow/prettier-config": "1.2.1",
     "@voiceflow/tsconfig": "1.4.8",
-    "@zerollup/ts-transform-paths": "^1.7.18",
     "babel-loader": "^8.2.5",
     "commitizen": "4.2.5",
     "cz-conventional-changelog": "^3.3.0",
@@ -63,8 +62,8 @@
     "prettier": "2.7.1",
     "storybook-dark-mode": "^1.1.0",
     "ts-node": "10.9.1",
-    "ttypescript": "1.5.13",
-    "typescript": "4.7.4",
+    "tsc-alias": "^1.7.0",
+    "typescript": "4.8.2",
     "vite": "3.0.9",
     "vite-plugin-fonts": "^0.6.0",
     "vite-plugin-svgr": "^2.2.1",
@@ -72,7 +71,8 @@
     "vitest": "0.22.1"
   },
   "files": [
-    "build/"
+    "build/",
+    "dist/"
   ],
   "homepage": "https://github.com/voiceflow/react-chat#readme",
   "keywords": [
@@ -84,7 +84,7 @@
     "voiceflow"
   ],
   "license": "ISC",
-  "main": "build/index.js",
+  "main": "build/cjs/index.js",
   "prettier": "@voiceflow/prettier-config",
   "repository": {
     "type": "git",
@@ -93,8 +93,10 @@
   "scripts": {
     "build": "yarn clean && yarn build:package && yarn build:bundle",
     "build:bundle": "vite build",
+    "build:cjs": "tsc --project ./tsconfig.build.cjs.json && tsc-alias -p tsconfig.build.cjs.json",
     "build:docs": "STORYBOOK_BASE_HREF=react-chat build-storybook -o docs",
-    "build:package": "ttsc --project ./tsconfig.build.json --declaration",
+    "build:esm": "tsc --project ./tsconfig.build.esm.json && tsc-alias -p tsconfig.build.esm.json",
+    "build:package": "yarn build:cjs && yarn build:esm",
     "clean": "rimraf build dist",
     "commit": "cz",
     "eslint-output": "eslint-output",
@@ -113,5 +115,5 @@
     "test:single": "NODE_ENV=test ts-mocha --paths --config ./config/test/.mocharc.yml",
     "test:unit": "NODE_ENV=test nyc --report-dir=nyc_coverage_unit ts-mocha --paths --config ./config/test/.mocharc.yml 'test/**/*.unit.ts'"
   },
-  "types": "build/index.d.ts"
+  "types": "build/esm/index.d.ts"
 }

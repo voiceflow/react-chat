@@ -1,14 +1,11 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "rootDir": "src",
-    "plugins": [
-      {
-        "transform": "@zerollup/ts-transform-paths"
-      }
-    ]
+    "declaration": true,
+    "rootDir": "src"
   },
   "include": [
-    "src"
+    "src",
+    "typings"
   ]
 }
