@@ -86,6 +86,9 @@
   "license": "ISC",
   "main": "build/cjs/index.js",
   "prettier": "@voiceflow/prettier-config",
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/voiceflow/react-chat.git"
