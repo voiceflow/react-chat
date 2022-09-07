@@ -11,13 +11,13 @@ export interface CardActionProps {
 export interface CardProps {
   title: string;
   description: string;
-  image: string;
+  image?: string | undefined;
   actions?: CardActionProps[] | undefined;
 }
 
 const Card: React.FC<CardProps> = ({ title, description, image, actions = [] }) => (
   <Container>
-    <Image image={image} rounded={false} />
+    {!!image && <Image image={image} rounded={false} />}
     <Content>
       <Header>{title}</Header>
       <Description>{description}</Description>

@@ -82,20 +82,19 @@ Exhaustive.args = {
             type: 'carousel',
             cards: [
               {
-                title: 'Third Card',
+                title: 'First Card',
                 description: 'Lorem ipsum dolor sit amet',
                 image: 'https://source.unsplash.com/random/248x150',
                 actions: [{ label: 'First Button' }, { label: 'Second Button' }, { label: 'Third Button' }],
               },
               {
-                title: 'First Card',
+                title: 'Second Card',
                 description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem voluptas perspiciatis est quis dolores!',
                 image: 'https://source.unsplash.com/random/248x150',
               },
               {
-                title: 'Second Card',
+                title: 'Third Card',
                 description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-                image: 'https://source.unsplash.com/random/248x150',
                 actions: [{ label: 'First Button' }, { label: 'Second Button' }],
               },
             ],

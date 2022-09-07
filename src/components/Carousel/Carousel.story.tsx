@@ -40,7 +40,6 @@ MultipleCards.args = {
     {
       title: 'Third Card',
       description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-      image: IMAGE,
       actions: [{ label: 'Fourth Button' }, { label: 'Fifth Button' }],
     },
   ],
