@@ -5,7 +5,7 @@ orbs:
 
 jobs:
   build-and-test:
-    executor: vfcommon/node-executor
+    executor: vfcommon/default-executor
     steps:
       - checkout
       - vfcommon/install_node_modules
