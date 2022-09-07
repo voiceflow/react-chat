@@ -14,7 +14,6 @@ jobs:
           step_name: Dependency Tests
       - vfcommon/build
       - vfcommon/unit_tests
-      - vfcommon/integration_tests
 
 workflows:
   test-and-release:

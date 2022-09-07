@@ -116,9 +116,6 @@
     "storybook": "start-storybook -p 6006",
     "test": "yarn test:run",
     "test:dependencies": "depcheck",
-    "test:integration": "NODE_ENV=test nyc --report-dir nyc_coverage_integration ts-mocha --paths --config ./config/test/.mocharc.yml 'test/**/*.it.ts'",
-    "test:run": "NODE_ENV=test nyc ts-mocha --paths --config ./config/test/.mocharc.yml 'test/**/*.{unit,it}.ts'",
-    "test:single": "NODE_ENV=test ts-mocha --paths --config ./config/test/.mocharc.yml",
     "test:unit": "NODE_ENV=test vitest run --coverage"
   },
   "types": "build/esm/index.d.ts"
