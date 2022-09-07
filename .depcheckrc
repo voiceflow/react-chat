@@ -1,6 +1,7 @@
 {
   "specials": [
     "bin",
+    "babel",
     "eslint",
     "lint-staged",
     "istanbul",
@@ -11,11 +12,19 @@
   ],
   "ignores": [
     "@commitlint/*",
+    "@storybook/*",
     "@types/*",
     "@voiceflow/commitlint-config",
+    "@voiceflow/eslint-config",
     "@voiceflow/git-branch-check",
     "@voiceflow/tsconfig",
+    "@svgr/webpack",
+    "@emotion/core",
+    "storybook-dark-mode",
     "eslint-import-resolver-typescript",
+    "eslint-plugin-mdx",
+    "eslint-plugin-storybook",
+    "babel-loader",
     "fixpack",
     "husky",
     "lint-staged"

@@ -1,6 +1,7 @@
 {
   "extends": "@voiceflow/tsconfig/web.json",
   "compilerOptions": {
+    "skipLibCheck": true,
     "module": "commonjs",
     "lib": [
       "dom",
@@ -10,9 +11,13 @@
     "baseUrl": ".",
     "outDir": "build",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": [
+        "src/*"
+      ]
     },
-    "types": []
+    "types": [
+      "node"
+    ]
   },
   "compileOnSave": false,
   "exclude": [
