@@ -9,8 +9,10 @@ import Carousel from '@/components/Carousel';
 import Image from '@/components/Image';
 import Message from '@/components/Message';
 import { useAutoScroll } from '@/hooks';
+import { chain } from '@/utils/functional';
 
 import { MessageType } from './constants';
+import { useAnimatedMessages } from './hooks';
 import Indicator from './Indicator';
 import { Actions, Container, List, Spacer, Timestamp } from './styled';
 import { MessageProps } from './types';
@@ -31,42 +33,14 @@ export interface SystemResponseProps {
   animated?: boolean;
 }
 
-const SystemResponse: React.FC<SystemResponseProps> = ({ image, timestamp, messages, actions = [], animated }) => {
-  const shouldAnimate = animated && messages.length;
+const SystemResponse: React.FC<SystemResponseProps> = ({ image, timestamp, messages, actions = [], animated = false }) => {
+  const [actionUsed, setActionUsed] = useState(false);
+  const { showIndicator, visibleMessages } = useAnimatedMessages(messages, animated);
+  const showActions = !!actions.length && !showIndicator && !actionUsed;
 
-  const [isIndicatorVisible, setIndicatorVisible] = useState(false);
-  const [visibleMessages, setVisibleMessages] = useState(shouldAnimate ? [] : messages);
+  const hideActions = () => setActionUsed(true);
 
   useAutoScroll([visibleMessages.length]);
-
-  useEffect(() => {
-    if (!shouldAnimate) return undefined;
-
-    setIndicatorVisible(true);
-    setVisibleMessages([]);
-
-    const remaining = [...messages];
-    let timer: NodeJS.Timeout;
-    const setTimer = () => {
-      timer = setTimeout(() => {
-        const next = remaining.shift()!;
-
-        setVisibleMessages((prev) => [...prev, next]);
-
-        if (remaining.length === 0) {
-          setIndicatorVisible(false);
-        } else {
-          setTimer();
-        }
-      }, 1000);
-    };
-
-    setTimer();
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, []);
 
   if (!messages.length) return null;
 
@@ -92,17 +66,17 @@ const SystemResponse: React.FC<SystemResponseProps> = ({ image, timestamp, messa
         </Container>
       ))}
 
-      {!!actions.length && !isIndicatorVisible && (
+      {showActions && (
         <Actions>
           {actions.map(({ label, onClick }, index) => (
-            <Button variant="secondary" onClick={onClick} key={index}>
+            <Button variant="secondary" onClick={chain(onClick, hideActions)} key={index}>
               {label}
             </Button>
           ))}
         </Actions>
       )}
 
-      {isIndicatorVisible && <Indicator image={image} />}
+      {showIndicator && <Indicator image={image} />}
     </>
   );
 };

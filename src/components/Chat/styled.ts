@@ -37,6 +37,7 @@ export const Dialog = styled('main', {
   flexDirection: 'column',
   overflowY: 'scroll',
   overflowX: 'hidden',
+  paddingBottom: '$3',
 
   [`
     & > ${UserResponse.Container},

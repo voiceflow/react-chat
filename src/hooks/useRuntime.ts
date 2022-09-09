@@ -104,7 +104,10 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, ...options }: Runtime
   });
 
   const launch = async (): Promise<void> => interact({ type: 'launch', payload: null });
-  const sendMessage = async (message: string): Promise<void> => interact({ type: 'text', payload: message });
+  const sendMessage = async (message: string): Promise<void> => {
+    setTurns((prev) => [...prev, { type: TurnType.USER, message }]);
+    await interact({ type: 'text', payload: message });
+  };
 
   return {
     turns,

@@ -19,8 +19,13 @@ export const Actions = styled('div', {
   padding: '0 $5 0 34px',
 
   [`& ${Button.Base}`]: {
+    height: 'unset',
+    paddingTop: 7,
+    paddingBottom: 7,
     marginTop: 8,
     marginRight: 8,
+    whiteSpace: 'normal',
+    textAlign: 'start',
   },
 });
 
