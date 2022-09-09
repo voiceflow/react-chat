@@ -3,6 +3,10 @@ import Button from '@/components/Button';
 import Message from '@/components/Message';
 import { styled } from '@/styles';
 
+export const Spacer = styled('span', {
+  flexGrow: 1,
+});
+
 export const Timestamp = styled('span', {
   typo: { size: 12, height: '17px' },
   color: '$darkGrey',
@@ -26,12 +30,12 @@ export const Container = styled('div', {
   [`& ${Avatar.Container}`]: {
     visibility: 'hidden',
     alignSelf: 'flex-end',
-    margin: '7px 8px 7px 0',
+    margin: '0 8px 4px 0',
   },
 
   [`& ${Timestamp}`]: {
     alignSelf: 'center',
-    marginLeft: '$3',
+    // marginLeft: 'auto',
     whiteSpace: 'nowrap',
     opacity: '0%',
     trans: ['opacity'],
@@ -69,6 +73,8 @@ export const List = styled('div', {
 
   [`& ${Message.Container}`]: {
     marginBottom: '$1',
+    maxWidth: 248,
+    boxSizing: 'border-box',
 
     '&:last-of-type': {
       marginBottom: 0,

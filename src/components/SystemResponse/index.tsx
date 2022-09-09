@@ -12,7 +12,7 @@ import { useAutoScroll } from '@/hooks';
 
 import { MessageType } from './constants';
 import Indicator from './Indicator';
-import { Actions, Container, List, Timestamp } from './styled';
+import { Actions, Container, List, Spacer, Timestamp } from './styled';
 import { MessageProps } from './types';
 import { formatTime } from './utils';
 
@@ -87,6 +87,7 @@ const SystemResponse: React.FC<SystemResponseProps> = ({ image, timestamp, messa
               .with({ type: MessageType.CAROUSEL }, (props) => <Carousel {...R.omit(props, ['type'])} />)
               .otherwise(() => null)}
           </List>
+          <Spacer />
           <Timestamp>{formatTime(timestamp)}</Timestamp>
         </Container>
       ))}
@@ -111,6 +112,7 @@ export default Object.assign(SystemResponse, {
 
   Container,
   List,
+  Spacer,
   Timestamp,
   Actions,
   Indicator,

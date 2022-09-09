@@ -9,9 +9,9 @@ export const Container = styled('span', {
 export const Dot = styled('span', {
   height: 8,
   width: 8,
-  margin: '0 3px',
+  margin: '0 2px',
   borderRadius: '$round',
-  backgroundColor: '$darkGrey',
+  backgroundColor: '#adadb3',
   opacity: 0.2,
   animation: `${pulse} ${ANIMATION_DURATION}ms`,
   animationIterationCount: 'infinite',

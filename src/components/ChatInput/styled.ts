@@ -29,6 +29,7 @@ export const ButtonContainer = styled('span', {
 export const Container = styled('div', {
   display: 'flex',
   boxShadow: '0 1px 12px $shadow2',
+  trans: ['border-color', 'box-shadow'],
 
   [`& ${Input.Container}`]: {
     borderRightWidth: 0,

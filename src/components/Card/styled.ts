@@ -22,9 +22,12 @@ export const Container = styled('section', {
     backgroundColor: '$white',
     boxShadow: '0 5px 8px -8px $shadow12, 0 2px 4px -3px $shadow12, 0 0 0 1px $shadow3, 0 1px 3px 1px $shadow1',
     marginBottom: '$2',
+    trans: ['color', 'box-shadow'],
 
     '&:hover': {
+      color: '$darkPrimary',
       backgroundColor: '$white',
+      boxShadow: '0 5px 8px -8px $shadow12, 0 2px 4px -3px $shadow12, 0 0 0 1px $shadow4, 0 1px 4px 1px $shadow4',
     },
 
     '&:first-of-type': {
