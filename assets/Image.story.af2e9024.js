@@ -1,0 +1,2 @@
+import{I as o}from"./index.a8fee698.js";import{j as s}from"./jsx-runtime.8671a221.js";import"./theme.65841e0b.js";import"./iframe.39990f48.js";const p={title:"Core/Image",component:o,args:{image:"https://source.unsplash.com/random/248x200"}},r=t=>s(o,{...t}),c=r.bind({}),e=r.bind({});e.args={rounded:!1};export{c as RoundCorners,e as StraightCorners,p as default};
+//# sourceMappingURL=Image.story.af2e9024.js.map
