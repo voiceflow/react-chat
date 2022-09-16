@@ -2,7 +2,7 @@ import { bindVariants } from '@/utils/variants';
 
 import { ChatMessage } from './ChatMessage';
 import { MessageVariant } from './constants';
-import { DebugMessage } from './DebugMesage';
+import DebugMessage from './DebugMessage';
 import { Container } from './styled';
 
 const VARIANTS = {
