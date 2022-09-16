@@ -1,4 +1,4 @@
-export const formatTime = (date: Date) => {
+export const formatTimestamp = (date: Date) => {
   const hours = date.getHours();
   const minutes = date.getMinutes();
 

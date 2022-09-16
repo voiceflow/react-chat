@@ -8,15 +8,15 @@ import Card from '@/components/Card';
 import Carousel from '@/components/Carousel';
 import Image from '@/components/Image';
 import Message from '@/components/Message';
+import Timestamp from '@/components/Timestamp';
 import { useAutoScroll } from '@/hooks';
 import { chain } from '@/utils/functional';
 
 import { MessageType } from './constants';
 import { useAnimatedMessages } from './hooks';
 import Indicator from './Indicator';
-import { Actions, Container, List, Spacer, Timestamp } from './styled';
+import { Actions, Container, List, Spacer } from './styled';
 import { MessageProps } from './types';
-import { formatTime } from './utils';
 
 export * from './types';
 
@@ -62,7 +62,7 @@ const SystemResponse: React.FC<SystemResponseProps> = ({ image, timestamp, messa
               .otherwise(() => null)}
           </List>
           <Spacer />
-          <Timestamp>{formatTime(timestamp)}</Timestamp>
+          <Timestamp value={timestamp} />
         </Container>
       ))}
 
@@ -87,7 +87,6 @@ export default Object.assign(SystemResponse, {
   Container,
   List,
   Spacer,
-  Timestamp,
   Actions,
   Indicator,
 });

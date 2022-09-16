@@ -1,15 +1,11 @@
 import Avatar from '@/components/Avatar';
 import Button from '@/components/Button';
 import Message from '@/components/Message';
+import Timestamp from '@/components/Timestamp';
 import { styled } from '@/styles';
 
 export const Spacer = styled('span', {
   flexGrow: 1,
-});
-
-export const Timestamp = styled('span', {
-  typo: { size: 12, height: '17px' },
-  color: '$darkGrey',
 });
 
 export const Actions = styled('div', {
@@ -38,14 +34,14 @@ export const Container = styled('div', {
     margin: '0 8px 4px 0',
   },
 
-  [`& ${Timestamp}`]: {
+  [`& ${Timestamp.Container}`]: {
     alignSelf: 'center',
     whiteSpace: 'nowrap',
     opacity: '0%',
     trans: ['opacity'],
   },
 
-  [`&:hover ${Timestamp}`]: {
+  [`&:hover ${Timestamp.Container}`]: {
     opacity: '100%',
   },
 
@@ -78,7 +74,6 @@ export const List = styled('div', {
   [`& ${Message.Container}`]: {
     marginBottom: '$1',
     maxWidth: 248,
-    boxSizing: 'border-box',
 
     '&:last-of-type': {
       marginBottom: 0,

@@ -30,7 +30,7 @@ export const Container = styled('div', {
       true: {
         boxShadow: '0 1px 2px $shadow2',
 
-        [`& ${Message.Debug}`]: {
+        [`& ${Message.Debug.Container}`]: {
           boxShadow: 'none',
           borderBottom: 0,
           borderBottomLeftRadius: 0,

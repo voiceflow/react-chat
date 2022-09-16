@@ -1,8 +1,9 @@
 import Message from '@/components/Message';
+import Timestamp from '@/components/Timestamp';
 import Tooltip from '@/components/Tooltip';
 import { useAutoScroll } from '@/hooks';
 
-import { Container, Debug } from './styled';
+import { Container, Debug, Row } from './styled';
 
 export interface DebugActionProps {
   label: string;
@@ -17,15 +18,19 @@ export interface DebugResponseProps {
 
 export interface UserResponseProps {
   message: string;
+  timestamp: Date;
   debug?: DebugResponseProps;
 }
 
-const UserResponse: React.FC<UserResponseProps> = ({ message, debug }) => {
+const UserResponse: React.FC<UserResponseProps> = ({ message, timestamp, debug }) => {
   useAutoScroll();
 
   return (
     <Container>
-      <Message from="user">{message}</Message>
+      <Row>
+        <Timestamp value={timestamp} />
+        <Message from="user">{message}</Message>
+      </Row>
       {debug && (
         <>
           <Debug>{debug.message}</Debug>
@@ -43,4 +48,5 @@ const UserResponse: React.FC<UserResponseProps> = ({ message, debug }) => {
 export default Object.assign(UserResponse, {
   Container,
   Debug,
+  Row,
 });

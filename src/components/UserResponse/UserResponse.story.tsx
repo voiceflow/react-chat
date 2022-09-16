@@ -9,6 +9,7 @@ export default {
   component: UserResponse,
   args: {
     message: 'Lorem ipsum dolor sit amet consectetur',
+    timestamp: new Date(),
   },
 } as ComponentMeta<typeof UserResponse>;
 

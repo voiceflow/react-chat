@@ -49,7 +49,7 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, ...options }: Runtime
     setTurns((prev) => [...prev, { type: TurnType.SYSTEM, timestamp: new Date(), ...context }]);
   };
   const reply = async (message: string, action: RuntimeAction): Promise<void> => {
-    setTurns((prev) => [...prev, { type: TurnType.USER, message }]);
+    setTurns((prev) => [...prev, { type: TurnType.USER, message, timestamp: new Date() }]);
     await interact(action);
   };
 
@@ -105,7 +105,7 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, ...options }: Runtime
 
   const launch = async (): Promise<void> => interact({ type: 'launch', payload: null });
   const sendMessage = async (message: string): Promise<void> => {
-    setTurns((prev) => [...prev, { type: TurnType.USER, message }]);
+    setTurns((prev) => [...prev, { type: TurnType.USER, message, timestamp: new Date() }]);
     await interact({ type: 'text', payload: message });
   };
 
