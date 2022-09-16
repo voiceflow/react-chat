@@ -1,3 +1,4 @@
+import Bubble from '@/components/Bubble';
 import Icon from '@/components/Icon';
 import Input from '@/components/Input';
 import { inputFocusStyles, inputStyles } from '@/components/Input/styled';
@@ -10,15 +11,15 @@ export const ButtonContainer = styled('span', {
   alignItems: 'center',
   width: '$md',
 
-  '& > *': {
+  [`& ${Bubble.Container}`]: {
     transform: 'scale(0)',
-    trans: ['transform'],
+    trans: ['background-color', 'transform'],
   },
 
   variants: {
     withContent: {
       true: {
-        '& > *': {
+        [`& ${Bubble.Container}`]: {
           transform: 'scale(1)',
         },
       },
