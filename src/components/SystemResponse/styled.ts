@@ -40,7 +40,6 @@ export const Container = styled('div', {
 
   [`& ${Timestamp}`]: {
     alignSelf: 'center',
-    // marginLeft: 'auto',
     whiteSpace: 'nowrap',
     opacity: '0%',
     trans: ['opacity'],

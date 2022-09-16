@@ -7,15 +7,10 @@ export const Debug = styled('aside', {
   marginTop: '$2',
 });
 
-export const Frame = styled('div', {
-  display: 'inline-flex',
-  flexDirection: 'column',
-  alignItems: 'flex-end',
-});
-
 export const Container = styled('div', {
   display: 'flex',
-  justifyContent: 'flex-end',
+  flexDirection: 'column',
+  alignItems: 'flex-end',
 
   [`& > ${Tooltip.Container}`]: {
     marginTop: '$1',
