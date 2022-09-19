@@ -13,8 +13,10 @@ export interface PromptProps {
 
 const Prompt: React.FC<PromptProps> = ({ accept, cancel }) => (
   <Container>
-    <Button.Primary {...accept}>{accept.label}</Button.Primary>
-    <Button type="subtle" {...cancel}>
+    <Button.Primary tabIndex={-1} {...accept}>
+      {accept.label}
+    </Button.Primary>
+    <Button type="subtle" tabIndex={-1} {...cancel}>
       {cancel.label}
     </Button>
   </Container>

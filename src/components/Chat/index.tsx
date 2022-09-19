@@ -36,7 +36,7 @@ const Chat: React.FC<ChatProps> = ({ isRunning, title, image, description, start
   }
 
   return (
-    <Container>
+    <Container withPrompt={hasAlert}>
       <Header
         title={title}
         image={image}
@@ -54,15 +54,8 @@ const Chat: React.FC<ChatProps> = ({ isRunning, title, image, description, start
         </AutoScrollProvider>
       </Dialog>
       <Footer isRunning={isRunning} onStart={onStart} onSend={onSend} />
-      {hasAlert && (
-        <>
-          <Overlay />
-          <Prompt
-            accept={{ label: 'End Chat', type: 'warn', onClick: chain(onEnd, handleResume) }}
-            cancel={{ label: 'Cancel', onClick: handleResume }}
-          />
-        </>
-      )}
+      <Overlay />
+      <Prompt accept={{ label: 'End Chat', type: 'warn', onClick: chain(onEnd, handleResume) }} cancel={{ label: 'Cancel', onClick: handleResume }} />
     </Container>
   );
 };
