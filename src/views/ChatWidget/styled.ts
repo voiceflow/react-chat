@@ -1,5 +1,4 @@
-import Bubble from '@/components/Bubble';
-import Chat from '@/components/Chat';
+import { Bubble, Chat, Loader } from '@/components';
 import { styled } from '@/styles';
 
 export const Container = styled('div', {
@@ -23,6 +22,10 @@ export const Container = styled('div', {
     flex: 1,
   },
 
+  [`& ${Loader}`]: {
+    margin: 'auto',
+  },
+
   [`
     & > ${Bubble.Container},
     & > ${Chat.Container}
@@ -31,4 +34,8 @@ export const Container = styled('div', {
     right: '$6',
     bottom: '$6',
   },
+});
+
+export const ChatEnded = styled(Chat.Timestamp, {
+  padding: 0,
 });

@@ -22,7 +22,7 @@ const Footer: React.FC<FooterProps> = ({ isRunning, onStart, onSend }) => {
   };
 
   return (
-    <Container>
+    <Container withShadow={!isRunning}>
       {isRunning ? (
         // eslint-disable-next-line jsx-a11y/no-autofocus
         <ChatInput value={message} placeholder="Message…" autoFocus onValueChange={setMessage} onSend={handleSend} />

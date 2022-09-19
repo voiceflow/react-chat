@@ -12,6 +12,14 @@ export const Container = styled('footer', {
   [`& ${Button.Base}`]: {
     width: '100%',
   },
+
+  variants: {
+    withShadow: {
+      true: {
+        boxShadow: '0 12px 48px $shadow16',
+      },
+    },
+  },
 });
 
 export const Watermark = styled('aside', {

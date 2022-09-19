@@ -1,16 +1,13 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 import * as R from 'remeda';
 import { match } from 'ts-pattern';
 
-import Bubble from '@/components/Bubble';
-import Chat from '@/components/Chat';
-import SystemResponse from '@/components/SystemResponse';
-import UserResponse from '@/components/UserResponse';
+import { Bubble, Chat, SystemResponse, UserResponse } from '@/components';
 import { RuntimeOptions, useRuntime } from '@/hooks';
 import { TurnType } from '@/types';
 
-import { Container } from './styled';
+import { ChatEnded, Container } from './styled';
 
 export interface ChatWidgetProps extends RuntimeOptions {
   assistant: {
@@ -22,7 +19,7 @@ export interface ChatWidgetProps extends RuntimeOptions {
 
 const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant, versionID, authorization }) => {
   const [isOpen, setOpen] = useState(false);
-  const [isRunning, setRunning] = useState(false);
+  const [isRunning, setRunning] = useState(true);
   const startTime = useMemo(() => new Date(), []);
   const runtime = useRuntime({ versionID, authorization });
 
@@ -37,6 +34,10 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant, versionID, authoriza
     setRunning(false);
   };
 
+  useEffect(() => {
+    runtime.launch();
+  }, []);
+
   return createPortal(
     <Container>
       {isOpen ? (
@@ -46,6 +47,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant, versionID, authoriza
           image={assistant.image}
           startTime={startTime}
           isRunning={isRunning}
+          isLoading={isRunning && !runtime.turns.length}
           onStart={handleStart}
           onEnd={handleEnd}
           onSend={runtime.sendMessage}
@@ -59,6 +61,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant, versionID, authoriza
               ))
               .exhaustive()
           )}
+          {!isRunning && <ChatEnded>You have ended the chat</ChatEnded>}
         </Chat>
       ) : (
         <Bubble svg="launch" onClick={handleOpen} />
@@ -70,4 +73,5 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant, versionID, authoriza
 
 export default Object.assign(ChatWidget, {
   Container,
+  ChatEnded,
 });

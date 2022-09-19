@@ -34,7 +34,6 @@ export interface RuntimeOptions extends SetOptional<VoiceflowRuntimeOptions<Runt
 }
 
 const createContext = (): RuntimeContext => ({
-  // timestamp: new Date(),
   messages: [],
 });
 
@@ -103,7 +102,16 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, ...options }: Runtime
     },
   });
 
-  const launch = async (): Promise<void> => interact({ type: 'launch', payload: null });
+  const reset = () => setTurns([]);
+
+  const launch = async (): Promise<void> => {
+    if (turns.length) {
+      reset();
+    }
+
+    await interact({ type: 'launch', payload: null });
+  };
+
   const sendMessage = async (message: string): Promise<void> => {
     setTurns((prev) => [...prev, { type: TurnType.USER, message, timestamp: new Date() }]);
     await interact({ type: 'text', payload: message });
@@ -111,6 +119,7 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, ...options }: Runtime
 
   return {
     turns,
+    reset,
     launch,
     sendMessage,
   };
