@@ -51,6 +51,7 @@ const Chat: React.FC<ChatProps> = ({ isRunning, title, image, description, start
           <Spacer />
           <Timestamp>{timestamp}</Timestamp>
           {children}
+          {!isRunning && <Status>You have ended the chat</Status>}
         </AutoScrollProvider>
       </Dialog>
       <Footer isRunning={isRunning} onStart={onStart} onSend={onSend} />
