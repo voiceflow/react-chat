@@ -9,6 +9,7 @@ export const Container = styled('div', {
   right: 0,
   zIndex: 10,
   '-webkit-font-smoothing': 'antialiased',
+  '-moz-osx-font-smoothing': 'grayscale',
 
   [`& ${Bubble.Container}`]: {
     color: '$white',
