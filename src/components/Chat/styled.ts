@@ -1,7 +1,8 @@
+import Message from '@/components/Message';
 import Prompt from '@/components/Prompt';
 import SystemResponse from '@/components/SystemResponse';
 import UserResponse from '@/components/UserResponse';
-import { styled } from '@/styles';
+import { shift, styled } from '@/styles';
 
 export const Container = styled('article', {
   position: 'relative',
@@ -42,9 +43,18 @@ export const Status = styled('div', {
 export const Dialog = styled('main', {
   display: 'flex',
   flexDirection: 'column',
+  height: '100%',
   overflowY: 'scroll',
   overflowX: 'hidden',
   paddingBottom: '$3',
+
+  [`
+    & ${SystemResponse.List} > *,
+    & ${Message.Container},
+    & > ${SystemResponse.Actions}
+  `]: {
+    anim: [shift],
+  },
 
   [`
     & > ${UserResponse.Container},

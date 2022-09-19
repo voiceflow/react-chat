@@ -11,7 +11,8 @@ const Loader = styled('div', {
   borderRadius: '$round',
   borderColor: '#f0f0f0',
   borderTopColor: '#000',
-  animation: `${rotate} ${ANIMATION_DURATION}ms linear infinite`,
+  animation: `${rotate} ${ANIMATION_DURATION}ms linear`,
+  animationIterationCount: 'infinite',
 });
 
 export default Loader;

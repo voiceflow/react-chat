@@ -55,7 +55,7 @@ export const { styled, config, keyframes } = createStitches({
   },
 
   utils: {
-    animate: (animations: { (): string }[]) => ({
+    anim: (animations: { (): string }[]) => ({
       animation: animations.map((animation) => `${animation} ${ANIMATION_TIMING}`).join(', '),
     }),
 
