@@ -45,10 +45,26 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, ...options }: Runtime
   const interact = async (action: RuntimeAction): Promise<void> => {
     const context = await runtime.interact(createContext(), { versionID, sessionID, action });
 
-    setTurns((prev) => [...prev, { type: TurnType.SYSTEM, timestamp: new Date(), ...context }]);
+    setTurns((prev) => [
+      ...prev,
+      {
+        id: cuid(),
+        type: TurnType.SYSTEM,
+        timestamp: new Date(),
+        ...context,
+      },
+    ]);
   };
-  const reply = async (message: string, action: RuntimeAction): Promise<void> => {
-    setTurns((prev) => [...prev, { type: TurnType.USER, message, timestamp: new Date() }]);
+  const send = async (message: string, action: RuntimeAction): Promise<void> => {
+    setTurns((prev) => [
+      ...prev,
+      {
+        id: cuid(),
+        type: TurnType.USER,
+        message,
+        timestamp: new Date(),
+      },
+    ]);
     await interact(action);
   };
 
@@ -68,7 +84,7 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, ...options }: Runtime
     ChoiceTraceComponent(({ context }, { payload: { buttons } }) => {
       context.actions = (buttons as { name: string; request: RuntimeAction }[]).map(({ name, request }) => ({
         label: name,
-        onClick: () => reply(name, request),
+        onClick: () => send(name, request),
       }));
       return context;
     })
@@ -81,7 +97,7 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, ...options }: Runtime
         title,
         description: description.text,
         image: imageUrl,
-        actions: buttons.map(({ name, request }) => ({ label: name, onClick: () => reply(name, request) })),
+        actions: buttons.map(({ name, request }) => ({ label: name, onClick: () => send(name, request) })),
       });
       return context;
     },
@@ -95,7 +111,7 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, ...options }: Runtime
           title,
           description: description.text,
           image: imageUrl,
-          actions: buttons.map(({ name, request }) => ({ label: name, onClick: () => reply(name, request) })),
+          actions: buttons.map(({ name, request }) => ({ label: name, onClick: () => send(name, request) })),
         })),
       });
       return context;
@@ -112,15 +128,12 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, ...options }: Runtime
     await interact({ type: 'launch', payload: null });
   };
 
-  const sendMessage = async (message: string): Promise<void> => {
-    setTurns((prev) => [...prev, { type: TurnType.USER, message, timestamp: new Date() }]);
-    await interact({ type: 'text', payload: message });
-  };
+  const reply = async (message: string): Promise<void> => send(message, { type: 'text', payload: message });
 
   return {
     turns,
     reset,
     launch,
-    sendMessage,
+    reply,
   };
 };

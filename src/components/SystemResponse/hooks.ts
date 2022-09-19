@@ -4,8 +4,8 @@ import { MessageProps } from './types';
 
 export * from './types';
 
-export const useAnimatedMessages = (messages: MessageProps[], animated: boolean) => {
-  const shouldAnimate = animated && messages.length;
+export const useAnimatedMessages = (messages: MessageProps[], isAnimated: boolean, onAnimationEnd: VoidFunction) => {
+  const shouldAnimate = isAnimated && messages.length;
   const [showIndicator, setShowIndicator] = useState(false);
   const [visibleMessages, setVisibleMessages] = useState(shouldAnimate ? [] : messages);
 
@@ -25,6 +25,7 @@ export const useAnimatedMessages = (messages: MessageProps[], animated: boolean)
 
         if (remaining.length === 0) {
           setShowIndicator(false);
+          onAnimationEnd();
         } else {
           setTimer();
         }

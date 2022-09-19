@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import * as R from 'remeda';
 import { match } from 'ts-pattern';
@@ -22,6 +22,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant, versionID, authoriza
   const [isRunning, setRunning] = useState(true);
   const startTime = useMemo(() => new Date(), []);
   const runtime = useRuntime({ versionID, authorization });
+  const hasAnimated = useRef<Record<string, true>>({});
 
   const handleOpen = (): void => setOpen(true);
   const handleMinimize = (): void => setOpen(false);
@@ -32,6 +33,9 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant, versionID, authoriza
   const handleEnd = (): void => {
     handleMinimize();
     setRunning(false);
+  };
+  const handleAnimationEnd = (id: string) => (): void => {
+    hasAnimated.current[id] = true;
   };
 
   useEffect(() => {
@@ -50,14 +54,20 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant, versionID, authoriza
           isLoading={isRunning && !runtime.turns.length}
           onStart={handleStart}
           onEnd={handleEnd}
-          onSend={runtime.sendMessage}
+          onSend={runtime.reply}
           onMinimize={handleMinimize}
         >
-          {runtime.turns.map((turn, index) =>
+          {runtime.turns.map((turn) =>
             match(turn)
-              .with({ type: TurnType.USER }, (props) => <UserResponse {...R.omit(props, ['type'])} key={index} />)
-              .with({ type: TurnType.SYSTEM }, (props) => (
-                <SystemResponse {...R.omit(props, ['type'])} image={assistant.image} animated key={index} />
+              .with({ type: TurnType.USER }, ({ id, ...props }) => <UserResponse {...R.omit(props, ['type'])} key={id} />)
+              .with({ type: TurnType.SYSTEM }, ({ id, ...props }) => (
+                <SystemResponse
+                  {...R.omit(props, ['type'])}
+                  image={assistant.image}
+                  isAnimated={!hasAnimated.current[id]}
+                  onAnimationEnd={handleAnimationEnd(id)}
+                  key={id}
+                />
               ))
               .exhaustive()
           )}

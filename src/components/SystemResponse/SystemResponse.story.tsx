@@ -54,7 +54,7 @@ ActionableText.args = {
 export const Animated = Template.bind({});
 Animated.args = {
   messages: [TEXT_MESSAGE, TEXT_MESSAGE, TEXT_MESSAGE],
-  animated: true,
+  isAnimated: true,
 };
 
 export const Card = Template.bind({});

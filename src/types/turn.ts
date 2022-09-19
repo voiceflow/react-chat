@@ -7,10 +7,12 @@ export enum TurnType {
 }
 
 export interface UserTurnProps extends UserResponseProps {
+  id: string;
   type: TurnType.USER;
 }
 
 export interface SystemTurnProps extends Omit<SystemResponseProps, 'image'> {
+  id: string;
   type: TurnType.SYSTEM;
   timestamp: Date;
 }

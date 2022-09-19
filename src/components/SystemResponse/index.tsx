@@ -30,12 +30,13 @@ export interface SystemResponseProps {
   timestamp: Date;
   messages: MessageProps[];
   actions?: ResponseActionProps[];
-  animated?: boolean;
+  isAnimated?: boolean;
+  onAnimationEnd?: VoidFunction;
 }
 
-const SystemResponse: React.FC<SystemResponseProps> = ({ image, timestamp, messages, actions = [], animated = false }) => {
+const SystemResponse: React.FC<SystemResponseProps> = ({ image, timestamp, messages, actions = [], isAnimated = false, onAnimationEnd = R.noop }) => {
   const [actionUsed, setActionUsed] = useState(false);
-  const { showIndicator, visibleMessages } = useAnimatedMessages(messages, animated);
+  const { showIndicator, visibleMessages } = useAnimatedMessages(messages, isAnimated, onAnimationEnd);
   const showActions = !!actions.length && !showIndicator && !actionUsed;
 
   const hideActions = () => setActionUsed(true);
