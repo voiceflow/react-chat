@@ -1,2 +1,0 @@
-import{s as e,r as d}from"./theme.b673aa94.js";import{j as s}from"./jsx-runtime.7b7aabbd.js";import"./iframe.cda56906.js";const o=32,i=1e3,a=e("div",{height:o,width:o,borderWidth:"2px",borderStyle:"solid",borderRadius:"$round",borderColor:"#f0f0f0",borderTopColor:"#000",animation:`${d} ${i}ms linear infinite`}),r=a,f={title:"Core/Loader",component:r},n=t=>s(r,{...t}),p=n.bind({});export{p as Default,f as default};
-//# sourceMappingURL=Loader.story.031fd3a0.js.map
