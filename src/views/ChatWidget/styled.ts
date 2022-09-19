@@ -36,7 +36,3 @@ export const Container = styled('div', {
     bottom: '$6',
   },
 });
-
-export const ChatEnded = styled(Chat.Timestamp, {
-  padding: 0,
-});

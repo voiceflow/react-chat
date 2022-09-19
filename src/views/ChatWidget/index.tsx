@@ -7,7 +7,7 @@ import { Bubble, Chat, SystemResponse, UserResponse } from '@/components';
 import { RuntimeOptions, useRuntime } from '@/hooks';
 import { TurnType } from '@/types';
 
-import { ChatEnded, Container } from './styled';
+import { Container } from './styled';
 
 export interface ChatWidgetProps extends RuntimeOptions {
   assistant: {
@@ -61,7 +61,6 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant, versionID, authoriza
               ))
               .exhaustive()
           )}
-          {!isRunning && <ChatEnded>You have ended the chat</ChatEnded>}
         </Chat>
       ) : (
         <Bubble svg="launch" onClick={handleOpen} />
@@ -73,5 +72,4 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant, versionID, authoriza
 
 export default Object.assign(ChatWidget, {
   Container,
-  ChatEnded,
 });
