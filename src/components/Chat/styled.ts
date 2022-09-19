@@ -32,6 +32,13 @@ export const Overlay = styled('div', {
   backgroundColor: '$shadow12',
 });
 
+export const Status = styled('div', {
+  display: 'flex',
+  justifyContent: 'center',
+  typo: { size: 12 },
+  color: '$darkGrey',
+});
+
 export const Dialog = styled('main', {
   display: 'flex',
   flexDirection: 'column',
@@ -74,10 +81,6 @@ export const Spacer = styled('div', {
   flexGrow: 1,
 });
 
-export const Timestamp = styled('div', {
-  display: 'flex',
-  justifyContent: 'center',
+export const Timestamp = styled(Status, {
   paddingBottom: '$3',
-  typo: { size: 12 },
-  color: '$darkGrey',
 });

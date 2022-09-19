@@ -9,7 +9,7 @@ import { AutoScrollProvider } from '@/contexts';
 import { chain } from '@/utils/functional';
 
 import { useTimestamp } from './hooks';
-import { Container, Dialog, Overlay, Spacer, Timestamp } from './styled';
+import { Container, Dialog, Overlay, Spacer, Status, Timestamp } from './styled';
 
 export interface ChatProps extends HeaderProps, FooterProps, React.PropsWithChildren {
   description: string;
@@ -72,5 +72,6 @@ export default Object.assign(memo(Chat), {
   Dialog,
   Overlay,
   Spacer,
+  Status,
   Timestamp,
 });
