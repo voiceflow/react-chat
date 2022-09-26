@@ -15,9 +15,9 @@ const Template: ComponentStory<typeof Footer> = (args) => (
   </Chat.Container>
 );
 
-export const Idle = Template.bind({});
-
 export const Running = Template.bind({});
-Running.args = {
-  isRunning: true,
+
+export const Ended = Template.bind({});
+Ended.args = {
+  hasEnded: true,
 };

@@ -19,16 +19,16 @@ export interface ChatProps extends HeaderProps, FooterProps, React.PropsWithChil
   onEnd?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-const Chat: React.FC<ChatProps> = ({ isRunning, title, image, description, startTime, isLoading, onMinimize, onEnd, onStart, onSend, children }) => {
+const Chat: React.FC<ChatProps> = ({ hasEnded, title, image, description, startTime, isLoading, onMinimize, onEnd, onStart, onSend, children }) => {
   const timestamp = useTimestamp(startTime);
   const dialogRef = useRef<HTMLElement>(null);
   const [hasAlert, setAlert] = useState(false);
 
   const handleClose = (event: React.MouseEvent<HTMLButtonElement>): void => {
-    if (isRunning) {
-      setAlert(true);
-    } else {
+    if (hasEnded) {
       onEnd?.(event);
+    } else {
+      setAlert(true);
     }
   };
   const handleResume = (): void => setAlert(false);
@@ -57,10 +57,10 @@ const Chat: React.FC<ChatProps> = ({ isRunning, title, image, description, start
           <Spacer />
           <Timestamp>{timestamp}</Timestamp>
           {children}
-          {!isRunning && <Status>You have ended the chat</Status>}
+          {hasEnded && <Status>You have ended the chat</Status>}
         </AutoScrollProvider>
       </Dialog>
-      <Footer isRunning={isRunning} onStart={onStart} onSend={onSend} />
+      <Footer hasEnded={hasEnded} onStart={onStart} onSend={onSend} />
       <Overlay />
       <Prompt accept={{ label: 'End Chat', type: 'warn', onClick: chain(onEnd, handleResume) }} cancel={{ label: 'Cancel', onClick: handleResume }} />
     </Container>

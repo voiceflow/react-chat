@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import * as R from 'remeda';
 import { match } from 'ts-pattern';
@@ -8,6 +8,10 @@ import { RuntimeOptions, useRuntime } from '@/hooks';
 import { TurnType } from '@/types';
 
 import { Container } from './styled';
+
+interface Session {
+  startTime: Date;
+}
 
 export interface ChatWidgetProps extends RuntimeOptions {
   assistant: {
@@ -19,39 +23,41 @@ export interface ChatWidgetProps extends RuntimeOptions {
 
 const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant, versionID, authorization }) => {
   const [isOpen, setOpen] = useState(false);
-  const [isRunning, setRunning] = useState(true);
-  const startTime = useMemo(() => new Date(), []);
+  const [hasEnded, setEnded] = useState(false);
+  const [session, setSession] = useState<Session | null>(null);
   const runtime = useRuntime({ versionID, authorization });
   const hasAnimated = useRef<Record<string, true>>({});
 
-  const handleOpen = (): void => setOpen(true);
   const handleMinimize = (): void => setOpen(false);
   const handleStart = async (): Promise<void> => {
-    setRunning(true);
+    setSession({ startTime: new Date() });
+    setEnded(false);
     await runtime.launch();
+  };
+  const handleOpen = async (): Promise<void> => {
+    setOpen(true);
+    if (!session) {
+      await handleStart();
+    }
   };
   const handleEnd = (): void => {
     handleMinimize();
-    setRunning(false);
+    setEnded(true);
   };
   const handleAnimationEnd = (id: string) => (): void => {
     hasAnimated.current[id] = true;
   };
 
-  useEffect(() => {
-    runtime.launch();
-  }, []);
-
   return createPortal(
     <Container>
-      {isOpen ? (
+      {isOpen && !!session ? (
         <Chat
           title={assistant.name}
           description={assistant.description}
           image={assistant.image}
-          startTime={startTime}
-          isRunning={isRunning}
-          isLoading={isRunning && !runtime.turns.length}
+          startTime={session.startTime}
+          hasEnded={hasEnded}
+          isLoading={!runtime.turns.length}
           onStart={handleStart}
           onEnd={handleEnd}
           onSend={runtime.reply}
