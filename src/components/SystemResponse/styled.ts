@@ -54,6 +54,10 @@ export const Container = styled('div', {
       true: {
         overflowX: 'scroll',
         flexShrink: 0,
+
+        // this is to ensure that the last carousel card is aligned
+        // with preceding messages when fully scrolled
+        marginRight: '2.5px',
       },
     },
     center: {
