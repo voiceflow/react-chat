@@ -9,6 +9,7 @@ export const BaseButton = styled('button', {
   borderRadius: '$1',
   typo: { weight: '$2' },
   whiteSpace: 'nowrap',
+  overflowWrap: 'anywhere',
 
   '&:focus': {
     outline: 0,
