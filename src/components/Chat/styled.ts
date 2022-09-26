@@ -2,7 +2,7 @@ import Message from '@/components/Message';
 import Prompt from '@/components/Prompt';
 import SystemResponse from '@/components/SystemResponse';
 import UserResponse from '@/components/UserResponse';
-import { CSS, shift, styled } from '@/styles';
+import { createTransition, CSS, shift, styled } from '@/styles';
 
 const PROMPT_OVERFLOW = 10;
 
@@ -38,7 +38,7 @@ export const Container = styled('article', {
     width: '100%',
     boxSizing: 'border-box',
     paddingBottom: `calc($3 + ${PROMPT_OVERFLOW}px)`,
-    transition: 'transform 320ms cubic-bezier(0.45, 1.29, 0.64, 1)',
+    transition: `transform 320ms cubic-bezier(0.45, 1.29, 0.64, 1), ${createTransition('box-shadow')}`,
     transform: `translateY(calc(100% + ${PROMPT_OVERFLOW}px))`,
   },
 
@@ -49,8 +49,14 @@ export const Container = styled('article', {
           opacity: 1,
           pointerEvents: 'auto',
         },
+
         [`& ${Prompt.Container}`]: {
           transform: `translateY(${PROMPT_OVERFLOW}px)`,
+        },
+      },
+      false: {
+        [`& ${Prompt.Container}`]: {
+          boxShadow: 'none',
         },
       },
     },

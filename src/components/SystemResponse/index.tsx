@@ -55,7 +55,7 @@ const SystemResponse: React.FC<SystemResponseProps> = ({
 
   const hideActions = () => setActionUsed(true);
 
-  useAutoScroll([visibleMessages.length]);
+  useAutoScroll([showIndicator, showActions, visibleMessages.length]);
 
   if (!messages.length) return null;
 

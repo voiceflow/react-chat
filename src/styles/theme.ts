@@ -7,6 +7,8 @@ import * as Font from './font';
 
 const ANIMATION_TIMING = '150ms';
 
+export const createTransition = (property: keyof CSSPropertiesHyphen) => `${property} ${ANIMATION_TIMING} ease`;
+
 export type CSS = BaseCSS<typeof config>;
 
 type Token<T extends Record<string, any>> = `$${StringKeyOf<T>}`;
@@ -60,7 +62,7 @@ export const { styled, config, keyframes } = createStitches({
     }),
 
     trans: (properties: Array<keyof CSSPropertiesHyphen>) => ({
-      transition: properties.map((property) => `${property} ${ANIMATION_TIMING} ease`).join(', '),
+      transition: properties.map(createTransition).join(', '),
     }),
 
     typo: ({ size = Font.SIZES[2], weight = Font.WEIGHTS[1], height = Font.LINE_HEIGHTS[1] }: FontOptions) => ({
