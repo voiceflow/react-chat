@@ -1,4 +1,4 @@
-import { memo, useRef, useState } from 'react';
+import React, { memo, useRef, useState } from 'react';
 
 import AssistantInfo from '@/components/AssistantInfo';
 import Footer, { FooterProps } from '@/components/Footer';
@@ -24,7 +24,13 @@ const Chat: React.FC<ChatProps> = ({ isRunning, title, image, description, start
   const dialogRef = useRef<HTMLElement>(null);
   const [hasAlert, setAlert] = useState(false);
 
-  const handleClose = (): void => setAlert(true);
+  const handleClose = (event: React.MouseEvent<HTMLButtonElement>): void => {
+    if (isRunning) {
+      setAlert(true);
+    } else {
+      onEnd?.(event);
+    }
+  };
   const handleResume = (): void => setAlert(false);
 
   if (isLoading) {
