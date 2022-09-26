@@ -5,6 +5,9 @@ import { styled } from '@/styles';
 export const Title = styled('h1', {
   typo: { size: 17, weight: '$2', height: '$2' },
   color: 'rgba(255,255,255,0.95)',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
 });
 
 export const Button = styled('button', {
