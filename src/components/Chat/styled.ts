@@ -2,7 +2,7 @@ import Message from '@/components/Message';
 import Prompt from '@/components/Prompt';
 import SystemResponse from '@/components/SystemResponse';
 import UserResponse from '@/components/UserResponse';
-import { shift, styled } from '@/styles';
+import { CSS, shift, styled } from '@/styles';
 
 const PROMPT_OVERFLOW = 10;
 
@@ -57,11 +57,15 @@ export const Container = styled('article', {
   },
 });
 
-export const Status = styled('div', {
+const statusStyles: CSS = {
   display: 'flex',
   justifyContent: 'center',
   typo: { size: 12 },
   color: '$darkGrey',
+};
+
+export const Status = styled('div', {
+  ...statusStyles,
 });
 
 export const Dialog = styled('main', {
@@ -109,12 +113,18 @@ export const Dialog = styled('main', {
   `]: {
     marginTop: '$5',
   },
+
+  [`& ${Status}`]: {
+    marginTop: '$3',
+    marginBottom: 8,
+  },
 });
 
 export const Spacer = styled('div', {
   flexGrow: 1,
 });
 
-export const Timestamp = styled(Status, {
+export const Timestamp = styled('span', {
+  ...statusStyles,
   paddingBottom: '$3',
 });
