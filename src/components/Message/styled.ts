@@ -6,4 +6,5 @@ export const Container = styled('div', {
   padding: '10px 14px',
   borderRadius: '$1',
   typo: {},
+  overflowWrap: 'anywhere',
 });
