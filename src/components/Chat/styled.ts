@@ -127,4 +127,5 @@ export const Spacer = styled('div', {
 export const Timestamp = styled('span', {
   ...statusStyles,
   paddingBottom: '$3',
+  anim: [shift],
 });
