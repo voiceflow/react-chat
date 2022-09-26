@@ -1,3 +1,6 @@
+import cuid from 'cuid';
+import { useMemo } from 'react';
+
 import Bubble from '@/components/Bubble';
 import Input, { InputProps } from '@/components/Input';
 import { createControlled } from '@/utils/controls';
@@ -8,7 +11,9 @@ export interface ChatInputProps extends InputProps {
   onSend?: VoidFunction;
 }
 
-const ChatInput: React.FC<ChatInputProps> = ({ onSend, ...props }) => {
+const ChatInput: React.FC<ChatInputProps> = ({ id, onSend, ...props }) => {
+  const internalID = useMemo(() => `vf-chat-input--${cuid()}`, []) ?? id;
+
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>): void => {
     if (event.key !== 'Enter') return;
 
@@ -18,8 +23,8 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSend, ...props }) => {
 
   return (
     <Container>
-      <Input onKeyPress={handleKeyPress} {...props} />
-      <ButtonContainer withContent={!!props.value}>
+      <Input id={internalID} onKeyPress={handleKeyPress} {...props} />
+      <ButtonContainer htmlFor={internalID} withContent={!!props.value}>
         <Bubble size="small" svg="arrowUp" onClick={onSend} />
       </ButtonContainer>
     </Container>

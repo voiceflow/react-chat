@@ -4,12 +4,13 @@ import Input from '@/components/Input';
 import { inputFocusStyles, inputStyles } from '@/components/Input/styled';
 import { styled } from '@/styles';
 
-export const ButtonContainer = styled('span', {
+export const ButtonContainer = styled('label', {
   ...inputStyles,
   display: 'inline-flex',
   justifyContent: 'center',
   alignItems: 'center',
   width: '$md',
+  cursor: 'text',
 
   [`& ${Bubble.Container}`]: {
     transform: 'scale(0)',
@@ -21,6 +22,7 @@ export const ButtonContainer = styled('span', {
       true: {
         [`& ${Bubble.Container}`]: {
           transform: 'scale(1)',
+          cursor: 'initial',
         },
       },
     },
