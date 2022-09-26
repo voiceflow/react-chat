@@ -1,4 +1,3 @@
-import Message from '@/components/Message';
 import Prompt from '@/components/Prompt';
 import SystemResponse from '@/components/SystemResponse';
 import UserResponse from '@/components/UserResponse';
@@ -83,8 +82,8 @@ export const Dialog = styled('main', {
   paddingBottom: '$3',
 
   [`
-    & ${SystemResponse.List} > *,
-    & ${Message.Container},
+    & ${UserResponse.Container},
+    & ${SystemResponse.List},
     & > ${SystemResponse.Actions}
   `]: {
     anim: [shift],
