@@ -19,6 +19,7 @@ export default {
   args: {
     timestamp: new Date(),
     image: 'https://source.unsplash.com/random/26x26',
+    messageDelay: 2000,
   },
   argTypes: {
     timestamp: {
