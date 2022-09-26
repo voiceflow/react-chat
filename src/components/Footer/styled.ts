@@ -4,6 +4,7 @@ import { styled } from '@/styles';
 
 export const Container = styled('footer', {
   padding: '$3 $4 0 $4',
+  borderRadius: '$1',
 
   [`& ${Input.Container}`]: {
     flex: 1,
