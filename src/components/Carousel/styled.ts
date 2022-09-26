@@ -8,7 +8,7 @@ export const Container = styled('div', {
   [`& ${Card.Container}`]: {
     height: 'fit-content',
     flexShrink: 0,
-    marginLeft: 14,
+    marginLeft: 12,
 
     '&:first-of-type': {
       marginLeft: 0,
