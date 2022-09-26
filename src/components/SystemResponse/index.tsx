@@ -36,8 +36,7 @@ export interface SystemResponseProps {
 
 const SystemResponse: React.FC<SystemResponseProps> = ({ image, timestamp, messages, actions = [], isAnimated = false, onAnimationEnd = R.noop }) => {
   const [actionUsed, setActionUsed] = useState(false);
-  const { showIndicator, visibleMessages } = useAnimatedMessages(messages, isAnimated, onAnimationEnd);
-  const showActions = !!actions.length && !showIndicator && !actionUsed;
+  const { showIndicator, showActions, visibleMessages } = useAnimatedMessages({ messages, isAnimated, hasActions: !!actions.length, onAnimationEnd });
 
   const hideActions = () => setActionUsed(true);
 
@@ -48,7 +47,7 @@ const SystemResponse: React.FC<SystemResponseProps> = ({ image, timestamp, messa
   return (
     <>
       {visibleMessages.map((message, index) => (
-        <Container withImage={index === messages.length - 1} scrollable={message.type === MessageType.CAROUSEL} key={index}>
+        <Container withImage={!showIndicator && index === visibleMessages.length - 1} scrollable={message.type === MessageType.CAROUSEL} key={index}>
           <Avatar image={image} />
           <List>
             {match(message)
@@ -66,7 +65,7 @@ const SystemResponse: React.FC<SystemResponseProps> = ({ image, timestamp, messa
         </Container>
       ))}
 
-      {showActions && (
+      {showActions && !actionUsed && (
         <Actions>
           {actions.map(({ label, onClick }, index) => (
             <Button variant="secondary" onClick={chain(onClick, hideActions)} key={index}>
