@@ -5,8 +5,6 @@ import { MessageProps } from './types';
 
 export * from './types';
 
-const ANIMATION_INTERVAL = 1000;
-
 enum AnimationType {
   MESSAGE = 'message',
   INDICATOR = 'indicator',
@@ -32,11 +30,13 @@ const useAnimations = (messages: MessageProps[], hasActions: boolean) =>
 
 export const useAnimatedMessages = ({
   messages,
+  messageDelay,
   isAnimated,
   hasActions,
   onAnimationEnd,
 }: {
   messages: MessageProps[];
+  messageDelay: number;
   isAnimated: boolean;
   hasActions: boolean;
   onAnimationEnd: VoidFunction;
@@ -56,7 +56,7 @@ export const useAnimatedMessages = ({
     const setTimer = (callback: VoidFunction) => {
       timer = setTimeout(() => {
         callback();
-      }, ANIMATION_INTERVAL);
+      }, messageDelay / 2);
     };
 
     const animate = () => {

@@ -13,15 +13,18 @@ interface Session {
   startTime: Date;
 }
 
+export const DEFAULT_MESSAGE_DELAY = 2000;
+
 export interface ChatWidgetProps extends RuntimeOptions {
   assistant: {
     name: string;
     description: string;
     image: string;
   };
+  messageDelay?: number;
 }
 
-const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant, versionID, authorization }) => {
+const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant, versionID, authorization, messageDelay = DEFAULT_MESSAGE_DELAY }) => {
   const [isOpen, setOpen] = useState(false);
   const [hasEnded, setEnded] = useState(false);
   const [session, setSession] = useState<Session | null>(null);
@@ -71,6 +74,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant, versionID, authoriza
                   {...R.omit(props, ['type'])}
                   image={assistant.image}
                   isAnimated={!hasAnimated.current[id]}
+                  messageDelay={messageDelay}
                   onAnimationEnd={handleAnimationEnd(id)}
                   key={id}
                 />
