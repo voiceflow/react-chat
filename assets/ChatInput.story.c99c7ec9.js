@@ -1,2 +1,0 @@
-import{C as t}from"./index.a1cb461f.js";import{j as r}from"./jsx-runtime.80f32ff9.js";import"./index.774887e8.js";import"./index.d51f5103.js";import"./top-caret.10c2810c.js";import"./theme.de29d54b.js";import"./iframe.99e3c817.js";import"./index.0eaf17eb.js";const u={title:"Components/Chat/ChatInput",component:t,parameters:{actions:{argTypesRegex:"^on(?:Click|Blur)"}}},o=e=>r(t.Controlled,{...e}),d=o.bind({}),a=o.bind({});a.args={placeholder:"Message\u2026"};export{d as Default,a as Placeholder,u as default};
-//# sourceMappingURL=ChatInput.story.c99c7ec9.js.map
