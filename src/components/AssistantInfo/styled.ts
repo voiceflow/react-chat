@@ -17,7 +17,8 @@ export const Container = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  padding: '48px 0',
+  padding: '48px 32px',
+  textAlign: 'center',
 
   [`& ${Avatar.Container}`]: {
     marginBottom: '$4',
