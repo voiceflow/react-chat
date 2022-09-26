@@ -73,7 +73,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant, versionID, authoriza
                 <SystemResponse
                   {...R.omit(props, ['type'])}
                   image={assistant.image}
-                  isAnimated={!hasAnimated.current[id]}
+                  isLive={!hasAnimated.current[id]}
                   messageDelay={messageDelay}
                   onAnimationEnd={handleAnimationEnd(id)}
                   key={id}

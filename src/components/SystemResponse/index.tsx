@@ -31,7 +31,7 @@ export interface SystemResponseProps {
   messages: MessageProps[];
   messageDelay: number;
   actions?: ResponseActionProps[];
-  isAnimated?: boolean;
+  isLive?: boolean;
   onAnimationEnd?: VoidFunction;
 }
 
@@ -41,10 +41,10 @@ const SystemResponse: React.FC<SystemResponseProps> = ({
   messages,
   messageDelay,
   actions = [],
-  isAnimated = false,
+  isLive: isAnimated = false,
   onAnimationEnd = R.noop,
 }) => {
-  const [actionUsed, setActionUsed] = useState(false);
+  const [actionUsed, setActionUsed] = useState(!isAnimated);
   const { showIndicator, showActions, visibleMessages } = useAnimatedMessages({
     messages,
     messageDelay,

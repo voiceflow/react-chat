@@ -8,23 +8,37 @@ export default {
   title: 'Components/Chat/UserResponse',
   component: UserResponse,
   args: {
-    message: 'Lorem ipsum dolor sit amet consectetur',
     timestamp: new Date(),
   },
 } as ComponentMeta<typeof UserResponse>;
 
+export const RawTemplate: ComponentStory<typeof UserResponse> = (args) => <UserResponse {...args} />;
 const Template: ComponentStory<typeof UserResponse> = (args) => (
   <Chat.Container>
     <Chat.Dialog css={{ padding: '64px 0', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-      <UserResponse {...args} />
+      <RawTemplate {...args} />
     </Chat.Dialog>
   </Chat.Container>
 );
 
 export const Simple = Template.bind({});
+Simple.args = {
+  message: 'Lorem ipsum dolor',
+};
+
+export const Wrapping = Template.bind({});
+Wrapping.args = {
+  message: 'consecteturaconsecteturaconsecteturaconsecteturaconsecteturaconsectetura',
+};
+
+export const Multiline = Template.bind({});
+Multiline.args = {
+  message: 'Lorem ipsum dolor sit amet consectetur',
+};
 
 export const Debug = Template.bind({});
 Debug.args = {
+  ...Multiline.args,
   debug: {
     message: 'Intent Name (97%)',
   },
@@ -32,6 +46,7 @@ Debug.args = {
 
 export const DebugReason = Template.bind({});
 DebugReason.args = {
+  ...Debug.args,
   debug: {
     ...Debug.args.debug!,
     reason: 'Voluptatum quae, accusamus excepturi inventore ex quos veritatis eaque ab non?',
@@ -40,6 +55,7 @@ DebugReason.args = {
 
 export const ActionableDebugReason = Template.bind({});
 ActionableDebugReason.args = {
+  ...DebugReason.args,
   debug: {
     ...DebugReason.args.debug!,
     action: { label: 'Add Missing Utterance' },
