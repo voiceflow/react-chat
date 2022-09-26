@@ -15,7 +15,7 @@ import { chain } from '@/utils/functional';
 import { MessageType } from './constants';
 import { useAnimatedMessages } from './hooks';
 import Indicator from './Indicator';
-import { Actions, Container, List, Spacer } from './styled';
+import { Actions, Container, List } from './styled';
 import { MessageProps } from './types';
 
 export * from './types';
@@ -62,7 +62,6 @@ const SystemResponse: React.FC<SystemResponseProps> = ({ image, timestamp, messa
               .with({ type: MessageType.CAROUSEL }, (props) => <Carousel {...R.omit(props, ['type'])} />)
               .otherwise(() => null)}
           </List>
-          <Spacer />
           <Timestamp value={timestamp} />
         </Container>
       ))}
@@ -87,7 +86,6 @@ export default Object.assign(SystemResponse, {
 
   Container,
   List,
-  Spacer,
   Actions,
   Indicator,
 });

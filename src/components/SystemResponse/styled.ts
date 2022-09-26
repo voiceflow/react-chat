@@ -4,10 +4,6 @@ import Message from '@/components/Message';
 import Timestamp from '@/components/Timestamp';
 import { styled } from '@/styles';
 
-export const Spacer = styled('span', {
-  flexGrow: 1,
-});
-
 export const Actions = styled('div', {
   display: 'flex',
   flexWrap: 'wrap',
@@ -37,6 +33,7 @@ export const Container = styled('div', {
   [`& ${Timestamp.Container}`]: {
     alignSelf: 'center',
     whiteSpace: 'nowrap',
+    marginLeft: 8,
     opacity: '0%',
     trans: ['opacity'],
   },
@@ -70,6 +67,7 @@ export const Container = styled('div', {
 export const List = styled('div', {
   display: 'flex',
   flexDirection: 'column',
+  flexShrink: 0,
 
   [`& ${Message.Container}`]: {
     marginBottom: '$1',

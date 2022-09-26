@@ -13,6 +13,7 @@ export const Debug = styled('aside', {
 export const Container = styled('div', {
   display: 'flex',
   flexDirection: 'column',
+  flexShrink: 0,
   alignItems: 'flex-end',
 
   [`& ${Message.Container}`]: {
@@ -31,6 +32,8 @@ export const Row = styled('div', {
 
   [`& ${Timestamp.Container}`]: {
     flexGrow: 1,
+    marginRight: 8,
+    textAlign: 'end',
     opacity: '0%',
     trans: ['opacity'],
   },
