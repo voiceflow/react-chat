@@ -6,7 +6,7 @@ const CHAT_HEIGHT = 800;
 const animationStyles: CSS = {
   opacity: 0,
   transform: `translateY(100%)`,
-  transition: createTransition(['transform', 'opacity'], 300),
+  transition: `${createTransition(['background-color'])}, ${createTransition(['transform', 'opacity'], 300)}`,
 };
 
 const postAnimatedStyles: CSS = {
