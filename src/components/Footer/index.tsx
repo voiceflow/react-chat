@@ -22,7 +22,7 @@ const Footer: React.FC<FooterProps> = ({ hasEnded, onStart, onSend }) => {
   };
 
   return (
-    <Container withShadow={!hasEnded}>
+    <Container withShadow={!!hasEnded}>
       {hasEnded ? (
         <Button onClick={onStart}>Start New Chat</Button>
       ) : (
