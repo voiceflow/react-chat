@@ -5,7 +5,7 @@ import { MessageType } from './constants';
 
 export interface TextMessageProps {
   type: StringifiedEnum<MessageType.TEXT>;
-  text: string;
+  text: React.ReactNode;
 }
 
 export interface ImageMessageProps {

@@ -1,12 +1,15 @@
+import { BaseText } from '@voiceflow/base-types';
 import {
   ChoiceTraceComponent,
   RuntimeAction,
   RuntimeTrace,
   TextTraceComponent,
+  TextTracePayload,
   VisualTraceComponent,
   VoiceflowRuntime,
   VoiceflowRuntimeOptions,
 } from '@voiceflow/sdk-runtime';
+import { serializeToJSX } from '@voiceflow/slate-serializer/jsx';
 import cuid from 'cuid';
 import { useMemo, useState } from 'react';
 import { SetOptional } from 'type-fest';
@@ -15,8 +18,16 @@ import type { SystemResponseProps } from '@/components/SystemResponse';
 import { TurnProps, TurnType } from '@/types';
 
 const RUNTIME_URL = 'https://general-runtime.voiceflow.com';
+const DEFAULT_MESSAGE_DELAY = 2000;
 
 interface RuntimeContext extends Pick<SystemResponseProps, 'messages' | 'actions'> {}
+
+interface SlateTextTrace extends TextTracePayload {
+  slate: {
+    id: string;
+    content: BaseText.SlateTextValue;
+  };
+}
 
 interface CardTrace {
   title: string;
@@ -31,13 +42,16 @@ interface CarouselTrace {
 
 export interface RuntimeOptions extends SetOptional<VoiceflowRuntimeOptions<RuntimeContext>, 'url'> {
   versionID: string;
+  messageDelay?: number | undefined;
 }
 
 const createContext = (): RuntimeContext => ({
   messages: [],
 });
 
-export const useRuntime = ({ url = RUNTIME_URL, versionID, ...options }: RuntimeOptions) => {
+const isSlateText = (text: TextTracePayload): text is SlateTextTrace => 'slate' in text;
+
+export const useRuntime = ({ url = RUNTIME_URL, versionID, messageDelay = DEFAULT_MESSAGE_DELAY, ...options }: RuntimeOptions) => {
   const [turns, setTurns] = useState<TurnProps[]>([]);
   const sessionID = useMemo(() => cuid(), []);
 
@@ -51,6 +65,7 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, ...options }: Runtime
         id: cuid(),
         type: TurnType.SYSTEM,
         timestamp: new Date(),
+        messageDelay,
         ...context,
       },
     ]);
@@ -69,8 +84,12 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, ...options }: Runtime
   };
 
   runtime.registerStep(
-    TextTraceComponent(({ context }, { payload: { message } }) => {
-      context.messages.push({ type: 'text', text: message });
+    TextTraceComponent(({ context }, { payload }) => {
+      if (isSlateText(payload)) {
+        context.messages.push({ type: 'text', text: serializeToJSX(payload.slate.content) });
+      } else {
+        context.messages.push({ type: 'text', text: payload.message });
+      }
       return context;
     })
   );
