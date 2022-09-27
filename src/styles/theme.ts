@@ -5,9 +5,10 @@ import { StringKeyOf } from 'type-fest';
 import * as Color from './color';
 import * as Font from './font';
 
-const ANIMATION_TIMING = '150ms';
+const ANIMATION_DURATION = 150;
 
-export const createTransition = (property: keyof CSSPropertiesHyphen) => `${property} ${ANIMATION_TIMING} ease`;
+export const createTransition = (properties: Array<keyof CSSPropertiesHyphen>, duration = ANIMATION_DURATION) =>
+  properties.map((property) => `${property} ${duration}ms ease`).join(', ');
 
 export type CSS = BaseCSS<typeof config>;
 
@@ -58,11 +59,11 @@ export const { styled, config, keyframes } = createStitches({
 
   utils: {
     anim: (animations: { (): string }[]) => ({
-      animation: animations.map((animation) => `${animation} ${ANIMATION_TIMING}`).join(', '),
+      animation: animations.map((animation) => `${animation} ${ANIMATION_DURATION}ms`).join(', '),
     }),
 
     trans: (properties: Array<keyof CSSPropertiesHyphen>) => ({
-      transition: properties.map(createTransition).join(', '),
+      transition: createTransition(properties),
     }),
 
     typo: ({ size = Font.SIZES[2], weight = Font.WEIGHTS[1], height = Font.LINE_HEIGHTS[1] }: FontOptions) => ({

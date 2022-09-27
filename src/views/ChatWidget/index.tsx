@@ -52,39 +52,36 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant, versionID, authoriza
   };
 
   return createPortal(
-    <Container>
-      {isOpen && !!session ? (
-        <Chat
-          title={assistant.name}
-          description={assistant.description}
-          image={assistant.image}
-          startTime={session.startTime}
-          hasEnded={hasEnded}
-          isLoading={!runtime.turns.length}
-          onStart={handleStart}
-          onEnd={handleEnd}
-          onSend={runtime.reply}
-          onMinimize={handleMinimize}
-        >
-          {runtime.turns.map((turn) =>
-            match(turn)
-              .with({ type: TurnType.USER }, ({ id, ...props }) => <UserResponse {...R.omit(props, ['type'])} key={id} />)
-              .with({ type: TurnType.SYSTEM }, ({ id, ...props }) => (
-                <SystemResponse
-                  {...R.omit(props, ['type'])}
-                  image={assistant.image}
-                  isLive={!hasAnimated.current[id]}
-                  messageDelay={messageDelay}
-                  onAnimationEnd={handleAnimationEnd(id)}
-                  key={id}
-                />
-              ))
-              .exhaustive()
-          )}
-        </Chat>
-      ) : (
-        <Bubble svg="launch" onClick={handleOpen} />
-      )}
+    <Container withChat={isOpen}>
+      <Chat
+        title={assistant.name}
+        description={assistant.description}
+        image={assistant.image}
+        startTime={session?.startTime}
+        hasEnded={hasEnded}
+        isLoading={!runtime.turns.length}
+        onStart={handleStart}
+        onEnd={handleEnd}
+        onSend={runtime.reply}
+        onMinimize={handleMinimize}
+      >
+        {runtime.turns.map((turn) =>
+          match(turn)
+            .with({ type: TurnType.USER }, ({ id, ...props }) => <UserResponse {...R.omit(props, ['type'])} key={id} />)
+            .with({ type: TurnType.SYSTEM }, ({ id, ...props }) => (
+              <SystemResponse
+                {...R.omit(props, ['type'])}
+                image={assistant.image}
+                isLive={!hasAnimated.current[id]}
+                messageDelay={messageDelay}
+                onAnimationEnd={handleAnimationEnd(id)}
+                key={id}
+              />
+            ))
+            .exhaustive()
+        )}
+      </Chat>
+      {!isOpen && <Bubble svg="launch" onClick={handleOpen} />}
     </Container>,
     document.body
   );

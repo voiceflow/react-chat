@@ -1,5 +1,7 @@
 import { Bubble, Chat, Loader } from '@/components';
-import { styled } from '@/styles';
+import { createTransition, styled } from '@/styles';
+
+const CHAT_HEIGHT = 800;
 
 export const Container = styled('div', {
   position: 'fixed',
@@ -16,7 +18,10 @@ export const Container = styled('div', {
   },
 
   [`& ${Chat.Container}`]: {
-    height: 800,
+    height: CHAT_HEIGHT,
+    opacity: 0,
+    transform: `translateY(${CHAT_HEIGHT}px)`,
+    transition: createTransition(['transform', 'opacity'], 300),
   },
 
   [`& ${Chat.Dialog}`]: {
@@ -34,5 +39,16 @@ export const Container = styled('div', {
     position: 'absolute',
     right: '$6',
     bottom: '$6',
+  },
+
+  variants: {
+    withChat: {
+      true: {
+        [`& ${Chat.Container}`]: {
+          opacity: 1,
+          transform: 'translateY(0px)',
+        },
+      },
+    },
   },
 });

@@ -6,6 +6,7 @@ import Header, { HeaderProps } from '@/components/Header';
 import Loader from '@/components/Loader';
 import Prompt from '@/components/Prompt';
 import { AutoScrollProvider } from '@/contexts';
+import { Nullish } from '@/types';
 import { chain } from '@/utils/functional';
 
 import { useTimestamp } from './hooks';
@@ -13,8 +14,8 @@ import { Container, Dialog, Overlay, Spacer, Status, Timestamp } from './styled'
 
 export interface ChatProps extends HeaderProps, FooterProps, React.PropsWithChildren {
   description: string;
-  startTime: Date;
   isLoading: boolean;
+  startTime?: Nullish<Date>;
   onMinimize?: React.MouseEventHandler<HTMLButtonElement>;
   onEnd?: React.MouseEventHandler<HTMLButtonElement>;
 }
@@ -55,7 +56,7 @@ const Chat: React.FC<ChatProps> = ({ hasEnded, title, image, description, startT
         <AutoScrollProvider target={dialogRef}>
           <AssistantInfo name={title} image={image} description={description} />
           <Spacer />
-          <Timestamp>{timestamp}</Timestamp>
+          {!!timestamp && <Timestamp>{timestamp}</Timestamp>}
           {children}
           {hasEnded && <Status>You have ended the chat</Status>}
         </AutoScrollProvider>

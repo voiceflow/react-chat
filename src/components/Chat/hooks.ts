@@ -3,8 +3,12 @@ import 'dayjs/plugin/relativeTime';
 import dayjs from 'dayjs';
 import { useMemo } from 'react';
 
-export const useTimestamp = (startTime: Date) => {
+import { Nullish } from '@/types';
+
+export const useTimestamp = (startTime?: Nullish<Date>) => {
   return useMemo(() => {
+    if (!startTime) return null;
+
     const start = dayjs(startTime);
     const now = dayjs();
 
@@ -16,5 +20,5 @@ export const useTimestamp = (startTime: Date) => {
       default:
         return start.fromNow();
     }
-  }, []);
+  }, [startTime]);
 };

@@ -1,9 +1,18 @@
+import Footer from '@/components/Footer';
+import Header from '@/components/Header';
 import Prompt from '@/components/Prompt';
 import SystemResponse from '@/components/SystemResponse';
 import UserResponse from '@/components/UserResponse';
-import { createTransition, CSS, shift, styled } from '@/styles';
+import { createTransition, CSS, fadeIn, shift, styled } from '@/styles';
 
 const PROMPT_OVERFLOW = 10;
+const SHIFT_DISTANCE = 16;
+
+const animationStyles = (duration: number, delay: number): CSS => ({
+  opacity: 0,
+  transform: `translateY(${SHIFT_DISTANCE}px)`,
+  animation: [fadeIn, shift(SHIFT_DISTANCE)].map((animation) => `${animation} ${duration}ms ease-out ${delay}ms forwards`).join(', '),
+});
 
 export const Overlay = styled('div', {
   position: 'absolute',
@@ -25,6 +34,14 @@ export const Container = styled('article', {
   backgroundColor: '$white',
   boxShadow: '0 2px 48px rgba(19,33,68,0.12), 0 0 0 1px $shadow4',
 
+  [`& ${Header.Container}`]: {
+    animation: `${fadeIn} 500ms ease-out`,
+  },
+
+  [`& ${Footer.Container}`]: {
+    ...animationStyles(300, 300),
+  },
+
   [`& ${Overlay}`]: {
     opacity: 0,
     pointerEvents: 'none',
@@ -37,7 +54,7 @@ export const Container = styled('article', {
     width: '100%',
     boxSizing: 'border-box',
     paddingBottom: `calc($3 + ${PROMPT_OVERFLOW}px)`,
-    transition: `transform 320ms cubic-bezier(0.45, 1.29, 0.64, 1), ${createTransition('box-shadow')}`,
+    transition: `transform 320ms cubic-bezier(0.45, 1.29, 0.64, 1), ${createTransition(['box-shadow'], 300)}`,
     transform: `translateY(calc(100% + ${PROMPT_OVERFLOW}px))`,
   },
 
@@ -73,6 +90,11 @@ export const Status = styled('div', {
   ...statusStyles,
 });
 
+export const Timestamp = styled('span', {
+  ...statusStyles,
+  paddingBottom: '$3',
+});
+
 export const Dialog = styled('main', {
   display: 'flex',
   flexDirection: 'column',
@@ -84,9 +106,10 @@ export const Dialog = styled('main', {
   [`
     & ${UserResponse.Container},
     & ${SystemResponse.List},
-    & > ${SystemResponse.Actions}
+    & ${SystemResponse.Actions},
+    & ${Timestamp}
   `]: {
-    anim: [shift],
+    ...animationStyles(400, 150),
   },
 
   [`
@@ -127,10 +150,4 @@ export const Dialog = styled('main', {
 
 export const Spacer = styled('div', {
   flexGrow: 1,
-});
-
-export const Timestamp = styled('span', {
-  ...statusStyles,
-  paddingBottom: '$3',
-  anim: [shift],
 });

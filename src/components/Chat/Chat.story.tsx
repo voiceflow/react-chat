@@ -15,6 +15,7 @@ export default {
     image: 'https://source.unsplash.com/random/72x72',
     description: "Voiceflow's virtual assistant is here to help.",
     startTime: new Date(),
+    isOpen: true,
   },
 } as ComponentMeta<typeof Chat>;
 
