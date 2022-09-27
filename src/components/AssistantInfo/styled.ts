@@ -11,9 +11,14 @@ export const Title = styled('h2', {
 });
 
 export const Description = styled('p', {
+  display: '-webkit-box',
   margin: 0,
   typo: {},
   color: '$darkGrey',
+  '-webkit-line-clamp': 2,
+  '-webkit-box-orient': 'vertical',
+  overflow: 'hidden',
+  wordBreak: 'break-all',
 });
 
 export const Container = styled('div', {
