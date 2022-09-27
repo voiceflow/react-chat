@@ -8,10 +8,10 @@ import { createTransition, CSS, fadeIn, shift, styled } from '@/styles';
 const PROMPT_OVERFLOW = 10;
 const SHIFT_DISTANCE = 16;
 
-const animationStyles = (duration: number, delay: number): CSS => ({
+const animationStyles = ({ distance = SHIFT_DISTANCE, duration, delay }: { distance?: number; duration: number; delay: number }): CSS => ({
   opacity: 0,
-  transform: `translateY(${SHIFT_DISTANCE}px)`,
-  animation: [fadeIn, shift(SHIFT_DISTANCE)].map((animation) => `${animation} ${duration}ms ease-out ${delay}ms forwards`).join(', '),
+  transform: `translateY(${distance}px)`,
+  animation: [fadeIn, shift(distance)].map((animation) => `${animation} ${duration}ms ease-out ${delay}ms forwards`).join(', '),
 });
 
 export const Overlay = styled('div', {
@@ -35,11 +35,11 @@ export const Container = styled('article', {
   boxShadow: '0 2px 48px rgba(19,33,68,0.12), 0 0 0 1px $shadow4',
 
   [`& ${Header.Container}`]: {
-    animation: `${fadeIn} 500ms ease-out`,
+    ...animationStyles({ distance: -SHIFT_DISTANCE, duration: 300, delay: 300 }),
   },
 
   [`& ${Footer.Container}`]: {
-    ...animationStyles(300, 300),
+    ...animationStyles({ duration: 300, delay: 300 }),
   },
 
   [`& ${Overlay}`]: {
@@ -109,7 +109,7 @@ export const Dialog = styled('main', {
     & ${SystemResponse.Actions},
     & ${Timestamp}
   `]: {
-    ...animationStyles(150, 150),
+    ...animationStyles({ duration: 150, delay: 150 }),
   },
 
   [`
