@@ -41,14 +41,14 @@ const SystemResponse: React.FC<SystemResponseProps> = ({
   messages,
   messageDelay,
   actions = [],
-  isLive: isAnimated = false,
+  isLive = false,
   onAnimationEnd = R.noop,
 }) => {
-  const [actionUsed, setActionUsed] = useState(!isAnimated);
+  const [actionUsed, setActionUsed] = useState(!isLive);
   const { showIndicator, showActions, visibleMessages } = useAnimatedMessages({
     messages,
     messageDelay,
-    isAnimated,
+    isLive,
     hasActions: !!actions.length,
     onAnimationEnd,
   });

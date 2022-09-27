@@ -31,17 +31,17 @@ const useAnimations = (messages: MessageProps[], hasActions: boolean) =>
 export const useAnimatedMessages = ({
   messages,
   messageDelay,
-  isAnimated,
+  isLive,
   hasActions,
   onAnimationEnd,
 }: {
   messages: MessageProps[];
   messageDelay: number;
-  isAnimated: boolean;
+  isLive: boolean;
   hasActions: boolean;
   onAnimationEnd: VoidFunction;
 }) => {
-  const shouldAnimate = isAnimated && messages.length;
+  const shouldAnimate = isLive && messages.length;
   const [showIndicator, setShowIndicator] = useState(false);
   const [showActions, setShowActions] = useState(!shouldAnimate);
   const [visibleMessages, setVisibleMessages] = useState(shouldAnimate ? [] : messages);
@@ -94,7 +94,7 @@ export const useAnimatedMessages = ({
 
   return {
     showIndicator,
-    showActions,
+    showActions: isLive && showActions,
     visibleMessages,
   };
 };
