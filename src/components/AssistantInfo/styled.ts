@@ -1,7 +1,10 @@
 import Avatar from '@/components/Avatar';
 import { styled } from '@/styles';
+import { textOverflowStyles } from '@/styles/fragments';
 
 export const Title = styled('h2', {
+  ...textOverflowStyles,
+  width: '100%',
   margin: 0,
   typo: { size: 20, weight: '$2', height: '$2' },
   color: '$black',

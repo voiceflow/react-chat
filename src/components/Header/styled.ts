@@ -1,13 +1,12 @@
 import Avatar from '@/components/Avatar';
 import Icon from '@/components/Icon';
 import { styled } from '@/styles';
+import { textOverflowStyles } from '@/styles/fragments';
 
 export const Title = styled('h1', {
+  ...textOverflowStyles,
   typo: { size: 17, weight: '$2', height: '$2' },
   color: 'rgba(255,255,255,0.95)',
-  overflow: 'hidden',
-  textOverflow: 'ellipsis',
-  whiteSpace: 'nowrap',
 });
 
 export const Button = styled('button', {
