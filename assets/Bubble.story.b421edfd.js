@@ -1,2 +1,0 @@
-import{B as o}from"./index.cabfc9dd.js";import{j as t}from"./jsx-runtime.f38f1db0.js";import"./index.0fcab117.js";import"./top-caret.8afc9a41.js";import"./theme.688f6aa6.js";import"./iframe.232ac0aa.js";const c={title:"Core/Bubble",component:o,args:{color:"#fff"}},r=s=>t(o,{...s}),a=r.bind({});a.args={size:"small",svg:"arrowUp"};const e=r.bind({});e.args={size:"large",svg:"launch"};export{e as Large,a as Small,c as default};
-//# sourceMappingURL=Bubble.story.b421edfd.js.map
