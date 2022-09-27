@@ -109,7 +109,7 @@ export const Dialog = styled('main', {
     & ${SystemResponse.Actions},
     & ${Timestamp}
   `]: {
-    ...animationStyles(400, 150),
+    ...animationStyles(150, 150),
   },
 
   [`
