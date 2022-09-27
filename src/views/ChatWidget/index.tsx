@@ -53,6 +53,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant, versionID, authoriza
 
   return createPortal(
     <Container withChat={isOpen}>
+      <Bubble svg="launch" onClick={handleOpen} />
       <Chat
         title={assistant.name}
         description={assistant.description}
@@ -81,7 +82,6 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant, versionID, authoriza
             .exhaustive()
         )}
       </Chat>
-      {!isOpen && <Bubble svg="launch" onClick={handleOpen} />}
     </Container>,
     document.body
   );
