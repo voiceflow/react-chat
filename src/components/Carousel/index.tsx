@@ -1,10 +1,10 @@
 import React, { RefObject, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
+import Bubble from '@/components/Bubble';
 import Card, { CardProps } from '@/components/Card';
 import { CARD_WIDTH } from '@/components/Card/styled';
 
-import Bubble from '../Bubble';
 import { ButtonContainer, CAROUSEL_GUTTER_WIDTH, Container } from './styled';
 
 const CARD_WITH_BORDER_WIDTH = CARD_WIDTH + 2;
