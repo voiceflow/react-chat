@@ -1,16 +1,12 @@
-import React, { RefObject, useEffect, useRef, useState } from 'react';
+import { RefObject } from 'react';
 import { createPortal } from 'react-dom';
 
 import Bubble from '@/components/Bubble';
 import Card, { CardProps } from '@/components/Card';
-import { CARD_WIDTH } from '@/components/Card/styled';
 
-import { ButtonContainer, CAROUSEL_GUTTER_WIDTH, Container } from './styled';
-
-const CARD_WITH_BORDER_WIDTH = CARD_WIDTH + 2;
-const PREVIOUS_CONTROL_BOUNDARY = CARD_WITH_BORDER_WIDTH / 3;
-const NEXT_CONTROL_BOUNDARY = CARD_WITH_BORDER_WIDTH + CAROUSEL_GUTTER_WIDTH + PREVIOUS_CONTROL_BOUNDARY;
-const CARD_WITH_GUTTER_WIDTH = CARD_WITH_BORDER_WIDTH + CAROUSEL_GUTTER_WIDTH;
+import { CARD_WITH_GUTTER_WIDTH } from './constants';
+import { useScrollObserver, useScrollTo } from './hooks';
+import { ButtonContainer, Container } from './styled';
 
 export interface CarouselProps {
   cards: CardProps[];
@@ -19,80 +15,13 @@ export interface CarouselProps {
 }
 
 const Carousel: React.FC<CarouselProps> = ({ cards, containerRef, controlsRef }) => {
-  const [showPreviousButton, setShowPreviousButton] = useState(false);
-  const [showNextButton, setShowNextButton] = useState(false);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const previousButtonRef = useRef<HTMLButtonElement>(null);
-  const nextButtonRef = useRef<HTMLButtonElement>(null);
-  const hasMultipleCards = cards.length > 1;
-
-  useEffect(() => {
-    if (!controlsRef?.current || !hasMultipleCards) return;
-
-    setShowNextButton(true);
-  }, []);
-
-  useEffect(() => {
-    const containerEl = containerRef?.current;
-    const trackEl = trackRef?.current;
-    if (!containerEl || !trackEl || !hasMultipleCards) return undefined;
-
-    const handleScroll = (): void => {
-      const { scrollLeft } = containerEl;
-
-      if (scrollLeft < PREVIOUS_CONTROL_BOUNDARY) {
-        setShowPreviousButton(false);
-      } else {
-        setShowPreviousButton(true);
-      }
-
-      if (scrollLeft > trackEl.clientWidth - NEXT_CONTROL_BOUNDARY) {
-        setShowNextButton(false);
-      } else {
-        setShowNextButton(true);
-      }
-    };
-
-    containerEl.addEventListener('scroll', handleScroll);
-
-    return () => {
-      containerEl.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
-  const handlePrevious = (): void => {
-    const containerEl = containerRef?.current;
-    const trackEl = trackRef?.current;
-    if (!containerEl || !trackEl) return;
-
-    const { scrollLeft } = containerEl;
-
-    const index = Math.ceil(scrollLeft / CARD_WITH_GUTTER_WIDTH) - 1;
-
-    containerEl.scrollTo({
-      left: index && index * CARD_WITH_GUTTER_WIDTH,
-      behavior: 'smooth',
-    });
-  };
-
-  const handleNext = (): void => {
-    const containerEl = containerRef?.current;
-    const trackEl = trackRef?.current;
-    if (!containerEl || !trackEl) return;
-
-    const { scrollLeft } = containerEl;
-
-    const index = Math.floor(scrollLeft / CARD_WITH_GUTTER_WIDTH) + 1;
-
-    containerEl.scrollTo({
-      left: index && index * CARD_WITH_GUTTER_WIDTH,
-      behavior: 'smooth',
-    });
-  };
-
+  const { trackRef, previousButtonRef, nextButtonRef, showPreviousButton, showNextButton } = useScrollObserver(containerRef, controlsRef, cards);
   const containerEl = containerRef?.current;
   const controlsEl = controlsRef?.current;
   const showControls = containerEl && controlsEl;
+
+  const scrollToPrevious = useScrollTo(containerRef, (el) => Math.ceil(el.scrollLeft / CARD_WITH_GUTTER_WIDTH) - 1);
+  const scrollToNext = useScrollTo(containerRef, (el) => Math.floor(el.scrollLeft / CARD_WITH_GUTTER_WIDTH) + 1);
 
   return (
     <>
@@ -113,7 +42,7 @@ const Carousel: React.FC<CarouselProps> = ({ cards, containerRef, controlsRef })
                 pointerEvents: showPreviousButton ? 'auto' : 'none',
               }}
             >
-              <Bubble svg="largeArrowLeft" onClick={handlePrevious} />
+              <Bubble svg="largeArrowLeft" onClick={scrollToPrevious} />
             </ButtonContainer>
             <ButtonContainer
               ref={nextButtonRef}
@@ -124,7 +53,7 @@ const Carousel: React.FC<CarouselProps> = ({ cards, containerRef, controlsRef })
                 pointerEvents: showNextButton ? 'auto' : 'none',
               }}
             >
-              <Bubble svg="largeArrowLeft" onClick={handleNext} />
+              <Bubble svg="largeArrowLeft" onClick={scrollToNext} />
             </ButtonContainer>
           </>,
           controlsEl

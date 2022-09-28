@@ -13,11 +13,6 @@ import { MessageType } from './constants';
 import { Container, List } from './styled';
 import { MessageProps } from './types';
 
-export interface ResponseActionProps {
-  label: string;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
-}
-
 export interface SystemMessageProps {
   image: string;
   timestamp: Date;
