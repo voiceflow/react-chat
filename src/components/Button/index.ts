@@ -3,7 +3,7 @@ import { bindVariants } from '@/utils/variants';
 import { ButtonVariant } from './constants';
 import { PrimaryButton } from './Primary';
 import { SecondaryButton } from './Secondary';
-import { BaseButton } from './styled';
+import { Container, Reset } from './styled';
 
 const VARIANTS = {
   [ButtonVariant.PRIMARY]: PrimaryButton,
@@ -15,7 +15,8 @@ const Button = bindVariants(VARIANTS, ButtonVariant.PRIMARY);
 export default Object.assign(Button, {
   Variant: ButtonVariant,
 
-  Base: BaseButton,
+  Reset,
+  Container,
   Primary: PrimaryButton,
   Secondary: SecondaryButton,
 });

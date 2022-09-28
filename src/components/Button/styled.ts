@@ -1,15 +1,8 @@
 import { styled } from '@/styles';
 
-export const BaseButton = styled('button', {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
+export const Reset = styled('button', {
   border: 0,
-  padding: '0 14px',
-  borderRadius: '$1',
-  typo: { weight: '$2' },
-  whiteSpace: 'nowrap',
-  overflowWrap: 'anywhere',
+  padding: 0,
 
   '&:focus': {
     outline: 0,
@@ -18,4 +11,15 @@ export const BaseButton = styled('button', {
   '&:hover': {
     cursor: 'pointer',
   },
+});
+
+export const Container = styled(Reset, {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  padding: '0 14px',
+  borderRadius: '$1',
+  typo: { weight: '$2' },
+  whiteSpace: 'nowrap',
+  overflowWrap: 'anywhere',
 });

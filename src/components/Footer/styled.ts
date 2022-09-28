@@ -10,7 +10,7 @@ export const Container = styled('footer', {
     flex: 1,
   },
 
-  [`& ${Button.Base}`]: {
+  [`& ${Button.Container}`]: {
     width: '100%',
   },
 

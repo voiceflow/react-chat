@@ -1,8 +1,8 @@
 import { styled } from '@/styles';
 
-import { BaseButton } from './styled';
+import { Container } from './styled';
 
-export const PrimaryButton = styled(BaseButton, {
+export const PrimaryButton = styled(Container, {
   height: '$md',
   color: '$white',
   trans: ['background-color'],

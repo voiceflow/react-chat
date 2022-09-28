@@ -10,7 +10,7 @@ export const Actions = styled('div', {
   marginBottom: '$5',
   padding: '0 $5 0 34px',
 
-  [`& ${Button.Base}`]: {
+  [`& ${Button.Container}`]: {
     height: 'unset',
     paddingTop: 7,
     paddingBottom: 7,
