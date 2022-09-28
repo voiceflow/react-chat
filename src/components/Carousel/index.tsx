@@ -15,7 +15,7 @@ export interface CarouselProps {
 }
 
 const Carousel: React.FC<CarouselProps> = ({ cards, containerRef, controlsRef }) => {
-  const { trackRef, previousButtonRef, nextButtonRef, showPreviousButton, showNextButton } = useScrollObserver(containerRef, controlsRef, cards);
+  const { previousButtonRef, nextButtonRef, showPreviousButton, showNextButton } = useScrollObserver(containerRef, controlsRef, cards);
   const containerEl = containerRef?.current;
   const controlsEl = controlsRef?.current;
   const showControls = containerEl && controlsEl;
@@ -25,7 +25,7 @@ const Carousel: React.FC<CarouselProps> = ({ cards, containerRef, controlsRef })
 
   return (
     <>
-      <Container ref={trackRef}>
+      <Container>
         {cards.map((card, index) => (
           <Card {...card} key={index} />
         ))}

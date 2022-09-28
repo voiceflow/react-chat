@@ -2,6 +2,7 @@ import { RefObject, useEffect, useRef, useState } from 'react';
 
 import { CardProps } from '../Card';
 import { CARD_WITH_GUTTER_WIDTH, NEXT_CONTROL_BOUNDARY, PREVIOUS_CONTROL_BOUNDARY } from './constants';
+import { CAROUSEL_GUTTER_WIDTH } from './styled';
 
 export const useScrollTo =
   <T extends HTMLElement>(ref: RefObject<T> | undefined, getNextIndex: (el: T) => number) =>
@@ -24,7 +25,6 @@ export const useScrollObserver = (
 ) => {
   const [showPreviousButton, setShowPreviousButton] = useState(false);
   const [showNextButton, setShowNextButton] = useState(false);
-  const trackRef = useRef<HTMLDivElement>(null);
   const previousButtonRef = useRef<HTMLButtonElement>(null);
   const nextButtonRef = useRef<HTMLButtonElement>(null);
   const hasMultipleCards = cards.length > 1;
@@ -37,23 +37,15 @@ export const useScrollObserver = (
 
   useEffect(() => {
     const containerEl = containerRef?.current;
-    const trackEl = trackRef?.current;
-    if (!containerEl || !trackEl || !hasMultipleCards) return undefined;
+    if (!containerEl || !hasMultipleCards) return undefined;
+
+    const trackWidth = CARD_WITH_GUTTER_WIDTH * cards.length - CAROUSEL_GUTTER_WIDTH;
 
     const handleScroll = (): void => {
       const { scrollLeft } = containerEl;
 
-      if (scrollLeft < PREVIOUS_CONTROL_BOUNDARY) {
-        setShowPreviousButton(false);
-      } else {
-        setShowPreviousButton(true);
-      }
-
-      if (scrollLeft > trackEl.clientWidth - NEXT_CONTROL_BOUNDARY) {
-        setShowNextButton(false);
-      } else {
-        setShowNextButton(true);
-      }
+      setShowPreviousButton(scrollLeft >= PREVIOUS_CONTROL_BOUNDARY);
+      setShowNextButton(scrollLeft <= trackWidth - NEXT_CONTROL_BOUNDARY);
     };
 
     containerEl.addEventListener('scroll', handleScroll);
@@ -64,7 +56,6 @@ export const useScrollObserver = (
   }, []);
 
   return {
-    trackRef,
     previousButtonRef,
     nextButtonRef,
     showPreviousButton,
