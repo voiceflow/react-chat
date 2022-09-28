@@ -28,6 +28,7 @@
     "babel-loader",
     "fixpack",
     "husky",
-    "lint-staged"
+    "lint-staged",
+    "slate"
   ]
 }

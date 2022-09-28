@@ -7,7 +7,7 @@ export const Container = styled('div', {
   backgroundColor: '$white',
   boxShadow: '0 12px 48px 4px $shadow12',
 
-  [`& ${Button.Base}`]: {
+  [`& ${Button.Container}`]: {
     width: '100%',
     marginTop: '$1',
 

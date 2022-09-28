@@ -1,22 +1,16 @@
+import Button from '@/components/Button';
 import Icon from '@/components/Icon';
 import { styled } from '@/styles';
 
-export const Container = styled('button', {
+export const Container = styled(Button.Reset, {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  border: 0,
   borderRadius: '$round',
-  padding: 0,
   backgroundColor: '$primary',
   trans: ['background-color'],
 
-  '&:focus': {
-    outline: 0,
-  },
-
   '&:hover': {
-    cursor: 'pointer',
     backgroundColor: '$darkPrimary',
   },
 

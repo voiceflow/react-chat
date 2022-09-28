@@ -25,7 +25,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ id, onSend, ...props }) => {
     <Container>
       <Input id={internalID} onKeyPress={handleKeyPress} {...props} />
       <ButtonContainer htmlFor={internalID} withContent={!!props.value}>
-        <Bubble size="small" svg="arrowUp" onClick={onSend} />
+        <Bubble size="small" svg="smallArrowUp" onClick={onSend} />
       </ButtonContainer>
     </Container>
   );

@@ -1,4 +1,5 @@
 import Avatar from '@/components/Avatar';
+import BaseButton from '@/components/Button';
 import Icon from '@/components/Icon';
 import { styled } from '@/styles';
 import { textOverflowStyles } from '@/styles/fragments';
@@ -9,25 +10,18 @@ export const Title = styled('h1', {
   color: 'rgba(255,255,255,0.95)',
 });
 
-export const Button = styled('button', {
+export const Button = styled(BaseButton.Reset, {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   height: 32,
   width: 32,
   marginLeft: 8,
-  border: 0,
   borderRadius: 6,
-  padding: 0,
   background: 'none',
   trans: ['background-color'],
 
-  '&:focus': {
-    outline: 0,
-  },
-
   '&:hover': {
-    cursor: 'pointer',
     backgroundColor: 'rgba(255,255,255,0.16)',
 
     [`& ${Icon.Frame}`]: {

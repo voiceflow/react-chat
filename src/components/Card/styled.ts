@@ -2,10 +2,12 @@ import Button from '@/components/Button';
 import Image from '@/components/Image';
 import { styled } from '@/styles';
 
+export const CARD_WIDTH = 248;
+
 export const Container = styled('section', {
   display: 'inline-flex',
   flexDirection: 'column',
-  width: 248,
+  width: CARD_WIDTH,
   border: '1px solid #f1f1f1',
   borderRadius: '$2',
   boxSizing: 'content-box',
@@ -16,7 +18,7 @@ export const Container = styled('section', {
     height: 150,
   },
 
-  [`& ${Button.Base}`]: {
+  [`& ${Button.Container}`]: {
     width: '100%',
     color: '$primary',
     backgroundColor: '$white',
