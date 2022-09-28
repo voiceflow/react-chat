@@ -1,7 +1,8 @@
+import BaseButton from '@/components/Button';
 import Message from '@/components/Message';
 import { styled } from '@/styles';
 
-export const Button = styled('button', {
+export const Button = styled(BaseButton.Reset, {
   height: '$md',
   border: '1px solid $medGrey',
   borderTopColor: 'rgba(223,223,223,0.5)',
@@ -11,14 +12,6 @@ export const Button = styled('button', {
   typo: { weight: '$2' },
   color: '$primary',
   backgroundColor: '#fbfbfb',
-
-  '&:focus': {
-    outline: 0,
-  },
-
-  '&:hover': {
-    cursor: 'pointer',
-  },
 });
 
 export const Container = styled('div', {

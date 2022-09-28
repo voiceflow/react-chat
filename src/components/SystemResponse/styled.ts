@@ -10,7 +10,7 @@ export const Actions = styled('div', {
   marginBottom: '$5',
   padding: '0 $5 0 34px',
 
-  [`& ${Button.Base}`]: {
+  [`& ${Button.Container}`]: {
     height: 'unset',
     paddingTop: 7,
     paddingBottom: 7,
@@ -54,6 +54,12 @@ export const Container = styled('div', {
       true: {
         overflowX: 'scroll',
         flexShrink: 0,
+        scrollbarWidth: 'none',
+        '-ms-overflow-style': 'none',
+
+        [`&::-webkit-scrollbar`]: {
+          display: 'none',
+        },
 
         [`& ${Timestamp.Container}`]: {
           // this is to ensure that the last carousel card is aligned
