@@ -1,0 +1,17 @@
+<svg viewBox="0 0 16 16"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+      <stop stop-color="currentColor" stop-opacity="0.85" offset="0%"></stop>
+      <stop stop-color="currentColor" offset="100%"></stop>
+    </linearGradient>
+    <path d="M8.50003057,3.75 C8.50003057,3.335786 8.16424057,3 7.75003057,3 C7.33582057,3 7.00003057,3.335786 7.00003057,3.75 L7.00003057,10.64873 L5.23016057,9.17384 C4.91194957,8.90866 4.43902557,8.95166 4.17385257,9.26987 C3.90867987,9.58807 3.95167287,10.061 4.26988057,10.32617 L7.26988057,12.82617 C7.54801057,13.0579 7.95202057,13.0579 8.23016057,12.82617 L11.2301606,10.32617 C11.5483606,10.061 11.5913606,9.58807 11.3261806,9.26987 C11.0610106,8.95166 10.5880906,8.90866 10.2698806,9.17384 L8.50003057,10.64871 L8.50003057,3.75 Z" id="path-2"></path>
+  </defs>
+  <g id="vf-arrow-up" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="Path" transform="translate(7.750018, 7.999984) rotate(180.000000) translate(-7.750018, -7.999984) ">
+      <use fill="currentColor" xlink:href="#path-2"></use>
+      <use fill-opacity="0.85" fill="url(#linearGradient-1)" xlink:href="#path-2"></use>
+    </g>
+  </g>
+</svg>
