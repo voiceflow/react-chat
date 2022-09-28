@@ -36,10 +36,9 @@ const Carousel: React.FC<CarouselProps> = ({ cards, containerRef, controlsRef })
             <ButtonContainer
               ref={previousButtonRef}
               alignment="left"
+              visible={showPreviousButton}
               css={{
                 transform: `translateY(calc(${containerEl.clientHeight / 2}px - 50%))`,
-                opacity: showPreviousButton ? 1 : 0,
-                pointerEvents: showPreviousButton ? 'auto' : 'none',
               }}
             >
               <Bubble svg="largeArrowLeft" onClick={scrollToPrevious} />
@@ -47,10 +46,9 @@ const Carousel: React.FC<CarouselProps> = ({ cards, containerRef, controlsRef })
             <ButtonContainer
               ref={nextButtonRef}
               alignment="right"
+              visible={showNextButton}
               css={{
                 transform: `translateY(calc(${containerEl.clientHeight / 2}px - 50%))`,
-                opacity: showNextButton ? 1 : 0,
-                pointerEvents: showNextButton ? 'auto' : 'none',
               }}
             >
               <Bubble svg="largeArrowLeft" onClick={scrollToNext} />

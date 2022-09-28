@@ -25,6 +25,16 @@ export const ButtonContainer = styled('span', {
   },
 
   variants: {
+    visible: {
+      true: {
+        opacity: 1,
+        pointerEvents: 'auto',
+      },
+      false: {
+        opacity: 0,
+        pointerEvents: 'none',
+      },
+    },
     alignment: {
       left: {
         left: 48 - BUTTON_SIZE / 2,
