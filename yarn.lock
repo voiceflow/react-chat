@@ -3843,10 +3843,10 @@
   dependencies:
     http-errors "^2.0.0"
 
-"@voiceflow/slate-serializer@1.1.6":
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/@voiceflow/slate-serializer/-/slate-serializer-1.1.6.tgz#e15c9be87f55e50bcf5531c81c0eda53e3eb80a6"
-  integrity sha512-pg6IK1AoM3xMS62S6vbNdVDcF4SjFOpt5jBOE4zz/kNQYht6jsG0U1exH/IOCwVYMjOeNRrUJAaDE2CvR/8fXA==
+"@voiceflow/slate-serializer@1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@voiceflow/slate-serializer/-/slate-serializer-1.2.0.tgz#9da1da576b65b9fa0259e67501f701980f52eef2"
+  integrity sha512-kmAWNA1ob/1wXbJ3ahebAtWsetkW/o8P/UFUhf0eslov1/fPTh4zd3EZHZY6XXZodrVNeikq3s10QklYw6yXqA==
   dependencies:
     csstype "3.1.1"
 
