@@ -1,7 +1,7 @@
 import { Bubble, Chat, Loader } from '@/components';
 import { createTransition, CSS, styled } from '@/styles';
 
-const CHAT_HEIGHT = 800;
+const MAX_CHAT_HEIGHT = 800;
 
 const animationStyles: CSS = {
   opacity: 0,
@@ -31,7 +31,8 @@ export const Container = styled('div', {
 
   [`& > ${Chat.Container}`]: {
     ...animationStyles,
-    height: CHAT_HEIGHT,
+    height: '90%',
+    maxHeight: MAX_CHAT_HEIGHT,
   },
 
   [`& ${Chat.Dialog}`]: {
