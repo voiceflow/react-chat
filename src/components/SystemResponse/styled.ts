@@ -54,6 +54,12 @@ export const Container = styled('div', {
       true: {
         overflowX: 'scroll',
         flexShrink: 0,
+        scrollbarWidth: 'none',
+        '-ms-overflow-style': 'none',
+
+        [`&::-webkit-scrollbar`]: {
+          display: 'none',
+        },
 
         [`& ${Timestamp.Container}`]: {
           // this is to ensure that the last carousel card is aligned
