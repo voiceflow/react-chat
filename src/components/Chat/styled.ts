@@ -10,7 +10,6 @@ const SHIFT_DISTANCE = 16;
 
 const animationStyles = ({ distance = SHIFT_DISTANCE, duration, delay }: { distance?: number; duration: number; delay: number }): CSS => ({
   opacity: 0,
-  transform: `translateY(${distance}px)`,
   animation: [fadeIn, shift(distance)].map((animation) => `${animation} ${duration}ms ease-out ${delay}ms forwards`).join(', '),
 });
 
