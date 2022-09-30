@@ -136,7 +136,7 @@ export const Dialog = styled('main', {
 
   [`
     & ${SystemResponse.Container} + ${UserResponse.Container},
-    & ${UserResponse.Container} + ${SystemResponse.Container}
+    & ${UserResponse.Container} + ${SystemResponse.Controls} + ${SystemResponse.Container}
   `]: {
     marginTop: '$5',
   },

@@ -8,7 +8,7 @@ import { chain } from '@/utils/functional';
 import { MessageType } from './constants';
 import { useAnimatedMessages } from './hooks';
 import Indicator from './Indicator';
-import { Actions, Container, List } from './styled';
+import { Actions, Container, Controls, List } from './styled';
 import SystemMessage from './SystemMessage';
 import { MessageProps } from './types';
 
@@ -84,6 +84,7 @@ export default Object.assign(SystemResponse, {
   Message: MessageType,
 
   Container,
+  Controls,
   List,
   Actions,
   Indicator,

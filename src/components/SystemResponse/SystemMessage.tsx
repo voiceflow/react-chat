@@ -10,7 +10,7 @@ import Message from '@/components/Message';
 import Timestamp from '@/components/Timestamp';
 
 import { MessageType } from './constants';
-import { Container, List } from './styled';
+import { Container, Controls, List } from './styled';
 import { MessageProps } from './types';
 
 export interface SystemMessageProps {
@@ -26,7 +26,7 @@ const SystemMessage: React.FC<SystemMessageProps> = ({ image, timestamp, message
 
   return (
     <>
-      <span ref={controlsRef} />
+      <Controls ref={controlsRef} />
       <Container ref={containerRef} withImage={withImage} scrollable={message.type === MessageType.CAROUSEL}>
         <Avatar image={image} />
         <List>

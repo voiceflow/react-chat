@@ -21,6 +21,10 @@ export const Actions = styled('div', {
   },
 });
 
+export const Controls = styled('span', {
+  position: 'relative',
+});
+
 export const Container = styled('div', {
   display: 'flex',
 
