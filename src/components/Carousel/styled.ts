@@ -15,7 +15,7 @@ export const ButtonContainer = styled('span', {
     height: BUTTON_SIZE,
     width: BUTTON_SIZE,
     backgroundColor: '$white',
-    boxShadow: '0 5px 8px -8px $shadow12, 0 2px 4px -3px $shadow12, 0 0 0 1px $shadow3, 0 1px 3px 1px $shadow1',
+    boxShadow: '0 1px 3px 1px $shadow1, 0 0 0 1px $shadow3, 0 2px 4px -3px $shadow12, 0 5px 8px -8px $shadow12',
 
     [`& ${Icon.Frame}`]: {
       height: '$xxs',
