@@ -1,17 +1,18 @@
 import { Bubble, Chat, Loader } from '@/components';
-import { createTransition, CSS, styled } from '@/styles';
+import { CSS, styled } from '@/styles';
 
 const MAX_CHAT_HEIGHT = 800;
 
-const animationStyles: CSS = {
-  opacity: 0,
-  transform: `translateY(100%)`,
-  transition: `${createTransition(['background-color'])}, ${createTransition(['transform', 'opacity'], 300)}`,
-};
-
-const postAnimatedStyles: CSS = {
+const animateInStyles: CSS = {
   opacity: 1,
   transform: 'translateY(0%)',
+  transition: 'transform 300ms cubic-bezier(0, 0.95, 0.1, 1) 0s, opacity 150ms linear 0s',
+};
+
+const animateOutStyles: CSS = {
+  opacity: 0,
+  transform: `translateY(100%)`,
+  transition: 'transform 300ms cubic-bezier(0.85, 0, 0.6, 1) 0s, opacity 150ms linear 0s',
 };
 
 export const Container = styled('div', {
@@ -25,12 +26,10 @@ export const Container = styled('div', {
   '-moz-osx-font-smoothing': 'grayscale',
 
   [`& > ${Bubble.Container}`]: {
-    ...animationStyles,
     color: '$white',
   },
 
   [`& > ${Chat.Container}`]: {
-    ...animationStyles,
     height: '90%',
     maxHeight: MAX_CHAT_HEIGHT,
   },
@@ -56,12 +55,18 @@ export const Container = styled('div', {
     withChat: {
       true: {
         [`& > ${Chat.Container}`]: {
-          ...postAnimatedStyles,
+          ...animateInStyles,
+        },
+        [`& > ${Bubble.Container}`]: {
+          ...animateOutStyles,
         },
       },
       false: {
+        [`& > ${Chat.Container}`]: {
+          ...animateOutStyles,
+        },
         [`& > ${Bubble.Container}`]: {
-          ...postAnimatedStyles,
+          ...animateInStyles,
         },
       },
     },
