@@ -64,12 +64,6 @@ export const Container = styled('div', {
         [`&::-webkit-scrollbar`]: {
           display: 'none',
         },
-
-        [`& ${Timestamp.Container}`]: {
-          // this is to ensure that the last carousel card is aligned
-          // with preceding messages when fully scrolled
-          marginRight: '2.5px',
-        },
       },
     },
     center: {
