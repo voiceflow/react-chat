@@ -7,8 +7,8 @@ import { styled } from '@/styles';
 export const Actions = styled('div', {
   display: 'flex',
   flexWrap: 'wrap',
-  marginBottom: '$5',
-  padding: '0 $5 0 34px',
+  marginBottom: 8,
+  padding: '0 $5 0 54px',
 
   [`& ${Button.Container}`]: {
     height: 'unset',

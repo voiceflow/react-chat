@@ -1,5 +1,4 @@
 import Footer from '@/components/Footer';
-import Header from '@/components/Header';
 import Prompt from '@/components/Prompt';
 import SystemResponse from '@/components/SystemResponse';
 import UserResponse from '@/components/UserResponse';
@@ -32,10 +31,6 @@ export const Container = styled('article', {
   overflow: 'hidden',
   backgroundColor: '$white',
   boxShadow: '0 2px 48px rgba(19,33,68,0.12), 0 0 0 1px $shadow4',
-
-  [`& ${Header.Container}`]: {
-    ...animationStyles({ distance: -SHIFT_DISTANCE, duration: 300, delay: 300 }),
-  },
 
   [`& ${Footer.Container}`]: {
     ...animationStyles({ duration: 300, delay: 300 }),
