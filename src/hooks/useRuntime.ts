@@ -41,7 +41,8 @@ interface CarouselTrace {
 }
 
 export interface RuntimeOptions extends SetOptional<VoiceflowRuntimeOptions<RuntimeContext>, 'url'> {
-  versionID: string;
+  userID?: string | undefined;
+  versionID?: string;
   messageDelay?: number | undefined;
 }
 
@@ -51,9 +52,9 @@ const createContext = (): RuntimeContext => ({
 
 const isSlateText = (text: TextTracePayload): text is SlateTextTrace => 'slate' in text;
 
-export const useRuntime = ({ url = RUNTIME_URL, versionID, messageDelay = DEFAULT_MESSAGE_DELAY, ...options }: RuntimeOptions) => {
+export const useRuntime = ({ url = RUNTIME_URL, versionID, userID, messageDelay = DEFAULT_MESSAGE_DELAY, ...options }: RuntimeOptions) => {
   const [turns, setTurns] = useState<TurnProps[]>([]);
-  const sessionID = useMemo(() => cuid(), []);
+  const sessionID = useMemo(() => (userID ? encodeURIComponent(userID) : cuid()), []);
 
   const runtime = useMemo(() => new VoiceflowRuntime<RuntimeContext>({ ...options, url }), [options.authorization]);
   const interact = async (action: RuntimeAction): Promise<void> => {

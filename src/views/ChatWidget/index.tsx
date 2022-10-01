@@ -22,11 +22,11 @@ export interface ChatWidgetProps extends RuntimeOptions {
   messageDelay?: number;
 }
 
-const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant, versionID, authorization, messageDelay }) => {
+const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant, userID, versionID, authorization, messageDelay }) => {
   const [isOpen, setOpen] = useState(false);
   const [hasEnded, setEnded] = useState(false);
   const [session, setSession] = useState<Session | null>(null);
-  const runtime = useRuntime({ versionID, authorization, messageDelay });
+  const runtime = useRuntime({ versionID, authorization, messageDelay, userID });
   const hasAnimated = useRef<Record<string, true>>({});
 
   const handleMinimize = (): void => setOpen(false);
