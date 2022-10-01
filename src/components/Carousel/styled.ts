@@ -4,7 +4,7 @@ import Icon from '@/components/Icon';
 import { styled } from '@/styles';
 
 const BUTTON_SIZE = 42;
-export const CAROUSEL_GUTTER_WIDTH = 14;
+export const CAROUSEL_GUTTER_WIDTH = 12;
 
 export const ButtonContainer = styled('span', {
   position: 'absolute',
@@ -29,10 +29,13 @@ export const ButtonContainer = styled('span', {
     },
 
     [`&:active`]: {
-      boxShadow: ' 0 1px 4px 0 $shadow8, 0 0 4px 0 $shadow4, 0 2px 4px 0 $shadow12, 0 5px 8px 0 $shadow12',
+      boxShadow: '0 1px 4px 0 $shadow8, 0 0 4px 0 $shadow4, 0 2px 4px 0 $shadow12, 0 5px 8px 0 $shadow12',
     },
 
-    [`&:hover ${Icon.Frame}, &:active ${Icon.Frame}`]: {
+    [`
+      &:hover ${Icon.Frame},
+      &:active ${Icon.Frame}
+    `]: {
       color: 'rgba(0,0,0,0.8)',
     },
   },
