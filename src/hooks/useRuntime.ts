@@ -42,7 +42,7 @@ interface CarouselTrace {
 
 export interface RuntimeOptions extends SetOptional<VoiceflowRuntimeOptions<RuntimeContext>, 'url'> {
   userID?: string | undefined;
-  versionID?: string;
+  versionID: string;
   messageDelay?: number | undefined;
 }
 
