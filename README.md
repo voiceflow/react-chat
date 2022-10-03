@@ -30,7 +30,7 @@ interface Option {
   };
 
   /**
-   * [optional] userID to allow users to continue a session
+   * [optional] userID to track users and persist/continue sessions
    */
   userID?: string;
 
@@ -39,6 +39,12 @@ interface Option {
    * can be a 'development' or 'production' alias or a specific versionID
    */
   versionID?: string;
+
+  /**
+   * [optional] voiceflow dialog management runtime endpoint
+   * defaults to https://general-runtime.voiceflow.com
+   */
+  url?: string;
 }
 ```
 
