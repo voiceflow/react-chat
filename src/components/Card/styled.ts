@@ -2,7 +2,7 @@ import Button from '@/components/Button';
 import Image from '@/components/Image';
 import { styled } from '@/styles';
 
-export const CARD_WIDTH = 248;
+export const CARD_WIDTH = 246;
 
 export const Container = styled('section', {
   display: 'inline-flex',

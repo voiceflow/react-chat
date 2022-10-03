@@ -10,7 +10,7 @@ import { Nullish } from '@/types';
 import { chain } from '@/utils/functional';
 
 import { useTimestamp } from './hooks';
-import { Container, Dialog, Overlay, Spacer, Status, Timestamp } from './styled';
+import { Container, Dialog, Overlay, SessionTime, Spacer, Status } from './styled';
 
 export interface ChatProps extends HeaderProps, FooterProps, React.PropsWithChildren {
   description: string;
@@ -56,7 +56,7 @@ const Chat: React.FC<ChatProps> = ({ hasEnded, title, image, description, startT
         <AutoScrollProvider target={dialogRef}>
           <AssistantInfo name={title} image={image} description={description} />
           <Spacer />
-          {!!timestamp && <Timestamp>{timestamp}</Timestamp>}
+          {!!timestamp && <SessionTime>{timestamp}</SessionTime>}
           {children}
           {hasEnded && <Status>You have ended the chat</Status>}
         </AutoScrollProvider>
@@ -74,5 +74,4 @@ export default Object.assign(memo(Chat), {
   Overlay,
   Spacer,
   Status,
-  Timestamp,
 });
