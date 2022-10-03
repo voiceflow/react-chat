@@ -12,7 +12,6 @@ import {
 import { serializeToJSX } from '@voiceflow/slate-serializer/jsx';
 import cuid from 'cuid';
 import { useMemo, useState } from 'react';
-import { SetOptional } from 'type-fest';
 
 import type { SystemResponseProps } from '@/components/SystemResponse';
 import { TurnProps, TurnType } from '@/types';
@@ -40,7 +39,8 @@ interface CarouselTrace {
   cards: CardTrace[];
 }
 
-export interface RuntimeOptions extends SetOptional<VoiceflowRuntimeOptions<RuntimeContext>, 'url'> {
+export interface RuntimeOptions extends Omit<VoiceflowRuntimeOptions<RuntimeContext>, 'url'> {
+  url?: string | undefined;
   userID?: string | undefined;
   versionID?: string | undefined;
   messageDelay?: number | undefined;
