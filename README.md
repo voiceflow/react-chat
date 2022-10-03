@@ -15,20 +15,10 @@ npm install @voiceflow/react-chat
 ```ts
 interface Option {
   /**
-   * the API key for your project
+   * the ID of your voiceflow project, the project must have `apiPrivacy: public`
+   * find this under integrations tab
    */
-  authorization: string;
-
-  /**
-   * [optional] userID to allow users to continue a session
-   */
-  userID?: string;
-
-  /**
-   * [optional] the version ID of your project (appears in the URL)
-   * can also be 'development' or 'production'
-   */
-  versionID?: string;
+  projectID: string;
 
   /**
    * basic assistant information
@@ -38,6 +28,17 @@ interface Option {
     description: string;
     image: string;
   };
+
+  /**
+   * [optional] userID to allow users to continue a session
+   */
+  userID?: string;
+
+  /**
+   * [optional] the version ID of your project, defaults to 'development'
+   * can be a 'development' or 'production' alias or a specific versionID
+   */
+  versionID?: string;
 }
 ```
 
@@ -81,12 +82,12 @@ You can use a simple JavaScript snippet to add the chat widget to any HTML page.
     <script src="https://unpkg.com/@voiceflow/react-chat/dist/bundle.mjs"></script>
     <script>
       vf.chat.show({
+        projectID: 'XXXXXXX.....',
         assistant: {
           name: 'My Assistant',
           description: "It's your friendly, neighborhood chat assistant!",
           image: 'https://source.unsplash.com/random/72x72',
         },
-        authorization: 'VF.DM.xxx123',
       });
     </script>
   </body>
