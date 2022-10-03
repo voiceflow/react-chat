@@ -1,6 +1,7 @@
 import Footer from '@/components/Footer';
 import Prompt from '@/components/Prompt';
 import SystemResponse from '@/components/SystemResponse';
+import Timestamp from '@/components/Timestamp';
 import UserResponse from '@/components/UserResponse';
 import { createTransition, CSS, fadeIn, shift, styled } from '@/styles';
 
@@ -84,7 +85,7 @@ export const Status = styled('div', {
   ...statusStyles,
 });
 
-export const Timestamp = styled('span', {
+export const SessionTime = styled('span', {
   ...statusStyles,
   paddingBottom: '$3',
 });
@@ -135,6 +136,8 @@ export const Dialog = styled('main', {
   `]: {
     marginTop: '$5',
   },
+
+  [`& ${Timestamp.Container}`]: { width: 50 },
 
   [`& ${Status}`]: {
     marginTop: '$3',

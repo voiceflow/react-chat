@@ -5,7 +5,6 @@ const Container = styled('div', {
   color: '$darkGrey',
   whiteSpace: 'nowrap',
   flexShrink: 0,
-  width: 50,
 });
 
 export default Container;
