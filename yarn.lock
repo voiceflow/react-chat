@@ -3762,10 +3762,10 @@
     c8 "^7.12.0"
     vitest "0.23.1"
 
-"@voiceflow/base-types@^2.67.0":
-  version "2.68.1"
-  resolved "https://registry.yarnpkg.com/@voiceflow/base-types/-/base-types-2.68.1.tgz#4e722d551fa0d451561e15d930fb821b96427ed4"
-  integrity sha512-bs/+N307PwsZlPo3gI6pk3s3lQ739DbRWQ0MmaYpa9NqQDu3t6powtv5FendyE67zF10HRTvDRAoVys152ftiA==
+"@voiceflow/base-types@^2.69.0":
+  version "2.69.0"
+  resolved "https://registry.yarnpkg.com/@voiceflow/base-types/-/base-types-2.69.0.tgz#dcac1f5ec50e1d8934a94a22d2772c9cf1232701"
+  integrity sha512-MG8rNgK+kep1E8doEmyhUUv+1pm58BYNKx6dlMpqm/sZQqvzv51G2ouZcCYgKIfkYog6ivTqJtVrNIyGmm56Tw==
   dependencies:
     "@voiceflow/common" "^8.1.5"
     slate "0.73.0"
@@ -3836,19 +3836,19 @@
   resolved "https://registry.yarnpkg.com/@voiceflow/prettier-config/-/prettier-config-1.2.1.tgz#906bc852bcd8b2586fa62e4635392a0bea1fdb59"
   integrity sha512-J7wnJCwRWSNX33Ji2eLeBxtwXplAKIk9/aOfrHVfKmYrLHqXvOcrl2/7xa37jqnuTl8vw3+UsfFo3sMDY6weTg==
 
-"@voiceflow/sdk-runtime@1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@voiceflow/sdk-runtime/-/sdk-runtime-1.2.1.tgz#19e0b439acd5c6a7f38a14bbd89c26eee2536c51"
-  integrity sha512-WggM6WedOZm031cnLDt4NTiY79Vvz5uMz4tDKkRKwwvOCD8kKzWXYNHhSZAc9wkmek2G64p+xXqs8TN5HXL4fw==
+"@voiceflow/sdk-runtime@1.3.1":
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@voiceflow/sdk-runtime/-/sdk-runtime-1.3.1.tgz#591392cf96f9ab8c715cbd2e1935c61dd3e0b68d"
+  integrity sha512-Zgoeptd5Sy33Z4KbwuH/ciXfAQiO0W3kcfPm36Sn8EfVqphQ/gTdkGGy9KJ94Ct6cUNnWC9W8k7hnglYuMaYSg==
   dependencies:
     http-errors "^2.0.0"
 
-"@voiceflow/slate-serializer@1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@voiceflow/slate-serializer/-/slate-serializer-1.2.0.tgz#9da1da576b65b9fa0259e67501f701980f52eef2"
-  integrity sha512-kmAWNA1ob/1wXbJ3ahebAtWsetkW/o8P/UFUhf0eslov1/fPTh4zd3EZHZY6XXZodrVNeikq3s10QklYw6yXqA==
+"@voiceflow/slate-serializer@1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@voiceflow/slate-serializer/-/slate-serializer-1.2.2.tgz#69711c6581bf33b53c47bc42699c4c87a3bd8bf1"
+  integrity sha512-idX3YyQ9dvhx3U6dPZfMFvC/fw9AiUxCsVSoGGi7HHLm5afbKyA0WMmhABqvIsbKucQ1GwrkOR9Bgpch/1psow==
   dependencies:
-    csstype "3.1.1"
+    csstype "^3.0.9"
 
 "@voiceflow/tsconfig@1.4.8":
   version "1.4.8"
@@ -6231,11 +6231,6 @@ csso@^4.0.2:
   dependencies:
     css-tree "^1.1.2"
 
-csstype@3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.1.tgz#841b532c45c758ee546a11d5bd7b7b473c8c30b9"
-  integrity sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==
-
 csstype@^2.5.7:
   version "2.6.20"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.6.20.tgz#9229c65ea0b260cf4d3d997cb06288e36a8d6dda"
@@ -6245,6 +6240,11 @@ csstype@^3.0.2, csstype@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.0.tgz#4ddcac3718d787cf9df0d1b7d15033925c8f29f2"
   integrity sha512-uX1KG+x9h5hIJsaKR9xHUeUraxf8IODOwq9JLNPq6BwB04a/xgpq3rcx47l5BZu5zBPlgD342tdke3Hom/nJRA==
+
+csstype@^3.0.9:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.1.tgz#841b532c45c758ee546a11d5bd7b7b473c8c30b9"
+  integrity sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==
 
 cuid@^2.1.8:
   version "2.1.8"
