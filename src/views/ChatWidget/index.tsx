@@ -13,7 +13,8 @@ interface Session {
   startTime: Date;
 }
 
-export interface ChatWidgetProps extends RuntimeOptions {
+export interface ChatWidgetProps extends Omit<RuntimeOptions, 'verify'> {
+  projectID: string;
   assistant: {
     name: string;
     description: string;
@@ -22,11 +23,11 @@ export interface ChatWidgetProps extends RuntimeOptions {
   messageDelay?: number;
 }
 
-const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant, userID, versionID, authorization, messageDelay }) => {
+const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant, userID, versionID, projectID, messageDelay }) => {
   const [isOpen, setOpen] = useState(false);
   const [hasEnded, setEnded] = useState(false);
   const [session, setSession] = useState<Session | null>(null);
-  const runtime = useRuntime({ versionID, authorization, messageDelay, userID });
+  const runtime = useRuntime({ versionID, verify: { projectID }, messageDelay, userID });
   const hasAnimated = useRef<Record<string, true>>({});
 
   const handleMinimize = (): void => setOpen(false);
