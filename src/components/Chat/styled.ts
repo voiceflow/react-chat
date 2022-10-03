@@ -1,7 +1,7 @@
 import Footer from '@/components/Footer';
-import Header from '@/components/Header';
 import Prompt from '@/components/Prompt';
 import SystemResponse from '@/components/SystemResponse';
+import Timestamp from '@/components/Timestamp';
 import UserResponse from '@/components/UserResponse';
 import { createTransition, CSS, fadeIn, shift, styled } from '@/styles';
 
@@ -32,10 +32,6 @@ export const Container = styled('article', {
   overflow: 'hidden',
   backgroundColor: '$white',
   boxShadow: '0 2px 48px rgba(19,33,68,0.12), 0 0 0 1px $shadow4',
-
-  [`& ${Header.Container}`]: {
-    ...animationStyles({ distance: -SHIFT_DISTANCE, duration: 300, delay: 300 }),
-  },
 
   [`& ${Footer.Container}`]: {
     ...animationStyles({ duration: 300, delay: 300 }),
@@ -89,7 +85,7 @@ export const Status = styled('div', {
   ...statusStyles,
 });
 
-export const Timestamp = styled('span', {
+export const SessionTime = styled('span', {
   ...statusStyles,
   paddingBottom: '$3',
 });
@@ -136,10 +132,12 @@ export const Dialog = styled('main', {
 
   [`
     & ${SystemResponse.Container} + ${UserResponse.Container},
-    & ${UserResponse.Container} + ${SystemResponse.Container}
+    & ${UserResponse.Container} + ${SystemResponse.Controls} + ${SystemResponse.Container}
   `]: {
     marginTop: '$5',
   },
+
+  [`& ${Timestamp.Container}`]: { width: 50 },
 
   [`& ${Status}`]: {
     marginTop: '$3',

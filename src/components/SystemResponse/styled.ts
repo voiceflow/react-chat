@@ -7,8 +7,8 @@ import { styled } from '@/styles';
 export const Actions = styled('div', {
   display: 'flex',
   flexWrap: 'wrap',
-  marginBottom: '$5',
-  padding: '0 $5 0 34px',
+  marginBottom: 8,
+  padding: '0 $5 0 54px',
 
   [`& ${Button.Container}`]: {
     height: 'unset',
@@ -19,6 +19,10 @@ export const Actions = styled('div', {
     whiteSpace: 'normal',
     textAlign: 'start',
   },
+});
+
+export const Controls = styled('span', {
+  position: 'relative',
 });
 
 export const Container = styled('div', {
@@ -59,12 +63,6 @@ export const Container = styled('div', {
 
         [`&::-webkit-scrollbar`]: {
           display: 'none',
-        },
-
-        [`& ${Timestamp.Container}`]: {
-          // this is to ensure that the last carousel card is aligned
-          // with preceding messages when fully scrolled
-          marginRight: '2.5px',
         },
       },
     },
