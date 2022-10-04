@@ -8,7 +8,7 @@ import UserResponse from '@/components/UserResponse';
 import { createTransition, CSS, fadeIn, shift, styled } from '@/styles';
 
 const PROMPT_OVERFLOW = 10;
-const SHIFT_DISTANCE = 16;
+const SHIFT_DISTANCE = 12;
 
 const animationStyles = ({ distance = SHIFT_DISTANCE, duration, delay }: { distance?: number; duration: number; delay: number }): CSS => ({
   opacity: 0,
@@ -112,7 +112,7 @@ export const Dialog = styled('main', {
     & ${Timestamp.Container},
     & ${AssistantInfo.Container}
   `]: {
-    ...animationStyles({ duration: 150, delay: 150 }),
+    ...animationStyles({ duration: 150, delay: 0 }),
   },
 
   [`
