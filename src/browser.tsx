@@ -25,7 +25,7 @@ const root = createRoot(rootEl);
 
 const vfChatAPI: VFChatAPI = {
   show: (options: ChatWidgetProps) => root.render(<ChatWidget {...options} />),
-  hide: () => root.unmount(),
+  hide: () => root.render(null),
 };
 
 Object.assign((window.vf ??= {} as Window['vf']), { chat: vfChatAPI });
