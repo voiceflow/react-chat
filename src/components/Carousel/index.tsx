@@ -4,9 +4,10 @@ import { createPortal } from 'react-dom';
 import Bubble from '@/components/Bubble';
 import Card, { CardProps } from '@/components/Card';
 
+import CarouselButton from './CarouselButton';
 import { CARD_WITH_GUTTER_WIDTH } from './constants';
 import { useScrollObserver, useScrollTo } from './hooks';
-import { ButtonContainer, Container } from './styled';
+import { Container } from './styled';
 
 export interface CarouselProps {
   cards: CardProps[];
@@ -33,26 +34,14 @@ const Carousel: React.FC<CarouselProps> = ({ cards, containerRef, controlsRef })
       {showControls &&
         createPortal(
           <>
-            <ButtonContainer
+            <CarouselButton
               ref={previousButtonRef}
               alignment="left"
               visible={showPreviousButton}
-              css={{
-                transform: `translateY(calc(${containerEl.clientHeight / 2}px - 50%))`,
-              }}
-            >
-              <Bubble svg="largeArrowLeft" onClick={scrollToPrevious} />
-            </ButtonContainer>
-            <ButtonContainer
-              ref={nextButtonRef}
-              alignment="right"
-              visible={showNextButton}
-              css={{
-                transform: `translateY(calc(${containerEl.clientHeight / 2}px - 50%))`,
-              }}
-            >
-              <Bubble svg="largeArrowLeft" onClick={scrollToNext} />
-            </ButtonContainer>
+              containerEl={containerEl}
+              onClick={scrollToPrevious}
+            />
+            <CarouselButton ref={nextButtonRef} alignment="right" visible={showNextButton} containerEl={containerEl} onClick={scrollToNext} />
           </>,
           controlsEl
         )}
@@ -62,5 +51,4 @@ const Carousel: React.FC<CarouselProps> = ({ cards, containerRef, controlsRef })
 
 export default Object.assign(Carousel, {
   Container,
-  ButtonContainer,
 });
