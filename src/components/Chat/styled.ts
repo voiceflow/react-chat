@@ -1,3 +1,4 @@
+import AssistantInfo from '@/components/AssistantInfo';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Prompt from '@/components/Prompt';
@@ -20,7 +21,6 @@ export const Overlay = styled('div', {
   bottom: 0,
   left: 0,
   right: 0,
-  zIndex: 0,
   backgroundColor: '$shadow12',
 });
 
@@ -63,10 +63,12 @@ export const Container = styled('article', {
       true: {
         [`& ${Overlay}`]: {
           opacity: 1,
+          zIndex: 2,
           pointerEvents: 'auto',
         },
 
         [`& ${Prompt.Container}`]: {
+          zIndex: 3,
           transform: `translateY(${PROMPT_OVERFLOW}px)`,
         },
       },
@@ -107,7 +109,8 @@ export const Dialog = styled('main', {
     & ${UserResponse.Container},
     & ${SystemResponse.List},
     & ${SystemResponse.Actions},
-    & ${Timestamp.Container}
+    & ${Timestamp.Container},
+    & ${AssistantInfo.Container}
   `]: {
     ...animationStyles({ duration: 150, delay: 150 }),
   },
