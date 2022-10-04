@@ -109,7 +109,6 @@ export const Dialog = styled('main', {
     & ${UserResponse.Container},
     & ${SystemResponse.List},
     & ${SystemResponse.Actions},
-    & ${Timestamp.Container},
     & ${AssistantInfo.Container}
   `]: {
     ...animationStyles({ duration: 150, delay: 0 }),

@@ -58,7 +58,7 @@ export const Container = styled('div', {
           ...animateInStyles,
         },
         [`& > ${Bubble.Container}`]: {
-          ...animateOutStyles,
+          opacity: 0,
         },
       },
       false: {
@@ -66,7 +66,7 @@ export const Container = styled('div', {
           ...animateOutStyles,
         },
         [`& > ${Bubble.Container}`]: {
-          ...animateInStyles,
+          opacity: 1,
         },
       },
     },
