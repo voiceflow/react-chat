@@ -15,6 +15,7 @@ import { useMemo, useState } from 'react';
 
 import type { SystemResponseProps } from '@/components/SystemResponse';
 import { TurnProps, TurnType } from '@/types';
+import { handleActions } from '@/utils/actions';
 
 const RUNTIME_URL = 'https://general-runtime.voiceflow.com';
 const DEFAULT_MESSAGE_DELAY = 2000;
@@ -71,7 +72,10 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, userID, messageDelay 
       },
     ]);
   };
+
   const send = async (message: string, action: RuntimeAction): Promise<void> => {
+    handleActions(action);
+
     setTurns((prev) => [
       ...prev,
       {
