@@ -8,7 +8,7 @@ export const Container = styled(Button.Reset, {
   alignItems: 'center',
   borderRadius: '$round',
   backgroundColor: '$primary',
-  trans: ['background-color'],
+  trans: ['all'],
 
   '&:hover': {
     backgroundColor: '$darkPrimary',
