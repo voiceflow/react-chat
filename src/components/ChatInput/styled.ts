@@ -22,7 +22,7 @@ export const ButtonContainer = styled('label', {
       true: {
         [`& ${Bubble.Container}`]: {
           transform: 'scale(1)',
-          cursor: 'initial',
+          cursor: 'pointer',
         },
       },
     },

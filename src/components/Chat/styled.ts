@@ -1,4 +1,5 @@
 import Footer from '@/components/Footer';
+import Header from '@/components/Header';
 import Prompt from '@/components/Prompt';
 import SystemResponse from '@/components/SystemResponse';
 import Timestamp from '@/components/Timestamp';
@@ -32,6 +33,10 @@ export const Container = styled('article', {
   overflow: 'hidden',
   backgroundColor: '$white',
   boxShadow: '0 2px 48px rgba(19,33,68,0.12), 0 0 0 1px $shadow4',
+
+  [`& ${Header.Container}`]: {
+    animation: `${fadeIn} 150ms ease forwards`,
+  },
 
   [`& ${Footer.Container}`]: {
     ...animationStyles({ duration: 300, delay: 300 }),
@@ -102,7 +107,7 @@ export const Dialog = styled('main', {
     & ${UserResponse.Container},
     & ${SystemResponse.List},
     & ${SystemResponse.Actions},
-    & ${Timestamp}
+    & ${Timestamp.Container}
   `]: {
     ...animationStyles({ duration: 150, delay: 150 }),
   },
