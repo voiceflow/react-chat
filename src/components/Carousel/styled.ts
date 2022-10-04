@@ -18,11 +18,13 @@ export const ButtonContainer = styled('span', {
     color: '$black',
     boxShadow: '0 1px 3px 1px $shadow1, 0 0 0 1px $shadow3, 0 2px 4px -3px $shadow12, 0 5px 8px -8px $shadow12',
     border: 'none',
+    trans: ['box-shadow'],
 
     [`& ${Icon.Frame}`]: {
       height: '$xxs',
       width: '$xxs',
       color: 'rgba(0,0,0,0.6)',
+      trans: ['color'],
     },
 
     [`&:hover`]: {
