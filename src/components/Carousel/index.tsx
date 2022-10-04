@@ -1,7 +1,6 @@
 import { RefObject } from 'react';
 import { createPortal } from 'react-dom';
 
-import Bubble from '@/components/Bubble';
 import Card, { CardProps } from '@/components/Card';
 
 import CarouselButton from './CarouselButton';
