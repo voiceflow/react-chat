@@ -25,15 +25,15 @@ export interface ChatWidgetProps extends Omit<RuntimeOptions, 'verify'> {
 
 const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant, userID, versionID, projectID, messageDelay, url }) => {
   const [isOpen, setOpen] = useState(false);
-  const [hasEnded, setEnded] = useState(false);
+  const hasEnded = useRef(false);
   const [session, setSession] = useState<Session | null>(null);
-  const runtime = useRuntime({ versionID, verify: { projectID }, messageDelay, userID, url });
+  const runtime = useRuntime({ versionID, verify: { projectID }, messageDelay, userID, url, hasEnded });
   const hasAnimated = useRef<Record<string, true>>({});
 
   const handleMinimize = (): void => setOpen(false);
   const handleStart = async (): Promise<void> => {
+    hasEnded.current = false;
     setSession({ startTime: new Date() });
-    setEnded(false);
     await runtime.launch();
   };
   const handleOpen = async (): Promise<void> => {
@@ -43,8 +43,8 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant, userID, versionID, p
     }
   };
   const handleEnd = (): void => {
+    hasEnded.current = true;
     handleMinimize();
-    setEnded(true);
   };
   const handleAnimationEnd = (id: string) => (): void => {
     hasAnimated.current[id] = true;
@@ -58,7 +58,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant, userID, versionID, p
         description={assistant.description}
         image={assistant.image}
         startTime={session?.startTime}
-        hasEnded={hasEnded}
+        hasEnded={hasEnded.current}
         isLoading={!runtime.turns.length}
         onStart={handleStart}
         onEnd={handleEnd}
@@ -72,7 +72,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant, userID, versionID, p
               <SystemResponse
                 {...R.omit(props, ['type'])}
                 image={assistant.image}
-                isLive={!hasEnded && !hasAnimated.current[id]}
+                isLive={!hasEnded.current && !hasAnimated.current[id]}
                 onAnimationEnd={handleAnimationEnd(id)}
                 key={id}
               />

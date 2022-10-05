@@ -11,7 +11,7 @@ import {
 } from '@voiceflow/sdk-runtime';
 import { serializeToJSX } from '@voiceflow/slate-serializer/jsx';
 import cuid from 'cuid';
-import { useMemo, useState } from 'react';
+import { MutableRefObject, useMemo, useState } from 'react';
 
 import type { SystemResponseProps } from '@/components/SystemResponse';
 import { TurnProps, TurnType } from '@/types';
@@ -43,6 +43,7 @@ interface CarouselTrace {
 export interface RuntimeOptions extends Omit<VoiceflowRuntimeOptions<RuntimeContext>, 'url'> {
   url?: string | undefined;
   userID?: string | undefined;
+  hasEnded?: MutableRefObject<boolean>;
   versionID?: string | undefined;
   messageDelay?: number | undefined;
 }
@@ -53,7 +54,7 @@ const createContext = (): RuntimeContext => ({
 
 const isSlateText = (text: TextTracePayload): text is SlateTextTrace => 'slate' in text;
 
-export const useRuntime = ({ url = RUNTIME_URL, versionID, userID, messageDelay = DEFAULT_MESSAGE_DELAY, ...options }: RuntimeOptions) => {
+export const useRuntime = ({ url = RUNTIME_URL, versionID, userID, messageDelay = DEFAULT_MESSAGE_DELAY, hasEnded, ...options }: RuntimeOptions) => {
   const [turns, setTurns] = useState<TurnProps[]>([]);
   const sessionID = useMemo(() => (userID ? encodeURIComponent(userID) : cuid()), []);
 
@@ -74,6 +75,8 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, userID, messageDelay 
   };
 
   const send = async (message: string, action: RuntimeAction): Promise<void> => {
+    if (hasEnded?.current) return;
+
     handleActions(action);
 
     setTurns((prev) => [
