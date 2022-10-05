@@ -55,11 +55,16 @@ const isSlateText = (text: TextTracePayload): text is SlateTextTrace => 'slate' 
 
 export const useRuntime = ({ url = RUNTIME_URL, versionID, userID, messageDelay = DEFAULT_MESSAGE_DELAY, ...options }: RuntimeOptions) => {
   const [turns, setTurns] = useState<TurnProps[]>([]);
+  const [indicator, setIndicator] = useState(false);
   const sessionID = useMemo(() => (userID ? encodeURIComponent(userID) : cuid()), []);
 
   const runtime = useMemo(() => new VoiceflowRuntime<RuntimeContext>({ ...options, url }), [options.verify]);
   const interact = async (action: RuntimeAction): Promise<void> => {
+    setIndicator(true);
+
     const context = await runtime.interact(createContext(), { sessionID, action, ...(versionID ? { versionID } : {}) });
+
+    setIndicator(false);
 
     setTurns((prev) => [
       ...prev,
@@ -159,5 +164,6 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, userID, messageDelay 
     reset,
     launch,
     reply,
+    indicator,
   };
 };

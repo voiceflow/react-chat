@@ -79,6 +79,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant, userID, versionID, p
             ))
             .exhaustive()
         )}
+        {runtime.indicator && <SystemResponse.Indicator image={assistant.image} />}
       </Chat>
     </Container>,
     document.body
