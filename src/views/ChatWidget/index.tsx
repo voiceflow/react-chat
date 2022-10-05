@@ -7,7 +7,7 @@ import { Bubble, Chat, SystemResponse, UserResponse } from '@/components';
 import { RuntimeOptions, useRuntime } from '@/hooks';
 import { TurnType } from '@/types';
 
-import { Container } from './styled';
+import { Container, LaunchContainer } from './styled';
 
 interface Session {
   startTime: Date;
@@ -52,7 +52,9 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant, userID, versionID, p
 
   return createPortal(
     <Container withChat={isOpen}>
-      <Bubble svg="launch" onClick={handleOpen} />
+      <LaunchContainer>
+        <Bubble svg="launch" onClick={handleOpen} color="$white" />
+      </LaunchContainer>
       <Chat
         title={assistant.name}
         description={assistant.description}

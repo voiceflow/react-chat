@@ -15,6 +15,8 @@ const animateOutStyles: CSS = {
   transition: 'transform 300ms cubic-bezier(0.85, 0, 0.6, 1) 0s, opacity 150ms linear 0s',
 };
 
+export const LaunchContainer = styled('div');
+
 export const Container = styled('div', {
   position: 'fixed',
   top: 0,
@@ -24,10 +26,6 @@ export const Container = styled('div', {
   zIndex: 10000,
   '-webkit-font-smoothing': 'antialiased',
   '-moz-osx-font-smoothing': 'grayscale',
-
-  [`& > ${Bubble.Container}`]: {
-    color: '$white',
-  },
 
   [`& > ${Chat.Container}`]: {
     height: '90%',
@@ -43,7 +41,7 @@ export const Container = styled('div', {
   },
 
   [`
-    & > ${Bubble.Container},
+    & > ${LaunchContainer},
     & > ${Chat.Container}
   `]: {
     position: 'absolute',
@@ -57,16 +55,16 @@ export const Container = styled('div', {
         [`& > ${Chat.Container}`]: {
           ...animateInStyles,
         },
-        [`& > ${Bubble.Container}`]: {
-          opacity: 0,
+        [`& > ${LaunchContainer}`]: {
+          ...animateOutStyles,
         },
       },
       false: {
         [`& > ${Chat.Container}`]: {
           ...animateOutStyles,
         },
-        [`& > ${Bubble.Container}`]: {
-          opacity: 1,
+        [`& > ${LaunchContainer}`]: {
+          ...animateInStyles,
         },
       },
     },
