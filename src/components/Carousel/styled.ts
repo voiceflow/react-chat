@@ -1,4 +1,3 @@
-import Bubble from '@/components/Bubble';
 import Card from '@/components/Card';
 import Icon from '@/components/Icon';
 import { styled } from '@/styles';
@@ -9,37 +8,41 @@ export const CAROUSEL_GUTTER_WIDTH = 12;
 export const ButtonContainer = styled('span', {
   position: 'absolute',
   zIndex: 1,
-  trans: ['opacity'],
 
-  [`& ${Bubble.Container}`]: {
-    height: BUTTON_SIZE,
-    width: BUTTON_SIZE,
-    backgroundColor: '$white',
-    color: '$black',
-    boxShadow: '0 1px 3px 1px $shadow1, 0 0 0 1px $shadow3, 0 2px 4px -3px $shadow12, 0 5px 8px -8px $shadow12',
-    border: 'none',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  borderRadius: '$round',
+  trans: ['background-color', 'box-shadow', 'opacity'],
 
-    [`& ${Icon.Frame}`]: {
-      height: '$xxs',
-      width: '$xxs',
-      color: 'rgba(0,0,0,0.6)',
-      trans: ['color'],
-    },
+  height: BUTTON_SIZE,
+  width: BUTTON_SIZE,
+  cursor: 'pointer',
+  backgroundColor: '$white',
+  color: '$black',
+  boxShadow: '0 1px 3px 1px $shadow1, 0 0 0 1px $shadow3, 0 2px 4px -3px $shadow12, 0 5px 8px -8px $shadow12',
+  border: 'none',
 
-    [`&:hover`]: {
-      boxShadow: '0 1px 4px 1px $shadow4, 0 0 0 1px $shadow4, 0 2px 4px -3px $shadow12, 0 5px 8px -8px $shadow12',
-    },
+  [`& ${Icon.Frame}`]: {
+    height: '$xxs',
+    width: '$xxs',
+    color: 'rgba(0,0,0,0.6)',
+    trans: ['color'],
+  },
 
-    [`&:active`]: {
-      boxShadow: '0 1px 4px 1px $shadow8, 0 0 0 1px $shadow4, 0 2px 4px -3px $shadow12, 0 5px 8px -8px $shadow12',
-    },
+  [`&:hover`]: {
+    boxShadow: '0 1px 4px 1px $shadow4, 0 0 0 1px $shadow4, 0 2px 4px -3px $shadow12, 0 5px 8px -8px $shadow12',
+  },
 
-    [`
+  [`&:active`]: {
+    boxShadow: '0 1px 4px 1px $shadow8, 0 0 0 1px $shadow4, 0 2px 4px -3px $shadow12, 0 5px 8px -8px $shadow12',
+  },
+
+  [`
       &:hover ${Icon.Frame},
       &:active ${Icon.Frame}
     `]: {
-      color: 'rgba(0,0,0,0.8)',
-    },
+    color: 'rgba(0,0,0,0.8)',
   },
 
   variants: {
@@ -60,7 +63,7 @@ export const ButtonContainer = styled('span', {
       right: {
         right: 70 - BUTTON_SIZE / 2,
 
-        [`& ${Bubble.Container} ${Icon.Frame}`]: {
+        [`& ${Icon.Frame}`]: {
           transform: 'scaleX(-1)',
         },
       },
