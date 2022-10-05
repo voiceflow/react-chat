@@ -23,7 +23,7 @@ export const Container = styled('div', {
   bottom: 0,
   left: 0,
   right: 0,
-  zIndex: -1,
+  pointerEvents: 'none',
   '-webkit-font-smoothing': 'antialiased',
   '-moz-osx-font-smoothing': 'grayscale',
 
@@ -44,6 +44,7 @@ export const Container = styled('div', {
     & > ${LaunchContainer},
     & > ${Chat.Container}
   `]: {
+    pointerEvents: 'auto',
     zIndex: 10000,
     position: 'absolute',
     right: '$6',
