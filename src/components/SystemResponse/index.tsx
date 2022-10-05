@@ -61,7 +61,7 @@ const SystemResponse: React.FC<SystemResponseProps> = ({
         />
       ))}
 
-      {isLast && complete && (
+      {isLast && complete && actions.length && (
         <Actions>
           {actions.map(({ label, onClick }, index) => (
             <Button variant="secondary" onClick={onClick} key={index}>
