@@ -1,0 +1,2 @@
+import{A as a}from"./index.af6da940.js";import{j as o}from"./jsx-runtime.dfc5ab26.js";import"./theme.3581ba60.js";import"./iframe.f20269b2.js";const l={title:"Core/Avatar",component:a},s=t=>o(a,{...t}),r=s.bind({});r.args={size:"small",image:"https://source.unsplash.com/random/26x26"};const m=s.bind({});m.args={size:"large",image:"https://source.unsplash.com/random/72x72"};export{m as Large,r as Small,l as default};
+//# sourceMappingURL=Avatar.story.aa581000.js.map
