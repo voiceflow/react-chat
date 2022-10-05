@@ -42,7 +42,7 @@ export const useAnimatedMessages = ({
   onAnimationEnd: VoidFunction;
 }) => {
   const shouldAnimate = isLive && messages.length;
-  const [showIndicator, setShowIndicator] = useState(false);
+  const [showIndicator, setShowIndicator] = useState(true);
   const [showActions, setShowActions] = useState(!shouldAnimate);
   const [visibleMessages, setVisibleMessages] = useState(shouldAnimate ? [] : messages);
   const animations = useAnimations(messages, hasActions);
@@ -61,7 +61,10 @@ export const useAnimatedMessages = ({
 
     const animate = () => {
       const next = remaining.shift();
-      if (!next) return;
+      if (!next) {
+        setShowIndicator(false);
+        return;
+      }
 
       match(next)
         .with({ type: AnimationType.MESSAGE }, ({ message }) => {
