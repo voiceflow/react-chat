@@ -1,4 +1,4 @@
-import { Bubble, Chat, Loader } from '@/components';
+import { Chat, Loader } from '@/components';
 import { CSS, styled } from '@/styles';
 
 const MAX_CHAT_HEIGHT = 800;
