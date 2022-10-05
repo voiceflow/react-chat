@@ -21,7 +21,7 @@ export const Container = styled('div', {
   bottom: 0,
   left: 0,
   right: 0,
-  zIndex: 10,
+  zIndex: 10000,
   '-webkit-font-smoothing': 'antialiased',
   '-moz-osx-font-smoothing': 'grayscale',
 

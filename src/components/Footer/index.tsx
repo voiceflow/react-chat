@@ -30,7 +30,7 @@ const Footer: React.FC<FooterProps> = ({ hasEnded, onStart, onSend }) => {
         <ChatInput value={message} placeholder="Message…" autoFocus onValueChange={setMessage} onSend={handleSend} />
       )}
       <Watermark>
-        Conversation ⚡️ by
+        Assistant ⚡️ by
         <a target="_blank" href="https://voiceflow.com" rel="noreferrer">
           Voiceflow
         </a>

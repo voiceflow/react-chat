@@ -18,7 +18,7 @@ export const Description = styled('p', {
   '-webkit-line-clamp': 2,
   '-webkit-box-orient': 'vertical',
   overflow: 'hidden',
-  wordBreak: 'break-all',
+  wordBreak: 'break-word',
 });
 
 export const Container = styled('div', {
