@@ -67,7 +67,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant, userID, versionID, p
         onSend={runtime.reply}
         onMinimize={handleMinimize}
       >
-        {runtime.turns.map((turn) =>
+        {runtime.turns.map((turn, turnIndex) =>
           match(turn)
             .with({ type: TurnType.USER }, ({ id, ...props }) => <UserResponse {...R.omit(props, ['type'])} key={id} />)
             .with({ type: TurnType.SYSTEM }, ({ id, ...props }) => (
@@ -77,6 +77,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant, userID, versionID, p
                 isLive={!hasEnded.current && !hasAnimated.current[id]}
                 onAnimationEnd={handleAnimationEnd(id)}
                 key={id}
+                isLast={turnIndex === runtime.turns.length - 1}
               />
             ))
             .exhaustive()

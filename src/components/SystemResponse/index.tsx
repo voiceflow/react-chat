@@ -1,9 +1,7 @@
-import { useState } from 'react';
 import * as R from 'remeda';
 
 import Button from '@/components/Button';
 import { useAutoScroll } from '@/hooks';
-import { chain } from '@/utils/functional';
 
 import { MessageType } from './constants';
 import { useAnimatedMessages } from './hooks';
@@ -26,6 +24,7 @@ export interface SystemResponseProps {
   messageDelay: number;
   actions?: ResponseActionProps[];
   isLive?: boolean;
+  isLast?: boolean;
   onAnimationEnd?: VoidFunction;
 }
 
@@ -36,20 +35,17 @@ const SystemResponse: React.FC<SystemResponseProps> = ({
   messageDelay,
   actions = [],
   isLive = false,
+  isLast,
   onAnimationEnd = R.noop,
 }) => {
-  const [actionUsed, setActionUsed] = useState(!isLive);
-  const { showIndicator, showActions, visibleMessages } = useAnimatedMessages({
+  const { showIndicator, visibleMessages, complete } = useAnimatedMessages({
     messages,
     messageDelay,
     isLive,
-    hasActions: !!actions.length,
     onAnimationEnd,
   });
 
-  const hideActions = () => setActionUsed(true);
-
-  useAutoScroll([showIndicator, showActions, visibleMessages.length]);
+  useAutoScroll([showIndicator, complete, visibleMessages.length]);
 
   if (!messages.length) return null;
 
@@ -65,10 +61,10 @@ const SystemResponse: React.FC<SystemResponseProps> = ({
         />
       ))}
 
-      {showActions && !actionUsed && (
+      {isLast && complete && (
         <Actions>
           {actions.map(({ label, onClick }, index) => (
-            <Button variant="secondary" onClick={chain(onClick, hideActions)} key={index}>
+            <Button variant="secondary" onClick={onClick} key={index}>
               {label}
             </Button>
           ))}
