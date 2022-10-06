@@ -14,16 +14,22 @@ export const SHADOWS = {
   shadow16: 'rgba(0,0,0,0.16)',
 };
 
+export const createPrimaryColors = (primary: string) => ({
+  primary,
+  darkPrimary: chroma(primary).darken(0.25).hex(),
+  fadedPrimary: chroma(primary).alpha(0.45).hex(),
+});
+
 export const PALETTE = {
   black: 'rgba(0,0,0,0.9)',
   white: '#fff',
   lightGrey: '#f4f4f4',
   medGrey: '#dfdfdf',
   darkGrey: '#737376',
-  primary: PRIMARY,
-  darkPrimary: chroma(PRIMARY).darken(0.25).hex(),
+  blue: '#3d82e2',
   warn: WARN,
   darkWarn: chroma(WARN).darken(0.25).hex(),
+  ...createPrimaryColors(PRIMARY),
 
   ...SHADOWS,
 };
