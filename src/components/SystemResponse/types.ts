@@ -3,21 +3,25 @@ import { StringifiedEnum } from '@/types/util';
 
 import { MessageType } from './constants';
 
-export interface TextMessageProps {
+export interface BaseMessageProps {
+  delay?: number | undefined;
+}
+
+export interface TextMessageProps extends BaseMessageProps {
   type: StringifiedEnum<MessageType.TEXT>;
   text: React.ReactNode;
 }
 
-export interface ImageMessageProps {
+export interface ImageMessageProps extends BaseMessageProps {
   type: StringifiedEnum<MessageType.IMAGE>;
-  url: string;
+  url: string | null;
 }
 
-export interface CardMessageProps extends CardProps {
+export interface CardMessageProps extends CardProps, BaseMessageProps {
   type: StringifiedEnum<MessageType.CARD>;
 }
 
-export interface CarouselMessageProps {
+export interface CarouselMessageProps extends BaseMessageProps {
   type: StringifiedEnum<MessageType.CAROUSEL>;
   cards: CardProps[];
 }

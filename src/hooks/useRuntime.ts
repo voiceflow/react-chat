@@ -1,10 +1,10 @@
-import { BaseText } from '@voiceflow/base-types';
 import {
+  ActionType,
+  CardV2TraceComponent,
   ChoiceTraceComponent,
   RuntimeAction,
-  RuntimeTrace,
   TextTraceComponent,
-  TextTracePayload,
+  Trace,
   VisualTraceComponent,
   VoiceflowRuntime,
   VoiceflowRuntimeOptions,
@@ -14,31 +14,13 @@ import cuid from 'cuid';
 import { MutableRefObject, useMemo, useState } from 'react';
 
 import type { SystemResponseProps } from '@/components/SystemResponse';
+import { MessageType } from '@/components/SystemResponse/constants';
 import { TurnProps, TurnType } from '@/types';
 import { handleActions } from '@/utils/actions';
 
 const RUNTIME_URL = 'https://general-runtime.voiceflow.com';
-const DEFAULT_MESSAGE_DELAY = 2000;
 
 interface RuntimeContext extends Pick<SystemResponseProps, 'messages' | 'actions'> {}
-
-interface SlateTextTrace extends TextTracePayload {
-  slate: {
-    id: string;
-    content: BaseText.SlateTextValue;
-  };
-}
-
-interface CardTrace {
-  title: string;
-  imageUrl?: string;
-  description: { text: string };
-  buttons: { name: string; request: RuntimeAction }[];
-}
-
-interface CarouselTrace {
-  cards: CardTrace[];
-}
 
 export interface RuntimeOptions extends Omit<VoiceflowRuntimeOptions<RuntimeContext>, 'url'> {
   url?: string | undefined;
@@ -52,9 +34,7 @@ const createContext = (): RuntimeContext => ({
   messages: [],
 });
 
-const isSlateText = (text: TextTracePayload): text is SlateTextTrace => 'slate' in text;
-
-export const useRuntime = ({ url = RUNTIME_URL, versionID, userID, messageDelay = DEFAULT_MESSAGE_DELAY, hasEnded, ...options }: RuntimeOptions) => {
+export const useRuntime = ({ url = RUNTIME_URL, versionID, userID, hasEnded, ...options }: RuntimeOptions) => {
   const [turns, setTurns] = useState<TurnProps[]>([]);
   const [indicator, setIndicator] = useState(false);
   const sessionID = useMemo(() => (userID ? encodeURIComponent(userID) : cuid()), []);
@@ -73,7 +53,6 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, userID, messageDelay 
         id: cuid(),
         type: TurnType.SYSTEM,
         timestamp: new Date(),
-        messageDelay,
         ...context,
       },
     ]);
@@ -98,17 +77,18 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, userID, messageDelay 
 
   runtime.registerStep(
     TextTraceComponent(({ context }, { payload }) => {
-      if (isSlateText(payload)) {
-        context.messages.push({ type: 'text', text: serializeToJSX(payload.slate.content) });
-      } else {
-        context.messages.push({ type: 'text', text: payload.message });
-      }
+      const { slate, message } = payload;
+      context.messages.push({
+        type: MessageType.TEXT,
+        text: slate?.content ? serializeToJSX(slate.content) : message,
+        delay: slate?.messageDelayMilliseconds,
+      });
       return context;
     })
   );
   runtime.registerStep(
     VisualTraceComponent(({ context }, { payload: { image } }) => {
-      context.messages.push({ type: 'image', url: image });
+      context.messages.push({ type: MessageType.IMAGE, url: image });
       return context;
     })
   );
@@ -121,9 +101,8 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, userID, messageDelay 
       return context;
     })
   );
-  runtime.registerStep({
-    canHandle: ({ type }) => type === 'cardV2',
-    handle: ({ context }, { payload: { title, imageUrl, description, buttons } }: RuntimeTrace<never, CardTrace>) => {
+  runtime.registerStep(
+    CardV2TraceComponent(({ context }, { payload: { title, imageUrl, description, buttons } }) => {
       context.messages.push({
         type: 'card',
         title,
@@ -132,13 +111,13 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, userID, messageDelay 
         actions: buttons.map(({ name, request }) => ({ label: name, onClick: () => send(name, request) })),
       });
       return context;
-    },
-  });
+    })
+  );
   runtime.registerStep({
-    canHandle: ({ type }) => type === 'carousel',
-    handle: ({ context }, { payload: { cards } }: RuntimeTrace<never, CarouselTrace>) => {
+    canHandle: ({ type }) => type === Trace.TraceType.CAROUSEL,
+    handle: ({ context }, { payload: { cards } }: Trace.Carousel) => {
       context.messages.push({
-        type: 'carousel',
+        type: MessageType.CAROUSEL,
         cards: cards.map(({ title, description, imageUrl, buttons }) => ({
           title,
           description: description.text,
@@ -157,10 +136,10 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, userID, messageDelay 
       reset();
     }
 
-    await interact({ type: 'launch', payload: null });
+    await interact({ type: ActionType.LAUNCH, payload: null });
   };
 
-  const reply = async (message: string): Promise<void> => send(message, { type: 'text', payload: message });
+  const reply = async (message: string): Promise<void> => send(message, { type: ActionType.TEXT, payload: message });
 
   return {
     turns,

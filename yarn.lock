@@ -3762,10 +3762,10 @@
     c8 "^7.12.0"
     vitest "0.23.1"
 
-"@voiceflow/base-types@^2.69.0":
-  version "2.69.0"
-  resolved "https://registry.yarnpkg.com/@voiceflow/base-types/-/base-types-2.69.0.tgz#dcac1f5ec50e1d8934a94a22d2772c9cf1232701"
-  integrity sha512-MG8rNgK+kep1E8doEmyhUUv+1pm58BYNKx6dlMpqm/sZQqvzv51G2ouZcCYgKIfkYog6ivTqJtVrNIyGmm56Tw==
+"@voiceflow/base-types@2.71.0":
+  version "2.71.0"
+  resolved "https://registry.yarnpkg.com/@voiceflow/base-types/-/base-types-2.71.0.tgz#de044178c1cc3469db94d1bd9c6cc0b88fe35399"
+  integrity sha512-aHWeO1fnuRgdH3RUMyt+N6MSE7yfpLJZV1Tv92bVanBrcLyPBlquvHrruD0+U9BUubB8871PEL2eBHnI0yGqpA==
   dependencies:
     "@voiceflow/common" "^8.1.5"
     slate "0.73.0"
@@ -3836,12 +3836,13 @@
   resolved "https://registry.yarnpkg.com/@voiceflow/prettier-config/-/prettier-config-1.2.1.tgz#906bc852bcd8b2586fa62e4635392a0bea1fdb59"
   integrity sha512-J7wnJCwRWSNX33Ji2eLeBxtwXplAKIk9/aOfrHVfKmYrLHqXvOcrl2/7xa37jqnuTl8vw3+UsfFo3sMDY6weTg==
 
-"@voiceflow/sdk-runtime@1.3.2":
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/@voiceflow/sdk-runtime/-/sdk-runtime-1.3.2.tgz#801739b51e5a617c450ca62db811bb81a874d12f"
-  integrity sha512-jdEkv6gfnhxbpHGU4e8PCXpBweqqjjKjPS20u4UMCDskTwGt8zgYx7Ib700b+vYC34lO/6yffYVNPAOdszwoyw==
+"@voiceflow/sdk-runtime@1.3.4":
+  version "1.3.4"
+  resolved "https://registry.yarnpkg.com/@voiceflow/sdk-runtime/-/sdk-runtime-1.3.4.tgz#504f9f8ebd0b5ef32af7c909662b2967b79984f4"
+  integrity sha512-PgKfaArtSlj9yAHff7QtkfzLWliqaEQd2pa7FdRNJ72o/hFJn4aC6sH6bt6L/vjd9xjvkZxPnPBgPteSJ/SZxg==
   dependencies:
-    http-errors "^2.0.0"
+    "@voiceflow/base-types" "2.71.0"
+    http-errors "2.0.0"
 
 "@voiceflow/slate-serializer@1.2.2":
   version "1.2.2"
@@ -9216,7 +9217,7 @@ http-basic@^8.1.1:
     http-response-object "^3.0.1"
     parse-cache-control "^1.0.1"
 
-http-errors@2.0.0, http-errors@^2.0.0:
+http-errors@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/http-errors/-/http-errors-2.0.0.tgz#b7774a1486ef73cf7667ac9ae0858c012c57b9d3"
   integrity sha512-FtwrG/euBzaEjYeRqOgly7G0qviiXoJWnvEH2Z1plBdXgbyjv34pHTSb9zoeHMyDy33+DWy5Wt9Wo+TURtOYSQ==

@@ -11,7 +11,7 @@ export interface CardActionProps {
 export interface CardProps {
   title: string;
   description: string;
-  image?: string | undefined;
+  image?: string | undefined | null;
   actions?: CardActionProps[] | undefined;
 }
 
