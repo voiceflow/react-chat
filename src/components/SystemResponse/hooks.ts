@@ -42,8 +42,8 @@ export const useAnimatedMessages = ({
     const animations = messages.flatMap<Animation>((message) => [createAnimateIndicator(message.delay), { type: AnimationType.MESSAGE, message }]);
 
     let timer: NodeJS.Timeout;
-    const setTimer = (callback: VoidFunction, messageDelay?: number) => {
-      if (!messageDelay || messageDelay === 0) {
+    const setTimer = (callback: VoidFunction, messageDelay: number) => {
+      if (messageDelay === 0) {
         callback();
         return;
       }
@@ -66,7 +66,7 @@ export const useAnimatedMessages = ({
         .with({ type: AnimationType.MESSAGE }, ({ message }) => {
           setShowIndicator(false);
           setVisibleMessages((prev) => [...prev, message]);
-          setTimer(animate);
+          setTimer(animate, DEFAULT_MESSAGE_DELAY);
         })
         .with({ type: AnimationType.INDICATOR }, ({ delay = DEFAULT_MESSAGE_DELAY }) => {
           setShowIndicator(true);
