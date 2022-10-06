@@ -47,8 +47,8 @@ export const Container = styled('div', {
   `]: {
     pointerEvents: 'auto',
     position: 'absolute',
-    right: '$6',
-    bottom: '$6',
+    right: 30,
+    bottom: 30,
   },
 
   variants: {
