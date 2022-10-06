@@ -1,4 +1,4 @@
-import { createStitches, CSS as BaseCSS } from '@stitches/react';
+import { createStitches, createTheme, CSS as BaseCSS } from '@stitches/react';
 import { PropertiesHyphen as CSSPropertiesHyphen } from 'csstype';
 import { StringKeyOf } from 'type-fest';
 
@@ -74,3 +74,11 @@ export const { styled, config, keyframes } = createStitches({
     }),
   },
 });
+
+interface ThemeOverrides {
+  color?: string | undefined;
+}
+export const createCustomTheme = ({ color }: ThemeOverrides) =>
+  createTheme({
+    colors: color ? Color.createPrimaryColors(color) : {},
+  });

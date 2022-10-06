@@ -1,10 +1,11 @@
-import { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import * as R from 'remeda';
 import { match } from 'ts-pattern';
 
 import { Bubble, Chat, SystemResponse, UserResponse } from '@/components';
 import { RuntimeOptions, useRuntime } from '@/hooks';
+import { createCustomTheme } from '@/styles';
 import { TurnType } from '@/types';
 
 import { Container, LaunchContainer } from './styled';
@@ -20,10 +21,11 @@ export interface ChatWidgetProps extends Omit<RuntimeOptions, 'verify'> {
     description: string;
     image: string;
   };
+  color?: string;
   messageDelay?: number;
 }
 
-const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant, userID, versionID, projectID, messageDelay, url }) => {
+const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant, userID, versionID, projectID, messageDelay, url, color }) => {
   const [isOpen, setOpen] = useState(false);
   const hasEnded = useRef(false);
   const [session, setSession] = useState<Session | null>(null);
@@ -50,8 +52,13 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant, userID, versionID, p
     hasAnimated.current[id] = true;
   };
 
+  const [theme, setTheme] = useState<string>('');
+  React.useEffect(() => {
+    setTheme(createCustomTheme({ color }));
+  }, [color]);
+
   return createPortal(
-    <Container withChat={isOpen}>
+    <Container withChat={isOpen} className={theme}>
       <LaunchContainer>
         <Bubble svg="launch" onClick={handleOpen} color="$white" />
       </LaunchContainer>

@@ -34,7 +34,7 @@ export const Watermark = styled('aside', {
   '& a': {
     marginLeft: '0.5ch',
     textDecoration: 'none',
-    color: '$primary',
+    color: '$blue',
 
     '&:focus': {
       outline: 0,

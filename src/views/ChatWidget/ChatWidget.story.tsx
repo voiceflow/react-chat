@@ -12,6 +12,7 @@ export default {
       image: 'https://source.unsplash.com/random/72x72',
       description: "Voiceflow's virtual assistant is here to help.",
     },
+    color: '',
   },
 } as ComponentMeta<typeof ChatWidget>;
 
