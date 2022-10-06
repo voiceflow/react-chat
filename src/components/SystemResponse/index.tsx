@@ -21,7 +21,6 @@ export interface SystemResponseProps {
   image: string;
   timestamp: Date;
   messages: MessageProps[];
-  messageDelay: number;
   actions?: ResponseActionProps[];
   isLive?: boolean;
   isLast?: boolean;
@@ -32,7 +31,6 @@ const SystemResponse: React.FC<SystemResponseProps> = ({
   image,
   timestamp,
   messages,
-  messageDelay,
   actions = [],
   isLive = false,
   isLast,
@@ -40,7 +38,6 @@ const SystemResponse: React.FC<SystemResponseProps> = ({
 }) => {
   const { showIndicator, visibleMessages, complete } = useAnimatedMessages({
     messages,
-    messageDelay,
     isLive,
     onAnimationEnd,
   });

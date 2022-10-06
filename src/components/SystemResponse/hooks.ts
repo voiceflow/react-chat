@@ -12,19 +12,22 @@ enum AnimationType {
 
 type Animation<T extends AnimationType = AnimationType> = {
   [AnimationType.MESSAGE]: { type: AnimationType.MESSAGE; message: MessageProps };
-  [AnimationType.INDICATOR]: { type: AnimationType.INDICATOR };
+  [AnimationType.INDICATOR]: { type: AnimationType.INDICATOR; delay: number };
 }[T];
 
-const ANIMATE_INDICATOR: Animation<AnimationType.INDICATOR> = { type: AnimationType.INDICATOR };
+const DEFAULT_MESSAGE_DELAY = 1000;
+
+const createAnimateIndicator = (delay: number = DEFAULT_MESSAGE_DELAY): Animation<AnimationType.INDICATOR> => ({
+  type: AnimationType.INDICATOR,
+  delay,
+});
 
 export const useAnimatedMessages = ({
   messages,
-  messageDelay,
   isLive,
   onAnimationEnd,
 }: {
   messages: MessageProps[];
-  messageDelay: number;
   isLive: boolean;
   onAnimationEnd: VoidFunction;
 }) => {
@@ -36,13 +39,18 @@ export const useAnimatedMessages = ({
   useEffect(() => {
     if (!shouldAnimate) return undefined;
 
-    const animations = messages.flatMap<Animation>((message) => [ANIMATE_INDICATOR, { type: AnimationType.MESSAGE, message }]);
+    const animations = messages.flatMap<Animation>((message) => [createAnimateIndicator(message.delay), { type: AnimationType.MESSAGE, message }]);
 
     let timer: NodeJS.Timeout;
-    const setTimer = (callback: VoidFunction) => {
+    const setTimer = (callback: VoidFunction, messageDelay?: number) => {
+      if (!messageDelay || messageDelay === 0) {
+        callback();
+        return;
+      }
+
       timer = setTimeout(() => {
         callback();
-      }, messageDelay / 2);
+      }, messageDelay);
     };
 
     const animate = () => {
@@ -60,9 +68,9 @@ export const useAnimatedMessages = ({
           setVisibleMessages((prev) => [...prev, message]);
           setTimer(animate);
         })
-        .with({ type: AnimationType.INDICATOR }, () => {
+        .with({ type: AnimationType.INDICATOR }, ({ delay = DEFAULT_MESSAGE_DELAY }) => {
           setShowIndicator(true);
-          setTimer(animate);
+          setTimer(animate, delay);
         })
         .exhaustive();
     };
