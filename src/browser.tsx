@@ -28,4 +28,5 @@ const vfChatAPI: VFChatAPI = {
   hide: () => root.render(null),
 };
 
-Object.assign((window.vf ??= {} as Window['vf']), { chat: vfChatAPI });
+(window.vf as any) = {};
+(window.vf as Window['vf']).chat = vfChatAPI;
