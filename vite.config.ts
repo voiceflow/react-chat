@@ -27,7 +27,7 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: path.resolve(__dirname, 'src/browser.tsx'),
+      entry: path.resolve(__dirname, 'index.html'),
       name: 'voiceflow-chat',
       fileName: 'bundle',
       formats: ['es'],
