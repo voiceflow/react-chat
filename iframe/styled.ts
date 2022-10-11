@@ -1,5 +1,8 @@
-import { Chat, Loader } from '@/components';
 import { CSS, styled } from '@/styles';
+
+export const ButtonContainer = styled('div');
+export const ChatContainer = styled('div');
+export const ChatIframe = styled('iframe');
 
 const MAX_CHAT_HEIGHT = 800;
 
@@ -15,57 +18,41 @@ const animateOutStyles: CSS = {
   transition: 'transform 300ms cubic-bezier(0.85, 0, 0.6, 1) 0s, opacity 150ms linear 0s',
 };
 
-export const LaunchContainer = styled('div');
-
 export const Container = styled('div', {
   position: 'fixed',
-  top: 0,
-  bottom: 0,
-  left: 0,
-  right: 0,
-  zIndex: 10000,
-  pointerEvents: 'none',
+  inset: 0,
   '-webkit-font-smoothing': 'antialiased',
   '-moz-osx-font-smoothing': 'grayscale',
 
-  [`& > ${Chat.Container}`]: {
+  [`& > ${ChatContainer}`]: {
     height: '90%',
     maxHeight: MAX_CHAT_HEIGHT,
   },
 
-  [`& ${Chat.Dialog}`]: {
-    flex: 1,
-  },
-
-  [`& ${Loader}`]: {
-    margin: 'auto',
-  },
-
   [`
-    & > ${LaunchContainer},
-    & > ${Chat.Container}
-  `]: {
-    pointerEvents: 'auto',
+      & > ${ButtonContainer},
+      & > ${ChatContainer}
+    `]: {
     position: 'absolute',
-    right: 30,
-    bottom: 30,
+    right: 0,
+    bottom: 0,
   },
 
   variants: {
     withChat: {
       true: {
-        [`& > ${Chat.Container}`]: {
+        [`& > ${ChatContainer}`]: {
           ...animateInStyles,
         },
-        [`& > ${LaunchContainer}`]: {
+        [`& > ${ButtonContainer}`]: {
           ...animateOutStyles,
         },
       },
       false: {
-        [`& > ${Chat.Container}`]: {
+        [`& > ${ChatContainer}`]: {
           ...animateOutStyles,
         },
-        [`& > ${LaunchContainer}`]: {
+        [`& > ${ButtonContainer}`]: {
           ...animateInStyles,
         },
       },

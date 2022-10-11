@@ -22,9 +22,6 @@ export const createPlugins = (rootDir = __dirname): PluginOption[] => [
 ];
 
 export default defineConfig({
-  define: {
-    'process.env.NODE_ENV': JSON.stringify('production'),
-  },
   build: {
     lib: {
       entry: path.resolve(__dirname, 'index.html'),

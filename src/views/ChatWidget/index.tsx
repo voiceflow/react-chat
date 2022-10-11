@@ -1,101 +1,31 @@
-import React, { useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
-import * as R from 'remeda';
-import { match } from 'ts-pattern';
+import { useCallback, useEffect, useState } from 'react';
 
-import { Bubble, Chat, SystemResponse, UserResponse } from '@/components';
-import { RuntimeOptions, useRuntime } from '@/hooks';
-import { createCustomTheme } from '@/styles';
-import { TurnType } from '@/types';
+import ChatWidget from './Chat';
+import { useListenMessage, useSendMessage } from './hooks';
+import * as PostMessage from './PostMessage';
+import { ChatConfig } from './types';
 
-import { Container, LaunchContainer } from './styled';
+export const MessageController: React.FC = () => {
+  const [config, setConfig] = useState<ChatConfig | null>(null);
 
-interface Session {
-  startTime: Date;
-}
+  const listen = useListenMessage();
+  const sendMessage = useSendMessage();
 
-export interface ChatWidgetProps extends Omit<RuntimeOptions, 'verify'> {
-  projectID: string;
-  assistant: {
-    name: string;
-    description: string;
-    image: string;
-  };
-  color?: string;
-  messageDelay?: number;
-}
+  useEffect(() => {
+    listen(PostMessage.Type.LOAD, ({ payload }) => {
+      setConfig(payload);
+    });
+  }, []);
 
-const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant, userID, versionID, projectID, messageDelay, url, color }) => {
-  const [isOpen, setOpen] = useState(false);
-  const hasEnded = useRef(false);
-  const [session, setSession] = useState<Session | null>(null);
-  const runtime = useRuntime({ versionID, verify: { projectID }, messageDelay, userID, url, hasEnded });
-  const hasAnimated = useRef<Record<string, true>>({});
+  const close = useCallback(() => {
+    sendMessage({ type: PostMessage.Type.CLOSE });
+  }, []);
 
-  const handleMinimize = (): void => setOpen(false);
-  const handleStart = async (): Promise<void> => {
-    hasEnded.current = false;
-    setSession({ startTime: new Date() });
-    await runtime.launch();
-  };
-  const handleOpen = async (): Promise<void> => {
-    setOpen(true);
-    if (!session) {
-      await handleStart();
-    }
-  };
-  const handleEnd = (): void => {
-    hasEnded.current = true;
-    handleMinimize();
-  };
-  const handleAnimationEnd = (id: string) => (): void => {
-    hasAnimated.current[id] = true;
-  };
+  if (!config) {
+    return null;
+  }
 
-  const [theme, setTheme] = useState<string>('');
-  React.useEffect(() => {
-    setTheme(createCustomTheme({ color }));
-  }, [color]);
-
-  return createPortal(
-    <Container withChat={isOpen} className={theme}>
-      <LaunchContainer>
-        <Bubble svg="launch" onClick={handleOpen} color="$white" />
-      </LaunchContainer>
-      <Chat
-        title={assistant.name}
-        description={assistant.description}
-        image={assistant.image}
-        startTime={session?.startTime}
-        hasEnded={hasEnded.current}
-        isLoading={!runtime.turns.length}
-        onStart={handleStart}
-        onEnd={handleEnd}
-        onSend={runtime.reply}
-        onMinimize={handleMinimize}
-      >
-        {runtime.turns.map((turn, turnIndex) =>
-          match(turn)
-            .with({ type: TurnType.USER }, ({ id, ...props }) => <UserResponse {...R.omit(props, ['type'])} key={id} />)
-            .with({ type: TurnType.SYSTEM }, ({ id, ...props }) => (
-              <SystemResponse
-                {...R.omit(props, ['type'])}
-                image={assistant.image}
-                isLive={!hasEnded.current && !hasAnimated.current[id]}
-                onAnimationEnd={handleAnimationEnd(id)}
-                key={id}
-                isLast={turnIndex === runtime.turns.length - 1}
-              />
-            ))
-            .exhaustive()
-        )}
-        {runtime.indicator && <SystemResponse.Indicator image={assistant.image} />}
-      </Chat>
-    </Container>,
-    document.body
-  );
+  return <ChatWidget {...config} close={close} />;
 };
 
-export default Object.assign(ChatWidget, {
-  Container,
-});
+export default MessageController;

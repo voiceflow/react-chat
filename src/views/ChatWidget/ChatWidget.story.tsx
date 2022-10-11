@@ -1,6 +1,15 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import ChatWidget from '.';
+import { styled } from '@/styles';
+
+import ChatWidget from './Chat';
+
+const TemplateWrapper = styled('div', {
+  [`${ChatWidget.Container}`]: {
+    right: 30,
+    bottom: 30,
+  },
+});
 
 export default {
   title: 'Views/ChatWidget',
@@ -16,7 +25,11 @@ export default {
   },
 } as ComponentMeta<typeof ChatWidget>;
 
-const Template: ComponentStory<typeof ChatWidget> = (args) => <ChatWidget {...args} />;
+const Template: ComponentStory<typeof ChatWidget> = (args) => (
+  <TemplateWrapper>
+    <ChatWidget {...args} />
+  </TemplateWrapper>
+);
 
 export const Default = Template.bind({});
 Default.args = {};
