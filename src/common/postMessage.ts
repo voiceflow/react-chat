@@ -1,11 +1,9 @@
 import { ChatConfig, isObject } from './types';
 
 export enum Type {
-  LOAD = 'load',
-  OPEN = 'open',
-  OPENED = 'opened',
-  CLOSE = 'close',
-  CLOSED = 'closed',
+  LOAD = 'voiceflow:load',
+  OPEN = 'voiceflow:open',
+  CLOSE = 'voiceflow:close',
 }
 
 export interface Message {
@@ -20,17 +18,11 @@ export interface Load extends Message {
 export interface Open extends Message {
   type: Type.OPEN;
 }
-export interface Opened extends Message {
-  type: Type.OPENED;
-}
 export interface Close extends Message {
   type: Type.CLOSE;
 }
-export interface Closed extends Message {
-  type: Type.CLOSED;
-}
 
-export type AnyMessage = Load | Open | Opened | Close | Closed;
+export type AnyMessage = Load | Open | Close;
 
 export type MessageTypeMap<T extends AnyMessage = AnyMessage> = { [K in T['type']]: T extends { type: K } ? T : never };
 

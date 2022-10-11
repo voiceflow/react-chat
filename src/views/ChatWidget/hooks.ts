@@ -2,11 +2,13 @@ import { useCallback, useState } from 'react';
 
 import { PostMessage } from '@/common';
 
-export const sendMessage = (message: PostMessage.Message) => {
-  window.parent.postMessage(JSON.stringify(message), '*');
+export const sendMessage = (message: PostMessage.AnyMessage) => {
+  const encodedMessage = JSON.stringify(message);
+  window.postMessage(encodedMessage);
+  window.parent.postMessage(encodedMessage, '*');
 };
 
-export const useSendMessage = (message: PostMessage.Message) => {
+export const useSendMessage = (message: PostMessage.AnyMessage) => {
   return useCallback(() => {
     sendMessage(message);
   }, []);

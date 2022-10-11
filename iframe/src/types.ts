@@ -2,8 +2,10 @@ import { ChatConfig } from '@/common';
 
 declare global {
   interface Window {
-    voiceflow?: {
+    voiceflow: {
       config?: ChatConfig;
+      open: VoidFunction;
+      close: VoidFunction;
     };
   }
 }

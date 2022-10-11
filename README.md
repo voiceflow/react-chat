@@ -10,10 +10,10 @@ yarn add @voiceflow/react-chat
 npm install @voiceflow/react-chat
 ```
 
-## Options
+## Configuration
 
 ```ts
-interface Option {
+interface Configuration {
   /**
    * the ID of your voiceflow project, the project must have `apiPrivacy: public`
    * find this under integrations tab
@@ -48,34 +48,6 @@ interface Option {
 }
 ```
 
-## React Usage
-
-You can import the widget directly within your `react` codebase and add it to your render tree.
-
-```tsx
-import { ChatWidget } from '@voiceflow/react-chat';
-
-const VERSION_ID = 'abc123';
-const API_KEY = 'VF.DM.xxx123';
-
-const assistant = {
-  name: 'My Assistant',
-  description: "It's your friendly, neighborhood chat assistant!",
-  image: 'https://source.unsplash.com/random/72x72',
-};
-
-// add the chat widget near the root of your render tree
-const App = () => {
-  return (
-    <main>
-      <p>Welcome</p>
-
-      <ChatWidget assistant={assistant} versionID={VERSION_ID} authorization={API_KEY} />
-    </main>
-  );
-};
-```
-
 ## Browser Usage
 
 You can use a simple JavaScript snippet to add the chat widget to any HTML page.
@@ -85,36 +57,38 @@ You can use a simple JavaScript snippet to add the chat widget to any HTML page.
   <body>
     <p>Welcome</p>
 
-    <script src="https://unpkg.com/@voiceflow/react-chat/dist/bundle.mjs"></script>
     <script>
-      vf.chat.show({
-        projectID: 'XXXXXXX.....',
-        assistant: {
-          name: 'My Assistant',
-          description: "It's your friendly, neighborhood chat assistant!",
-          image: 'https://source.unsplash.com/random/72x72',
+      window.voiceflow = {
+        config: {
+          projectID: 'XXXXXXX.....',
+          assistant: {
+            name: 'My Assistant',
+            description: "It's your friendly, neighborhood chat assistant!",
+            image: 'https://source.unsplash.com/random/72x72',
+          },
         },
-      });
+      };
     </script>
+    <script src="https://unpkg.com/@voiceflow/react-chat/iframe/dist/bundle.mjs"></script>
   </body>
 </html>
 ```
 
 ### Browser API
 
-When the `react-chat` script is loaded it will register an API as `window.vf.chat`.
+When the `react-chat` script is loaded it will register an API as `window.voiceflow`.
 It has the following interface:
 
 ```ts
-interface VFChatAPI {
+interface VoiceflowAPI {
   /**
-   * render the widget
+   * open the chat
    */
-  show: (options: Options) => void;
+  open: () => void;
 
   /**
-   * unmount the widget
+   * close the chat
    */
-  hide: () => void;
+  close: () => void;
 }
 ```

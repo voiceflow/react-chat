@@ -1,5 +1,7 @@
-import { CHAT_WIDTH, MAX_CHAT_HEIGHT } from '@/common';
 import { CSS, styled } from '@/styles';
+
+const CHAT_WIDTH = 380;
+const MAX_CHAT_HEIGHT = 800;
 
 export const ButtonContainer = styled('div', {});
 
@@ -8,11 +10,14 @@ export const ChatContainer = styled('div', {
   overflow: 'hidden',
   borderRadius: '$2',
   boxShadow: '0 2px 48px rgba(19,33,68,0.12), 0 0 0 1px $shadow4',
+
+  height: '90%',
+  maxHeight: MAX_CHAT_HEIGHT,
 });
 
 export const ChatIframe = styled('iframe', {
-  height: '100%',
   width: '100%',
+  height: '100%',
   border: 'none',
 });
 
@@ -36,11 +41,6 @@ export const Container = styled('div', {
   '-webkit-font-smoothing': 'antialiased',
   '-moz-osx-font-smoothing': 'grayscale',
   pointerEvents: 'none',
-
-  [`& > ${ChatContainer}`]: {
-    height: '90%',
-    maxHeight: MAX_CHAT_HEIGHT,
-  },
 
   [`
       & > ${ButtonContainer},
