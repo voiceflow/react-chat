@@ -35,7 +35,7 @@ export type AnyMessage = Load | Open | Opened | Close | Closed;
 export type MessageTypeMap<T extends AnyMessage = AnyMessage> = { [K in T['type']]: T extends { type: K } ? T : never };
 
 export const isPostMessage = (message: unknown): message is Message => {
-  return isObject(message) && typeof message.type === 'string' && Object.values<string>(Type).includes(message.type) && isObject(message.payload);
+  return isObject(message) && typeof message.type === 'string' && Object.values<string>(Type).includes(message.type);
 };
 
 export const isClosePostMessage = (message: unknown): message is Close => {

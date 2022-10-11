@@ -6,6 +6,7 @@ import svgr from 'vite-plugin-svgr';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 export const createPlugins = (rootDir = __dirname): PluginOption[] => [
+  react(),
   tsconfigPaths({ root: rootDir, projects: [path.join(__dirname, 'tsconfig.json')] }),
   svgr(),
   fonts({
@@ -22,6 +23,13 @@ export const createPlugins = (rootDir = __dirname): PluginOption[] => [
 ];
 
 export default defineConfig({
+  server: {
+    port: 3002,
+    open: false,
+  },
+  resolve: {
+    preserveSymlinks: true,
+  },
   build: {
     lib: {
       entry: path.resolve(__dirname, 'index.html'),
@@ -30,5 +38,5 @@ export default defineConfig({
       formats: ['es'],
     },
   },
-  plugins: [react(), ...createPlugins()],
+  plugins: createPlugins(),
 });

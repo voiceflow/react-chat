@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { isObject } from '../src/views/ChatWidget/types';
+import { isObject } from '@/common';
 
 export const useConfig = () => {
   return useMemo(() => {

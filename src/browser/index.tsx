@@ -1,6 +1,7 @@
 import { createRoot } from 'react-dom/client';
 
-import ChatWidget from '../views/ChatWidget';
+import { Listeners, PostMessage } from '@/common';
+import ChatWidget from '@/views/ChatWidget';
 
 const VOICEFLOW_CHAT_ID = 'vfchat';
 
@@ -10,4 +11,11 @@ document.body.appendChild(rootEl);
 
 const root = createRoot(rootEl);
 
-root.render(<ChatWidget />);
+const load: Listeners.MessageListener<PostMessage.Type.LOAD> = {
+  type: PostMessage.Type.LOAD,
+  action: ({ payload }) => {
+    root.render(<ChatWidget {...payload} />);
+  },
+};
+
+Listeners.context.listeners.push(load);

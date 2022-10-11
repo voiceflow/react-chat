@@ -1,4 +1,4 @@
-import { ChatConfig } from '../src/views/ChatWidget/types';
+import { ChatConfig } from '@/common';
 
 declare global {
   interface Window {
