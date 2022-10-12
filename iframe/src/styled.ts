@@ -25,14 +25,14 @@ const animateInStyles: CSS = {
   opacity: 1,
   pointerEvents: 'auto',
   transform: 'translateY(0%)',
-  transition: 'transform 300ms cubic-bezier(0, 0.95, 0.1, 1) 0s, opacity 150ms linear 0s',
+  transition: 'transform 300ms cubic-bezier(0, 0.95, 0.1, 1), opacity 150ms linear',
 };
 
 const animateOutStyles: CSS = {
   opacity: 0,
   pointerEvents: 'none',
-  transform: `translateY(100%)`,
-  transition: 'transform 300ms cubic-bezier(0.85, 0, 0.6, 1) 0s, opacity 150ms linear 0s',
+  transform: 'translateY(100%)',
+  transition: 'transform 300ms cubic-bezier(0.85, 0, 0.6, 1), opacity 150ms linear',
 };
 
 export const Container = styled('div', {
@@ -41,11 +41,12 @@ export const Container = styled('div', {
   '-webkit-font-smoothing': 'antialiased',
   '-moz-osx-font-smoothing': 'grayscale',
   pointerEvents: 'none',
+  zIndex: 10000,
 
   [`
-      & > ${ButtonContainer},
-      & > ${ChatContainer}
-    `]: {
+    & > ${ButtonContainer},
+    & > ${ChatContainer}
+  `]: {
     position: 'absolute',
     right: 30,
     bottom: 30,

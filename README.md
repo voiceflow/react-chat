@@ -58,14 +58,12 @@ You can use a simple JavaScript snippet to add the chat widget to any HTML page.
     <p>Welcome</p>
 
     <script>
-      window.voiceflow = {
-        config: {
-          projectID: 'XXXXXXX.....',
-          assistant: {
-            name: 'My Assistant',
-            description: "It's your friendly, neighborhood chat assistant!",
-            image: 'https://source.unsplash.com/random/72x72',
-          },
+      window.voiceflowChatConfig = {
+        projectID: 'XXXXXXX.....',
+        assistant: {
+          name: 'My Assistant',
+          description: "It's your friendly, neighborhood chat assistant!",
+          image: 'https://source.unsplash.com/random/72x72',
         },
       };
     </script>
@@ -81,14 +79,16 @@ It has the following interface:
 
 ```ts
 interface VoiceflowAPI {
-  /**
-   * open the chat
-   */
+  // open the chat
   open: () => void;
 
-  /**
-   * close the chat
-   */
+  // close the chat
   close: () => void;
+
+  // hide the chat + button
+  hide: () => void;
+
+  // show the chat + button
+  show: () => void;
 }
 ```

@@ -119,7 +119,7 @@
     "lint:report": "yarn lint:output",
     "prepare": "husky install",
     "prepublishOnly": "yarn build",
-    "start": "NODE_ENV=development concurrently -c yellow,blue 'vite --config vite.config.ts' 'yarn iframe:start'",
+    "start": "NODE_ENV=development concurrently -k -c yellow,blue 'vite --config vite.config.ts' 'yarn iframe:start'",
     "storybook": "start-storybook -p 6006",
     "test": "yarn test:run",
     "test:dependencies": "depcheck",

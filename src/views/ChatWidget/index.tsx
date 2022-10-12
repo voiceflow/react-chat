@@ -1,11 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import * as R from 'remeda';
 import { match } from 'ts-pattern';
 
-import { ChatConfig, Listeners, PostMessage } from '@/common';
+import { ChatConfig, Listeners, PostMessage, useTheme } from '@/common';
 import { Chat, SystemResponse, UserResponse } from '@/components';
 import { useRuntime } from '@/hooks';
-import { createCustomTheme } from '@/styles';
 import { TurnType } from '@/types';
 
 import { useForceUpdate, useSendMessage } from './hooks';
@@ -15,7 +14,9 @@ interface Session {
   startTime: Date;
 }
 
-const ChatWidget: React.FC<ChatConfig> = ({ assistant, userID, versionID, projectID, messageDelay, url, color }) => {
+const ChatWidget: React.FC<ChatConfig> = (config) => {
+  const { assistant, userID, versionID, projectID, messageDelay, url, color } = config;
+
   const hasEnded = useRef(false);
   const session = useRef<Session | null>(null);
   const hasAnimated = useRef<Record<string, true>>({});
@@ -47,10 +48,7 @@ const ChatWidget: React.FC<ChatConfig> = ({ assistant, userID, versionID, projec
     hasAnimated.current[id] = true;
   };
 
-  const [theme, setTheme] = useState<string>('');
-  useEffect(() => {
-    setTheme(createCustomTheme({ color }));
-  }, [color]);
+  const theme = useTheme(config);
 
   return (
     <ChatWidgetContainer className={theme}>

@@ -6,11 +6,6 @@ dump.rdb
 coverage
 log/
 
-# dotenv environment variables files
-/.env*
-!/.env.example
-!/.env.test
-
 .nyc_output
 
 # build folders
