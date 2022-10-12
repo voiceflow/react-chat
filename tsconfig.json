@@ -1,5 +1,10 @@
 {
   "extends": "@voiceflow/tsconfig/web.json",
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  },
   "compilerOptions": {
     "skipLibCheck": true,
     "module": "esnext",
