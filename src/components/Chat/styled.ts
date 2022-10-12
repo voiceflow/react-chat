@@ -1,6 +1,7 @@
 import AssistantInfo from '@/components/AssistantInfo';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
+import Loader from '@/components/Loader';
 import Prompt from '@/components/Prompt';
 import SystemResponse from '@/components/SystemResponse';
 import Timestamp from '@/components/Timestamp';
@@ -27,12 +28,13 @@ export const Overlay = styled('div', {
 export const Container = styled('article', {
   position: 'relative',
   display: 'flex',
-  flexDirection: 'column',
-  width: 380,
-  borderRadius: '$2',
   overflow: 'hidden',
+  flexDirection: 'column',
   backgroundColor: '$white',
-  boxShadow: '0 2px 48px rgba(19,33,68,0.12), 0 0 0 1px $shadow4',
+
+  [`& > ${Loader}`]: {
+    margin: 'auto',
+  },
 
   [`& ${Header.Container}`]: {
     animation: `${fadeIn} 150ms ease forwards`,

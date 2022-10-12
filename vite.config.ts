@@ -22,8 +22,12 @@ export const createPlugins = (rootDir = __dirname): PluginOption[] => [
 ];
 
 export default defineConfig({
-  define: {
-    'process.env.NODE_ENV': JSON.stringify('production'),
+  server: {
+    port: 3002,
+    open: false,
+  },
+  resolve: {
+    preserveSymlinks: true,
   },
   build: {
     lib: {

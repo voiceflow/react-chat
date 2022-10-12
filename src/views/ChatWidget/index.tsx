@@ -1,78 +1,68 @@
-import React, { useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
+import React, { useRef } from 'react';
 import * as R from 'remeda';
 import { match } from 'ts-pattern';
 
-import { Bubble, Chat, SystemResponse, UserResponse } from '@/components';
-import { RuntimeOptions, useRuntime } from '@/hooks';
-import { createCustomTheme } from '@/styles';
+import { ChatConfig, Listeners, PostMessage, useTheme } from '@/common';
+import { Chat, SystemResponse, UserResponse } from '@/components';
+import { useRuntime } from '@/hooks';
 import { TurnType } from '@/types';
 
-import { Container, LaunchContainer } from './styled';
+import { useForceUpdate, useSendMessage } from './hooks';
+import { ChatWidgetContainer } from './styled';
 
 interface Session {
   startTime: Date;
 }
 
-export interface ChatWidgetProps extends Omit<RuntimeOptions, 'verify'> {
-  projectID: string;
-  assistant: {
-    name: string;
-    description: string;
-    image: string;
-  };
-  color?: string;
-  messageDelay?: number;
-}
+const ChatWidget: React.FC<ChatConfig> = (config) => {
+  const { assistant, userID, versionID, projectID, messageDelay, url, color } = config;
 
-const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant, userID, versionID, projectID, messageDelay, url, color }) => {
-  const [isOpen, setOpen] = useState(false);
   const hasEnded = useRef(false);
-  const [session, setSession] = useState<Session | null>(null);
-  const runtime = useRuntime({ versionID, verify: { projectID }, messageDelay, userID, url, hasEnded });
+  const session = useRef<Session | null>(null);
   const hasAnimated = useRef<Record<string, true>>({});
 
-  const handleMinimize = (): void => setOpen(false);
+  const [forceUpdate] = useForceUpdate();
+
+  const runtime = useRuntime({ versionID, verify: { projectID }, messageDelay, userID, url, hasEnded });
+
+  const close = useSendMessage({ type: PostMessage.Type.CLOSE });
+
+  Listeners.useListenMessage(PostMessage.Type.OPEN, async (): Promise<void> => {
+    if (!session.current) await handleStart();
+  });
+
   const handleStart = async (): Promise<void> => {
     hasEnded.current = false;
-    setSession({ startTime: new Date() });
+    session.current = { startTime: new Date() };
+    forceUpdate();
     await runtime.launch();
   };
-  const handleOpen = async (): Promise<void> => {
-    setOpen(true);
-    if (!session) {
-      await handleStart();
-    }
-  };
+
   const handleEnd = (): void => {
     hasEnded.current = true;
-    handleMinimize();
+    forceUpdate();
+    close();
   };
+
   const handleAnimationEnd = (id: string) => (): void => {
     hasAnimated.current[id] = true;
   };
 
-  const [theme, setTheme] = useState<string>('');
-  React.useEffect(() => {
-    setTheme(createCustomTheme({ color }));
-  }, [color]);
+  const theme = useTheme(config);
 
-  return createPortal(
-    <Container withChat={isOpen} className={theme}>
-      <LaunchContainer>
-        <Bubble svg="launch" onClick={handleOpen} color="$white" />
-      </LaunchContainer>
+  return (
+    <ChatWidgetContainer className={theme}>
       <Chat
         title={assistant.name}
         description={assistant.description}
         image={assistant.image}
-        startTime={session?.startTime}
+        startTime={session.current?.startTime}
         hasEnded={hasEnded.current}
         isLoading={!runtime.turns.length}
         onStart={handleStart}
         onEnd={handleEnd}
         onSend={runtime.reply}
-        onMinimize={handleMinimize}
+        onMinimize={close}
       >
         {runtime.turns.map((turn, turnIndex) =>
           match(turn)
@@ -91,11 +81,8 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ assistant, userID, versionID, p
         )}
         {runtime.indicator && <SystemResponse.Indicator image={assistant.image} />}
       </Chat>
-    </Container>,
-    document.body
+    </ChatWidgetContainer>
   );
 };
 
-export default Object.assign(ChatWidget, {
-  Container,
-});
+export default ChatWidget;

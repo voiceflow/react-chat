@@ -2,7 +2,8 @@
   "extends": "@voiceflow/tsconfig/web.json",
   "compilerOptions": {
     "skipLibCheck": true,
-    "module": "commonjs",
+    "module": "esnext",
+    "moduleResolution": "node",
     "lib": [
       "dom",
       "es2019"
