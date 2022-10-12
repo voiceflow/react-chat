@@ -71,5 +71,10 @@ export const Container = styled('div', {
         },
       },
     },
+    isHidden: {
+      true: {
+        display: 'none',
+      },
+    },
   },
 });

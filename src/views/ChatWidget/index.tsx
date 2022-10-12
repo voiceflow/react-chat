@@ -15,7 +15,7 @@ interface Session {
 }
 
 const ChatWidget: React.FC<ChatConfig> = (config) => {
-  const { assistant, userID, versionID, projectID, messageDelay, url, color } = config;
+  const { assistant, userID, versionID, projectID, messageDelay, url } = config;
 
   const hasEnded = useRef(false);
   const session = useRef<Session | null>(null);
