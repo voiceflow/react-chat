@@ -7,7 +7,7 @@ import { createPlugins } from '../vite.config';
 export default defineConfig({
   server: {
     port: 3001,
-    open: true,
+    open: '/examples/index.html',
   },
   resolve: {
     preserveSymlinks: true,

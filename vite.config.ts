@@ -26,6 +26,9 @@ export default defineConfig({
     port: 3002,
     open: false,
   },
+  resolve: {
+    preserveSymlinks: true,
+  },
   build: {
     lib: {
       entry: path.resolve(__dirname, 'index.html'),
