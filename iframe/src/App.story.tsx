@@ -1,9 +1,11 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import ChatWidget from '.';
+import ChatWidget from '@/views/ChatWidget';
+
+import App from './app';
 
 export default {
-  title: 'Views/ChatWidget',
+  title: 'Views/App',
   component: ChatWidget,
   args: {
     projectID: '',
@@ -16,7 +18,15 @@ export default {
   },
 } as ComponentMeta<typeof ChatWidget>;
 
-const Template: ComponentStory<typeof ChatWidget> = (args) => <ChatWidget {...args} />;
+window.voiceflow = { config: { projectID: 'test' } } as any;
+
+const Template: ComponentStory<typeof ChatWidget> = (args) => {
+  return (
+    <App {...args}>
+      <ChatWidget {...args} />
+    </App>
+  );
+};
 
 export const Default = Template.bind({});
 Default.args = {};

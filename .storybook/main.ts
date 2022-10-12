@@ -4,7 +4,7 @@ import { mergeConfig } from 'vite';
 import { createPlugins } from '../vite.config';
 
 const config: StorybookViteConfig = {
-  stories: ['../src/**/*.story.mdx', '../src/**/*.story.@(js|jsx|ts|tsx)'],
+  stories: ['../src/**/*.story.mdx', '../src/**/*.story.@(js|jsx|ts|tsx)', '../iframe/**/*.story.@(js|jsx|ts|tsx)'],
   addons: ['@storybook/addon-links', '@storybook/addon-essentials', '@storybook/addon-interactions', 'storybook-dark-mode'],
   framework: '@storybook/react',
   core: {
