@@ -29,6 +29,7 @@ export default defineConfig({
   resolve: {
     preserveSymlinks: true,
   },
+  base: '',
   build: {
     lib: {
       entry: path.resolve(__dirname, 'index.html'),

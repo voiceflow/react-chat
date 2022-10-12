@@ -12,6 +12,9 @@ export default defineConfig({
   resolve: {
     preserveSymlinks: true,
   },
+  define: {
+    'process.env': {},
+  },
   build: {
     lib: {
       entry: path.resolve(__dirname, 'index.tsx'),
