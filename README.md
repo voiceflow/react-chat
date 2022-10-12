@@ -53,23 +53,17 @@ interface Configuration {
 You can use a simple JavaScript snippet to add the chat widget to any HTML page.
 
 ```html
-<html>
-  <body>
-    <p>Welcome</p>
-
-    <script>
-      window.voiceflowChatConfig = {
-        projectID: 'XXXXXXX.....',
-        assistant: {
-          name: 'My Assistant',
-          description: "It's your friendly, neighborhood chat assistant!",
-          image: 'https://source.unsplash.com/random/72x72',
-        },
-      };
-    </script>
-    <script src="https://unpkg.com/@voiceflow/react-chat/iframe/dist/bundle.mjs"></script>
-  </body>
-</html>
+<script>
+  window.voiceflowChatConfig = {
+    projectID: 'XXXXXXX.....',
+    assistant: {
+      name: 'My Assistant',
+      description: "It's your friendly, neighborhood chat assistant!",
+      image: 'https://source.unsplash.com/random/72x72',
+    },
+  };
+</script>
+<script src="https://unpkg.com/@voiceflow/react-chat/iframe/dist/bundle.mjs"></script>
 ```
 
 ### Browser API

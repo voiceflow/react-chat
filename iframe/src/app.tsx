@@ -35,10 +35,8 @@ const App: React.FC<AppProps> = ({ children, ...config }) => {
     Object.assign(window.voiceflow.chat, { open, close, hide: () => setHidden(true), show: () => setHidden(false) });
   }, []);
 
-  if (isHidden) return null;
-
   return (
-    <Container withChat={isOpen} className={theme}>
+    <Container withChat={isOpen} isHidden={isHidden} className={theme}>
       <ButtonContainer>
         <Bubble svg="launch" onClick={open} color="$white" />
       </ButtonContainer>
