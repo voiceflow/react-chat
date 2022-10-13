@@ -122,5 +122,5 @@
     "test:dependencies": "depcheck",
     "test:unit": "NODE_ENV=test vitest run --coverage"
   },
-  "types": "build/esm/index.d.ts"
+  "types": "build/index.d.ts"
 }
