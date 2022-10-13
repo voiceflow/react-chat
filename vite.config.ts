@@ -34,6 +34,7 @@ export default defineConfig({
   },
   base: '',
   build: {
+    outDir: path.resolve(__dirname, 'dist'),
     lib: {
       entry: path.resolve(__dirname, 'index.html'),
       name: 'voiceflow-chat',
