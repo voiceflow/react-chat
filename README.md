@@ -68,7 +68,7 @@ You can use a simple JavaScript snippet to add the chat widget to any HTML page.
 
 ### Browser API
 
-When the `react-chat` script is loaded it will register an API as `window.voiceflow`.
+When the `react-chat` script is loaded it will register an API as `window.voiceflow.chat`.
 It has the following interface:
 
 ```ts
@@ -84,5 +84,15 @@ interface VoiceflowAPI {
 
   // show the chat + button
   show: () => void;
+
+  // (re)load the chat
+  // chat will not be visible by default if `window.voiceflowChatConfig` not set
+  load: (config: Configuration) => void;
 }
+```
+
+Example:
+
+```ts
+window.voiceflow.chat.show();
 ```
