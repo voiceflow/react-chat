@@ -29,6 +29,9 @@ export default defineConfig({
   resolve: {
     preserveSymlinks: true,
   },
+  define: {
+    'process.env': {},
+  },
   base: '',
   build: {
     lib: {
