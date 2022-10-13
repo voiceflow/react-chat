@@ -14,6 +14,14 @@ export default defineConfig({
       fileName: 'index',
       formats: ['es', 'cjs'],
     },
+    rollupOptions: {
+      external: ['react'],
+      output: {
+        globals: {
+          react: 'React',
+        },
+      },
+    },
   },
   plugins: [react(), dts(), ...createPlugins()],
 });
