@@ -2,6 +2,7 @@ import { createRoot } from 'react-dom/client';
 
 import { ChatConfig, isObject } from '@/common';
 
+import { WIDGET_URL } from './config';
 import App from './src/app';
 
 const VOICEFLOW_ID = 'voiceflow-chat';
@@ -15,7 +16,7 @@ const root = createRoot(rootEl);
 window.voiceflow ??= {} as any;
 window.voiceflow.chat ??= {} as any;
 window.voiceflow.chat.load = (config: ChatConfig) => {
-  root.render(<App {...config} />);
+  root.render(<App {...config} widgetURL={WIDGET_URL} />);
 };
 
 // setup check
