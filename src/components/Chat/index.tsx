@@ -12,7 +12,7 @@ import { chain } from '@/utils/functional';
 import { useTimestamp } from './hooks';
 import { Container, Dialog, Overlay, SessionTime, Spacer, Status } from './styled';
 
-export interface ChatProps extends HeaderProps, FooterProps, React.PropsWithChildren {
+export interface ChatProps extends HeaderProps, FooterProps, React.PropsWithChildren<unknown> {
   description: string;
   isLoading: boolean;
   startTime?: Nullish<Date>;
