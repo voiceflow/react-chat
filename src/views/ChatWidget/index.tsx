@@ -54,7 +54,7 @@ const ChatWidget: React.FC<ChatConfig> = (config) => {
   return (
     <ChatWidgetContainer className={theme}>
       <Chat
-        title={assistant.name}
+        title={assistant.title}
         description={assistant.description}
         image={assistant.image}
         startTime={session.current?.startTime}

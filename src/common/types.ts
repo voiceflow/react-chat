@@ -14,7 +14,7 @@ export interface RuntimeOptions extends Omit<VoiceflowRuntimeOptions<RuntimeCont
 
 export interface ChatConfig extends RuntimeOptions {
   assistant: {
-    name: string;
+    title: string;
     description: string;
     image: string;
     color: string;

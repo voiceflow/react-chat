@@ -43,7 +43,7 @@ interface Configuration {
    * [optional] override configured assistant definitions on integrations tab
    */
   assistant?: {
-    name?: string;
+    title?: string;
     description?: string;
     image?: string;
     color?: string;

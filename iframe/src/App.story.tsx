@@ -8,13 +8,15 @@ export default {
   title: 'Views/App',
   component: ChatWidget,
   args: {
-    projectID: '',
+    verify: {
+      projectID: '',
+    },
     assistant: {
-      name: 'Assistant Name',
+      color: '',
+      title: 'Assistant Name',
       image: 'https://source.unsplash.com/random/72x72',
       description: "Voiceflow's virtual assistant is here to help.",
     },
-    color: '',
   },
 } as ComponentMeta<typeof ChatWidget>;
 

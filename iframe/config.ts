@@ -5,10 +5,10 @@ import { ChatConfig, isObject, RUNTIME_URL } from '@/common';
 export const WIDGET_URL = import.meta.env.VITE_WIDGET_URL;
 
 const DEFAULT_ASSISTANT = {
-  name: 'Voiceflow Assistant',
-  description: '',
+  title: 'Voiceflow Assistant',
   image: 'https://avatars.githubusercontent.com/u/44123967',
   color: '#3D82E2',
+  description: '',
 };
 
 const validateVerify = (verify: unknown): verify is ChatConfig['verify'] => {
@@ -33,10 +33,10 @@ const sanitizeConfig = (config: unknown): Partial<ChatConfig> & Pick<ChatConfig,
 
 const sanitizeAssistant = (assistant: unknown): Partial<ChatConfig['assistant']> => {
   const ref = isObject(assistant) ? assistant : {};
-  const { name, description, image, color } = ref;
+  const { title, description, image, color } = ref;
 
   return {
-    ...(typeof name === 'string' && { name }),
+    ...(typeof title === 'string' && { title }),
     ...(typeof image === 'string' && { image }),
     ...(typeof color === 'string' && { color }),
     ...(typeof description === 'string' && { description }),
