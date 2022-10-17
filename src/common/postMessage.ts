@@ -1,9 +1,10 @@
-import { ChatConfig, isObject } from './types';
+import { ChatConfig, isObject, RuntimeAction } from './types';
 
 export enum Type {
   LOAD = 'voiceflow:load',
   OPEN = 'voiceflow:open',
   CLOSE = 'voiceflow:close',
+  INTERACT = 'voiceflow:interact',
 }
 
 export interface Message {
@@ -22,7 +23,12 @@ export interface Close extends Message {
   type: Type.CLOSE;
 }
 
-export type AnyMessage = Load | Open | Close;
+export interface Interact extends Message {
+  type: Type.INTERACT;
+  payload: RuntimeAction;
+}
+
+export type AnyMessage = Load | Open | Close | Interact;
 
 export type MessageTypeMap<T extends AnyMessage = AnyMessage> = { [K in T['type']]: T extends { type: K } ? T : never };
 

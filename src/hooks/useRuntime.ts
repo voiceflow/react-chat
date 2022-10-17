@@ -7,39 +7,30 @@ import {
   Trace,
   VisualTraceComponent,
   VoiceflowRuntime,
-  VoiceflowRuntimeOptions,
 } from '@voiceflow/sdk-runtime';
 import { serializeToJSX } from '@voiceflow/slate-serializer/jsx';
 import cuid from 'cuid';
 import { MutableRefObject, useMemo, useState } from 'react';
 
-import type { SystemResponseProps } from '@/components/SystemResponse';
+import { RUNTIME_URL, RuntimeContext, RuntimeOptions } from '@/common';
 import { MessageType } from '@/components/SystemResponse/constants';
 import { TurnProps, TurnType } from '@/types';
 import { handleActions } from '@/utils/actions';
-
-const RUNTIME_URL = 'https://general-runtime.voiceflow.com';
-
-interface RuntimeContext extends Pick<SystemResponseProps, 'messages' | 'actions'> {}
-
-export interface RuntimeOptions extends Omit<VoiceflowRuntimeOptions<RuntimeContext>, 'url'> {
-  url?: string | undefined;
-  userID?: string | undefined;
-  hasEnded?: MutableRefObject<boolean>;
-  versionID?: string | undefined;
-  messageDelay?: number | undefined;
-}
 
 const createContext = (): RuntimeContext => ({
   messages: [],
 });
 
-export const useRuntime = ({ url = RUNTIME_URL, versionID, userID, hasEnded, ...options }: RuntimeOptions) => {
+interface UseRuntimeProps extends RuntimeOptions {
+  hasEnded?: MutableRefObject<boolean>;
+}
+
+export const useRuntime = ({ url = RUNTIME_URL, versionID, userID, hasEnded, verify }: UseRuntimeProps) => {
   const [turns, setTurns] = useState<TurnProps[]>([]);
   const [indicator, setIndicator] = useState(false);
   const sessionID = useMemo(() => (userID ? encodeURIComponent(userID) : cuid()), []);
 
-  const runtime = useMemo(() => new VoiceflowRuntime<RuntimeContext>({ ...options, url }), [options.verify]);
+  const runtime = useMemo(() => new VoiceflowRuntime<RuntimeContext>({ verify, url }), [verify]);
   const interact = async (action: RuntimeAction): Promise<void> => {
     setIndicator(true);
 
@@ -146,6 +137,7 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, userID, hasEnded, ...
     reset,
     launch,
     reply,
+    interact,
     indicator,
   };
 };

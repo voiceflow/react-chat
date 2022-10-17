@@ -1,14 +1,24 @@
-import { RuntimeOptions } from '@/hooks';
+import type { VoiceflowRuntimeOptions } from '@voiceflow/sdk-runtime';
 
-export interface ChatConfig extends Omit<RuntimeOptions, 'verify'> {
-  projectID: string;
+import type { SystemResponseProps } from '@/components/SystemResponse';
+
+export type { RuntimeAction } from '@voiceflow/sdk-runtime';
+
+export interface RuntimeContext extends Pick<SystemResponseProps, 'messages' | 'actions'> {}
+
+export interface RuntimeOptions extends Omit<VoiceflowRuntimeOptions<RuntimeContext>, 'url'> {
+  url?: string | undefined;
+  userID?: string | undefined;
+  versionID?: string | undefined;
+}
+
+export interface ChatConfig extends RuntimeOptions {
   assistant: {
     name: string;
     description: string;
     image: string;
+    color: string;
   };
-  color?: string;
-  messageDelay?: number;
 }
 
 export const isObject = (object: unknown): object is Record<string, unknown> => {
