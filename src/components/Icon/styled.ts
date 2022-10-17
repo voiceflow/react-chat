@@ -1,3 +1,3 @@
 import { styled } from '@/styles';
 
-export const Frame = styled('div');
+export const Frame = styled('div', { display: 'flex' });
