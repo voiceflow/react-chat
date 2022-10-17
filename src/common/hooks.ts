@@ -5,7 +5,7 @@ import { createCustomTheme } from '@/styles';
 import { ChatConfig } from './types';
 
 export const useTheme = (config: ChatConfig) => {
-  const { color } = config;
+  const { color } = config.assistant;
 
   const [theme, setTheme] = useState('');
   useEffect(() => {

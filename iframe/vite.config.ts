@@ -6,7 +6,7 @@ import { createPlugins } from '../vite.config';
 
 export default defineConfig({
   server: {
-    port: 3001,
+    port: 3005,
     open: '/examples/index.html',
   },
   resolve: {

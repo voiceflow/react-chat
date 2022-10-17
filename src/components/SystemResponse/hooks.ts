@@ -12,14 +12,14 @@ enum AnimationType {
 
 type Animation<T extends AnimationType = AnimationType> = {
   [AnimationType.MESSAGE]: { type: AnimationType.MESSAGE; message: MessageProps };
-  [AnimationType.INDICATOR]: { type: AnimationType.INDICATOR; delay: number };
+  [AnimationType.INDICATOR]: { type: AnimationType.INDICATOR; messageDelay: number };
 }[T];
 
 const DEFAULT_MESSAGE_DELAY = 1000;
 
-const createAnimateIndicator = (delay: number = DEFAULT_MESSAGE_DELAY): Animation<AnimationType.INDICATOR> => ({
+const createAnimateIndicator = (messageDelay: number = DEFAULT_MESSAGE_DELAY): Animation<AnimationType.INDICATOR> => ({
   type: AnimationType.INDICATOR,
-  delay,
+  messageDelay,
 });
 
 export const useAnimatedMessages = ({
@@ -68,9 +68,9 @@ export const useAnimatedMessages = ({
           setVisibleMessages((prev) => [...prev, message]);
           setTimer(animate, DEFAULT_MESSAGE_DELAY);
         })
-        .with({ type: AnimationType.INDICATOR }, ({ delay = DEFAULT_MESSAGE_DELAY }) => {
+        .with({ type: AnimationType.INDICATOR }, ({ messageDelay = DEFAULT_MESSAGE_DELAY }) => {
           setShowIndicator(true);
-          setTimer(animate, delay);
+          setTimer(animate, messageDelay);
         })
         .exhaustive();
     };
