@@ -1,9 +1,7 @@
-import { ChatConfig } from '@/common';
+import type { ChatConfig, RuntimeAction } from '@/common';
 
 declare global {
   interface Window {
-    voiceflowChatConfig?: ChatConfig;
-
     voiceflow: {
       chat: {
         open: VoidFunction;
@@ -11,6 +9,7 @@ declare global {
         hide: VoidFunction;
         show: VoidFunction;
         load: (config: ChatConfig) => void;
+        interact: (action: RuntimeAction) => void;
       };
     };
   }

@@ -14,19 +14,12 @@ npm install @voiceflow/react-chat
 
 ```ts
 interface Configuration {
-  /**
-   * the ID of your voiceflow project, the project must have `apiPrivacy: public`
-   * find this under integrations tab
-   */
-  projectID: string;
-
-  /**
-   * basic assistant information
-   */
-  assistant: {
-    name: string;
-    description: string;
-    image: string;
+  verify: {
+    /**
+     * the ID of your voiceflow project, the project must have `apiPrivacy: public`
+     * find this under integrations tab
+     */
+    projectID: string;
   };
 
   /**
@@ -45,6 +38,16 @@ interface Configuration {
    * defaults to https://general-runtime.voiceflow.com
    */
   url?: string;
+
+  /**
+   * [optional] override configured assistant definitions on integrations tab
+   */
+  assistant?: {
+    name?: string;
+    description?: string;
+    image?: string;
+    color?: string;
+  };
 }
 ```
 
@@ -54,16 +57,11 @@ You can use a simple JavaScript snippet to add the chat widget to any HTML page.
 
 ```html
 <script>
-  window.voiceflowChatConfig = {
-    projectID: 'XXXXXXX.....',
-    assistant: {
-      name: 'My Assistant',
-      description: "It's your friendly, neighborhood chat assistant!",
-      image: 'https://source.unsplash.com/random/72x72',
-    },
-  };
+  function _vf_load() {
+    window.voiceflow.chat.load({ verify: { projectID: 'XXXXXXX.....' } });
+  }
 </script>
-<script src="https://unpkg.com/@voiceflow/react-chat/iframe/dist/bundle.mjs"></script>
+<script src="https://unpkg.com/@voiceflow/react-chat/iframe/dist/bundle.mjs" onload="_vf_load()"></script>
 ```
 
 ### Browser API
@@ -73,6 +71,10 @@ It has the following interface:
 
 ```ts
 interface VoiceflowAPI {
+  // (re)load the chat
+  // chat will not be visible until called
+  load: (config: Configuration) => void;
+
   // open the chat
   open: () => void;
 
@@ -85,13 +87,12 @@ interface VoiceflowAPI {
   // show the chat + button
   show: () => void;
 
-  // (re)load the chat
-  // chat will not be visible by default if `window.voiceflowChatConfig` not set
-  load: (config: Configuration) => void;
+  // send custom interaction to voiceflow
+  interact: (action: RuntimeAction) => void;
 }
 ```
 
-Example:
+Example call:
 
 ```ts
 window.voiceflow.chat.show();

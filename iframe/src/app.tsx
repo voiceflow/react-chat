@@ -2,7 +2,7 @@ import './types';
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
-import { ChatConfig, Listeners, PostMessage, useTheme } from '@/common';
+import { ChatConfig, Listeners, PostMessage, RuntimeAction, useTheme } from '@/common';
 import { Bubble } from '@/components';
 
 import { useSendMessage } from './hooks';
@@ -33,7 +33,13 @@ const App: React.FC<AppProps> = ({ children, widgetURL, ...config }) => {
   useEffect(() => {
     window.voiceflow ??= {} as any;
     window.voiceflow.chat ??= {} as any;
-    Object.assign(window.voiceflow.chat, { open, close, hide: () => setHidden(true), show: () => setHidden(false) });
+    Object.assign(window.voiceflow.chat, {
+      open,
+      close,
+      hide: () => setHidden(true),
+      show: () => setHidden(false),
+      interact: (action: RuntimeAction) => sendMessage({ type: PostMessage.Type.INTERACT, payload: action }),
+    });
   }, []);
 
   return (

@@ -15,7 +15,7 @@ interface Session {
 }
 
 const ChatWidget: React.FC<ChatConfig> = (config) => {
-  const { assistant, userID, versionID, projectID, messageDelay, url } = config;
+  const { assistant, userID, versionID, verify, url } = config;
 
   const hasEnded = useRef(false);
   const session = useRef<Session | null>(null);
@@ -23,10 +23,11 @@ const ChatWidget: React.FC<ChatConfig> = (config) => {
 
   const [forceUpdate] = useForceUpdate();
 
-  const runtime = useRuntime({ versionID, verify: { projectID }, messageDelay, userID, url, hasEnded });
+  const runtime = useRuntime({ versionID, verify, userID, url, hasEnded });
 
   const close = useSendMessage({ type: PostMessage.Type.CLOSE });
 
+  Listeners.useListenMessage(PostMessage.Type.INTERACT, ({ payload }) => runtime.interact(payload));
   Listeners.useListenMessage(PostMessage.Type.OPEN, async (): Promise<void> => {
     if (!session.current) await handleStart();
   });
