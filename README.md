@@ -56,14 +56,12 @@ interface Configuration {
 You can use a simple JavaScript snippet to add the chat widget to any HTML page.
 
 ```html
-<script src="https://unpkg.com/@voiceflow/react-chat/iframe/dist/bundle.mjs"></script>
 <script>
-  window.voiceflow.chat.load({
-    verify: {
-      projectID: 'XXXXXXX.....',
-    },
-  });
+  function _vf_load() {
+    window.voiceflow.chat.load({ verify: { projectID: 'XXXXXXX.....' } });
+  }
 </script>
+<script src="https://unpkg.com/@voiceflow/react-chat/iframe/dist/bundle.mjs" onload="_vf_load()"></script>
 ```
 
 ### Browser API

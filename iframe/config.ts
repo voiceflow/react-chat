@@ -11,15 +11,20 @@ const DEFAULT_ASSISTANT = {
   color: '#3D82E2',
 };
 
-const validateVerify = (config: Partial<ChatConfig>): config is Partial<ChatConfig> & Pick<ChatConfig, 'verify'> => {
-  return isObject(config.verify) && typeof config.verify.projectID === 'string';
+const validateVerify = (verify: unknown): verify is ChatConfig['verify'] => {
+  return isObject(verify) && typeof verify.projectID === 'string';
 };
 
-const sanitizeConfig = (config: unknown): Partial<ChatConfig> => {
+const sanitizeConfig = (config: unknown): Partial<ChatConfig> & Pick<ChatConfig, 'verify'> => {
   const ref = isObject(config) ? config : {};
-  const { url, userID, versionID } = ref;
+  const { url, userID, versionID, verify } = ref;
+
+  if (!validateVerify(verify)) {
+    throw new Error('no projectID on load');
+  }
 
   return {
+    verify,
     ...(typeof url === 'string' && { url }),
     ...(typeof userID === 'string' && { userID }),
     ...(typeof versionID === 'string' && { versionID }),
@@ -40,15 +45,16 @@ const sanitizeAssistant = (assistant: unknown): Partial<ChatConfig['assistant']>
 
 export const fetchConfig = async (unknownConfig: Partial<ChatConfig>): Promise<ChatConfig> => {
   const config = sanitizeConfig(unknownConfig);
-  if (!validateVerify(config)) {
-    throw new Error('no projectID on load');
-  }
 
   const { url = RUNTIME_URL, versionID } = config;
 
   // fetch remote publishing config
   const runtime = new VoiceflowRuntime({ ...config, url });
-  const publishing = await runtime.getPublishing({ ...(versionID && { versionID }) });
+  const publishing = await runtime.getPublishing({ ...(versionID && { versionID }) }).catch((error) => {
+    // eslint-disable-next-line no-console
+    console.error(error);
+    return null;
+  });
 
   return {
     ...config,

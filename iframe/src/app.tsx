@@ -2,7 +2,7 @@ import './types';
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
-import { ChatConfig, Listeners, PostMessage, useTheme, RuntimeAction } from '@/common';
+import { ChatConfig, Listeners, PostMessage, RuntimeAction, useTheme } from '@/common';
 import { Bubble } from '@/components';
 
 import { useSendMessage } from './hooks';
