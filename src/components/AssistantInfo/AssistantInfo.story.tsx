@@ -8,7 +8,7 @@ export default {
   title: 'Components/Chat/AssistantInfo',
   component: AssistantInfo,
   args: {
-    name: 'Assistant Name',
+    title: 'Assistant Name',
     description: "Voiceflow's virtual assistant is here to help.",
     image: 'https://source.unsplash.com/random/72x72',
   },

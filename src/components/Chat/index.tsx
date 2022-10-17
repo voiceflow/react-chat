@@ -54,7 +54,7 @@ const Chat: React.FC<ChatProps> = ({ hasEnded, title, image, description, startT
       />
       <Dialog ref={dialogRef}>
         <AutoScrollProvider target={dialogRef}>
-          <AssistantInfo name={title} image={image} description={description} />
+          <AssistantInfo title={title} image={image} description={description} />
           <Spacer />
           {!!timestamp && <SessionTime>{timestamp}</SessionTime>}
           {children}

@@ -3,15 +3,15 @@ import Avatar from '@/components/Avatar';
 import { Container, Description, Title } from './styled';
 
 export interface AssistantHeaderProps {
-  name: string;
+  title: string;
   description: string;
   image: string;
 }
 
-const AssistantHeader: React.FC<AssistantHeaderProps> = ({ name, description, image }) => (
+const AssistantHeader: React.FC<AssistantHeaderProps> = ({ title, description, image }) => (
   <Container>
     <Avatar size="large" image={image} />
-    <Title>{name}</Title>
+    <Title>{title}</Title>
     <Description>{description}</Description>
   </Container>
 );
