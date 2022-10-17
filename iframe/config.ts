@@ -27,6 +27,7 @@ const sanitizeConfig = (config: unknown): Partial<ChatConfig> & Pick<ChatConfig,
     verify,
     ...(typeof url === 'string' && { url }),
     ...(typeof userID === 'string' && { userID }),
+    ...(typeof userID === 'number' && { userID: userID.toString() }),
     ...(typeof versionID === 'string' && { versionID }),
   };
 };
