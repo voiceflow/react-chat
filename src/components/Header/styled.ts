@@ -53,6 +53,6 @@ export const Container = styled('header', {
 
   [`& ${Title}`]: {
     flex: 1,
-    marginLeft: 14,
+    margin: '0 0 0 14px',
   },
 });
