@@ -12,13 +12,15 @@ export interface RuntimeOptions extends Omit<VoiceflowRuntimeOptions<RuntimeCont
   versionID?: string | undefined;
 }
 
+export interface Assistant {
+  title: string;
+  description: string;
+  image: string;
+  color: string;
+}
+
 export interface ChatConfig extends RuntimeOptions {
-  assistant: {
-    title: string;
-    description: string;
-    image: string;
-    color: string;
-  };
+  assistant: Assistant;
 }
 
 export const isObject = (object: unknown): object is Record<string, unknown> => {

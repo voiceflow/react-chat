@@ -18,7 +18,7 @@ const App: React.FC<AppProps> = ({ children, widgetURL, ...config }) => {
   const [isOpen, setOpen] = useState(false);
   const [isHidden, setHidden] = useState(false);
 
-  const theme = useTheme(config);
+  const theme = useTheme(config.assistant);
   const sendMessage = useSendMessage(chatRef, widgetURL);
   const onLoad = useCallback(() => sendMessage({ type: PostMessage.Type.LOAD, payload: config }), [config]);
 

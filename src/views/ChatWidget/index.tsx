@@ -49,7 +49,7 @@ const ChatWidget: React.FC<ChatConfig> = (config) => {
     hasAnimated.current[id] = true;
   };
 
-  const theme = useTheme(config);
+  const theme = useTheme(config.assistant);
 
   return (
     <ChatWidgetContainer className={theme}>
