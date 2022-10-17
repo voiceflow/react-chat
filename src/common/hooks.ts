@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 
 import { createCustomTheme } from '@/styles';
 
-import { ChatConfig } from './types';
+import { Assistant } from './types';
 
-export const useTheme = (config: ChatConfig) => {
-  const { color } = config.assistant;
+export const useTheme = (assistant: Assistant) => {
+  const { color } = assistant;
 
   const [theme, setTheme] = useState('');
   useEffect(() => {
