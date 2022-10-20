@@ -2,13 +2,14 @@ import './types';
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
-import { ChatConfig, Listeners, PostMessage, RuntimeAction, useTheme } from '@/common';
+import { Assistant, Listeners, PostMessage, RuntimeAction, RuntimeOptions, useTheme } from '@/common';
 import { Bubble } from '@/components';
 
 import { useSendMessage } from './hooks';
 import { ButtonContainer, ChatContainer, ChatIframe, Container } from './styled';
 
-interface AppProps extends React.PropsWithChildren, ChatConfig {
+interface AppProps extends React.PropsWithChildren, RuntimeOptions {
+  assistant?: Assistant;
   widgetURL?: string;
 }
 
@@ -17,12 +18,14 @@ const App: React.FC<AppProps> = ({ children, widgetURL, ...config }) => {
   const chatRef = useRef<HTMLIFrameElement>(null);
   const [isOpen, setOpen] = useState(false);
   const [isHidden, setHidden] = useState(false);
+  const [assistant, setAssistant] = useState<Assistant | undefined>(config.assistant);
 
-  const theme = useTheme(config.assistant);
+  const theme = useTheme(assistant);
   const sendMessage = useSendMessage(chatRef, widgetURL);
   const onLoad = useCallback(() => sendMessage({ type: PostMessage.Type.LOAD, payload: config }), [config]);
 
   /** listeners */
+  Listeners.useListenMessage(PostMessage.Type.LOADED, ({ payload }) => setAssistant(payload)); // rely on iframe to fetch assistant configuration
   Listeners.useListenMessage(PostMessage.Type.CLOSE, () => setOpen(false));
   Listeners.useListenMessage(PostMessage.Type.OPEN, () => setOpen(true));
 
@@ -44,9 +47,11 @@ const App: React.FC<AppProps> = ({ children, widgetURL, ...config }) => {
 
   return (
     <Container withChat={isOpen} isHidden={isHidden} className={theme}>
-      <ButtonContainer>
-        <Bubble svg="launch" onClick={open} color="$white" />
-      </ButtonContainer>
+      {!!assistant && (
+        <ButtonContainer>
+          <Bubble svg="launch" onClick={open} color="$white" />
+        </ButtonContainer>
+      )}
       <ChatContainer>{widgetURL ? <ChatIframe src={widgetURL} title="voiceflow-chat" ref={chatRef} onLoad={onLoad} /> : children}</ChatContainer>
     </Container>
   );
