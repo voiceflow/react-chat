@@ -2,19 +2,19 @@ import React, { useRef } from 'react';
 import * as R from 'remeda';
 import { match } from 'ts-pattern';
 
-import { ChatConfig, Listeners, PostMessage, useTheme } from '@/common';
+import { Assistant, ChatConfig, Listeners, PostMessage, useTheme } from '@/common';
 import { Chat, SystemResponse, UserResponse } from '@/components';
 import { useRuntime } from '@/hooks';
 import { TurnType } from '@/types';
 
-import { useForceUpdate, useSendMessage } from './hooks';
+import { sendMessage, useForceUpdate, useSendMessage } from './hooks';
 import { ChatWidgetContainer } from './styled';
 
 interface Session {
   startTime: Date;
 }
 
-const ChatWidget: React.FC<ChatConfig> = (config) => {
+const ChatWidget: React.FC<ChatConfig & { assistant: Assistant }> = (config) => {
   const { assistant, userID, versionID, verify, url } = config;
 
   const hasEnded = useRef(false);
@@ -86,4 +86,4 @@ const ChatWidget: React.FC<ChatConfig> = (config) => {
   );
 };
 
-export default ChatWidget;
+export default Object.assign(ChatWidget, { sendMessage });

@@ -4,13 +4,13 @@ import { createCustomTheme } from '@/styles';
 
 import { Assistant } from './types';
 
-export const useTheme = (assistant: Assistant) => {
-  const { color } = assistant;
-
+export const useTheme = (assistant?: Assistant) => {
   const [theme, setTheme] = useState('');
   useEffect(() => {
-    setTheme(createCustomTheme({ color }));
-  }, [color]);
+    if (assistant?.color) {
+      setTheme(createCustomTheme({ color: assistant.color }));
+    }
+  }, [assistant?.color]);
 
   return theme;
 };

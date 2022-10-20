@@ -20,7 +20,7 @@ export interface Assistant {
 }
 
 export interface ChatConfig extends RuntimeOptions {
-  assistant: Assistant;
+  assistant?: Assistant;
 }
 
 export const isObject = (object: unknown): object is Record<string, unknown> => {
