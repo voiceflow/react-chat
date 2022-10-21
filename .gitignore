@@ -8,6 +8,15 @@ log/
 
 .nyc_output
 
+# Yarn
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
 # build folders
 build
 dist
@@ -18,3 +27,5 @@ docs
 #Sonar report
 sonar/
 nyc_coverage*
+
+.turbo

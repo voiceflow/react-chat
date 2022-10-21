@@ -1,0 +1,59 @@
+version: 2.1
+
+parameters:
+  build-all:
+    type: boolean
+    default: false
+
+orbs:
+  vfcommon: voiceflow/common@dev:a1e93bee4ebb57daddd653decd51cf60027c4999
+  sonarcloud: sonarsource/sonarcloud@1.0.2
+
+jobs:
+  test:
+    executor: vfcommon/code-test-executor
+    steps:
+      - checkout
+      - vfcommon/install_node_modules:
+          avoid_post_install_scripts: false
+      - attach_workspace:
+          at: ~/voiceflow
+      - vfcommon/monorepo_lint_report:
+          force_execution: << pipeline.parameters.build-all >>
+          run_on_root: << pipeline.parameters.build-all >>
+      - vfcommon/monorepo_dependency_tests:
+          force_execution: << pipeline.parameters.build-all >>
+          run_on_root: << pipeline.parameters.build-all >>
+          step_name: Dependency Tests
+      - vfcommon/monorepo_unit_tests:
+          force_execution: << pipeline.parameters.build-all >>
+          run_on_root: << pipeline.parameters.build-all >>
+      - sonarcloud/scan
+
+workflows:
+  test-and-release:
+    jobs:
+      - vfcommon/install_and_build:
+          context: dev-test
+          avoid_post_install_scripts: false
+          name: build
+          package: all
+          monorepo_engine: "turborepo"
+          force_execute: true
+          container_folder_to_copy: "" #Copy all
+
+      - test:
+          context: dev-test
+          requires:
+            - build
+
+      - vfcommon/monorepo_release:
+          avoid_post_install_scripts: false
+          ssh_key: "94:fb:dc:e2:30:96:9d:61:f5:6f:95:c2:32:20:f7:37"
+          context: dev-test
+          release_engine: "lite"
+          requires:
+            - test
+          filters:
+            branches:
+              only: master

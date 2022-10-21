@@ -1,8 +1,6 @@
 {
-  "name": "@voiceflow/react-chat",
-  "description": "update description here",
   "version": "1.0.0",
-  "author": "Ben Teichman",
+  "author": "Ben Teichman, Tyler Han",
   "bugs": {
     "url": "https://github.com/voiceflow/react-chat/issues"
   },
@@ -11,76 +9,18 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "dependencies": {
-    "@stitches/react": "^1.2.8",
-    "@voiceflow/base-types": "2.71.0",
-    "@voiceflow/sdk-runtime": "1.4.0",
-    "@voiceflow/slate-serializer": "1.2.2",
-    "chroma-js": "^2.4.2",
-    "csstype": "^3.1.0",
-    "cuid": "^2.1.8",
-    "dayjs": "^1.11.5",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "remeda": "^1.0.1",
-    "slate": "^0.72.3",
-    "ts-pattern": "^4.0.5",
-    "type-fest": "2.18.1"
-  },
   "devDependencies": {
-    "@babel/core": "^7.18.10",
-    "@babel/preset-env": "^7.18.10",
-    "@babel/preset-typescript": "^7.18.6",
     "@commitlint/cli": "17.0.3",
-    "@emotion/core": "10.1.1",
-    "@storybook/addon-actions": "^6.5.10",
-    "@storybook/addon-essentials": "^6.5.10",
-    "@storybook/addon-interactions": "^6.5.10",
-    "@storybook/addon-links": "^6.5.10",
-    "@storybook/builder-vite": "^0.2.2",
-    "@storybook/eslint-config-storybook": "^3.1.2",
-    "@storybook/react": "^6.5.10",
-    "@storybook/testing-library": "^0.0.13",
-    "@svgr/webpack": "5",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@types/chroma-js": "^2.1.4",
-    "@types/react": "^18.0.17",
-    "@types/react-dom": "^18.0.6",
-    "@vitejs/plugin-react": "^2.0.1",
-    "@vitest/coverage-c8": "^0.23.1",
+    "@commitlint/config-conventional": "17.0.3",
     "@voiceflow/commitlint-config": "2.0.0",
-    "@voiceflow/eslint-config": "6.1.0",
     "@voiceflow/git-branch-check": "1.4.0",
-    "@voiceflow/prettier-config": "1.2.1",
-    "@voiceflow/tsconfig": "1.4.8",
-    "babel-loader": "^8.2.5",
-    "commitizen": "4.2.5",
-    "concurrently": "7.4.0",
     "cz-conventional-changelog": "^3.3.0",
-    "depcheck": "1.4.3",
-    "eslint": "7.32.0",
-    "eslint-output": "^3.0.1",
-    "eslint-plugin-mdx": "^2.0.2",
-    "eslint-plugin-storybook": "^0.6.4",
+    "depcheck": "^1.4.3",
     "fixpack": "^4.0.0",
-    "happy-dom": "^6.0.4",
-    "husky": "^8.0.0",
-    "lint-staged": "13.0.3",
-    "prettier": "2.7.1",
-    "storybook-dark-mode": "^1.1.0",
-    "vite": "3.0.9",
-    "vite-plugin-dts": "1.6.6",
-    "vite-plugin-fonts": "^0.6.0",
-    "vite-plugin-svgr": "^2.2.1",
-    "vite-tsconfig-paths": "^3.5.0",
-    "vitest": "0.23.1"
+    "husky": "7.0.0",
+    "lint-staged": ">=10",
+    "turbo": "latest"
   },
-  "files": [
-    "build/",
-    "dist/",
-    "iframe/dist/"
-  ],
   "homepage": "https://github.com/voiceflow/react-chat#readme",
   "keywords": [
     "combinedReducer",
@@ -91,8 +31,7 @@
     "voiceflow"
   ],
   "license": "ISC",
-  "main": "build/index.js",
-  "prettier": "@voiceflow/prettier-config",
+  "private": true,
   "publishConfig": {
     "access": "public"
   },
@@ -100,27 +39,21 @@
     "type": "git",
     "url": "git+https://github.com/voiceflow/react-chat.git"
   },
-  "scripts": {
-    "build": "yarn clean && yarn build:package && yarn build:bundle && yarn iframe:build",
-    "build:bundle": "NODE_ENV=production vite build",
-    "build:docs": "STORYBOOK_BASE_HREF=react-chat build-storybook -o docs",
-    "build:package": "NODE_ENV=production vite --config vite.package.config.ts build",
-    "clean": "rimraf build dist",
-    "commit": "cz",
-    "eslint-output": "eslint-output",
-    "iframe:build": "cd iframe && NODE_ENV=production vite build",
-    "iframe:start": "cd iframe && vite --config vite.config.ts",
-    "lint": "eslint '**/*.{js,ts,tsx,mdx}'",
-    "lint:output": "yarn run eslint-output --quiet \"**/*.{js,ts,tsx,mdx}\"",
-    "lint:quiet": "yarn lint --quiet",
-    "lint:report": "yarn lint:output",
-    "prepare": "husky install",
-    "prepublishOnly": "yarn build",
-    "start": "NODE_ENV=development concurrently -k -c yellow,blue 'vite --config vite.config.ts' 'yarn iframe:start'",
-    "storybook": "start-storybook -p 6006",
-    "test": "yarn test:run",
-    "test:dependencies": "depcheck",
-    "test:unit": "NODE_ENV=test vitest run --coverage"
+  "resolutions": {
+    "root": "portal:/Users/tylerhan/voiceflow/creator-app"
   },
-  "types": "build/index.d.ts"
+  "scripts": {
+    "build": "turbo run build",
+    "build:all": "yarn build",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "lint:fix": "turbo run lint:fix",
+    "lint:report": "turbo run lint:report",
+    "prepare": "husky install",
+    "test:dependencies": "depcheck && turbo run test:dependencies",
+    "test:unit": "turbo run test:unit"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }
