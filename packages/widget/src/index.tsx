@@ -2,7 +2,7 @@ import { Assistant, Listeners, PostMessage, RuntimeOptions, useTheme } from '@vo
 import type { RuntimeAction } from '@voiceflow/sdk-runtime';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
-import Launch from './assets/launch.svg';
+import launch from './assets/launch.svg';
 import { useSendMessage } from './hooks';
 import { Button, ButtonContainer, ChatContainer, ChatIframe, Container } from './styled';
 
@@ -46,7 +46,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ children, widgetURL, ...config 
       {!!assistant && (
         <ButtonContainer>
           <Button onClick={open}>
-            <img src={Launch} alt="launch" />
+            <img src={launch} alt="launch" />
           </Button>
         </ButtonContainer>
       )}

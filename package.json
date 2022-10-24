@@ -31,6 +31,7 @@
     "voiceflow"
   ],
   "license": "ISC",
+  "packageManager": "yarn@3.2.1",
   "private": true,
   "publishConfig": {
     "access": "public"

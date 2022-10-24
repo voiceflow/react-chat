@@ -8,7 +8,7 @@ import { useRuntime } from '@/hooks';
 import { TurnType } from '@/types';
 
 import { sendMessage, useForceUpdate, useSendMessage } from './hooks';
-import { ChatWidgetContainer } from './styled';
+import { ChatWindowContainer } from './styled';
 
 interface Session {
   startTime: Date;
@@ -52,7 +52,7 @@ const ChatWidget: React.FC<ChatConfig & { assistant: Assistant }> = (config) => 
   const theme = useTheme(config.assistant);
 
   return (
-    <ChatWidgetContainer className={theme}>
+    <ChatWindowContainer className={theme}>
       <Chat
         title={assistant.title}
         description={assistant.description}
@@ -82,7 +82,7 @@ const ChatWidget: React.FC<ChatConfig & { assistant: Assistant }> = (config) => 
         )}
         {runtime.indicator && <SystemResponse.Indicator image={assistant.image} />}
       </Chat>
-    </ChatWidgetContainer>
+    </ChatWindowContainer>
   );
 };
 
