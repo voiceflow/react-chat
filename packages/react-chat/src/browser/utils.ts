@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { VoiceflowRuntime } from '@voiceflow/sdk-runtime';
 
 import { Assistant, ChatConfig, isObject } from '@/common';
@@ -28,7 +29,6 @@ export const fetchAssistant = async (config: ChatConfig): Promise<Assistant> => 
   // fetch remote publishing config
   const runtime = new VoiceflowRuntime({ ...config, url });
   const publishing = await runtime.getPublishing({ ...(versionID && { versionID }) }).catch((error) => {
-    // eslint-disable-next-line no-console
     console.error(error);
     return null;
   });
