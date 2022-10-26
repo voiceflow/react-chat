@@ -8,7 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        working-directory: ./packages/react-chat
         uses: actions/checkout@v2.3.1
         with:
           persist-credentials: false
@@ -18,9 +17,8 @@ jobs:
           yarn install
           yarn build:docs
       - name: Deploy
-        working-directory: ./packages/react-chat
         uses: JamesIves/github-pages-deploy-action@v4.4.0
         with:
           branch: docs
-          folder: docs
+          folder: ./packages/react-chat/docs
           clean: true
