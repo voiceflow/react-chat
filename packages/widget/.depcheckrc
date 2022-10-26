@@ -1,0 +1,34 @@
+{
+  "specials": [
+    "bin",
+    "babel",
+    "eslint",
+    "lint-staged",
+    "istanbul",
+    "commitizen",
+    "husky",
+    "prettier",
+    "ttypescript"
+  ],
+  "ignores": [
+    "@commitlint/*",
+    "@storybook/*",
+    "@types/*",
+    "@voiceflow/commitlint-config",
+    "@voiceflow/eslint-config",
+    "@voiceflow/git-branch-check",
+    "@voiceflow/tsconfig",
+    "@svgr/webpack",
+    "@emotion/core",
+    "@vitest/coverage-c8",
+    "storybook-dark-mode",
+    "eslint-import-resolver-typescript",
+    "eslint-plugin-mdx",
+    "eslint-plugin-storybook",
+    "babel-loader",
+    "fixpack",
+    "husky",
+    "lint-staged",
+    "slate"
+  ]
+}
