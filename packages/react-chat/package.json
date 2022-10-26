@@ -76,10 +76,6 @@
   "license": "MIT",
   "main": "build/cjs/index.js",
   "prettier": "@voiceflow/prettier-config",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/voiceflow/react-chat.git"
-  },
   "scripts": {
     "build": "yarn clean && yarn build:package && yarn build:bundle",
     "build:bundle": "NODE_ENV=production vite build",

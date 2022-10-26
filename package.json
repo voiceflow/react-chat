@@ -36,10 +36,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/voiceflow/react-chat.git"
-  },
   "resolutions": {
     "root": "portal:/Users/tylerhan/voiceflow/creator-app"
   },
