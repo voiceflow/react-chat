@@ -75,6 +75,9 @@ workflows:
 
       - vfcommon/monorepo_release:
           <<: *slack-fail-post-step
+          pre-steps:
+            - run:
+                command: 'git remote set-url origin https://${GH_TOKEN}@github.com/voiceflow/react-chat'
           avoid_post_install_scripts: false
           ssh_key: << pipeline.parameters.ssh-fingerprint >>
           context: dev-test
