@@ -3,7 +3,7 @@ version: 2.1
 parameters:
   ssh-fingerprint:
     type: string
-    default: "0e:3a:80:76:e8:27:a8:10:83:e3:6d:40:45:4c:ad:2d"
+    default: "ef:f8:64:a2:df:7e:e4:eb:b8:1d:1b:84:c2:c6:67:99"
   build-apps:
     type: boolean
     default: false
@@ -75,9 +75,6 @@ workflows:
 
       - vfcommon/monorepo_release:
           <<: *slack-fail-post-step
-          pre-steps:
-            - run:
-                command: 'git remote set-url origin https://${GH_TOKEN}@github.com/voiceflow/react-chat'
           avoid_post_install_scripts: false
           ssh_key: << pipeline.parameters.ssh-fingerprint >>
           context: dev-test
