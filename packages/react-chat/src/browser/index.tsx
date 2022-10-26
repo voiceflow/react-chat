@@ -1,6 +1,6 @@
-import { Listeners, PostMessage } from '@/common';
 import { createRoot } from 'react-dom/client';
 
+import { Listeners, PostMessage } from '@/common';
 import ChatWidget from '@/views/ChatWindow';
 
 import { fetchAssistant } from './utils';
