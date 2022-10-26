@@ -1,0 +1,17 @@
+import type { ChatConfig } from '@voiceflow/react-chat/build/cjs/common';
+import type { RuntimeAction } from '@voiceflow/sdk-runtime';
+
+declare global {
+  interface Window {
+    voiceflow: {
+      chat: {
+        open: VoidFunction;
+        close: VoidFunction;
+        hide: VoidFunction;
+        show: VoidFunction;
+        load: (config: ChatConfig) => void;
+        interact: (action: RuntimeAction) => void;
+      };
+    };
+  }
+}

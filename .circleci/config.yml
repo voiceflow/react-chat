@@ -1,30 +1,18 @@
 version: 2.1
 
-orbs:
-  vfcommon: voiceflow/common@0.5.0
+# this allows you to use CircleCI's dynamic configuration feature
+setup: true
 
-jobs:
-  build-and-test:
-    executor: vfcommon/default-executor
-    steps:
-      - checkout
-      - vfcommon/install_node_modules
-      - vfcommon/lint_report
-      - vfcommon/dependency_tests:
-          step_name: Dependency Tests
-      - vfcommon/build
-      - vfcommon/unit_tests
+orbs:
+  path-filtering: circleci/path-filtering@0.0.2
 
 workflows:
-  test-and-release:
+  generate-config:
     jobs:
-      - build-and-test:
-          context: dev-test
-
-      - vfcommon/release:
-          context: dev-test
-          requires:
-            - build-and-test
-          filters:
-            branches:
-              only: master
+      - path-filtering/filter:
+          base-revision: master
+          config-path: .circleci/continue-config.yml
+          mapping: |
+            packages/.* build-apps true
+            package.json build-all true
+            yarn.lock build-all true

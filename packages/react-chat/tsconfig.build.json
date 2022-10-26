@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "rootDir": "src"
+  },
+  "include": [
+    "src",
+    "typings"
+  ],
+  "exclude": [
+    "src/**/*.story.tsx",
+    "src/**/*.test.*"
+  ]
+}

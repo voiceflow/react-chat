@@ -1,0 +1,86 @@
+version: 2.1
+
+parameters:
+  ssh-fingerprint:
+    type: string
+    default: "0e:3a:80:76:e8:27:a8:10:83:e3:6d:40:45:4c:ad:2d"
+  build-apps:
+    type: boolean
+    default: false
+  build-all:
+    type: boolean
+    default: false
+
+orbs:
+  vfcommon: voiceflow/common@dev:a1e93bee4ebb57daddd653decd51cf60027c4999
+  sonarcloud: sonarsource/sonarcloud@1.0.2
+
+defaults:
+  slack-fail-post-step: &slack-fail-post-step
+    post-steps:
+      - vfcommon/notify_slack:
+          channel: dev_general
+          event: fail
+          mentions: "@eng_platform"
+          template: basic_fail_1
+          branch_pattern: master
+
+jobs:
+  test: # Main unit, style, and dependency tests
+    executor: vfcommon/node-executor
+    steps: # a collection of executable commands
+      - checkout
+      - attach_workspace:
+          at: ~/voiceflow
+      - vfcommon/install_node_modules:
+          avoid_post_install_scripts: false
+      - vfcommon/monorepo_restore_cache:
+          package: "all"
+          monorepo_engine: "turborepo"
+          cache_identifier: "monorepo-test-cache"
+      - vfcommon/monorepo_lint_report:
+          force_execution: << pipeline.parameters.build-all >>
+          run_on_root: true
+      - vfcommon/monorepo_dependency_tests:
+          force_execution: << pipeline.parameters.build-all >>
+          run_on_root: true
+      - vfcommon/monorepo_unit_tests:
+          force_execution: << pipeline.parameters.build-all >>
+          run_on_root: true
+      - vfcommon/monorepo_save_cache:
+          package: "all"
+          monorepo_engine: "turborepo"
+          cache_identifier: "monorepo-test-cache"
+      ## disable sonarcloud until project set up
+      # - sonarcloud/scan
+
+workflows:
+  test-and-release:
+    jobs:
+      - vfcommon/install_and_build:
+          <<: *slack-fail-post-step
+          context: dev-test
+          avoid_post_install_scripts: false
+          name: build
+          package: all
+          monorepo_engine: "turborepo"
+          force_execute: true
+          container_folder_to_copy: "" #Copy all
+
+      - test:
+          <<: *slack-fail-post-step
+          context: dev-test
+          requires:
+            - build
+
+      - vfcommon/monorepo_release:
+          <<: *slack-fail-post-step
+          avoid_post_install_scripts: false
+          ssh_key: << pipeline.parameters.ssh-fingerprint >>
+          context: dev-test
+          release_engine: "lite"
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
