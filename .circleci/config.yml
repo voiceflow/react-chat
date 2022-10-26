@@ -6,12 +6,6 @@ setup: true
 orbs:
   path-filtering: circleci/path-filtering@0.0.2
 
-# Reusable YAML chunks
-defaults:
-  tag_filters: &tag_filters
-    tags:
-      only: /^@voiceflow/.*@[0-9]*(\.[0-9]*)*$/
-
 workflows:
   generate-config:
     jobs:

@@ -15,6 +15,16 @@ orbs:
   vfcommon: voiceflow/common@dev:a1e93bee4ebb57daddd653decd51cf60027c4999
   sonarcloud: sonarsource/sonarcloud@1.0.2
 
+defaults:
+  slack-fail-post-step: &slack-fail-post-step
+    post-steps:
+      - vfcommon/notify_slack:
+          channel: dev_general
+          event: fail
+          mentions: "@eng_platform"
+          template: basic_fail_1
+          branch_pattern: master
+
 jobs:
   test: # Main unit, style, and dependency tests
     executor: vfcommon/node-executor
