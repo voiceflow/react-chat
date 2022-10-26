@@ -3,7 +3,7 @@ version: 2.1
 parameters:
   ssh-fingerprint:
     type: string
-    default: "ef:f8:64:a2:df:7e:e4:eb:b8:1d:1b:84:c2:c6:67:99"
+    default: "72:f9:3d:87:22:40:dd:a4:81:13:16:f0:10:c8:7d:d0"
   build-apps:
     type: boolean
     default: false
