@@ -16,10 +16,9 @@ workflows:
   generate-config:
     jobs:
       - path-filtering/filter:
-          filters:
-            <<: *tag_filters
           base-revision: master
           config-path: .circleci/continue-config.yml
           mapping: |
+            packages/.* build-apps true
             package.json build-all true
             yarn.lock build-all true

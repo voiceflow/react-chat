@@ -1,6 +1,12 @@
 version: 2.1
 
 parameters:
+  ssh-fingerprint:
+    type: string
+    default: "0e:3a:80:76:e8:27:a8:10:83:e3:6d:40:45:4c:ad:2d"
+  build-apps:
+    type: boolean
+    default: false
   build-all:
     type: boolean
     default: false
@@ -10,30 +16,38 @@ orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.2
 
 jobs:
-  test:
-    executor: vfcommon/code-test-executor
-    steps:
+  test: # Main unit, style, and dependency tests
+    executor: vfcommon/node-executor
+    steps: # a collection of executable commands
       - checkout
-      - vfcommon/install_node_modules:
-          avoid_post_install_scripts: false
       - attach_workspace:
           at: ~/voiceflow
+      - vfcommon/install_node_modules:
+          avoid_post_install_scripts: false
+      - vfcommon/monorepo_restore_cache:
+          package: "all"
+          monorepo_engine: "turborepo"
+          cache_identifier: "monorepo-test-cache"
       - vfcommon/monorepo_lint_report:
           force_execution: << pipeline.parameters.build-all >>
-          run_on_root: << pipeline.parameters.build-all >>
+          run_on_root: true
       - vfcommon/monorepo_dependency_tests:
           force_execution: << pipeline.parameters.build-all >>
-          run_on_root: << pipeline.parameters.build-all >>
-          step_name: Dependency Tests
+          run_on_root: true
       - vfcommon/monorepo_unit_tests:
           force_execution: << pipeline.parameters.build-all >>
-          run_on_root: << pipeline.parameters.build-all >>
+          run_on_root: true
+      - vfcommon/monorepo_save_cache:
+          package: "all"
+          monorepo_engine: "turborepo"
+          cache_identifier: "monorepo-test-cache"
       - sonarcloud/scan
 
 workflows:
   test-and-release:
     jobs:
       - vfcommon/install_and_build:
+          <<: *slack-fail-post-step
           context: dev-test
           avoid_post_install_scripts: false
           name: build
@@ -43,13 +57,15 @@ workflows:
           container_folder_to_copy: "" #Copy all
 
       - test:
+          <<: *slack-fail-post-step
           context: dev-test
           requires:
             - build
 
       - vfcommon/monorepo_release:
+          <<: *slack-fail-post-step
           avoid_post_install_scripts: false
-          ssh_key: "94:fb:dc:e2:30:96:9d:61:f5:6f:95:c2:32:20:f7:37"
+          ssh_key: << pipeline.parameters.ssh-fingerprint >>
           context: dev-test
           release_engine: "lite"
           requires:
