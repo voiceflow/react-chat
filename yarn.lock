@@ -18361,7 +18361,7 @@ __metadata:
     fixpack: ^4.0.0
     husky: 7.0.0
     lint-staged: ">=10"
-    turbo: latest
+    turbo: 1.5.5
   languageName: unknown
   linkType: soft
 
@@ -20252,58 +20252,58 @@ __metadata:
   languageName: node
   linkType: hard
 
-"turbo-darwin-64@npm:1.5.6":
-  version: 1.5.6
-  resolution: "turbo-darwin-64@npm:1.5.6"
+"turbo-darwin-64@npm:1.5.5":
+  version: 1.5.5
+  resolution: "turbo-darwin-64@npm:1.5.5"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-darwin-arm64@npm:1.5.6":
-  version: 1.5.6
-  resolution: "turbo-darwin-arm64@npm:1.5.6"
+"turbo-darwin-arm64@npm:1.5.5":
+  version: 1.5.5
+  resolution: "turbo-darwin-arm64@npm:1.5.5"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-linux-64@npm:1.5.6":
-  version: 1.5.6
-  resolution: "turbo-linux-64@npm:1.5.6"
+"turbo-linux-64@npm:1.5.5":
+  version: 1.5.5
+  resolution: "turbo-linux-64@npm:1.5.5"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-linux-arm64@npm:1.5.6":
-  version: 1.5.6
-  resolution: "turbo-linux-arm64@npm:1.5.6"
+"turbo-linux-arm64@npm:1.5.5":
+  version: 1.5.5
+  resolution: "turbo-linux-arm64@npm:1.5.5"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-windows-64@npm:1.5.6":
-  version: 1.5.6
-  resolution: "turbo-windows-64@npm:1.5.6"
+"turbo-windows-64@npm:1.5.5":
+  version: 1.5.5
+  resolution: "turbo-windows-64@npm:1.5.5"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-windows-arm64@npm:1.5.6":
-  version: 1.5.6
-  resolution: "turbo-windows-arm64@npm:1.5.6"
+"turbo-windows-arm64@npm:1.5.5":
+  version: 1.5.5
+  resolution: "turbo-windows-arm64@npm:1.5.5"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo@npm:latest":
-  version: 1.5.6
-  resolution: "turbo@npm:1.5.6"
+"turbo@npm:1.5.5":
+  version: 1.5.5
+  resolution: "turbo@npm:1.5.5"
   dependencies:
-    turbo-darwin-64: 1.5.6
-    turbo-darwin-arm64: 1.5.6
-    turbo-linux-64: 1.5.6
-    turbo-linux-arm64: 1.5.6
-    turbo-windows-64: 1.5.6
-    turbo-windows-arm64: 1.5.6
+    turbo-darwin-64: 1.5.5
+    turbo-darwin-arm64: 1.5.5
+    turbo-linux-64: 1.5.5
+    turbo-linux-arm64: 1.5.5
+    turbo-windows-64: 1.5.5
+    turbo-windows-arm64: 1.5.5
   dependenciesMeta:
     turbo-darwin-64:
       optional: true
@@ -20319,7 +20319,7 @@ __metadata:
       optional: true
   bin:
     turbo: bin/turbo
-  checksum: 5a243f0113fb886c90e8d7b4e94b590acef9813b1cfb13330b3d62c2b09e89647b5aabbe3ecf80d5fe3d8c1ee74ad4eb81f25de30ef62eb1c8a15c23383bd943
+  checksum: d804a624ea07277bbd0e9fb5af20538f184a1beefe8d6a9483b24dabc784d3a4ce526430d2ff47cfcc7cd1cfc66f80eef89ea289889c95036c3669c171ffee14
   languageName: node
   linkType: hard
 
