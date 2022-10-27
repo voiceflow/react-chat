@@ -14,13 +14,13 @@ import { Container, Controls, List } from './styled';
 import { MessageProps } from './types';
 
 export interface SystemMessageProps {
-  image: string;
+  avatar: string;
   timestamp: Date;
   message: MessageProps;
   withImage: boolean;
 }
 
-const SystemMessage: React.FC<SystemMessageProps> = ({ image, timestamp, message, withImage }) => {
+const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, timestamp, message, withImage }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const controlsRef = useRef<HTMLSpanElement>(null);
 
@@ -28,7 +28,7 @@ const SystemMessage: React.FC<SystemMessageProps> = ({ image, timestamp, message
     <>
       <Controls ref={controlsRef} />
       <Container ref={containerRef} withImage={withImage} scrollable={message.type === MessageType.CAROUSEL}>
-        <Avatar image={image} />
+        <Avatar avatar={avatar} />
         <List>
           {match(message)
             .with({ type: MessageType.TEXT }, ({ text }) => <Message from="system">{text}</Message>)

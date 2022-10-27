@@ -6,12 +6,13 @@ import ChatInput from '@/components/ChatInput';
 import { Container, Watermark } from './styled';
 
 export interface FooterProps {
+  watermark: boolean;
   hasEnded?: boolean | undefined;
   onStart?: React.MouseEventHandler<HTMLButtonElement> | undefined;
   onSend?: ((message: string) => void) | undefined;
 }
 
-const Footer: React.FC<FooterProps> = ({ hasEnded, onStart, onSend }) => {
+const Footer: React.FC<FooterProps> = ({ watermark, hasEnded, onStart, onSend }) => {
   const [message, setMessage] = useState('');
 
   const handleSend = (): void => {
@@ -22,19 +23,21 @@ const Footer: React.FC<FooterProps> = ({ hasEnded, onStart, onSend }) => {
   };
 
   return (
-    <Container withShadow={!!hasEnded}>
+    <Container withShadow={!!hasEnded} withWatermark={watermark}>
       {hasEnded ? (
         <Button onClick={onStart}>Start New Chat</Button>
       ) : (
         // eslint-disable-next-line jsx-a11y/no-autofocus
         <ChatInput value={message} placeholder="Message…" autoFocus onValueChange={setMessage} onSend={handleSend} />
       )}
-      <Watermark>
-        Assistant ⚡️ by
-        <a target="_blank" href="https://voiceflow.com" rel="noreferrer">
-          Voiceflow
-        </a>
-      </Watermark>
+      {watermark && (
+        <Watermark>
+          Assistant ⚡️ by
+          <a target="_blank" href="https://voiceflow.com" rel="noreferrer">
+            Voiceflow
+          </a>
+        </Watermark>
+      )}
     </Container>
   );
 };

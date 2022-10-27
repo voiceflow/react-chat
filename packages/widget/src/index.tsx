@@ -1,10 +1,10 @@
-import { Assistant, Listeners, PostMessage, RuntimeOptions, useTheme } from '@voiceflow/react-chat/build/cjs/common';
+import { Assistant, ChatPosition, Listeners, PostMessage, RuntimeOptions, useTheme } from '@voiceflow/react-chat/build/cjs/common';
 import type { RuntimeAction } from '@voiceflow/sdk-runtime';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
-import launch from './assets/launch.svg';
+import { Launcher } from './components';
 import { useSendMessage } from './hooks';
-import { Button, ButtonContainer, ChatContainer, ChatIframe, Container } from './styled';
+import { ChatContainer, ChatIframe, Container, LauncherContainer } from './styled';
 
 interface ChatWidgetProps extends React.PropsWithChildren, RuntimeOptions {
   assistant?: Assistant;
@@ -41,23 +41,27 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ children, widgetURL, ...config 
     });
   }, []);
 
+  const side = assistant?.position ?? ChatPosition.RIGHT;
+  const position = { bottom: assistant?.spacing.bottom, [side]: assistant?.spacing.side };
+
   return (
     <Container withChat={isOpen} isHidden={isHidden} className={theme}>
       {!!assistant && (
-        <ButtonContainer>
-          <Button onClick={open}>
-            <img src={launch} alt="launch" />
-          </Button>
-        </ButtonContainer>
+        <LauncherContainer style={position}>
+          <Launcher open={open} image={assistant.launcher} />
+        </LauncherContainer>
       )}
-      <ChatContainer>{children ?? <ChatIframe src={widgetURL} title="voiceflow-chat" ref={chatRef} onLoad={onLoad} />}</ChatContainer>
+      <ChatContainer style={position}>
+        {children ?? <ChatIframe src={widgetURL} title="voiceflow-chat" ref={chatRef} onLoad={onLoad} />}
+      </ChatContainer>
     </Container>
   );
 };
 
 export default Object.assign(ChatWidget, {
+  Launcher,
   Container,
   ChatIframe,
   ChatContainer,
-  ButtonContainer,
+  LauncherContainer,
 });

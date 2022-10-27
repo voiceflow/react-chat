@@ -1,7 +1,7 @@
 import chroma from 'chroma-js';
 
-const PRIMARY = '#3d82e2';
-const WARN = '#db1b42';
+export const PRIMARY = '#3d82e2';
+export const WARN = '#db1b42';
 
 export const SHADOWS = {
   shadow1: 'rgba(0,0,0,0.01)',
@@ -26,7 +26,7 @@ export const PALETTE = {
   lightGrey: '#f4f4f4',
   medGrey: '#dfdfdf',
   darkGrey: '#737376',
-  blue: '#3d82e2',
+  blue: PRIMARY,
   warn: WARN,
   darkWarn: chroma(WARN).darken(0.25).hex(),
   ...createPrimaryColors(PRIMARY),
