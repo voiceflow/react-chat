@@ -12,7 +12,7 @@ parameters:
     default: false
 
 orbs:
-  vfcommon: voiceflow/common@dev:6910c72a6c1d43781b297081f70b3c0b1a0102bc
+  vfcommon: voiceflow/common@dev:7aa3c002682771ef1575c2e11091f5a840b05a0b
   sonarcloud: sonarsource/sonarcloud@1.0.2
 
 defaults:
@@ -65,8 +65,6 @@ jobs:
           from: packages/widget/dist
           to: s3://cdn.voiceflow.com/widget
           clean_destination: true
-          published_tags: MONOREPO_UPDATED_TAGS
-          clone_only_when_new_tags: true
 
 workflows:
   test-and-release:
@@ -99,6 +97,7 @@ workflows:
           ssh_key: << pipeline.parameters.ssh-fingerprint >>
           context: dev-test
           release_engine: "lite"
+          commit_message: "chore(release): publish --skip-ci"
           requires:
             - test
           filters:
