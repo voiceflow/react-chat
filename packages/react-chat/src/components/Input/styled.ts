@@ -3,7 +3,7 @@ import { CSS, styled } from '@/styles';
 export const inputStyles: CSS = {
   height: '$md',
   boxSizing: 'border-box',
-  border: '1px solid rgba(115,115,118,0.5)',
+  border: '1px solid rgba(115,115,118,0.3)',
   borderRadius: '$1',
   backgroundColor: '$white',
   boxShadow: '0 1px 12px $shadow2',
@@ -11,7 +11,7 @@ export const inputStyles: CSS = {
 };
 
 export const inputFocusStyles: CSS = {
-  border: '1px solid rgba(115,115,118,0.3)',
+  border: '1px solid rgba(115,115,118,0.5)',
 };
 
 export const Container = styled('input', {

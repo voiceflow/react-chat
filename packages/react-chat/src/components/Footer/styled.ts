@@ -3,7 +3,7 @@ import Input from '@/components/Input';
 import { styled } from '@/styles';
 
 export const Container = styled('footer', {
-  padding: '$3 $4 0 $4',
+  padding: '$3 $4 $4 $4',
   borderRadius: '$1',
 
   [`& ${Input.Container}`]: {
@@ -18,6 +18,11 @@ export const Container = styled('footer', {
     withShadow: {
       true: {
         boxShadow: '0 12px 48px $shadow16',
+      },
+    },
+    withWatermark: {
+      true: {
+        paddingBottom: '0',
       },
     },
   },

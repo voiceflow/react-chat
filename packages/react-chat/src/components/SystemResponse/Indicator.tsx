@@ -4,12 +4,12 @@ import TypingIndicator from '@/components/TypingIndicator';
 import { Container } from './styled';
 
 export interface IndicatorProps {
-  image: string;
+  avatar: string;
 }
 
-const Indicator: React.FC<IndicatorProps> = ({ image }) => (
+const Indicator: React.FC<IndicatorProps> = ({ avatar }) => (
   <Container withImage center>
-    <Avatar image={image} />
+    <Avatar avatar={avatar} />
     <TypingIndicator />
   </Container>
 );

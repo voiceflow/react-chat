@@ -5045,6 +5045,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@voiceflow/base-types@npm:2.71.3, @voiceflow/base-types@npm:^2.71.3":
+  version: 2.71.3
+  resolution: "@voiceflow/base-types@npm:2.71.3"
+  dependencies:
+    "@voiceflow/common": ^8.1.5
+    slate: 0.73.0
+  checksum: dd22088b1bfc72c87c828f7b35af246d8233d361be78b6a65ebcde6883cc9e62677a46fd375c0556bc5376b8d463680a672d14dc30b8eec7de454957177f58e0
+  languageName: node
+  linkType: hard
+
+"@voiceflow/chat-types@npm:^2.13.5":
+  version: 2.13.5
+  resolution: "@voiceflow/chat-types@npm:2.13.5"
+  dependencies:
+    "@voiceflow/base-types": ^2.71.3
+    "@voiceflow/common": ^8.1.5
+  checksum: 2335c2f9f498c526889e6e83479e932f217ee75477418e29d00f367cbad9fd991fa38881cd83e90c6c3c71a7c4a543f89241f58c7fcea7e15a01023023483b00
+  languageName: node
+  linkType: hard
+
 "@voiceflow/commitlint-config@npm:2.0.0":
   version: 2.0.0
   resolution: "@voiceflow/commitlint-config@npm:2.0.0"
@@ -5152,12 +5172,13 @@ __metadata:
     "@types/react-dom": ^18.0.6
     "@vitejs/plugin-react": ^2.0.1
     "@vitest/coverage-c8": ^0.23.1
-    "@voiceflow/base-types": 2.71.0
+    "@voiceflow/base-types": 2.71.3
     "@voiceflow/eslint-config": 6.1.0
     "@voiceflow/prettier-config": 1.2.1
     "@voiceflow/sdk-runtime": 1.4.0
     "@voiceflow/slate-serializer": 1.2.2
     "@voiceflow/tsconfig": 1.4.8
+    "@voiceflow/voiceflow-types": 3.20.20
     chroma-js: 2.4.2
     csstype: 3.1.0
     cuid: ^2.1.8
@@ -5232,6 +5253,27 @@ __metadata:
   peerDependencies:
     typescript: ^4.1.5
   checksum: 772ce047610543953f920f3cfccc432ff4750072ca45113ef7cafe34fc34f0cf882d1d869a9c4ff0881093e60540a0527859cd37826aaa93bea5feb149963ccd
+  languageName: node
+  linkType: hard
+
+"@voiceflow/voice-types@npm:^2.8.16":
+  version: 2.8.16
+  resolution: "@voiceflow/voice-types@npm:2.8.16"
+  dependencies:
+    "@voiceflow/base-types": ^2.71.3
+    "@voiceflow/common": ^8.1.5
+  checksum: a5926dfe9a99291572beea565cbf319e1931541299fe0078065110c9d7fca270960f93eb75afbe7e6417babb010fb0c475a5bbc71621fe249c936e968694aec1
+  languageName: node
+  linkType: hard
+
+"@voiceflow/voiceflow-types@npm:3.20.20":
+  version: 3.20.20
+  resolution: "@voiceflow/voiceflow-types@npm:3.20.20"
+  dependencies:
+    "@voiceflow/base-types": ^2.71.3
+    "@voiceflow/chat-types": ^2.13.5
+    "@voiceflow/voice-types": ^2.8.16
+  checksum: aec6258905d7d100e99e77794d61875ac1a5e6a29cb7dde8202861fc9113449133403a8777be1a6d6a3212679355602a087d14782b9eabb41757874e7a5e90d1
   languageName: node
   linkType: hard
 
