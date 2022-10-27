@@ -12,7 +12,7 @@ parameters:
     default: false
 
 orbs:
-  vfcommon: voiceflow/common@dev:997203946949e283ec22cb4734db1456dbff4c3e
+  vfcommon: voiceflow/common@dev:09757722d14e33eae1cc6b4d283f8e643bba8f16
   sonarcloud: sonarsource/sonarcloud@1.0.2
 
 defaults:
@@ -65,6 +65,8 @@ jobs:
           from: packages/widget/dist
           to: s3://cdn.voiceflow.com/widget
           clean_destination: true
+          published_tags: MONOREPO_UPDATED_TAGS
+          clone_only_when_new_tags: true
 
 workflows:
   test-and-release:
@@ -83,7 +85,7 @@ workflows:
             - persist_to_workspace:
                 root: "."
                 paths:
-                  - ./*/*/dist
+                  - ./*/*/dist # persist dist folder too
 
       - test:
           <<: *slack-fail-post-step
