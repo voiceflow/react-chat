@@ -47,10 +47,6 @@ jobs:
           package: "all"
           monorepo_engine: "turborepo"
           cache_identifier: "monorepo-test-cache"
-      - persist_to_workspace:
-          root: "."
-          paths:
-            - ./*/*/dist
       ## disable sonarcloud until project set up
       # - sonarcloud/scan
 
@@ -83,6 +79,11 @@ workflows:
           force_execute: true
           run_in_container: false
           container_folder_to_copy: "" #Copy all
+          post_build_steps:
+            - persist_to_workspace:
+                root: "."
+                paths:
+                  - ./*/*/dist
 
       - test:
           <<: *slack-fail-post-step
