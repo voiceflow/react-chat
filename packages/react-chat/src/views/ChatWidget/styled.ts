@@ -1,4 +1,4 @@
-import { CSS, styled } from '@voiceflow/react-chat/build/cjs/styles';
+import { CSS, styled } from '@/styles';
 
 const CHAT_WIDTH = 380;
 const MAX_CHAT_HEIGHT = 800;
@@ -14,12 +14,6 @@ export const ChatContainer = styled('div', {
 });
 
 export const LauncherContainer = styled('div', {});
-
-export const ChatIframe = styled('iframe', {
-  width: '100%',
-  height: '100%',
-  border: 'none',
-});
 
 const animateInStyles: CSS = {
   opacity: 1,
@@ -44,7 +38,7 @@ export const Container = styled('div', {
   zIndex: 10000,
 
   [`
-    & > ${ButtonContainer},
+    & > ${LauncherContainer},
     & > ${ChatContainer}
   `]: {
     position: 'absolute',
@@ -56,7 +50,7 @@ export const Container = styled('div', {
         [`& > ${ChatContainer}`]: {
           ...animateInStyles,
         },
-        [`& > ${ButtonContainer}`]: {
+        [`& > ${LauncherContainer}`]: {
           ...animateOutStyles,
         },
       },
@@ -64,7 +58,7 @@ export const Container = styled('div', {
         [`& > ${ChatContainer}`]: {
           ...animateOutStyles,
         },
-        [`& > ${ButtonContainer}`]: {
+        [`& > ${LauncherContainer}`]: {
           ...animateInStyles,
         },
       },
