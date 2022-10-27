@@ -1,5 +1,4 @@
-import { Assistant, Listeners, PostMessage, RuntimeOptions } from '@voiceflow/react-chat/build/cjs/common';
-import ChatWidget from '@voiceflow/react-chat/build/cjs/views/ChatWidget';
+import { Assistant, ChatWidget, Listeners, PostMessage, RuntimeOptions } from '@voiceflow/react-chat';
 import React, { useCallback, useRef, useState } from 'react';
 
 import { useSendMessage } from './hooks';

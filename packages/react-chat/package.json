@@ -59,6 +59,7 @@
     "tsc-alias": "^1.7.0",
     "typescript": "4.7.4",
     "vite": "3.0.9",
+    "vite-plugin-dts": "^1.6.6",
     "vite-plugin-fonts": "^0.6.0",
     "vite-plugin-svgr": "^2.2.1",
     "vite-tsconfig-paths": "^3.5.0",
@@ -75,15 +76,13 @@
     "voiceflow"
   ],
   "license": "MIT",
-  "main": "build/cjs/index.js",
+  "main": "build/index.es.js",
   "prettier": "@voiceflow/prettier-config",
   "scripts": {
     "build": "yarn clean && yarn build:package && yarn build:bundle",
     "build:bundle": "NODE_ENV=production vite build",
-    "build:cjs": "tsc --project ./tsconfig.build.cjs.json && tsc-alias -p tsconfig.build.cjs.json",
     "build:docs": "STORYBOOK_BASE_HREF=react-chat build-storybook -o docs",
-    "build:esm": "tsc --project ./tsconfig.build.esm.json && tsc-alias -p tsconfig.build.esm.json",
-    "build:package": "NODE_ENV=production yarn build:cjs && yarn build:esm",
+    "build:package": "NODE_ENV=production vite --config vite.package.config.ts build",
     "clean": "rimraf build dist",
     "dev": "NODE_ENV=development vite",
     "eslint-output": "eslint-output",
@@ -97,5 +96,5 @@
     "test:dependencies": "depcheck",
     "test:unit": "NODE_ENV=test vitest run --coverage"
   },
-  "types": "build/esm/index.d.ts"
+  "types": "build/index.d.ts"
 }

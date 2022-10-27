@@ -1,4 +1,4 @@
-import type { ChatConfig } from '@voiceflow/react-chat/build/cjs/common';
+import type { ChatConfig } from '@voiceflow/react-chat';
 import type { RuntimeAction } from '@voiceflow/sdk-runtime';
 
 declare global {
