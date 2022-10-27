@@ -12,7 +12,7 @@ parameters:
     default: false
 
 orbs:
-  vfcommon: voiceflow/common@dev:a1e93bee4ebb57daddd653decd51cf60027c4999
+  vfcommon: voiceflow/common@dev:9562e19c4a2b95295183cf0207ce7d8771e805da
   sonarcloud: sonarsource/sonarcloud@1.0.2
 
 defaults:
@@ -50,6 +50,22 @@ jobs:
       ## disable sonarcloud until project set up
       # - sonarcloud/scan
 
+  push-to-cdn: # Main unit, style, and dependency tests
+    executor: vfcommon/node-executor
+    steps: # a collection of executable commands
+      - attach_workspace:
+          at: ~/voiceflow
+      - vfcommon/clone_s3_assets:
+          step_name: Uploading React Chat to CDN
+          from: packages/react-chart/dist
+          to: s3://cdn.voiceflow.com/react-chat
+          clean_destination: true
+      - vfcommon/clone_s3_assets:
+          step_name: Uploading Widget to CDN
+          from: packages/widget/dist
+          to: s3://cdn.voiceflow.com/widget
+          clean_destination: true
+
 workflows:
   test-and-release:
     jobs:
@@ -77,6 +93,15 @@ workflows:
           release_engine: "lite"
           requires:
             - test
+          filters:
+            branches:
+              only: master
+
+      - push-to-cdn:
+          <<: *slack-fail-post-step
+          context: dev-test
+          requires:
+            - vfcommon/monorepo_release
           filters:
             branches:
               only: master
