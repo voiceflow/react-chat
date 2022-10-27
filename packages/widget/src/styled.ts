@@ -13,37 +13,7 @@ export const ChatContainer = styled('div', {
   maxHeight: MAX_CHAT_HEIGHT,
 });
 
-export const ButtonContainer = styled('div', {});
-
-export const Button = styled('button', {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  borderRadius: '$round',
-  backgroundColor: '$primary',
-  trans: ['background-color', 'box-shadow'],
-
-  height: '$xl',
-  width: '$xl',
-  border: '1px solid $shadow4',
-  boxShadow: '0 1px 6px $shadow6, 0 2px 24px $shadow8',
-
-  '&:focus': {
-    outline: 0,
-  },
-  '&:hover': {
-    cursor: 'pointer',
-    backgroundColor: '$darkPrimary',
-  },
-
-  '& > img': {
-    width: '$sm',
-    height: '$sm',
-  },
-
-  padding: 0,
-  margin: 0,
-});
+export const LauncherContainer = styled('div', {});
 
 export const ChatIframe = styled('iframe', {
   width: '100%',
@@ -78,8 +48,6 @@ export const Container = styled('div', {
     & > ${ChatContainer}
   `]: {
     position: 'absolute',
-    right: 30,
-    bottom: 30,
   },
 
   variants: {

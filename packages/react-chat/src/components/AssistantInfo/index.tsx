@@ -5,12 +5,12 @@ import { Container, Description, Title } from './styled';
 export interface AssistantHeaderProps {
   title: string;
   description: string;
-  image: string;
+  avatar: string;
 }
 
-const AssistantHeader: React.FC<AssistantHeaderProps> = ({ title, description, image }) => (
+const AssistantHeader: React.FC<AssistantHeaderProps> = ({ title, description, avatar }) => (
   <Container>
-    <Avatar size="large" image={image} />
+    <Avatar size="large" avatar={avatar} />
     <Title>{title}</Title>
     <Description>{description}</Description>
   </Container>

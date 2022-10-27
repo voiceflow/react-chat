@@ -18,7 +18,7 @@ export interface ResponseActionProps {
 }
 
 export interface SystemResponseProps {
-  image: string;
+  avatar: string;
   timestamp: Date;
   messages: MessageProps[];
   actions?: ResponseActionProps[];
@@ -28,7 +28,7 @@ export interface SystemResponseProps {
 }
 
 const SystemResponse: React.FC<SystemResponseProps> = ({
-  image,
+  avatar,
   timestamp,
   messages,
   actions = [],
@@ -52,7 +52,7 @@ const SystemResponse: React.FC<SystemResponseProps> = ({
         <SystemMessage
           message={message}
           withImage={!showIndicator && index === visibleMessages.length - 1}
-          image={image}
+          avatar={avatar}
           timestamp={timestamp}
           key={index}
         />
@@ -68,7 +68,7 @@ const SystemResponse: React.FC<SystemResponseProps> = ({
         </Actions>
       )}
 
-      {showIndicator && <Indicator image={image} />}
+      {showIndicator && <Indicator avatar={avatar} />}
     </>
   );
 };

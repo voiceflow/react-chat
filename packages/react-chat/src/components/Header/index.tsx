@@ -16,7 +16,7 @@ export interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ title, image, actions = [] }) => (
   <Container>
-    <Avatar image={image} />
+    <Avatar avatar={image} />
     <Title>{title}</Title>
     {actions.map(({ svg, onClick }, index) => (
       <Button onClick={onClick} key={index}>

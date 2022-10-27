@@ -1,6 +1,6 @@
 import React, { memo, useRef, useState } from 'react';
 
-import AssistantInfo from '@/components/AssistantInfo';
+import AssistantInfo, { AssistantHeaderProps } from '@/components/AssistantInfo';
 import Footer, { FooterProps } from '@/components/Footer';
 import Header, { HeaderProps } from '@/components/Header';
 import Loader from '@/components/Loader';
@@ -12,15 +12,30 @@ import { chain } from '@/utils/functional';
 import { useTimestamp } from './hooks';
 import { Container, Dialog, Overlay, SessionTime, Spacer, Status } from './styled';
 
-export interface ChatProps extends HeaderProps, FooterProps, React.PropsWithChildren<unknown> {
+export interface ChatProps extends HeaderProps, AssistantHeaderProps, FooterProps, React.PropsWithChildren<unknown> {
   description: string;
   isLoading: boolean;
   startTime?: Nullish<Date>;
+  watermark: boolean;
   onMinimize?: React.MouseEventHandler<HTMLButtonElement>;
   onEnd?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-const Chat: React.FC<ChatProps> = ({ hasEnded, title, image, description, startTime, isLoading, onMinimize, onEnd, onStart, onSend, children }) => {
+const Chat: React.FC<ChatProps> = ({
+  hasEnded,
+  title,
+  image,
+  avatar,
+  description,
+  startTime,
+  isLoading,
+  watermark,
+  onMinimize,
+  onEnd,
+  onStart,
+  onSend,
+  children,
+}) => {
   const timestamp = useTimestamp(startTime);
   const dialogRef = useRef<HTMLElement>(null);
   const [hasAlert, setAlert] = useState(false);
@@ -54,14 +69,14 @@ const Chat: React.FC<ChatProps> = ({ hasEnded, title, image, description, startT
       />
       <Dialog ref={dialogRef}>
         <AutoScrollProvider target={dialogRef}>
-          <AssistantInfo title={title} image={image} description={description} />
+          <AssistantInfo title={title} avatar={avatar} description={description} />
           <Spacer />
           {!!timestamp && <SessionTime>{timestamp}</SessionTime>}
           {children}
           {hasEnded && <Status>You have ended the chat</Status>}
         </AutoScrollProvider>
       </Dialog>
-      <Footer hasEnded={hasEnded} onStart={onStart} onSend={onSend} />
+      <Footer watermark={watermark} hasEnded={hasEnded} onStart={onStart} onSend={onSend} />
       <Overlay />
       <Prompt accept={{ label: 'End Chat', type: 'warn', onClick: chain(onEnd, handleResume) }} cancel={{ label: 'Cancel', onClick: handleResume }} />
     </Container>

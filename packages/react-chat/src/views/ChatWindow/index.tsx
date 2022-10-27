@@ -57,6 +57,8 @@ const ChatWidget: React.FC<ChatConfig & { assistant: Assistant }> = (config) => 
         title={assistant.title}
         description={assistant.description}
         image={assistant.image}
+        avatar={assistant.avatar}
+        watermark={assistant.watermark}
         startTime={session.current?.startTime}
         hasEnded={hasEnded.current}
         isLoading={!runtime.turns.length}
@@ -71,7 +73,7 @@ const ChatWidget: React.FC<ChatConfig & { assistant: Assistant }> = (config) => 
             .with({ type: TurnType.SYSTEM }, ({ id, ...props }) => (
               <SystemResponse
                 {...R.omit(props, ['type'])}
-                image={assistant.image}
+                avatar={assistant.avatar}
                 isLive={!hasEnded.current && !hasAnimated.current[id]}
                 onAnimationEnd={handleAnimationEnd(id)}
                 key={id}
@@ -80,7 +82,7 @@ const ChatWidget: React.FC<ChatConfig & { assistant: Assistant }> = (config) => 
             ))
             .exhaustive()
         )}
-        {runtime.indicator && <SystemResponse.Indicator image={assistant.image} />}
+        {runtime.indicator && <SystemResponse.Indicator avatar={assistant.image} />}
       </Chat>
     </ChatWindowContainer>
   );
