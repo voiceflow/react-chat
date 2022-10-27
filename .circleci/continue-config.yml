@@ -61,7 +61,7 @@ jobs:
           at: ~/voiceflow
       - vfcommon/clone_s3_assets:
           step_name: Uploading React Chat to CDN
-          from: packages/react-chart/dist
+          from: packages/react-chat/dist
           to: s3://cdn.voiceflow.com/react-chat
           clean_destination: true
       - vfcommon/clone_s3_assets:
