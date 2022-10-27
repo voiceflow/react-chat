@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.27.4](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.27.3...@voiceflow/react-chat@1.27.4) (2022-10-27)
+
+### Bug Fixes
+
+* launcher icon ([cf2a168](https://github.com/voiceflow/react-chat/commit/cf2a168bd45b445fa8fe2a764dc15ff921a7a3ed))
+
 ## [1.27.3](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.27.2...@voiceflow/react-chat@1.27.3) (2022-10-27)
 
 ### Bug Fixes
