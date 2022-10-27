@@ -81,6 +81,7 @@ workflows:
           package: all
           monorepo_engine: "turborepo"
           force_execute: true
+          run_in_container: false
           container_folder_to_copy: "" #Copy all
 
       - test:
