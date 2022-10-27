@@ -5316,9 +5316,7 @@ __metadata:
     slate: ^0.72.3
     storybook-dark-mode: ^1.1.0
     ts-pattern: ^4.0.5
-    tsc-alias: ^1.7.0
     type-fest: 2.18.1
-    typescript: 4.7.4
     vite: 3.0.9
     vite-plugin-dts: ^1.6.6
     vite-plugin-fonts: ^0.6.0
@@ -7595,7 +7593,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chokidar@npm:^3.0.0, chokidar@npm:^3.4.1, chokidar@npm:^3.4.2, chokidar@npm:^3.5.3":
+"chokidar@npm:^3.0.0, chokidar@npm:^3.4.1, chokidar@npm:^3.4.2":
   version: 3.5.3
   resolution: "chokidar@npm:3.5.3"
   dependencies:
@@ -7924,13 +7922,6 @@ __metadata:
   version: 6.2.1
   resolution: "commander@npm:6.2.1"
   checksum: d7090410c0de6bc5c67d3ca41c41760d6d268f3c799e530aafb73b7437d1826bbf0d2a3edac33f8b57cc9887b4a986dce307fa5557e109be40eadb7c43b21742
-  languageName: node
-  linkType: hard
-
-"commander@npm:^9.0.0":
-  version: 9.4.1
-  resolution: "commander@npm:9.4.1"
-  checksum: bfb18e325a5bdf772763c2213d5c7d9e77144d944124e988bcd8e5e65fb6d45d5d4e86b09155d0f2556c9a59c31e428720e57968bcd050b2306e910a0bf3cf13
   languageName: node
   linkType: hard
 
@@ -12060,7 +12051,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"globby@npm:^11.0.2, globby@npm:^11.0.3, globby@npm:^11.0.4, globby@npm:^11.1.0":
+"globby@npm:^11.0.2, globby@npm:^11.0.3, globby@npm:^11.1.0":
   version: 11.1.0
   resolution: "globby@npm:11.1.0"
   dependencies:
@@ -15608,13 +15599,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mylas@npm:^2.1.9":
-  version: 2.1.13
-  resolution: "mylas@npm:2.1.13"
-  checksum: f861d092137a9ac268cba88042392a5dc2a290eed5c8543954eae849d85e5961332211161d2c08c3644ad893f20dbe9de89b07f5dc027f1f92f13f2d38f4b81f
-  languageName: node
-  linkType: hard
-
 "nan@npm:^2.12.1":
   version: 2.16.0
   resolution: "nan@npm:2.16.0"
@@ -16721,15 +16705,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"plimit-lit@npm:^1.2.6":
-  version: 1.4.1
-  resolution: "plimit-lit@npm:1.4.1"
-  dependencies:
-    queue-lit: ^1.4.0
-  checksum: 7c37ded998f48065093a2a86873934c370155df00287b37a0023aea6a62db95b77d289b84111157d863516d995a7423f000b177dbde7d5586689bb510e3593d4
-  languageName: node
-  linkType: hard
-
 "pluralize@npm:^8.0.0":
   version: 8.0.0
   resolution: "pluralize@npm:8.0.0"
@@ -17205,13 +17180,6 @@ __metadata:
   version: 0.2.0
   resolution: "querystring@npm:0.2.0"
   checksum: 8258d6734f19be27e93f601758858c299bdebe71147909e367101ba459b95446fbe5b975bf9beb76390156a592b6f4ac3a68b6087cea165c259705b8b4e56a69
-  languageName: node
-  linkType: hard
-
-"queue-lit@npm:^1.4.0":
-  version: 1.4.0
-  resolution: "queue-lit@npm:1.4.0"
-  checksum: 3cdae1722c11eeb97184314b08d408196e46bc6a72518700037d0a7e5a53da8733278a3cd69fc282846ee884ac8253dd286e60779eeea41ee607683b18bbf7c0
   languageName: node
   linkType: hard
 
@@ -20226,22 +20194,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsc-alias@npm:^1.7.0":
-  version: 1.7.0
-  resolution: "tsc-alias@npm:1.7.0"
-  dependencies:
-    chokidar: ^3.5.3
-    commander: ^9.0.0
-    globby: ^11.0.4
-    mylas: ^2.1.9
-    normalize-path: ^3.0.0
-    plimit-lit: ^1.2.6
-  bin:
-    tsc-alias: dist/bin/index.js
-  checksum: 6fc2a396b7ec2ee279f38f7414f626f0674f1f02f7e947c3757017f4c73fd9a5fa16842935a5b4051fc37bb7a4b4e145886ddf844dcfaaac80d0a3d4c6af0452
-  languageName: node
-  linkType: hard
-
 "tsconfig-paths@npm:^3.12.0, tsconfig-paths@npm:^3.14.1":
   version: 3.14.1
   resolution: "tsconfig-paths@npm:3.14.1"
@@ -20468,7 +20420,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:4.7.4, typescript@npm:^4.6.4":
+"typescript@npm:^4.6.4":
   version: 4.7.4
   resolution: "typescript@npm:4.7.4"
   bin:
@@ -20488,7 +20440,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@4.7.4#~builtin<compat/typescript>, typescript@patch:typescript@^4.6.4#~builtin<compat/typescript>":
+"typescript@patch:typescript@^4.6.4#~builtin<compat/typescript>":
   version: 4.7.4
   resolution: "typescript@patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=7ad353"
   bin:
