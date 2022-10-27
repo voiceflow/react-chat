@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.7](https://github.com/voiceflow/react-chat/compare/@voiceflow/widget@1.0.6...@voiceflow/widget@1.0.7) (2022-10-27)
+
+### Bug Fixes
+
+* use vite build ([8c3972e](https://github.com/voiceflow/react-chat/commit/8c3972e7f340ab3ae1515c99463f72b0cb24566b))
+
 ## [1.0.6](https://github.com/voiceflow/react-chat/compare/@voiceflow/widget@1.0.5...@voiceflow/widget@1.0.6) (2022-10-27)
 
 ### Bug Fixes
