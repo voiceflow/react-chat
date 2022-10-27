@@ -47,6 +47,10 @@ jobs:
           package: "all"
           monorepo_engine: "turborepo"
           cache_identifier: "monorepo-test-cache"
+      - persist_to_workspace:
+          root: "."
+          paths:
+            - ./*/*/dist
       ## disable sonarcloud until project set up
       # - sonarcloud/scan
 
@@ -98,7 +102,6 @@ workflows:
               only: master
 
       - push-to-cdn:
-          <<: *slack-fail-post-step
           context: dev-test
           requires:
             - vfcommon/monorepo_release
