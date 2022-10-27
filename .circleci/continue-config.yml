@@ -34,10 +34,6 @@ jobs:
           at: ~/voiceflow
       - vfcommon/install_node_modules:
           avoid_post_install_scripts: false
-      - vfcommon/monorepo_restore_cache:
-          package: "all"
-          monorepo_engine: "turborepo"
-          cache_identifier: "monorepo-test-cache"
       - vfcommon/monorepo_lint_report:
           force_execution: << pipeline.parameters.build-all >>
           run_on_root: true
