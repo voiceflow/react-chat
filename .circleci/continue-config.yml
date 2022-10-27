@@ -12,7 +12,7 @@ parameters:
     default: false
 
 orbs:
-  vfcommon: voiceflow/common@dev:09757722d14e33eae1cc6b4d283f8e643bba8f16
+  vfcommon: voiceflow/common@dev:6910c72a6c1d43781b297081f70b3c0b1a0102bc
   sonarcloud: sonarsource/sonarcloud@1.0.2
 
 defaults:
