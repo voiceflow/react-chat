@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.27.5](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.27.4...@voiceflow/react-chat@1.27.5) (2022-10-27)
+
+### Bug Fixes
+
+* export typings properly ([b290126](https://github.com/voiceflow/react-chat/commit/b2901269f154e18bdad9a2843c6a72e8ce7f3eb8))
+
 ## [1.27.4](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.27.3...@voiceflow/react-chat@1.27.4) (2022-10-27)
 
 ### Bug Fixes
