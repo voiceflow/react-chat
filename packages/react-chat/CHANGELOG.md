@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.27.3](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.27.2...@voiceflow/react-chat@1.27.3) (2022-10-27)
+
+### Bug Fixes
+
+* remove unused dependencies ([a65142d](https://github.com/voiceflow/react-chat/commit/a65142df730c431cda0adee3f58d2f5ba2a4cea1))
+* use vite build ([8c3972e](https://github.com/voiceflow/react-chat/commit/8c3972e7f340ab3ae1515c99463f72b0cb24566b))
+
 ## [1.27.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.27.1...@voiceflow/react-chat@1.27.2) (2022-10-27)
 
 ### Bug Fixes
