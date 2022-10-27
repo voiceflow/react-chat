@@ -1,4 +1,4 @@
-import { styled } from '@voiceflow/react-chat/build/cjs/styles';
+import { styled } from '@/styles';
 
 export const Button = styled('button', {
   display: 'flex',

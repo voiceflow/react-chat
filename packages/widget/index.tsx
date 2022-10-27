@@ -1,7 +1,7 @@
 import type { ChatConfig } from '@voiceflow/react-chat/build/cjs/common';
 import { createRoot } from 'react-dom/client';
 
-import ChatWidget from './src';
+import Widget from './src';
 import { sanitizeConfig, WIDGET_URL } from './src/config';
 
 const VOICEFLOW_ID = 'voiceflow-chat';
@@ -26,5 +26,5 @@ window.voiceflow.chat.interact ??= noop;
 window.voiceflow.chat.load = async (loadConfig: Partial<ChatConfig>) => {
   const config = sanitizeConfig(loadConfig);
 
-  root.render(<ChatWidget {...config} widgetURL={WIDGET_URL} />);
+  root.render(<Widget {...config} widgetURL={WIDGET_URL} />);
 };

@@ -1,17 +1,19 @@
 import React from 'react';
 
-import launch from '../../assets/launch.svg';
 import { Button } from './styled';
 
-interface LauncherProps {
+export interface LauncherProps {
   image?: string | undefined;
   open: VoidFunction;
 }
 
+// we have to use an external image because svgs are not bundled in the package
+const DEFAULT_LAUNCH = 'https://cdn.voiceflow.com/assets/launch.svg';
+
 const Launcher: React.FC<LauncherProps> = ({ image, open }) => {
   return (
     <Button onClick={open}>
-      <img src={image || launch} alt="launch" />
+      <img src={image || DEFAULT_LAUNCH} alt="launch" />
     </Button>
   );
 };

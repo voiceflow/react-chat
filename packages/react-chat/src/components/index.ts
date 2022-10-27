@@ -11,6 +11,7 @@ export { default as Header } from './Header';
 export { default as Icon } from './Icon';
 export { default as Image } from './Image';
 export { default as Input } from './Input';
+export { default as Launcher } from './Launcher';
 export { default as Loader } from './Loader';
 export { default as Message } from './Message';
 export { default as Prompt } from './Prompt';
