@@ -1,4 +1,4 @@
-import { ChatConfig, isObject } from '@voiceflow/react-chat/build/cjs/common';
+import { ChatConfig, isObject } from '@voiceflow/react-chat';
 
 export const WIDGET_URL = import.meta.env.VITE_WIDGET_URL;
 

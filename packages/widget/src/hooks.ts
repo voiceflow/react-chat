@@ -1,4 +1,4 @@
-import { PostMessage } from '@voiceflow/react-chat/build/cjs/common';
+import { PostMessage } from '@voiceflow/react-chat';
 import { MutableRefObject, useCallback } from 'react';
 
 export const useSendMessage = (chatRef: MutableRefObject<HTMLIFrameElement | null>, target = '*') =>
