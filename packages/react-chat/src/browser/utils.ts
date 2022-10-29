@@ -6,7 +6,7 @@ import { Assistant, ChatConfig, ChatPersistence, ChatPosition, isEnumValue, isOb
 import { RUNTIME_URL } from '@/constants';
 import { PRIMARY } from '@/styles/color';
 
-const DEFAULT_AVATAR = 'https://avatars.githubusercontent.com/u/44123967';
+const DEFAULT_AVATAR = 'https://cdn.voiceflow.com/assets/logo.png';
 
 const DEFAULT_ASSISTANT = {
   title: 'Voiceflow Assistant',
