@@ -36,14 +36,16 @@ export const getSession = (persistence: ChatPersistence, userID?: string): Sessi
 };
 
 export const saveSession = (persistence: ChatPersistence, session: SessionOptions): void => {
-  switch (persistence) {
-    case ChatPersistence.LOCAL_STORAGE:
-      setStorageSession(localStorage, session);
-      break;
-    case ChatPersistence.SESSION_STORAGE:
-      setStorageSession(localStorage, session);
-      break;
-    default:
-      break;
+  if (persistence === ChatPersistence.LOCAL_STORAGE) {
+    setStorageSession(localStorage, session);
+  } else if (persistence === ChatPersistence.SESSION_STORAGE) {
+    setStorageSession(sessionStorage, session);
+  }
+
+  if (persistence !== ChatPersistence.LOCAL_STORAGE) {
+    localStorage.removeItem(VOICEFLOW_SESSION_KEY);
+  }
+  if (persistence !== ChatPersistence.SESSION_STORAGE) {
+    sessionStorage.removeItem(VOICEFLOW_SESSION_KEY);
   }
 };

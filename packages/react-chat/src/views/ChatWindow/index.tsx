@@ -74,7 +74,7 @@ const ChatWindow: React.FC<ChatConfig & { assistant: Assistant; session: Session
             ))
             .exhaustive()
         )}
-        {runtime.indicator && <SystemResponse.Indicator avatar={assistant.image} />}
+        {runtime.indicator && <SystemResponse.Indicator avatar={assistant.avatar} />}
       </Chat>
     </ChatWindowContainer>
   );
