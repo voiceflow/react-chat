@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.27.6](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.27.5...@voiceflow/react-chat@1.27.6) (2022-10-29)
+
+### Bug Fixes
+
+* antialiasing (CT-000) ([75ace5a](https://github.com/voiceflow/react-chat/commit/75ace5a63d9ed4e491fdaeb6dcc15a5249d765b1))
+
 ## [1.27.5](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.27.4...@voiceflow/react-chat@1.27.5) (2022-10-27)
 
 ### Bug Fixes
