@@ -58,7 +58,7 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, session, save
   const interact = async (action: RuntimeAction): Promise<void> => {
     setIndicator(true);
 
-    const context = await runtime.interact(createContext(), { sessionID: stateRef.current.userID, action, ...(versionID ? { versionID } : {}) });
+    const context = await runtime.interact(createContext(), { sessionID: stateRef.current.userID, action, ...(versionID && { versionID }) });
 
     setIndicator(false);
 
@@ -163,8 +163,8 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, session, save
     await interact({ type: ActionType.LAUNCH, payload: null });
 
     // create transcript asynchronously in background
-    // const { browser, os, platform } = Bowser.parse(window.navigator.userAgent);
-    // runtime.createTranscript(state.userID, { browser: browser.name!, os: os.name!, device: platform.type! });
+    const { browser, os, platform } = Bowser.parse(window.navigator.userAgent);
+    runtime.createTranscript(state.userID, { browser: browser.name!, os: os.name!, device: platform.type! });
   };
 
   const reply = async (message: string): Promise<void> => send(message, { type: ActionType.TEXT, payload: message });
