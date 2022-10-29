@@ -39,26 +39,26 @@ const DEFAULT_RUNTIME_STATE: Required<SessionOptions> = {
   status: SessionStatus.IDLE,
 };
 
-export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, session, saveSession }: UseRuntimeProps) => {
+export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, ...config }: UseRuntimeProps) => {
   const [indicator, setIndicator] = useState(false);
-  const [state, setState, stateRef] = useStateRef<Required<SessionOptions>>({ ...DEFAULT_RUNTIME_STATE, ...session });
+  const [session, setSession, sessionRef] = useStateRef<Required<SessionOptions>>({ ...DEFAULT_RUNTIME_STATE, ...config.session });
 
   const runtime = useMemo(() => new VoiceflowRuntime<RuntimeContext>({ verify, url }), [verify]);
 
   const setTurns = (action: (turns: TurnProps[]) => TurnProps[]) => {
-    setState((prev) => ({ ...prev, turns: action(prev.turns) }));
+    setSession((prev) => ({ ...prev, turns: action(prev.turns) }));
   };
   const setStatus = (status: SessionStatus) => {
-    setState((prev) => ({ ...prev, status }));
+    setSession((prev) => ({ ...prev, status }));
   };
   const isStatus = (status: SessionStatus) => {
-    return stateRef.current.status === status;
+    return sessionRef.current.status === status;
   };
 
   const interact = async (action: RuntimeAction): Promise<void> => {
     setIndicator(true);
 
-    const context = await runtime.interact(createContext(), { sessionID: stateRef.current.userID, action, ...(versionID && { versionID }) });
+    const context = await runtime.interact(createContext(), { sessionID: sessionRef.current.userID, action, ...(versionID && { versionID }) });
 
     setIndicator(false);
 
@@ -72,11 +72,11 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, session, save
       },
     ]);
 
-    saveSession?.(stateRef.current);
+    config.saveSession?.(sessionRef.current);
   };
 
   const send: SendMessage = async (message, action) => {
-    if (stateRef.current.status === SessionStatus.ENDED) return;
+    if (sessionRef.current.status === SessionStatus.ENDED) return;
 
     handleActions(action);
 
@@ -157,14 +157,14 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, session, save
   const reset = () => setTurns(() => []);
 
   const launch = async (): Promise<void> => {
-    if (stateRef.current.turns.length) reset();
+    if (sessionRef.current.turns.length) reset();
 
     setStatus(SessionStatus.ACTIVE);
     await interact({ type: ActionType.LAUNCH, payload: null });
 
     // create transcript asynchronously in background
     const { browser, os, platform } = Bowser.parse(window.navigator.userAgent);
-    runtime.createTranscript(state.userID, { browser: browser.name!, os: os.name!, device: platform.type! });
+    runtime.createTranscript(session.userID, { browser: browser.name!, os: os.name!, device: platform.type! });
   };
 
   const reply = async (message: string): Promise<void> => send(message, { type: ActionType.TEXT, payload: message });
@@ -176,8 +176,8 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, session, save
     launch,
     interact,
     indicator,
-    state,
-    stateRef,
+    session,
+    sessionRef,
     setStatus,
     isStatus,
   };

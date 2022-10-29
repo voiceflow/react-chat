@@ -24,7 +24,9 @@ const ChatWindow: React.FC<ChatConfig & { assistant: Assistant; session: Session
   // listeners
   Listeners.useListenMessage(PostMessage.Type.INTERACT, ({ payload }) => runtime.interact(payload));
   Listeners.useListenMessage(PostMessage.Type.OPEN, async (): Promise<void> => {
-    if (runtime.isStatus(SessionStatus.IDLE)) await handleStart();
+    if (runtime.isStatus(SessionStatus.IDLE)) {
+      await handleStart();
+    }
   });
 
   const handleStart = async (): Promise<void> => {
@@ -50,15 +52,15 @@ const ChatWindow: React.FC<ChatConfig & { assistant: Assistant; session: Session
         image={assistant.image}
         avatar={assistant.avatar}
         watermark={assistant.watermark}
-        startTime={runtime.state.startTime}
+        startTime={runtime.session.startTime}
         hasEnded={runtime.isStatus(SessionStatus.ENDED)}
-        isLoading={!runtime.state.turns.length}
+        isLoading={!runtime.session.turns.length}
         onStart={handleStart}
         onEnd={handleEnd}
         onSend={runtime.reply}
         onMinimize={close}
       >
-        {runtime.state.turns.map((turn, turnIndex) =>
+        {runtime.session.turns.map((turn, turnIndex) =>
           match(turn)
             .with({ type: TurnType.USER }, ({ id, ...props }) => <UserResponse {...R.omit(props, ['type'])} key={id} />)
             .with({ type: TurnType.SYSTEM }, ({ id, ...props }) => (
@@ -67,7 +69,7 @@ const ChatWindow: React.FC<ChatConfig & { assistant: Assistant; session: Session
                 {...R.omit(props, ['type'])}
                 send={runtime.send}
                 avatar={assistant.avatar}
-                isLast={turnIndex === runtime.state.turns.length - 1}
+                isLast={turnIndex === runtime.session.turns.length - 1}
                 isLive={!runtime.isStatus(SessionStatus.ENDED) && !hasAnimated[id]}
                 onAnimationEnd={handleAnimationEnd(id)}
               />
