@@ -1,5 +1,6 @@
 import * as R from 'remeda';
 
+import type { RuntimeAction, SendMessage } from '@/common';
 import Button from '@/components/Button';
 import { useAutoScroll } from '@/hooks';
 
@@ -13,21 +14,23 @@ import { MessageProps } from './types';
 export * from './types';
 
 export interface ResponseActionProps {
-  label: string;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  name: string;
+  request: RuntimeAction;
 }
 
 export interface SystemResponseProps {
   avatar: string;
-  timestamp: Date;
+  timestamp: number;
   messages: MessageProps[];
   actions?: ResponseActionProps[];
   isLive?: boolean;
   isLast?: boolean;
+  send?: SendMessage;
   onAnimationEnd?: VoidFunction;
 }
 
 const SystemResponse: React.FC<SystemResponseProps> = ({
+  send,
   avatar,
   timestamp,
   messages,
@@ -50,6 +53,7 @@ const SystemResponse: React.FC<SystemResponseProps> = ({
     <>
       {visibleMessages.map((message, index) => (
         <SystemMessage
+          send={send}
           message={message}
           withImage={!showIndicator && index === visibleMessages.length - 1}
           avatar={avatar}
@@ -60,9 +64,9 @@ const SystemResponse: React.FC<SystemResponseProps> = ({
 
       {isLast && complete && !!actions.length && (
         <Actions>
-          {actions.map(({ label, onClick }, index) => (
-            <Button variant="secondary" onClick={onClick} key={index}>
-              {label}
+          {actions.map(({ name, request }, index) => (
+            <Button variant="secondary" onClick={() => send?.(name, request)} key={index}>
+              {name}
             </Button>
           ))}
         </Actions>

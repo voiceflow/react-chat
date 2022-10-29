@@ -14,7 +14,7 @@ export interface UserTurnProps extends UserResponseProps {
 export interface SystemTurnProps extends Omit<SystemResponseProps, 'avatar'> {
   id: string;
   type: TurnType.SYSTEM;
-  timestamp: Date;
+  timestamp: number;
 }
 
 export type TurnProps = UserTurnProps | SystemTurnProps;

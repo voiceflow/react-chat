@@ -43,7 +43,7 @@ const sanitizeAssistant = (assistant: unknown): PartialDeep<Assistant> => {
   };
 };
 
-export const fetchAssistant = async (config: ChatConfig): Promise<Assistant> => {
+export const mergeAssistant = async (config: ChatConfig): Promise<Assistant> => {
   const { url = RUNTIME_URL, versionID } = config;
 
   // fetch remote publishing config

@@ -11,5 +11,5 @@ const Template: ComponentStory<typeof Timestamp> = (args) => <Timestamp {...args
 
 export const Default = Template.bind({});
 Default.args = {
-  value: new Date(),
+  value: Date.now(),
 };

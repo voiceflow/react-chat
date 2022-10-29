@@ -15,7 +15,7 @@ import { Container, Dialog, Overlay, SessionTime, Spacer, Status } from './style
 export interface ChatProps extends HeaderProps, AssistantHeaderProps, FooterProps, React.PropsWithChildren<unknown> {
   description: string;
   isLoading: boolean;
-  startTime?: Nullish<Date>;
+  startTime?: Nullish<number>;
   watermark: boolean;
   onMinimize?: React.MouseEventHandler<HTMLButtonElement>;
   onEnd?: React.MouseEventHandler<HTMLButtonElement>;

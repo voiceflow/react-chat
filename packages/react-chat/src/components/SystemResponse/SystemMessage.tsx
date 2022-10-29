@@ -1,7 +1,9 @@
+import { serializeToJSX } from '@voiceflow/slate-serializer/jsx';
 import { useRef } from 'react';
 import * as R from 'remeda';
 import { match } from 'ts-pattern';
 
+import { SendMessage } from '@/common';
 import Avatar from '@/components/Avatar';
 import Card from '@/components/Card';
 import Carousel from '@/components/Carousel';
@@ -14,13 +16,14 @@ import { Container, Controls, List } from './styled';
 import { MessageProps } from './types';
 
 export interface SystemMessageProps {
+  send?: SendMessage | undefined;
   avatar: string;
-  timestamp: Date;
+  timestamp: number;
   message: MessageProps;
   withImage: boolean;
 }
 
-const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, timestamp, message, withImage }) => {
+const SystemMessage: React.FC<SystemMessageProps> = ({ send, avatar, timestamp, message, withImage }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const controlsRef = useRef<HTMLSpanElement>(null);
 
@@ -31,11 +34,11 @@ const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, timestamp, messag
         <Avatar avatar={avatar} />
         <List>
           {match(message)
-            .with({ type: MessageType.TEXT }, ({ text }) => <Message from="system">{text}</Message>)
+            .with({ type: MessageType.TEXT }, ({ text }) => <Message from="system">{typeof text === 'string' ? text : serializeToJSX(text)}</Message>)
             .with({ type: MessageType.IMAGE }, ({ url }) => <Image image={url} />)
-            .with({ type: MessageType.CARD }, (props) => <Card {...R.omit(props, ['type'])} />)
+            .with({ type: MessageType.CARD }, (props) => <Card {...R.omit(props, ['type'])} send={send} />)
             .with({ type: MessageType.CAROUSEL }, (props) => (
-              <Carousel {...R.omit(props, ['type'])} containerRef={containerRef} controlsRef={controlsRef} />
+              <Carousel {...R.omit(props, ['type'])} send={send} containerRef={containerRef} controlsRef={controlsRef} />
             ))
             .otherwise(() => null)}
         </List>
