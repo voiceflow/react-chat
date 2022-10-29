@@ -10,11 +10,7 @@ import { TurnType } from '@/types';
 import { ChatWindowContainer } from './styled';
 import { sendMessage } from './utils';
 
-const ChatWindow: React.FC<ChatConfig & { assistant: Assistant; session: SessionOptions }> = (config) => {
-  const { assistant, versionID, verify, url, session } = config;
-
-  const [hasAnimated, setHasAnimated] = useState<Record<string, true>>(session.turns?.reduce((acc, turn) => ({ ...acc, [turn.id]: true }), {}) ?? {});
-
+const ChatWindow: React.FC<ChatConfig & { assistant: Assistant; session: SessionOptions }> = ({ assistant, versionID, verify, url, session }) => {
   // emitters
   const close = useCallback(() => sendMessage({ type: PostMessage.Type.CLOSE }), []);
   const saveSession = useCallback((session: SessionOptions) => sendMessage({ type: PostMessage.Type.SAVE_SESSION, payload: session }), []);
@@ -38,11 +34,14 @@ const ChatWindow: React.FC<ChatConfig & { assistant: Assistant; session: Session
     close();
   };
 
+  // animation management
+  const [hasAnimated, setHasAnimated] = useState<Record<string, true>>(R.mapToObj(runtime.session.turns || [], (turn) => [turn.id, true]));
+
   const handleAnimationEnd = (id: string) => (): void => {
     setHasAnimated((prev) => ({ ...prev, [id]: true }));
   };
 
-  const theme = useTheme(config.assistant);
+  const theme = useTheme(assistant);
 
   return (
     <ChatWindowContainer className={theme}>
