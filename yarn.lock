@@ -5141,16 +5141,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@voiceflow/base-types@npm:2.71.0":
-  version: 2.71.0
-  resolution: "@voiceflow/base-types@npm:2.71.0"
-  dependencies:
-    "@voiceflow/common": ^8.1.5
-    slate: 0.73.0
-  checksum: 4aa5f79881e65ff8506bd837368aead087c54911651b48bed1a165c3d901366c8f356d9c295a58927eb57ee6721bcaaec84e199f19973d394a4940d2123fb2d9
-  languageName: node
-  linkType: hard
-
 "@voiceflow/base-types@npm:2.71.1":
   version: 2.71.1
   resolution: "@voiceflow/base-types@npm:2.71.1"
@@ -5291,10 +5281,11 @@ __metadata:
     "@voiceflow/base-types": 2.71.3
     "@voiceflow/eslint-config": 6.1.0
     "@voiceflow/prettier-config": 1.2.1
-    "@voiceflow/sdk-runtime": 1.4.0
+    "@voiceflow/sdk-runtime": 1.5.2
     "@voiceflow/slate-serializer": 1.2.2
     "@voiceflow/tsconfig": 1.4.8
     "@voiceflow/voiceflow-types": 3.20.20
+    bowser: ^2.11.0
     chroma-js: 2.4.2
     csstype: 3.1.0
     cuid: ^2.1.8
@@ -5326,16 +5317,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@voiceflow/sdk-runtime@npm:1.4.0":
-  version: 1.4.0
-  resolution: "@voiceflow/sdk-runtime@npm:1.4.0"
-  dependencies:
-    "@voiceflow/base-types": 2.71.0
-    http-errors: 2.0.0
-  checksum: ee0f3d2b5fe942cdea3f13c9521b00a5c4dc1685e406e2a2a914bc92e234929297854af26297be2d5f268251ad4538f0b3228a2c6f50191399ceeae6fa070e8b
-  languageName: node
-  linkType: hard
-
 "@voiceflow/sdk-runtime@npm:1.4.1":
   version: 1.4.1
   resolution: "@voiceflow/sdk-runtime@npm:1.4.1"
@@ -5343,6 +5324,16 @@ __metadata:
     "@voiceflow/base-types": 2.71.1
     http-errors: 2.0.0
   checksum: c1c9825f5ebed0ffc351920862b0a012109db9b090cb27eabbd1888f128c9962fce3cf50a7bfdde75f2cc5cd4560f01fd421b101662ff0a1567d699fadb2ec71
+  languageName: node
+  linkType: hard
+
+"@voiceflow/sdk-runtime@npm:1.5.2":
+  version: 1.5.2
+  resolution: "@voiceflow/sdk-runtime@npm:1.5.2"
+  dependencies:
+    "@voiceflow/base-types": 2.71.3
+    http-errors: 2.0.0
+  checksum: 255d526bb3951b9a92c2931e79578c6f353b4fd8f76a5290c93638dc8715cac2553515e8689f5f8efe0b0738f573d6243168cd2353a86b0e2bcf8fd3ab5a7dee
   languageName: node
   linkType: hard
 
@@ -6916,6 +6907,13 @@ __metadata:
   version: 1.0.0
   resolution: "boolbase@npm:1.0.0"
   checksum: 3e25c80ef626c3a3487c73dbfc70ac322ec830666c9ad915d11b701142fab25ec1e63eff2c450c74347acfd2de854ccde865cd79ef4db1683f7c7b046ea43bb0
+  languageName: node
+  linkType: hard
+
+"bowser@npm:^2.11.0":
+  version: 2.11.0
+  resolution: "bowser@npm:2.11.0"
+  checksum: 29c3f01f22e703fa6644fc3b684307442df4240b6e10f6cfe1b61c6ca5721073189ca97cdeedb376081148c8518e33b1d818a57f781d70b0b70e1f31fb48814f
   languageName: node
   linkType: hard
 

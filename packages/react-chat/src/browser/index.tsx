@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { Listeners, PostMessage } from '@/common';
 import ChatWidget from '@/views/ChatWindow';
 
-import { fetchAssistant } from './utils';
+import { mergeAssistant } from './utils';
 
 const VOICEFLOW_CHAT_ID = 'vfchat';
 
@@ -13,14 +13,21 @@ document.body.appendChild(rootEl);
 
 const root = createRoot(rootEl);
 
-const load: Listeners.MessageListener<PostMessage.Type.LOAD> = {
-  type: PostMessage.Type.LOAD,
+const fetchAssistant: Listeners.MessageListener<PostMessage.Type.FETCH_ASSISTANT> = {
+  type: PostMessage.Type.FETCH_ASSISTANT,
   action: async ({ payload }) => {
-    const assistant = await fetchAssistant(payload);
-    ChatWidget.sendMessage({ type: PostMessage.Type.LOADED, payload: assistant });
-
-    root.render(<ChatWidget {...payload} assistant={assistant} />);
+    const assistant = await mergeAssistant(payload);
+    ChatWidget.sendMessage({ type: PostMessage.Type.FETCHED_ASSISTANT, payload: assistant });
   },
 };
 
-Listeners.context.listeners.push(load);
+Listeners.context.listeners.push(fetchAssistant);
+
+const initialize: Listeners.MessageListener<PostMessage.Type.SESSION> = {
+  type: PostMessage.Type.SESSION,
+  action: async ({ payload }) => {
+    root.render(<ChatWidget {...payload} />);
+  },
+};
+
+Listeners.context.listeners.push(initialize);

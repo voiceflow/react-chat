@@ -1,55 +1,47 @@
-import React, { useRef } from 'react';
+import React, { useCallback, useState } from 'react';
 import * as R from 'remeda';
 import { match } from 'ts-pattern';
 
-import { Assistant, ChatConfig, Listeners, PostMessage, useTheme } from '@/common';
+import { Assistant, ChatConfig, Listeners, PostMessage, SessionOptions, SessionStatus, useTheme } from '@/common';
 import { Chat, SystemResponse, UserResponse } from '@/components';
 import { useRuntime } from '@/hooks';
 import { TurnType } from '@/types';
 
-import { sendMessage, useForceUpdate, useSendMessage } from './hooks';
 import { ChatWindowContainer } from './styled';
+import { sendMessage } from './utils';
 
-interface Session {
-  startTime: Date;
-}
+const ChatWindow: React.FC<ChatConfig & { assistant: Assistant; session: SessionOptions }> = ({ assistant, versionID, verify, url, session }) => {
+  // emitters
+  const close = useCallback(() => sendMessage({ type: PostMessage.Type.CLOSE }), []);
+  const saveSession = useCallback((session: SessionOptions) => sendMessage({ type: PostMessage.Type.SAVE_SESSION, payload: session }), []);
 
-const ChatWidget: React.FC<ChatConfig & { assistant: Assistant }> = (config) => {
-  const { assistant, userID, versionID, verify, url } = config;
+  const runtime = useRuntime({ versionID, verify, url, session, saveSession });
 
-  const hasEnded = useRef(false);
-  const session = useRef<Session | null>(null);
-  const hasAnimated = useRef<Record<string, true>>({});
-
-  const [forceUpdate] = useForceUpdate();
-
-  const runtime = useRuntime({ versionID, verify, userID, url, hasEnded });
-
-  const close = useSendMessage({ type: PostMessage.Type.CLOSE });
-
+  // listeners
   Listeners.useListenMessage(PostMessage.Type.INTERACT, ({ payload }) => runtime.interact(payload));
   Listeners.useListenMessage(PostMessage.Type.OPEN, async (): Promise<void> => {
-    if (!session.current) await handleStart();
+    if (runtime.isStatus(SessionStatus.IDLE)) {
+      await handleStart();
+    }
   });
 
   const handleStart = async (): Promise<void> => {
-    hasEnded.current = false;
-    session.current = { startTime: new Date() };
-    forceUpdate();
     await runtime.launch();
   };
 
   const handleEnd = (): void => {
-    hasEnded.current = true;
-    forceUpdate();
+    runtime.setStatus(SessionStatus.ENDED);
     close();
   };
 
+  // animation management
+  const [hasAnimated, setHasAnimated] = useState<Record<string, true>>(R.mapToObj(runtime.session.turns || [], (turn) => [turn.id, true]));
+
   const handleAnimationEnd = (id: string) => (): void => {
-    hasAnimated.current[id] = true;
+    setHasAnimated((prev) => ({ ...prev, [id]: true }));
   };
 
-  const theme = useTheme(config.assistant);
+  const theme = useTheme(assistant);
 
   return (
     <ChatWindowContainer className={theme}>
@@ -59,33 +51,34 @@ const ChatWidget: React.FC<ChatConfig & { assistant: Assistant }> = (config) => 
         image={assistant.image}
         avatar={assistant.avatar}
         watermark={assistant.watermark}
-        startTime={session.current?.startTime}
-        hasEnded={hasEnded.current}
-        isLoading={!runtime.turns.length}
+        startTime={runtime.session.startTime}
+        hasEnded={runtime.isStatus(SessionStatus.ENDED)}
+        isLoading={!runtime.session.turns.length}
         onStart={handleStart}
         onEnd={handleEnd}
         onSend={runtime.reply}
         onMinimize={close}
       >
-        {runtime.turns.map((turn, turnIndex) =>
+        {runtime.session.turns.map((turn, turnIndex) =>
           match(turn)
             .with({ type: TurnType.USER }, ({ id, ...props }) => <UserResponse {...R.omit(props, ['type'])} key={id} />)
             .with({ type: TurnType.SYSTEM }, ({ id, ...props }) => (
               <SystemResponse
-                {...R.omit(props, ['type'])}
-                avatar={assistant.avatar}
-                isLive={!hasEnded.current && !hasAnimated.current[id]}
-                onAnimationEnd={handleAnimationEnd(id)}
                 key={id}
-                isLast={turnIndex === runtime.turns.length - 1}
+                {...R.omit(props, ['type'])}
+                send={runtime.send}
+                avatar={assistant.avatar}
+                isLast={turnIndex === runtime.session.turns.length - 1}
+                isLive={!runtime.isStatus(SessionStatus.ENDED) && !hasAnimated[id]}
+                onAnimationEnd={handleAnimationEnd(id)}
               />
             ))
             .exhaustive()
         )}
-        {runtime.indicator && <SystemResponse.Indicator avatar={assistant.image} />}
+        {runtime.indicator && <SystemResponse.Indicator avatar={assistant.avatar} />}
       </Chat>
     </ChatWindowContainer>
   );
 };
 
-export default Object.assign(ChatWidget, { sendMessage });
+export default Object.assign(ChatWindow, { sendMessage });

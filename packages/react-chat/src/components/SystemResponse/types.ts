@@ -1,3 +1,5 @@
+import { Text } from '@voiceflow/base-types';
+
 import { CardProps } from '@/components/Card';
 import { StringifiedEnum } from '@/types/util';
 
@@ -9,7 +11,7 @@ export interface BaseMessageProps {
 
 export interface TextMessageProps extends BaseMessageProps {
   type: StringifiedEnum<MessageType.TEXT>;
-  text: React.ReactNode;
+  text: string | Text.SlateTextValue;
 }
 
 export interface ImageMessageProps extends BaseMessageProps {

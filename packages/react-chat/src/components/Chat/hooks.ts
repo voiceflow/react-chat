@@ -5,7 +5,7 @@ import { useMemo } from 'react';
 
 import { Nullish } from '@/types';
 
-export const useTimestamp = (startTime?: Nullish<Date>) => {
+export const useTimestamp = (startTime?: Nullish<number>) => {
   return useMemo(() => {
     if (!startTime) return null;
 
