@@ -8,7 +8,7 @@ export default {
   title: 'Components/Chat/UserResponse',
   component: UserResponse,
   args: {
-    timestamp: new Date(),
+    timestamp: Date.now(),
   },
 } as ComponentMeta<typeof UserResponse>;
 

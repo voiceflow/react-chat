@@ -17,7 +17,7 @@ export default {
   title: 'Components/Chat/SystemResponse',
   component: SystemResponse,
   args: {
-    timestamp: new Date(),
+    timestamp: Date.now(),
     image: 'https://source.unsplash.com/random/26x26',
     messageDelay: 2000,
   },

@@ -8,16 +8,18 @@ import {
   VisualTraceComponent,
   VoiceflowRuntime,
 } from '@voiceflow/sdk-runtime';
-import { serializeToJSX } from '@voiceflow/slate-serializer/jsx';
+import Bowser from 'bowser';
 import cuid from 'cuid';
-import { MutableRefObject, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 
-import { RuntimeOptions } from '@/common';
+import { RuntimeOptions, SendMessage, SessionOptions, SessionStatus } from '@/common';
 import type { SystemResponseProps } from '@/components/SystemResponse';
 import { MessageType } from '@/components/SystemResponse/constants';
 import { RUNTIME_URL } from '@/constants';
 import { TurnProps, TurnType } from '@/types';
 import { handleActions } from '@/utils/actions';
+
+import { useStateRef } from './useStateRef';
 
 export interface RuntimeContext extends Pick<SystemResponseProps, 'messages' | 'actions'> {}
 
@@ -26,19 +28,37 @@ const createContext = (): RuntimeContext => ({
 });
 
 interface UseRuntimeProps extends RuntimeOptions {
-  hasEnded?: MutableRefObject<boolean>;
+  session: SessionOptions;
+  saveSession?: (session: SessionOptions) => void;
 }
 
-export const useRuntime = ({ url = RUNTIME_URL, versionID, userID, hasEnded, verify }: UseRuntimeProps) => {
-  const [turns, setTurns] = useState<TurnProps[]>([]);
+const DEFAULT_RUNTIME_STATE: Required<SessionOptions> = {
+  turns: [],
+  userID: cuid(),
+  startTime: Date.now(),
+  status: SessionStatus.IDLE,
+};
+
+export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, ...config }: UseRuntimeProps) => {
   const [indicator, setIndicator] = useState(false);
-  const sessionID = useMemo(() => (userID ? encodeURIComponent(userID) : cuid()), []);
+  const [session, setSession, sessionRef] = useStateRef<Required<SessionOptions>>({ ...DEFAULT_RUNTIME_STATE, ...config.session });
 
   const runtime = useMemo(() => new VoiceflowRuntime<RuntimeContext>({ verify, url }), [verify]);
+
+  const setTurns = (action: (turns: TurnProps[]) => TurnProps[]) => {
+    setSession((prev) => ({ ...prev, turns: action(prev.turns) }));
+  };
+  const setStatus = (status: SessionStatus) => {
+    setSession((prev) => ({ ...prev, status }));
+  };
+  const isStatus = (status: SessionStatus) => {
+    return sessionRef.current.status === status;
+  };
+
   const interact = async (action: RuntimeAction): Promise<void> => {
     setIndicator(true);
 
-    const context = await runtime.interact(createContext(), { sessionID, action, ...(versionID ? { versionID } : {}) });
+    const context = await runtime.interact(createContext(), { sessionID: sessionRef.current.userID, action, ...(versionID && { versionID }) });
 
     setIndicator(false);
 
@@ -47,14 +67,16 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, userID, hasEnded, ver
       {
         id: cuid(),
         type: TurnType.SYSTEM,
-        timestamp: new Date(),
+        timestamp: Date.now(),
         ...context,
       },
     ]);
+
+    config.saveSession?.(sessionRef.current);
   };
 
-  const send = async (message: string, action: RuntimeAction): Promise<void> => {
-    if (hasEnded?.current) return;
+  const send: SendMessage = async (message, action) => {
+    if (sessionRef.current.status === SessionStatus.ENDED) return;
 
     handleActions(action);
 
@@ -64,7 +86,7 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, userID, hasEnded, ver
         id: cuid(),
         type: TurnType.USER,
         message,
-        timestamp: new Date(),
+        timestamp: Date.now(),
       },
     ]);
     await interact(action);
@@ -75,7 +97,7 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, userID, hasEnded, ver
       const { slate, message } = payload;
       context.messages.push({
         type: MessageType.TEXT,
-        text: slate?.content ? serializeToJSX(slate.content) : message,
+        text: slate?.content || message,
         delay: slate?.messageDelayMilliseconds,
       });
       return context;
@@ -90,8 +112,8 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, userID, hasEnded, ver
   runtime.registerStep(
     ChoiceTraceComponent(({ context }, { payload: { buttons } }) => {
       context.actions = (buttons as { name: string; request: RuntimeAction }[]).map(({ name, request }) => ({
-        label: name,
-        onClick: () => send(name, request),
+        name,
+        request,
       }));
       return context;
     })
@@ -103,7 +125,7 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, userID, hasEnded, ver
         title,
         description: description.text,
         image: imageUrl,
-        actions: buttons.map(({ name, request }) => ({ label: name, onClick: () => send(name, request) })),
+        actions: buttons.map(({ name, request }) => ({ name, request })),
       });
       return context;
     })
@@ -117,31 +139,46 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, userID, hasEnded, ver
           title,
           description: description.text,
           image: imageUrl,
-          actions: buttons.map(({ name, request }) => ({ label: name, onClick: () => send(name, request) })),
+          actions: buttons.map(({ name, request }) => ({ name, request })),
         })),
       });
       return context;
     },
   });
 
-  const reset = () => setTurns([]);
+  runtime.registerStep({
+    canHandle: ({ type }) => type === Trace.TraceType.END,
+    handle: ({ context }) => {
+      setStatus(SessionStatus.ENDED);
+      return context;
+    },
+  });
+
+  const reset = () => setTurns(() => []);
 
   const launch = async (): Promise<void> => {
-    if (turns.length) {
-      reset();
-    }
+    if (sessionRef.current.turns.length) reset();
 
+    setStatus(SessionStatus.ACTIVE);
     await interact({ type: ActionType.LAUNCH, payload: null });
+
+    // create transcript asynchronously in background
+    const { browser, os, platform } = Bowser.parse(window.navigator.userAgent);
+    runtime.createTranscript(session.userID, { browser: browser.name!, os: os.name!, device: platform.type! });
   };
 
   const reply = async (message: string): Promise<void> => send(message, { type: ActionType.TEXT, payload: message });
 
   return {
-    turns,
+    send,
+    reply,
     reset,
     launch,
-    reply,
     interact,
     indicator,
+    session,
+    sessionRef,
+    setStatus,
+    isStatus,
   };
 };

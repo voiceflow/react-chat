@@ -9,9 +9,10 @@
   "dependencies": {
     "@stitches/react": "^1.2.8",
     "@voiceflow/base-types": "2.71.3",
-    "@voiceflow/sdk-runtime": "1.4.0",
+    "@voiceflow/sdk-runtime": "1.5.2",
     "@voiceflow/slate-serializer": "1.2.2",
     "@voiceflow/voiceflow-types": "3.20.20",
+    "bowser": "^2.11.0",
     "chroma-js": "2.4.2",
     "csstype": "3.1.0",
     "cuid": "^2.1.8",

@@ -18,7 +18,7 @@ export interface DebugResponseProps {
 
 export interface UserResponseProps {
   message: string;
-  timestamp: Date;
+  timestamp: number;
   debug?: DebugResponseProps;
 }
 
