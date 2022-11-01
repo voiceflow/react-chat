@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.28.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.28.0...@voiceflow/react-chat@1.28.1) (2022-11-01)
+
+### Bug Fixes
+
+* transcript user field ([017e7c3](https://github.com/voiceflow/react-chat/commit/017e7c3cca9e6e1235233075ea5716a4708f7df1))
+
 # [1.28.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.27.6...@voiceflow/react-chat@1.28.0) (2022-10-30)
 
 ### Features
