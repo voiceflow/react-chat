@@ -28,6 +28,14 @@ interface Configuration {
   userID?: string;
 
   /**
+   * [optional] user metadata for transcripts
+   */
+  user?: {
+    name?: string;
+    image?: string;
+  };
+
+  /**
    * [optional] the version ID of your project, defaults to 'development'
    * can be a 'development' or 'production' alias or a specific versionID
    */
@@ -54,14 +62,23 @@ interface Configuration {
 ## Browser Usage
 
 You can use a simple JavaScript snippet to add the chat widget to any HTML page.
+Ensure that the `verify: { projectID: ... }` field is replaced with your Voiceflow projectID.
 
 ```html
-<script>
-  function _vf_load() {
-    window.voiceflow.chat.load({ verify: { projectID: 'XXXXXXX.....' } });
-  }
+<script type="text/javascript">
+  (function (d, t) {
+    var v = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    v.onload = function () {
+      window.voiceflow.chat.load({
+        verify: { projectID: "XXXXXX..." },
+      });
+    };
+    v.src = "https://cdn.voiceflow.com/widget/bundle.mjs";
+    v.type = "text/javascript";
+    s.parentNode.insertBefore(v, s);
+  })(document, "script");
 </script>
-<script src="https://unpkg.com/@voiceflow/react-chat/iframe/dist/bundle.mjs" onload="_vf_load()"></script>
 ```
 
 ### Browser API
