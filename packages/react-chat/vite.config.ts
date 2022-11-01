@@ -1,4 +1,5 @@
 import react from '@vitejs/plugin-react';
+import cuid from 'cuid';
 import path from 'path';
 import { defineConfig, PluginOption } from 'vite';
 import fonts from 'vite-plugin-fonts';
@@ -35,7 +36,7 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, 'index.html'),
       name: 'voiceflow-chat',
-      fileName: 'bundle',
+      fileName: cuid(),
       formats: ['es'],
     },
   },
