@@ -1,4 +1,4 @@
-import type { RuntimeAction, RuntimeOptions as SDKRuntimeOptions } from '@voiceflow/sdk-runtime';
+import type { PublicVerify, RuntimeAction, RuntimeOptions as SDKRuntimeOptions } from '@voiceflow/sdk-runtime';
 import { ChatPersistence, ChatPosition, ChatPublishing } from '@voiceflow/voiceflow-types/build/cjs/version/chat';
 
 import { TurnProps } from '@/types';
@@ -8,7 +8,7 @@ export type { RuntimeAction };
 
 export type SendMessage = (message: string, action: RuntimeAction) => Promise<void>;
 
-export interface RuntimeOptions extends Omit<SDKRuntimeOptions, 'url'> {
+export interface RuntimeOptions extends Omit<SDKRuntimeOptions<PublicVerify>, 'url'> {
   url?: string | undefined;
   user?:
     | {
