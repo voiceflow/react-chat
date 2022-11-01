@@ -25,7 +25,7 @@ const Widget: React.FC<WidgetProps> = ({ children, widgetURL, ...config }) => {
       payload: {
         ...config,
         assistant,
-        session: getSession(assistant.persistence, config.userID),
+        session: getSession(assistant.persistence, config.verify.projectID, config.userID),
       },
     });
   });
@@ -33,7 +33,7 @@ const Widget: React.FC<WidgetProps> = ({ children, widgetURL, ...config }) => {
   Listeners.useListenMessage(PostMessage.Type.SAVE_SESSION, ({ payload }) => {
     const persistence = assistantRef.current?.persistence;
     if (persistence) {
-      saveSession(persistence, payload);
+      saveSession(persistence, config.verify.projectID, payload);
     }
   });
 
