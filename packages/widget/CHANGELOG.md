@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.3](https://github.com/voiceflow/react-chat/compare/@voiceflow/widget@1.1.2...@voiceflow/widget@1.1.3) (2022-11-01)
+
+### Bug Fixes
+
+* bind session to project id (CT-1050) ([#28](https://github.com/voiceflow/react-chat/issues/28)) ([d738f8a](https://github.com/voiceflow/react-chat/commit/d738f8a5f854b5aef2df38716fedcbc21216fcef))
+
 ## [1.1.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/widget@1.1.1...@voiceflow/widget@1.1.2) (2022-11-01)
 
 ### Bug Fixes
