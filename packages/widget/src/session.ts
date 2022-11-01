@@ -2,50 +2,52 @@ import { ChatPersistence, cuid, SessionOptions } from '@voiceflow/react-chat';
 
 const VOICEFLOW_SESSION_KEY = 'voiceflow-session';
 
-const getStorageSession = (storage: Storage): SessionOptions | null => {
+const getSessionKey = (projectID: string) => `${VOICEFLOW_SESSION_KEY}-${projectID}`;
+
+const getStorageSession = (storage: Storage, projectID: string): SessionOptions | null => {
   try {
-    return JSON.parse(storage.getItem(VOICEFLOW_SESSION_KEY)!);
+    return JSON.parse(storage.getItem(getSessionKey(projectID))!);
   } catch {
     return null;
   }
 };
 
-const setStorageSession = (storage: Storage, options: SessionOptions) => {
-  storage.setItem(VOICEFLOW_SESSION_KEY, JSON.stringify(options));
+const setStorageSession = (storage: Storage, projectID: string, options: SessionOptions) => {
+  storage.setItem(getSessionKey(projectID), JSON.stringify(options));
   return options;
 };
 
-const resolveSession = (storage: Storage, userID?: string) => {
-  const session = getStorageSession(storage);
+const resolveSession = (storage: Storage, projectID: string, userID?: string) => {
+  const session = getStorageSession(storage, projectID);
   if (!session || (userID && session.userID !== userID)) {
-    return setStorageSession(storage, { userID: userID || cuid() });
+    return setStorageSession(storage, projectID, { userID: userID || cuid() });
   }
   return session;
 };
 
-export const getSession = (persistence: ChatPersistence, userID?: string): SessionOptions => {
+export const getSession = (persistence: ChatPersistence, projectID: string, userID?: string): SessionOptions => {
   switch (persistence) {
     case ChatPersistence.MEMORY:
       return { userID: userID || cuid() };
     case ChatPersistence.LOCAL_STORAGE:
-      return resolveSession(localStorage, userID);
+      return resolveSession(localStorage, projectID, userID);
     case ChatPersistence.SESSION_STORAGE:
     default:
-      return resolveSession(sessionStorage, userID);
+      return resolveSession(sessionStorage, projectID, userID);
   }
 };
 
-export const saveSession = (persistence: ChatPersistence, session: SessionOptions): void => {
+export const saveSession = (persistence: ChatPersistence, projectID: string, session: SessionOptions): void => {
   if (persistence === ChatPersistence.LOCAL_STORAGE) {
-    setStorageSession(localStorage, session);
+    setStorageSession(localStorage, projectID, session);
   } else if (persistence === ChatPersistence.SESSION_STORAGE) {
-    setStorageSession(sessionStorage, session);
+    setStorageSession(sessionStorage, projectID, session);
   }
 
   if (persistence !== ChatPersistence.LOCAL_STORAGE) {
-    localStorage.removeItem(VOICEFLOW_SESSION_KEY);
+    localStorage.removeItem(getSessionKey(projectID));
   }
   if (persistence !== ChatPersistence.SESSION_STORAGE) {
-    sessionStorage.removeItem(VOICEFLOW_SESSION_KEY);
+    sessionStorage.removeItem(getSessionKey(projectID));
   }
 };
