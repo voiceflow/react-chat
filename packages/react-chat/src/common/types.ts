@@ -10,6 +10,10 @@ export type SendMessage = (message: string, action: RuntimeAction) => Promise<vo
 
 export interface RuntimeOptions extends Omit<SDKRuntimeOptions, 'url'> {
   url?: string | undefined;
+  user?: {
+    name?: string;
+    image?: string;
+  };
   userID?: string;
   versionID?: string | undefined;
 }

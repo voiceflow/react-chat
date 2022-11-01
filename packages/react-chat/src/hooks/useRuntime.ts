@@ -39,7 +39,7 @@ const DEFAULT_RUNTIME_STATE: Required<SessionOptions> = {
   status: SessionStatus.IDLE,
 };
 
-export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, ...config }: UseRuntimeProps) => {
+export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...config }: UseRuntimeProps) => {
   const [indicator, setIndicator] = useState(false);
   const [session, setSession, sessionRef] = useStateRef<Required<SessionOptions>>({ ...DEFAULT_RUNTIME_STATE, ...config.session });
 
@@ -163,8 +163,13 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, ...config }: 
     await interact({ type: ActionType.LAUNCH, payload: null });
 
     // create transcript asynchronously in background
-    const { browser, os, platform } = Bowser.parse(window.navigator.userAgent);
-    runtime.createTranscript(session.userID, { browser: browser.name!, os: os.name!, device: platform.type! });
+    const {
+      browser: { name: browser },
+      os: { name: os },
+      platform: { type: device },
+    } = Bowser.parse(window.navigator.userAgent);
+
+    runtime.createTranscript(session.userID, { ...(os && { os }), ...(browser && { browser }), ...(device && { device }), ...(user && { user }) });
   };
 
   const reply = async (message: string): Promise<void> => send(message, { type: ActionType.TEXT, payload: message });
