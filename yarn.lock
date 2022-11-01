@@ -5281,7 +5281,7 @@ __metadata:
     "@voiceflow/base-types": 2.71.3
     "@voiceflow/eslint-config": 6.1.0
     "@voiceflow/prettier-config": 1.2.1
-    "@voiceflow/sdk-runtime": 1.5.2
+    "@voiceflow/sdk-runtime": 1.5.3
     "@voiceflow/slate-serializer": 1.2.2
     "@voiceflow/tsconfig": 1.4.8
     "@voiceflow/voiceflow-types": 3.20.20
@@ -5327,13 +5327,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@voiceflow/sdk-runtime@npm:1.5.2":
-  version: 1.5.2
-  resolution: "@voiceflow/sdk-runtime@npm:1.5.2"
+"@voiceflow/sdk-runtime@npm:1.5.3":
+  version: 1.5.3
+  resolution: "@voiceflow/sdk-runtime@npm:1.5.3"
   dependencies:
     "@voiceflow/base-types": 2.71.3
     http-errors: 2.0.0
-  checksum: 255d526bb3951b9a92c2931e79578c6f353b4fd8f76a5290c93638dc8715cac2553515e8689f5f8efe0b0738f573d6243168cd2353a86b0e2bcf8fd3ab5a7dee
+  checksum: b0e5e71e55c76adbe1c121950cd231d146e35b79a1b33a5e4d932a34683e70a637b2284c6e9b647b6a0d59085b878634cd875fdeefb9b5b27e0e3b627ed130c6
   languageName: node
   linkType: hard
 

@@ -10,12 +10,19 @@ import { TurnType } from '@/types';
 import { ChatWindowContainer } from './styled';
 import { sendMessage } from './utils';
 
-const ChatWindow: React.FC<ChatConfig & { assistant: Assistant; session: SessionOptions }> = ({ assistant, versionID, verify, url, session }) => {
+const ChatWindow: React.FC<ChatConfig & { assistant: Assistant; session: SessionOptions }> = ({
+  assistant,
+  versionID,
+  verify,
+  user,
+  url,
+  session,
+}) => {
   // emitters
   const close = useCallback(() => sendMessage({ type: PostMessage.Type.CLOSE }), []);
   const saveSession = useCallback((session: SessionOptions) => sendMessage({ type: PostMessage.Type.SAVE_SESSION, payload: session }), []);
 
-  const runtime = useRuntime({ versionID, verify, url, session, saveSession });
+  const runtime = useRuntime({ versionID, verify, url, user, session, saveSession });
 
   // listeners
   Listeners.useListenMessage(PostMessage.Type.INTERACT, ({ payload }) => runtime.interact(payload));
