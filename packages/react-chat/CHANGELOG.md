@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.28.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.28.1...@voiceflow/react-chat@1.28.2) (2022-11-01)
+
+### Bug Fixes
+
+* bind session to project id (CT-1050) ([#28](https://github.com/voiceflow/react-chat/issues/28)) ([d738f8a](https://github.com/voiceflow/react-chat/commit/d738f8a5f854b5aef2df38716fedcbc21216fcef))
+
 ## [1.28.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.28.0...@voiceflow/react-chat@1.28.1) (2022-11-01)
 
 ### Bug Fixes
