@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 import type { RuntimeAction, SendMessage } from '@/common';
 import Button from '@/components/Button';
 import { useAutoScroll } from '@/hooks';
@@ -43,12 +41,12 @@ const SystemResponse: React.FC<SystemResponseProps> = ({ send, avatar, timestamp
       {visibleMessages.map((message, index) => (
         <SystemMessage
           send={send}
-          onEnd={onEnd}
           message={message}
           withImage={!showIndicator && index === visibleMessages.length - 1}
           avatar={avatar}
           timestamp={timestamp}
           key={index}
+          onEnd={onEnd}
         />
       ))}
 

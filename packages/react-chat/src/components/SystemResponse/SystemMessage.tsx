@@ -12,6 +12,7 @@ import Message from '@/components/Message';
 import Timestamp from '@/components/Timestamp';
 
 import { MessageType } from './constants';
+import EndState from './state/end';
 import { Container, Controls, List } from './styled';
 import { MessageProps } from './types';
 
@@ -29,8 +30,7 @@ const SystemMessage: React.FC<SystemMessageProps> = ({ send, avatar, timestamp, 
   const controlsRef = useRef<HTMLSpanElement>(null);
 
   if (message.type === MessageType.END) {
-    onEnd?.();
-    return null;
+    return <EndState onEnd={onEnd} />;
   }
 
   return (
