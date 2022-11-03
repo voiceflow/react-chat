@@ -34,7 +34,7 @@ const SystemResponse: React.FC<SystemResponseProps> = ({ send, avatar, timestamp
 
   useAutoScroll([showIndicator, complete, visibleMessages.length]);
 
-  if (!messages.length) return null;
+  if (!messages.length && !actions.length) return null;
 
   return (
     <>
