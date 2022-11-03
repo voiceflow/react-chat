@@ -149,7 +149,7 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...conf
   runtime.registerStep({
     canHandle: ({ type }) => type === Trace.TraceType.END,
     handle: ({ context }) => {
-      setStatus(SessionStatus.ENDED);
+      context.messages.push({ type: MessageType.END });
       return context;
     },
   });

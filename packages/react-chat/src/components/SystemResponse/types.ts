@@ -28,4 +28,8 @@ export interface CarouselMessageProps extends BaseMessageProps {
   cards: CardProps[];
 }
 
-export type MessageProps = TextMessageProps | ImageMessageProps | CardMessageProps | CarouselMessageProps;
+export interface EndMessage extends BaseMessageProps {
+  type: StringifiedEnum<MessageType.END>;
+}
+
+export type MessageProps = TextMessageProps | ImageMessageProps | CardMessageProps | CarouselMessageProps | EndMessage;

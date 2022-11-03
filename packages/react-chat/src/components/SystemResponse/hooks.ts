@@ -1,5 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { match } from 'ts-pattern';
+
+import { useDidUpdateEffect } from '@/hooks';
 
 import { MessageProps } from './types';
 
@@ -22,19 +24,16 @@ const createAnimateIndicator = (messageDelay: number = DEFAULT_MESSAGE_DELAY): A
   messageDelay,
 });
 
-export const useAnimatedMessages = ({
-  messages,
-  isLive,
-  onAnimationEnd,
-}: {
-  messages: MessageProps[];
-  isLive: boolean;
-  onAnimationEnd: VoidFunction;
-}) => {
-  const shouldAnimate = !!(isLive && messages.length);
-  const [complete, setComplete] = useState(!shouldAnimate);
-  const [showIndicator, setShowIndicator] = useState(shouldAnimate);
-  const [visibleMessages, setVisibleMessages] = useState(shouldAnimate ? [] : messages);
+export const useAnimatedMessages = ({ messages, isLast }: { messages: MessageProps[]; isLast: boolean | undefined }) => {
+  const shouldAnimate = useRef(isLast && !!messages.length);
+  const [complete, setComplete] = useState(!shouldAnimate.current);
+  const [showIndicator, setShowIndicator] = useState(shouldAnimate.current);
+  const [visibleMessages, setVisibleMessages] = useState(shouldAnimate.current ? [] : messages);
+
+  const endAnimation = useCallback(() => {
+    setComplete(true);
+    setShowIndicator(false);
+  }, []);
 
   useEffect(() => {
     if (!shouldAnimate) return undefined;
@@ -54,11 +53,11 @@ export const useAnimatedMessages = ({
     };
 
     const animate = () => {
+      if (!shouldAnimate.current) return;
+
       const next = animations.shift();
       if (!next) {
-        onAnimationEnd();
-        setComplete(true);
-        setShowIndicator(false);
+        endAnimation();
         return;
       }
 
@@ -81,6 +80,14 @@ export const useAnimatedMessages = ({
       clearTimeout(timer);
     };
   }, []);
+
+  useDidUpdateEffect(() => {
+    if (!isLast) {
+      shouldAnimate.current = false;
+      endAnimation();
+      setVisibleMessages(messages);
+    }
+  }, [isLast]);
 
   return {
     complete,

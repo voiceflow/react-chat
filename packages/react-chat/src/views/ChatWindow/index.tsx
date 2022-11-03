@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import * as R from 'remeda';
 import { match } from 'ts-pattern';
 
@@ -36,17 +36,14 @@ const ChatWindow: React.FC<ChatConfig & { assistant: Assistant; session: Session
     await runtime.launch();
   };
 
-  const handleEnd = (): void => {
+  const handleEnd = useCallback((): void => {
     runtime.setStatus(SessionStatus.ENDED);
+  }, []);
+
+  const closeAndEnd = useCallback((): void => {
+    handleEnd();
     close();
-  };
-
-  // animation management
-  const [hasAnimated, setHasAnimated] = useState<Record<string, true>>(R.mapToObj(runtime.session.turns || [], (turn) => [turn.id, true]));
-
-  const handleAnimationEnd = (id: string) => (): void => {
-    setHasAnimated((prev) => ({ ...prev, [id]: true }));
-  };
+  }, []);
 
   const theme = useTheme(assistant);
 
@@ -62,7 +59,7 @@ const ChatWindow: React.FC<ChatConfig & { assistant: Assistant; session: Session
         hasEnded={runtime.isStatus(SessionStatus.ENDED)}
         isLoading={!runtime.session.turns.length}
         onStart={handleStart}
-        onEnd={handleEnd}
+        onEnd={closeAndEnd}
         onSend={runtime.reply}
         onMinimize={close}
       >
@@ -76,8 +73,7 @@ const ChatWindow: React.FC<ChatConfig & { assistant: Assistant; session: Session
                 send={runtime.send}
                 avatar={assistant.avatar}
                 isLast={turnIndex === runtime.session.turns.length - 1}
-                isLive={!runtime.isStatus(SessionStatus.ENDED) && !hasAnimated[id]}
-                onAnimationEnd={handleAnimationEnd(id)}
+                onEnd={handleEnd}
               />
             ))
             .exhaustive()

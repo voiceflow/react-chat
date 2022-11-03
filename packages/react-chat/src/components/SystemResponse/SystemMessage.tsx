@@ -21,11 +21,17 @@ export interface SystemMessageProps {
   timestamp: number;
   message: MessageProps;
   withImage: boolean;
+  onEnd?: VoidFunction | undefined;
 }
 
-const SystemMessage: React.FC<SystemMessageProps> = ({ send, avatar, timestamp, message, withImage }) => {
+const SystemMessage: React.FC<SystemMessageProps> = ({ send, avatar, timestamp, message, withImage, onEnd }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const controlsRef = useRef<HTMLSpanElement>(null);
+
+  if (message.type === MessageType.END) {
+    onEnd?.();
+    return null;
+  }
 
   return (
     <>

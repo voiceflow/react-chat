@@ -1,4 +1,4 @@
-import * as R from 'remeda';
+import { useEffect } from 'react';
 
 import type { RuntimeAction, SendMessage } from '@/common';
 import Button from '@/components/Button';
@@ -23,26 +23,15 @@ export interface SystemResponseProps {
   timestamp: number;
   messages: MessageProps[];
   actions?: ResponseActionProps[];
-  isLive?: boolean;
   isLast?: boolean;
   send?: SendMessage;
-  onAnimationEnd?: VoidFunction;
+  onEnd?: VoidFunction;
 }
 
-const SystemResponse: React.FC<SystemResponseProps> = ({
-  send,
-  avatar,
-  timestamp,
-  messages,
-  actions = [],
-  isLive = false,
-  isLast,
-  onAnimationEnd = R.noop,
-}) => {
+const SystemResponse: React.FC<SystemResponseProps> = ({ send, avatar, timestamp, messages, actions = [], isLast, onEnd }) => {
   const { showIndicator, visibleMessages, complete } = useAnimatedMessages({
     messages,
-    isLive,
-    onAnimationEnd,
+    isLast,
   });
 
   useAutoScroll([showIndicator, complete, visibleMessages.length]);
@@ -54,6 +43,7 @@ const SystemResponse: React.FC<SystemResponseProps> = ({
       {visibleMessages.map((message, index) => (
         <SystemMessage
           send={send}
+          onEnd={onEnd}
           message={message}
           withImage={!showIndicator && index === visibleMessages.length - 1}
           avatar={avatar}
