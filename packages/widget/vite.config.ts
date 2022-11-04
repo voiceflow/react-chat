@@ -8,7 +8,7 @@ export const createPlugins = (rootDir = __dirname): PluginOption[] => [
 ];
 
 export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd(), '');
+  const env = loadEnv(mode, process.cwd());
   const VITE_WIDGET_URL = env.VITE_WIDGET_URL.replace('CIRCLE_SHA1', process.env.CIRCLE_SHA1 || 'latest');
 
   return {
