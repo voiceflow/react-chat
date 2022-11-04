@@ -1,6 +1,6 @@
 import { ChatConfig, isObject } from '@voiceflow/react-chat';
 
-export const WIDGET_URL = import.meta.env.VITE_WIDGET_URL;
+export const WIDGET_URL = process.env.VITE_WIDGET_URL;
 
 const validateVerify = (verify: unknown): verify is ChatConfig['verify'] => {
   return isObject(verify) && typeof verify.projectID === 'string';
