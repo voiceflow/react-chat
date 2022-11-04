@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.29.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.28.2...@voiceflow/react-chat@1.29.0) (2022-11-04)
+
+### Features
+
+* tweak animation status ([#30](https://github.com/voiceflow/react-chat/issues/30)) ([fc47a55](https://github.com/voiceflow/react-chat/commit/fc47a55d7766391870cffa98bb8f6158d751f9db))
+
 ## [1.28.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.28.1...@voiceflow/react-chat@1.28.2) (2022-11-01)
 
 ### Bug Fixes
