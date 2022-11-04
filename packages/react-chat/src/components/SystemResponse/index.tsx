@@ -1,5 +1,3 @@
-import * as R from 'remeda';
-
 import type { RuntimeAction, SendMessage } from '@/common';
 import Button from '@/components/Button';
 import { useAutoScroll } from '@/hooks';
@@ -23,31 +21,20 @@ export interface SystemResponseProps {
   timestamp: number;
   messages: MessageProps[];
   actions?: ResponseActionProps[];
-  isLive?: boolean;
   isLast?: boolean;
   send?: SendMessage;
-  onAnimationEnd?: VoidFunction;
+  onEnd?: VoidFunction;
 }
 
-const SystemResponse: React.FC<SystemResponseProps> = ({
-  send,
-  avatar,
-  timestamp,
-  messages,
-  actions = [],
-  isLive = false,
-  isLast,
-  onAnimationEnd = R.noop,
-}) => {
+const SystemResponse: React.FC<SystemResponseProps> = ({ send, avatar, timestamp, messages, actions = [], isLast, onEnd }) => {
   const { showIndicator, visibleMessages, complete } = useAnimatedMessages({
     messages,
-    isLive,
-    onAnimationEnd,
+    isLast,
   });
 
   useAutoScroll([showIndicator, complete, visibleMessages.length]);
 
-  if (!messages.length) return null;
+  if (!messages.length && !actions.length) return null;
 
   return (
     <>
@@ -59,6 +46,7 @@ const SystemResponse: React.FC<SystemResponseProps> = ({
           avatar={avatar}
           timestamp={timestamp}
           key={index}
+          onEnd={onEnd}
         />
       ))}
 
