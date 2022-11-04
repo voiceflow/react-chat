@@ -12,6 +12,7 @@ import Message from '@/components/Message';
 import Timestamp from '@/components/Timestamp';
 
 import { MessageType } from './constants';
+import EndState from './state/end';
 import { Container, Controls, List } from './styled';
 import { MessageProps } from './types';
 
@@ -21,11 +22,16 @@ export interface SystemMessageProps {
   timestamp: number;
   message: MessageProps;
   withImage: boolean;
+  onEnd?: VoidFunction | undefined;
 }
 
-const SystemMessage: React.FC<SystemMessageProps> = ({ send, avatar, timestamp, message, withImage }) => {
+const SystemMessage: React.FC<SystemMessageProps> = ({ send, avatar, timestamp, message, withImage, onEnd }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const controlsRef = useRef<HTMLSpanElement>(null);
+
+  if (message.type === MessageType.END) {
+    return <EndState onEnd={onEnd} />;
+  }
 
   return (
     <>

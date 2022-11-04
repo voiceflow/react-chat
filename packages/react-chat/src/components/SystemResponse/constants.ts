@@ -3,4 +3,5 @@ export enum MessageType {
   IMAGE = 'image',
   CARD = 'card',
   CAROUSEL = 'carousel',
+  END = 'END',
 }
