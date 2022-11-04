@@ -31,7 +31,7 @@ export default defineConfig({
   },
   base: '',
   build: {
-    outDir: path.resolve(__dirname, 'dist'),
+    outDir: path.resolve(__dirname, 'dist', process.env.CIRCLE_SHA1 || 'latest'),
     lib: {
       entry: path.resolve(__dirname, 'index.html'),
       name: 'voiceflow-chat',
