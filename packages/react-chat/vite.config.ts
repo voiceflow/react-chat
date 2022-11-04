@@ -35,7 +35,7 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, 'index.html'),
       name: 'voiceflow-chat',
-      fileName: 'bundle',
+      fileName: process.env.CIRCLE_SHA1 || 'bundle',
       formats: ['es'],
     },
   },

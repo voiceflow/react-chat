@@ -3,6 +3,7 @@
 
 interface ImportMetaEnv {
   readonly VITE_WIDGET_URL: string;
+  readonly CIRCLE_SHA1?: string;
 }
 
 interface ImportMeta {

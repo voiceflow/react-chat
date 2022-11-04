@@ -15,6 +15,7 @@ export default defineConfig({
   define: {
     'process.env': {},
   },
+  envPrefix: ['VITE_', 'CIRCLE_'],
   build: {
     lib: {
       entry: path.resolve(__dirname, 'index.tsx'),
