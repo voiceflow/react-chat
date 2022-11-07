@@ -35,6 +35,7 @@ export const Container = styled('div', {
   trans: ['border-color', 'box-shadow'],
 
   [`& ${Input.Container}`]: {
+    margin: 0,
     borderRightWidth: 0,
     borderTopRightRadius: 0,
     borderBottomRightRadius: 0,
