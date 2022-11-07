@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.30.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.30.0...@voiceflow/react-chat@1.30.1) (2022-11-07)
+
+### Bug Fixes
+
+* minor safari fixes ([f57123e](https://github.com/voiceflow/react-chat/commit/f57123e155fa722a1a10f1fde9b06034dfca01ed))
+
 # [1.30.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.29.0...@voiceflow/react-chat@1.30.0) (2022-11-04)
 
 ### Features
