@@ -1,28 +1,20 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useContext } from 'react';
 import * as R from 'remeda';
 import { match } from 'ts-pattern';
 
-import { Assistant, ChatConfig, Listeners, PostMessage, SessionOptions, SessionStatus, useTheme } from '@/common';
+import { Assistant, Listeners, PostMessage, RuntimeOptions, SessionOptions, SessionStatus, useTheme } from '@/common';
 import { Chat, SystemResponse, UserResponse } from '@/components';
-import { useRuntime } from '@/hooks';
+import { RuntimeContext, RuntimeProvider } from '@/contexts';
 import { TurnType } from '@/types';
 
 import { ChatWindowContainer } from './styled';
 import { sendMessage } from './utils';
 
-const ChatWindow: React.FC<ChatConfig & { assistant: Assistant; session: SessionOptions }> = ({
-  assistant,
-  versionID,
-  verify,
-  user,
-  url,
-  session,
-}) => {
+const ChatWindow: React.FC<{ assistant: Assistant }> = ({ assistant }) => {
+  const runtime = useContext(RuntimeContext)!;
+
   // emitters
   const close = useCallback(() => sendMessage({ type: PostMessage.Type.CLOSE }), []);
-  const saveSession = useCallback((session: SessionOptions) => sendMessage({ type: PostMessage.Type.SAVE_SESSION, payload: session }), []);
-
-  const runtime = useRuntime({ versionID, verify, url, user, session, saveSession });
 
   // listeners
   Listeners.useListenMessage(PostMessage.Type.INTERACT, ({ payload }) => runtime.interact(payload));
@@ -36,12 +28,8 @@ const ChatWindow: React.FC<ChatConfig & { assistant: Assistant; session: Session
     await runtime.launch();
   };
 
-  const handleEnd = useCallback((): void => {
-    runtime.setStatus(SessionStatus.ENDED);
-  }, []);
-
   const closeAndEnd = useCallback((): void => {
-    handleEnd();
+    runtime.setStatus(SessionStatus.ENDED);
     close();
   }, []);
 
@@ -70,10 +58,8 @@ const ChatWindow: React.FC<ChatConfig & { assistant: Assistant; session: Session
               <SystemResponse
                 key={id}
                 {...R.omit(props, ['type'])}
-                send={runtime.send}
                 avatar={assistant.avatar}
                 isLast={turnIndex === runtime.session.turns.length - 1}
-                onEnd={handleEnd}
               />
             ))
             .exhaustive()
@@ -84,4 +70,14 @@ const ChatWindow: React.FC<ChatConfig & { assistant: Assistant; session: Session
   );
 };
 
-export default Object.assign(ChatWindow, { sendMessage });
+const ChatWindowContext: React.FC<RuntimeOptions & { session: SessionOptions; assistant: Assistant }> = ({ assistant, ...config }) => {
+  const saveSession = useCallback((session: SessionOptions) => sendMessage({ type: PostMessage.Type.SAVE_SESSION, payload: session }), []);
+
+  return (
+    <RuntimeProvider {...config} saveSession={saveSession}>
+      <ChatWindow assistant={assistant} />
+    </RuntimeProvider>
+  );
+};
+
+export default Object.assign(ChatWindowContext, { sendMessage });

@@ -10,24 +10,36 @@ import {
 } from '@voiceflow/sdk-runtime';
 import Bowser from 'bowser';
 import cuid from 'cuid';
-import { useMemo, useState } from 'react';
+import React, { createContext, useMemo, useState } from 'react';
 
 import { RuntimeOptions, SendMessage, SessionOptions, SessionStatus } from '@/common';
 import type { SystemResponseProps } from '@/components/SystemResponse';
 import { MessageType } from '@/components/SystemResponse/constants';
 import { RUNTIME_URL } from '@/constants';
+import { useStateRef } from '@/hooks/useStateRef';
 import { TurnProps, TurnType } from '@/types';
 import { handleActions } from '@/utils/actions';
 
-import { useStateRef } from './useStateRef';
+export interface RuntimeContextAPI {
+  send: SendMessage;
+  reset: () => void;
+  reply: (message: string) => Promise<void>;
+  launch: () => Promise<void>;
+  interact: (action: RuntimeAction) => Promise<void>;
+  indicator: boolean;
 
-export interface RuntimeContext extends Pick<SystemResponseProps, 'messages' | 'actions'> {}
+  session: Required<SessionOptions>;
+  sessionRef: React.MutableRefObject<SessionOptions>;
 
-const createContext = (): RuntimeContext => ({
-  messages: [],
-});
+  setStatus: (status: SessionStatus) => void;
+  isStatus: (status: SessionStatus) => boolean;
+}
 
-interface UseRuntimeProps extends RuntimeOptions {
+export const RuntimeContext = createContext<RuntimeContextAPI | null>(null);
+
+export const { Consumer: RuntimeConsumer } = RuntimeContext;
+
+export interface RuntimeProviderProps extends RuntimeOptions, React.PropsWithChildren {
   session: SessionOptions;
   saveSession?: (session: SessionOptions) => void;
 }
@@ -39,11 +51,17 @@ const DEFAULT_RUNTIME_STATE: Required<SessionOptions> = {
   status: SessionStatus.IDLE,
 };
 
-export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...config }: UseRuntimeProps) => {
+export interface RuntimeState extends Pick<SystemResponseProps, 'messages' | 'actions'> {}
+
+const interactState = (): RuntimeState => ({
+  messages: [],
+});
+
+export const RuntimeProvider: React.FC<RuntimeProviderProps> = ({ url = RUNTIME_URL, user, verify, versionID, children, ...config }) => {
   const [indicator, setIndicator] = useState(false);
   const [session, setSession, sessionRef] = useStateRef<Required<SessionOptions>>({ ...DEFAULT_RUNTIME_STATE, ...config.session });
 
-  const runtime = useMemo(() => new VoiceflowRuntime<RuntimeContext>({ verify, url }), [verify]);
+  const runtime = useMemo(() => new VoiceflowRuntime<RuntimeState>({ verify, url }), [verify]);
 
   const setTurns = (action: (turns: TurnProps[]) => TurnProps[]) => {
     setSession((prev) => ({ ...prev, turns: action(prev.turns) }));
@@ -58,7 +76,7 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...conf
   const interact = async (action: RuntimeAction): Promise<void> => {
     setIndicator(true);
 
-    const context = await runtime.interact(createContext(), { sessionID: sessionRef.current.userID, action, ...(versionID && { versionID }) });
+    const context = await runtime.interact(interactState(), { sessionID: sessionRef.current.userID, action, ...(versionID && { versionID }) });
 
     setIndicator(false);
 
@@ -174,16 +192,22 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...conf
 
   const reply = async (message: string): Promise<void> => send(message, { type: ActionType.TEXT, payload: message });
 
-  return {
-    send,
-    reply,
-    reset,
-    launch,
-    interact,
-    indicator,
-    session,
-    sessionRef,
-    setStatus,
-    isStatus,
-  };
+  return (
+    <RuntimeContext.Provider
+      value={{
+        send,
+        reply,
+        reset,
+        launch,
+        interact,
+        indicator,
+        session,
+        sessionRef,
+        setStatus,
+        isStatus,
+      }}
+    >
+      {children}
+    </RuntimeContext.Provider>
+  );
 };
