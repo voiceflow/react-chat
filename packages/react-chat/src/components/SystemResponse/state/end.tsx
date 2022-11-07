@@ -1,12 +1,13 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 
-export interface EndStateProps {
-  onEnd?: VoidFunction | undefined;
-}
+import { SessionStatus } from '@/common';
+import { RuntimeAPIContext } from '@/contexts';
 
-const EndState: React.FC<EndStateProps> = ({ onEnd }) => {
+const EndState: React.FC = () => {
+  const runtime = useContext(RuntimeAPIContext);
+
   useEffect(() => {
-    onEnd?.();
+    runtime?.setStatus(SessionStatus.ENDED);
   }, []);
 
   return null;
