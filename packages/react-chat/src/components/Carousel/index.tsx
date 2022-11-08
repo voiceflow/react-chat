@@ -1,7 +1,6 @@
 import { RefObject } from 'react';
 import { createPortal } from 'react-dom';
 
-import { SendMessage } from '@/common';
 import Card, { CardProps } from '@/components/Card';
 
 import CarouselButton from './CarouselButton';
@@ -10,13 +9,12 @@ import { useScrollObserver, useScrollTo } from './hooks';
 import { Container } from './styled';
 
 export interface CarouselProps {
-  send?: SendMessage | undefined;
   cards: CardProps[];
   containerRef?: RefObject<HTMLDivElement>;
   controlsRef?: RefObject<HTMLSpanElement>;
 }
 
-const Carousel: React.FC<CarouselProps> = ({ cards, containerRef, controlsRef, send }) => {
+const Carousel: React.FC<CarouselProps> = ({ cards, containerRef, controlsRef }) => {
   const { previousButtonRef, nextButtonRef, showPreviousButton, showNextButton } = useScrollObserver(containerRef, controlsRef, cards);
   const containerEl = containerRef?.current;
   const controlsEl = controlsRef?.current;
@@ -29,7 +27,7 @@ const Carousel: React.FC<CarouselProps> = ({ cards, containerRef, controlsRef, s
     <>
       <Container>
         {cards.map((card, index) => (
-          <Card send={send} {...card} key={index} />
+          <Card {...card} key={index} />
         ))}
       </Container>
       {showControls &&

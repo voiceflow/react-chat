@@ -4,6 +4,7 @@ import { match } from 'ts-pattern';
 
 import { Assistant, ChatConfig, Listeners, PostMessage, SessionOptions, SessionStatus, useTheme } from '@/common';
 import { Chat, SystemResponse, UserResponse } from '@/components';
+import { RuntimeAPIProvider } from '@/contexts';
 import { useRuntime } from '@/hooks';
 import { TurnType } from '@/types';
 
@@ -36,51 +37,47 @@ const ChatWindow: React.FC<ChatConfig & { assistant: Assistant; session: Session
     await runtime.launch();
   };
 
-  const handleEnd = useCallback((): void => {
-    runtime.setStatus(SessionStatus.ENDED);
-  }, []);
-
   const closeAndEnd = useCallback((): void => {
-    handleEnd();
+    runtime.setStatus(SessionStatus.ENDED);
     close();
   }, []);
 
   const theme = useTheme(assistant);
 
   return (
-    <ChatWindowContainer className={theme}>
-      <Chat
-        title={assistant.title}
-        description={assistant.description}
-        image={assistant.image}
-        avatar={assistant.avatar}
-        watermark={assistant.watermark}
-        startTime={runtime.session.startTime}
-        hasEnded={runtime.isStatus(SessionStatus.ENDED)}
-        isLoading={!runtime.session.turns.length}
-        onStart={handleStart}
-        onEnd={closeAndEnd}
-        onSend={runtime.reply}
-        onMinimize={close}
-      >
-        {runtime.session.turns.map((turn, turnIndex) =>
-          match(turn)
-            .with({ type: TurnType.USER }, ({ id, ...props }) => <UserResponse {...R.omit(props, ['type'])} key={id} />)
-            .with({ type: TurnType.SYSTEM }, ({ id, ...props }) => (
-              <SystemResponse
-                key={id}
-                {...R.omit(props, ['type'])}
-                send={runtime.send}
-                avatar={assistant.avatar}
-                isLast={turnIndex === runtime.session.turns.length - 1}
-                onEnd={handleEnd}
-              />
-            ))
-            .exhaustive()
-        )}
-        {runtime.indicator && <SystemResponse.Indicator avatar={assistant.avatar} />}
-      </Chat>
-    </ChatWindowContainer>
+    <RuntimeAPIProvider {...runtime}>
+      <ChatWindowContainer className={theme}>
+        <Chat
+          title={assistant.title}
+          description={assistant.description}
+          image={assistant.image}
+          avatar={assistant.avatar}
+          watermark={assistant.watermark}
+          startTime={runtime.session.startTime}
+          hasEnded={runtime.isStatus(SessionStatus.ENDED)}
+          isLoading={!runtime.session.turns.length}
+          onStart={handleStart}
+          onEnd={closeAndEnd}
+          onSend={runtime.reply}
+          onMinimize={close}
+        >
+          {runtime.session.turns.map((turn, turnIndex) =>
+            match(turn)
+              .with({ type: TurnType.USER }, ({ id, ...props }) => <UserResponse {...R.omit(props, ['type'])} key={id} />)
+              .with({ type: TurnType.SYSTEM }, ({ id, ...props }) => (
+                <SystemResponse
+                  key={id}
+                  {...R.omit(props, ['type'])}
+                  avatar={assistant.avatar}
+                  isLast={turnIndex === runtime.session.turns.length - 1}
+                />
+              ))
+              .exhaustive()
+          )}
+          {runtime.indicator && <SystemResponse.Indicator avatar={assistant.avatar} />}
+        </Chat>
+      </ChatWindowContainer>
+    </RuntimeAPIProvider>
   );
 };
 
