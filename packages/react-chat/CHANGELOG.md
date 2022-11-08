@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.31.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.31.0...@voiceflow/react-chat@1.31.1) (2022-11-08)
+
+### Bug Fixes
+
+* dayjs relative time ([9b5b337](https://github.com/voiceflow/react-chat/commit/9b5b337224514a7ddaf2070aa95c738f9066f3a0))
+
 # [1.31.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.30.1...@voiceflow/react-chat@1.31.0) (2022-11-08)
 
 ### Features
