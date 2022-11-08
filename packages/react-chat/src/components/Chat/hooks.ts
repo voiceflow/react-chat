@@ -1,9 +1,10 @@
-import 'dayjs/plugin/relativeTime';
-
 import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 import { useMemo } from 'react';
 
 import { Nullish } from '@/types';
+
+dayjs.extend(relativeTime);
 
 export const useTimestamp = (startTime?: Nullish<number>) => {
   return useMemo(() => {
