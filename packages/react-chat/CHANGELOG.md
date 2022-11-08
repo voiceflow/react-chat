@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.31.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.30.1...@voiceflow/react-chat@1.31.0) (2022-11-08)
+
+### Features
+
+* use context instead of drilling (CT-1156) ([#33](https://github.com/voiceflow/react-chat/issues/33)) ([b7215a9](https://github.com/voiceflow/react-chat/commit/b7215a9eebb588ff336e49210b577b28742e50e3))
+
 ## [1.30.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.30.0...@voiceflow/react-chat@1.30.1) (2022-11-07)
 
 ### Bug Fixes
