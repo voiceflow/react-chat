@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import type { RuntimeAction, SendMessage } from '@/common';
+import type { RuntimeAction } from '@/common';
 import Button from '@/components/Button';
 import Image from '@/components/Image';
 import { RuntimeAPIContext } from '@/contexts';
@@ -29,7 +29,7 @@ const Card: React.FC<CardProps> = ({ title, description, image, actions = [] }) 
         <Header>{title}</Header>
         <Description>{description}</Description>
         {actions.map(({ name, request }, index) => (
-          <Button onClick={() => runtime?.send(name, request)} key={index}>
+          <Button onClick={() => runtime.send(name, request)} key={index}>
             {name}
           </Button>
         ))}

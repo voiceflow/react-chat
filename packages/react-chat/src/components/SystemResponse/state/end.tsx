@@ -7,7 +7,7 @@ const EndState: React.FC = () => {
   const runtime = useContext(RuntimeAPIContext);
 
   useEffect(() => {
-    runtime?.setStatus(SessionStatus.ENDED);
+    runtime.setStatus(SessionStatus.ENDED);
   }, []);
 
   return null;
