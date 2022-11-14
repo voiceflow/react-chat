@@ -1,12 +1,7 @@
-import { styled } from '@/styles';
+import { CSS, styled } from '@/styles';
 
-export const BaseImage = styled('div', {
-  height: 200,
+const DefaultImageStyles: CSS = {
   width: 248,
-  backgroundColor: '$lightGrey',
-  backgroundPosition: 'center',
-  backgroundRepeat: 'no-repeat',
-  backgroundSize: 'cover',
 
   variants: {
     rounded: {
@@ -18,4 +13,16 @@ export const BaseImage = styled('div', {
   defaultVariants: {
     rounded: true,
   },
+};
+
+export const DefaultImage = styled('img', DefaultImageStyles);
+
+export const BackgroundImage = styled('div', {
+  ...DefaultImageStyles,
+
+  height: 200,
+  backgroundColor: '$lightGrey',
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'cover',
 });
