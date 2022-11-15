@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.31.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.31.1...@voiceflow/react-chat@1.31.2) (2022-11-15)
+
+### Bug Fixes
+
+* images should take full height (CT-110) ([#36](https://github.com/voiceflow/react-chat/issues/36)) ([47419fa](https://github.com/voiceflow/react-chat/commit/47419fa7668b7139f7ae4866a786b7bca4706dc2))
+
 ## [1.31.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.31.0...@voiceflow/react-chat@1.31.1) (2022-11-08)
 
 ### Bug Fixes
