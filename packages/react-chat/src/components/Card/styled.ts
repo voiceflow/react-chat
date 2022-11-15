@@ -14,7 +14,7 @@ export const Container = styled('section', {
   overflow: 'hidden',
   backgroundColor: '$lightGrey',
 
-  [`& ${Image.Base}`]: {
+  [`& ${Image.Background.Base}`]: {
     height: 150,
   },
 
