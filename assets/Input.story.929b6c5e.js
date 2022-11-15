@@ -1,0 +1,2 @@
+import{I as t}from"./index.c0b9a994.js";import{j as r}from"./jsx-runtime.2522971e.js";import"./theme.71e70dad.js";import"./iframe.359c460b.js";const c={title:"Core/Input",component:t,parameters:{actions:{argTypesRegex:"^on(?:Click|Blur)"}}},o=e=>r(t.Controlled,{...e}),i=o.bind({}),s=o.bind({});s.args={placeholder:"Message\u2026"};export{i as Default,s as Placeholder,c as default};
+//# sourceMappingURL=Input.story.929b6c5e.js.map
