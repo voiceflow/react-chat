@@ -78,6 +78,17 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...conf
   const send: SendMessage = async (message, action) => {
     if (sessionRef.current.status === SessionStatus.ENDED) return;
 
+    if (sessionRef.current.turns.length === 1) {
+      // create transcript asynchronously in background
+      const {
+        browser: { name: browser },
+        os: { name: os },
+        platform: { type: device },
+      } = Bowser.parse(window.navigator.userAgent);
+
+      runtime.createTranscript(session.userID, { ...(os && { os }), ...(browser && { browser }), ...(device && { device }), ...(user && { user }) });
+    }
+
     handleActions(action);
 
     setTurns((prev) => [
@@ -161,15 +172,6 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...conf
 
     setStatus(SessionStatus.ACTIVE);
     await interact({ type: ActionType.LAUNCH, payload: null });
-
-    // create transcript asynchronously in background
-    const {
-      browser: { name: browser },
-      os: { name: os },
-      platform: { type: device },
-    } = Bowser.parse(window.navigator.userAgent);
-
-    runtime.createTranscript(session.userID, { ...(os && { os }), ...(browser && { browser }), ...(device && { device }), ...(user && { user }) });
   };
 
   const reply = async (message: string): Promise<void> => send(message, { type: ActionType.TEXT, payload: message });
