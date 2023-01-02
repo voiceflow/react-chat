@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.32.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.31.2...@voiceflow/react-chat@1.32.0) (2023-01-02)
+
+### Features
+
+* create transcript after first user real interaction (CT-1251) ([#39](https://github.com/voiceflow/react-chat/issues/39)) ([eaf05de](https://github.com/voiceflow/react-chat/commit/eaf05de86b77419513dade109412dc7c5a7fe78a))
+
 ## [1.31.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.31.1...@voiceflow/react-chat@1.31.2) (2022-11-15)
 
 ### Bug Fixes
