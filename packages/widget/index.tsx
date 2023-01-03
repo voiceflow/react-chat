@@ -1,5 +1,5 @@
 import type { ChatConfig } from '@voiceflow/react-chat';
-import { createRoot } from 'react-dom/client';
+import ReactDOM from 'react-dom';
 
 import Widget from './src';
 import { sanitizeConfig, WIDGET_URL } from './src/config';
@@ -9,8 +9,6 @@ const VOICEFLOW_ID = 'voiceflow-chat';
 const rootEl = document.createElement('div');
 rootEl.id = VOICEFLOW_ID;
 document.body.appendChild(rootEl);
-
-const root = createRoot(rootEl);
 
 window.voiceflow ??= {} as any;
 window.voiceflow.chat ??= {} as any;
@@ -26,5 +24,5 @@ window.voiceflow.chat.interact ??= noop;
 window.voiceflow.chat.load = async (loadConfig: Partial<ChatConfig>) => {
   const config = sanitizeConfig(loadConfig);
 
-  root.render(<Widget {...config} widgetURL={WIDGET_URL} />);
+  ReactDOM.render(<Widget {...config} widgetURL={WIDGET_URL} />, rootEl);
 };
