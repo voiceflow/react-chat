@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.33.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.32.0...@voiceflow/react-chat@1.33.0) (2023-01-03)
+
+### Features
+
+* downgrade react (BUG-154) ([#41](https://github.com/voiceflow/react-chat/issues/41)) ([cea1c7d](https://github.com/voiceflow/react-chat/commit/cea1c7d337b12ee7d72da27921a64471ab8e402f))
+
 # [1.32.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.31.2...@voiceflow/react-chat@1.32.0) (2023-01-02)
 
 ### Features
