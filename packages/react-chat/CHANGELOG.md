@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.34.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.33.0...@voiceflow/react-chat@1.34.0) (2023-02-14)
+
+### Features
+
+* fix line hight (BUG-174) ([#44](https://github.com/voiceflow/react-chat/issues/44)) ([8aa6d05](https://github.com/voiceflow/react-chat/commit/8aa6d0504c4bcb84b87a88e39668dd7418f28eb8))
+
 # [1.33.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.32.0...@voiceflow/react-chat@1.33.0) (2023-01-03)
 
 ### Features
