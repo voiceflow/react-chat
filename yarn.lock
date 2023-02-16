@@ -4727,7 +4727,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:^18.0.17":
+"@types/react@npm:*":
   version: 18.0.17
   resolution: "@types/react@npm:18.0.17"
   dependencies:
@@ -4735,6 +4735,17 @@ __metadata:
     "@types/scheduler": "*"
     csstype: ^3.0.2
   checksum: 18cae64f5bfd6bb58fbd8ee2ba52ec82de844f114254e26de7b513e4b86621f643f9b71d7066958cd571b0d78cb86cbceda449c5289f9349ca573df29ab69252
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:^18.0.28":
+  version: 18.0.28
+  resolution: "@types/react@npm:18.0.28"
+  dependencies:
+    "@types/prop-types": "*"
+    "@types/scheduler": "*"
+    csstype: ^3.0.2
+  checksum: e752df961105e5127652460504785897ca6e77259e0da8f233f694f9e8f451cde7fa0709d4456ade0ff600c8ce909cfe29f9b08b9c247fa9b734e126ec53edd7
   languageName: node
   linkType: hard
 
@@ -5313,7 +5324,7 @@ __metadata:
     "@testing-library/jest-dom": ^5.16.5
     "@testing-library/react": 12.1.4
     "@types/chroma-js": ^2.1.4
-    "@types/react": ^18.0.17
+    "@types/react": ^18.0.28
     "@types/react-dom": ^18.0.6
     "@vitejs/plugin-react": ^2.0.1
     "@vitest/coverage-c8": ^0.23.1
@@ -5339,8 +5350,8 @@ __metadata:
     husky: ^8.0.0
     lint-staged: 13.0.3
     prettier: 2.7.1
-    react: 17.0.2
-    react-dom: 17.0.2
+    react: 18.2.0
+    react-dom: 18.2.0
     remeda: ^1.0.1
     rimraf: 3.0.2
     slate: ^0.72.3
@@ -5428,7 +5439,7 @@ __metadata:
   dependencies:
     "@commitlint/cli": 17.0.3
     "@emotion/core": 10.1.1
-    "@types/react": ^18.0.17
+    "@types/react": ^18.0.28
     "@types/react-dom": ^18.0.6
     "@vitejs/plugin-react": ^2.0.1
     "@vitest/coverage-c8": ^0.23.1
@@ -5446,8 +5457,8 @@ __metadata:
     husky: ^8.0.0
     lint-staged: 13.0.3
     prettier: 2.7.1
-    react: 17.0.2
-    react-dom: 17.0.2
+    react: 18.2.0
+    react-dom: 18.2.0
     vite: 3.2.2
     vite-tsconfig-paths: ^3.5.0
   languageName: unknown
@@ -17375,16 +17386,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:17.0.2":
-  version: 17.0.2
-  resolution: "react-dom@npm:17.0.2"
+"react-dom@npm:18.2.0":
+  version: 18.2.0
+  resolution: "react-dom@npm:18.2.0"
   dependencies:
     loose-envify: ^1.1.0
-    object-assign: ^4.1.1
-    scheduler: ^0.20.2
+    scheduler: ^0.23.0
   peerDependencies:
-    react: 17.0.2
-  checksum: 1c1eaa3bca7c7228d24b70932e3d7c99e70d1d04e13bb0843bbf321582bc25d7961d6b8a6978a58a598af2af496d1cedcfb1bf65f6b0960a0a8161cb8dab743c
+    react: ^18.2.0
+  checksum: 7d323310bea3a91be2965f9468d552f201b1c27891e45ddc2d6b8f717680c95a75ae0bc1e3f5cf41472446a2589a75aed4483aee8169287909fcd59ad149e8cc
   languageName: node
   linkType: hard
 
@@ -17457,13 +17467,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:17.0.2":
-  version: 17.0.2
-  resolution: "react@npm:17.0.2"
+"react@npm:18.2.0":
+  version: 18.2.0
+  resolution: "react@npm:18.2.0"
   dependencies:
     loose-envify: ^1.1.0
-    object-assign: ^4.1.1
-  checksum: b254cc17ce3011788330f7bbf383ab653c6848902d7936a87b09d835d091e3f295f7e9dd1597c6daac5dc80f90e778c8230218ba8ad599f74adcc11e33b9d61b
+  checksum: 88e38092da8839b830cda6feef2e8505dec8ace60579e46aa5490fc3dc9bba0bd50336507dc166f43e3afc1c42939c09fe33b25fae889d6f402721dcd78fca1b
   languageName: node
   linkType: hard
 
@@ -18566,13 +18575,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"scheduler@npm:^0.20.2":
-  version: 0.20.2
-  resolution: "scheduler@npm:0.20.2"
+"scheduler@npm:^0.23.0":
+  version: 0.23.0
+  resolution: "scheduler@npm:0.23.0"
   dependencies:
     loose-envify: ^1.1.0
-    object-assign: ^4.1.1
-  checksum: c4b35cf967c8f0d3e65753252d0f260271f81a81e427241295c5a7b783abf4ea9e905f22f815ab66676f5313be0a25f47be582254db8f9241b259213e999b8fc
+  checksum: d79192eeaa12abef860c195ea45d37cbf2bbf5f66e3c4dcd16f54a7da53b17788a70d109ee3d3dde1a0fd50e6a8fc171f4300356c5aee4fc0171de526bf35f8a
   languageName: node
   linkType: hard
 
