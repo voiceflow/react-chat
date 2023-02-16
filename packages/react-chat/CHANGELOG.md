@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.35.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.34.0...@voiceflow/react-chat@1.35.0) (2023-02-16)
+
+### Features
+
+* bump react version (CT-000) ([5cb1bd5](https://github.com/voiceflow/react-chat/commit/5cb1bd5c3aa9ad4f73f90cad76f4a3bb29ac8e1b))
+
 # [1.34.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.33.0...@voiceflow/react-chat@1.34.0) (2023-02-14)
 
 ### Features
