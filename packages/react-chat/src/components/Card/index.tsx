@@ -5,7 +5,8 @@ import Button from '@/components/Button';
 import Image from '@/components/Image';
 import { RuntimeAPIContext } from '@/contexts';
 
-import { Container, Content, Description, Header } from './styled';
+import { Container, Content, Description, Header, Link } from './styled';
+import { isValidHttpUrl } from './utils';
 
 export interface CardActionProps {
   name: string;
@@ -21,13 +22,19 @@ export interface CardProps {
 
 const Card: React.FC<CardProps> = ({ title, description, image, actions = [] }) => {
   const runtime = useContext(RuntimeAPIContext);
+  const isLink = isValidHttpUrl(description);
 
   return (
     <Container>
       {!!image && <Image.Background image={image} />}
       <Content>
         <Header>{title}</Header>
-        <Description>{description}</Description>
+        {!isLink && <Description>{description}</Description>}
+        {isLink && (
+          <Link rel="noopener noreferrer" href={description} target="_blank">
+            {description}
+          </Link>
+        )}
         {actions.map(({ name, request }, index) => (
           <Button onClick={() => runtime.send(name, request)} key={index}>
             {name}
