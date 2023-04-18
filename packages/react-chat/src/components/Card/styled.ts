@@ -58,3 +58,14 @@ export const Description = styled('p', {
   color: '$darkGrey',
   whiteSpace: 'normal',
 });
+
+export const Link = styled('a', {
+  margin: 0,
+  typo: { size: '$1' },
+  whiteSpace: 'normal',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  color: 'rgb(93, 157, 245)',
+  textDecoration: 'underline',
+  pointerEvents: 'all',
+});
