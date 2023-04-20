@@ -26,7 +26,13 @@ export default defineConfig(({ mode }) => {
         entry: path.resolve(__dirname, 'index.tsx'),
         name: 'voiceflow-chat-iframe',
         fileName: 'bundle',
-        formats: ['es'],
+        formats: ['iife'],
+      },
+      rollupOptions: {
+        output: {
+          extend: true,
+          entryFileNames: 'bundle.mjs',
+        },
       },
     },
     plugins: [react(), ...createPlugins()],
