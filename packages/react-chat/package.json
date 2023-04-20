@@ -80,7 +80,7 @@
   "scripts": {
     "build": "yarn clean && yarn build:package && yarn build:bundle",
     "build:bundle": "NODE_ENV=production vite build",
-    "build:docs": "STORYBOOK_BASE_HREF=react-chat build-storybook -o docs",
+    "build:docs": "NODE_OPTIONS=--openssl-legacy-provider STORYBOOK_BASE_HREF=react-chat build-storybook -o docs",
     "build:package": "NODE_ENV=production vite --config vite.package.config.ts build",
     "clean": "rimraf build dist",
     "dev": "NODE_ENV=development vite",
