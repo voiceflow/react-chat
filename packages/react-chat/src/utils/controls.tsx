@@ -2,7 +2,14 @@ import React, { useState } from 'react';
 import { SetRequired } from 'type-fest';
 
 export interface ControlProps<T = any> {
+  /**
+   * The value being controlled by the component.
+   */
   value: T;
+
+  /**
+   * A callback that will be called with new values when the control is updated.
+   */
   onValueChange: (value: T) => void;
 }
 

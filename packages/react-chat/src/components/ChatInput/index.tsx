@@ -8,6 +8,9 @@ import { createControlled } from '@/utils/controls';
 import { ButtonContainer, Container } from './styled';
 
 export interface ChatInputProps extends InputProps {
+  /**
+   * A callback to submit the user response.
+   */
   onSend?: VoidFunction;
 }
 
@@ -31,6 +34,11 @@ const ChatInput: React.FC<ChatInputProps> = ({ id, onSend, ...props }) => {
   );
 };
 
+/**
+ * An input control with a built-in submit button.
+ *
+ * @see {@link https://voiceflow.github.io/react-chat/?path=/story/components-chat-chatinput--default}
+ */
 export default Object.assign(ChatInput, {
   Controlled: createControlled(ChatInput, {
     defaultValue: '',

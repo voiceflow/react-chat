@@ -7,7 +7,9 @@ export default {
   component: Card,
   args: {
     title: 'Card Header',
+    image: '',
     description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa et aliquam sunt necessitatibus molestiae amet ipsum ut.',
+    actions: [],
   },
 } as ComponentMeta<typeof Card>;
 
@@ -17,11 +19,15 @@ export const Simple = Template.bind({});
 
 export const WithImage = Template.bind({});
 WithImage.args = {
-  image: 'https://source.unsplash.com/random/248x150',
+  image: 'https://source.unsplash.com/featured/248x150',
 };
 
 export const Actionable = Template.bind({});
 Actionable.args = {
   ...WithImage.args,
-  actions: [{ label: 'First Button' }, { label: 'Second Button' }, { label: 'Third Button' }],
+  actions: [
+    { request: {} as any, name: 'First Button' },
+    { request: {} as any, name: 'Second Button' },
+    { request: {} as any, name: 'Third Button' },
+  ],
 };

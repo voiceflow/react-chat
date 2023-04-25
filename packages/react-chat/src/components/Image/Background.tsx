@@ -10,11 +10,18 @@ export const BackgroundImageBase = styled('div', {
 });
 
 export interface BackgroundImageProps extends React.ComponentProps<typeof BackgroundImageBase> {
+  /**
+   * A URL for the image to render.
+   */
   image: string | null;
 }
 
-// this is a <div> with a background image
 const BackgroundImage: React.FC<BackgroundImageProps> = ({ image, ...props }) =>
   image ? <BackgroundImageBase {...props} css={{ backgroundImage: `url('${image}')`, ...props.css }} /> : null;
 
-export default Object.assign(BackgroundImage, { Base: BackgroundImage });
+/**
+ * An image rendered as the `background-image` of a `<div>`.
+ *
+ * @see {@link https://voiceflow.github.io/react-chat/?path=/story/core-image-background--default}
+ */
+export default Object.assign(BackgroundImage, { Base: BackgroundImageBase });
