@@ -17,8 +17,19 @@ export interface DebugResponseProps {
 }
 
 export interface UserResponseProps {
+  /**
+   * The message text to display.
+   */
   message: string;
+
+  /**
+   * A unix timestamp indicating when this response was sent.
+   */
   timestamp: number;
+
+  /**
+   * If provided, adds a caption and optional "debug" message with an action.
+   */
   debug?: DebugResponseProps;
 }
 
@@ -45,6 +56,11 @@ const UserResponse: React.FC<UserResponseProps> = ({ message, timestamp, debug }
   );
 };
 
+/**
+ * A user-sent text response.
+ *
+ * @see {@link https://voiceflow.github.io/react-chat/?path=/story/components-chat-userresponse--simple}
+ */
 export default Object.assign(UserResponse, {
   Container,
   Debug,

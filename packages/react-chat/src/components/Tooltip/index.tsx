@@ -1,9 +1,17 @@
 import Message from '@/components/Message';
 
+import { DebugMessageProps } from '../Message/DebugMessage';
 import { Button, Container } from './styled';
 
-export interface ActionMessageProps extends React.ComponentProps<typeof Message.Debug> {
+export interface ActionMessageProps extends DebugMessageProps {
+  /**
+   * If provided, this will render an action button within the tooltip.
+   */
   label?: string | undefined;
+
+  /**
+   * A callback handler for the action button.
+   */
   onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
@@ -14,6 +22,11 @@ const ActionMessage: React.FC<ActionMessageProps> = ({ label, onClick, children,
   </Container>
 );
 
+/**
+ * Renders a {@link Message.Debug} with an optional action.
+ *
+ * @see {@link https://voiceflow.github.io/react-chat/?path=/story/components-tooltip--left-orientation}
+ */
 export default Object.assign(ActionMessage, {
   Button,
   Container,

@@ -55,6 +55,8 @@
     "husky": "^8.0.0",
     "lint-staged": "13.0.3",
     "prettier": "2.7.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "rimraf": "3.0.2",
     "storybook-dark-mode": "^1.1.0",
     "vite": "3.2.2",
@@ -76,6 +78,10 @@
   ],
   "license": "MIT",
   "main": "build/index.es.js",
+  "peerDependencies": {
+    "react": "^18",
+    "react-dom": "^18"
+  },
   "prettier": "@voiceflow/prettier-config",
   "scripts": {
     "build": "yarn clean && yarn build:package && yarn build:bundle",

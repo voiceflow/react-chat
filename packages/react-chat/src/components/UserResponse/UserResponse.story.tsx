@@ -12,7 +12,7 @@ export default {
   },
 } as ComponentMeta<typeof UserResponse>;
 
-export const RawTemplate: ComponentStory<typeof UserResponse> = (args) => <UserResponse {...args} />;
+const RawTemplate: ComponentStory<typeof UserResponse> = (args) => <UserResponse {...args} />;
 const Template: ComponentStory<typeof UserResponse> = (args) => (
   <Chat.Container>
     <Chat.Dialog css={{ padding: '64px 0', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>

@@ -5,7 +5,13 @@ import ChatInput from '.';
 export default {
   title: 'Components/Chat/ChatInput',
   component: ChatInput,
-  parameters: { actions: { argTypesRegex: '^on(?:Click|Blur)' } },
+  args: {
+    value: '',
+    placeholder: '',
+  },
+  parameters: {
+    controls: { include: ['value', 'placeholder', 'onValueChange'] },
+  },
 } as ComponentMeta<typeof ChatInput>;
 
 const Template: ComponentStory<typeof ChatInput> = (args) => <ChatInput.Controlled {...args} />;

@@ -48,7 +48,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ children, chatAPI, sendMessage,
     <Container withChat={isOpen} isHidden={isHidden} className={theme}>
       {!!assistant && (
         <LauncherContainer style={position}>
-          <Launcher open={open} image={assistant.launcher} />
+          <Launcher onClick={open} image={assistant.launcher} />
         </LauncherContainer>
       )}
       <ChatContainer style={position}>{children}</ChatContainer>

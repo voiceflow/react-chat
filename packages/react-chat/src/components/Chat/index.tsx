@@ -1,6 +1,6 @@
 import React, { memo, useRef, useState } from 'react';
 
-import AssistantInfo, { AssistantHeaderProps } from '@/components/AssistantInfo';
+import AssistantInfo, { AssistantInfoProps } from '@/components/AssistantInfo';
 import Footer, { FooterProps } from '@/components/Footer';
 import Header, { HeaderProps } from '@/components/Header';
 import Loader from '@/components/Loader';
@@ -12,12 +12,35 @@ import { chain } from '@/utils/functional';
 import { useTimestamp } from './hooks';
 import { Container, Dialog, Overlay, SessionTime, Spacer, Status } from './styled';
 
-export interface ChatProps extends HeaderProps, AssistantHeaderProps, FooterProps, React.PropsWithChildren<unknown> {
+export interface ChatProps extends HeaderProps, AssistantInfoProps, FooterProps, React.PropsWithChildren<unknown> {
+  /**
+   * A short description of the assistant to help frame the conversation.
+   */
   description: string;
+
+  /**
+   * If true, shows a loading indicator.
+   */
   isLoading: boolean;
+
+  /**
+   * A unix timestamp indicating the start of the conversation.
+   */
   startTime?: Nullish<number>;
-  watermark: boolean;
+
+  /**
+   * If true, a Voiceflow watermark is added to the footer.
+   */
+  withWatermark: boolean;
+
+  /**
+   * A callback that is executed when the chat widget is minimized.
+   */
   onMinimize?: React.MouseEventHandler<HTMLButtonElement>;
+
+  /**
+   * A callback that is executed when the conversation ends.
+   */
   onEnd?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
@@ -29,7 +52,7 @@ const Chat: React.FC<ChatProps> = ({
   description,
   startTime,
   isLoading,
-  watermark,
+  withWatermark,
   onMinimize,
   onEnd,
   onStart,
@@ -76,13 +99,18 @@ const Chat: React.FC<ChatProps> = ({
           {hasEnded && <Status>You have ended the chat</Status>}
         </AutoScrollProvider>
       </Dialog>
-      <Footer watermark={watermark} hasEnded={hasEnded} onStart={onStart} onSend={onSend} />
+      <Footer withWatermark={withWatermark} hasEnded={hasEnded} onStart={onStart} onSend={onSend} />
       <Overlay />
       <Prompt accept={{ label: 'End Chat', type: 'warn', onClick: chain(onEnd, handleResume) }} cancel={{ label: 'Cancel', onClick: handleResume }} />
     </Container>
   );
 };
 
+/**
+ * A full chat dialog with header, footer, overlay and auto-scrolling content.
+ *
+ * @see {@link https://voiceflow.github.io/react-chat/?path=/story/templates-chat--empty}
+ */
 export default Object.assign(memo(Chat), {
   Container,
   Dialog,

@@ -13,6 +13,11 @@ const Input: React.FC<InputProps> = ({ onValueChange, onChange, ...props }) => {
   return <Container {...props} onChange={handleChange} />;
 };
 
+/**
+ * A text input form control.
+ *
+ * @see {@link https://voiceflow.github.io/react-chat/?path=/story/core-input--default}
+ */
 export default Object.assign(Input, {
   Controlled: createControlled(Input, { defaultValue: '' }),
   Container,

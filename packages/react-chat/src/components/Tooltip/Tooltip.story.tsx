@@ -7,6 +7,11 @@ export default {
   component: Tooltip,
   argTypes: {
     onClick: { table: { disable: true } },
+    orientation: {
+      options: ['left', 'right'],
+      control: { type: 'radio' },
+      defaultValue: 'left',
+    },
   },
   args: {
     children: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
