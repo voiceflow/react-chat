@@ -1,10 +1,11 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import Chat from '@/components/Chat';
+import { VF_ICON } from '@/fixtures';
 
 import SystemResponse, { MessageProps } from '.';
 
-const CARD_IMAGE = 'https://source.unsplash.com/random/248x150';
+const CARD_IMAGE = 'https://source.unsplash.com/featured/248x150';
 const TEXT_MESSAGE: MessageProps = { type: 'text', text: 'Lorem ipsum dolor sit amet consectetur' };
 const CARD: MessageProps = {
   type: 'card',
@@ -18,8 +19,9 @@ export default {
   component: SystemResponse,
   args: {
     timestamp: Date.now(),
-    image: 'https://source.unsplash.com/random/26x26',
+    avatar: VF_ICON,
     messageDelay: 2000,
+    isLast: false,
   },
   argTypes: {
     timestamp: {
@@ -29,7 +31,7 @@ export default {
   excludeStories: ['RawTemplate'],
 } as ComponentMeta<typeof SystemResponse>;
 
-export const RawTemplate: ComponentStory<typeof SystemResponse> = (args) => <SystemResponse {...args} />;
+const RawTemplate: ComponentStory<typeof SystemResponse> = (args) => <SystemResponse {...args} />;
 const Template: ComponentStory<typeof SystemResponse> = (args) => (
   <Chat.Container>
     <Chat.Dialog css={{ padding: '64px 0', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
@@ -53,16 +55,15 @@ MultilineText.args = {
   messages: [TEXT_MESSAGE],
 };
 
-export const Live = Template.bind({});
-Live.args = {
-  messages: [TEXT_MESSAGE, TEXT_MESSAGE, TEXT_MESSAGE],
-  isLive: true,
-};
-
 export const ActionableText = Template.bind({});
 ActionableText.args = {
-  ...Live.args,
-  actions: [{ label: 'Button One' }, { label: 'Button Two' }, { label: 'Button Three' }],
+  messages: [TEXT_MESSAGE, TEXT_MESSAGE, TEXT_MESSAGE],
+  isLast: true,
+  actions: [
+    { request: {} as any, name: 'Button One' },
+    { request: {} as any, name: 'Button Two' },
+    { request: {} as any, name: 'Button Three' },
+  ],
 };
 
 export const Image = Template.bind({});
@@ -80,7 +81,11 @@ ActionableCard.args = {
   messages: [
     {
       ...CARD,
-      actions: [{ label: 'First Button' }, { label: 'Second Button' }, { label: 'Third Button' }],
+      actions: [
+        { request: {} as any, name: 'First Button' },
+        { request: {} as any, name: 'Second Button' },
+        { request: {} as any, name: 'Third Button' },
+      ],
     },
   ],
 };
@@ -100,13 +105,20 @@ Carousel.args = {
           title: 'Second Card',
           description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
           image: CARD_IMAGE,
-          actions: [{ label: 'First Button' }, { label: 'Second Button' }],
+          actions: [
+            { request: {} as any, name: 'First Button' },
+            { request: {} as any, name: 'Second Button' },
+          ],
         },
         {
           title: 'Third Card',
           description: 'Lorem ipsum dolor sit amet',
           image: CARD_IMAGE,
-          actions: [{ label: 'First Button' }, { label: 'Second Button' }, { label: 'Third Button' }],
+          actions: [
+            { request: {} as any, name: 'First Button' },
+            { request: {} as any, name: 'Second Button' },
+            { request: {} as any, name: 'Third Button' },
+          ],
         },
       ],
     },

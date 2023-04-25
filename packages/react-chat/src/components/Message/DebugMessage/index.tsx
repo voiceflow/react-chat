@@ -1,10 +1,16 @@
-import { VariantProps } from '@stitches/react';
-
 import { topCaret as TopCaret } from '@/assets/svg';
+import { VariantProp } from '@/types';
 
 import { Container } from './styled';
 
-export interface DebugMessageProps extends React.PropsWithChildren, VariantProps<typeof Container> {}
+export interface DebugMessageProps extends React.PropsWithChildren {
+  /**
+   * The end of the message where the arrow is rendered.
+   *
+   * @default 'left'
+   */
+  orientation?: VariantProp<typeof Container, 'orientation'>;
+}
 
 const DebugMessage: React.FC<DebugMessageProps> = ({ children, ...props }) => (
   <Container {...props}>

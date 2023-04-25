@@ -13,7 +13,7 @@ export default {
 } as ComponentMeta<typeof Prompt>;
 
 const Template: ComponentStory<typeof Prompt> = (args) => (
-  <Chat.Container>
+  <Chat.Container withPrompt>
     <div style={{ height: 250, backgroundColor: 'lavender' }} />
     <Prompt {...args} />
   </Chat.Container>

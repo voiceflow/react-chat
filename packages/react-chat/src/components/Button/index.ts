@@ -12,6 +12,11 @@ const VARIANTS = {
 
 const Button = bindVariants(VARIANTS, ButtonVariant.PRIMARY);
 
+/**
+ * A button with a label.
+ *
+ * @see {@link https://voiceflow.github.io/react-chat/?path=/story/core-button--primary-info}
+ */
 export default Object.assign(Button, {
   Variant: ButtonVariant,
 

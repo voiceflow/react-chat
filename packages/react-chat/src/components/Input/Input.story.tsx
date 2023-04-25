@@ -5,7 +5,13 @@ import Input from '.';
 export default {
   title: 'Core/Input',
   component: Input,
-  parameters: { actions: { argTypesRegex: '^on(?:Click|Blur)' } },
+  args: {
+    value: '',
+    placeholder: '',
+  },
+  parameters: {
+    controls: { include: ['value', 'placeholder', 'onValueChange'] },
+  },
 } as ComponentMeta<typeof Input>;
 
 const Template: ComponentStory<typeof Input> = (args) => <Input.Controlled {...args} />;

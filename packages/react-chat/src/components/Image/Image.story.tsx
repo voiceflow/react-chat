@@ -6,7 +6,8 @@ export default {
   title: 'Core/Image',
   component: Image,
   args: {
-    image: 'https://source.unsplash.com/random/248x200',
+    image: 'https://source.unsplash.com/featured/248x200',
+    isRounded: true,
   },
 } as ComponentMeta<typeof Image>;
 
@@ -16,5 +17,5 @@ export const RoundCorners = Template.bind({});
 
 export const StraightCorners = Template.bind({});
 StraightCorners.args = {
-  rounded: false,
+  isRounded: false,
 };
