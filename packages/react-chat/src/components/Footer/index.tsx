@@ -61,7 +61,7 @@ const Footer: React.FC<FooterProps> = ({ withWatermark, hasEnded, onStart, onSen
 /**
  * Footer for the chat widget; displays input controls or a prompt to restart the conversation.
  *
- * @see {@link http://localhost:6006/?path=/story/components-chat-footer--running}
+ * @see {@link https://voiceflow.github.io/react-chat/?path=/docs/components-chat-footer--running}
  */
 export default Object.assign(Footer, {
   Container,

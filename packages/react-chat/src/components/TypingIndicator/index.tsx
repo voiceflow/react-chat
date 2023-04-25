@@ -13,7 +13,7 @@ const TypingIndicator: React.FC = () => (
 /**
  * An animated indicator to show that the system is preparing a response.
  *
- * @see {@link http://localhost:6006/?path=/story/components-typingindicator--default}
+ * @see {@link https://voiceflow.github.io/react-chat/?path=/docs/components-typingindicator--default}
  */
 export default Object.assign(TypingIndicator, {
   Container,
