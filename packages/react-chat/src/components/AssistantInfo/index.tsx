@@ -32,7 +32,6 @@ const AssistantInfo: React.FC<AssistantInfoProps> = ({ title, description, avata
  * It will act as a placeholder before the conversation has started.
  *
  * @see {@link https://voiceflow.github.io/react-chat/?path=/story/components-chat-assistantinfo--default}
- * @borrows Title as Title
  */
 export default Object.assign(AssistantInfo, {
   Container,
