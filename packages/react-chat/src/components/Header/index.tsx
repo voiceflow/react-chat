@@ -49,7 +49,7 @@ const Header: React.FC<HeaderProps> = ({ title, image, actions = [] }) => (
 /**
  * Header for the chat widget with image, title and controls.
  *
- * @see {@link http://localhost:6006/?path=/story/components-chat-header--simple}
+ * @see {@link https://voiceflow.github.io/react-chat/?path=/docs/components-chat-header--simple}
  */
 export default Object.assign(Header, {
   Container,

@@ -66,10 +66,6 @@
     "vite-tsconfig-paths": "^3.5.0",
     "vitest": "0.23.1"
   },
-  "peerDependencies": {
-    "react": "^18",
-    "react-dom": "^18"
-  },
   "files": [
     "build/",
     "dist/"
@@ -82,6 +78,10 @@
   ],
   "license": "MIT",
   "main": "build/index.es.js",
+  "peerDependencies": {
+    "react": "^18",
+    "react-dom": "^18"
+  },
   "prettier": "@voiceflow/prettier-config",
   "scripts": {
     "build": "yarn clean && yarn build:package && yarn build:bundle",

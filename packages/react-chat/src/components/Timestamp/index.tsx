@@ -13,6 +13,8 @@ const Timestamp: React.FC<TimestampProps> = ({ value }) => <Container>{formatTim
 
 /**
  * Formats and styles a timestamp as 12-hour time.
+ *
+ * @see {@link https://voiceflow.github.io/react-chat/?path=/docs/core-timestamp--default}
  */
 export default Object.assign(Timestamp, {
   Container,
