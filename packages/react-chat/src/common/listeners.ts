@@ -1,3 +1,4 @@
+// TODO: move this entire module into `browser/` if possible?
 import { useEffect } from 'react';
 
 import * as PostMessage from './postMessage';
@@ -35,6 +36,7 @@ const handleMessage = (event: MessageEvent) => {
   });
 };
 
+// TODO: avoid this being in the module scope
 if (window.addEventListener) {
   // For standards-compliant web browsers
   window.addEventListener('message', handleMessage, false);

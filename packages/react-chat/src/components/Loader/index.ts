@@ -15,4 +15,9 @@ const Loader = styled('div', {
   animationIterationCount: 'infinite',
 });
 
+/**
+ * An infinite loading spinner.
+ *
+ * @see {@link https://voiceflow.github.io/react-chat/?path=/story/core-loader--default}
+ */
 export default Loader;

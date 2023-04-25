@@ -23,11 +23,7 @@
   },
   "homepage": "https://github.com/voiceflow/react-chat#readme",
   "keywords": [
-    "combinedReducer",
     "react",
-    "react-redux",
-    "reducer",
-    "redux",
     "voiceflow"
   ],
   "license": "ISC",
@@ -35,9 +31,6 @@
   "private": true,
   "publishConfig": {
     "access": "public"
-  },
-  "resolutions": {
-    "root": "portal:/Users/tylerhan/voiceflow/creator-app"
   },
   "scripts": {
     "build": "turbo run build",

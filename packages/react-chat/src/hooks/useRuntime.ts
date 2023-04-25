@@ -39,6 +39,9 @@ const DEFAULT_RUNTIME_STATE: Required<SessionOptions> = {
   status: SessionStatus.IDLE,
 };
 
+/**
+ * A wrapper for the Voiceflow runtime client.
+ */
 export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...config }: UseRuntimeProps) => {
   const [indicator, setIndicator] = useState(false);
   const [session, setSession, sessionRef] = useStateRef<Required<SessionOptions>>({ ...DEFAULT_RUNTIME_STATE, ...config.session });

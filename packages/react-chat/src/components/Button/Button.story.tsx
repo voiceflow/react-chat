@@ -6,7 +6,17 @@ export default {
   title: 'Core/Button',
   component: Button,
   argTypes: {
-    type: { if: { arg: 'variant', eq: Button.Variant.PRIMARY } },
+    variant: {
+      options: Object.values(Button.Variant),
+      control: { type: 'radio' },
+      defaultValue: Button.Variant.PRIMARY,
+    },
+    type: {
+      if: { arg: 'variant', eq: Button.Variant.PRIMARY },
+      options: ['info', 'warn', 'subtle'],
+      control: { type: 'radio' },
+      defaultValue: 'info',
+    },
   },
   args: {
     children: 'Button Label',

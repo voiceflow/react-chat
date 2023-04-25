@@ -14,6 +14,7 @@ export default defineConfig(({ mode }) => {
   return {
     server: {
       port: 3005,
+      // TODO: apply generic runtime settings here
       open: '/examples/index.html',
     },
     define: {

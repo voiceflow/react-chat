@@ -20,10 +20,30 @@ export interface ResponseActionProps {
 }
 
 export interface SystemResponseProps {
+  /**
+   * An image URL for an avatar to associate the messages with.
+   */
   avatar: string;
+
+  /**
+   * A unix timestamp indicating when the messages were sent.
+   */
   timestamp: number;
+
+  /**
+   * A list of messages that will be rendered as {@link SystemMessage} components.
+   */
   messages: MessageProps[];
+
+  /**
+   * A list of actions that will be rendered as buttons.
+   */
   actions?: ResponseActionProps[];
+
+  /**
+   * If true, allows actions to appear after this message.
+   * Only the last system message in a row can show actions.
+   */
   isLast?: boolean;
 }
 
@@ -66,6 +86,11 @@ const SystemResponse: React.FC<SystemResponseProps> = ({ avatar, timestamp, mess
   );
 };
 
+/**
+ * A dynamic component capable of displaying all standard system responses.
+ *
+ * @see {@link https://voiceflow.github.io/react-chat/?path=/story/components-chat-systemresponse--simple-text}
+ */
 export default Object.assign(SystemResponse, {
   Message: MessageType,
 

@@ -10,6 +10,11 @@ const TypingIndicator: React.FC = () => (
   </Container>
 );
 
+/**
+ * An animated indicator to show that the system is preparing a response.
+ *
+ * @see {@link http://localhost:6006/?path=/story/components-typingindicator--default}
+ */
 export default Object.assign(TypingIndicator, {
   Container,
   Dot,

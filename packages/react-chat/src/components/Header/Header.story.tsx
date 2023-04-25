@@ -1,6 +1,7 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import Chat from '@/components/Chat';
+import { VF_ICON } from '@/fixtures';
 
 import Header from '.';
 
@@ -9,7 +10,8 @@ export default {
   component: Header,
   args: {
     title: 'Assistant Name',
-    image: 'https://source.unsplash.com/random/32x32',
+    image: VF_ICON,
+    actions: [],
   },
 } as ComponentMeta<typeof Header>;
 
