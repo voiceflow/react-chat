@@ -1,3 +1,4 @@
+import { Trace as BaseTypesTrace } from '@voiceflow/base-types';
 import {
   ActionType,
   CardV2TraceComponent,
@@ -10,7 +11,7 @@ import {
 } from '@voiceflow/sdk-runtime';
 import Bowser from 'bowser';
 import cuid from 'cuid';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { RuntimeOptions, SendMessage, SessionOptions, SessionStatus } from '@/common';
 import type { SystemResponseProps } from '@/components/SystemResponse';
@@ -45,6 +46,34 @@ const DEFAULT_RUNTIME_STATE: Required<SessionOptions> = {
 export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...config }: UseRuntimeProps) => {
   const [indicator, setIndicator] = useState(false);
   const [session, setSession, sessionRef] = useStateRef<Required<SessionOptions>>({ ...DEFAULT_RUNTIME_STATE, ...config.session });
+  const [lastInteractionAt, setLastInteractionAt] = useState<number | null>(Date.now());
+  const [noReplyTimeout, setNoReplyTimeout] = useState<number | null>(null);
+
+  useEffect(() => {
+    const noReplyTimer = setInterval(() => {
+      const ready = isStatus(SessionStatus.ACTIVE);
+
+      console.log('checking for no reply. requirements:', { ready, noReplyTimeout, lastInteractionAt });
+
+      if (ready) {
+        if (noReplyTimeout && lastInteractionAt) {
+          const timeSinceLastInteraction = Date.now() - lastInteractionAt;
+          console.log('no reply is possible:', { timeSinceLastInteraction, noReplyTimeout });
+          if (timeSinceLastInteraction > noReplyTimeout) {
+            // Trigger no reply action
+            interact({ type: ActionType.NO_REPLY, payload: null });
+          }
+        }
+      } else {
+        setLastInteractionAt(Date.now());
+      }
+    }, 1000);
+
+    return () => {
+      console.log('clearing no reply timer');
+      clearInterval(noReplyTimer);
+    };
+  }, [noReplyTimeout, lastInteractionAt]);
 
   const runtime = useMemo(() => new VoiceflowRuntime<RuntimeContext>({ verify, url }), [verify]);
 
@@ -104,6 +133,7 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...conf
       },
     ]);
     await interact(action);
+    setLastInteractionAt(Date.now());
   };
 
   runtime.registerStep(
@@ -156,6 +186,17 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...conf
           actions: buttons.map(({ name, request }) => ({ name, request })),
         })),
       });
+      return context;
+    },
+  });
+
+  runtime.registerStep({
+    canHandle: ({ type }) => type === Trace.TraceType.NO_REPLY,
+    handle: ({ context }, _trace) => {
+      const trace = _trace as BaseTypesTrace.NoReplyTrace;
+
+      setNoReplyTimeout(trace.payload.timeout * 1000);
+
       return context;
     },
   });
