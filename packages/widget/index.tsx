@@ -1,4 +1,5 @@
 import type { ChatConfig } from '@voiceflow/react-chat';
+import { Listeners, PostMessage } from '@voiceflow/react-chat';
 import { createRoot } from 'react-dom/client';
 
 import Widget from './src';
@@ -27,4 +28,8 @@ window.voiceflow.chat.load = async (loadConfig: Partial<ChatConfig>) => {
   const config = sanitizeConfig(loadConfig);
 
   root.render(<Widget {...config} widgetURL={WIDGET_URL!} />);
+
+  return new Promise<void>((resolve) => {
+    Listeners.context.listeners.push({ type: PostMessage.Type.SESSION, action: resolve });
+  });
 };
