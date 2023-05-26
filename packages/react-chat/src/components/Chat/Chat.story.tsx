@@ -47,6 +47,9 @@ Exhaustive.args = {
       <SystemResponseTemplate {...SystemResponseStory.ActionableCard.args} />
       <UserResponseTemplate {...UserResponseStory.ActionableDebugReason.args} />
       <SystemResponseTemplate {...SystemResponseStory.Multiple.args} />
+
+      <UserResponseTemplate {...UserResponseStory.ActionableDebugReason.args} />
+      <SystemResponseTemplate {...SystemResponseStory.MultipleWithFeedback.args} />
     </>
   ),
 };
