@@ -100,6 +100,11 @@ Carousel.args = {
           title: 'First Card',
           description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem voluptas perspiciatis est quis dolores!',
           image: CARD_IMAGE,
+          actions: [
+            { request: {} as any, name: 'First Button' },
+            { request: {} as any, name: 'Second Button' },
+            { request: {} as any, name: 'Third Button' },
+          ],
         },
         {
           title: 'Second Card',
@@ -114,11 +119,6 @@ Carousel.args = {
           title: 'Third Card',
           description: 'Lorem ipsum dolor sit amet',
           image: CARD_IMAGE,
-          actions: [
-            { request: {} as any, name: 'First Button' },
-            { request: {} as any, name: 'Second Button' },
-            { request: {} as any, name: 'Third Button' },
-          ],
         },
       ],
     },
@@ -127,6 +127,23 @@ Carousel.args = {
 
 export const Multiple = Template.bind({});
 Multiple.args = {
+  messages: [
+    ...(SimpleText.args.messages ?? []),
+    ...(WrappingText.args.messages ?? []),
+    ...(MultilineText.args.messages ?? []),
+    ...(Image.args.messages ?? []),
+    ...(Card.args.messages ?? []),
+    ...(ActionableCard.args.messages ?? []),
+    ...(Carousel.args.messages ?? []),
+  ],
+};
+
+export const MultipleWithFeedback = Template.bind({});
+MultipleWithFeedback.args = {
+  feedback: {
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    onClick: () => {},
+  },
   messages: [
     ...(SimpleText.args.messages ?? []),
     ...(WrappingText.args.messages ?? []),

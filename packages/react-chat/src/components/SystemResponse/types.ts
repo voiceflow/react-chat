@@ -7,6 +7,7 @@ import { MessageType } from './constants';
 
 export interface BaseMessageProps {
   delay?: number | undefined;
+  ai?: boolean;
 }
 
 export interface TextMessageProps extends BaseMessageProps {
