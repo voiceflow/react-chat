@@ -1,10 +1,8 @@
-import { BaseRequest, Trace as BaseTypesTrace } from '@voiceflow/base-types';
-import { RequestType } from '@voiceflow/base-types/build/cjs/request';
+import { Trace as BaseTypesTrace } from '@voiceflow/base-types';
 import {
   ActionType,
   CardV2TraceComponent,
   ChoiceTraceComponent,
-  isRuntimeAction,
   RuntimeAction,
   TextTraceComponent,
   Trace,
@@ -14,7 +12,6 @@ import {
 import Bowser from 'bowser';
 import cuid from 'cuid';
 import { useEffect, useMemo, useState } from 'react';
-import { act } from 'react-dom/test-utils';
 
 import { RuntimeOptions, SendMessage, SessionOptions, SessionStatus } from '@/common';
 import type { SystemResponseProps } from '@/components/SystemResponse';
