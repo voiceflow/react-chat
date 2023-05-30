@@ -109,10 +109,12 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...conf
   runtime.registerStep(
     TextTraceComponent(({ context }, { payload }) => {
       const { slate, message } = payload;
+
       context.messages.push({
         type: MessageType.TEXT,
         text: slate?.content || message,
         delay: slate?.messageDelayMilliseconds,
+        ai: payload.ai,
       });
       return context;
     })
