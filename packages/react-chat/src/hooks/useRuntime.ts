@@ -1,8 +1,10 @@
-import { Trace as BaseTypesTrace } from '@voiceflow/base-types';
+import { BaseRequest, Trace as BaseTypesTrace } from '@voiceflow/base-types';
+import { RequestType } from '@voiceflow/base-types/build/cjs/request';
 import {
   ActionType,
   CardV2TraceComponent,
   ChoiceTraceComponent,
+  isRuntimeAction,
   RuntimeAction,
   TextTraceComponent,
   Trace,
@@ -12,6 +14,7 @@ import {
 import Bowser from 'bowser';
 import cuid from 'cuid';
 import { useEffect, useMemo, useState } from 'react';
+import { act } from 'react-dom/test-utils';
 
 import { RuntimeOptions, SendMessage, SessionOptions, SessionStatus } from '@/common';
 import type { SystemResponseProps } from '@/components/SystemResponse';
@@ -50,28 +53,26 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...conf
   const [noReplyTimeout, setNoReplyTimeout] = useState<number | null>(null);
 
   useEffect(() => {
-    const noReplyTimer = setInterval(() => {
+    let noReplyTimer: NodeJS.Timeout | undefined;
+
+    const checkNoReply = () => {
       const ready = isStatus(SessionStatus.ACTIVE);
 
-      console.log('checking for no reply. requirements:', { ready, noReplyTimeout, lastInteractionAt });
-
-      if (ready) {
-        if (noReplyTimeout && lastInteractionAt) {
-          const timeSinceLastInteraction = Date.now() - lastInteractionAt;
-          console.log('no reply is possible:', { timeSinceLastInteraction, noReplyTimeout });
-          if (timeSinceLastInteraction > noReplyTimeout) {
-            // Trigger no reply action
-            interact({ type: ActionType.NO_REPLY, payload: null });
-          }
+      if (ready && noReplyTimeout && lastInteractionAt) {
+        const timeSinceLastInteraction = Date.now() - lastInteractionAt;
+        if (timeSinceLastInteraction > noReplyTimeout) {
+          // Trigger no reply action
+          interact({ type: ActionType.NO_REPLY, payload: null });
         }
-      } else {
-        setLastInteractionAt(Date.now());
       }
-    }, 1000);
+
+      noReplyTimer = setTimeout(checkNoReply, 1000);
+    };
+
+    checkNoReply();
 
     return () => {
-      console.log('clearing no reply timer');
-      clearInterval(noReplyTimer);
+      clearTimeout(noReplyTimer);
     };
   }, [noReplyTimeout, lastInteractionAt]);
 
@@ -105,6 +106,14 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...conf
     ]);
 
     config.saveSession?.(sessionRef.current);
+
+    let finishedAnimatingAt = Date.now();
+
+    context.messages.forEach((message) => {
+      finishedAnimatingAt += message.delay ?? 1000;
+    });
+
+    setLastInteractionAt(finishedAnimatingAt);
   };
 
   const send: SendMessage = async (message, action) => {
@@ -133,7 +142,6 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...conf
       },
     ]);
     await interact(action);
-    setLastInteractionAt(Date.now());
   };
 
   runtime.registerStep(
@@ -196,6 +204,7 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...conf
       const trace = _trace as BaseTypesTrace.NoReplyTrace;
 
       setNoReplyTimeout(trace.payload.timeout * 1000);
+      setLastInteractionAt(Date.now());
 
       return context;
     },
