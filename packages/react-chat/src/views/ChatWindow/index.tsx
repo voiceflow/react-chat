@@ -68,6 +68,13 @@ const ChatWindow: React.FC<ChatConfig & { assistant: Assistant; session: Session
                 <SystemResponse
                   key={id}
                   {...R.omit(props, ['type'])}
+                  feedback={
+                    assistant.feedback
+                      ? {
+                          onClick: runtime.feedback,
+                        }
+                      : undefined
+                  }
                   avatar={assistant.avatar}
                   isLast={turnIndex === runtime.session.turns.length - 1}
                 />

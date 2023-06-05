@@ -32,6 +32,11 @@ interface UseRuntimeProps extends RuntimeOptions {
   saveSession?: (session: SessionOptions) => void;
 }
 
+export enum FeedbackName {
+  POSITIVE = 'Thumbs up',
+  NEGATIVE = 'Thumbs down',
+}
+
 const DEFAULT_RUNTIME_STATE: Required<SessionOptions> = {
   turns: [],
   userID: cuid(),
@@ -113,8 +118,8 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...conf
       context.messages.push({
         type: MessageType.TEXT,
         text: slate?.content || message,
-        delay: slate?.messageDelayMilliseconds,
-        ai: payload.ai,
+        delay: payload.delay,
+        ...(payload.ai ? { ai: payload.ai } : {}),
       });
       return context;
     })
@@ -181,12 +186,17 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...conf
 
   const reply = async (message: string): Promise<void> => send(message, { type: ActionType.TEXT, payload: message });
 
+  const feedback = async (name: FeedbackName, message: string): Promise<void> => {
+    await runtime.feedback({ sessionID: sessionRef.current.userID, text: message, name, ...(versionID && { versionID }) });
+  };
+
   return {
     send,
     reply,
     reset,
     launch,
     interact,
+    feedback,
     indicator,
     session,
     sessionRef,
