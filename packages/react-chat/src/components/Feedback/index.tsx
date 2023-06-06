@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { thumbsUp as ThumbsUp } from '@/assets/svg';
+import { FeedbackName } from '@/hooks';
 
 import { Button, ButtonsContainer, Container, Description } from './styled';
 
@@ -12,15 +13,20 @@ export interface FeedbackProps extends React.PropsWithChildren {
    */
   question?: string;
 
-  onClick: (feedback: 'positive' | 'negative') => void;
+  /**
+   * Message that will be sent with the feedback
+   */
+  aiMessage: string;
+
+  onClick: (feedback: FeedbackName, message: string) => void;
 }
 
-const Feedback: React.FC<FeedbackProps> = ({ question = 'Was this helpful?', onClick, ...props }) => {
-  const [active, setActive] = React.useState<'positive' | 'negative' | null>(null);
+const Feedback: React.FC<FeedbackProps> = ({ question = 'Was this helpful?', onClick, aiMessage, ...props }) => {
+  const [active, setActive] = React.useState<FeedbackName | null>(null);
 
-  const handleClick = (feedback: 'positive' | 'negative') => {
+  const handleClick = (feedback: FeedbackName) => {
     if (feedback === active) return;
-    onClick(feedback);
+    onClick(feedback, aiMessage);
     setActive(feedback);
   };
 
@@ -28,10 +34,10 @@ const Feedback: React.FC<FeedbackProps> = ({ question = 'Was this helpful?', onC
     <Container {...props}>
       <Description>{question}</Description>
       <ButtonsContainer>
-        <Button orientation="positive" active={active === 'positive'} onClick={() => handleClick('positive')}>
+        <Button orientation="positive" active={active === FeedbackName.POSITIVE} onClick={() => handleClick(FeedbackName.POSITIVE)}>
           <ThumbsUp width="24px" height="24px" />
         </Button>
-        <Button orientation="negative" active={active === 'negative'} onClick={() => handleClick('negative')}>
+        <Button orientation="negative" active={active === FeedbackName.NEGATIVE} onClick={() => handleClick(FeedbackName.NEGATIVE)}>
           <ThumbsUp width="24px" height="24px" />
         </Button>
       </ButtonsContainer>
