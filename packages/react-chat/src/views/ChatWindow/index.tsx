@@ -88,4 +88,4 @@ const ChatWindow: React.FC<ChatConfig & { assistant: Assistant; session: Session
   );
 };
 
-export default Object.assign(ChatWindow, { sendMessage });
+export default Object.assign(ChatWindow, { sendMessage, Container: ChatWindowContainer });
