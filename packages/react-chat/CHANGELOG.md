@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.36.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.35.0...@voiceflow/react-chat@1.36.0) (2023-06-07)
+
+### Bug Fixes
+
+* added link to the card when is a valid url (BUG-372) ([#45](https://github.com/voiceflow/react-chat/issues/45)) ([3440367](https://github.com/voiceflow/react-chat/commit/34403672eeeedb5fe5c8067981bc1c5cafd00bbe))
+* added open ssl legacy provider flag to build docs (CT-000) ([#47](https://github.com/voiceflow/react-chat/issues/47)) ([74c939b](https://github.com/voiceflow/react-chat/commit/74c939b099be02cee27f68baf94198e06ba0c6ad))
+* format package.json file ([9adf235](https://github.com/voiceflow/react-chat/commit/9adf2354b347890d17ec4d8a9864f701f4e3570f))
+* package types properly (DX-449) ([#57](https://github.com/voiceflow/react-chat/issues/57)) ([e7d9df6](https://github.com/voiceflow/react-chat/commit/e7d9df6ee4ce6750014e331b948753d42a1b8ad0))
+
+### Features
+
+* add component documentation (DX-447) ([#49](https://github.com/voiceflow/react-chat/issues/49)) ([1774e8c](https://github.com/voiceflow/react-chat/commit/1774e8c85ee0ca77e2b12774f07831f5f5af6f86))
+* finalize logic for feedback (CT-2052) ([ada060c](https://github.com/voiceflow/react-chat/commit/ada060cb6ad836220e1d49a838277cd25ff817eb))
+* implement feedback component and add to chat (CT-2051) ([67b8eb2](https://github.com/voiceflow/react-chat/commit/67b8eb2e32ee7e37243b79e605cf6fff23226dc7))
+* map payload ai prop to text trace (CT-2052) ([62c588a](https://github.com/voiceflow/react-chat/commit/62c588a7e3473cace7f6e76313afc7b071493ed0))
+
 # [1.35.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.34.0...@voiceflow/react-chat@1.35.0) (2023-02-16)
 
 ### Features
