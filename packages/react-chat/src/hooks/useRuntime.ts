@@ -199,7 +199,6 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...conf
     feedback,
     indicator,
     session,
-    sessionRef,
     setStatus,
     isStatus,
   };
