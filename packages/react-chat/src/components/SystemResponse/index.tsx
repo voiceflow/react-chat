@@ -79,8 +79,6 @@ const SystemResponse: React.FC<SystemResponseProps> = ({ feedback, avatar, times
 
   if (!messages.length && !actions.length) return null;
 
-  console.log('rendering', { visibleMessages, Message });
-
   return (
     <>
       {visibleMessages.map((message, index) => (
