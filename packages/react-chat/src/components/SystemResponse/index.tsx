@@ -11,7 +11,7 @@ import { MessageType } from './constants';
 import { useAnimatedMessages } from './hooks';
 import Indicator from './Indicator';
 import { Actions, Container, Controls, List } from './styled';
-import SystemMessage from './SystemMessage';
+import SystemMessage, { SystemMessageProps } from './SystemMessage';
 import { MessageProps } from './types';
 
 export * from './types';
@@ -53,9 +53,14 @@ export interface SystemResponseProps {
    * @default false
    */
   feedback?: Omit<FeedbackProps, 'aiMessage'> | undefined;
+
+  /**
+   * Override the rendering of individual messages.
+   */
+  Message?: React.ComponentType<SystemMessageProps>;
 }
 
-const SystemResponse: React.FC<SystemResponseProps> = ({ feedback, avatar, timestamp, messages, actions = [], isLast }) => {
+const SystemResponse: React.FC<SystemResponseProps> = ({ feedback, avatar, timestamp, messages, actions = [], isLast, Message = SystemMessage }) => {
   const runtime = useContext(RuntimeAPIContext);
 
   const { showIndicator, visibleMessages, complete } = useAnimatedMessages({
@@ -74,10 +79,12 @@ const SystemResponse: React.FC<SystemResponseProps> = ({ feedback, avatar, times
 
   if (!messages.length && !actions.length) return null;
 
+  console.log('rendering', { visibleMessages, Message });
+
   return (
     <>
       {visibleMessages.map((message, index) => (
-        <SystemMessage
+        <Message
           message={message}
           withImage={!showIndicator && index === visibleMessages.length - 1}
           feedback={complete && !showIndicator && index === visibleMessages.length - 1 ? feedbackProps : undefined}

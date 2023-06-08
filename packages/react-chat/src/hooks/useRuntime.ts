@@ -5,6 +5,7 @@ import {
   RuntimeAction,
   TextTraceComponent,
   Trace,
+  TraceDeclaration,
   VisualTraceComponent,
   VoiceflowRuntime,
 } from '@voiceflow/sdk-runtime';
@@ -51,7 +52,74 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...conf
   const [indicator, setIndicator] = useState(false);
   const [session, setSession, sessionRef] = useStateRef<Required<SessionOptions>>({ ...DEFAULT_RUNTIME_STATE, ...config.session });
 
-  const runtime = useMemo(() => new VoiceflowRuntime<RuntimeContext>({ verify, url }), [verify]);
+  const runtime = useMemo(() => {
+    const runtime = new VoiceflowRuntime<RuntimeContext>({ verify, url });
+
+    runtime.registerStep(
+      TextTraceComponent(({ context }, { payload }) => {
+        const { slate, message } = payload;
+
+        context.messages.push({
+          type: MessageType.TEXT,
+          text: slate?.content || message,
+          delay: payload.delay,
+          ...(payload.ai ? { ai: payload.ai } : {}),
+        });
+        return context;
+      })
+    );
+    runtime.registerStep(
+      VisualTraceComponent(({ context }, { payload: { image } }) => {
+        context.messages.push({ type: MessageType.IMAGE, url: image });
+        return context;
+      })
+    );
+    runtime.registerStep(
+      ChoiceTraceComponent(({ context }, { payload: { buttons } }) => {
+        context.actions = (buttons as { name: string; request: RuntimeAction }[]).map(({ name, request }) => ({
+          name,
+          request,
+        }));
+        return context;
+      })
+    );
+    runtime.registerStep(
+      CardV2TraceComponent(({ context }, { payload: { title, imageUrl, description, buttons } }) => {
+        context.messages.push({
+          type: 'card',
+          title,
+          description: description.text,
+          image: imageUrl,
+          actions: buttons.map(({ name, request }) => ({ name, request })),
+        });
+        return context;
+      })
+    );
+    runtime.registerStep({
+      canHandle: ({ type }) => type === Trace.TraceType.CAROUSEL,
+      handle: ({ context }, { payload: { cards } }: Trace.Carousel) => {
+        context.messages.push({
+          type: MessageType.CAROUSEL,
+          cards: cards.map(({ title, description, imageUrl, buttons }) => ({
+            title,
+            description: description.text,
+            image: imageUrl,
+            actions: buttons.map(({ name, request }) => ({ name, request })),
+          })),
+        });
+        return context;
+      },
+    });
+    runtime.registerStep({
+      canHandle: ({ type }) => type === Trace.TraceType.END,
+      handle: ({ context }) => {
+        context.messages.push({ type: MessageType.END });
+        return context;
+      },
+    });
+
+    return runtime;
+  }, [verify]);
 
   const setTurns = (action: (turns: TurnProps[]) => TurnProps[]) => {
     setSession((prev) => ({ ...prev, turns: action(prev.turns) }));
@@ -111,70 +179,6 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...conf
     await interact(action);
   };
 
-  runtime.registerStep(
-    TextTraceComponent(({ context }, { payload }) => {
-      const { slate, message } = payload;
-
-      context.messages.push({
-        type: MessageType.TEXT,
-        text: slate?.content || message,
-        delay: payload.delay,
-        ...(payload.ai ? { ai: payload.ai } : {}),
-      });
-      return context;
-    })
-  );
-  runtime.registerStep(
-    VisualTraceComponent(({ context }, { payload: { image } }) => {
-      context.messages.push({ type: MessageType.IMAGE, url: image });
-      return context;
-    })
-  );
-  runtime.registerStep(
-    ChoiceTraceComponent(({ context }, { payload: { buttons } }) => {
-      context.actions = (buttons as { name: string; request: RuntimeAction }[]).map(({ name, request }) => ({
-        name,
-        request,
-      }));
-      return context;
-    })
-  );
-  runtime.registerStep(
-    CardV2TraceComponent(({ context }, { payload: { title, imageUrl, description, buttons } }) => {
-      context.messages.push({
-        type: 'card',
-        title,
-        description: description.text,
-        image: imageUrl,
-        actions: buttons.map(({ name, request }) => ({ name, request })),
-      });
-      return context;
-    })
-  );
-  runtime.registerStep({
-    canHandle: ({ type }) => type === Trace.TraceType.CAROUSEL,
-    handle: ({ context }, { payload: { cards } }: Trace.Carousel) => {
-      context.messages.push({
-        type: MessageType.CAROUSEL,
-        cards: cards.map(({ title, description, imageUrl, buttons }) => ({
-          title,
-          description: description.text,
-          image: imageUrl,
-          actions: buttons.map(({ name, request }) => ({ name, request })),
-        })),
-      });
-      return context;
-    },
-  });
-
-  runtime.registerStep({
-    canHandle: ({ type }) => type === Trace.TraceType.END,
-    handle: ({ context }) => {
-      context.messages.push({ type: MessageType.END });
-      return context;
-    },
-  });
-
   const reset = () => setTurns(() => []);
 
   const launch = async (): Promise<void> => {
@@ -190,9 +194,12 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...conf
     await runtime.feedback({ sessionID: sessionRef.current.userID, text: message, name, ...(versionID && { versionID }) });
   };
 
+  const register = (trace: TraceDeclaration<RuntimeContext, any>) => runtime.registerStep(trace);
+
   return {
     send,
     reply,
+    register,
     reset,
     launch,
     interact,
