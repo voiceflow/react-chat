@@ -13,20 +13,15 @@ export interface FeedbackProps extends React.PropsWithChildren {
    */
   question?: string;
 
-  /**
-   * Message that will be sent with the feedback
-   */
-  aiMessage: string;
-
-  onClick: (feedback: FeedbackName, message: string) => void;
+  onClick: (feedback: FeedbackName) => void;
 }
 
-const Feedback: React.FC<FeedbackProps> = ({ question = 'Was this helpful?', onClick, aiMessage, ...props }) => {
+const Feedback: React.FC<FeedbackProps> = ({ question = 'Was this helpful?', onClick, ...props }) => {
   const [active, setActive] = React.useState<FeedbackName | null>(null);
 
   const handleClick = (feedback: FeedbackName) => {
     if (feedback === active) return;
-    onClick(feedback, aiMessage);
+    onClick(feedback);
     setActive(feedback);
   };
 

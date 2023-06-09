@@ -1,5 +1,4 @@
-import { serializeToText } from '@voiceflow/slate-serializer/text';
-import { useContext, useMemo } from 'react';
+import { useContext } from 'react';
 
 import type { RuntimeAction } from '@/common';
 import Button from '@/components/Button';
@@ -52,7 +51,7 @@ export interface SystemResponseProps {
    * If provided, will display {@link Feedback} component under the last message.
    * @default false
    */
-  feedback?: Omit<FeedbackProps, 'aiMessage'> | undefined;
+  feedback?: FeedbackProps | undefined;
 
   /**
    * Override the rendering of individual messages.
@@ -69,13 +68,6 @@ const SystemResponse: React.FC<SystemResponseProps> = ({ feedback, avatar, times
   });
 
   useAutoScroll([showIndicator, complete, visibleMessages.length]);
-  const aiMessage = useMemo(() => visibleMessages.find(({ ai }) => ai), [visibleMessages]);
-
-  const feedbackProps = useMemo(() => {
-    if (aiMessage?.type !== MessageType.TEXT || !feedback) return undefined;
-
-    return { ...feedback, aiMessage: typeof aiMessage.text === 'string' ? aiMessage.text : serializeToText(aiMessage.text) };
-  }, [aiMessage, feedback]);
 
   if (!messages.length && !actions.length) return null;
 
@@ -85,7 +77,7 @@ const SystemResponse: React.FC<SystemResponseProps> = ({ feedback, avatar, times
         <Message
           message={message}
           withImage={!showIndicator && index === visibleMessages.length - 1}
-          feedback={complete && !showIndicator && index === visibleMessages.length - 1 ? feedbackProps : undefined}
+          feedback={complete && !showIndicator && index === visibleMessages.length - 1 ? feedback : undefined}
           avatar={avatar}
           timestamp={timestamp}
           key={index}
