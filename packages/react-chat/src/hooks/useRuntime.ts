@@ -9,15 +9,16 @@ import {
   VisualTraceComponent,
   VoiceflowRuntime,
 } from '@voiceflow/sdk-runtime';
+import { serializeToText } from '@voiceflow/slate-serializer/text';
 import Bowser from 'bowser';
 import cuid from 'cuid';
 import { useMemo, useState } from 'react';
 
 import { RuntimeOptions, SendMessage, SessionOptions, SessionStatus } from '@/common';
-import type { SystemResponseProps } from '@/components/SystemResponse';
+import type { MessageProps, SystemResponseProps } from '@/components/SystemResponse';
 import { MessageType } from '@/components/SystemResponse/constants';
 import { RUNTIME_URL } from '@/constants';
-import { TurnProps, TurnType } from '@/types';
+import { TurnProps, TurnType, UserTurnProps } from '@/types';
 import { handleActions } from '@/utils/actions';
 
 import { useStateRef } from './useStateRef';
@@ -190,8 +191,24 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...conf
 
   const reply = async (message: string): Promise<void> => send(message, { type: ActionType.TEXT, payload: message });
 
-  const feedback = async (name: FeedbackName, message: string): Promise<void> => {
-    await runtime.feedback({ sessionID: sessionRef.current.userID, text: message, name, ...(versionID && { versionID }) });
+  const feedback = async (name: FeedbackName, lastTurnMessages: MessageProps[], userTurn: UserTurnProps | null): Promise<void> => {
+    const aiMessages: string[] = [];
+
+    lastTurnMessages.forEach((message) => {
+      if (!message.ai) return;
+      if (message.type !== MessageType.TEXT) return;
+      const text = typeof message.text === 'string' ? message.text : serializeToText(message.text);
+
+      aiMessages.push(text);
+    });
+
+    await runtime.feedback({
+      sessionID: sessionRef.current.userID,
+      text: aiMessages,
+      name,
+      last_user_input: userTurn,
+      ...(versionID && { versionID }),
+    });
   };
 
   const register = (trace: TraceDeclaration<RuntimeContext, any>) => runtime.registerStep(trace);
