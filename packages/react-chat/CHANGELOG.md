@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.37.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.37.0...@voiceflow/react-chat@1.37.1) (2023-06-12)
+
+### Bug Fixes
+
+* add reference to react-chat demo ([a3d3801](https://github.com/voiceflow/react-chat/commit/a3d38019562d0eedb076410e8a2bbda8b96c06db))
+
 # [1.37.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.36.1...@voiceflow/react-chat@1.37.0) (2023-06-09)
 
 ### Features
