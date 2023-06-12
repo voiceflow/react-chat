@@ -8,6 +8,8 @@ yarn add @voiceflow/react-chat
 
 ## Usage
 
+For a more complete example see our [demo-react-chat](https://github.com/voiceflow/demo-react-chat) repository.
+
 ```tsx
 import { Chat, ChatWindow, Launcher, SessionStatus, SystemResponse, TurnType, UserResponse, useRuntime } from '@voiceflow/react-chat';
 import { useState } from 'react';
