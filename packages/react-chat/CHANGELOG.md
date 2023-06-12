@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.38.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.37.1...@voiceflow/react-chat@1.38.0) (2023-06-12)
+
+### Features
+
+* support triggering no reply response (BUG-373) ([#50](https://github.com/voiceflow/react-chat/issues/50)) ([5c9319e](https://github.com/voiceflow/react-chat/commit/5c9319ecd0743445077515e0cf77cba66b134044))
+
 ## [1.37.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.37.0...@voiceflow/react-chat@1.37.1) (2023-06-12)
 
 ### Bug Fixes
