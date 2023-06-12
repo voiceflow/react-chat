@@ -1,3 +1,4 @@
+import { Trace as BaseTypesTrace } from '@voiceflow/base-types';
 import {
   ActionType,
   CardV2TraceComponent,
@@ -12,7 +13,7 @@ import {
 import { serializeToText } from '@voiceflow/slate-serializer/text';
 import Bowser from 'bowser';
 import cuid from 'cuid';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { RuntimeOptions, SendMessage, SessionOptions, SessionStatus } from '@/common';
 import type { MessageProps, SystemResponseProps } from '@/components/SystemResponse';
@@ -52,6 +53,32 @@ const DEFAULT_RUNTIME_STATE: Required<SessionOptions> = {
 export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...config }: UseRuntimeProps) => {
   const [indicator, setIndicator] = useState(false);
   const [session, setSession, sessionRef] = useStateRef<Required<SessionOptions>>({ ...DEFAULT_RUNTIME_STATE, ...config.session });
+  const [lastInteractionAt, setLastInteractionAt] = useState<number | null>(Date.now());
+  const [noReplyTimeout, setNoReplyTimeout] = useState<number | null>(null);
+
+  useEffect(() => {
+    let noReplyTimer: NodeJS.Timeout | undefined;
+
+    const checkNoReply = () => {
+      const ready = isStatus(SessionStatus.ACTIVE);
+
+      if (ready && noReplyTimeout && lastInteractionAt) {
+        const timeSinceLastInteraction = Date.now() - lastInteractionAt;
+        if (timeSinceLastInteraction > noReplyTimeout) {
+          // Trigger no reply action
+          interact({ type: ActionType.NO_REPLY, payload: null });
+        }
+      }
+
+      noReplyTimer = setTimeout(checkNoReply, 1000);
+    };
+
+    checkNoReply();
+
+    return () => {
+      clearTimeout(noReplyTimer);
+    };
+  }, [noReplyTimeout, lastInteractionAt]);
 
   const runtime = useMemo(() => {
     const runtime = new VoiceflowRuntime<RuntimeContext>({ verify, url });
@@ -112,6 +139,17 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...conf
       },
     });
     runtime.registerStep({
+      canHandle: ({ type }) => type === Trace.TraceType.NO_REPLY,
+      handle: ({ context }, _trace) => {
+        const trace = _trace as BaseTypesTrace.NoReplyTrace;
+
+        setNoReplyTimeout(trace.payload.timeout * 1000);
+        setLastInteractionAt(Date.now());
+
+        return context;
+      },
+    });
+    runtime.registerStep({
       canHandle: ({ type }) => type === Trace.TraceType.END,
       handle: ({ context }) => {
         context.messages.push({ type: MessageType.END });
@@ -150,6 +188,14 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...conf
     ]);
 
     config.saveSession?.(sessionRef.current);
+
+    let finishedAnimatingAt = Date.now();
+
+    context.messages.forEach((message) => {
+      finishedAnimatingAt += message.delay ?? 1000;
+    });
+
+    setLastInteractionAt(finishedAnimatingAt);
   };
 
   const send: SendMessage = async (message, action) => {
