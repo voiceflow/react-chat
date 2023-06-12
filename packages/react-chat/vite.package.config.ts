@@ -27,5 +27,12 @@ export default defineConfig({
       },
     },
   },
-  plugins: [react(), dts(), ...createPlugins()],
+  plugins: [
+    react(),
+    dts({
+      skipDiagnostics: false,
+      logDiagnostics: true,
+    }),
+    ...createPlugins(),
+  ],
 });

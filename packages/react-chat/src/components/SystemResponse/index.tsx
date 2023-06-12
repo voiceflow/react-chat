@@ -5,11 +5,12 @@ import Button from '@/components/Button';
 import { RuntimeAPIContext } from '@/contexts';
 import { useAutoScroll } from '@/hooks';
 
+import Feedback, { FeedbackProps } from '../Feedback';
 import { MessageType } from './constants';
 import { useAnimatedMessages } from './hooks';
 import Indicator from './Indicator';
 import { Actions, Container, Controls, List } from './styled';
-import SystemMessage from './SystemMessage';
+import SystemMessage, { SystemMessageProps } from './SystemMessage';
 import { MessageProps } from './types';
 
 export * from './types';
@@ -45,9 +46,20 @@ export interface SystemResponseProps {
    * Only the last system message in a row can show actions.
    */
   isLast?: boolean;
+
+  /**
+   * If provided, will display {@link Feedback} component under the last message.
+   * @default false
+   */
+  feedback?: FeedbackProps | undefined;
+
+  /**
+   * Override the rendering of individual messages.
+   */
+  Message?: React.ComponentType<SystemMessageProps>;
 }
 
-const SystemResponse: React.FC<SystemResponseProps> = ({ avatar, timestamp, messages, actions = [], isLast }) => {
+const SystemResponse: React.FC<SystemResponseProps> = ({ feedback, avatar, timestamp, messages, actions = [], isLast, Message = SystemMessage }) => {
   const runtime = useContext(RuntimeAPIContext);
 
   const { showIndicator, visibleMessages, complete } = useAnimatedMessages({
@@ -62,9 +74,10 @@ const SystemResponse: React.FC<SystemResponseProps> = ({ avatar, timestamp, mess
   return (
     <>
       {visibleMessages.map((message, index) => (
-        <SystemMessage
+        <Message
           message={message}
           withImage={!showIndicator && index === visibleMessages.length - 1}
+          feedback={complete && !showIndicator && index === visibleMessages.length - 1 ? feedback : undefined}
           avatar={avatar}
           timestamp={timestamp}
           key={index}

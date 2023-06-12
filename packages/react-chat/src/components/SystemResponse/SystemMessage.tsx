@@ -10,6 +10,7 @@ import Image from '@/components/Image';
 import Message from '@/components/Message';
 import Timestamp from '@/components/Timestamp';
 
+import Feedback, { FeedbackProps } from '../Feedback';
 import { MessageType } from './constants';
 import EndState from './state/end';
 import { Container, Controls, List } from './styled';
@@ -35,9 +36,15 @@ export interface SystemMessageProps {
    * If true, renders an avatar next to the message.
    */
   withImage: boolean;
+
+  /**
+   * If provided, will display {@link Feedback} component.
+   * @default false
+   */
+  feedback?: FeedbackProps | undefined;
 }
 
-const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, timestamp, message, withImage }) => {
+const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, feedback, timestamp, message, withImage }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const controlsRef = useRef<HTMLSpanElement>(null);
 
@@ -59,6 +66,7 @@ const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, timestamp, messag
               <Carousel {...R.omit(props, ['type'])} containerRef={containerRef} controlsRef={controlsRef} />
             ))
             .otherwise(() => null)}
+          {feedback && <Feedback {...feedback} />}
         </List>
         <Timestamp value={timestamp} />
       </Container>

@@ -16,13 +16,14 @@ const DEFAULT_ASSISTANT = {
   description: '',
   position: ChatPosition.RIGHT,
   watermark: true,
+  feedback: false,
   persistence: ChatPersistence.LOCAL_STORAGE,
   spacing: { bottom: 30, side: 30 },
 };
 
 const sanitizeAssistant = (assistant: unknown): PartialDeep<Assistant> => {
   const ref = isObject(assistant) ? assistant : {};
-  const { title, watermark, description, image, launcher, avatar, spacing, color, position, persistence } = ref;
+  const { title, watermark, description, image, launcher, avatar, spacing, color, position, persistence, feedback } = ref;
 
   return {
     ...(typeof title === 'string' && { title }),
@@ -31,6 +32,7 @@ const sanitizeAssistant = (assistant: unknown): PartialDeep<Assistant> => {
     ...(typeof avatar === 'string' && { avatar }),
     ...(typeof launcher === 'string' && { launcher }),
     ...(typeof watermark === 'boolean' && { watermark }),
+    ...(typeof feedback === 'boolean' && { feedback }),
     ...(typeof description === 'string' && { description }),
     ...(isEnumValue(position, ChatPosition) && { position }),
     ...(isEnumValue(persistence, ChatPersistence) && { persistence }),
@@ -61,6 +63,7 @@ export const mergeAssistant = async (config: ChatConfig): Promise<Assistant> => 
     ...publishingAssistant,
     ...configAssistant,
     watermark: publishingAssistant.watermark ?? DEFAULT_ASSISTANT.watermark, // watermark can not be determined by config
+    feedback: publishingAssistant.feedback ?? DEFAULT_ASSISTANT.feedback,
     spacing: {
       ...DEFAULT_ASSISTANT.spacing,
       ...publishingAssistant.spacing,

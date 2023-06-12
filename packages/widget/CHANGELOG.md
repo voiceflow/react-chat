@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/widget@1.5.1...@voiceflow/widget@1.5.2) (2023-06-09)
+
+**Note:** Version bump only for package @voiceflow/widget
+
+## [1.5.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/widget@1.5.0...@voiceflow/widget@1.5.1) (2023-06-08)
+
+**Note:** Version bump only for package @voiceflow/widget
+
+# [1.5.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/widget@1.4.0...@voiceflow/widget@1.5.0) (2023-06-07)
+
+### Bug Fixes
+
+* added webchat into closure with iife format (CT-1961) ([#46](https://github.com/voiceflow/react-chat/issues/46)) ([430a3fe](https://github.com/voiceflow/react-chat/commit/430a3fe22be6f8d209f05e1942bc4a57a8b4aa45))
+* resolve promise on load session (CT-000) ([#51](https://github.com/voiceflow/react-chat/issues/51)) ([8476d2c](https://github.com/voiceflow/react-chat/commit/8476d2c2901bbd13853ca4cf7f9e23408206f310))
+
+### Features
+
+* add component documentation (DX-447) ([#49](https://github.com/voiceflow/react-chat/issues/49)) ([1774e8c](https://github.com/voiceflow/react-chat/commit/1774e8c85ee0ca77e2b12774f07831f5f5af6f86))
+* finalize logic for feedback (CT-2052) ([ada060c](https://github.com/voiceflow/react-chat/commit/ada060cb6ad836220e1d49a838277cd25ff817eb))
+
 # [1.4.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/widget@1.3.1...@voiceflow/widget@1.4.0) (2023-02-16)
 
 ### Features

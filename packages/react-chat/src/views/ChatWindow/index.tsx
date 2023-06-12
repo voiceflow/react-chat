@@ -5,8 +5,8 @@ import { match } from 'ts-pattern';
 import { Assistant, ChatConfig, Listeners, PostMessage, SessionOptions, SessionStatus, useTheme } from '@/common';
 import { Chat, SystemResponse, UserResponse } from '@/components';
 import { RuntimeAPIProvider } from '@/contexts';
-import { useRuntime } from '@/hooks';
-import { TurnType } from '@/types';
+import { FeedbackName, useRuntime } from '@/hooks';
+import { TurnType, UserTurnProps } from '@/types';
 
 import { ChatWindowContainer } from './styled';
 import { sendMessage } from './utils';
@@ -44,6 +44,14 @@ const ChatWindow: React.FC<ChatConfig & { assistant: Assistant; session: Session
 
   const theme = useTheme(assistant);
 
+  const getPreviousUserTurn = useCallback(
+    (turnIndex: number): UserTurnProps | null => {
+      const turn = runtime.session.turns[turnIndex - 1];
+      return turn?.type === TurnType.USER ? turn : null;
+    },
+    [runtime.session.turns]
+  );
+
   return (
     <RuntimeAPIProvider {...runtime}>
       <ChatWindowContainer className={theme}>
@@ -68,6 +76,15 @@ const ChatWindow: React.FC<ChatConfig & { assistant: Assistant; session: Session
                 <SystemResponse
                   key={id}
                   {...R.omit(props, ['type'])}
+                  feedback={
+                    assistant.feedback
+                      ? {
+                          onClick: (feedback: FeedbackName) => {
+                            runtime.feedback(feedback, props.messages, getPreviousUserTurn(turnIndex));
+                          },
+                        }
+                      : undefined
+                  }
                   avatar={assistant.avatar}
                   isLast={turnIndex === runtime.session.turns.length - 1}
                 />
@@ -81,4 +98,4 @@ const ChatWindow: React.FC<ChatConfig & { assistant: Assistant; session: Session
   );
 };
 
-export default Object.assign(ChatWindow, { sendMessage });
+export default Object.assign(ChatWindow, { sendMessage, Container: ChatWindowContainer });

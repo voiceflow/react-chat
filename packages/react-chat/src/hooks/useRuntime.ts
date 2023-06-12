@@ -6,18 +6,20 @@ import {
   RuntimeAction,
   TextTraceComponent,
   Trace,
+  TraceDeclaration,
   VisualTraceComponent,
   VoiceflowRuntime,
 } from '@voiceflow/sdk-runtime';
+import { serializeToText } from '@voiceflow/slate-serializer/text';
 import Bowser from 'bowser';
 import cuid from 'cuid';
 import { useEffect, useMemo, useState } from 'react';
 
 import { RuntimeOptions, SendMessage, SessionOptions, SessionStatus } from '@/common';
-import type { SystemResponseProps } from '@/components/SystemResponse';
+import type { MessageProps, SystemResponseProps } from '@/components/SystemResponse';
 import { MessageType } from '@/components/SystemResponse/constants';
 import { RUNTIME_URL } from '@/constants';
-import { TurnProps, TurnType } from '@/types';
+import { TurnProps, TurnType, UserTurnProps } from '@/types';
 import { handleActions } from '@/utils/actions';
 
 import { useStateRef } from './useStateRef';
@@ -31,6 +33,11 @@ const createContext = (): RuntimeContext => ({
 interface UseRuntimeProps extends RuntimeOptions {
   session: SessionOptions;
   saveSession?: (session: SessionOptions) => void;
+}
+
+export enum FeedbackName {
+  POSITIVE = 'Thumbs up',
+  NEGATIVE = 'Thumbs down',
 }
 
 const DEFAULT_RUNTIME_STATE: Required<SessionOptions> = {
@@ -73,7 +80,85 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...conf
     };
   }, [noReplyTimeout, lastInteractionAt]);
 
-  const runtime = useMemo(() => new VoiceflowRuntime<RuntimeContext>({ verify, url }), [verify]);
+  const runtime = useMemo(() => {
+    const runtime = new VoiceflowRuntime<RuntimeContext>({ verify, url });
+
+    runtime.registerStep(
+      TextTraceComponent(({ context }, { payload }) => {
+        const { slate, message } = payload;
+
+        context.messages.push({
+          type: MessageType.TEXT,
+          text: slate?.content || message,
+          delay: payload.delay,
+          ...(payload.ai ? { ai: payload.ai } : {}),
+        });
+        return context;
+      })
+    );
+    runtime.registerStep(
+      VisualTraceComponent(({ context }, { payload: { image } }) => {
+        context.messages.push({ type: MessageType.IMAGE, url: image });
+        return context;
+      })
+    );
+    runtime.registerStep(
+      ChoiceTraceComponent(({ context }, { payload: { buttons } }) => {
+        context.actions = (buttons as { name: string; request: RuntimeAction }[]).map(({ name, request }) => ({
+          name,
+          request,
+        }));
+        return context;
+      })
+    );
+    runtime.registerStep(
+      CardV2TraceComponent(({ context }, { payload: { title, imageUrl, description, buttons } }) => {
+        context.messages.push({
+          type: 'card',
+          title,
+          description: description.text,
+          image: imageUrl,
+          actions: buttons.map(({ name, request }) => ({ name, request })),
+        });
+        return context;
+      })
+    );
+    runtime.registerStep({
+      canHandle: ({ type }) => type === Trace.TraceType.CAROUSEL,
+      handle: ({ context }, { payload: { cards } }: Trace.Carousel) => {
+        context.messages.push({
+          type: MessageType.CAROUSEL,
+          cards: cards.map(({ title, description, imageUrl, buttons }) => ({
+            title,
+            description: description.text,
+            image: imageUrl,
+            actions: buttons.map(({ name, request }) => ({ name, request })),
+          })),
+        });
+        return context;
+      },
+    });
+    runtime.registerStep({
+      canHandle: ({ type }) => type === Trace.TraceType.NO_REPLY,
+      handle: ({ context }, _trace) => {
+        const trace = _trace as BaseTypesTrace.NoReplyTrace;
+
+        setNoReplyTimeout(trace.payload.timeout * 1000);
+        setLastInteractionAt(Date.now());
+
+        return context;
+      },
+    });
+    runtime.registerStep({
+      canHandle: ({ type }) => type === Trace.TraceType.END,
+      handle: ({ context }) => {
+        context.messages.push({ type: MessageType.END });
+        return context;
+      },
+    });
+
+    return runtime;
+  }, [verify]);
 
   const setTurns = (action: (turns: TurnProps[]) => TurnProps[]) => {
     setSession((prev) => ({ ...prev, turns: action(prev.turns) }));
@@ -141,80 +226,6 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...conf
     await interact(action);
   };
 
-  runtime.registerStep(
-    TextTraceComponent(({ context }, { payload }) => {
-      const { slate, message } = payload;
-      context.messages.push({
-        type: MessageType.TEXT,
-        text: slate?.content || message,
-        delay: slate?.messageDelayMilliseconds,
-      });
-      return context;
-    })
-  );
-  runtime.registerStep(
-    VisualTraceComponent(({ context }, { payload: { image } }) => {
-      context.messages.push({ type: MessageType.IMAGE, url: image });
-      return context;
-    })
-  );
-  runtime.registerStep(
-    ChoiceTraceComponent(({ context }, { payload: { buttons } }) => {
-      context.actions = (buttons as { name: string; request: RuntimeAction }[]).map(({ name, request }) => ({
-        name,
-        request,
-      }));
-      return context;
-    })
-  );
-  runtime.registerStep(
-    CardV2TraceComponent(({ context }, { payload: { title, imageUrl, description, buttons } }) => {
-      context.messages.push({
-        type: 'card',
-        title,
-        description: description.text,
-        image: imageUrl,
-        actions: buttons.map(({ name, request }) => ({ name, request })),
-      });
-      return context;
-    })
-  );
-  runtime.registerStep({
-    canHandle: ({ type }) => type === Trace.TraceType.CAROUSEL,
-    handle: ({ context }, { payload: { cards } }: Trace.Carousel) => {
-      context.messages.push({
-        type: MessageType.CAROUSEL,
-        cards: cards.map(({ title, description, imageUrl, buttons }) => ({
-          title,
-          description: description.text,
-          image: imageUrl,
-          actions: buttons.map(({ name, request }) => ({ name, request })),
-        })),
-      });
-      return context;
-    },
-  });
-
-  runtime.registerStep({
-    canHandle: ({ type }) => type === Trace.TraceType.NO_REPLY,
-    handle: ({ context }, _trace) => {
-      const trace = _trace as BaseTypesTrace.NoReplyTrace;
-
-      setNoReplyTimeout(trace.payload.timeout * 1000);
-      setLastInteractionAt(Date.now());
-
-      return context;
-    },
-  });
-
-  runtime.registerStep({
-    canHandle: ({ type }) => type === Trace.TraceType.END,
-    handle: ({ context }) => {
-      context.messages.push({ type: MessageType.END });
-      return context;
-    },
-  });
-
   const reset = () => setTurns(() => []);
 
   const launch = async (): Promise<void> => {
@@ -226,15 +237,38 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...conf
 
   const reply = async (message: string): Promise<void> => send(message, { type: ActionType.TEXT, payload: message });
 
+  const feedback = async (name: FeedbackName, lastTurnMessages: MessageProps[], userTurn: UserTurnProps | null): Promise<void> => {
+    const aiMessages: string[] = [];
+
+    lastTurnMessages.forEach((message) => {
+      if (!message.ai) return;
+      if (message.type !== MessageType.TEXT) return;
+      const text = typeof message.text === 'string' ? message.text : serializeToText(message.text);
+
+      aiMessages.push(text);
+    });
+
+    await runtime.feedback({
+      sessionID: sessionRef.current.userID,
+      text: aiMessages,
+      name,
+      last_user_input: userTurn,
+      ...(versionID && { versionID }),
+    });
+  };
+
+  const register = (trace: TraceDeclaration<RuntimeContext, any>) => runtime.registerStep(trace);
+
   return {
     send,
     reply,
+    register,
     reset,
     launch,
     interact,
+    feedback,
     indicator,
     session,
-    sessionRef,
     setStatus,
     isStatus,
   };
