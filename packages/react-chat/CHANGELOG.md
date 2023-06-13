@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.38.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.38.0...@voiceflow/react-chat@1.38.1) (2023-06-13)
+
+### Bug Fixes
+
+* use traces to avoid re-render issues (DX-000) ([#60](https://github.com/voiceflow/react-chat/issues/60)) ([f3ece49](https://github.com/voiceflow/react-chat/commit/f3ece497207c645c0c0c77adec74ca79b20737ac))
+
 # [1.38.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.37.1...@voiceflow/react-chat@1.38.0) (2023-06-12)
 
 ### Features
