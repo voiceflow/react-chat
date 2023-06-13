@@ -33,4 +33,9 @@ export interface EndMessage extends BaseMessageProps {
   type: StringifiedEnum<MessageType.END>;
 }
 
-export type MessageProps = TextMessageProps | ImageMessageProps | CardMessageProps | CarouselMessageProps | EndMessage;
+export interface CustomMessage extends BaseMessageProps {
+  type: `custom_${string}`;
+  payload: any;
+}
+
+export type MessageProps = TextMessageProps | ImageMessageProps | CardMessageProps | CarouselMessageProps | EndMessage | CustomMessage;
