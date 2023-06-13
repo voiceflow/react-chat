@@ -13,7 +13,7 @@ import { MessageType } from './components/SystemResponse/constants';
 
 export interface RuntimeContext extends Pick<SystemResponseProps, 'messages' | 'actions'> {}
 
-export const TRACES: TraceDeclaration<RuntimeContext, any>[] = [
+export const MESSAGE_TRACES: TraceDeclaration<RuntimeContext, any>[] = [
   TextTraceComponent(({ context }, { payload }) => {
     const { slate, message } = payload;
 

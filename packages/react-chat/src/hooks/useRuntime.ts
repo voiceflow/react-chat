@@ -9,7 +9,7 @@ import { RuntimeOptions, SendMessage, SessionOptions, SessionStatus } from '@/co
 import type { MessageProps } from '@/components/SystemResponse';
 import { MessageType } from '@/components/SystemResponse/constants';
 import { RUNTIME_URL } from '@/constants';
-import { RuntimeContext, TRACES } from '@/runtime';
+import { MESSAGE_TRACES, RuntimeContext } from '@/runtime';
 import { TurnProps, TurnType, UserTurnProps } from '@/types';
 import { handleActions } from '@/utils/actions';
 
@@ -77,7 +77,7 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...conf
         url,
         traces: [
           ...(config.traces ?? []),
-          ...TRACES,
+          ...MESSAGE_TRACES,
           {
             canHandle: ({ type }) => type === Trace.TraceType.NO_REPLY,
             handle: ({ context }, _trace) => {
