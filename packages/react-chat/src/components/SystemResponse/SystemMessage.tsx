@@ -48,7 +48,7 @@ const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, feedback, timesta
   const containerRef = useRef<HTMLDivElement>(null);
   const controlsRef = useRef<HTMLSpanElement>(null);
 
-  if (message?.type === MessageType.END) {
+  if (!children && message?.type === MessageType.END) {
     return <EndState />;
   }
 
@@ -58,18 +58,17 @@ const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, feedback, timesta
       <Container ref={containerRef} withImage={withImage} scrollable={message?.type === MessageType.CAROUSEL}>
         <Avatar avatar={avatar} />
         <List>
-          {message
-            ? match(message)
-                .with({ type: MessageType.TEXT }, ({ text }) => (
-                  <Message from="system">{typeof text === 'string' ? text : serializeToJSX(text)}</Message>
-                ))
-                .with({ type: MessageType.IMAGE }, ({ url }) => <Image image={url} />)
-                .with({ type: MessageType.CARD }, (props) => <Card {...R.omit(props, ['type'])} />)
-                .with({ type: MessageType.CAROUSEL }, (props) => (
-                  <Carousel {...R.omit(props, ['type'])} containerRef={containerRef} controlsRef={controlsRef} />
-                ))
-                .otherwise(() => null)
-            : children}
+          {children ??
+            match(message)
+              .with({ type: MessageType.TEXT }, ({ text }) => (
+                <Message from="system">{typeof text === 'string' ? text : serializeToJSX(text)}</Message>
+              ))
+              .with({ type: MessageType.IMAGE }, ({ url }) => <Image image={url} />)
+              .with({ type: MessageType.CARD }, (props) => <Card {...R.omit(props, ['type'])} />)
+              .with({ type: MessageType.CAROUSEL }, (props) => (
+                <Carousel {...R.omit(props, ['type'])} containerRef={containerRef} controlsRef={controlsRef} />
+              ))
+              .otherwise(() => null)}
           {feedback && <Feedback {...feedback} />}
         </List>
         <Timestamp value={timestamp} />
