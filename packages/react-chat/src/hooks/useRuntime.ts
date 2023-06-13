@@ -1,30 +1,19 @@
 import { Trace as BaseTypesTrace } from '@voiceflow/base-types';
-import {
-  ActionType,
-  CardV2TraceComponent,
-  ChoiceTraceComponent,
-  RuntimeAction,
-  TextTraceComponent,
-  Trace,
-  TraceDeclaration,
-  VisualTraceComponent,
-  VoiceflowRuntime,
-} from '@voiceflow/sdk-runtime';
+import { ActionType, RuntimeAction, Trace, TraceDeclaration, VoiceflowRuntime } from '@voiceflow/sdk-runtime';
 import { serializeToText } from '@voiceflow/slate-serializer/text';
 import Bowser from 'bowser';
 import cuid from 'cuid';
 import { useEffect, useMemo, useState } from 'react';
 
 import { RuntimeOptions, SendMessage, SessionOptions, SessionStatus } from '@/common';
-import type { MessageProps, SystemResponseProps } from '@/components/SystemResponse';
+import type { MessageProps } from '@/components/SystemResponse';
 import { MessageType } from '@/components/SystemResponse/constants';
 import { RUNTIME_URL } from '@/constants';
+import { MESSAGE_TRACES, RuntimeContext } from '@/runtime';
 import { TurnProps, TurnType, UserTurnProps } from '@/types';
 import { handleActions } from '@/utils/actions';
 
 import { useStateRef } from './useStateRef';
-
-export interface RuntimeContext extends Pick<SystemResponseProps, 'messages' | 'actions'> {}
 
 const createContext = (): RuntimeContext => ({
   messages: [],
@@ -33,6 +22,7 @@ const createContext = (): RuntimeContext => ({
 interface UseRuntimeProps extends RuntimeOptions {
   session: SessionOptions;
   saveSession?: (session: SessionOptions) => void;
+  traces?: TraceDeclaration<RuntimeContext, any>[];
 }
 
 export enum FeedbackName {
@@ -50,7 +40,7 @@ const DEFAULT_RUNTIME_STATE: Required<SessionOptions> = {
 /**
  * A wrapper for the Voiceflow runtime client.
  */
-export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...config }: UseRuntimeProps) => {
+export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...config }: UseRuntimeProps, dependencies: any[] = []) => {
   const [indicator, setIndicator] = useState(false);
   const [session, setSession, sessionRef] = useStateRef<Required<SessionOptions>>({ ...DEFAULT_RUNTIME_STATE, ...config.session });
   const [lastInteractionAt, setLastInteractionAt] = useState<number | null>(Date.now());
@@ -80,85 +70,29 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...conf
     };
   }, [noReplyTimeout, lastInteractionAt]);
 
-  const runtime = useMemo(() => {
-    const runtime = new VoiceflowRuntime<RuntimeContext>({ verify, url });
+  const runtime = useMemo(
+    () =>
+      new VoiceflowRuntime<RuntimeContext>({
+        verify,
+        url,
+        traces: [
+          ...(config.traces ?? []),
+          ...MESSAGE_TRACES,
+          {
+            canHandle: ({ type }) => type === Trace.TraceType.NO_REPLY,
+            handle: ({ context }, _trace) => {
+              const trace = _trace as BaseTypesTrace.NoReplyTrace;
 
-    runtime.registerStep(
-      TextTraceComponent(({ context }, { payload }) => {
-        const { slate, message } = payload;
+              setNoReplyTimeout(trace.payload.timeout * 1000);
+              setLastInteractionAt(Date.now());
 
-        context.messages.push({
-          type: MessageType.TEXT,
-          text: slate?.content || message,
-          delay: payload.delay,
-          ...(payload.ai ? { ai: payload.ai } : {}),
-        });
-        return context;
-      })
-    );
-    runtime.registerStep(
-      VisualTraceComponent(({ context }, { payload: { image } }) => {
-        context.messages.push({ type: MessageType.IMAGE, url: image });
-        return context;
-      })
-    );
-    runtime.registerStep(
-      ChoiceTraceComponent(({ context }, { payload: { buttons } }) => {
-        context.actions = (buttons as { name: string; request: RuntimeAction }[]).map(({ name, request }) => ({
-          name,
-          request,
-        }));
-        return context;
-      })
-    );
-    runtime.registerStep(
-      CardV2TraceComponent(({ context }, { payload: { title, imageUrl, description, buttons } }) => {
-        context.messages.push({
-          type: 'card',
-          title,
-          description: description.text,
-          image: imageUrl,
-          actions: buttons.map(({ name, request }) => ({ name, request })),
-        });
-        return context;
-      })
-    );
-    runtime.registerStep({
-      canHandle: ({ type }) => type === Trace.TraceType.CAROUSEL,
-      handle: ({ context }, { payload: { cards } }: Trace.Carousel) => {
-        context.messages.push({
-          type: MessageType.CAROUSEL,
-          cards: cards.map(({ title, description, imageUrl, buttons }) => ({
-            title,
-            description: description.text,
-            image: imageUrl,
-            actions: buttons.map(({ name, request }) => ({ name, request })),
-          })),
-        });
-        return context;
-      },
-    });
-    runtime.registerStep({
-      canHandle: ({ type }) => type === Trace.TraceType.NO_REPLY,
-      handle: ({ context }, _trace) => {
-        const trace = _trace as BaseTypesTrace.NoReplyTrace;
-
-        setNoReplyTimeout(trace.payload.timeout * 1000);
-        setLastInteractionAt(Date.now());
-
-        return context;
-      },
-    });
-    runtime.registerStep({
-      canHandle: ({ type }) => type === Trace.TraceType.END,
-      handle: ({ context }) => {
-        context.messages.push({ type: MessageType.END });
-        return context;
-      },
-    });
-
-    return runtime;
-  }, [verify]);
+              return context;
+            },
+          },
+        ],
+      }),
+    dependencies
+  );
 
   const setTurns = (action: (turns: TurnProps[]) => TurnProps[]) => {
     setSession((prev) => ({ ...prev, turns: action(prev.turns) }));
