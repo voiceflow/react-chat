@@ -16,7 +16,7 @@ import EndState from './state/end';
 import { Container, Controls, List } from './styled';
 import { MessageProps } from './types';
 
-export interface SystemMessageProps {
+export interface SystemMessageProps extends React.PropsWithChildren {
   /**
    * An image URL for an avatar to associate this message with.
    */
@@ -30,7 +30,7 @@ export interface SystemMessageProps {
   /**
    * A single message to render with a {@link Message} component.
    */
-  message: MessageProps;
+  message?: MessageProps;
 
   /**
    * If true, renders an avatar next to the message.
@@ -44,28 +44,32 @@ export interface SystemMessageProps {
   feedback?: FeedbackProps | undefined;
 }
 
-const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, feedback, timestamp, message, withImage }) => {
+const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, feedback, timestamp, message, withImage, children }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const controlsRef = useRef<HTMLSpanElement>(null);
 
-  if (message.type === MessageType.END) {
+  if (message?.type === MessageType.END) {
     return <EndState />;
   }
 
   return (
     <>
       <Controls ref={controlsRef} />
-      <Container ref={containerRef} withImage={withImage} scrollable={message.type === MessageType.CAROUSEL}>
+      <Container ref={containerRef} withImage={withImage} scrollable={message?.type === MessageType.CAROUSEL}>
         <Avatar avatar={avatar} />
         <List>
-          {match(message)
-            .with({ type: MessageType.TEXT }, ({ text }) => <Message from="system">{typeof text === 'string' ? text : serializeToJSX(text)}</Message>)
-            .with({ type: MessageType.IMAGE }, ({ url }) => <Image image={url} />)
-            .with({ type: MessageType.CARD }, (props) => <Card {...R.omit(props, ['type'])} />)
-            .with({ type: MessageType.CAROUSEL }, (props) => (
-              <Carousel {...R.omit(props, ['type'])} containerRef={containerRef} controlsRef={controlsRef} />
-            ))
-            .otherwise(() => null)}
+          {message
+            ? match(message)
+                .with({ type: MessageType.TEXT }, ({ text }) => (
+                  <Message from="system">{typeof text === 'string' ? text : serializeToJSX(text)}</Message>
+                ))
+                .with({ type: MessageType.IMAGE }, ({ url }) => <Image image={url} />)
+                .with({ type: MessageType.CARD }, (props) => <Card {...R.omit(props, ['type'])} />)
+                .with({ type: MessageType.CAROUSEL }, (props) => (
+                  <Carousel {...R.omit(props, ['type'])} containerRef={containerRef} controlsRef={controlsRef} />
+                ))
+                .otherwise(() => null)
+            : children}
           {feedback && <Feedback {...feedback} />}
         </List>
         <Timestamp value={timestamp} />
