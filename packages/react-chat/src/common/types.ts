@@ -8,7 +8,7 @@ export type { RuntimeAction };
 
 export type SendMessage = (message: string, action: RuntimeAction) => Promise<void>;
 
-export interface RuntimeOptions extends Omit<SDKRuntimeOptions<AuthVerify | PublicVerify>, 'url'> {
+export interface RuntimeOptions<Verify extends AuthVerify | PublicVerify = AuthVerify | PublicVerify> extends Omit<SDKRuntimeOptions<Verify>, 'url'> {
   url?: string | undefined;
   user?:
     | {
@@ -35,6 +35,6 @@ export interface SessionOptions {
 
 export type Assistant = Omit<ChatPublishing & Required<Omit<ChatPublishing, 'launcher'>>, 'selectedIntents'>;
 
-export interface ChatConfig extends RuntimeOptions {
+export interface ChatConfig extends RuntimeOptions<PublicVerify> {
   assistant?: Assistant;
 }

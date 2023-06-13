@@ -23,7 +23,7 @@ const ChatWindow: React.FC<ChatConfig & { assistant: Assistant; session: Session
   const close = useCallback(() => sendMessage({ type: PostMessage.Type.CLOSE }), []);
   const saveSession = useCallback((session: SessionOptions) => sendMessage({ type: PostMessage.Type.SAVE_SESSION, payload: session }), []);
 
-  const runtime = useRuntime({ versionID, verify, url, user, session, saveSession });
+  const runtime = useRuntime({ versionID, verify, url, user, session, saveSession }, [verify.projectID]);
 
   // listeners
   Listeners.useListenMessage(PostMessage.Type.INTERACT, ({ payload }) => runtime.interact(payload));
