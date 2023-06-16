@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.39.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.38.1...@voiceflow/react-chat@1.39.0) (2023-06-16)
+
+### Bug Fixes
+
+* export runtime context ([d4688d0](https://github.com/voiceflow/react-chat/commit/d4688d0fe6616d6bbc4c02b90877fb511a501401))
+
+### Features
+
+* expose an easy way to add custom turns (live agent hand-off) ([448aad8](https://github.com/voiceflow/react-chat/commit/448aad80b5dfbf50fc66ec3248948b8c5bfe8aa1))
+
 ## [1.38.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.38.0...@voiceflow/react-chat@1.38.1) (2023-06-13)
 
 ### Bug Fixes
