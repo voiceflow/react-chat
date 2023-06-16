@@ -193,6 +193,8 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...conf
 
   const register = (trace: TraceDeclaration<RuntimeContext, any>) => runtime.registerStep(trace);
 
+  const addTurn = (turn: TurnProps) => setTurns((prev) => [...prev, turn]);
+
   return {
     send,
     reply,
@@ -205,5 +207,6 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...conf
     session,
     setStatus,
     isStatus,
+    addTurn,
   };
 };
