@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.40.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.39.0...@voiceflow/react-chat@1.40.0) (2023-07-06)
+
+### Features
+
+* add static class names to components (DX-000) ([#61](https://github.com/voiceflow/react-chat/issues/61)) ([c998782](https://github.com/voiceflow/react-chat/commit/c998782ec207c60a2c246ad34caacc7339c9be53))
+
 # [1.39.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.38.1...@voiceflow/react-chat@1.39.0) (2023-06-16)
 
 ### Bug Fixes
