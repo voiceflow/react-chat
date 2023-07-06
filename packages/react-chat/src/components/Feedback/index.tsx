@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { thumbsUp as ThumbsUp } from '@/assets/svg';
-import { ClassName } from '@/constants';
 import { FeedbackName } from '@/hooks';
 
 import { Button, ButtonsContainer, Container, Description } from './styled';
@@ -27,23 +26,13 @@ const Feedback: React.FC<FeedbackProps> = ({ question = 'Was this helpful?', onC
   };
 
   return (
-    <Container {...props} className={ClassName.FEEDBACK}>
-      <Description className={`${ClassName.FEEDBACK}--description`}>{question}</Description>
-      <ButtonsContainer className={`${ClassName.FEEDBACK}--buttons`}>
-        <Button
-          orientation="positive"
-          active={active === FeedbackName.POSITIVE}
-          onClick={() => handleClick(FeedbackName.POSITIVE)}
-          className={`${ClassName.FEEDBACK}--button`}
-        >
+    <Container {...props}>
+      <Description>{question}</Description>
+      <ButtonsContainer>
+        <Button orientation="positive" active={active === FeedbackName.POSITIVE} onClick={() => handleClick(FeedbackName.POSITIVE)}>
           <ThumbsUp width="24px" height="24px" />
         </Button>
-        <Button
-          orientation="negative"
-          active={active === FeedbackName.NEGATIVE}
-          onClick={() => handleClick(FeedbackName.NEGATIVE)}
-          className={`${ClassName.FEEDBACK}--button`}
-        >
+        <Button orientation="negative" active={active === FeedbackName.NEGATIVE} onClick={() => handleClick(FeedbackName.NEGATIVE)}>
           <ThumbsUp width="24px" height="24px" />
         </Button>
       </ButtonsContainer>
