@@ -1,7 +1,4 @@
-import clsx from 'clsx';
-
 import Icon, { IconProps } from '@/components/Icon';
-import { ClassName } from '@/constants';
 import { VariantProp } from '@/types';
 
 import { Container } from './styled';
@@ -22,8 +19,8 @@ export interface BubbleProps extends React.ComponentProps<typeof Container> {
   size?: VariantProp<typeof Container, 'size'>;
 }
 
-const Bubble: React.FC<BubbleProps> = ({ svg, color, className, ...props }) => (
-  <Container {...props} className={clsx(ClassName.BUBBLE, className)}>
+const Bubble: React.FC<BubbleProps> = ({ svg, color, ...props }) => (
+  <Container {...props}>
     <Icon svg={svg} css={{ color, ...props.css }} />
   </Container>
 );
