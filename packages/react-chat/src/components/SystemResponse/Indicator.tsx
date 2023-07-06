@@ -1,17 +1,17 @@
 import Avatar from '@/components/Avatar';
 import TypingIndicator from '@/components/TypingIndicator';
 
-import { Container } from './styled';
+import { IndicatorContainer } from './styled';
 
 export interface IndicatorProps {
   avatar: string;
 }
 
 const Indicator: React.FC<IndicatorProps> = ({ avatar }) => (
-  <Container withImage center>
+  <IndicatorContainer withImage center>
     <Avatar avatar={avatar} />
     <TypingIndicator />
-  </Container>
+  </IndicatorContainer>
 );
 
 export default Indicator;

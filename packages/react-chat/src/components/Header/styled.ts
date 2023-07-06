@@ -1,16 +1,20 @@
 import Avatar from '@/components/Avatar';
 import BaseButton from '@/components/Button';
 import Icon from '@/components/Icon';
+import { ClassName } from '@/constants';
+import { tagFactory } from '@/hocs';
 import { styled } from '@/styles';
 import { textOverflowStyles } from '@/styles/fragments';
 
-export const Title = styled('h1', {
+const tag = tagFactory(ClassName.HEADER);
+
+export const Title = styled(tag('h1', 'title'), {
   ...textOverflowStyles,
   typo: { size: 17, weight: '$2', height: '$2' },
   color: 'rgba(255,255,255,0.95)',
 });
 
-export const Button = styled(BaseButton.Reset, {
+export const Button = styled(tag(BaseButton.Reset, 'button'), {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -37,7 +41,7 @@ export const Button = styled(BaseButton.Reset, {
   },
 });
 
-export const Container = styled('header', {
+export const Container = styled(tag('header'), {
   display: 'flex',
   flexShrink: 0,
   alignItems: 'center',

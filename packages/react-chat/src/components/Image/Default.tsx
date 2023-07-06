@@ -1,7 +1,11 @@
+import { ClassName } from '@/constants';
+import { tagFactory } from '@/hocs';
 import { styled } from '@/styles';
 import { VariantProp } from '@/types';
 
-export const DefaultImageBase = styled('img', {
+export const tag = tagFactory(ClassName.IMAGE);
+
+export const DefaultImageBase = styled(tag('img'), {
   width: 248,
 
   variants: {

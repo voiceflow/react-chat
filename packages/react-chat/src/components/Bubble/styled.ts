@@ -1,8 +1,12 @@
 import Button from '@/components/Button';
 import Icon from '@/components/Icon';
+import { ClassName } from '@/constants';
+import { tagFactory } from '@/hocs';
 import { styled } from '@/styles';
 
-export const Container = styled(Button.Reset, {
+const tag = tagFactory(ClassName.BUBBLE);
+
+export const Container = styled(tag(Button.Reset), {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',

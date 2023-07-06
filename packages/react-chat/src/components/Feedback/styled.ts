@@ -1,13 +1,17 @@
+import { ClassName } from '@/constants';
+import { tagFactory } from '@/hocs';
 import { styled } from '@/styles';
 
-export const Container = styled('div', {
+const tag = tagFactory(ClassName.FEEDBACK);
+
+export const Container = styled(tag('div'), {
   display: 'inline-flex',
   alignItems: 'center',
   boxSizing: 'border-box',
   marginTop: '8.5px',
 });
 
-export const Description = styled('div', {
+export const Description = styled(tag('div', 'description'), {
   color: '$darkGrey',
   marginRight: 4,
   lineHeight: 17,
@@ -16,12 +20,12 @@ export const Description = styled('div', {
   },
 });
 
-export const ButtonsContainer = styled('div', {
+export const ButtonsContainer = styled(tag('div', 'buttons'), {
   display: 'flex',
   gap: 4,
 });
 
-export const Button = styled('button', {
+export const Button = styled(tag('button', 'button'), {
   display: 'inline-flex',
   backgroundColor: 'transparent',
   border: 0,

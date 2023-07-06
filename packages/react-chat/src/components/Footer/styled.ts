@@ -1,8 +1,12 @@
 import Button from '@/components/Button';
 import Input from '@/components/Input';
+import { ClassName } from '@/constants';
+import { tagFactory } from '@/hocs';
 import { styled } from '@/styles';
 
-export const Container = styled('footer', {
+const tag = tagFactory(ClassName.FOOTER);
+
+export const Container = styled(tag('footer'), {
   padding: '$3 $4 $4 $4',
   borderRadius: '$1',
 
@@ -28,7 +32,7 @@ export const Container = styled('footer', {
   },
 });
 
-export const Watermark = styled('aside', {
+export const Watermark = styled(tag('aside', 'watermark'), {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',

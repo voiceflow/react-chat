@@ -1,6 +1,8 @@
 import { styled } from '@/styles';
 
-export const BackgroundImageBase = styled('div', {
+import { tag } from './Default';
+
+export const BackgroundImageBase = styled(tag('div', 'background'), {
   height: 200,
   width: 248,
   backgroundColor: '$lightGrey',

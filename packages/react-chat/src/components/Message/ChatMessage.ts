@@ -1,8 +1,8 @@
 import { styled } from '@/styles';
 
-import { Container } from './styled';
+import { Container, tag } from './styled';
 
-export const ChatMessage = styled(Container, {
+export const ChatMessage = styled(tag(Container, 'chat'), {
   variants: {
     from: {
       system: {
