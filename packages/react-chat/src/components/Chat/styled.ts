@@ -6,6 +6,8 @@ import Prompt from '@/components/Prompt';
 import SystemResponse from '@/components/SystemResponse';
 import Timestamp from '@/components/Timestamp';
 import UserResponse from '@/components/UserResponse';
+import { ClassName } from '@/constants';
+import { tagFactory } from '@/hocs';
 import { createTransition, CSS, fadeIn, shift, styled } from '@/styles';
 
 const PROMPT_OVERFLOW = 10;
@@ -16,7 +18,9 @@ const animationStyles = ({ distance = SHIFT_DISTANCE, duration, delay }: { dista
   animation: [fadeIn, shift(distance)].map((animation) => `${animation} ${duration}ms ease-out ${delay}ms forwards`).join(', '),
 });
 
-export const Overlay = styled('div', {
+const tag = tagFactory(ClassName.CHAT);
+
+export const Overlay = styled(tag('div', 'overlay'), {
   position: 'absolute',
   top: 0,
   bottom: 0,
@@ -25,7 +29,7 @@ export const Overlay = styled('div', {
   backgroundColor: '$shadow12',
 });
 
-export const Container = styled('article', {
+export const Container = styled(tag('article'), {
   position: 'relative',
   display: 'flex',
   overflow: 'hidden',
@@ -90,16 +94,16 @@ const statusStyles: CSS = {
   color: '$darkGrey',
 };
 
-export const Status = styled('div', {
+export const Status = styled(tag('div', 'status'), {
   ...statusStyles,
 });
 
-export const SessionTime = styled('span', {
+export const SessionTime = styled(tag('span', 'session-time'), {
   ...statusStyles,
   paddingBottom: '$3',
 });
 
-export const Dialog = styled('main', {
+export const Dialog = styled(tag('main', 'dialog'), {
   display: 'flex',
   flexDirection: 'column',
   height: '100%',
@@ -155,6 +159,6 @@ export const Dialog = styled('main', {
   },
 });
 
-export const Spacer = styled('div', {
+export const Spacer = styled(tag('div', 'spacer'), {
   flexGrow: 1,
 });

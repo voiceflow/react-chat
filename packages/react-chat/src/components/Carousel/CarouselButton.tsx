@@ -1,6 +1,7 @@
 import { forwardRef, MouseEventHandler } from 'react';
 
 import Icon from '@/components/Icon';
+import { ClassName } from '@/constants';
 
 import { ButtonContainer } from './styled';
 
@@ -38,6 +39,7 @@ const CarouselButton = forwardRef<HTMLElement, CarouselButtonProps>(({ onClick, 
       transform: `translateY(calc(${containerEl.clientHeight / 2}px - 50%))`,
     }}
     onClick={onClick}
+    className={`${ClassName.CAROUSEL}--button`}
   >
     <Icon svg="largeArrowLeft" />
   </ButtonContainer>

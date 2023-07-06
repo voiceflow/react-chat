@@ -1,10 +1,14 @@
 import Button from '@/components/Button';
 import Image from '@/components/Image';
+import { ClassName } from '@/constants';
+import { tagFactory } from '@/hocs';
 import { styled } from '@/styles';
 
 export const CARD_WIDTH = 246;
 
-export const Container = styled('section', {
+const tag = tagFactory(ClassName.CARD);
+
+export const Container = styled(tag('section'), {
   display: 'inline-flex',
   flexDirection: 'column',
   width: CARD_WIDTH,
@@ -42,24 +46,24 @@ export const Container = styled('section', {
   },
 });
 
-export const Content = styled('main', {
+export const Content = styled(tag('main', 'content'), {
   padding: '$3',
 });
 
-export const Header = styled('h3', {
+export const Header = styled(tag('h3', 'header'), {
   margin: '0 0 $1 0',
   typo: { weight: '$2' },
   color: '$black',
 });
 
-export const Description = styled('p', {
+export const Description = styled(tag('p', 'description'), {
   margin: 0,
   typo: { size: '$1' },
   color: '$darkGrey',
   whiteSpace: 'normal',
 });
 
-export const Link = styled('a', {
+export const Link = styled(tag('a', 'link'), {
   margin: 0,
   typo: { size: '$1' },
   whiteSpace: 'normal',

@@ -1,11 +1,11 @@
 import { styled } from '@/styles';
 
-import { Container as BaseContainer } from '../styled';
+import { Container as BaseContainer, tag } from '../styled';
 
 const CARET_HEIGHT = 6;
 const OFFSET = 32;
 
-export const Container = styled(BaseContainer, {
+export const Container = styled(tag(BaseContainer, 'debug'), {
   position: 'relative',
   marginTop: CARET_HEIGHT,
   border: '1px solid $medGrey',

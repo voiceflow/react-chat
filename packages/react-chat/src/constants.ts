@@ -1,1 +1,27 @@
 export const RUNTIME_URL = 'https://general-runtime.voiceflow.com';
+
+export enum ClassName {
+  ASSISTANT_INFO = 'vf-rc-assistant-info',
+  AVATAR = 'vf-rc-avatar',
+  BUBBLE = 'vf-rc-bubble',
+  BUTTON = 'vf-rc-button',
+  CARD = 'vf-rc-card',
+  CAROUSEL = 'vf-rc-carousel',
+  CHAT = 'vf-rc-chat',
+  CHAT_INPUT = 'vf-rc-chat-input',
+  FEEDBACK = 'vf-rc-feedback',
+  FOOTER = 'vf-rc-footer',
+  HEADER = 'vf-rc-header',
+  ICON = 'vf-rc-icon',
+  IMAGE = 'vf-rc-image',
+  INPUT = 'vf-rc-input',
+  LAUNCHER = 'vf-rc-launcher',
+  LOADER = 'vf-rc-loader',
+  MESSAGE = 'vf-rc-message',
+  PROMPT = 'vf-rc-prompt',
+  SYSTEM_RESPONSE = 'vf-rc-system-response',
+  TIMESTAMP = 'vf-rc-timestamp',
+  TOOLTIP = 'vf-rc-tooltip',
+  TYPING_INDICATOR = 'vf-rc-typing-indicator',
+  USER_RESPONSE = 'vf-rc-user-response',
+}

@@ -2,9 +2,13 @@ import Avatar from '@/components/Avatar';
 import Button from '@/components/Button';
 import Message from '@/components/Message';
 import Timestamp from '@/components/Timestamp';
+import { ClassName } from '@/constants';
+import { tagFactory } from '@/hocs';
 import { styled } from '@/styles';
 
-export const Actions = styled('div', {
+const tag = tagFactory(ClassName.SYSTEM_RESPONSE);
+
+export const Actions = styled(tag('div', 'actions'), {
   display: 'flex',
   flexWrap: 'wrap',
   marginBottom: 8,
@@ -21,11 +25,11 @@ export const Actions = styled('div', {
   },
 });
 
-export const Controls = styled('span', {
+export const Controls = styled(tag('span', 'controls'), {
   position: 'relative',
 });
 
-export const Container = styled('div', {
+export const Container = styled(tag('div'), {
   display: 'flex',
 
   [`& ${Avatar.Container}`]: {
@@ -74,7 +78,11 @@ export const Container = styled('div', {
   },
 });
 
-export const List = styled('div', {
+export const MessageContainer = styled(tag(Container), 'message');
+
+export const IndicatorContainer = styled(tag(Container), 'indicator');
+
+export const List = styled(tag('div', 'list'), {
   display: 'flex',
   flexDirection: 'column',
   flexShrink: 0,

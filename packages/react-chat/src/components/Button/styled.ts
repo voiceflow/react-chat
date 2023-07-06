@@ -1,4 +1,8 @@
+import { ClassName } from '@/constants';
+import { tagFactory } from '@/hocs';
 import { styled } from '@/styles';
+
+export const tag = tagFactory(ClassName.BUTTON);
 
 export const Reset = styled('button', {
   border: 0,
@@ -13,7 +17,7 @@ export const Reset = styled('button', {
   },
 });
 
-export const Container = styled(Reset, {
+export const Container = styled(tag(Reset), {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',

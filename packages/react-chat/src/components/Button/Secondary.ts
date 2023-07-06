@@ -1,8 +1,9 @@
 import { styled } from '@/styles';
 
-import { Container } from './styled';
+import { ButtonVariant } from './constants';
+import { Container, tag } from './styled';
 
-export const SecondaryButton = styled(Container, {
+export const SecondaryButton = styled(tag(Container, ButtonVariant.SECONDARY), {
   height: '$sm',
   border: '1px solid $fadedPrimary',
   color: '$primary',

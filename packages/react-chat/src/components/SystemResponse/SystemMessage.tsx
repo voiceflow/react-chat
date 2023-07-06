@@ -13,7 +13,7 @@ import Timestamp from '@/components/Timestamp';
 import Feedback, { FeedbackProps } from '../Feedback';
 import { MessageType } from './constants';
 import EndState from './state/end';
-import { Container, Controls, List } from './styled';
+import { Controls, List, MessageContainer } from './styled';
 import { MessageProps } from './types';
 
 export interface SystemMessageProps extends React.PropsWithChildren {
@@ -55,7 +55,7 @@ const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, feedback, timesta
   return (
     <>
       <Controls ref={controlsRef} />
-      <Container ref={containerRef} withImage={withImage} scrollable={message?.type === MessageType.CAROUSEL}>
+      <MessageContainer ref={containerRef} withImage={withImage} scrollable={message?.type === MessageType.CAROUSEL}>
         <Avatar avatar={avatar} />
         <List>
           {children ??
@@ -72,7 +72,7 @@ const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, feedback, timesta
           {feedback && <Feedback {...feedback} />}
         </List>
         <Timestamp value={timestamp} />
-      </Container>
+      </MessageContainer>
     </>
   );
 };

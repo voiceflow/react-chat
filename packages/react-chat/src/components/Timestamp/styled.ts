@@ -1,6 +1,10 @@
+import { ClassName } from '@/constants';
+import { tagFactory } from '@/hocs';
 import { styled } from '@/styles';
 
-const Container = styled('div', {
+const tag = tagFactory(ClassName.TIMESTAMP);
+
+const Container = styled(tag('div'), {
   typo: { size: 12, height: '17px' },
   color: '$darkGrey',
   whiteSpace: 'nowrap',

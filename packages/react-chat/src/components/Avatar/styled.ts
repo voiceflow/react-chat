@@ -1,6 +1,10 @@
+import { ClassName } from '@/constants';
+import { tagFactory } from '@/hocs';
 import { styled } from '@/styles';
 
-export const AvatarContainer = styled('div', {
+const tag = tagFactory(ClassName.AVATAR);
+
+export const AvatarContainer = styled(tag('div'), {
   flexShrink: 0,
   borderRadius: '$round',
   backgroundColor: '$lightGrey',
