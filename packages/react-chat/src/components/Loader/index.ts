@@ -1,9 +1,13 @@
+import { ClassName } from '@/constants';
+import { tagFactory } from '@/hocs';
 import { rotate, styled } from '@/styles';
 
 const SIZE = 32;
 const ANIMATION_DURATION = 1000;
 
-const Loader = styled('div', {
+const tag = tagFactory(ClassName.LOADER);
+
+const Loader = styled(tag('div'), {
   height: SIZE,
   width: SIZE,
   borderWidth: '2px',

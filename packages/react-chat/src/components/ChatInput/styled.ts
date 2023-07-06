@@ -2,9 +2,13 @@ import Bubble from '@/components/Bubble';
 import Icon from '@/components/Icon';
 import Input from '@/components/Input';
 import { inputFocusStyles, inputStyles } from '@/components/Input/styled';
+import { ClassName } from '@/constants';
+import { tagFactory } from '@/hocs';
 import { styled } from '@/styles';
 
-export const ButtonContainer = styled('label', {
+const tag = tagFactory(ClassName.CHAT_INPUT);
+
+export const ButtonContainer = styled(tag('label', 'button'), {
   ...inputStyles,
   display: 'inline-flex',
   justifyContent: 'center',
@@ -29,7 +33,7 @@ export const ButtonContainer = styled('label', {
   },
 });
 
-export const Container = styled('div', {
+export const Container = styled(tag('div'), {
   display: 'flex',
   boxShadow: '0 1px 12px $shadow2',
   trans: ['border-color', 'box-shadow'],

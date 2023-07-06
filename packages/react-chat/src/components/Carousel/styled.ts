@@ -1,11 +1,15 @@
 import Card from '@/components/Card';
 import Icon from '@/components/Icon';
+import { ClassName } from '@/constants';
+import { tagFactory } from '@/hocs';
 import { styled } from '@/styles';
 
 const BUTTON_SIZE = 42;
 export const CAROUSEL_GUTTER_WIDTH = 12;
 
-export const ButtonContainer = styled('span', {
+const tag = tagFactory(ClassName.CAROUSEL);
+
+export const ButtonContainer = styled(tag('span', 'button'), {
   position: 'absolute',
   zIndex: 1,
 
@@ -71,7 +75,7 @@ export const ButtonContainer = styled('span', {
   },
 });
 
-export const Container = styled('div', {
+export const Container = styled(tag('div'), {
   display: 'flex',
   whiteSpace: 'nowrap',
 

@@ -1,3 +1,7 @@
+import { ClassName } from '@/constants';
+import { tagFactory } from '@/hocs';
 import { styled } from '@/styles';
 
-export const Frame = styled('div', { display: 'flex' });
+const tag = tagFactory(ClassName.ICON);
+
+export const Frame = styled(tag('div'), { display: 'flex' });

@@ -1,8 +1,12 @@
 import BaseButton from '@/components/Button';
 import Message from '@/components/Message';
+import { ClassName } from '@/constants';
+import { tagFactory } from '@/hocs';
 import { styled } from '@/styles';
 
-export const Button = styled(BaseButton.Reset, {
+const tag = tagFactory(ClassName.TOOLTIP);
+
+export const Button = styled(tag(BaseButton.Reset, 'button'), {
   height: '$md',
   border: '1px solid $medGrey',
   borderTopColor: 'rgba(223,223,223,0.5)',
@@ -14,7 +18,7 @@ export const Button = styled(BaseButton.Reset, {
   backgroundColor: '#fbfbfb',
 });
 
-export const Container = styled('div', {
+export const Container = styled(tag('div'), {
   display: 'inline-flex',
   flexDirection: 'column',
 

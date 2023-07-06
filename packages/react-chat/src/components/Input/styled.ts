@@ -1,4 +1,8 @@
+import { ClassName } from '@/constants';
+import { tagFactory } from '@/hocs';
 import { CSS, styled } from '@/styles';
+
+const tag = tagFactory(ClassName.INPUT);
 
 export const inputStyles: CSS = {
   height: '$md',
@@ -14,7 +18,7 @@ export const inputFocusStyles: CSS = {
   border: '1px solid rgba(115,115,118,0.5)',
 };
 
-export const Container = styled('input', {
+export const Container = styled(tag('input'), {
   ...inputStyles,
   padding: '0 $4',
   typo: {},

@@ -1,8 +1,12 @@
 import Avatar from '@/components/Avatar';
+import { ClassName } from '@/constants';
+import { tagFactory } from '@/hocs';
 import { styled } from '@/styles';
 import { textOverflowStyles } from '@/styles/fragments';
 
-export const Title = styled('h2', {
+const tag = tagFactory(ClassName.ASSISTANT_INFO);
+
+export const Title = styled(tag('h2', 'title'), {
   ...textOverflowStyles,
   width: '100%',
   margin: 0,
@@ -10,7 +14,7 @@ export const Title = styled('h2', {
   color: '$black',
 });
 
-export const Description = styled('p', {
+export const Description = styled(tag('p', 'description'), {
   display: '-webkit-box',
   margin: 0,
   typo: {},
@@ -21,7 +25,7 @@ export const Description = styled('p', {
   wordBreak: 'break-word',
 });
 
-export const Container = styled('div', {
+export const Container = styled(tag('div'), {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',

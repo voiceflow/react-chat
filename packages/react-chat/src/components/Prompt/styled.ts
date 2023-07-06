@@ -1,7 +1,11 @@
 import Button from '@/components/Button';
+import { ClassName } from '@/constants';
+import { tagFactory } from '@/hocs';
 import { styled } from '@/styles';
 
-export const Container = styled('div', {
+const tag = tagFactory(ClassName.PROMPT);
+
+export const Container = styled(tag('div'), {
   padding: '$4 $4 $3 $4',
   borderRadius: '$1',
   backgroundColor: '$white',

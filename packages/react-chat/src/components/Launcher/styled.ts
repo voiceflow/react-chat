@@ -1,6 +1,10 @@
+import { ClassName } from '@/constants';
+import { tagFactory } from '@/hocs';
 import { styled } from '@/styles';
 
-export const Button = styled('button', {
+const tag = tagFactory(ClassName.LAUNCHER);
+
+export const Button = styled(tag('button'), {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
