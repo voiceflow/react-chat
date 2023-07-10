@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.40.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.40.0...@voiceflow/react-chat@1.40.1) (2023-07-10)
+
+### Bug Fixes
+
+* update tagFactory to allow refs (CT-000) ([#62](https://github.com/voiceflow/react-chat/issues/62)) ([4296889](https://github.com/voiceflow/react-chat/commit/429688937f083303d6557c58309fdcee22f1428a))
+
 # [1.40.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.39.0...@voiceflow/react-chat@1.40.0) (2023-07-06)
 
 ### Features
