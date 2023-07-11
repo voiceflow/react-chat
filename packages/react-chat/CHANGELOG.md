@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.41.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.40.2...@voiceflow/react-chat@1.41.0) (2023-07-11)
+
+### Features
+
+* basic mobile support (DX-000) ([#64](https://github.com/voiceflow/react-chat/issues/64)) ([d94e702](https://github.com/voiceflow/react-chat/commit/d94e70201337d78d3bfa2cb3faf88620c4ba2118))
+
 ## [1.40.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.40.1...@voiceflow/react-chat@1.40.2) (2023-07-10)
 
 **Note:** Version bump only for package @voiceflow/react-chat
