@@ -1,5 +1,5 @@
 import type { RuntimeAction } from '@voiceflow/sdk-runtime';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 import { Assistant, ChatPosition, isObject, Listeners, PostMessage, useTheme } from '@/common';
 import Launcher from '@/components/Launcher';
@@ -18,6 +18,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ children, chatAPI, sendMessage,
   /** initialization */
   const [isOpen, setOpen] = useState(false);
   const [isHidden, setHidden] = useState(false);
+  const isMobile = useMemo(() => window.matchMedia('(max-width: 768px)').matches, []);
 
   const theme = useTheme(assistant);
 
@@ -51,7 +52,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ children, chatAPI, sendMessage,
           <Launcher onClick={open} image={assistant.launcher} />
         </LauncherContainer>
       )}
-      <ChatContainer style={position}>{children}</ChatContainer>
+      <ChatContainer style={isMobile ? {} : position}>{children}</ChatContainer>
     </Container>
   );
 };
