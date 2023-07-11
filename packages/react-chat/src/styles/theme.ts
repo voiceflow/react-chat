@@ -57,6 +57,10 @@ export const { styled, config, keyframes } = createStitches({
     },
   },
 
+  media: {
+    mobile: '(max-width: 768px)',
+  },
+
   utils: {
     anim: (animations: { (): string }[]) => ({
       animation: animations.map((animation) => `${animation} ${ANIMATION_DURATION}ms`).join(', '),
