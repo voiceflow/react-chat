@@ -1,3 +1,5 @@
+import '../../styles.css';
+
 import React, { useCallback } from 'react';
 import * as R from 'remeda';
 import { match } from 'ts-pattern';
