@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.42.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.41.0...@voiceflow/react-chat@1.42.0) (2023-07-12)
+
+### Features
+
+* add styles.css file for overrides ([3a0f823](https://github.com/voiceflow/react-chat/commit/3a0f823298fef3030b7d93330e5c7b256f767d08))
+
 # [1.41.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.40.2...@voiceflow/react-chat@1.41.0) (2023-07-11)
 
 ### Features
