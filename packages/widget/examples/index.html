@@ -13,8 +13,8 @@
     <script>
       function _vf_load() {
         window.voiceflow.chat.load({
-          url: 'https://general-runtime.development.voiceflow.com',
-          verify: { projectID: 'xxx-123-xxx-456' },
+          url: process.env.VITE_VF_RUNTIME_URL,
+          verify: { projectID: process.env.VITE_VF_PROJECT_ID },
           user: {
             name: 'Development User',
           },
