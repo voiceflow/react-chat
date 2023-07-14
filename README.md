@@ -114,3 +114,26 @@ Example call:
 ```ts
 window.voiceflow.chat.show();
 ```
+
+## Running Locally
+
+To run the chat locally you will need to create a local `.env` file with your configuration.
+This will include our Voiceflow project ID and the runtime endpoint.
+
+Create a new file `packages/widget/.env.development.local` with the following contents:
+
+```sh
+VITE_VF_PROJECT_ID='< your project ID >'
+VITE_VF_RUNTIME_URL='https://general-runtime.voiceflow.com'
+
+```
+
+Now that the chat is configured, let's install dependencies and run the development server.
+
+```sh
+yarn install
+
+yarn dev
+```
+
+Once the server is running it should automatically open your browser with the chat widget.

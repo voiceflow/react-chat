@@ -19,6 +19,8 @@ export default defineConfig(({ mode }) => {
     define: {
       'process.env': {
         VITE_WIDGET_URL,
+        VITE_VF_PROJECT_ID: env.VITE_VF_PROJECT_ID,
+        VITE_VF_RUNTIME_URL: env.VITE_VF_RUNTIME_URL,
       },
     },
     build: {
