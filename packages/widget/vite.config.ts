@@ -1,6 +1,7 @@
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import { defineConfig, loadEnv, PluginOption } from 'vite';
+import { createHtmlPlugin } from 'vite-plugin-html';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 export const createPlugins = (rootDir = __dirname): PluginOption[] => [
@@ -19,8 +20,6 @@ export default defineConfig(({ mode }) => {
     define: {
       'process.env': {
         VITE_WIDGET_URL,
-        VITE_VF_PROJECT_ID: env.VITE_VF_PROJECT_ID,
-        VITE_VF_RUNTIME_URL: env.VITE_VF_RUNTIME_URL,
       },
     },
     build: {
@@ -37,6 +36,17 @@ export default defineConfig(({ mode }) => {
         },
       },
     },
-    plugins: [react(), ...createPlugins()],
+    plugins: [
+      react(),
+      ...(mode === 'development'
+        ? [
+            createHtmlPlugin({
+              template: 'examples/index.html',
+              inject: { data: env },
+            }),
+          ]
+        : []),
+      ...createPlugins(),
+    ],
   };
 });
