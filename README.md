@@ -131,8 +131,13 @@ VITE_VF_RUNTIME_URL='https://general-runtime.voiceflow.com'
 Now that the chat is configured, let's install dependencies and run the development server.
 
 ```sh
+# install dependencies
 yarn install
 
+# build all packages
+yarn build
+
+# run dev server
 yarn dev
 ```
 
