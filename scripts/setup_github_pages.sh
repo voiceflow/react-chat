@@ -10,5 +10,4 @@ cp scripts/template.html index.html
 git add index.html
 git commit -m "initial" --no-verify
 git push
-git checkout -
-git clean index.html
+git clean -fd .
