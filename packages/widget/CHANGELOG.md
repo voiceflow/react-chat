@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/widget@1.6.0...@voiceflow/widget@1.6.1) (2023-07-18)
+
+### Bug Fixes
+
+* working local dev with env injection ([471bbca](https://github.com/voiceflow/react-chat/commit/471bbca1d8d7f5a5794c184293135eca2470fb49))
+
 # [1.6.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/widget@1.5.11...@voiceflow/widget@1.6.0) (2023-07-14)
 
 ### Features
