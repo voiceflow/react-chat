@@ -40,6 +40,7 @@
     "lint:fix": "turbo run lint:fix",
     "lint:report": "turbo run lint:report",
     "prepare": "husky install",
+    "setup_github_pages": "./scripts/setup_github_pages.sh",
     "test:dependencies": "depcheck && turbo run test:dependencies",
     "test:unit": "turbo run test:unit"
   },
