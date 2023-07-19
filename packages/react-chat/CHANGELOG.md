@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.43.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.42.0...@voiceflow/react-chat@1.43.0) (2023-07-19)
+
+### Features
+
+* add class names to widget ([a828259](https://github.com/voiceflow/react-chat/commit/a828259ceafae5f6fd05ae89ee6da0b88b95c2dc))
+
 # [1.42.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.41.0...@voiceflow/react-chat@1.42.0) (2023-07-12)
 
 ### Features
