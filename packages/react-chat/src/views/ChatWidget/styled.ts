@@ -1,9 +1,13 @@
+import { ClassName } from '@/constants';
+import { tagFactory } from '@/hocs';
 import { CSS, styled } from '@/styles';
 
 const CHAT_WIDTH = 380;
 const MAX_CHAT_HEIGHT = 800;
 
-export const ChatContainer = styled('div', {
+const tag = tagFactory(ClassName.WIDGET);
+
+export const ChatContainer = styled(tag('div', 'chat'), {
   width: CHAT_WIDTH,
   overflow: 'hidden',
   borderRadius: '$2',
@@ -26,7 +30,7 @@ export const ChatContainer = styled('div', {
   },
 });
 
-export const LauncherContainer = styled('div', {});
+export const LauncherContainer = styled(tag('div', 'launcher'), {});
 
 const animateInStyles: CSS = {
   opacity: 1,
@@ -42,7 +46,7 @@ const animateOutStyles: CSS = {
   transition: 'transform 300ms cubic-bezier(0.85, 0, 0.6, 1), opacity 150ms linear',
 };
 
-export const Container = styled('div', {
+export const Container = styled(tag('div'), {
   position: 'fixed',
   inset: 0,
   '-webkit-font-smoothing': 'antialiased',

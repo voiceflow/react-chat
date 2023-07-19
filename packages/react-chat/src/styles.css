@@ -1,1 +1,122 @@
 /* use this file to override default styles when forking this repository */
+
+/*
+  PAGE CONTENTS
+
+  Customize the page that the chat bubble lives on
+*/
+
+/* .voiceflow-chat {} */
+
+/* .vfrc-launcher {} */
+
+/* .vfrc-chat--overlay {} */
+
+/* .vfrc-prompt {} */
+
+
+/*
+  CHAT WIDGET HEADER
+
+  Customize the content, controls and styling included in your chat widget header, including the Assistant Information.
+  Note that changes to the assistant information here will be shared across other elements that consume this styling.
+*/
+
+/* .vfrc-header {} */
+
+/* .vfrc-assistant-info {} */
+
+/* .vfrc-assistant-info--title {} */
+
+/* .vfrc-assistant-info--description {} */
+
+/* .vfrc-avatar {} */
+
+/* .vfrc-icon {} */
+
+
+/*
+  CHAT MESSAGE BODY
+
+  Customize the layout and display of the chat body, and the conversation's metadata
+*/
+
+/* .vfrc-chat {} */
+
+/* .vfrc-chat--dialog {} */
+
+/* .vfrc-chat--spacer {} */
+
+/* .vfrc-chat--session-time {} */
+
+/* .vfrc-chat--status {} */
+
+/* .vfrc-message {} */
+
+/* .vfrc-timestamp {} */
+
+
+/*
+  ASSISTANT RESPONSES
+
+  Customize the style and layout of assistant response messages.
+*/
+
+/* .vfrc-system-response--indicator {} */
+
+/* .vfrc-system-response {} */
+
+/* .vfrc-system-response--controls {} */
+
+/* .vfrc-system-response--list {} */
+
+/* .vfrc-system-response--actions {} */
+
+/* .vfrc-button {} */
+
+/* .vfrc-image {} */
+
+/* .vfrc-image--background {} */
+
+/* .vfrc-card--content {} */
+
+/* .vfrc-card--header {} */
+
+/* .vfrc-card--description {} */
+
+/* .vfrc-carousel {} */
+
+/* .vfrc-carousel--button {} */
+
+/* Targeted styling for just the Assistant messages. */
+/* .vfrc-system-response .vfrc-message {} */
+
+/* Targeted styling for just the Assistant buttons. */
+/* .vfrc-system-response .vfrc-button {} */
+
+
+/*
+  USER RESPONSES
+
+  Customize the style and layout of users response messages.
+*/
+
+/* .vfrc-user-response {} */
+
+/* Targeted styling for just the User messages */
+/* .vfrc-user-response .vfrc-message {} */
+
+
+/*
+  FOOTER
+
+  Customize the layout and appearance of the message input field and the VF Branding
+*/
+
+/* .vf-footer {} */
+
+/* .vfrc-input {} */
+
+/* .vfrc-chat-input--button {} */
+
+/* .vfrc-footer--watermark {} */

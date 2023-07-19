@@ -24,4 +24,5 @@ export enum ClassName {
   TOOLTIP = 'vfrc-tooltip',
   TYPING_INDICATOR = 'vfrc-typing-indicator',
   USER_RESPONSE = 'vfrc-user-response',
+  WIDGET = 'vfrc-widget',
 }
