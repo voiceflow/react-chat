@@ -5332,7 +5332,7 @@ __metadata:
     "@voiceflow/eslint-config": 6.1.0
     "@voiceflow/prettier-config": 1.2.1
     "@voiceflow/sdk-runtime": 1.7.0
-    "@voiceflow/slate-serializer": 1.2.2
+    "@voiceflow/slate-serializer": 1.5.0
     "@voiceflow/tsconfig": 1.4.8
     "@voiceflow/voiceflow-types": 3.24.0
     bowser: ^2.11.0
@@ -5350,6 +5350,7 @@ __metadata:
     happy-dom: ^6.0.4
     husky: ^8.0.0
     lint-staged: 13.0.3
+    markdown-to-jsx: ^7.3.2
     prettier: 2.7.1
     react: 18.2.0
     react-dom: 18.2.0
@@ -5382,16 +5383,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@voiceflow/slate-serializer@npm:1.2.2":
-  version: 1.2.2
-  resolution: "@voiceflow/slate-serializer@npm:1.2.2"
+"@voiceflow/slate-serializer@npm:1.5.0":
+  version: 1.5.0
+  resolution: "@voiceflow/slate-serializer@npm:1.5.0"
   dependencies:
-    csstype: ^3.0.9
+    csstype: 3.1.2
   peerDependencies:
     "@voiceflow/base-types": ^2.67.0
     react: ^17.0.2
     slate: ^0.72.3
-  checksum: dd69b2f2b037253667bfb5be280311b5add1df4cf12c90d58cb95ebad27792a1b7c8c5fc417f2b59b4f91691f6724562b98e1c956545614b1f90254ca16f5dfe
+  checksum: 8bf5d72331fe970c6f7641ec2452dea267cef714a02f25a19c941cf6e5533ba6ab4fd31c9a9a4863f1270932b1aa5a91a0467e1b668a851522aca3e2a323c0c8
   languageName: node
   linkType: hard
 
@@ -8569,17 +8570,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"csstype@npm:3.1.2":
+  version: 3.1.2
+  resolution: "csstype@npm:3.1.2"
+  checksum: e1a52e6c25c1314d6beef5168da704ab29c5186b877c07d822bd0806717d9a265e8493a2e35ca7e68d0f5d472d43fac1cdce70fd79fd0853dff81f3028d857b5
+  languageName: node
+  linkType: hard
+
 "csstype@npm:^2.5.7":
   version: 2.6.20
   resolution: "csstype@npm:2.6.20"
   checksum: cb5d5ded49c3390909e93b20b285d4a63d0ba5b10294bdfbc4cf911f80e91d6cf367ea671f99f09570762535c14ea7074a2c7fa73f02008203f01328dea8968b
-  languageName: node
-  linkType: hard
-
-"csstype@npm:^3.0.9":
-  version: 3.1.1
-  resolution: "csstype@npm:3.1.1"
-  checksum: 1f7b4f5fdd955b7444b18ebdddf3f5c699159f13e9cf8ac9027ae4a60ae226aef9bbb14a6e12ca7dba3358b007cee6354b116e720262867c398de6c955ea451d
   languageName: node
   linkType: hard
 
@@ -14686,6 +14687,15 @@ __metadata:
   version: 1.1.1
   resolution: "markdown-extensions@npm:1.1.1"
   checksum: 8a6dd128be1c524049ea6a41a9193715c2835d3d706af4b8b714ff2043a82786dbcd4a8f1fa9ddd28facbc444426c97515aef2d1f3dd11d5e2d63749ba577b1e
+  languageName: node
+  linkType: hard
+
+"markdown-to-jsx@npm:^7.3.2":
+  version: 7.3.2
+  resolution: "markdown-to-jsx@npm:7.3.2"
+  peerDependencies:
+    react: ">= 0.14.0"
+  checksum: 8885c6343b71570b0a7ec16cd85a49b853a830234790ee7430e2517ea5d8d361ff138bd52147f650790f3e7b3a28a15c755fc16f8856dd01ddf09a6161782e06
   languageName: node
   linkType: hard
 
