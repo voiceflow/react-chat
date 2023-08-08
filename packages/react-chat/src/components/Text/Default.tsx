@@ -1,15 +1,10 @@
 import { serializeToMarkdown } from '@voiceflow/slate-serializer/markdown';
-import Markdown from 'markdown-to-jsx';
+import React from 'react';
 
 import Message from '@/components/Message';
 import type { TextMessageProps } from '@/components/SystemResponse/types';
-import { styled } from '@/styles';
 
-export const MarkdownText = styled(Markdown, {
-  p: {
-    marginBottom: 0,
-  },
-});
+import Markdown from './Markdown';
 
 export interface DefaultTextProps {
   /**
@@ -21,7 +16,7 @@ export interface DefaultTextProps {
 const DefaultText: React.FC<DefaultTextProps> = ({ text }) => {
   return (
     <Message from="system">
-      <MarkdownText>{typeof text === 'string' ? text : serializeToMarkdown(text)}</MarkdownText>
+      <Markdown>{typeof text === 'string' ? text : serializeToMarkdown(text)}</Markdown>
     </Message>
   );
 };

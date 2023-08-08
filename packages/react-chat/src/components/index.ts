@@ -16,6 +16,7 @@ export { default as Loader } from './Loader';
 export { default as Message } from './Message';
 export { default as Prompt } from './Prompt';
 export { default as SystemResponse } from './SystemResponse';
+export { Markdown, default as Text } from './Text';
 export { default as Timestamp } from './Timestamp';
 export { default as Tooltip } from './Tooltip';
 export { default as TypingIndicator } from './TypingIndicator';
