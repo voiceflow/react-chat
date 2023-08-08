@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.44.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.43.0...@voiceflow/react-chat@1.44.0) (2023-08-08)
+
+### Features
+
+* markdown serializer (CT-000) ([#66](https://github.com/voiceflow/react-chat/issues/66)) ([5522b54](https://github.com/voiceflow/react-chat/commit/5522b54d0117748b3d904aa950b84897505e6309))
+
 # [1.43.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.42.0...@voiceflow/react-chat@1.43.0) (2023-07-19)
 
 ### Features
