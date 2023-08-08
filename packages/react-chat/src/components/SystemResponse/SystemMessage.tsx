@@ -1,4 +1,3 @@
-import { serializeToJSX } from '@voiceflow/slate-serializer/jsx';
 import { useRef } from 'react';
 import * as R from 'remeda';
 import { match } from 'ts-pattern';
@@ -7,7 +6,7 @@ import Avatar from '@/components/Avatar';
 import Card from '@/components/Card';
 import Carousel from '@/components/Carousel';
 import Image from '@/components/Image';
-import Message from '@/components/Message';
+import Text from '@/components/Text';
 import Timestamp from '@/components/Timestamp';
 
 import Feedback, { FeedbackProps } from '../Feedback';
@@ -60,9 +59,7 @@ const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, feedback, timesta
         <List>
           {children ??
             match(message)
-              .with({ type: MessageType.TEXT }, ({ text }) => (
-                <Message from="system">{typeof text === 'string' ? text : serializeToJSX(text)}</Message>
-              ))
+              .with({ type: MessageType.TEXT }, ({ text }) => <Text text={text} />)
               .with({ type: MessageType.IMAGE }, ({ url }) => <Image image={url} />)
               .with({ type: MessageType.CARD }, (props) => <Card {...R.omit(props, ['type'])} />)
               .with({ type: MessageType.CAROUSEL }, (props) => (
