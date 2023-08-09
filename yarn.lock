@@ -5332,7 +5332,7 @@ __metadata:
     "@voiceflow/eslint-config": 6.1.0
     "@voiceflow/prettier-config": 1.2.1
     "@voiceflow/sdk-runtime": 1.7.0
-    "@voiceflow/slate-serializer": 1.5.1
+    "@voiceflow/slate-serializer": 1.5.2
     "@voiceflow/tsconfig": 1.4.8
     "@voiceflow/voiceflow-types": 3.24.0
     bowser: ^2.11.0
@@ -5383,16 +5383,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@voiceflow/slate-serializer@npm:1.5.1":
-  version: 1.5.1
-  resolution: "@voiceflow/slate-serializer@npm:1.5.1"
+"@voiceflow/slate-serializer@npm:1.5.2":
+  version: 1.5.2
+  resolution: "@voiceflow/slate-serializer@npm:1.5.2"
   dependencies:
     csstype: 3.1.2
   peerDependencies:
     "@voiceflow/base-types": ^2.67.0
     react: ^17.0.2
     slate: ^0.72.3
-  checksum: ca595174b473e3f59ef5cc4ec0f3293733c2c437226d9a522bd04d6917108e2a617af0f5365812ee36a6a349a3242dcf25678cff4ec830191b0097170bddbb03
+  checksum: ce7678a6a9226c73f87f21e173a3fc097b56f3624b6642b3f9c132d07c3f9be9e2123f1a7695a9287287de00d05f79cec443ad0f770eeed130307846f32ebc34
   languageName: node
   linkType: hard
 
