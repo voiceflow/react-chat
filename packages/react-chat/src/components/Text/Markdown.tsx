@@ -23,13 +23,13 @@ const MarkdownText = styled(Markdown, {
     marginBottom: '$4',
   },
   'ol,ul': {
-    paddingInlineStart: '$4',
+    paddingInlineStart: '$5',
   },
-  '> *:last-child': {
-    marginBottom: 0,
-  },
-  '> *:first-child': {
+  '> *:first-child, blockquote>:first-child': {
     marginTop: 0,
+  },
+  '> *:last-child, blockquote>:last-child': {
+    marginBottom: 0,
   },
 });
 
