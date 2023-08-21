@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.45.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.44.1...@voiceflow/react-chat@1.45.0) (2023-08-21)
+
+### Features
+
+* disable widget zoom (CV3-286) ([#67](https://github.com/voiceflow/react-chat/issues/67)) ([dce937d](https://github.com/voiceflow/react-chat/commit/dce937df1a26f8996c4e255bc18780249a762fe8))
+
 ## [1.44.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.44.0...@voiceflow/react-chat@1.44.1) (2023-08-09)
 
 ### Bug Fixes
