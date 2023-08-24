@@ -54,6 +54,7 @@ export const Header = styled(tag('h3', 'header'), {
   margin: '0 0 $1 0',
   typo: { weight: '$2' },
   color: '$black',
+  wordBreak: 'break-all',
 });
 
 export const Description = styled(tag('p', 'description'), {
@@ -61,6 +62,7 @@ export const Description = styled(tag('p', 'description'), {
   typo: { size: '$1' },
   color: '$darkGrey',
   whiteSpace: 'normal',
+  wordBreak: 'break-all',
 });
 
 export const Link = styled(tag('a', 'link'), {
@@ -72,4 +74,5 @@ export const Link = styled(tag('a', 'link'), {
   color: 'rgb(93, 157, 245)',
   textDecoration: 'underline',
   pointerEvents: 'all',
+  wordBreak: 'break-all',
 });
