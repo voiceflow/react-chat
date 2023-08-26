@@ -12,6 +12,7 @@ const MarkdownText = styled(ReactMarkdown, {
   },
   code: {
     color: '#e83e8c',
+    whiteSpace: 'pre-wrap',
   },
   p: {
     marginTop: 0,
