@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.45.4](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.45.3...@voiceflow/react-chat@1.45.4) (2023-08-26)
+
+### Bug Fixes
+
+* whitespace prewrap p tags (BUG-555) ([ba3b61c](https://github.com/voiceflow/react-chat/commit/ba3b61c48b279db91f95eff6df6797ee79a9d3e2))
+
 ## [1.45.3](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.45.2...@voiceflow/react-chat@1.45.3) (2023-08-26)
 
 ### Bug Fixes
