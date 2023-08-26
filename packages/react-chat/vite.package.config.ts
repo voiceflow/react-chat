@@ -7,7 +7,7 @@ import { createPlugins } from './vite.config';
 
 export default defineConfig({
   define: {
-    'process.env': {},
+    'process.env': '({})',
   },
   build: {
     outDir: path.resolve(__dirname, 'build'),
@@ -27,12 +27,5 @@ export default defineConfig({
       },
     },
   },
-  plugins: [
-    react(),
-    dts({
-      skipDiagnostics: false,
-      logDiagnostics: true,
-    }),
-    ...createPlugins(),
-  ],
+  plugins: [react(), dts(), ...createPlugins()],
 });
