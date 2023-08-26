@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.45.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.45.0...@voiceflow/react-chat@1.45.1) (2023-08-26)
+
+### Bug Fixes
+
+* react markdown build (BUG-555) ([e3a8d0a](https://github.com/voiceflow/react-chat/commit/e3a8d0a52cfe5eadef07f074230ccf05e4ae1d0e))
+* use new markdown library (BUG-555) ([ca79759](https://github.com/voiceflow/react-chat/commit/ca79759a2b69d62588e2b3b937b45ff031f5824e))
+
 # [1.45.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.44.1...@voiceflow/react-chat@1.45.0) (2023-08-21)
 
 ### Features
