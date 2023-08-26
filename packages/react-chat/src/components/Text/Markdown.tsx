@@ -1,11 +1,10 @@
-import Markdown, { MarkdownToJSX } from 'markdown-to-jsx';
+import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
+import remarkGfm from 'remark-gfm';
 
 import { styled } from '@/styles';
 
-const MarkdownText = styled(Markdown, {
-  '*': {
-    whiteSpace: 'pre-wrap',
-  },
+const MarkdownText = styled(ReactMarkdown, {
   blockquote: {
     marginLeft: 0,
     paddingLeft: '$4',
@@ -33,19 +32,10 @@ const MarkdownText = styled(Markdown, {
   },
 });
 
-const options: MarkdownToJSX.Options = {
-  forceWrapper: true,
-  overrides: {
-    a: ({ children, ...props }) => (
-      <a {...props} target="_blank" rel="noopener noreferrer">
-        {children}
-      </a>
-    ),
-  },
-};
-
 MarkdownText.defaultProps = {
-  options,
+  rehypePlugins: [rehypeRaw],
+  remarkPlugins: [remarkGfm],
+  linkTarget: '_blank',
 };
 
 export default MarkdownText;

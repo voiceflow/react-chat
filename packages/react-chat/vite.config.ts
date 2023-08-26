@@ -27,7 +27,7 @@ export default defineConfig({
     open: false,
   },
   define: {
-    'process.env': {},
+    'process.env': '({})',
   },
   base: '',
   build: {
