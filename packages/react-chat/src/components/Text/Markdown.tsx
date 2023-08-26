@@ -16,6 +16,7 @@ const MarkdownText = styled(ReactMarkdown, {
   },
   p: {
     marginTop: 0,
+    whiteSpace: 'pre-wrap',
   },
   'img,video': {
     maxWidth: '100%',
