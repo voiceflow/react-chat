@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.45.3](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.45.2...@voiceflow/react-chat@1.45.3) (2023-08-26)
+
+### Bug Fixes
+
+* add pre-wrap to markdown code (BUG-555) ([9b20940](https://github.com/voiceflow/react-chat/commit/9b2094051f9abdffd19ad14fb6a58c0ff218da42))
+
+### Reverts
+
+* Revert "fix: revert all markdown issues" ([5f59262](https://github.com/voiceflow/react-chat/commit/5f59262bc55687e63460f1402868c001164e0d7f))
+
 ## [1.45.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.45.1...@voiceflow/react-chat@1.45.2) (2023-08-26)
 
 ### Bug Fixes
