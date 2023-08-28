@@ -8,7 +8,7 @@ import { PRIMARY } from '@/styles/color';
 
 const DEFAULT_AVATAR = 'https://cdn.voiceflow.com/assets/logo.png';
 
-const DEFAULT_ASSISTANT = {
+const DEFAULT_ASSISTANT: Assistant = {
   title: 'Voiceflow Assistant',
   image: DEFAULT_AVATAR,
   avatar: DEFAULT_AVATAR,
