@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.46.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.45.4...@voiceflow/react-chat@1.46.0) (2023-08-30)
+
+### Features
+
+* add destroy method and improve listeners hook (CT-000) ([#72](https://github.com/voiceflow/react-chat/issues/72)) ([52648cf](https://github.com/voiceflow/react-chat/commit/52648cfc588c7f725be6821776867cd1fe274ac5))
+
 ## [1.45.4](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.45.3...@voiceflow/react-chat@1.45.4) (2023-08-26)
 
 ### Bug Fixes
