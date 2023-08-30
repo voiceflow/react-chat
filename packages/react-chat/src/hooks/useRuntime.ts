@@ -98,7 +98,7 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...conf
     setSession((prev) => ({ ...prev, turns: action(prev.turns) }));
   };
   const setStatus = (status: SessionStatus) => {
-    setSession((prev) => ({ ...prev, status }));
+    setSession((prev) => (prev.status === status ? prev : { ...prev, status }));
   };
   const isStatus = (status: SessionStatus) => {
     return sessionRef.current.status === status;
