@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.46.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.46.0...@voiceflow/react-chat@1.46.1) (2023-08-30)
+
+### Bug Fixes
+
+* do not set the status if it is already set (DX-610) ([#74](https://github.com/voiceflow/react-chat/issues/74)) ([1f24b06](https://github.com/voiceflow/react-chat/commit/1f24b061b50a4f866e58f0b1db5bf2bc3f9a8e63))
+
 # [1.46.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.45.4...@voiceflow/react-chat@1.46.0) (2023-08-30)
 
 ### Features
