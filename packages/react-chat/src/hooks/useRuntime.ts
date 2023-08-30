@@ -70,7 +70,7 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...conf
     };
   }, [noReplyTimeout, lastInteractionAt]);
 
-  const runtime = useMemo(
+  const runtime: VoiceflowRuntime<RuntimeContext> = useMemo(
     () =>
       new VoiceflowRuntime<RuntimeContext>({
         verify,

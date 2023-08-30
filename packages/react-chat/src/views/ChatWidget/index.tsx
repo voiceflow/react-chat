@@ -3,6 +3,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 
 import { Assistant, ChatPosition, isObject, Listeners, PostMessage, useTheme } from '@/common';
 import Launcher from '@/components/Launcher';
+import { noop } from '@/utils/functional';
 
 import { ChatContainer, Container, LauncherContainer } from './styled';
 import { ChatAPI } from './types';
@@ -10,7 +11,7 @@ import { ChatAPI } from './types';
 interface ChatWidgetProps extends React.PropsWithChildren {
   assistant?: Assistant | undefined;
   widgetURL?: string;
-  chatAPI?: ChatAPI;
+  chatAPI?: ChatAPI | undefined;
   sendMessage: (message: PostMessage.AnyMessage) => void;
 }
 
@@ -31,7 +32,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ children, chatAPI, sendMessage,
 
   /** initialize window */
   useEffect(() => {
-    if (!isObject(chatAPI)) return;
+    if (!isObject(chatAPI)) return undefined;
 
     Object.assign(chatAPI, {
       open,
@@ -40,6 +41,16 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ children, chatAPI, sendMessage,
       show: () => setHidden(false),
       interact: (action: RuntimeAction) => sendMessage({ type: PostMessage.Type.INTERACT, payload: action }),
     });
+
+    return () => {
+      Object.assign(chatAPI, {
+        open: noop,
+        hide: noop,
+        show: noop,
+        close: noop,
+        interact: noop,
+      });
+    };
   }, []);
 
   const side = assistant?.position ?? ChatPosition.RIGHT;

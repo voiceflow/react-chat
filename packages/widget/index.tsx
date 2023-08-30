@@ -1,5 +1,5 @@
 import type { ChatConfig } from '@voiceflow/react-chat';
-import { Listeners, PostMessage } from '@voiceflow/react-chat';
+import { Listeners, noop, PostMessage } from '@voiceflow/react-chat';
 import { createRoot } from 'react-dom/client';
 
 import Widget from './src';
@@ -13,23 +13,34 @@ document.body.appendChild(rootEl);
 
 const root = createRoot(rootEl);
 
-window.voiceflow ??= {} as any;
-window.voiceflow.chat ??= {} as any;
+window.voiceflow ??= {};
+window.voiceflow.chat ??= {
+  open: noop,
+  hide: noop,
+  show: noop,
+  close: noop,
+  interact: noop,
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-const noop = () => {};
-window.voiceflow.chat.open ??= noop;
-window.voiceflow.chat.close ??= noop;
-window.voiceflow.chat.show ??= noop;
-window.voiceflow.chat.hide ??= noop;
-window.voiceflow.chat.interact ??= noop;
+  load: async (loadConfig: Partial<ChatConfig>) => {
+    const config = sanitizeConfig(loadConfig);
 
-window.voiceflow.chat.load = async (loadConfig: Partial<ChatConfig>) => {
-  const config = sanitizeConfig(loadConfig);
+    const promise = new Promise<void>((resolve) => {
+      const action = {
+        type: PostMessage.Type.SESSION,
+        action: () => {
+          resolve();
 
-  root.render(<Widget {...config} widgetURL={WIDGET_URL!} />);
+          Listeners.context.listeners = Listeners.context.listeners.filter((listener) => listener !== action);
+        },
+      };
 
-  return new Promise<void>((resolve) => {
-    Listeners.context.listeners.push({ type: PostMessage.Type.SESSION, action: resolve });
-  });
+      Listeners.context.listeners.push(action);
+    });
+
+    root.render(<Widget {...config} widgetURL={WIDGET_URL!} />);
+
+    return promise;
+  },
+
+  destroy: () => root.render(null),
 };

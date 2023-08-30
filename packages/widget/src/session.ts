@@ -14,21 +14,24 @@ const getStorageSession = (storage: Storage, projectID: string): SessionOptions 
 
 const setStorageSession = (storage: Storage, projectID: string, options: SessionOptions) => {
   storage.setItem(getSessionKey(projectID), JSON.stringify(options));
+
   return options;
 };
 
-const resolveSession = (storage: Storage, projectID: string, userID?: string) => {
+const resolveSession = (storage: Storage, projectID: string, userID: string) => {
   const session = getStorageSession(storage, projectID);
+
   if (!session || (userID && session.userID !== userID)) {
-    return setStorageSession(storage, projectID, { userID: userID || cuid() });
+    return setStorageSession(storage, projectID, { userID });
   }
+
   return session;
 };
 
-export const getSession = (persistence: ChatPersistence, projectID: string, userID?: string): SessionOptions => {
+export const getSession = (persistence: ChatPersistence, projectID: string, userID: string = cuid()): SessionOptions => {
   switch (persistence) {
     case ChatPersistence.MEMORY:
-      return { userID: userID || cuid() };
+      return { userID };
     case ChatPersistence.LOCAL_STORAGE:
       return resolveSession(localStorage, projectID, userID);
     case ChatPersistence.SESSION_STORAGE:
