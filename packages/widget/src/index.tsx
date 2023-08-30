@@ -1,10 +1,11 @@
 import { Assistant, ChatWidget, Listeners, PostMessage, RuntimeOptions, useStateRef } from '@voiceflow/react-chat';
+import type { PublicVerify } from '@voiceflow/sdk-runtime';
 import React, { useCallback, useRef } from 'react';
 
 import { useSendMessage } from './hooks';
 import { getSession, saveSession } from './session';
 
-interface WidgetProps extends React.PropsWithChildren, RuntimeOptions {
+interface WidgetProps extends React.PropsWithChildren, RuntimeOptions<PublicVerify> {
   assistant?: Assistant;
   widgetURL?: string;
 }
@@ -20,6 +21,7 @@ const Widget: React.FC<WidgetProps> = ({ children, widgetURL, ...config }) => {
   // rely on iframe to fetch assistant configuration
   Listeners.useListenMessage(PostMessage.Type.FETCHED_ASSISTANT, ({ payload: assistant }) => {
     setAssistant(assistant);
+
     sendMessage({
       type: PostMessage.Type.SESSION,
       payload: {
@@ -38,7 +40,7 @@ const Widget: React.FC<WidgetProps> = ({ children, widgetURL, ...config }) => {
   });
 
   return (
-    <ChatWidget assistant={assistant} sendMessage={sendMessage} chatAPI={window.voiceflow.chat}>
+    <ChatWidget assistant={assistant} sendMessage={sendMessage} chatAPI={window.voiceflow?.chat}>
       <iframe src={widgetURL} title="voiceflow-chat" ref={chatRef} onLoad={onLoad} style={{ height: '100%', width: '100%', border: 'none' }} />
     </ChatWidget>
   );

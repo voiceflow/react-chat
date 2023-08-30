@@ -1,5 +1,5 @@
 // TODO: move this entire module into `browser/` if possible?
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 import * as PostMessage from './postMessage';
 
@@ -46,8 +46,12 @@ if (window.addEventListener) {
 }
 
 export const useListenMessage = <T extends PostMessage.Type>(type: T, action: (listener: PostMessage.MessageTypeMap[T]) => void) => {
+  const actionRef = useRef(action);
+
+  actionRef.current = action;
+
   useEffect(() => {
-    const listener = { type, action };
+    const listener = { type, action: (listener: PostMessage.MessageTypeMap[T]) => actionRef.current(listener) };
     context.listeners.push(listener);
 
     return () => {
