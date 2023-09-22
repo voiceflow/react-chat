@@ -1,7 +1,7 @@
 {
   "name": "@voiceflow/widget",
   "description": "voiceflow iframe widget",
-  "version": "1.7.1",
+  "version": "1.7.2",
   "author": "Tyler Han",
   "bugs": {
     "url": "https://github.com/voiceflow/react-chat/issues"
