@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.46.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.46.1...@voiceflow/react-chat@1.46.2) (2023-09-22)
+
+### Bug Fixes
+
+* remove markdown p whitespace pre-wrap (CV3-370) ([4fdab44](https://github.com/voiceflow/react-chat/commit/4fdab440ac1d70eb08c780096dfb477eb5baf272))
+
 ## [1.46.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.46.0...@voiceflow/react-chat@1.46.1) (2023-08-30)
 
 ### Bug Fixes
