@@ -37,6 +37,11 @@ MarkdownText.defaultProps = {
   rehypePlugins: [rehypeRaw],
   remarkPlugins: [remarkGfm],
   linkTarget: '_blank',
+  remarkRehypeOptions: {
+    handlers: {
+      break: () => [{ type: 'text', value: '\n' }],
+    },
+  },
 };
 
 export default MarkdownText;
