@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.46.3](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.46.2...@voiceflow/react-chat@1.46.3) (2023-09-23)
+
+### Bug Fixes
+
+* remove break br tag insertion (CV3-370) ([#75](https://github.com/voiceflow/react-chat/issues/75)) ([e5baa57](https://github.com/voiceflow/react-chat/commit/e5baa577df7b6befd749d479a4896b1b7fb5b54e))
+
 ## [1.46.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.46.1...@voiceflow/react-chat@1.46.2) (2023-09-22)
 
 ### Bug Fixes
