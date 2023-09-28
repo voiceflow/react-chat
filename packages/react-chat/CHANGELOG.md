@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.46.4](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.46.3...@voiceflow/react-chat@1.46.4) (2023-09-28)
+
+### Bug Fixes
+
+* force slate update ([1c7b59b](https://github.com/voiceflow/react-chat/commit/1c7b59b6675af731001b3aebc68692b4f512ffff))
+
 ## [1.46.3](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.46.2...@voiceflow/react-chat@1.46.3) (2023-09-23)
 
 ### Bug Fixes
