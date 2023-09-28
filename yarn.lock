@@ -5218,6 +5218,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@voiceflow/base-types@npm:2.90.1":
+  version: 2.90.1
+  resolution: "@voiceflow/base-types@npm:2.90.1"
+  dependencies:
+    "@voiceflow/common": ^8.2.1
+    slate: 0.94.1
+  checksum: f086d2251470ab0a92c5bfa8b658637eea708c9fc81286f10db96f26ea043b9fe885c26eaf8633d0aad7e1da3399a5d21650da88c85bae1074fd1f0a78f2c243
+  languageName: node
+  linkType: hard
+
 "@voiceflow/chat-types@npm:^2.13.49":
   version: 2.13.49
   resolution: "@voiceflow/chat-types@npm:2.13.49"
@@ -5255,6 +5265,25 @@ __metadata:
     shallowequal: ^1.1.0
     typescript-fsa: 3.0.0
   checksum: 609dcd6abf746c13f34555a71f47d5c366bf030f94c1be22d844d28207da915d643e2e1f9c578b2471838a2cfe71801d8ca0cbd9ef1a84406cb0033711c66a8b
+  languageName: node
+  linkType: hard
+
+"@voiceflow/common@npm:^8.2.1":
+  version: 8.2.1
+  resolution: "@voiceflow/common@npm:8.2.1"
+  dependencies:
+    "@types/crypto-js": ^4.0.2
+    "@types/shallowequal": ^1.1.1
+    bson-objectid: ^2.0.1
+    crypto-js: ^4.1.1
+    cuid: ^2.1.8
+    dayjs: 1.10.7
+    lodash: ^4.17.21
+    murmurhash-wasm: ^1.3.0
+    number-to-words: ^1.2.4
+    shallowequal: ^1.1.0
+    typescript-fsa: 3.0.0
+  checksum: fffc2ccbd9cc475daa95c9c06a6b4a6dc82775d8fa8352c49776afad04a79ed58ecb2e416e3fed42506708faa1cf5453e0482ecf7867f89f2d9e96bfdb142bef
   languageName: node
   linkType: hard
 
@@ -5335,11 +5364,11 @@ __metadata:
     "@types/react-dom": ^18.0.6
     "@vitejs/plugin-react": ^2.0.1
     "@vitest/coverage-c8": ^0.23.1
-    "@voiceflow/base-types": 2.85.0
+    "@voiceflow/base-types": 2.90.1
     "@voiceflow/eslint-config": 6.1.0
     "@voiceflow/prettier-config": 1.2.1
     "@voiceflow/sdk-runtime": 1.7.0
-    "@voiceflow/slate-serializer": 1.5.3
+    "@voiceflow/slate-serializer": 1.5.5
     "@voiceflow/tsconfig": 1.4.8
     "@voiceflow/voiceflow-types": 3.24.0
     bowser: ^2.11.0
@@ -5365,7 +5394,7 @@ __metadata:
     remark-gfm: ^3.0.1
     remeda: ^1.0.1
     rimraf: 3.0.2
-    slate: ^0.72.3
+    slate: ^0.94.1
     storybook-dark-mode: ^1.1.0
     ts-pattern: ^4.0.5
     tsc-alias: 1.8.6
@@ -5392,16 +5421,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@voiceflow/slate-serializer@npm:1.5.3":
-  version: 1.5.3
-  resolution: "@voiceflow/slate-serializer@npm:1.5.3"
+"@voiceflow/slate-serializer@npm:1.5.5":
+  version: 1.5.5
+  resolution: "@voiceflow/slate-serializer@npm:1.5.5"
   dependencies:
     csstype: 3.1.2
   peerDependencies:
     "@voiceflow/base-types": ^2.67.0
     react: ^17.0.2
     slate: ^0.72.3
-  checksum: fea715d2f6322c6c414617eed58836c1126183c0ad23c2a7115147ecbe14f28fc8f707eadd97ca900c32c786d78a7e9a630efabb1515627a8988cbef4f2a555a
+  checksum: f8f276247767724d3a9087ce1f76b0cb93c5da8367a7de3f736da83c318a389ef6e2f45a06348f1e74e6b68e5ed0020af692beac88838070e2c2e97912d2fc80
   languageName: node
   linkType: hard
 
@@ -19495,14 +19524,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"slate@npm:^0.72.3":
-  version: 0.72.8
-  resolution: "slate@npm:0.72.8"
+"slate@npm:0.94.1, slate@npm:^0.94.1":
+  version: 0.94.1
+  resolution: "slate@npm:0.94.1"
   dependencies:
     immer: ^9.0.6
     is-plain-object: ^5.0.0
     tiny-warning: ^1.0.3
-  checksum: 42788ac153139b1166a66f48f8b095cfd3eea27d4580a4ebfb67ee9c2eaca17aa9187180d8c3abdc3367a05ee9ce1f25d11a9909464bd43db4dabc3535a842b7
+  checksum: 07666fe3373e59aaa19261366fd3cf1df546edfc0162fb88d675d71f158ebd1bf0630fd00ecc9152ab6547080f3e90c9f6d1504e09c25b3bf980cceb9b15c3c1
   languageName: node
   linkType: hard
 
