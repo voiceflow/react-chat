@@ -18,7 +18,7 @@ const setStorageSession = (storage: Storage, projectID: string, options: Session
   return options;
 };
 
-//  we can't do userID = cuid, cause it'll break sessions for anonymous users (when the userID is not provided by app)
+//  we can't use function default param `userID = cuid()`, cause it'll break sessions for anonymous users (when the userID is not provided by app)
 const resolveSession = (storage: Storage, projectID: string, userID?: string) => {
   const session = getStorageSession(storage, projectID);
 
@@ -29,7 +29,7 @@ const resolveSession = (storage: Storage, projectID: string, userID?: string) =>
   return session;
 };
 
-//  we can't do userID = cuid, cause it'll break sessions for anonymous users (when the userID is not provided by app)
+//  we can't use function default param `userID = cuid()`, cause it'll break sessions for anonymous users (when the userID is not provided by app)
 export const getSession = (persistence: ChatPersistence, projectID: string, userID?: string): SessionOptions => {
   switch (persistence) {
     case ChatPersistence.MEMORY:
