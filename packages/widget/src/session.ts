@@ -18,20 +18,22 @@ const setStorageSession = (storage: Storage, projectID: string, options: Session
   return options;
 };
 
-const resolveSession = (storage: Storage, projectID: string, userID: string) => {
+//  we can't use function default param `userID = cuid()`, cause it'll break sessions for anonymous users (when the userID is not provided by app)
+const resolveSession = (storage: Storage, projectID: string, userID?: string) => {
   const session = getStorageSession(storage, projectID);
 
   if (!session || (userID && session.userID !== userID)) {
-    return setStorageSession(storage, projectID, { userID });
+    return setStorageSession(storage, projectID, { userID: userID || cuid() });
   }
 
   return session;
 };
 
-export const getSession = (persistence: ChatPersistence, projectID: string, userID: string = cuid()): SessionOptions => {
+//  we can't use function default param `userID = cuid()`, cause it'll break sessions for anonymous users (when the userID is not provided by app)
+export const getSession = (persistence: ChatPersistence, projectID: string, userID?: string): SessionOptions => {
   switch (persistence) {
     case ChatPersistence.MEMORY:
-      return { userID };
+      return { userID: userID || cuid() };
     case ChatPersistence.LOCAL_STORAGE:
       return resolveSession(localStorage, projectID, userID);
     case ChatPersistence.SESSION_STORAGE:
