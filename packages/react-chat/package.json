@@ -46,7 +46,7 @@
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.0.1",
     "@vitest/coverage-c8": "^0.23.1",
-    "@voiceflow/eslint-config": "6.1.0",
+    "@voiceflow/eslint-config": "7.1.0",
     "@voiceflow/prettier-config": "1.2.1",
     "@voiceflow/tsconfig": "1.4.8",
     "depcheck": "1.4.3",
