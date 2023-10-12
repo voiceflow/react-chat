@@ -8,6 +8,7 @@ import {
   VisualTraceComponent,
 } from '@voiceflow/sdk-runtime';
 
+import { CardProps, isValidCard } from './components/Card';
 import type { SystemResponseProps } from './components/SystemResponse';
 import { MessageType } from './components/SystemResponse/constants';
 
@@ -37,27 +38,40 @@ export const MESSAGE_TRACES: TraceDeclaration<RuntimeContext, any>[] = [
     return context;
   }),
   CardV2TraceComponent(({ context }, { payload: { title, imageUrl, description, buttons } }) => {
-    context.messages.push({
-      type: 'card',
+    const card: CardProps = {
       title,
       description: description.text,
       image: imageUrl,
       actions: buttons.map(({ name, request }) => ({ name, request })),
-    });
+    };
+
+    if (isValidCard(card)) {
+      context.messages.push({
+        type: 'card',
+        ...card,
+      });
+    }
     return context;
   }),
   {
     canHandle: ({ type }) => type === Trace.TraceType.CAROUSEL,
-    handle: ({ context }, { payload: { cards } }: Trace.Carousel) => {
-      context.messages.push({
-        type: MessageType.CAROUSEL,
-        cards: cards.map(({ title, description, imageUrl, buttons }) => ({
+    handle: ({ context }, { payload }: Trace.Carousel) => {
+      const cards: CardProps[] = payload.cards
+        .map(({ title, description, imageUrl, buttons }) => ({
           title,
           description: description.text,
           image: imageUrl,
           actions: buttons.map(({ name, request }) => ({ name, request })),
-        })),
-      });
+        }))
+        .filter(isValidCard);
+
+      if (cards.length) {
+        context.messages.push({
+          type: MessageType.CAROUSEL,
+          cards,
+        });
+      }
+
       return context;
     },
   },
