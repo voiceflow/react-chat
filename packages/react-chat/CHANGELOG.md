@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.46.5](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.46.4...@voiceflow/react-chat@1.46.5) (2023-10-12)
+
+### Bug Fixes
+
+* filter empty cards (BUG-601) ([#79](https://github.com/voiceflow/react-chat/issues/79)) ([68d3776](https://github.com/voiceflow/react-chat/commit/68d3776411a21c65c914664d772e86dc6f2a134f))
+
 ## [1.46.4](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.46.3...@voiceflow/react-chat@1.46.4) (2023-09-28)
 
 ### Bug Fixes

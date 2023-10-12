@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.6](https://github.com/voiceflow/react-chat/compare/@voiceflow/widget@1.7.5...@voiceflow/widget@1.7.6) (2023-10-12)
+
+**Note:** Version bump only for package @voiceflow/widget
+
 ## [1.7.5](https://github.com/voiceflow/react-chat/compare/@voiceflow/widget@1.7.4...@voiceflow/widget@1.7.5) (2023-10-06)
 
 ### Bug Fixes
