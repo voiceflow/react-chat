@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useMemo } from 'react';
 
 import type { RuntimeAction } from '@/common';
 import Button from '@/components/Button';
@@ -43,22 +43,30 @@ export interface CardProps {
   actions?: CardActionProps[] | undefined;
 }
 
+export const isValidCard = (card: CardProps) => {
+  return !!card.title || !!card.description || !!card.image || !!card.actions?.filter(({ name }) => !!name).length;
+};
+
 const Card: React.FC<CardProps> = ({ title, description, image, actions = [] }) => {
   const runtime = useContext(RuntimeAPIContext);
   const isLink = isValidHttpUrl(description);
+
+  const buttons = useMemo(() => actions.filter(({ name }) => !!name), [actions]);
 
   return (
     <Container>
       {!!image && <Image.Background image={image} />}
       <Content>
-        <Header>{title}</Header>
-        {!isLink && <Description>{description}</Description>}
-        {isLink && (
-          <Link rel="noopener noreferrer" href={description} target="_blank">
-            {description}
-          </Link>
-        )}
-        {actions.map(({ name, request }, index) => (
+        {!!title && <Header>{title}</Header>}
+        {!!description &&
+          (isLink ? (
+            <Link rel="noopener noreferrer" href={description} target="_blank">
+              {description}
+            </Link>
+          ) : (
+            <Description>{description}</Description>
+          ))}
+        {buttons.map(({ name, request }, index) => (
           <Button onClick={() => runtime.send(name, request)} key={index}>
             {name}
           </Button>
