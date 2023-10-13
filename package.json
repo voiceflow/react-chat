@@ -12,7 +12,7 @@
   "devDependencies": {
     "@commitlint/cli": "17.0.3",
     "@commitlint/config-conventional": "17.0.3",
-    "@voiceflow/commitlint-config": "2.0.0",
+    "@voiceflow/commitlint-config": "2.1.0",
     "@voiceflow/git-branch-check": "1.4.1",
     "cz-conventional-changelog": "^3.3.0",
     "depcheck": "^1.4.3",

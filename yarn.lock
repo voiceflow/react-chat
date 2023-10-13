@@ -1840,21 +1840,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/config-conventional@npm:16.0.0":
-  version: 16.0.0
-  resolution: "@commitlint/config-conventional@npm:16.0.0"
-  dependencies:
-    conventional-changelog-conventionalcommits: ^4.3.1
-  checksum: a0c923c506eed8b460503247efcecb64f7376c0fcfd9a05330651334d2b0b38a41db2698b1886198ec1e71bcf67dad4e190253e684a3cb668c7cfc76e9e959d5
-  languageName: node
-  linkType: hard
-
 "@commitlint/config-conventional@npm:17.0.3":
   version: 17.0.3
   resolution: "@commitlint/config-conventional@npm:17.0.3"
   dependencies:
     conventional-changelog-conventionalcommits: ^5.0.0
   checksum: 1cd30d827cf43bc7b08604398d4104bc031a69c8b45777886572aff12de25f40761dfbe5ffc6cd1f0d5b05de850e6d3e22dee6d799288e9cdd80bf575d036d46
+  languageName: node
+  linkType: hard
+
+"@commitlint/config-conventional@npm:17.6.1":
+  version: 17.6.1
+  resolution: "@commitlint/config-conventional@npm:17.6.1"
+  dependencies:
+    conventional-changelog-conventionalcommits: ^5.0.0
+  checksum: a854bae11f76b22e188af2fabe4048b5054f56b7f270e6364ab1ed807670fa38192e1a2628d626a9b759785f64874a0b33b560080b34208f69f401ef70d91562
   languageName: node
   linkType: hard
 
@@ -5208,7 +5208,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@voiceflow/base-types@npm:2.85.0, @voiceflow/base-types@npm:^2.85.0":
+"@voiceflow/base-types@npm:2.85.0":
   version: 2.85.0
   resolution: "@voiceflow/base-types@npm:2.85.0"
   dependencies:
@@ -5218,34 +5218,34 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@voiceflow/base-types@npm:2.90.1":
-  version: 2.90.1
-  resolution: "@voiceflow/base-types@npm:2.90.1"
+"@voiceflow/base-types@npm:2.96.0, @voiceflow/base-types@npm:^2.96.0":
+  version: 2.96.0
+  resolution: "@voiceflow/base-types@npm:2.96.0"
   dependencies:
     "@voiceflow/common": ^8.2.1
     slate: 0.94.1
-  checksum: f086d2251470ab0a92c5bfa8b658637eea708c9fc81286f10db96f26ea043b9fe885c26eaf8633d0aad7e1da3399a5d21650da88c85bae1074fd1f0a78f2c243
+  checksum: 9a8450d0004a1b1957217a70d08c2bfd29c0f8873266c274cb1084c7ecf3fb2716593b28dd9a6ed68950bb7185b257bfb6145eb887f4ce6997e8ca725ac83566
   languageName: node
   linkType: hard
 
-"@voiceflow/chat-types@npm:^2.13.49":
-  version: 2.13.49
-  resolution: "@voiceflow/chat-types@npm:2.13.49"
+"@voiceflow/chat-types@npm:^2.13.72":
+  version: 2.13.72
+  resolution: "@voiceflow/chat-types@npm:2.13.72"
   dependencies:
-    "@voiceflow/base-types": ^2.85.0
-    "@voiceflow/common": ^8.2.0
-  checksum: 01d869ad06e0372b1e1e14357a347d9299262da7bac0cbb035ede1e7c08b50d515a76d11b53d7733b235ed089828b33b71af4ab39818bcbb02e6cd081e562b82
+    "@voiceflow/base-types": ^2.96.0
+    "@voiceflow/common": ^8.2.1
+  checksum: 2604ae4cc863dd8e8b655ec43c5746595d59c08200d9ecacd748e27a29b31c38803e70c2b45fb0e7074e66b404e3a03688596a8381ca5ea58d71a502d780c445
   languageName: node
   linkType: hard
 
-"@voiceflow/commitlint-config@npm:2.0.0":
-  version: 2.0.0
-  resolution: "@voiceflow/commitlint-config@npm:2.0.0"
+"@voiceflow/commitlint-config@npm:2.1.0":
+  version: 2.1.0
+  resolution: "@voiceflow/commitlint-config@npm:2.1.0"
   dependencies:
-    "@commitlint/config-conventional": 16.0.0
+    "@commitlint/config-conventional": 17.6.1
   peerDependencies:
-    "@commitlint/cli": ^11.0.0
-  checksum: 18a9116b98d8a6922e7dc81a1f4011ff3cb3a41b97fb44a782bfe06ec97919420230cc1fd8ea2a1e8e6d1bf4d3f45adda2c5bd752228b9fabdedc2f4924c648c
+    "@commitlint/cli": ^17.0.0
+  checksum: 202e79d0ad77ae39744e83e2696f98a2a4ed0668afb08c6ee7fa3362e1230bba143c18eef566a95b7d2c6b58db101f7e43f2040b3b60dceee42b3695d18a838c
   languageName: node
   linkType: hard
 
@@ -5333,12 +5333,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@voiceflow/prettier-config@npm:1.2.1":
-  version: 1.2.1
-  resolution: "@voiceflow/prettier-config@npm:1.2.1"
+"@voiceflow/prettier-config@npm:1.3.0":
+  version: 1.3.0
+  resolution: "@voiceflow/prettier-config@npm:1.3.0"
   peerDependencies:
     prettier: ^1.19.1 || ^2.0.0
-  checksum: 1b144e471f22f331b377a5ffdf22b8090ff91d9fca36e3c1c713c698bd3b13009b834b2133baafa8a48bb39f02acceca80e9aacb0099cbe90721d41d02f1f835
+  checksum: 006806bb3da1109b76f2e63718a5c9ad51354833c118f0864f1a1e56b3309b35d5e7765a3e1f846bad36cd402d971dedc5f8ef69aadf7075bf5474f5b3796fde
   languageName: node
   linkType: hard
 
@@ -5364,13 +5364,13 @@ __metadata:
     "@types/react-dom": ^18.0.6
     "@vitejs/plugin-react": ^2.0.1
     "@vitest/coverage-c8": ^0.23.1
-    "@voiceflow/base-types": 2.90.1
+    "@voiceflow/base-types": 2.96.0
     "@voiceflow/eslint-config": 6.1.0
-    "@voiceflow/prettier-config": 1.2.1
+    "@voiceflow/prettier-config": 1.3.0
     "@voiceflow/sdk-runtime": 1.7.0
     "@voiceflow/slate-serializer": 1.5.5
     "@voiceflow/tsconfig": 1.4.8
-    "@voiceflow/voiceflow-types": 3.24.0
+    "@voiceflow/voiceflow-types": 3.26.7
     bowser: ^2.11.0
     chroma-js: 2.4.2
     clsx: 1.2.1
@@ -5446,24 +5446,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@voiceflow/voice-types@npm:^2.9.30":
-  version: 2.9.30
-  resolution: "@voiceflow/voice-types@npm:2.9.30"
+"@voiceflow/voice-types@npm:^2.9.53":
+  version: 2.9.53
+  resolution: "@voiceflow/voice-types@npm:2.9.53"
   dependencies:
-    "@voiceflow/base-types": ^2.85.0
-    "@voiceflow/common": ^8.2.0
-  checksum: f785ca476f5bf606dfac2544587d5c4746418abb62fea6cd4257776045baf15232cea51752d706a29dcf7447edca1a3f1247dc4544a7c4b0cede9554520526d1
+    "@voiceflow/base-types": ^2.96.0
+    "@voiceflow/common": ^8.2.1
+  checksum: 1e3109b65ad8fece69c5a4b957d7c9f5cc5789a8ca24a5807f401992aeba753cb188687e76f70460a331e21759ab2e085c8f5ade9b3a6c931d5be3d6977bd441
   languageName: node
   linkType: hard
 
-"@voiceflow/voiceflow-types@npm:3.24.0":
-  version: 3.24.0
-  resolution: "@voiceflow/voiceflow-types@npm:3.24.0"
+"@voiceflow/voiceflow-types@npm:3.26.7":
+  version: 3.26.7
+  resolution: "@voiceflow/voiceflow-types@npm:3.26.7"
   dependencies:
-    "@voiceflow/base-types": ^2.85.0
-    "@voiceflow/chat-types": ^2.13.49
-    "@voiceflow/voice-types": ^2.9.30
-  checksum: b496565aeb6ecf1c945d059adf9345595f49a990f5b7c753537fdc4f967341dd22acc5e16397965fb62d5747382b159e2f771c305f28d82a0870f274934ae94a
+    "@voiceflow/base-types": ^2.96.0
+    "@voiceflow/chat-types": ^2.13.72
+    "@voiceflow/voice-types": ^2.9.53
+  checksum: a4634f8250e5107140b2cdd7a19096038f147dc7fcbf78a01be61e170bd39247111a14235fe54a1f41221a01033b8e3e6203c2cc7da5f2b68940fa444fa1a2dd
   languageName: node
   linkType: hard
 
@@ -5478,7 +5478,7 @@ __metadata:
     "@vitejs/plugin-react": ^2.0.1
     "@vitest/coverage-c8": ^0.23.1
     "@voiceflow/eslint-config": 6.1.0
-    "@voiceflow/prettier-config": 1.2.1
+    "@voiceflow/prettier-config": 1.3.0
     "@voiceflow/react-chat": "workspace:*"
     "@voiceflow/sdk-runtime": 1.7.0
     "@voiceflow/tsconfig": 1.4.8
@@ -8238,17 +8238,6 @@ __metadata:
     compare-func: ^2.0.0
     q: ^1.5.1
   checksum: 6ed4972fce25a50f9f038c749cc9db501363131b0fb2efc1fccecba14e4b1c80651d0d758d4c350a609f32010c66fa343eefd49c02e79e911884be28f53f3f90
-  languageName: node
-  linkType: hard
-
-"conventional-changelog-conventionalcommits@npm:^4.3.1":
-  version: 4.6.3
-  resolution: "conventional-changelog-conventionalcommits@npm:4.6.3"
-  dependencies:
-    compare-func: ^2.0.0
-    lodash: ^4.17.15
-    q: ^1.5.1
-  checksum: 7b8e8a21ebb56f9aaa510e12917b7c609202072c3e71089e0a09630c37c2e8146cdb04364809839b0e3eb55f807fe84d03b2079500b37f6186d505848be5c562
   languageName: node
   linkType: hard
 
@@ -19019,7 +19008,7 @@ __metadata:
   dependencies:
     "@commitlint/cli": 17.0.3
     "@commitlint/config-conventional": 17.0.3
-    "@voiceflow/commitlint-config": 2.0.0
+    "@voiceflow/commitlint-config": 2.1.0
     "@voiceflow/git-branch-check": 1.4.1
     cz-conventional-changelog: ^3.3.0
     depcheck: ^1.4.3
