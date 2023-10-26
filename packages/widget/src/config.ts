@@ -8,7 +8,7 @@ const validateVerify = (verify: unknown): verify is ChatConfig['verify'] => {
 
 export const sanitizeConfig = (config: unknown): Partial<ChatConfig> & Pick<ChatConfig, 'verify'> => {
   const ref = isObject(config) ? config : {};
-  const { url, user, userID, versionID, verify } = ref;
+  const { url, user, userID, versionID, verify, assistant } = ref;
 
   if (!validateVerify(verify)) {
     throw new Error('no projectID on load');
@@ -26,5 +26,6 @@ export const sanitizeConfig = (config: unknown): Partial<ChatConfig> & Pick<Chat
         ...(typeof user.image === 'string' && { image: user.image }),
       },
     }),
+    ...(isObject(assistant) && ({ assistant } as Partial<Pick<ChatConfig, 'assistant'>>)),
   };
 };

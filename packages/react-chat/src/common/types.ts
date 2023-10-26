@@ -33,7 +33,7 @@ export interface SessionOptions {
   status?: SessionStatus;
 }
 
-export type Assistant = Omit<ChatPublishing & Required<Omit<ChatPublishing, 'launcher'>>, 'selectedIntents'>;
+export type Assistant = Omit<ChatPublishing & Required<Omit<ChatPublishing, 'launcher' | 'stylesheet'>>, 'selectedIntents'>;
 
 export interface ChatConfig extends RuntimeOptions<PublicVerify> {
   assistant?: Assistant;

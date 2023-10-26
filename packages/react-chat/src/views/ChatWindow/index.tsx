@@ -9,6 +9,7 @@ import { Chat, SystemResponse, UserResponse } from '@/components';
 import { RuntimeAPIProvider } from '@/contexts';
 import { FeedbackName, useRuntime } from '@/hooks';
 import { TurnType, UserTurnProps } from '@/types';
+import { useResolveAssistantStyleSheet } from '@/utils/stylesheet';
 
 import { ChatWindowContainer } from './styled';
 import { sendMessage } from './utils';
@@ -53,6 +54,9 @@ const ChatWindow: React.FC<ChatConfig & { assistant: Assistant; session: Session
     },
     [runtime.session.turns]
   );
+
+  const isStyleSheetResolved = useResolveAssistantStyleSheet(assistant);
+  if (!isStyleSheetResolved) return null;
 
   return (
     <RuntimeAPIProvider {...runtime}>
