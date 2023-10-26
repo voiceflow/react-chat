@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.46.6](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.46.5...@voiceflow/react-chat@1.46.6) (2023-10-26)
+
+### Bug Fixes
+
+* allow custom css stylesheets (CT-000) ([#80](https://github.com/voiceflow/react-chat/issues/80)) ([7062e0a](https://github.com/voiceflow/react-chat/commit/7062e0aa9cb5cf4e974fff7e8d3d90a129081d24))
+
 ## [1.46.5](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.46.4...@voiceflow/react-chat@1.46.5) (2023-10-12)
 
 ### Bug Fixes

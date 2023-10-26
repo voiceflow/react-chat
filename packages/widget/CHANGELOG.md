@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.7](https://github.com/voiceflow/react-chat/compare/@voiceflow/widget@1.7.6...@voiceflow/widget@1.7.7) (2023-10-26)
+
+### Bug Fixes
+
+* allow custom css stylesheets (CT-000) ([#80](https://github.com/voiceflow/react-chat/issues/80)) ([7062e0a](https://github.com/voiceflow/react-chat/commit/7062e0aa9cb5cf4e974fff7e8d3d90a129081d24))
+
 ## [1.7.6](https://github.com/voiceflow/react-chat/compare/@voiceflow/widget@1.7.5...@voiceflow/widget@1.7.6) (2023-10-12)
 
 **Note:** Version bump only for package @voiceflow/widget
