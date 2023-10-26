@@ -6,14 +6,13 @@ import { Assistant } from '@/common';
 // used to add stylesheets dynamically, resolves when loaded
 export const addStyleSheetURL = async (url: string) => {
   const link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.href = url;
-
   const load = new Promise((resolve, reject) => {
     link.onload = resolve;
     link.onerror = reject;
   });
 
+  link.rel = 'stylesheet';
+  link.href = url;
   document.head.appendChild(link);
 
   await load;
