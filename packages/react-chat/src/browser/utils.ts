@@ -23,7 +23,7 @@ const DEFAULT_ASSISTANT: Assistant = {
 
 const sanitizeAssistant = (assistant: unknown): PartialDeep<Assistant> => {
   const ref = isObject(assistant) ? assistant : {};
-  const { title, watermark, description, image, launcher, avatar, spacing, color, position, persistence, feedback } = ref;
+  const { title, watermark, description, image, launcher, avatar, spacing, color, position, persistence, feedback, stylesheet } = ref;
 
   return {
     ...(typeof title === 'string' && { title }),
@@ -33,6 +33,7 @@ const sanitizeAssistant = (assistant: unknown): PartialDeep<Assistant> => {
     ...(typeof launcher === 'string' && { launcher }),
     ...(typeof watermark === 'boolean' && { watermark }),
     ...(typeof feedback === 'boolean' && { feedback }),
+    ...(typeof stylesheet === 'string' && { stylesheet }),
     ...(typeof description === 'string' && { description }),
     ...(isEnumValue(position, ChatPosition) && { position }),
     ...(isEnumValue(persistence, ChatPersistence) && { persistence }),

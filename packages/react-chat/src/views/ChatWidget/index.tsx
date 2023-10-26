@@ -4,6 +4,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Assistant, ChatPosition, isObject, Listeners, PostMessage, useTheme } from '@/common';
 import Launcher from '@/components/Launcher';
 import { noop } from '@/utils/functional';
+import { useResolveAssistantStyleSheet } from '@/utils/stylesheet';
 
 import { ChatContainer, Container, LauncherContainer } from './styled';
 import { ChatAPI } from './types';
@@ -56,9 +57,11 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ children, chatAPI, sendMessage,
   const side = assistant?.position ?? ChatPosition.RIGHT;
   const position = { bottom: assistant?.spacing.bottom, [side]: assistant?.spacing.side };
 
+  const isStyleSheetResolved = useResolveAssistantStyleSheet(assistant);
+
   return (
     <Container withChat={isOpen} isHidden={isHidden} className={theme}>
-      {!!assistant && (
+      {!!assistant && isStyleSheetResolved && (
         <LauncherContainer style={position}>
           <Launcher onClick={open} image={assistant.launcher} />
         </LauncherContainer>

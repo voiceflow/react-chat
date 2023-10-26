@@ -13,7 +13,7 @@ interface WidgetProps extends React.PropsWithChildren, RuntimeOptions<PublicVeri
 const Widget: React.FC<WidgetProps> = ({ children, widgetURL, ...config }) => {
   /** initialization */
   const chatRef = useRef<HTMLIFrameElement>(null);
-  const [assistant, setAssistant, assistantRef] = useStateRef<Assistant | undefined>(config.assistant);
+  const [assistant, setAssistant, assistantRef] = useStateRef<Assistant | undefined>();
 
   const sendMessage = useSendMessage(chatRef, widgetURL);
   const onLoad = useCallback(() => sendMessage({ type: PostMessage.Type.FETCH_ASSISTANT, payload: config }), [config]);
