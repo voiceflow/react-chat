@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.46.7](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.46.6...@voiceflow/react-chat@1.46.7) (2023-10-27)
+
+### Bug Fixes
+
+* opinionated linting ([5f5169f](https://github.com/voiceflow/react-chat/commit/5f5169f7e125f2ec1a42bc69c08ef483342d1540))
+
 ## [1.46.6](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.46.5...@voiceflow/react-chat@1.46.6) (2023-10-26)
 
 ### Bug Fixes
