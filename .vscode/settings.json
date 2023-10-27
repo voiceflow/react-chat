@@ -1,17 +1,14 @@
 {
+  "editor.formatOnSave": true,
+  "eslint.format.enable": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.tslint": true,
+    "source.fixAll.eslint": true
+  },
   "eslint.runtime": "node",
-  "eslint.execArgv": [
-    "--max_old_space_size=8192"
-  ],
+  "eslint.execArgv": ["--max_old_space_size=8192"],
   "eslint.options": {
-    "extensions": [
-      ".js",
-      ".jsx",
-      ".md",
-      ".mdx",
-      ".ts",
-      ".tsx"
-    ]
+    "extensions": [".js", ".jsx", ".md", ".mdx", ".ts", ".tsx"]
   },
   "eslint.validate": [
     "markdown",
