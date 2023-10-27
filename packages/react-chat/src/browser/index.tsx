@@ -1,7 +1,7 @@
 import { createRoot } from 'react-dom/client';
 
 import { Listeners, PostMessage } from '@/common';
-import ChatWidget from '@/views/ChatWindow';
+import ChatWindow from '@/views/ChatWindow';
 
 import { mergeAssistant } from './utils';
 
@@ -17,7 +17,7 @@ const fetchAssistant: Listeners.MessageListener<PostMessage.Type.FETCH_ASSISTANT
   type: PostMessage.Type.FETCH_ASSISTANT,
   action: async ({ payload }) => {
     const assistant = await mergeAssistant(payload);
-    ChatWidget.sendMessage({ type: PostMessage.Type.FETCHED_ASSISTANT, payload: assistant });
+    ChatWindow.sendMessage({ type: PostMessage.Type.FETCHED_ASSISTANT, payload: assistant });
   },
 };
 
@@ -26,7 +26,7 @@ Listeners.context.listeners.push(fetchAssistant);
 const initialize: Listeners.MessageListener<PostMessage.Type.SESSION> = {
   type: PostMessage.Type.SESSION,
   action: async ({ payload }) => {
-    root.render(<ChatWidget {...payload} />);
+    root.render(<ChatWindow {...payload} />);
   },
 };
 
