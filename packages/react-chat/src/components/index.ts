@@ -14,6 +14,7 @@ export { default as Input } from './Input';
 export { default as Launcher } from './Launcher';
 export { default as Loader } from './Loader';
 export { default as Message } from './Message';
+export * as Proactive from './Proactive';
 export { default as Prompt } from './Prompt';
 export { default as SystemResponse } from './SystemResponse';
 export { Markdown, default as Text } from './Text';

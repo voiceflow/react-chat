@@ -25,4 +25,8 @@ export enum ClassName {
   TYPING_INDICATOR = 'vfrc-typing-indicator',
   USER_RESPONSE = 'vfrc-user-response',
   WIDGET = 'vfrc-widget',
+
+  PROACTIVE_CLOSE = 'vfrc-proactive-close',
+  PROACTIVE_MESSAGE = 'vfrc-proactive-message',
+  PROACTIVE = 'vfrc-proactive',
 }
