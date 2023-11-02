@@ -12,6 +12,9 @@ export const SHADOWS = {
   shadow8: 'rgba(0,0,0,0.08)',
   shadow12: 'rgba(0,0,0,0.12)',
   shadow16: 'rgba(0,0,0,0.16)',
+
+  surfaceZ1Light:
+    '0px 1px 3px 1px rgba(22, 26, 30, 0.01), 0px 4px 8px -6px rgba(22, 26, 30, 0.08), 0px 1px 5px -4px rgba(22, 26, 30, 0.08), 0px 0px 0px 1px rgba(22, 26, 30, 0.04), 0px 1px 0px 0px rgba(22, 26, 30, 0.02)',
 };
 
 export const createPrimaryColors = (primary: string) => ({

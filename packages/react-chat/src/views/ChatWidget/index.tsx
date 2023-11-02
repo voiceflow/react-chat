@@ -1,8 +1,10 @@
+import { Trace } from '@voiceflow/base-types';
 import type { RuntimeAction } from '@voiceflow/sdk-runtime';
 import React, { useEffect, useMemo, useState } from 'react';
 
 import { Assistant, ChatPosition, isObject, Listeners, PostMessage, useTheme } from '@/common';
 import Launcher from '@/components/Launcher';
+import Proactive from '@/components/Proactive';
 import { noop } from '@/utils/functional';
 import { useResolveAssistantStyleSheet } from '@/utils/stylesheet';
 
@@ -20,6 +22,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ children, chatAPI, sendMessage,
   /** initialization */
   const [isOpen, setOpen] = useState(false);
   const [isHidden, setHidden] = useState(false);
+  const [proactiveMessages, setProactiveMessages] = useState<Trace.AnyTrace[]>([]);
   const isMobile = useMemo(() => window.matchMedia('(max-width: 768px)').matches, []);
 
   const theme = useTheme(assistant);
@@ -41,6 +44,10 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ children, chatAPI, sendMessage,
       hide: () => setHidden(true),
       show: () => setHidden(false),
       interact: (action: RuntimeAction) => sendMessage({ type: PostMessage.Type.INTERACT, payload: action }),
+      proactive: {
+        clear: () => setProactiveMessages([]),
+        push: (...messages: Trace.AnyTrace[]) => setProactiveMessages((prev) => [...prev, ...messages]),
+      },
     });
 
     return () => {
@@ -50,6 +57,10 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ children, chatAPI, sendMessage,
         show: noop,
         close: noop,
         interact: noop,
+        proactive: {
+          clear: noop,
+          push: noop,
+        },
       });
     };
   }, []);
@@ -63,6 +74,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ children, chatAPI, sendMessage,
     <Container withChat={isOpen} isHidden={isHidden} className={theme}>
       {!!assistant && isStyleSheetResolved && (
         <LauncherContainer style={position}>
+          <Proactive side={side} messages={proactiveMessages} />
           <Launcher onClick={open} image={assistant.launcher} />
         </LauncherContainer>
       )}

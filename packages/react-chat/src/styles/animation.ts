@@ -1,5 +1,7 @@
 import { keyframes } from '@stitches/react';
 
+import { CSS } from '@/styles/theme';
+
 export const pulse = keyframes({
   '50%': { opacity: 1 },
 });
@@ -19,3 +21,8 @@ export const shift = (distance: number) =>
     from: { transform: `translateY(${distance}px)` },
     to: { transform: 'translateY(0px)' },
   });
+
+export const animationStyles = ({ distance = 12, duration, delay }: { distance?: number; duration: number; delay: number }): CSS => ({
+  opacity: 0,
+  animation: [fadeIn, shift(distance)].map((animation) => `${animation} ${duration}ms ease-out ${delay}ms forwards`).join(', '),
+});
