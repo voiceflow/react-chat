@@ -2,6 +2,8 @@ import { Assistant, ChatWidget, Listeners, PostMessage, RuntimeOptions, useState
 import type { PublicVerify } from '@voiceflow/sdk-runtime';
 import React, { useCallback, useRef } from 'react';
 
+import { mergeAssistant } from './api/assistant';
+import { initializeAPIListeners } from './api/listeners';
 import { useSendMessage } from './hooks';
 import { getSession, saveSession } from './session';
 
@@ -12,25 +14,29 @@ interface WidgetProps extends React.PropsWithChildren, RuntimeOptions<PublicVeri
 
 const Widget: React.FC<WidgetProps> = ({ children, widgetURL, ...config }) => {
   /** initialization */
-  const chatRef = useRef<HTMLIFrameElement>(null);
   const [assistant, setAssistant, assistantRef] = useStateRef<Assistant | undefined>();
 
-  const sendMessage = useSendMessage(chatRef, widgetURL);
-  const onLoad = useCallback(() => sendMessage({ type: PostMessage.Type.FETCH_ASSISTANT, payload: config }), [config]);
+  const chatRef = useRef<HTMLIFrameElement>(null);
 
-  // rely on iframe to fetch assistant configuration
-  Listeners.useListenMessage(PostMessage.Type.FETCHED_ASSISTANT, ({ payload: assistant }) => {
+  const sendMessage = useSendMessage(chatRef, widgetURL);
+
+  const onLoad = useCallback(async () => {
+    const assistant = await mergeAssistant(config);
     setAssistant(assistant);
+
+    const session = getSession(assistant.persistence, config.verify.projectID, config.userID);
 
     sendMessage({
       type: PostMessage.Type.SESSION,
       payload: {
         ...config,
         assistant,
-        session: getSession(assistant.persistence, config.verify.projectID, config.userID),
+        session,
       },
     });
-  });
+
+    initializeAPIListeners(sendMessage, session, config);
+  }, [config]);
 
   Listeners.useListenMessage(PostMessage.Type.SAVE_SESSION, ({ payload }) => {
     const persistence = assistantRef.current?.persistence;

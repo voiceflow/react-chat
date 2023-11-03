@@ -1,25 +1,9 @@
 /* eslint-disable no-console */
+import { Assistant, ChatConfig, ChatPersistence, ChatPosition, isEnumValue, isObject } from '@voiceflow/react-chat';
 import { VoiceflowRuntime } from '@voiceflow/sdk-runtime';
 import type { PartialDeep } from 'type-fest';
 
-import { Assistant, ChatConfig, ChatPersistence, ChatPosition, isEnumValue, isObject } from '@/common';
-import { RUNTIME_URL } from '@/constants';
-import { PRIMARY } from '@/styles/color';
-
-const DEFAULT_AVATAR = 'https://cdn.voiceflow.com/assets/logo.png';
-
-const DEFAULT_ASSISTANT: Assistant = {
-  title: 'Voiceflow Assistant',
-  image: DEFAULT_AVATAR,
-  avatar: DEFAULT_AVATAR,
-  color: PRIMARY,
-  description: '',
-  position: ChatPosition.RIGHT,
-  watermark: true,
-  feedback: false,
-  persistence: ChatPersistence.LOCAL_STORAGE,
-  spacing: { bottom: 30, side: 30 },
-};
+import { DEFAULT_ASSISTANT, RUNTIME_URL } from './constants';
 
 const sanitizeAssistant = (assistant: unknown): PartialDeep<Assistant> => {
   const ref = isObject(assistant) ? assistant : {};

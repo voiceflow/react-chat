@@ -1,5 +1,3 @@
-export const RUNTIME_URL = 'https://general-runtime.voiceflow.com';
-
 export enum ClassName {
   ASSISTANT_INFO = 'vfrc-assistant-info',
   AVATAR = 'vfrc-avatar',

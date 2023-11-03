@@ -8,6 +8,8 @@
   },
   "dependencies": {
     "@voiceflow/react-chat": "workspace:*",
+    "@voiceflow/sdk-runtime": "1.7.0",
+    "bowser": "^2.11.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
@@ -18,6 +20,7 @@
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.0.1",
     "@vitest/coverage-c8": "^0.23.1",
+    "@voiceflow/base-types": "^2.96.3",
     "@voiceflow/eslint-config": "6.1.0",
     "@voiceflow/prettier-config": "1.2.1",
     "@voiceflow/sdk-runtime": "1.7.0",
@@ -31,6 +34,7 @@
     "husky": "^8.0.0",
     "lint-staged": "13.0.3",
     "prettier": "2.7.1",
+    "type-fest": "^4.6.0",
     "vite": "3.2.2",
     "vite-plugin-html": "3.2.0",
     "vite-tsconfig-paths": "^3.5.0"
