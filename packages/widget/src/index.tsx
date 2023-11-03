@@ -35,7 +35,7 @@ const Widget: React.FC<WidgetProps> = ({ children, widgetURL, ...config }) => {
       },
     });
 
-    initializeAPIListeners(session, config);
+    initializeAPIListeners(sendMessage, session, config);
   }, [config]);
 
   Listeners.useListenMessage(PostMessage.Type.SAVE_SESSION, ({ payload }) => {

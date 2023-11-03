@@ -9,7 +9,11 @@ const createContext = () => ({
   messages: [],
 });
 
-export const initializeAPIListeners = (session: SessionOptions, { user, verify, url = RUNTIME_URL, versionID }: RuntimeOptions) => {
+export const initializeAPIListeners = (
+  sendMessage: (message: PostMessage.AnyMessage) => void,
+  session: SessionOptions,
+  { user, verify, url = RUNTIME_URL, versionID }: RuntimeOptions
+) => {
   const sessionID = session.userID;
 
   const runtime = new VoiceflowRuntime({
@@ -23,7 +27,7 @@ export const initializeAPIListeners = (session: SessionOptions, { user, verify, 
           const trace = _trace as Trace.NoReplyTrace;
 
           if (trace.payload.timeout) {
-            Listeners.sendMessage({
+            sendMessage({
               type: PostMessage.Type.SET_NO_REPLY_TIMEOUT,
               payload: {
                 timeout: trace.payload.timeout,
@@ -42,7 +46,7 @@ export const initializeAPIListeners = (session: SessionOptions, { user, verify, 
     action: async ({ payload: { action } }) => {
       const context = await runtime.interact(createContext(), { sessionID, action, ...(versionID && { versionID }) });
 
-      Listeners.sendMessage({
+      sendMessage({
         type: PostMessage.Type.ACTION_RESPONSE,
         payload: {
           context,
@@ -83,6 +87,7 @@ export const initializeAPIListeners = (session: SessionOptions, { user, verify, 
   };
 
   const listeners = [ActionRequestListener, SaveTranscriptListener, SaveFeedbackListener];
+
   // ensure unique listeners
   const listenerTypes = new Set(listeners.map(({ type }) => type));
   Listeners.context.listeners = Listeners.context.listeners.filter(({ type }) => !listenerTypes.has(type));
