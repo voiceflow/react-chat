@@ -5228,6 +5228,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@voiceflow/base-types@npm:^2.96.3":
+  version: 2.96.3
+  resolution: "@voiceflow/base-types@npm:2.96.3"
+  dependencies:
+    "@voiceflow/common": ^8.2.2
+    slate: 0.94.1
+  checksum: 3607ff5899408244d3106b45098d07ef9dfdbf945a96bfe639b887fa2be1a573921ae74108587d4a6fa1cb024e3bd5d2fec960cc70f1d9219e53befc9598edce
+  languageName: node
+  linkType: hard
+
 "@voiceflow/chat-types@npm:^2.13.72":
   version: 2.13.72
   resolution: "@voiceflow/chat-types@npm:2.13.72"
@@ -5284,6 +5294,25 @@ __metadata:
     shallowequal: ^1.1.0
     typescript-fsa: 3.0.0
   checksum: fffc2ccbd9cc475daa95c9c06a6b4a6dc82775d8fa8352c49776afad04a79ed58ecb2e416e3fed42506708faa1cf5453e0482ecf7867f89f2d9e96bfdb142bef
+  languageName: node
+  linkType: hard
+
+"@voiceflow/common@npm:^8.2.2":
+  version: 8.2.2
+  resolution: "@voiceflow/common@npm:8.2.2"
+  dependencies:
+    "@types/crypto-js": ^4.0.2
+    "@types/shallowequal": ^1.1.1
+    bson-objectid: ^2.0.1
+    crypto-js: ^4.1.1
+    cuid: ^2.1.8
+    dayjs: 1.10.7
+    lodash: ^4.17.21
+    murmurhash-wasm: ^1.3.0
+    number-to-words: ^1.2.4
+    shallowequal: ^1.1.0
+    typescript-fsa: 3.0.0
+  checksum: b6889b58e3f77108d6198e02e09bd4bd9d81f5aeece93d7ebb1213a37de2e5677cb224e9cc7c1476a1a05b0ed4df49f73bea8ef6c45d0ce3f800c3013e8a66f1
   languageName: node
   linkType: hard
 
@@ -5476,6 +5505,7 @@ __metadata:
     "@types/react-dom": ^18.0.6
     "@vitejs/plugin-react": ^2.0.1
     "@vitest/coverage-c8": ^0.23.1
+    "@voiceflow/base-types": ^2.96.3
     "@voiceflow/eslint-config": 6.1.0
     "@voiceflow/prettier-config": 1.2.1
     "@voiceflow/react-chat": "workspace:*"
@@ -5493,6 +5523,7 @@ __metadata:
     prettier: 2.7.1
     react: 18.2.0
     react-dom: 18.2.0
+    type-fest: ^4.6.0
     vite: 3.2.2
     vite-plugin-html: 3.2.0
     vite-tsconfig-paths: ^3.5.0
@@ -21089,6 +21120,13 @@ __metadata:
   version: 0.8.1
   resolution: "type-fest@npm:0.8.1"
   checksum: d61c4b2eba24009033ae4500d7d818a94fd6d1b481a8111612ee141400d5f1db46f199c014766b9fa9b31a6a7374d96fc748c6d688a78a3ce5a33123839becb7
+  languageName: node
+  linkType: hard
+
+"type-fest@npm:^4.6.0":
+  version: 4.6.0
+  resolution: "type-fest@npm:4.6.0"
+  checksum: e38f2b4b35e912bf60dbe7d4350653fb76b241a456e849fab85002ba08e938a26a7c44a330dd5620dd48ce57566be7c97e997064dc0d5066d5b6949b8c444430
   languageName: node
   linkType: hard
 
