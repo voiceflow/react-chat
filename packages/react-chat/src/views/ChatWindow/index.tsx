@@ -12,7 +12,6 @@ import { TurnType, UserTurnProps } from '@/types';
 import { useResolveAssistantStyleSheet } from '@/utils/stylesheet';
 
 import { ChatWindowContainer } from './styled';
-import { sendMessage } from './utils';
 
 const ChatWindow: React.FC<ChatConfig & { assistant: Assistant; session: SessionOptions }> = ({
   assistant,
@@ -23,13 +22,12 @@ const ChatWindow: React.FC<ChatConfig & { assistant: Assistant; session: Session
   session,
 }) => {
   // emitters
-  const close = useCallback(() => sendMessage({ type: PostMessage.Type.CLOSE }), []);
-  const saveSession = useCallback((session: SessionOptions) => sendMessage({ type: PostMessage.Type.SAVE_SESSION, payload: session }), []);
+  const close = useCallback(() => Listeners.sendMessage({ type: PostMessage.Type.CLOSE }), []);
+  const saveSession = useCallback((session: SessionOptions) => Listeners.sendMessage({ type: PostMessage.Type.SAVE_SESSION, payload: session }), []);
 
-  const runtime = useRuntime({ versionID, verify, url, user, session, saveSession }, [verify.projectID]);
+  const runtime = useRuntime({ versionID, verify, url, user, session, saveSession });
 
   // listeners
-  Listeners.useListenMessage(PostMessage.Type.INTERACT, ({ payload }) => runtime.interact(payload));
   Listeners.useListenMessage(PostMessage.Type.OPEN, async (): Promise<void> => {
     if (runtime.isStatus(SessionStatus.IDLE)) {
       await handleStart();
@@ -104,4 +102,4 @@ const ChatWindow: React.FC<ChatConfig & { assistant: Assistant; session: Session
   );
 };
 
-export default Object.assign(ChatWindow, { sendMessage, Container: ChatWindowContainer });
+export default Object.assign(ChatWindow, { Container: ChatWindowContainer });
