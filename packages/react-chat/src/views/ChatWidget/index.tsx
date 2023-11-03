@@ -43,7 +43,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ children, chatAPI, sendMessage,
       close,
       hide: () => setHidden(true),
       show: () => setHidden(false),
-      interact: (action: RuntimeAction) => sendMessage({ type: PostMessage.Type.INTERACT, payload: action }),
+      interact: (action: RuntimeAction) => sendMessage({ type: PostMessage.Type.ACTION_REQUEST, payload: { action } }),
       proactive: {
         clear: () => setProactiveMessages([]),
         push: (...messages: Trace.AnyTrace[]) => setProactiveMessages((prev) => [...prev, ...messages]),

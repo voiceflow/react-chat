@@ -59,3 +59,9 @@ export const useListenMessage = <T extends PostMessage.Type>(type: T, action: (l
     };
   }, []);
 };
+
+export const sendMessage = (message: PostMessage.AnyMessage) => {
+  const encodedMessage = JSON.stringify(message);
+  window.postMessage(encodedMessage);
+  window.parent.postMessage(encodedMessage, '*');
+};

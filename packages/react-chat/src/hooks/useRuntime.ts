@@ -1,28 +1,19 @@
-import { Trace as BaseTypesTrace } from '@voiceflow/base-types';
-import { ActionType, RuntimeAction, Trace, TraceDeclaration, VoiceflowRuntime } from '@voiceflow/sdk-runtime';
+import { BaseRequest } from '@voiceflow/base-types';
 import { serializeToText } from '@voiceflow/slate-serializer/text';
-import Bowser from 'bowser';
 import cuid from 'cuid';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import { RuntimeOptions, SendMessage, SessionOptions, SessionStatus } from '@/common';
+import { Listeners, PostMessage, RuntimeOptions, SendMessage, SessionOptions, SessionStatus } from '@/common';
 import type { MessageProps } from '@/components/SystemResponse';
 import { MessageType } from '@/components/SystemResponse/constants';
-import { RUNTIME_URL } from '@/constants';
-import { MESSAGE_TRACES, RuntimeContext } from '@/runtime';
 import { TurnProps, TurnType, UserTurnProps } from '@/types';
 import { handleActions } from '@/utils/actions';
 
 import { useStateRef } from './useStateRef';
 
-const createContext = (): RuntimeContext => ({
-  messages: [],
-});
-
 interface UseRuntimeProps extends RuntimeOptions {
   session: SessionOptions;
   saveSession?: (session: SessionOptions) => void;
-  traces?: TraceDeclaration<RuntimeContext, any>[];
 }
 
 export enum FeedbackName {
@@ -30,9 +21,8 @@ export enum FeedbackName {
   NEGATIVE = 'Thumbs down',
 }
 
-const DEFAULT_RUNTIME_STATE: Required<SessionOptions> = {
+const DEFAULT_SESSION_PARAMS = {
   turns: [],
-  userID: cuid(),
   startTime: Date.now(),
   status: SessionStatus.IDLE,
 };
@@ -40,75 +30,21 @@ const DEFAULT_RUNTIME_STATE: Required<SessionOptions> = {
 /**
  * A wrapper for the Voiceflow runtime client.
  */
-export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...config }: UseRuntimeProps, dependencies: any[] = []) => {
+export const useRuntime = ({ versionID, verify, user, ...config }: UseRuntimeProps) => {
   const [indicator, setIndicator] = useState(false);
-  const [session, setSession, sessionRef] = useStateRef<Required<SessionOptions>>({ ...DEFAULT_RUNTIME_STATE, ...config.session });
+  const [session, setSession, sessionRef] = useStateRef<Required<SessionOptions>>({ ...DEFAULT_SESSION_PARAMS, ...config.session });
   const [lastInteractionAt, setLastInteractionAt] = useState<number | null>(Date.now());
   const [noReplyTimeout, setNoReplyTimeout] = useState<number | null>(null);
 
-  useEffect(() => {
-    let noReplyTimer: NodeJS.Timeout | undefined;
-
-    const checkNoReply = () => {
-      const ready = isStatus(SessionStatus.ACTIVE);
-
-      if (ready && noReplyTimeout && lastInteractionAt) {
-        const timeSinceLastInteraction = Date.now() - lastInteractionAt;
-        if (timeSinceLastInteraction > noReplyTimeout) {
-          // Trigger no reply action
-          interact({ type: ActionType.NO_REPLY, payload: null });
-        }
-      }
-
-      noReplyTimer = setTimeout(checkNoReply, 1000);
-    };
-
-    checkNoReply();
-
-    return () => {
-      clearTimeout(noReplyTimer);
-    };
-  }, [noReplyTimeout, lastInteractionAt]);
-
-  const runtime: VoiceflowRuntime<RuntimeContext> = useMemo(
-    () =>
-      new VoiceflowRuntime<RuntimeContext>({
-        verify,
-        url,
-        traces: [
-          ...(config.traces ?? []),
-          ...MESSAGE_TRACES,
-          {
-            canHandle: ({ type }) => type === Trace.TraceType.NO_REPLY,
-            handle: ({ context }, _trace) => {
-              const trace = _trace as BaseTypesTrace.NoReplyTrace;
-
-              setNoReplyTimeout(trace.payload.timeout * 1000);
-              setLastInteractionAt(Date.now());
-
-              return context;
-            },
-          },
-        ],
-      }),
-    dependencies
-  );
-
-  const setTurns = (action: (turns: TurnProps[]) => TurnProps[]) => {
-    setSession((prev) => ({ ...prev, turns: action(prev.turns) }));
-  };
-  const setStatus = (status: SessionStatus) => {
-    setSession((prev) => (prev.status === status ? prev : { ...prev, status }));
-  };
-  const isStatus = (status: SessionStatus) => {
-    return sessionRef.current.status === status;
-  };
-
-  const interact = async (action: RuntimeAction): Promise<void> => {
+  // REQUEST
+  const interact = async (action: BaseRequest.BaseRequest): Promise<void> => {
     setIndicator(true);
 
-    const context = await runtime.interact(createContext(), { sessionID: sessionRef.current.userID, action, ...(versionID && { versionID }) });
+    Listeners.sendMessage({ type: PostMessage.Type.ACTION_REQUEST, payload: { action } });
+  };
 
+  // RESPONSE
+  Listeners.useListenMessage(PostMessage.Type.ACTION_RESPONSE, ({ payload: { context } }) => {
     setIndicator(false);
 
     setTurns((prev) => [
@@ -130,20 +66,53 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...conf
     });
 
     setLastInteractionAt(finishedAnimatingAt);
+  });
+
+  Listeners.useListenMessage(PostMessage.Type.SET_NO_REPLY_TIMEOUT, ({ payload: { timeout } }) => {
+    setNoReplyTimeout(timeout * 1000);
+    setLastInteractionAt(Date.now());
+  });
+
+  useEffect(() => {
+    let noReplyTimer: NodeJS.Timeout | undefined;
+
+    const checkNoReply = () => {
+      const ready = isStatus(SessionStatus.ACTIVE);
+
+      if (ready && noReplyTimeout && lastInteractionAt) {
+        const timeSinceLastInteraction = Date.now() - lastInteractionAt;
+        if (timeSinceLastInteraction > noReplyTimeout) {
+          // Trigger no reply action
+          interact({ type: BaseRequest.RequestType.NO_REPLY, payload: null });
+        }
+      }
+
+      noReplyTimer = setTimeout(checkNoReply, 1000);
+    };
+
+    checkNoReply();
+
+    return () => {
+      clearTimeout(noReplyTimer);
+    };
+  }, [noReplyTimeout, lastInteractionAt]);
+
+  const setTurns = (action: (turns: TurnProps[]) => TurnProps[]) => {
+    setSession((prev) => ({ ...prev, turns: action(prev.turns) }));
+  };
+  const setStatus = (status: SessionStatus) => {
+    setSession((prev) => (prev.status === status ? prev : { ...prev, status }));
+  };
+  const isStatus = (status: SessionStatus) => {
+    return sessionRef.current.status === status;
   };
 
   const send: SendMessage = async (message, action) => {
     if (sessionRef.current.status === SessionStatus.ENDED) return;
 
+    // create a transcript on the first turn
     if (sessionRef.current.turns.length === 1) {
-      // create transcript asynchronously in background
-      const {
-        browser: { name: browser },
-        os: { name: os },
-        platform: { type: device },
-      } = Bowser.parse(window.navigator.userAgent);
-
-      runtime.createTranscript(session.userID, { ...(os && { os }), ...(browser && { browser }), ...(device && { device }), ...(user && { user }) });
+      Listeners.sendMessage({ type: PostMessage.Type.SAVE_TRANSCRIPT });
     }
 
     handleActions(action);
@@ -166,10 +135,10 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...conf
     if (sessionRef.current.turns.length) reset();
 
     setStatus(SessionStatus.ACTIVE);
-    await interact({ type: ActionType.LAUNCH, payload: null });
+    await interact({ type: BaseRequest.RequestType.LAUNCH, payload: null });
   };
 
-  const reply = async (message: string): Promise<void> => send(message, { type: ActionType.TEXT, payload: message });
+  const reply = async (message: string): Promise<void> => send(message, { type: BaseRequest.RequestType.TEXT, payload: message });
 
   const feedback = async (name: FeedbackName, lastTurnMessages: MessageProps[], userTurn: UserTurnProps | null): Promise<void> => {
     const aiMessages: string[] = [];
@@ -182,23 +151,21 @@ export const useRuntime = ({ url = RUNTIME_URL, versionID, verify, user, ...conf
       aiMessages.push(text);
     });
 
-    await runtime.feedback({
-      sessionID: sessionRef.current.userID,
-      text: aiMessages,
-      name,
-      last_user_input: userTurn,
-      ...(versionID && { versionID }),
+    Listeners.sendMessage({
+      type: PostMessage.Type.SAVE_FEEDBACK,
+      payload: {
+        name,
+        text: aiMessages,
+        last_user_input: userTurn,
+      },
     });
   };
-
-  const register = (trace: TraceDeclaration<RuntimeContext, any>) => runtime.registerStep(trace);
 
   const addTurn = (turn: TurnProps) => setTurns((prev) => [...prev, turn]);
 
   return {
     send,
     reply,
-    register,
     reset,
     launch,
     interact,

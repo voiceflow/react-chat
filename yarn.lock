@@ -5371,7 +5371,6 @@ __metadata:
     "@voiceflow/slate-serializer": 1.5.5
     "@voiceflow/tsconfig": 1.4.8
     "@voiceflow/voiceflow-types": 3.26.9
-    bowser: ^2.11.0
     chroma-js: 2.4.2
     clsx: 1.2.1
     csstype: 3.1.0
@@ -5483,6 +5482,7 @@ __metadata:
     "@voiceflow/sdk-runtime": 1.7.0
     "@voiceflow/tsconfig": 1.4.8
     babel-loader: ^8.2.5
+    bowser: ^2.11.0
     depcheck: 1.4.3
     eslint: 7.32.0
     eslint-output: ^3.0.1
