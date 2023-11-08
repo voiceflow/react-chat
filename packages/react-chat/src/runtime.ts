@@ -1,3 +1,4 @@
+import * as DTOs from '@voiceflow/dtos';
 import {
   CardV2TraceComponent,
   ChoiceTraceComponent,
@@ -15,29 +16,44 @@ import { MessageType } from './components/SystemResponse/constants';
 export interface RuntimeContext extends Pick<SystemResponseProps, 'messages' | 'actions'> {}
 
 export const MESSAGE_TRACES: TraceDeclaration<RuntimeContext, any>[] = [
-  TextTraceComponent(({ context }, { payload }) => {
-    const { slate, message } = payload;
+  TextTraceComponent(({ context }, trace) => {
+    if (!DTOs.TextTraceDTO.safeParse(trace.payload).success) return context;
+
+    const { slate, message, ai, delay } = trace.payload;
 
     context.messages.push({
       type: MessageType.TEXT,
       text: slate?.content || message,
-      delay: payload.delay,
-      ...(payload.ai ? { ai: payload.ai } : {}),
+      delay,
+      ...(ai ? { ai } : {}),
     });
+
     return context;
   }),
-  VisualTraceComponent(({ context }, { payload: { image } }) => {
-    context.messages.push({ type: MessageType.IMAGE, url: image });
+  VisualTraceComponent(({ context }, trace) => {
+    if (!DTOs.VisualTraceDTO.safeParse(trace).success) return context;
+
+    context.messages.push({ type: MessageType.IMAGE, url: trace.payload.image });
     return context;
   }),
-  ChoiceTraceComponent(({ context }, { payload: { buttons } }) => {
+  ChoiceTraceComponent(({ context }, trace) => {
+    if (!DTOs.ChoiceTraceDTO.safeParse(trace).success) return context;
+
+    const {
+      payload: { buttons },
+    } = trace;
     context.actions = (buttons as { name: string; request: RuntimeAction }[]).map(({ name, request }) => ({
       name,
       request,
     }));
     return context;
   }),
-  CardV2TraceComponent(({ context }, { payload: { title, imageUrl, description, buttons } }) => {
+  CardV2TraceComponent(({ context }, trace) => {
+    if (!DTOs.CardDTO.safeParse(trace).success) return context;
+
+    const {
+      payload: { title, imageUrl, description, buttons },
+    } = trace;
     const card: CardProps = {
       title,
       description: description.text,
@@ -55,8 +71,10 @@ export const MESSAGE_TRACES: TraceDeclaration<RuntimeContext, any>[] = [
   }),
   {
     canHandle: ({ type }) => type === Trace.TraceType.CAROUSEL,
-    handle: ({ context }, { payload }: Trace.Carousel) => {
-      const cards: CardProps[] = payload.cards
+    handle: ({ context }, trace: Trace.Carousel) => {
+      if (!DTOs.CarouselTraceDTO.safeParse(trace).success) return context;
+
+      const cards: CardProps[] = trace.payload.cards
         .map(({ title, description, imageUrl, buttons }) => ({
           title,
           description: description.text,
