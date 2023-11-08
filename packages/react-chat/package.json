@@ -9,7 +9,7 @@
   "dependencies": {
     "@stitches/react": "^1.2.8",
     "@voiceflow/base-types": "2.96.0",
-    "@voiceflow/dtos": "1.1.3",
+    "@voiceflow/dtos": "1.1.4",
     "@voiceflow/sdk-runtime": "1.7.0",
     "@voiceflow/slate-serializer": "1.5.5",
     "@voiceflow/voiceflow-types": "3.26.9",
