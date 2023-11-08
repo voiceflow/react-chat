@@ -23,8 +23,10 @@ export const initializeAPIListeners = (
       ...MESSAGE_TRACES,
       {
         canHandle: ({ type }) => type === ActionType.NO_REPLY,
-        handle: ({ context }, trace: Trace.NoReplyTrace) => {
-          if (trace.payload?.timeout) {
+        handle: ({ context }, _trace) => {
+          const trace = _trace as Trace.NoReplyTrace;
+
+          if (trace.payload.timeout) {
             sendMessage({
               type: PostMessage.Type.SET_NO_REPLY_TIMEOUT,
               payload: {
