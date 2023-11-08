@@ -3,7 +3,7 @@ import { serializeToText } from '@voiceflow/slate-serializer/text';
 import cuid from 'cuid';
 import { useEffect, useState } from 'react';
 
-import { Listeners, PostMessage, RuntimeOptions, SendMessage, SessionOptions, SessionStatus } from '@/common';
+import { LaunchOptions, Listeners, PostMessage, RuntimeOptions, SendMessage, SessionOptions, SessionStatus } from '@/common';
 import type { MessageProps } from '@/components/SystemResponse';
 import { MessageType } from '@/components/SystemResponse/constants';
 import { TurnProps, TurnType, UserTurnProps } from '@/types';
@@ -131,11 +131,11 @@ export const useRuntime = ({ versionID, verify, user, ...config }: UseRuntimePro
 
   const reset = () => setTurns(() => []);
 
-  const launch = async (): Promise<void> => {
+  const launch = async ({ event }: LaunchOptions = {}): Promise<void> => {
     if (sessionRef.current.turns.length) reset();
 
     setStatus(SessionStatus.ACTIVE);
-    await interact({ type: BaseRequest.RequestType.LAUNCH, payload: null });
+    await interact(event ?? { type: BaseRequest.RequestType.LAUNCH, payload: null });
   };
 
   const reply = async (message: string): Promise<void> => send(message, { type: BaseRequest.RequestType.TEXT, payload: message });

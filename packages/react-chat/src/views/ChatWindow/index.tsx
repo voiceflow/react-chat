@@ -20,6 +20,7 @@ const ChatWindow: React.FC<ChatConfig & { assistant: Assistant; session: Session
   user,
   url,
   session,
+  launch,
 }) => {
   // emitters
   const close = useCallback(() => Listeners.sendMessage({ type: PostMessage.Type.CLOSE }), []);
@@ -35,7 +36,7 @@ const ChatWindow: React.FC<ChatConfig & { assistant: Assistant; session: Session
   });
 
   const handleStart = async (): Promise<void> => {
-    await runtime.launch();
+    await runtime.launch(launch);
   };
 
   const closeAndEnd = useCallback((): void => {
