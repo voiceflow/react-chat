@@ -29,6 +29,7 @@
     "fixpack",
     "husky",
     "lint-staged",
-    "slate"
+    "slate",
+    "zod"
   ]
 }
