@@ -17,7 +17,7 @@ export interface RuntimeContext extends Pick<SystemResponseProps, 'messages' | '
 
 export const MESSAGE_TRACES: TraceDeclaration<RuntimeContext, any>[] = [
   TextTraceComponent(({ context }, trace) => {
-    if (!DTOs.TextTraceDTO.safeParse(trace.payload).success) return context;
+    if (!DTOs.TextTraceDTO.safeParse(trace).success) return context;
 
     const { slate, message, ai, delay } = trace.payload;
 
