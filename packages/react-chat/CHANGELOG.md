@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.47.3](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.47.2...@voiceflow/react-chat@1.47.3) (2023-11-08)
+
+### Bug Fixes
+
+* validate responses through dtos ([#83](https://github.com/voiceflow/react-chat/issues/83)) ([45ba436](https://github.com/voiceflow/react-chat/commit/45ba436459d1728cd2753c4ef5facb3c35d28903))
+
 ## [1.47.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.47.1...@voiceflow/react-chat@1.47.2) (2023-11-08)
 
 ### Bug Fixes
