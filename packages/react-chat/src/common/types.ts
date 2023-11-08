@@ -1,3 +1,4 @@
+import { BaseRequest } from '@voiceflow/base-types';
 import type { AuthVerify, PublicVerify, RuntimeAction, RuntimeOptions as SDKRuntimeOptions } from '@voiceflow/sdk-runtime';
 import { ChatPersistence, ChatPosition, ChatPublishing } from '@voiceflow/voiceflow-types/build/cjs/version/chat';
 
@@ -7,6 +8,10 @@ export { ChatPersistence, ChatPosition };
 export type { RuntimeAction };
 
 export type SendMessage = (message: string, action: RuntimeAction) => Promise<void>;
+
+export interface LaunchOptions {
+  event?: BaseRequest.BaseRequest;
+}
 
 export interface RuntimeOptions<Verify extends AuthVerify | PublicVerify = AuthVerify | PublicVerify> extends Omit<SDKRuntimeOptions<Verify>, 'url'> {
   url?: string | undefined;
@@ -18,6 +23,7 @@ export interface RuntimeOptions<Verify extends AuthVerify | PublicVerify = AuthV
     | undefined;
   userID?: string;
   versionID?: string | undefined;
+  launch?: LaunchOptions;
 }
 
 export enum SessionStatus {
