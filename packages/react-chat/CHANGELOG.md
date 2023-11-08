@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.47.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.47.1...@voiceflow/react-chat@1.47.2) (2023-11-08)
+
+### Bug Fixes
+
+* launch options (CT-000) ([#84](https://github.com/voiceflow/react-chat/issues/84)) ([ac5cb1d](https://github.com/voiceflow/react-chat/commit/ac5cb1d456ea6488f9bd789d7a3256e1f57b6607))
+
 ## [1.47.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.47.0...@voiceflow/react-chat@1.47.1) (2023-11-03)
 
 ### Bug Fixes
