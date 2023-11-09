@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.15](https://github.com/voiceflow/react-chat/compare/@voiceflow/widget@1.7.14...@voiceflow/widget@1.7.15) (2023-11-09)
+
+### Bug Fixes
+
+* allow launch within config ([372a9d7](https://github.com/voiceflow/react-chat/commit/372a9d72895c376bb3f882f3a358f036ffc5c04e))
+
 ## [1.7.14](https://github.com/voiceflow/react-chat/compare/@voiceflow/widget@1.7.13...@voiceflow/widget@1.7.14) (2023-11-08)
 
 ### Reverts
