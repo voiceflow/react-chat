@@ -92,7 +92,7 @@
   },
   "prettier": "@voiceflow/prettier-config",
   "scripts": {
-    "build": "yarn clean && yarn build:package && yarn build:bundle",
+    "build": "yarn clean && yarn build:bundle",
     "build:bundle": "NODE_ENV=production vite build",
     "build:docs": "NODE_OPTIONS=--openssl-legacy-provider STORYBOOK_BASE_HREF=react-chat build-storybook -o docs",
     "clean": "rimraf build dist",
