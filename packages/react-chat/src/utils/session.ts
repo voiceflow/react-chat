@@ -1,4 +1,4 @@
-import { ChatPersistence, cuid, SessionOptions } from '@voiceflow/react-chat';
+import { ChatPersistence, cuid, SessionOptions } from '@/common';
 
 const VOICEFLOW_SESSION_KEY = 'voiceflow-session';
 
