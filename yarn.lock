@@ -5228,16 +5228,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@voiceflow/base-types@npm:^2.96.3":
-  version: 2.96.3
-  resolution: "@voiceflow/base-types@npm:2.96.3"
-  dependencies:
-    "@voiceflow/common": ^8.2.2
-    slate: 0.94.1
-  checksum: 3607ff5899408244d3106b45098d07ef9dfdbf945a96bfe639b887fa2be1a573921ae74108587d4a6fa1cb024e3bd5d2fec960cc70f1d9219e53befc9598edce
-  languageName: node
-  linkType: hard
-
 "@voiceflow/chat-types@npm:^2.13.72":
   version: 2.13.72
   resolution: "@voiceflow/chat-types@npm:2.13.72"
@@ -5294,25 +5284,6 @@ __metadata:
     shallowequal: ^1.1.0
     typescript-fsa: 3.0.0
   checksum: fffc2ccbd9cc475daa95c9c06a6b4a6dc82775d8fa8352c49776afad04a79ed58ecb2e416e3fed42506708faa1cf5453e0482ecf7867f89f2d9e96bfdb142bef
-  languageName: node
-  linkType: hard
-
-"@voiceflow/common@npm:^8.2.2":
-  version: 8.2.2
-  resolution: "@voiceflow/common@npm:8.2.2"
-  dependencies:
-    "@types/crypto-js": ^4.0.2
-    "@types/shallowequal": ^1.1.1
-    bson-objectid: ^2.0.1
-    crypto-js: ^4.1.1
-    cuid: ^2.1.8
-    dayjs: 1.10.7
-    lodash: ^4.17.21
-    murmurhash-wasm: ^1.3.0
-    number-to-words: ^1.2.4
-    shallowequal: ^1.1.0
-    typescript-fsa: 3.0.0
-  checksum: b6889b58e3f77108d6198e02e09bd4bd9d81f5aeece93d7ebb1213a37de2e5677cb224e9cc7c1476a1a05b0ed4df49f73bea8ef6c45d0ce3f800c3013e8a66f1
   languageName: node
   linkType: hard
 
@@ -5380,7 +5351,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@voiceflow/react-chat@workspace:*, @voiceflow/react-chat@workspace:packages/react-chat":
+"@voiceflow/react-chat@workspace:packages/react-chat":
   version: 0.0.0-use.local
   resolution: "@voiceflow/react-chat@workspace:packages/react-chat"
   dependencies:
@@ -5410,6 +5381,7 @@ __metadata:
     "@voiceflow/slate-serializer": 1.5.5
     "@voiceflow/tsconfig": 1.4.8
     "@voiceflow/voiceflow-types": 3.26.9
+    bowser: ^2.11.0
     chroma-js: 2.4.2
     clsx: 1.2.1
     csstype: 3.1.0
@@ -5440,6 +5412,7 @@ __metadata:
     vite: 3.2.2
     vite-plugin-dts: ^1.6.6
     vite-plugin-fonts: ^0.6.0
+    vite-plugin-html: ^3.2.0
     vite-plugin-svgr: ^2.2.1
     vite-tsconfig-paths: ^3.5.0
     vitest: 0.23.1
@@ -5505,41 +5478,6 @@ __metadata:
   checksum: 3b13dfeaf39d241d4c19b23eebf9548f8966021302d8e1f932766296375711465d4c416fe8962f9e5cc564743bb7bc2714328485d2e88b65b72499d3c4f98cf9
   languageName: node
   linkType: hard
-
-"@voiceflow/widget@workspace:packages/widget":
-  version: 0.0.0-use.local
-  resolution: "@voiceflow/widget@workspace:packages/widget"
-  dependencies:
-    "@commitlint/cli": 17.0.3
-    "@emotion/core": 10.1.1
-    "@types/react": ^18.0.28
-    "@types/react-dom": ^18.0.6
-    "@vitejs/plugin-react": ^2.0.1
-    "@vitest/coverage-c8": ^0.23.1
-    "@voiceflow/base-types": ^2.96.3
-    "@voiceflow/eslint-config": 6.1.0
-    "@voiceflow/prettier-config": 1.2.1
-    "@voiceflow/react-chat": "workspace:*"
-    "@voiceflow/sdk-runtime": 1.7.0
-    "@voiceflow/tsconfig": 1.4.8
-    babel-loader: ^8.2.5
-    bowser: ^2.11.0
-    depcheck: 1.4.3
-    eslint: 7.32.0
-    eslint-output: ^3.0.1
-    eslint-plugin-mdx: ^2.0.2
-    fixpack: ^4.0.0
-    husky: ^8.0.0
-    lint-staged: 13.0.3
-    prettier: 2.7.1
-    react: 18.2.0
-    react-dom: 18.2.0
-    type-fest: ^4.6.0
-    vite: 3.2.2
-    vite-plugin-html: 3.2.0
-    vite-tsconfig-paths: ^3.5.0
-  languageName: unknown
-  linkType: soft
 
 "@vue/compiler-core@npm:3.2.18":
   version: 3.2.18
@@ -6068,11 +6006,11 @@ __metadata:
   linkType: hard
 
 "acorn@npm:^8.8.2":
-  version: 8.10.0
-  resolution: "acorn@npm:8.10.0"
+  version: 8.11.2
+  resolution: "acorn@npm:8.11.2"
   bin:
     acorn: bin/acorn
-  checksum: 538ba38af0cc9e5ef983aee196c4b8b4d87c0c94532334fa7e065b2c8a1f85863467bb774231aae91613fcda5e68740c15d97b1967ae3394d20faddddd8af61d
+  checksum: 818450408684da89423e3daae24e4dc9b68692db8ab49ea4569c7c5abb7a3f23669438bf129cc81dfdada95e1c9b944ee1bfca2c57a05a4dc73834a612fbf6a7
   languageName: node
   linkType: hard
 
@@ -6678,9 +6616,9 @@ __metadata:
   linkType: hard
 
 "async@npm:^3.2.3":
-  version: 3.2.4
-  resolution: "async@npm:3.2.4"
-  checksum: 43d07459a4e1d09b84a20772414aa684ff4de085cbcaec6eea3c7a8f8150e8c62aa6cd4e699fe8ee93c3a5b324e777d34642531875a0817a35697522c1b02e89
+  version: 3.2.5
+  resolution: "async@npm:3.2.5"
+  checksum: 5ec77f1312301dee02d62140a6b1f7ee0edd2a0f983b6fd2b0849b969f245225b990b47b8243e7b9ad16451a53e7f68e753700385b706198ced888beedba3af4
   languageName: node
   linkType: hard
 
@@ -6738,7 +6676,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-loader@npm:^8.0.0, babel-loader@npm:^8.2.5":
+"babel-loader@npm:^8.0.0":
   version: 8.2.5
   resolution: "babel-loader@npm:8.2.5"
   dependencies:
@@ -20566,8 +20504,8 @@ __metadata:
   linkType: hard
 
 "terser@npm:^5.10.0":
-  version: 5.19.1
-  resolution: "terser@npm:5.19.1"
+  version: 5.24.0
+  resolution: "terser@npm:5.24.0"
   dependencies:
     "@jridgewell/source-map": ^0.3.3
     acorn: ^8.8.2
@@ -20575,7 +20513,7 @@ __metadata:
     source-map-support: ~0.5.20
   bin:
     terser: bin/terser
-  checksum: 18657b2a282238a1ca9c825efa966f4dd043a33196b2f8a7a2cba406a2006e14f55295b9d9cf6380a18599b697e9579e4092c99b9f40c7871ceec01cc98e3606
+  checksum: d88f774b6fa711a234fcecefd7657f99189c367e17dbe95a51c2776d426ad0e4d98d1ffe6edfdf299877c7602e495bdd711d21b2caaec188410795e5447d0f6c
   languageName: node
   linkType: hard
 
@@ -21131,13 +21069,6 @@ __metadata:
   version: 0.8.1
   resolution: "type-fest@npm:0.8.1"
   checksum: d61c4b2eba24009033ae4500d7d818a94fd6d1b481a8111612ee141400d5f1db46f199c014766b9fa9b31a6a7374d96fc748c6d688a78a3ce5a33123839becb7
-  languageName: node
-  linkType: hard
-
-"type-fest@npm:^4.6.0":
-  version: 4.6.0
-  resolution: "type-fest@npm:4.6.0"
-  checksum: e38f2b4b35e912bf60dbe7d4350653fb76b241a456e849fab85002ba08e938a26a7c44a330dd5620dd48ce57566be7c97e997064dc0d5066d5b6949b8c444430
   languageName: node
   linkType: hard
 
@@ -21959,7 +21890,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite-plugin-html@npm:3.2.0":
+"vite-plugin-html@npm:^3.2.0":
   version: 3.2.0
   resolution: "vite-plugin-html@npm:3.2.0"
   dependencies:

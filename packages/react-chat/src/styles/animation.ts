@@ -1,6 +1,4 @@
-import { keyframes } from '@stitches/react';
-
-import { CSS } from '@/styles/theme';
+import { CSS, keyframes } from '@/styles/theme';
 
 export const pulse = keyframes({
   '50%': { opacity: 1 },

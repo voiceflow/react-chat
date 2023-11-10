@@ -7,14 +7,13 @@ import { TurnProps } from '@/types';
 export { ChatPersistence, ChatPosition };
 export type { RuntimeAction };
 
-export type SendMessage = (message: string, action: RuntimeAction) => Promise<void>;
+export type SendMessage = (action: RuntimeAction, message?: string) => Promise<void>;
 
 export interface LaunchOptions {
   event?: BaseRequest.BaseRequest;
 }
 
-export interface RuntimeOptions<Verify extends AuthVerify | PublicVerify = AuthVerify | PublicVerify> extends Omit<SDKRuntimeOptions<Verify>, 'url'> {
-  url?: string | undefined;
+export interface RuntimeOptions<Verify extends AuthVerify | PublicVerify = AuthVerify | PublicVerify> extends SDKRuntimeOptions<Verify> {
   user?:
     | {
         name?: string;
