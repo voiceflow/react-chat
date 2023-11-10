@@ -2,7 +2,7 @@ import { useContext } from 'react';
 
 import type { RuntimeAction } from '@/common';
 import Button from '@/components/Button';
-import { RuntimeContext } from '@/contexts';
+import { RuntimeStateAPIContext } from '@/contexts';
 import { useAutoScroll } from '@/hooks';
 
 import Feedback, { FeedbackProps } from '../Feedback';
@@ -60,7 +60,7 @@ export interface SystemResponseProps {
 }
 
 const SystemResponse: React.FC<SystemResponseProps> = ({ feedback, avatar, timestamp, messages, actions = [], isLast, Message = SystemMessage }) => {
-  const runtime = useContext(RuntimeContext);
+  const runtime = useContext(RuntimeStateAPIContext);
 
   const { showIndicator, visibleMessages, complete } = useAnimatedMessages({
     messages,

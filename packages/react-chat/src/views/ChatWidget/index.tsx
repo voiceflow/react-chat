@@ -4,7 +4,7 @@ import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { ChatPosition, isObject, useTheme } from '@/common';
 import Launcher from '@/components/Launcher';
 import Proactive from '@/components/Proactive';
-import { RuntimeContext } from '@/contexts';
+import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts';
 import { noop } from '@/utils/functional';
 import { useResolveAssistantStyleSheet } from '@/utils/stylesheet';
 import ChatWindow from '@/views/ChatWindow';
@@ -17,8 +17,8 @@ interface ChatWidgetProps extends React.PropsWithChildren {
 }
 
 const ChatWidget: React.FC<ChatWidgetProps> = ({ chatAPI }) => {
-  const runtime = useContext(RuntimeContext);
-  const { assistant } = runtime;
+  const { assistant, open, close, interact } = useContext(RuntimeStateAPIContext);
+  const { isOpen } = useContext(RuntimeStateContext);
 
   /** initialization */
   const [isHidden, setHidden] = useState(false);
@@ -32,11 +32,11 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ chatAPI }) => {
     if (!isObject(chatAPI)) return undefined;
 
     Object.assign(chatAPI, {
-      open: runtime.open,
-      close: runtime.close,
+      open,
+      close,
       hide: () => setHidden(true),
       show: () => setHidden(false),
-      interact: runtime.interact,
+      interact,
       proactive: {
         clear: () => setProactiveMessages([]),
         push: (...messages: Trace.AnyTrace[]) => setProactiveMessages((prev) => [...prev, ...messages]),
@@ -66,11 +66,11 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ chatAPI }) => {
   if (!isStyleSheetResolved) return null;
 
   return (
-    <Container withChat={runtime.isOpen} isHidden={isHidden} className={theme}>
+    <Container withChat={isOpen} isHidden={isHidden} className={theme}>
       {!!assistant && (
         <LauncherContainer style={position}>
           <Proactive side={side} messages={proactiveMessages} />
-          <Launcher onClick={runtime.open} image={assistant.launcher} />
+          <Launcher onClick={open} image={assistant.launcher} />
         </LauncherContainer>
       )}
       <ChatContainer style={isMobile ? {} : position}>

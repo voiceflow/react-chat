@@ -2846,15 +2846,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stitches/react@npm:^1.2.8":
-  version: 1.2.8
-  resolution: "@stitches/react@npm:1.2.8"
-  peerDependencies:
-    react: ">= 16.3.0"
-  checksum: 029795323cdedb5599ec0636526fc233b2cf41fa9c1f4a704b1f7f457c6170053384a7430afed45e25f73e348d7c391cf1379bc079943cd9cad44302234a5244
-  languageName: node
-  linkType: hard
-
 "@storybook/addon-actions@npm:6.5.10, @storybook/addon-actions@npm:^6.5.10":
   version: 6.5.10
   resolution: "@storybook/addon-actions@npm:6.5.10"
@@ -5357,7 +5348,6 @@ __metadata:
   dependencies:
     "@babel/core": ^7.18.10
     "@emotion/core": 10.1.1
-    "@stitches/react": ^1.2.8
     "@storybook/addon-actions": ^6.5.10
     "@storybook/addon-essentials": ^6.5.10
     "@storybook/addon-interactions": ^6.5.10
@@ -5379,6 +5369,7 @@ __metadata:
     "@voiceflow/prettier-config": 1.2.1
     "@voiceflow/sdk-runtime": 1.7.0
     "@voiceflow/slate-serializer": 1.5.5
+    "@voiceflow/stitches-react": 2.0.0
     "@voiceflow/tsconfig": 1.4.8
     "@voiceflow/voiceflow-types": 3.26.9
     bowser: ^2.11.0
@@ -5443,6 +5434,15 @@ __metadata:
     react: ^17.0.2
     slate: ^0.72.3
   checksum: f8f276247767724d3a9087ce1f76b0cb93c5da8367a7de3f736da83c318a389ef6e2f45a06348f1e74e6b68e5ed0020af692beac88838070e2c2e97912d2fc80
+  languageName: node
+  linkType: hard
+
+"@voiceflow/stitches-react@npm:2.0.0":
+  version: 2.0.0
+  resolution: "@voiceflow/stitches-react@npm:2.0.0"
+  peerDependencies:
+    react: ">= 16.3.0"
+  checksum: 4eeb9f8df72f05926def48e7b95855fd1b00f98bc629bb7cc1a31f792f8c8a0807c572087c2e5e82b4ca189cad5c1f8e1428b0f5014ae17a8bcaa3f8d69ca2a6
   languageName: node
   linkType: hard
 

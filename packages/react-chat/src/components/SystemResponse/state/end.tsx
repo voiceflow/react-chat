@@ -1,10 +1,10 @@
 import { useContext, useEffect } from 'react';
 
 import { SessionStatus } from '@/common';
-import { RuntimeContext } from '@/contexts';
+import { RuntimeStateAPIContext } from '@/contexts';
 
 const EndState: React.FC = () => {
-  const runtime = useContext(RuntimeContext);
+  const runtime = useContext(RuntimeStateAPIContext);
 
   useEffect(() => {
     runtime.setStatus(SessionStatus.ENDED);

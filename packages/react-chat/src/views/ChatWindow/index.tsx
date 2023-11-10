@@ -6,14 +6,15 @@ import { match } from 'ts-pattern';
 
 import { SessionStatus, useTheme } from '@/common';
 import { Chat, SystemResponse, UserResponse } from '@/components';
-import { RuntimeContext } from '@/contexts/RuntimeContext';
+import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts/RuntimeContext';
 import type { FeedbackName } from '@/contexts/RuntimeContext/useRuntimeAPI';
 import { TurnType, UserTurnProps } from '@/types';
 
 import { ChatWindowContainer } from './styled';
 
 const ChatWindow: React.FC = () => {
-  const runtime = useContext(RuntimeContext);
+  const runtime = useContext(RuntimeStateAPIContext);
+  const state = useContext(RuntimeStateContext);
   const { assistant } = runtime;
 
   // emitters
@@ -26,10 +27,10 @@ const ChatWindow: React.FC = () => {
 
   const getPreviousUserTurn = useCallback(
     (turnIndex: number): UserTurnProps | null => {
-      const turn = runtime.session.turns[turnIndex - 1];
+      const turn = state.session.turns[turnIndex - 1];
       return turn?.type === TurnType.USER ? turn : null;
     },
-    [runtime.session.turns]
+    [state.session.turns]
   );
 
   return (
@@ -40,15 +41,15 @@ const ChatWindow: React.FC = () => {
         image={assistant.image}
         avatar={assistant.avatar}
         withWatermark={assistant.watermark}
-        startTime={runtime.session.startTime}
+        startTime={state.session.startTime}
         hasEnded={runtime.isStatus(SessionStatus.ENDED)}
-        isLoading={!runtime.session.turns.length}
+        isLoading={!state.session.turns.length}
         onStart={runtime.launch}
         onEnd={closeAndEnd}
         onSend={runtime.reply}
         onMinimize={runtime.close}
       >
-        {runtime.session.turns.map((turn, turnIndex) =>
+        {state.session.turns.map((turn, turnIndex) =>
           match(turn)
             .with({ type: TurnType.USER }, ({ id, ...props }) => <UserResponse {...R.omit(props, ['type'])} key={id} />)
             .with({ type: TurnType.SYSTEM }, ({ id, ...props }) => (
@@ -65,12 +66,12 @@ const ChatWindow: React.FC = () => {
                     : undefined
                 }
                 avatar={assistant.avatar}
-                isLast={turnIndex === runtime.session.turns.length - 1}
+                isLast={turnIndex === state.session.turns.length - 1}
               />
             ))
             .exhaustive()
         )}
-        {runtime.indicator && <SystemResponse.Indicator avatar={assistant.avatar} />}
+        {state.indicator && <SystemResponse.Indicator avatar={assistant.avatar} />}
       </Chat>
     </ChatWindowContainer>
   );

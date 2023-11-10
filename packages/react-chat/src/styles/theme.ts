@@ -1,5 +1,5 @@
-import type { CSS as BaseCSS } from '@stitches/react';
-import { createStitches, createTheme } from '@stitches/react';
+import type { CSS as BaseCSS } from '@voiceflow/stitches-react';
+import { createStitches, createTheme } from '@voiceflow/stitches-react';
 import type { PropertiesHyphen as CSSPropertiesHyphen } from 'csstype';
 import type { StringKeyOf } from 'type-fest';
 

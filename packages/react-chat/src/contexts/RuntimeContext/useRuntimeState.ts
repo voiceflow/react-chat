@@ -5,7 +5,7 @@ import cuid from 'cuid';
 import { useEffect, useState } from 'react';
 
 import { Assistant, LaunchOptions, RuntimeOptions, SendMessage, SessionOptions, SessionStatus } from '@/common';
-import { RuntimeMessage } from '@/contexts/RuntimeContext/messages';
+import type { RuntimeMessage } from '@/contexts/RuntimeContext/messages';
 import { useStateRef } from '@/hooks/useStateRef';
 import { TurnProps, TurnType } from '@/types';
 import { handleActions } from '@/utils/actions';
@@ -149,20 +149,26 @@ export const useRuntimeState = ({ assistant, config }: Settings) => {
   const close = () => setOpen(false);
 
   return {
-    reply,
-    assistant,
-    config,
-    reset,
-    launch,
-    indicator,
-    session,
-    interact,
-    setStatus,
-    isStatus,
-    addTurn,
-    isOpen,
-    open,
-    close,
-    feedback: runtime.saveFeedback,
+    state: {
+      session,
+      isOpen,
+      indicator,
+    },
+    api: {
+      launch,
+      reply,
+      open,
+      interact,
+      close,
+      addTurn,
+      feedback: runtime.saveFeedback,
+      setStatus,
+      isStatus,
+      reset,
+
+      // these are meant to be static, so bundling them with the API
+      assistant,
+      config,
+    },
   };
 };
