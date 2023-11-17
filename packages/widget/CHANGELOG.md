@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.17](https://github.com/voiceflow/react-chat/compare/@voiceflow/widget@1.7.16...@voiceflow/widget@1.7.17) (2023-11-17)
+
+### Bug Fixes
+
+* better encode decode structure (ACT-009) ([5445fd1](https://github.com/voiceflow/react-chat/commit/5445fd1b9448e14061afe90eb90f6b98b2501c80))
+
 ## [1.7.16](https://github.com/voiceflow/react-chat/compare/@voiceflow/widget@1.7.15...@voiceflow/widget@1.7.16) (2023-11-17)
 
 ### Bug Fixes
