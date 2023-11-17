@@ -1,6 +1,9 @@
-import { createStitches, createTheme, CSS as BaseCSS } from '@stitches/react';
+import type { CSS as BaseCSS } from '@voiceflow/stitches-react';
+import { createStitches, createTheme } from '@voiceflow/stitches-react';
 import type { PropertiesHyphen as CSSPropertiesHyphen } from 'csstype';
 import type { StringKeyOf } from 'type-fest';
+
+import { shadowRoot } from '@/shadow';
 
 import * as Color from './color';
 import * as Font from './font';
@@ -21,6 +24,8 @@ export interface FontOptions {
 }
 
 export const { styled, config, keyframes } = createStitches({
+  ...{ root: shadowRoot },
+
   theme: {
     colors: Color.PALETTE,
     shadows: Color.SHADOWS,

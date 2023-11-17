@@ -1,5 +1,6 @@
-import type { ChatConfig } from '@voiceflow/react-chat';
 import type { RuntimeAction } from '@voiceflow/sdk-runtime';
+
+import type { ChatConfig } from '@/common';
 
 declare global {
   interface Window {
@@ -9,7 +10,7 @@ declare global {
         close: VoidFunction;
         hide: VoidFunction;
         show: VoidFunction;
-        load: (config: ChatConfig) => void;
+        load: (config: Partial<ChatConfig>) => void;
         destroy: (action: RuntimeAction) => void;
         interact: (action: RuntimeAction) => void;
       };

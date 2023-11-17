@@ -1,38 +1,31 @@
 import { Trace } from '@voiceflow/base-types';
-import type { RuntimeAction } from '@voiceflow/sdk-runtime';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 
-import { Assistant, ChatPosition, isObject, Listeners, PostMessage, useTheme } from '@/common';
+import { ChatPosition, isObject, useTheme } from '@/common';
 import Launcher from '@/components/Launcher';
 import Proactive from '@/components/Proactive';
+import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts';
 import { noop } from '@/utils/functional';
 import { useResolveAssistantStyleSheet } from '@/utils/stylesheet';
+import ChatWindow from '@/views/ChatWindow';
 
 import { ChatContainer, Container, LauncherContainer } from './styled';
 import { ChatAPI } from './types';
 
 interface ChatWidgetProps extends React.PropsWithChildren {
-  assistant?: Assistant | undefined;
-  widgetURL?: string;
   chatAPI?: ChatAPI | undefined;
-  sendMessage: (message: PostMessage.AnyMessage) => void;
 }
 
-const ChatWidget: React.FC<ChatWidgetProps> = ({ children, chatAPI, sendMessage, assistant }) => {
+const ChatWidget: React.FC<ChatWidgetProps> = ({ chatAPI }) => {
+  const { assistant, open, close, interact } = useContext(RuntimeStateAPIContext);
+  const { isOpen } = useContext(RuntimeStateContext);
+
   /** initialization */
-  const [isOpen, setOpen] = useState(false);
   const [isHidden, setHidden] = useState(false);
   const [proactiveMessages, setProactiveMessages] = useState<Trace.AnyTrace[]>([]);
   const isMobile = useMemo(() => window.matchMedia('(max-width: 768px)').matches, []);
 
   const theme = useTheme(assistant);
-
-  /** listeners */
-  Listeners.useListenMessage(PostMessage.Type.CLOSE, () => setOpen(false));
-  Listeners.useListenMessage(PostMessage.Type.OPEN, () => setOpen(true));
-
-  const open = React.useCallback(() => sendMessage({ type: PostMessage.Type.OPEN }), []);
-  const close = React.useCallback(() => sendMessage({ type: PostMessage.Type.CLOSE }), []);
 
   /** initialize window */
   useEffect(() => {
@@ -43,7 +36,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ children, chatAPI, sendMessage,
       close,
       hide: () => setHidden(true),
       show: () => setHidden(false),
-      interact: (action: RuntimeAction) => sendMessage({ type: PostMessage.Type.ACTION_REQUEST, payload: { action } }),
+      interact,
       proactive: {
         clear: () => setProactiveMessages([]),
         push: (...messages: Trace.AnyTrace[]) => setProactiveMessages((prev) => [...prev, ...messages]),
@@ -70,15 +63,19 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ children, chatAPI, sendMessage,
 
   const isStyleSheetResolved = useResolveAssistantStyleSheet(assistant);
 
+  if (!isStyleSheetResolved) return null;
+
   return (
     <Container withChat={isOpen} isHidden={isHidden} className={theme}>
-      {!!assistant && isStyleSheetResolved && (
+      {!!assistant && (
         <LauncherContainer style={position}>
           <Proactive side={side} messages={proactiveMessages} />
           <Launcher onClick={open} image={assistant.launcher} />
         </LauncherContainer>
       )}
-      <ChatContainer style={isMobile ? {} : position}>{children}</ChatContainer>
+      <ChatContainer style={isMobile ? {} : position}>
+        <ChatWindow />
+      </ChatContainer>
     </Container>
   );
 };

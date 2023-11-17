@@ -1,4 +1,4 @@
-import { $$StyledComponentProps } from '@stitches/react/types/styled-component';
+import { $$StyledComponentProps } from '@voiceflow/stitches-react/types/styled-component';
 
 export * from './turn';
 export * from './util';

@@ -29,3 +29,5 @@ sonar/
 nyc_coverage*
 
 .turbo
+
+.env.*

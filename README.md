@@ -52,9 +52,14 @@ interface Configuration {
    */
   assistant?: {
     title?: string;
-    description?: string;
     image?: string;
     color?: string;
+    description?: string;
+    stylesheet?: string;
+  };
+
+  launch?: {
+    event?: RuntimeAction;
   };
 }
 ```
@@ -106,6 +111,11 @@ interface VoiceflowAPI {
 
   // send custom interaction to voiceflow
   interact: (action: RuntimeAction) => void;
+
+  proactive: {
+    push: (...messages: Trace[]) => void;
+    clear: () => void;
+  };
 }
 ```
 
@@ -120,7 +130,7 @@ window.voiceflow.chat.show();
 To run the chat locally you will need to create a local `.env` file with your configuration.
 This will include our Voiceflow project ID and the runtime endpoint.
 
-Create a new file `packages/widget/.env.development.local` with the following contents:
+Create a new file `packages/react-chat/.env.development.local` with the following contents:
 
 ```sh
 VITE_VF_PROJECT_ID='< your project ID >'
