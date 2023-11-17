@@ -9,38 +9,12 @@ const createContext = () => ({
   messages: [],
 });
 
-function encodeURIComponentIfNotAlready(encodedUriComponent: string) {
-  try {
-    // If decodeURIComponent throws an error, it means it's not encoded
-    if (encodedUriComponent === decodeURIComponent(encodedUriComponent)) {
-      return encodeURIComponent(encodedUriComponent);
-    }
-  } catch (e) {
-    // Error means it was already encoded
-  }
-  return encodedUriComponent;
-}
-
-function decodeURIComponentIfEncoded(encodedUriComponent: string) {
-  try {
-    return decodeURIComponent(encodedUriComponent);
-  } catch (e) {
-    // Error means it was not encoded
-  }
-  return encodedUriComponent;
-}
-
 export const initializeAPIListeners = (
   sendMessage: (message: PostMessage.AnyMessage) => void,
   session: SessionOptions,
   { user, verify, url = RUNTIME_URL, versionID }: RuntimeOptions
 ) => {
   const sessionID = session.userID;
-
-  // interact, feedback use encoded sessionID in the URL
-  // transcript uses sessionID in the body
-  const encodedSessionID = encodeURIComponentIfNotAlready(sessionID);
-  const decodedSessionID = decodeURIComponentIfEncoded(sessionID);
 
   const runtime = new VoiceflowRuntime({
     verify,
@@ -68,7 +42,7 @@ export const initializeAPIListeners = (
   const ActionRequestListener: Listeners.MessageListener<PostMessage.Type.ACTION_REQUEST> = {
     type: PostMessage.Type.ACTION_REQUEST,
     action: async ({ payload: { action } }) => {
-      const context = await runtime.interact(createContext(), { sessionID: encodedSessionID, action, ...(versionID && { versionID }) });
+      const context = await runtime.interact(createContext(), { sessionID: encodeURIComponent(sessionID), action, ...(versionID && { versionID }) });
 
       sendMessage({
         type: PostMessage.Type.ACTION_RESPONSE,
@@ -88,7 +62,7 @@ export const initializeAPIListeners = (
         platform: { type: device },
       } = Bowser.parse(window.navigator.userAgent);
 
-      await runtime.createTranscript(decodedSessionID, {
+      await runtime.createTranscript(sessionID, {
         ...(os && { os }),
         ...(browser && { browser }),
         ...(device && { device }),
@@ -101,7 +75,7 @@ export const initializeAPIListeners = (
     type: PostMessage.Type.SAVE_FEEDBACK,
     action: async ({ payload: { text, name, last_user_input } }) => {
       await runtime.feedback({
-        sessionID: encodedSessionID,
+        sessionID: encodeURIComponent(sessionID),
         text,
         name,
         last_user_input,

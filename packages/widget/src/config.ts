@@ -6,6 +6,14 @@ const validateVerify = (verify: unknown): verify is ChatConfig['verify'] => {
   return isObject(verify) && typeof verify.projectID === 'string';
 };
 
+const tryDecodeURIComponent = (str: string) => {
+  try {
+    return decodeURIComponent(str);
+  } catch {
+    return str;
+  }
+};
+
 export const sanitizeConfig = (config: unknown): Partial<ChatConfig> & Pick<ChatConfig, 'verify'> => {
   const ref = isObject(config) ? config : {};
   const { url, user, userID, versionID, verify, assistant, launch } = ref;
@@ -17,7 +25,8 @@ export const sanitizeConfig = (config: unknown): Partial<ChatConfig> & Pick<Chat
   return {
     verify,
     ...(typeof url === 'string' && { url }),
-    ...(typeof userID === 'string' && { userID }),
+    // decodeURIComponent incase the userID is already encodeURIComponent'd
+    ...(typeof userID === 'string' && { userID: tryDecodeURIComponent(userID) }),
     ...(typeof userID === 'number' && { userID: userID.toString() }),
     ...(typeof versionID === 'string' && { versionID }),
     ...(isObject(user) && {
