@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { thumbsUp as ThumbsUp } from '@/assets/svg';
-import { FeedbackName } from '@/hooks';
+import { FeedbackName } from '@/contexts/RuntimeContext/useRuntimeAPI';
 
 import { Button, ButtonsContainer, Container, Description } from './styled';
 

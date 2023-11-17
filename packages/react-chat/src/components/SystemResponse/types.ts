@@ -1,6 +1,6 @@
 import { Text } from '@voiceflow/base-types';
 
-import { CardProps } from '@/components/Card';
+import { CardProps } from '@/components/Card/types';
 import { StringifiedEnum } from '@/types/util';
 
 import { MessageType } from './constants';

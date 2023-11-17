@@ -20,7 +20,7 @@ export interface FooterProps {
   /**
    * A callback to start a new conversation.
    */
-  onStart?: React.MouseEventHandler<HTMLButtonElement> | undefined;
+  onStart?: () => Promise<void> | undefined;
 
   /**
    * A callback to submit a user response.

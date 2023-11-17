@@ -1,6 +1,7 @@
-import { ChatConfig, isObject } from '@voiceflow/react-chat';
+import { ChatConfig } from '../common/types';
+import { isObject } from '../common/utils';
 
-export const WIDGET_URL = process.env.VITE_WIDGET_URL;
+export const RUNTIME_URL = 'https://general-runtime.voiceflow.com';
 
 const validateVerify = (verify: unknown): verify is ChatConfig['verify'] => {
   return isObject(verify) && typeof verify.projectID === 'string';
@@ -14,7 +15,7 @@ const tryDecodeURIComponent = (str: string) => {
   }
 };
 
-export const sanitizeConfig = (config: unknown): Partial<ChatConfig> & Pick<ChatConfig, 'verify'> => {
+export const sanitizeConfig = (config: unknown): Partial<ChatConfig> & Pick<ChatConfig, 'verify' | 'url'> => {
   const ref = isObject(config) ? config : {};
   const { url, user, userID, versionID, verify, assistant, launch } = ref;
 
@@ -24,7 +25,7 @@ export const sanitizeConfig = (config: unknown): Partial<ChatConfig> & Pick<Chat
 
   return {
     verify,
-    ...(typeof url === 'string' && { url }),
+    url: typeof url === 'string' ? url : RUNTIME_URL,
     // decodeURIComponent incase the userID is already encodeURIComponent'd
     ...(typeof userID === 'string' && { userID: tryDecodeURIComponent(userID) }),
     ...(typeof userID === 'number' && { userID: userID.toString() }),

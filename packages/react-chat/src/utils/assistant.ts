@@ -1,9 +1,24 @@
 /* eslint-disable no-console */
-import { Assistant, ChatConfig, ChatPersistence, ChatPosition, isEnumValue, isObject } from '@voiceflow/react-chat';
 import { VoiceflowRuntime } from '@voiceflow/sdk-runtime';
 import type { PartialDeep } from 'type-fest';
 
-import { DEFAULT_ASSISTANT, RUNTIME_URL } from './constants';
+import { Assistant, ChatConfig, ChatPersistence, ChatPosition, isEnumValue, isObject } from '@/common';
+import { PRIMARY } from '@/styles';
+
+export const DEFAULT_AVATAR = 'https://cdn.voiceflow.com/assets/logo.png';
+
+export const DEFAULT_ASSISTANT: Assistant = {
+  title: 'Voiceflow Assistant',
+  image: DEFAULT_AVATAR,
+  avatar: DEFAULT_AVATAR,
+  color: PRIMARY,
+  description: '',
+  position: ChatPosition.RIGHT,
+  watermark: true,
+  feedback: false,
+  persistence: ChatPersistence.LOCAL_STORAGE,
+  spacing: { bottom: 30, side: 30 },
+};
 
 const sanitizeAssistant = (assistant: unknown): PartialDeep<Assistant> => {
   const ref = isObject(assistant) ? assistant : {};
@@ -31,7 +46,7 @@ const sanitizeAssistant = (assistant: unknown): PartialDeep<Assistant> => {
 };
 
 export const mergeAssistant = async (config: ChatConfig): Promise<Assistant> => {
-  const { url = RUNTIME_URL, versionID } = config;
+  const { url, versionID } = config;
 
   // fetch remote publishing config
   const runtime = new VoiceflowRuntime({ ...config, url });

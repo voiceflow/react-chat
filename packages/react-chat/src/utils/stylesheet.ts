@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 
 import { Assistant } from '@/common';
+import { shadowRoot } from '@/shadow';
 
 // used to add stylesheets dynamically, resolves when loaded
 export const addStyleSheetURL = async (url: string) => {
@@ -13,7 +14,7 @@ export const addStyleSheetURL = async (url: string) => {
 
   link.rel = 'stylesheet';
   link.href = url;
-  document.head.appendChild(link);
+  shadowRoot.appendChild(link);
 
   await load;
 };

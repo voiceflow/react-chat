@@ -9,13 +9,17 @@ import {
   VisualTraceComponent,
 } from '@voiceflow/sdk-runtime';
 
-import { CardProps, isValidCard } from './components/Card';
-import type { SystemResponseProps } from './components/SystemResponse';
-import { MessageType } from './components/SystemResponse/constants';
+import { CardProps } from '@/components/Card/types';
+import type { SystemResponseProps } from '@/components/SystemResponse';
+import { MessageType } from '@/components/SystemResponse/constants';
 
-export interface RuntimeContext extends Pick<SystemResponseProps, 'messages' | 'actions'> {}
+export interface RuntimeMessage extends Pick<SystemResponseProps, 'messages' | 'actions'> {}
 
-export const MESSAGE_TRACES: TraceDeclaration<RuntimeContext, any>[] = [
+const isValidCard = (card: CardProps) => {
+  return !!card.title || !!card.description || !!card.image || !!card.actions?.filter(({ name }) => !!name).length;
+};
+
+export const MESSAGE_TRACES: TraceDeclaration<RuntimeMessage, any>[] = [
   TextTraceComponent(({ context }, trace) => {
     if (!DTOs.TextTraceDTO.safeParse(trace).success) return context;
 
