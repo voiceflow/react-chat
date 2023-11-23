@@ -58,8 +58,8 @@ jobs:
       - vfcommon/clone_s3_assets:
           step_name: Uploading React Chat to CDN
           from: packages/react-chat/dist
-          to: s3://cdn.voiceflow.com/widget/alpha # TODO: change to production after validation
-          clean_destination: true
+          to: s3://cdn.voiceflow.com/widget
+          clean_destination: false
 
 workflows:
   test-and-release:
