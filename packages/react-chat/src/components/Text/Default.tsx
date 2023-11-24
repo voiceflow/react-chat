@@ -27,4 +27,5 @@ const DefaultText: React.FC<DefaultTextProps> = ({ text }) => {
   );
 };
 
-export default DefaultText;
+// memoize to prevent re-rendering
+export default React.memo(DefaultText);
