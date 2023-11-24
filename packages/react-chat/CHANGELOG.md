@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.47.7](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.47.6...@voiceflow/react-chat@1.47.7) (2023-11-24)
+
+### Bug Fixes
+
+* stitches theme color (CT-000) ([e991afe](https://github.com/voiceflow/react-chat/commit/e991afed42a85472367882a4988738bd7e0854d1))
+
 ## [1.47.6](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.47.5...@voiceflow/react-chat@1.47.6) (2023-11-17)
 
 **Note:** Version bump only for package @voiceflow/react-chat
