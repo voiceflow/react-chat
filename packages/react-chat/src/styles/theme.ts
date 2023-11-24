@@ -1,5 +1,5 @@
 import type { CSS as BaseCSS } from '@voiceflow/stitches-react';
-import { createStitches, createTheme } from '@voiceflow/stitches-react';
+import { createStitches } from '@voiceflow/stitches-react';
 import type { PropertiesHyphen as CSSPropertiesHyphen } from 'csstype';
 import type { StringKeyOf } from 'type-fest';
 
@@ -23,7 +23,7 @@ export interface FontOptions {
   height?: BaseCSS['lineHeight'] | Token<typeof Font['LINE_HEIGHTS']>;
 }
 
-export const { styled, config, keyframes } = createStitches({
+export const { styled, config, keyframes, createTheme } = createStitches({
   ...{ root: shadowRoot },
 
   theme: {
