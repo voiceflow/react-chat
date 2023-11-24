@@ -1,8 +1,10 @@
 import { serializeToMarkdown } from '@voiceflow/slate-serializer/markdown';
 import React from 'react';
+import rehypeRaw from 'rehype-raw';
 
 import Message from '@/components/Message';
 import type { TextMessageProps } from '@/components/SystemResponse/types';
+import { RuntimeStateAPIContext } from '@/contexts';
 
 import Markdown from './Markdown';
 
@@ -14,9 +16,13 @@ export interface DefaultTextProps {
 }
 
 const DefaultText: React.FC<DefaultTextProps> = ({ text }) => {
+  const api = React.useContext(RuntimeStateAPIContext);
+
   return (
     <Message from="system">
-      <Markdown>{typeof text === 'string' ? text : serializeToMarkdown(text)}</Markdown>
+      <Markdown rehypePlugins={api?.config?.allowDangerousHTML ? [rehypeRaw] : []}>
+        {typeof text === 'string' ? text : serializeToMarkdown(text)}
+      </Markdown>
     </Message>
   );
 };

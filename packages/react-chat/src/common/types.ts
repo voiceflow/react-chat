@@ -23,6 +23,8 @@ export interface RuntimeOptions<Verify extends AuthVerify | PublicVerify = AuthV
   userID?: string;
   versionID?: string | undefined;
   launch?: LaunchOptions;
+
+  allowDangerousHTML?: boolean;
 }
 
 export enum SessionStatus {
