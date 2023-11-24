@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.47.8](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.47.7...@voiceflow/react-chat@1.47.8) (2023-11-24)
+
+### Bug Fixes
+
+* no reply timeout (ACT-014) ([#87](https://github.com/voiceflow/react-chat/issues/87)) ([c54282c](https://github.com/voiceflow/react-chat/commit/c54282c102f147f20c3c38234a48a9f6e5062827))
+
 ## [1.47.7](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.47.6...@voiceflow/react-chat@1.47.7) (2023-11-24)
 
 ### Bug Fixes
