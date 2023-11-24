@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.48.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.47.8...@voiceflow/react-chat@1.48.0) (2023-11-24)
+
+### Features
+
+* fix card overflow issue (CV3-307) ([#70](https://github.com/voiceflow/react-chat/issues/70)) ([5484d63](https://github.com/voiceflow/react-chat/commit/5484d63661127b50bc2a7c44173ba39cddc1c43f))
+
 ## [1.47.8](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.47.7...@voiceflow/react-chat@1.47.8) (2023-11-24)
 
 ### Bug Fixes
