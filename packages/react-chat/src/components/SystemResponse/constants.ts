@@ -5,3 +5,5 @@ export enum MessageType {
   CAROUSEL = 'carousel',
   END = 'END',
 }
+
+export const DEFAULT_MESSAGE_DELAY = 1000;
