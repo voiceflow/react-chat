@@ -42,6 +42,7 @@ MarkdownText.defaultProps = {
     handlers: {
       break: () => [{ type: 'text', value: '\n' }],
     },
+    allowDangerousHtml: false,
   },
 };
 
