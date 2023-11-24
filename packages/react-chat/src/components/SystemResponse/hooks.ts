@@ -3,6 +3,7 @@ import { match } from 'ts-pattern';
 
 import { useDidUpdateEffect } from '@/hooks';
 
+import { DEFAULT_MESSAGE_DELAY } from './constants';
 import { MessageProps } from './types';
 
 export * from './types';
@@ -16,8 +17,6 @@ type Animation<T extends AnimationType = AnimationType> = {
   [AnimationType.MESSAGE]: { type: AnimationType.MESSAGE; message: MessageProps };
   [AnimationType.INDICATOR]: { type: AnimationType.INDICATOR; messageDelay: number };
 }[T];
-
-const DEFAULT_MESSAGE_DELAY = 1000;
 
 const createAnimateIndicator = (messageDelay: number = DEFAULT_MESSAGE_DELAY): Animation<AnimationType.INDICATOR> => ({
   type: AnimationType.INDICATOR,

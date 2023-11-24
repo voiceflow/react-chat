@@ -2,15 +2,17 @@ import { BaseRequest } from '@voiceflow/base-types';
 import { isTextRequest } from '@voiceflow/base-types/build/cjs/request';
 import { ActionType, PublicVerify, Trace, TraceDeclaration } from '@voiceflow/sdk-runtime';
 import cuid from 'cuid';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { Assistant, LaunchOptions, RuntimeOptions, SendMessage, SessionOptions, SessionStatus } from '@/common';
+import { DEFAULT_MESSAGE_DELAY } from '@/components/SystemResponse/constants';
 import type { RuntimeMessage } from '@/contexts/RuntimeContext/messages';
 import { useStateRef } from '@/hooks/useStateRef';
 import { TurnProps, TurnType } from '@/types';
 import { handleActions } from '@/utils/actions';
 import { getSession, saveSession } from '@/utils/session';
 
+import { useNoReply } from './useNoReply';
 import { useRuntimeAPI } from './useRuntimeAPI';
 
 export interface Settings {
@@ -35,15 +37,17 @@ export const useRuntimeState = ({ assistant, config }: Settings) => {
 
   const [indicator, setIndicator] = useState(false);
 
-  // TODO: refactor no-reply system
-  const [lastInteractionAt, setLastInteractionAt] = useState<number | null>(Date.now());
-  const [noReplyTimeout, setNoReplyTimeout] = useState<number | null>(null);
+  const { clearNoReplyTimeout, setNoReplyTimeout } = useNoReply(() => ({ interact, isStatus }));
+
   const noReplyHandler: TraceDeclaration<RuntimeMessage, any> = {
     canHandle: ({ type }) => type === ActionType.NO_REPLY,
     handle: ({ context }, trace: Trace.NoReplyTrace) => {
       if (trace.payload?.timeout) {
-        setNoReplyTimeout(trace.payload.timeout * 1000);
-        setLastInteractionAt(Date.now());
+        // messages take 1 second to animate in, on top of the delay
+        const messageDelays = context.messages.reduce((acc, message) => acc + (message.delay ?? 1000) + DEFAULT_MESSAGE_DELAY, 0);
+        const timeout = trace.payload.timeout * 1000 + messageDelays;
+
+        setNoReplyTimeout(timeout);
       }
       return context;
     },
@@ -69,6 +73,8 @@ export const useRuntimeState = ({ assistant, config }: Settings) => {
   const reset = () => setTurns(() => []);
 
   const interact: SendMessage = async (action: BaseRequest.BaseRequest, message?: string) => {
+    clearNoReplyTimeout();
+
     if (sessionRef.current.status === SessionStatus.ENDED) return;
 
     // create a transcript on the first turn, do this async
@@ -98,12 +104,6 @@ export const useRuntimeState = ({ assistant, config }: Settings) => {
     });
 
     saveSession(assistant.persistence, config.verify.projectID, sessionRef.current);
-
-    const finishedAnimatingAt = context.messages.reduce((acc, message) => {
-      return acc + (message.delay ?? 1000);
-    }, Date.now());
-
-    setLastInteractionAt(finishedAnimatingAt);
   };
 
   const launch = async ({ event }: LaunchOptions = {}): Promise<void> => {
@@ -114,29 +114,6 @@ export const useRuntimeState = ({ assistant, config }: Settings) => {
   };
 
   const reply = async (message: string): Promise<void> => interact({ type: BaseRequest.RequestType.TEXT, payload: message });
-
-  // TODO: refactor no-reply system
-  useEffect(() => {
-    let noReplyTimer: NodeJS.Timeout | undefined;
-
-    const checkNoReply = () => {
-      const ready = isStatus(SessionStatus.ACTIVE);
-      if (ready && noReplyTimeout && lastInteractionAt) {
-        const timeSinceLastInteraction = Date.now() - lastInteractionAt;
-        if (timeSinceLastInteraction > noReplyTimeout) {
-          // Trigger no reply action
-          interact({ type: BaseRequest.RequestType.NO_REPLY, payload: null });
-        }
-      }
-      noReplyTimer = setTimeout(checkNoReply, 1000);
-    };
-
-    checkNoReply();
-
-    return () => {
-      clearTimeout(noReplyTimer);
-    };
-  }, [noReplyTimeout, lastInteractionAt]);
 
   const open = async () => {
     setOpen(true);
@@ -172,3 +149,5 @@ export const useRuntimeState = ({ assistant, config }: Settings) => {
     },
   };
 };
+
+export type RuntimeState = ReturnType<typeof useRuntimeState>;

@@ -1,10 +1,10 @@
 import React, { createContext, useMemo } from 'react';
 
-import { Settings, useRuntimeState } from './useRuntimeState';
+import { RuntimeState, Settings, useRuntimeState } from './useRuntimeState';
 
 // split up API and state to prevent unnecessary re-renders
-export const RuntimeStateAPIContext = createContext<ReturnType<typeof useRuntimeState>['api']>({} as any);
-export const RuntimeStateContext = createContext<ReturnType<typeof useRuntimeState>['state']>({} as any);
+export const RuntimeStateAPIContext = createContext<RuntimeState['api']>({} as any);
+export const RuntimeStateContext = createContext<RuntimeState['state']>({} as any);
 
 interface RuntimeProviderProps extends React.PropsWithChildren, Settings {}
 
