@@ -12,7 +12,7 @@ export default defineConfig({
   build: {
     outDir: path.resolve(__dirname, 'build'),
     lib: {
-      entry: path.resolve(__dirname, 'src', 'package.ts'),
+      entry: path.resolve(__dirname, 'src', 'package.entry.ts'),
       name: 'voiceflow-chat',
       fileName: (format) => `index.${format}.js`,
       formats: ['es', 'cjs'],

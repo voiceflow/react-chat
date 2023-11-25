@@ -109,5 +109,5 @@
     "test:dependencies": "depcheck",
     "test:unit": "NODE_ENV=test vitest run --coverage"
   },
-  "types": "build/src/package.d.ts"
+  "types": "build/src/package.entry.d.ts"
 }
