@@ -15,14 +15,24 @@ export interface DefaultTextProps {
   text: TextMessageProps['text'];
 }
 
+// this is just eslint being dumb because "allowDangerousHTML" contains "HTML"
+// eslint-disable-next-line xss/no-mixed-html
 const DefaultText: React.FC<DefaultTextProps> = ({ text }) => {
   const api = React.useContext(RuntimeStateAPIContext);
 
+  const content = typeof text === 'string' ? text : serializeToMarkdown(text);
+
+  if (api?.config?.allowDangerousHTML) {
+    return (
+      <Message from="system">
+        <Markdown rehypePlugins={[rehypeRaw]}>{content}</Markdown>
+      </Message>
+    );
+  }
+
   return (
     <Message from="system">
-      <Markdown rehypePlugins={api?.config?.allowDangerousHTML ? [rehypeRaw] : []}>
-        {typeof text === 'string' ? text : serializeToMarkdown(text)}
-      </Markdown>
+      <Markdown>{content}</Markdown>
     </Message>
   );
 };
