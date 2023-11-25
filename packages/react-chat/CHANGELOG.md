@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.49.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.48.1...@voiceflow/react-chat@1.49.0) (2023-11-25)
+
+### Bug Fixes
+
+* add broadcast and launch events ([#89](https://github.com/voiceflow/react-chat/issues/89)) ([dc2aafa](https://github.com/voiceflow/react-chat/commit/dc2aafa7e2705119d0c0b7a6a77ce216bc33889c))
+
+### Features
+
+* allow dangerous html flag (CT-000) ([#88](https://github.com/voiceflow/react-chat/issues/88)) ([2363764](https://github.com/voiceflow/react-chat/commit/2363764495d62abd412fd6627bda2e9e2fc1557e))
+
 ## [1.48.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.48.0...@voiceflow/react-chat@1.48.1) (2023-11-24)
 
 ### Bug Fixes
