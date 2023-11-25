@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.49.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.49.0...@voiceflow/react-chat@1.49.1) (2023-11-25)
+
+### Bug Fixes
+
+* bump version and update types reference ([f9f6df2](https://github.com/voiceflow/react-chat/commit/f9f6df24863a3f4c2b6e9822c15672f24dfefa3d))
+
 # [1.49.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.48.1...@voiceflow/react-chat@1.49.0) (2023-11-25)
 
 ### Bug Fixes
