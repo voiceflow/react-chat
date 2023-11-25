@@ -4,7 +4,7 @@ import React, { useCallback, useContext } from 'react';
 import * as R from 'remeda';
 import { match } from 'ts-pattern';
 
-import { SessionStatus, useTheme } from '@/common';
+import { SessionStatus } from '@/common';
 import { Chat, SystemResponse, UserResponse } from '@/components';
 import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts/RuntimeContext';
 import type { FeedbackName } from '@/contexts/RuntimeContext/useRuntimeAPI';
@@ -23,8 +23,6 @@ const ChatWindow: React.FC = () => {
     runtime.close();
   }, []);
 
-  const theme = useTheme(assistant);
-
   const getPreviousUserTurn = useCallback(
     (turnIndex: number): UserTurnProps | null => {
       const turn = state.session.turns[turnIndex - 1];
@@ -34,7 +32,7 @@ const ChatWindow: React.FC = () => {
   );
 
   return (
-    <ChatWindowContainer className={theme}>
+    <ChatWindowContainer>
       <Chat
         title={assistant.title}
         description={assistant.description}
