@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.49.3](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.49.2...@voiceflow/react-chat@1.49.3) (2023-11-25)
+
+### Bug Fixes
+
+* test suite ([279fd87](https://github.com/voiceflow/react-chat/commit/279fd87c1d9adbd606aa475c1f2b81ff14bd11df))
+* use global shadowroot env var (ACT-000) ([a01f6b0](https://github.com/voiceflow/react-chat/commit/a01f6b0d6ede84f9d4b631bc934bd6923b982116))
+
 ## [1.49.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.49.1...@voiceflow/react-chat@1.49.2) (2023-11-25)
 
 ### Bug Fixes
