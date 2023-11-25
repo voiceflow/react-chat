@@ -53,7 +53,7 @@ export const MESSAGE_TRACES: TraceDeclaration<RuntimeMessage, any>[] = [
     return context;
   }),
   CardV2TraceComponent(({ context }, trace) => {
-    if (!DTOs.CardDTO.safeParse(trace).success) return context;
+    if (!DTOs.CardTraceDTO.safeParse(trace).success) return context;
 
     const {
       payload: { title, imageUrl, description, buttons },

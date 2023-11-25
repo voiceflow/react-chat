@@ -7,8 +7,8 @@
     "url": "https://github.com/voiceflow/react-chat/issues"
   },
   "dependencies": {
-    "@voiceflow/base-types": "2.96.0",
-    "@voiceflow/dtos": "1.1.4",
+    "@voiceflow/base-types": "2.97.3",
+    "@voiceflow/dtos": "1.10.0",
     "@voiceflow/sdk-runtime": "1.7.0",
     "@voiceflow/slate-serializer": "1.5.5",
     "@voiceflow/stitches-react": "2.0.0",
@@ -109,5 +109,5 @@
     "test:dependencies": "depcheck",
     "test:unit": "NODE_ENV=test vitest run --coverage"
   },
-  "types": "build/index.d.ts"
+  "types": "build/src/package.d.ts"
 }

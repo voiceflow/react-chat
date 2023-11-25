@@ -5234,7 +5234,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@voiceflow/base-types@npm:2.96.0, @voiceflow/base-types@npm:^2.96.0":
+"@voiceflow/base-types@npm:2.97.3":
+  version: 2.97.3
+  resolution: "@voiceflow/base-types@npm:2.97.3"
+  dependencies:
+    "@voiceflow/common": ^8.2.3
+    slate: 0.94.1
+  checksum: 9317f9bc7f55d4ab829ef04674e923f18e2ddfd400a0c26bcbf878adcd7129f5ab338077d7b71b44d9b37ad552d8fc94adaa00908d31b2726cfb800fc8ade049
+  languageName: node
+  linkType: hard
+
+"@voiceflow/base-types@npm:^2.96.0":
   version: 2.96.0
   resolution: "@voiceflow/base-types@npm:2.96.0"
   dependencies:
@@ -5303,12 +5313,31 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@voiceflow/dtos@npm:1.1.4":
-  version: 1.1.4
-  resolution: "@voiceflow/dtos@npm:1.1.4"
+"@voiceflow/common@npm:^8.2.3":
+  version: 8.2.3
+  resolution: "@voiceflow/common@npm:8.2.3"
+  dependencies:
+    "@types/crypto-js": ^4.0.2
+    "@types/shallowequal": ^1.1.1
+    bson-objectid: ^2.0.1
+    crypto-js: ^4.1.1
+    cuid: ^2.1.8
+    dayjs: 1.10.7
+    lodash: ^4.17.21
+    murmurhash-wasm: ^1.3.0
+    number-to-words: ^1.2.4
+    shallowequal: ^1.1.0
+    typescript-fsa: 3.0.0
+  checksum: 451c4dadc0265907efe39f29139746e6234a09daafa0c925f49af90ad4c9ac4b80928c58e4c1f33fc1a10ae85fb48912317c6463bb098f27c0fe62ffac083812
+  languageName: node
+  linkType: hard
+
+"@voiceflow/dtos@npm:1.10.0":
+  version: 1.10.0
+  resolution: "@voiceflow/dtos@npm:1.10.0"
   peerDependencies:
     zod: ^3.20.0
-  checksum: ac0ec10a0481df9b011b3d7f4018e8b153871bb64a21cda457efd7665efb2f19f074aea5a980b52b369419fc2993c2f9fb8ca613605f1d3c1bcd2b6657cff003
+  checksum: 261c2764a23919ab7ef0580447b08620cffce3554d51fe8119c9c9c584907357c65a9d94b2a4cd26cb90f1b48b790b145ad5b18582858027ba3d7b5841214d90
   languageName: node
   linkType: hard
 
@@ -5388,8 +5417,8 @@ __metadata:
     "@types/react-dom": ^18.0.6
     "@vitejs/plugin-react": ^2.0.1
     "@vitest/coverage-c8": ^0.23.1
-    "@voiceflow/base-types": 2.96.0
-    "@voiceflow/dtos": 1.1.4
+    "@voiceflow/base-types": 2.97.3
+    "@voiceflow/dtos": 1.10.0
     "@voiceflow/eslint-config": 6.1.0
     "@voiceflow/prettier-config": 1.2.1
     "@voiceflow/sdk-runtime": 1.7.0
