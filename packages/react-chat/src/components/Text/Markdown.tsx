@@ -1,5 +1,4 @@
 import ReactMarkdown from 'react-markdown';
-import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
 
 import { styled } from '@/styles';
@@ -35,14 +34,18 @@ const MarkdownText = styled(ReactMarkdown, {
 });
 
 MarkdownText.defaultProps = {
-  rehypePlugins: [rehypeRaw],
   remarkPlugins: [remarkGfm],
-  linkTarget: '_blank',
+  components: {
+    a: ({ node, href, children, ...props }) => (
+      <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
+        {children}
+      </a>
+    ),
+  },
   remarkRehypeOptions: {
     handlers: {
       break: () => [{ type: 'text', value: '\n' }],
     },
-    allowDangerousHtml: false,
   },
 };
 
