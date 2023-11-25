@@ -3,7 +3,6 @@ import { createStitches } from '@voiceflow/stitches-react';
 import type { PropertiesHyphen as CSSPropertiesHyphen } from 'csstype';
 import type { StringKeyOf } from 'type-fest';
 
-import { GlobalOptions } from '@/constants';
 import { shadowRoot } from '@/shadow';
 
 import * as Color from './color';
@@ -25,7 +24,7 @@ export interface FontOptions {
 }
 
 export const { styled, config, keyframes, createTheme } = createStitches({
-  ...(GlobalOptions.SHADOW_ROOT && { root: shadowRoot }),
+  ...(__USE_SHADOW_ROOT__ && { root: shadowRoot }),
 
   theme: {
     colors: Color.PALETTE,

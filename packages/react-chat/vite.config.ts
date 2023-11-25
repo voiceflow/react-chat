@@ -31,6 +31,7 @@ export default defineConfig(({ mode }) => {
       open: '/examples/index.html',
     },
     define: {
+      __USE_SHADOW_ROOT__: true,
       'process.env': '({})',
     },
     build: {

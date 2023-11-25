@@ -7,6 +7,7 @@ import { createPlugins } from './vite.config';
 
 export default defineConfig({
   define: {
+    __USE_SHADOW_ROOT__: false,
     'process.env': '({})',
   },
   build: {
