@@ -4,12 +4,13 @@ import { ActionType, PublicVerify, Trace, TraceDeclaration } from '@voiceflow/sd
 import cuid from 'cuid';
 import { useState } from 'react';
 
-import { Assistant, LaunchOptions, RuntimeOptions, SendMessage, SessionOptions, SessionStatus } from '@/common';
+import { Assistant, RuntimeOptions, SendMessage, SessionOptions, SessionStatus } from '@/common';
 import { DEFAULT_MESSAGE_DELAY } from '@/components/SystemResponse/constants';
 import type { RuntimeMessage } from '@/contexts/RuntimeContext/messages';
 import { useStateRef } from '@/hooks/useStateRef';
 import { TurnProps, TurnType } from '@/types';
 import { handleActions } from '@/utils/actions';
+import { broadcast, BroadcastType } from '@/utils/broadcast';
 import { getSession, saveSession } from '@/utils/session';
 
 import { useNoReply } from './useNoReply';
@@ -106,16 +107,17 @@ export const useRuntimeState = ({ assistant, config }: Settings) => {
     saveSession(assistant.persistence, config.verify.projectID, sessionRef.current);
   };
 
-  const launch = async ({ event }: LaunchOptions = {}): Promise<void> => {
+  const launch = async (): Promise<void> => {
     if (sessionRef.current.turns.length) reset();
 
     setStatus(SessionStatus.ACTIVE);
-    await interact(event ?? { type: BaseRequest.RequestType.LAUNCH, payload: null });
+    await interact(config.launch?.event ?? { type: BaseRequest.RequestType.LAUNCH, payload: null });
   };
 
   const reply = async (message: string): Promise<void> => interact({ type: BaseRequest.RequestType.TEXT, payload: message });
 
   const open = async () => {
+    broadcast({ type: BroadcastType.OPEN });
     setOpen(true);
 
     if (isStatus(SessionStatus.IDLE)) {
@@ -123,7 +125,10 @@ export const useRuntimeState = ({ assistant, config }: Settings) => {
     }
   };
 
-  const close = () => setOpen(false);
+  const close = () => {
+    broadcast({ type: BroadcastType.CLOSE });
+    setOpen(false);
+  };
 
   return {
     state: {

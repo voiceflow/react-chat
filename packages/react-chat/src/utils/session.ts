@@ -1,5 +1,7 @@
 import { ChatPersistence, cuid, SessionOptions } from '@/common';
 
+import { broadcast, BroadcastType } from './broadcast';
+
 const VOICEFLOW_SESSION_KEY = 'voiceflow-session';
 
 const getSessionKey = (projectID: string) => `${VOICEFLOW_SESSION_KEY}-${projectID}`;
@@ -43,6 +45,8 @@ export const getSession = (persistence: ChatPersistence, projectID: string, user
 };
 
 export const saveSession = (persistence: ChatPersistence, projectID: string, session: SessionOptions): void => {
+  broadcast({ type: BroadcastType.SAVE_SESSION, payload: session });
+
   if (persistence === ChatPersistence.LOCAL_STORAGE) {
     setStorageSession(localStorage, projectID, session);
   } else if (persistence === ChatPersistence.SESSION_STORAGE) {
