@@ -1,0 +1,2 @@
+import{I as t,a as s}from"./index.bc62a473.js";import{j as r}from"./jsx-runtime.53900538.js";import"./top-caret.a5e264b7.js";import"./animation.dfc8875c.js";import"./iframe.b2739aeb.js";const m={title:"Core/Icon",component:t,argTypes:{svg:{options:Object.keys(s).filter(o=>o!=="topCaret"),control:{type:"radio"}}},parameters:{controls:{include:["svg"]}}},e=o=>r(t,{...o}),a=e.bind({});a.args={svg:"close",css:{color:"pink",height:50,width:50}};export{a as Default,m as default};
+//# sourceMappingURL=Icon.story.25a1e296.js.map
