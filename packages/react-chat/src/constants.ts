@@ -1,3 +1,7 @@
+export const GlobalOptions = {
+  SHADOW_ROOT: true,
+};
+
 export enum ClassName {
   ASSISTANT_INFO = 'vfrc-assistant-info',
   AVATAR = 'vfrc-avatar',
