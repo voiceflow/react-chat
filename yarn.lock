@@ -5234,7 +5234,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@voiceflow/base-types@npm:2.97.3":
+"@voiceflow/base-types@npm:2.97.3, @voiceflow/base-types@npm:^2.97.3":
   version: 2.97.3
   resolution: "@voiceflow/base-types@npm:2.97.3"
   dependencies:
@@ -5244,23 +5244,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@voiceflow/base-types@npm:^2.96.0":
-  version: 2.96.0
-  resolution: "@voiceflow/base-types@npm:2.96.0"
+"@voiceflow/chat-types@npm:^2.13.80":
+  version: 2.13.80
+  resolution: "@voiceflow/chat-types@npm:2.13.80"
   dependencies:
-    "@voiceflow/common": ^8.2.1
-    slate: 0.94.1
-  checksum: 9a8450d0004a1b1957217a70d08c2bfd29c0f8873266c274cb1084c7ecf3fb2716593b28dd9a6ed68950bb7185b257bfb6145eb887f4ce6997e8ca725ac83566
-  languageName: node
-  linkType: hard
-
-"@voiceflow/chat-types@npm:^2.13.72":
-  version: 2.13.72
-  resolution: "@voiceflow/chat-types@npm:2.13.72"
-  dependencies:
-    "@voiceflow/base-types": ^2.96.0
-    "@voiceflow/common": ^8.2.1
-  checksum: 2604ae4cc863dd8e8b655ec43c5746595d59c08200d9ecacd748e27a29b31c38803e70c2b45fb0e7074e66b404e3a03688596a8381ca5ea58d71a502d780c445
+    "@voiceflow/base-types": ^2.97.3
+    "@voiceflow/common": ^8.2.3
+  checksum: 77dc479cbb1265fe65e8ac17083f27858c6bc063e68d245c1ff4c1f3758cd43b81d64cff67ff2e0fde56c09c3b902dceacb095d5ed056611d4a839736edddc83
   languageName: node
   linkType: hard
 
@@ -5291,25 +5281,6 @@ __metadata:
     shallowequal: ^1.1.0
     typescript-fsa: 3.0.0
   checksum: 609dcd6abf746c13f34555a71f47d5c366bf030f94c1be22d844d28207da915d643e2e1f9c578b2471838a2cfe71801d8ca0cbd9ef1a84406cb0033711c66a8b
-  languageName: node
-  linkType: hard
-
-"@voiceflow/common@npm:^8.2.1":
-  version: 8.2.1
-  resolution: "@voiceflow/common@npm:8.2.1"
-  dependencies:
-    "@types/crypto-js": ^4.0.2
-    "@types/shallowequal": ^1.1.1
-    bson-objectid: ^2.0.1
-    crypto-js: ^4.1.1
-    cuid: ^2.1.8
-    dayjs: 1.10.7
-    lodash: ^4.17.21
-    murmurhash-wasm: ^1.3.0
-    number-to-words: ^1.2.4
-    shallowequal: ^1.1.0
-    typescript-fsa: 3.0.0
-  checksum: fffc2ccbd9cc475daa95c9c06a6b4a6dc82775d8fa8352c49776afad04a79ed58ecb2e416e3fed42506708faa1cf5453e0482ecf7867f89f2d9e96bfdb142bef
   languageName: node
   linkType: hard
 
@@ -5425,7 +5396,7 @@ __metadata:
     "@voiceflow/slate-serializer": 1.5.5
     "@voiceflow/stitches-react": 2.0.0
     "@voiceflow/tsconfig": 1.4.8
-    "@voiceflow/voiceflow-types": 3.26.9
+    "@voiceflow/voiceflow-types": 3.26.21
     bowser: ^2.11.0
     chroma-js: 2.4.2
     clsx: 1.2.1
@@ -5512,24 +5483,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@voiceflow/voice-types@npm:^2.9.53":
-  version: 2.9.53
-  resolution: "@voiceflow/voice-types@npm:2.9.53"
+"@voiceflow/voice-types@npm:^2.9.61":
+  version: 2.9.61
+  resolution: "@voiceflow/voice-types@npm:2.9.61"
   dependencies:
-    "@voiceflow/base-types": ^2.96.0
-    "@voiceflow/common": ^8.2.1
-  checksum: 1e3109b65ad8fece69c5a4b957d7c9f5cc5789a8ca24a5807f401992aeba753cb188687e76f70460a331e21759ab2e085c8f5ade9b3a6c931d5be3d6977bd441
+    "@voiceflow/base-types": ^2.97.3
+    "@voiceflow/common": ^8.2.3
+  checksum: 04ee41bf7c40432180ad1576fd0d539ba66e39c30839a8b8eeba16703eca2845b5ca7b98045fea4ed69339995938e913314a9e2d6a4d2a93f6415426a2277af8
   languageName: node
   linkType: hard
 
-"@voiceflow/voiceflow-types@npm:3.26.9":
-  version: 3.26.9
-  resolution: "@voiceflow/voiceflow-types@npm:3.26.9"
+"@voiceflow/voiceflow-types@npm:3.26.21":
+  version: 3.26.21
+  resolution: "@voiceflow/voiceflow-types@npm:3.26.21"
   dependencies:
-    "@voiceflow/base-types": ^2.96.0
-    "@voiceflow/chat-types": ^2.13.72
-    "@voiceflow/voice-types": ^2.9.53
-  checksum: 3b13dfeaf39d241d4c19b23eebf9548f8966021302d8e1f932766296375711465d4c416fe8962f9e5cc564743bb7bc2714328485d2e88b65b72499d3c4f98cf9
+    "@voiceflow/base-types": ^2.97.3
+    "@voiceflow/chat-types": ^2.13.80
+    "@voiceflow/voice-types": ^2.9.61
+  checksum: 1141d3090aecb989086b26598d220ca9f0168f7cda13c5e838dbc9ef66f3ab0a8691ca848d01f8d4a1901e7f1573248451abcf52f73faeab57c327e7fdea93a6
   languageName: node
   linkType: hard
 

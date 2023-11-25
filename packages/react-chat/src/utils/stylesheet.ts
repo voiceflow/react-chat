@@ -31,9 +31,11 @@ export const useResolveAssistantStyleSheet = (assistant?: Assistant): boolean =>
       return;
     }
 
+    const stylesheet = Array.isArray(assistant.stylesheet) ? assistant.stylesheet[0] : assistant.stylesheet;
+
     // inject stylesheet url
     (async () => {
-      await addStyleSheetURL(assistant.stylesheet!).catch((error) => {
+      await addStyleSheetURL(stylesheet).catch((error) => {
         console.error(`failed to load stylesheet: ${assistant.stylesheet}`);
         console.error(error);
       });
