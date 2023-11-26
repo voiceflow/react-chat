@@ -134,6 +134,7 @@ Create a new file `packages/react-chat/.env.development.local` with the followin
 
 ```sh
 VITE_VF_PROJECT_ID='< your project ID >'
+VITE_VF_VERSION_ID='< your version ID [development | production] >'
 VITE_VF_RUNTIME_URL='https://general-runtime.voiceflow.com'
 
 ```

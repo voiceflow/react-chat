@@ -5190,7 +5190,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ungap/structured-clone@npm:^1.0.0":
+"@ungap/structured-clone@npm:^1.0.0, @ungap/structured-clone@npm:^1.2.0":
   version: 1.2.0
   resolution: "@ungap/structured-clone@npm:1.2.0"
   checksum: 4f656b7b4672f2ce6e272f2427d8b0824ed11546a601d8d5412b9d7704e83db38a8d9f402ecdf2b9063fc164af842ad0ec4a55819f621ed7e7ea4d1efcc74524
@@ -5417,6 +5417,7 @@ __metadata:
     react-dom: 18.2.0
     react-markdown: 9.0.0
     rehype-raw: 7.0.0
+    rehype-sanitize: ^6.0.0
     remark-gfm: 4.0.0
     remeda: ^1.0.1
     rimraf: 3.0.2
@@ -12608,6 +12609,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"hast-util-sanitize@npm:^5.0.0":
+  version: 5.0.1
+  resolution: "hast-util-sanitize@npm:5.0.1"
+  dependencies:
+    "@types/hast": ^3.0.0
+    "@ungap/structured-clone": ^1.2.0
+    unist-util-position: ^5.0.0
+  checksum: cf7f3d1bb615f228fb90313adfd22ab4f7b2f34982d8d5aa86e3a5008964c0767de874b43530f2daae05823d16432783461c5dc4f45639018a3139d5363571de
+  languageName: node
+  linkType: hard
+
 "hast-util-to-jsx-runtime@npm:^2.0.0":
   version: 2.2.0
   resolution: "hast-util-to-jsx-runtime@npm:2.2.0"
@@ -18583,6 +18595,16 @@ __metadata:
     hast-util-raw: ^9.0.0
     vfile: ^6.0.0
   checksum: f9e28dcbf4c6c7d91a97c10a840310f18ef3268aa45abb3e0428b6b191ff3c4fa8f753b910d768588a2dac5c7da7e557b4ddc3f1b6cd252e8d20cb62d60c65ed
+  languageName: node
+  linkType: hard
+
+"rehype-sanitize@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "rehype-sanitize@npm:6.0.0"
+  dependencies:
+    "@types/hast": ^3.0.0
+    hast-util-sanitize: ^5.0.0
+  checksum: 8f1b44323a6012fbfa83ee6bc48163b846398952c60e5ddbd3d2275cb46cec4fb8d98a919ffce1b3322af469c6dcef9a0127bcf0a1d96203a5c193d07cd26742
   languageName: node
   linkType: hard
 
