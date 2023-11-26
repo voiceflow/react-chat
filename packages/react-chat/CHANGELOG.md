@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.49.5](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.49.4...@voiceflow/react-chat@1.49.5) (2023-11-26)
+
+### Bug Fixes
+
+* less restrictive sanitization (ACT-000) ([c655047](https://github.com/voiceflow/react-chat/commit/c655047d18b9e2a08d3cf856526dcf9759e45c51))
+
 ## [1.49.4](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.49.3...@voiceflow/react-chat@1.49.4) (2023-11-25)
 
 ### Bug Fixes
