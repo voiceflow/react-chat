@@ -16,9 +16,11 @@
         window.voiceflow.chat.load({
           url: '<%= VITE_VF_RUNTIME_URL %>',
           verify: { projectID: '<%= VITE_VF_PROJECT_ID %>' },
+          versionID: '<%= VITE_VF_VERSION_ID %>',
           user: {
             name: 'Development User',
           },
+          allowDangerousHTML: false,
         });
       }
     </script>

@@ -1,7 +1,11 @@
 import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
+import rehypeSanitize from 'rehype-sanitize';
 import remarkGfm from 'remark-gfm';
 
 import { styled } from '@/styles';
+
+import { schema } from './schema';
 
 const MarkdownText = styled(ReactMarkdown, {
   blockquote: {
@@ -34,6 +38,7 @@ const MarkdownText = styled(ReactMarkdown, {
 });
 
 MarkdownText.defaultProps = {
+  rehypePlugins: [rehypeRaw, [rehypeSanitize, schema]],
   remarkPlugins: [remarkGfm],
   components: {
     a: ({ node, href, children, ...props }) => (
