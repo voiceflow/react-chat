@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.50.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.50.0...@voiceflow/react-chat@1.50.1) (2023-11-27)
+
+### Bug Fixes
+
+* transform url (ACT-000) ([83af161](https://github.com/voiceflow/react-chat/commit/83af1614a8d12e388e41b5db768027ba1c8c0037))
+
 # [1.50.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.49.6...@voiceflow/react-chat@1.50.0) (2023-11-27)
 
 ### Features
