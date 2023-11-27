@@ -5,7 +5,7 @@ import remarkGfm from 'remark-gfm';
 
 import { styled } from '@/styles';
 
-import { schema } from './schema';
+import { schema, transformURL } from './schema';
 
 const MarkdownText = styled(ReactMarkdown, {
   blockquote: {
@@ -38,6 +38,7 @@ const MarkdownText = styled(ReactMarkdown, {
 });
 
 MarkdownText.defaultProps = {
+  urlTransform: transformURL,
   rehypePlugins: [rehypeRaw, [rehypeSanitize, schema]],
   remarkPlugins: [remarkGfm],
   components: {
