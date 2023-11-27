@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.50.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.49.6...@voiceflow/react-chat@1.50.0) (2023-11-27)
+
+### Features
+
+* fix card image height (BUG-637) ([#91](https://github.com/voiceflow/react-chat/issues/91)) ([23e447c](https://github.com/voiceflow/react-chat/commit/23e447c7e3165b777408d8486962e2524530e4c0))
+
 ## [1.49.6](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.49.5...@voiceflow/react-chat@1.49.6) (2023-11-27)
 
 ### Bug Fixes
