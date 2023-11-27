@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.49.6](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.49.5...@voiceflow/react-chat@1.49.6) (2023-11-27)
+
+### Bug Fixes
+
+* export theme ([3d17ff0](https://github.com/voiceflow/react-chat/commit/3d17ff0361ce89845e3793582eeaeb24af96abde))
+
 ## [1.49.5](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.49.4...@voiceflow/react-chat@1.49.5) (2023-11-26)
 
 ### Bug Fixes
