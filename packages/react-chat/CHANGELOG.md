@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.50.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.50.1...@voiceflow/react-chat@1.50.2) (2023-11-27)
+
+### Bug Fixes
+
+* add ready field ([6fade9f](https://github.com/voiceflow/react-chat/commit/6fade9fa2cc5ab2d0b2c407bc82d727cb473b8f5))
+
 ## [1.50.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.50.0...@voiceflow/react-chat@1.50.1) (2023-11-27)
 
 ### Bug Fixes
