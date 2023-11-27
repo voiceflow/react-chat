@@ -14,9 +14,10 @@ import { ChatAPI } from './types';
 
 interface ChatWidgetProps extends React.PropsWithChildren {
   chatAPI?: ChatAPI | undefined;
+  ready?: () => void;
 }
 
-const ChatWidget: React.FC<ChatWidgetProps> = ({ chatAPI }) => {
+const ChatWidget: React.FC<ChatWidgetProps> = ({ chatAPI, ready }) => {
   const { assistant, open, close, interact } = useContext(RuntimeStateAPIContext);
   const { isOpen } = useContext(RuntimeStateContext);
 
@@ -42,6 +43,8 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ chatAPI }) => {
         push: (...messages: Trace.AnyTrace[]) => setProactiveMessages((prev) => [...prev, ...messages]),
       },
     });
+
+    ready?.();
 
     return () => {
       Object.assign(chatAPI, {

@@ -24,11 +24,13 @@ window.voiceflow.chat ??= {
 
     const assistant = await mergeAssistant(config);
 
-    root.render(
-      <RuntimeProvider assistant={assistant} config={config}>
-        <ChatWidget chatAPI={window.voiceflow!.chat} />
-      </RuntimeProvider>
-    );
+    await new Promise<void>((resolve) => {
+      root.render(
+        <RuntimeProvider assistant={assistant} config={config}>
+          <ChatWidget chatAPI={window.voiceflow!.chat} ready={resolve} />
+        </RuntimeProvider>
+      );
+    });
   },
 
   destroy: () => root.render(null),
