@@ -23,7 +23,7 @@ export interface FontOptions {
   height?: BaseCSS['lineHeight'] | Token<typeof Font['LINE_HEIGHTS']>;
 }
 
-export const { styled, config, keyframes, createTheme } = createStitches({
+export const { styled, config, keyframes, theme, createTheme } = createStitches({
   ...(__USE_SHADOW_ROOT__ && { root: shadowRoot }),
 
   theme: {
