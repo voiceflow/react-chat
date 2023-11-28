@@ -18,6 +18,8 @@ const ChatInput: React.FC<ChatInputProps> = ({ id, onSend, ...props }) => {
   const internalID = useMemo(() => `vf-chat-input--${cuid()}`, []) ?? id;
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>): void => {
+    event.stopPropagation();
+
     if (event.key !== 'Enter') return;
 
     event.preventDefault();
@@ -26,7 +28,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ id, onSend, ...props }) => {
 
   return (
     <Container>
-      <Input id={internalID} onKeyPress={handleKeyPress} {...props} />
+      <Input id={internalID} onKeyDown={handleKeyPress} {...props} />
       <ButtonContainer htmlFor={internalID} withContent={!!props.value}>
         <Bubble size="small" svg="smallArrowUp" onClick={onSend} />
       </ButtonContainer>
