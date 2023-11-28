@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.50.3](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.50.2...@voiceflow/react-chat@1.50.3) (2023-11-28)
+
+### Bug Fixes
+
+* stop event propagation from chat input (ACT-000) ([#92](https://github.com/voiceflow/react-chat/issues/92)) ([e0a116a](https://github.com/voiceflow/react-chat/commit/e0a116ae4a0f1f6621b0b401c0863782dc7e6f7a))
+
 ## [1.50.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.50.1...@voiceflow/react-chat@1.50.2) (2023-11-27)
 
 ### Bug Fixes
