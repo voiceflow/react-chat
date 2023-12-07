@@ -20,22 +20,27 @@ export interface FooterProps {
   /**
    * A callback to start a new conversation.
    */
-  onStart?: () => Promise<void> | undefined;
+  onStart?: (() => Promise<void>) | undefined;
 
   /**
    * A callback to submit a user response.
    */
-  onSend?: ((message: string) => void) | undefined;
+  onSend?: ((message: string) => Promise<void>) | undefined;
 }
 
 const Footer: React.FC<FooterProps> = ({ withWatermark, hasEnded, onStart, onSend }) => {
   const [message, setMessage] = useState('');
+  const [buffering, setBuffering] = useState(false);
 
-  const handleSend = (): void => {
-    if (!message) return;
+  const handleSend = async (): Promise<void> => {
+    if (!message || buffering) return;
 
-    onSend?.(message);
+    setBuffering(true);
+
     setMessage('');
+    await onSend?.(message);
+
+    setBuffering(false);
   };
 
   return (
@@ -44,7 +49,7 @@ const Footer: React.FC<FooterProps> = ({ withWatermark, hasEnded, onStart, onSen
         <Button onClick={onStart}>Start New Chat</Button>
       ) : (
         // eslint-disable-next-line jsx-a11y/no-autofocus
-        <ChatInput value={message} placeholder="Message…" autoFocus onValueChange={setMessage} onSend={handleSend} />
+        <ChatInput value={message} placeholder="Message…" autoFocus onValueChange={setMessage} onSend={handleSend} buffering={buffering} />
       )}
       {withWatermark && (
         <Watermark>

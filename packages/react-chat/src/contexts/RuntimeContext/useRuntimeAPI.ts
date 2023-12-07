@@ -15,7 +15,7 @@ export enum FeedbackName {
   NEGATIVE = 'Thumbs down',
 }
 
-const createContext = () => ({
+export const createContext = () => ({
   messages: [],
 });
 
