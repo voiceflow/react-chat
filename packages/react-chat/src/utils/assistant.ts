@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { VoiceflowRuntime } from '@voiceflow/sdk-runtime';
 import type { PartialDeep } from 'type-fest';
 
