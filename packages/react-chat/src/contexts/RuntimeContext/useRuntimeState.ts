@@ -14,7 +14,7 @@ import { broadcast, BroadcastType } from '@/utils/broadcast';
 import { getSession, saveSession } from '@/utils/session';
 
 import { useNoReply } from './useNoReply';
-import { useRuntimeAPI } from './useRuntimeAPI';
+import { createContext, useRuntimeAPI } from './useRuntimeAPI';
 
 export interface Settings {
   assistant: Assistant;
@@ -94,7 +94,11 @@ export const useRuntimeState = ({ assistant, config }: Settings) => {
     }
 
     setIndicator(true);
-    const context = await runtime.interact(action);
+    const context = await runtime.interact(action).catch((error) => {
+      // TODO: better define error condition
+      console.error(error);
+      return createContext();
+    });
     setIndicator(false);
 
     addTurn({
