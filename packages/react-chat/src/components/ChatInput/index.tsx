@@ -34,7 +34,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ id, onSend, buffering, ...props }
   return (
     <Container>
       <Input id={internalID} onKeyDown={handleKeyPress} {...props} />
-      <ButtonContainer htmlFor={internalID} sendIcon={!!props.value && !buffering}>
+      <ButtonContainer htmlFor={internalID} ready={!!props.value && !buffering}>
         <Bubble size="small" svg="smallArrowUp" onClick={onSend} />
       </ButtonContainer>
     </Container>
