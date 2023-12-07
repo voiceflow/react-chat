@@ -9,12 +9,17 @@ import { ButtonContainer, Container } from './styled';
 
 export interface ChatInputProps extends InputProps {
   /**
+   * If true, does not allow the user to submit a response.
+   */
+  buffering?: boolean;
+
+  /**
    * A callback to submit the user response.
    */
   onSend?: VoidFunction;
 }
 
-const ChatInput: React.FC<ChatInputProps> = ({ id, onSend, ...props }) => {
+const ChatInput: React.FC<ChatInputProps> = ({ id, onSend, buffering, ...props }) => {
   const internalID = useMemo(() => `vf-chat-input--${cuid()}`, []) ?? id;
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>): void => {
@@ -29,7 +34,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ id, onSend, ...props }) => {
   return (
     <Container>
       <Input id={internalID} onKeyDown={handleKeyPress} {...props} />
-      <ButtonContainer htmlFor={internalID} withContent={!!props.value}>
+      <ButtonContainer htmlFor={internalID} sendIcon={!!props.value && !buffering}>
         <Bubble size="small" svg="smallArrowUp" onClick={onSend} />
       </ButtonContainer>
     </Container>

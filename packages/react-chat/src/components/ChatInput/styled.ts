@@ -22,7 +22,7 @@ export const ButtonContainer = styled(tag('label', 'button'), {
   },
 
   variants: {
-    withContent: {
+    sendIcon: {
       true: {
         [`& ${Bubble.Container}`]: {
           transform: 'scale(1)',
