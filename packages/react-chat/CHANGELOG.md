@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.50.4](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.50.3...@voiceflow/react-chat@1.50.4) (2023-12-07)
+
+### Bug Fixes
+
+* add buffering for requests (ACT-20) ([#94](https://github.com/voiceflow/react-chat/issues/94)) ([e5d7ee8](https://github.com/voiceflow/react-chat/commit/e5d7ee8a4e5bb64f91e795c85d5db5ac71162aa2))
+* linting ([a07b9bb](https://github.com/voiceflow/react-chat/commit/a07b9bb0c301aa2ff8a94ec3340a66b7ca927605))
+
 ## [1.50.3](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.50.2...@voiceflow/react-chat@1.50.3) (2023-11-28)
 
 ### Bug Fixes
