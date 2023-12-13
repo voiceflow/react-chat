@@ -7,6 +7,7 @@ export const textareaUniqueStyles: CSS = {
   borderRadius: '$1 0 0 $1',
   height: `42px`,
   borderRightWidth: 0,
+  fontFamily: '$default',
 };
 
 export const textareaStyles: CSS = {
