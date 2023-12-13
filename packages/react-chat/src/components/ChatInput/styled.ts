@@ -14,7 +14,7 @@ export const ButtonContainer = styled(tag('label', 'button'), {
   display: 'inline-flex',
   justifyContent: 'center',
   alignItems: 'center',
-  padding: '$1',
+  paddingBottom: '9px',
   width: '$md',
   borderRadius: '$1',
   boxSizing: 'border-box',
@@ -22,6 +22,7 @@ export const ButtonContainer = styled(tag('label', 'button'), {
 
   [`& ${Bubble.Container}`]: {
     transform: 'scale(0)',
+    marginTop: 'auto',
     trans: ['background-color', 'transform'],
   },
 
