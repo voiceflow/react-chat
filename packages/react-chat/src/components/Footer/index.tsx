@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import Button from '@/components/Button';
-import ChatInput from '@/components/ChatInput';
+import ChatInput from '@/components/ChatInput/index';
 
 import { Container, Watermark } from './styled';
 
