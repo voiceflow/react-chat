@@ -26,7 +26,6 @@ export const Container = styled(tag('textarea'), {
   width: 'calc(100% - 42px)',
   color: '$black',
 
-
   '&:focus': {
     ...inputFocusStyles,
     outline: 'none',
