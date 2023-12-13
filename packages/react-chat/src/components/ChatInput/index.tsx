@@ -23,8 +23,7 @@ export interface ChatInputProps extends TextareaProps {
 const ChatInput: React.FC<ChatInputProps> = ({ id, onSend, buffering, ...props }) => {
   const internalID = useMemo(() => `vf-chat-input--${cuid()}`, []) ?? id;
 
-  // React.KeyboardEvent<HTMLTextAreaElement>
-  const handleKeyPress = (event: any): void => {
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLTextAreaElement>): void => {
     event.stopPropagation();
     const { shiftKey } = event;
 
@@ -46,7 +45,6 @@ const ChatInput: React.FC<ChatInputProps> = ({ id, onSend, buffering, ...props }
   return (
     <Container>
       <Textarea id={internalID} onKeyDown={handleKeyPress} {...props} />
-      {/* <Input id={internalID} onKeyDown={handleKeyPress} {...props} /> */}
       <ButtonContainer htmlFor={internalID} ready={!!props.value && !buffering}>
         <Bubble size="small" svg="smallArrowUp" onClick={onSend} />
       </ButtonContainer>

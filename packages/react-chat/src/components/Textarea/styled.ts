@@ -1,37 +1,37 @@
-import { ClassName } from '@/constants';
-import { tagFactory } from '@/hocs';
+import TextareaAutosize from 'react-textarea-autosize';
+
 import { CSS, styled } from '@/styles';
 
-const tag = tagFactory(ClassName.TEXTAREA);
+export const textareaUniqueStyles: CSS = {
+  width: 'calc(100% - 42px)',
+  borderRadius: '$1 0 0 $1',
+  height: `$md !important`,
+};
 
 export const textareaStyles: CSS = {
-  height: '$md',
   boxSizing: 'border-box',
   border: '1px solid rgba(115,115,118,0.3)',
-  borderRight: 'none',
-  borderRadius: '$1 0 0 $1',
   backgroundColor: '$white',
   boxShadow: '0 1px 12px $shadow2',
   trans: ['border-color'],
   resize: 'none',
+  height: `$md !important`,
 };
 
 export const textareaFocusStyles: CSS = {
   border: '1px solid rgba(115,115,118,0.5)',
-  borderRight: 'none',
 };
 
-export const Container = styled(tag('textarea'), {
+export const Container = styled(TextareaAutosize, {
   ...textareaStyles,
-  typo: {},
+  ...textareaUniqueStyles,
   // TODO use tokens
   padding: '9px $4 5px',
-  width: 'calc(100% - 42px)',
-
   color: '$black',
 
   '&:focus': {
     ...textareaFocusStyles,
+    ...textareaUniqueStyles,
     outline: 'none',
   },
 
