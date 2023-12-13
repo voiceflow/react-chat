@@ -36,6 +36,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ id, onSend, buffering, ...props }
       const { selectionStart, selectionEnd, value } = input as EventTarget & { selectionStart: number; selectionEnd: number; value: string };
       const newValue = `${value.substring(0, selectionStart)} \n${value.substring(selectionEnd)}`;
       props.onValueChange?.(newValue);
+      console.log(textareaRef?.current);
       textareaRef?.current?.setSelectionRange(value.length, value.length);
     } else {
       event.preventDefault();
