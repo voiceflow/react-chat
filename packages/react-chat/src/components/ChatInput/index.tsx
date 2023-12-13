@@ -38,8 +38,10 @@ const ChatInput: React.FC<ChatInputProps> = ({ id, onSend, buffering, ...props }
       props.onValueChange?.(newValue);
 
       if (!textareaRef?.current) return;
-      textareaRef.current.scrollTop = textareaRef.current.scrollHeight;
-      textareaRef?.current?.setSelectionRange(value.length, value.length);
+
+      const textarea = textareaRef.current;
+      textarea.scrollTop = textarea.scrollHeight;
+      textarea.setSelectionRange(value.length, value.length);
     } else {
       event.preventDefault();
       onSend?.();
