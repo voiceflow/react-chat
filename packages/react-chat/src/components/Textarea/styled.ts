@@ -5,7 +5,7 @@ import { CSS, styled } from '@/styles';
 export const textareaUniqueStyles: CSS = {
   width: 'calc(100% - 42px)',
   borderRadius: '$1 0 0 $1',
-  height: `$md !important`,
+  height: `42px !important`,
 };
 
 export const textareaStyles: CSS = {
@@ -15,7 +15,6 @@ export const textareaStyles: CSS = {
   boxShadow: '0 1px 12px $shadow2',
   trans: ['border-color'],
   resize: 'none',
-  height: `$md !important`,
 };
 
 export const textareaFocusStyles: CSS = {
@@ -26,7 +25,7 @@ export const Container = styled(TextareaAutosize, {
   ...textareaStyles,
   ...textareaUniqueStyles,
   // TODO use tokens
-  padding: '9px $4 5px',
+  padding: '12px $4 ',
   color: '$black',
 
   '&:focus': {

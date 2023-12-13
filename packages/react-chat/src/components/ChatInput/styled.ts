@@ -42,7 +42,7 @@ export const Container = styled(tag('div'), {
   boxShadow: '0 1px 12px $shadow2',
   trans: ['border-color', 'box-shadow'],
 
-  [`& ${Textarea}`]: {
+  [`& ${Textarea.Container}`]: {
     minHeight: '$md',
     margin: 0,
     borderRightWidth: 0,
@@ -64,12 +64,12 @@ export const Container = styled(tag('div'), {
     color: '$white',
   },
 
-  [`& ${Textarea}:focus`]: {
+  [`& ${Textarea.Container}:focus`]: {
     ...textareaFocusStyles,
     borderRightWidth: 0,
   },
 
-  [`& ${Textarea}:focus + ${ButtonContainer}`]: {
+  [`& ${Textarea.Container}:focus + ${ButtonContainer}`]: {
     ...textareaFocusStyles,
     borderLeftWidth: 0,
   },
