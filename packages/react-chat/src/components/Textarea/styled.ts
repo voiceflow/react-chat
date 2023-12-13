@@ -4,30 +4,34 @@ import { CSS, styled } from '@/styles';
 
 const tag = tagFactory(ClassName.TEXTAREA);
 
-export const inputStyles: CSS = {
+export const textareaStyles: CSS = {
   height: '$md',
   boxSizing: 'border-box',
   border: '1px solid rgba(115,115,118,0.3)',
-  borderRadius: '$1',
+  borderRight: 'none',
+  borderRadius: '$1 0 0 $1',
   backgroundColor: '$white',
   boxShadow: '0 1px 12px $shadow2',
   trans: ['border-color'],
+  resize: 'none',
 };
 
-export const inputFocusStyles: CSS = {
+export const textareaFocusStyles: CSS = {
   border: '1px solid rgba(115,115,118,0.5)',
+  borderRight: 'none',
 };
 
 export const Container = styled(tag('textarea'), {
-  ...inputStyles,
+  ...textareaStyles,
   typo: {},
   // TODO use tokens
-  padding: '6px $4',
+  padding: '9px $4 5px',
   width: 'calc(100% - 42px)',
+
   color: '$black',
 
   '&:focus': {
-    ...inputFocusStyles,
+    ...textareaFocusStyles,
     outline: 'none',
   },
 

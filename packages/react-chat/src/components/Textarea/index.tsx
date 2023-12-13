@@ -10,7 +10,7 @@ export interface TextareaProps extends Merge<React.ComponentProps<typeof Contain
 const Textarea: React.FC<TextareaProps> = ({ onValueChange, onChange, rows = 1, ...props }) => {
   const handleChange = chain(onChange, (event) => onValueChange(event.target.value));
 
-  return <Container {...props} onChange={handleChange} />;
+  return <Container {...props}  onChange={handleChange} />;
 };
 
 /**
