@@ -1,5 +1,5 @@
 import cuid from 'cuid';
-import { useMemo } from 'react';
+import { useMemo, useRef } from 'react';
 
 import { Textarea } from '@/components';
 import Bubble from '@/components/Bubble';
@@ -22,6 +22,7 @@ export interface ChatInputProps extends TextareaProps {
 
 const ChatInput: React.FC<ChatInputProps> = ({ id, onSend, buffering, ...props }) => {
   const internalID = useMemo(() => `vf-chat-input--${cuid()}`, []) ?? id;
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLTextAreaElement>): void => {
     event.stopPropagation();
@@ -33,9 +34,9 @@ const ChatInput: React.FC<ChatInputProps> = ({ id, onSend, buffering, ...props }
       const input = event.target;
 
       const { selectionStart, selectionEnd, value } = input as EventTarget & { selectionStart: number; selectionEnd: number; value: string };
-
       const newValue = `${value.substring(0, selectionStart)} \n${value.substring(selectionEnd)}`;
       props.onValueChange?.(newValue);
+      textareaRef?.current?.setSelectionRange(value.length, value.length);
     } else {
       event.preventDefault();
       onSend?.();
@@ -44,7 +45,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ id, onSend, buffering, ...props }
 
   return (
     <Container>
-      <Textarea id={internalID} onKeyDown={handleKeyPress} {...props} />
+      <Textarea ref={textareaRef} id={internalID} onKeyDown={handleKeyPress} {...props} />
       <ButtonContainer htmlFor={internalID} ready={!!props.value && !buffering}>
         <Bubble size="small" svg="smallArrowUp" onClick={onSend} />
       </ButtonContainer>
