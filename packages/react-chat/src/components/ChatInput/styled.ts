@@ -13,7 +13,7 @@ export const ButtonContainer = styled(tag('label', 'button'), {
   ...textareaStyles,
   display: 'inline-flex',
   justifyContent: 'center',
-  alignItems: 'end',
+  alignItems: 'center',
   padding: '$1',
   width: '$md',
   borderRadius: '$1',
@@ -43,6 +43,7 @@ export const Container = styled(tag('div'), {
   trans: ['border-color', 'box-shadow'],
 
   [`& ${Textarea.Container}`]: {
+    ...textareaStyles,
     minHeight: '$md',
     margin: 0,
     borderRightWidth: 0,
@@ -50,7 +51,6 @@ export const Container = styled(tag('div'), {
     borderBottomRightRadius: 0,
     paddingRight: 7,
     boxShadow: 'none',
-    ...textareaStyles,
   },
 
   [`& ${ButtonContainer}`]: {
