@@ -18,6 +18,7 @@ export * as Proactive from './Proactive';
 export { default as Prompt } from './Prompt';
 export { default as SystemResponse } from './SystemResponse';
 export { Markdown, default as Text } from './Text';
+export { default as Textarea } from './Textarea';
 export { default as Timestamp } from './Timestamp';
 export { default as Tooltip } from './Tooltip';
 export { default as TypingIndicator } from './TypingIndicator';

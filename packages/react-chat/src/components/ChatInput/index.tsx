@@ -1,13 +1,14 @@
 import cuid from 'cuid';
 import { useMemo } from 'react';
 
+import { Textarea } from '@/components';
 import Bubble from '@/components/Bubble';
-import Input, { InputProps } from '@/components/Input';
 import { createControlled } from '@/utils/controls';
 
+import { TextareaProps } from '../Textarea';
 import { ButtonContainer, Container } from './styled';
 
-export interface ChatInputProps extends InputProps {
+export interface ChatInputProps extends TextareaProps {
   /**
    * If true, does not allow the user to submit a response.
    */
@@ -22,18 +23,28 @@ export interface ChatInputProps extends InputProps {
 const ChatInput: React.FC<ChatInputProps> = ({ id, onSend, buffering, ...props }) => {
   const internalID = useMemo(() => `vf-chat-input--${cuid()}`, []) ?? id;
 
-  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>): void => {
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLTextAreaElement>): void => {
     event.stopPropagation();
+    const { shiftKey } = event;
 
     if (event.key !== 'Enter') return;
+    if (event.key === 'Enter' && shiftKey) {
+      event.preventDefault();
+      const input = event.target;
 
-    event.preventDefault();
-    onSend?.();
+      const { selectionStart, selectionEnd, value } = input as EventTarget & { selectionStart: number; selectionEnd: number; value: string };
+
+      const newValue = `${value.substring(0, selectionStart)} \n${value.substring(selectionEnd)}`;
+      props.onValueChange?.(newValue);
+    } else {
+      event.preventDefault();
+      onSend?.();
+    }
   };
 
   return (
     <Container>
-      <Input id={internalID} onKeyDown={handleKeyPress} {...props} />
+      <Textarea id={internalID} onKeyDown={handleKeyPress} {...props} />
       <ButtonContainer htmlFor={internalID} ready={!!props.value && !buffering}>
         <Bubble size="small" svg="smallArrowUp" onClick={onSend} />
       </ButtonContainer>

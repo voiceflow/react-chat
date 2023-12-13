@@ -12,7 +12,6 @@ export const ChatContainer = styled(tag('div', 'chat'), {
   overflow: 'hidden',
   borderRadius: '$2',
   boxShadow: '0 2px 48px rgba(19,33,68,0.16), 0 0 0 1px $shadow4',
-
   height: '90%',
   maxHeight: MAX_CHAT_HEIGHT,
 
