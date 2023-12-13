@@ -28,19 +28,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ id, onSend, buffering, ...props }
     const { shiftKey } = event;
 
     if (event.key !== 'Enter') return;
-    if (event.key === 'Enter' && shiftKey) {
-      event.preventDefault();
-      const input = event.target;
-
-      const { selectionStart, selectionEnd, value } = input as EventTarget & { selectionStart: number; selectionEnd: number; value: string };
-      const newValue = `${value.substring(0, selectionStart)} \n${value.substring(selectionEnd)}`;
-      props.onValueChange?.(newValue);
-
-      if (!textareaRef?.current) return;
-
-      const textarea = textareaRef.current;
-      textarea.scrollTop = textarea.scrollHeight;
-    } else {
+    if (event.key === 'Enter' && !shiftKey) {
       event.preventDefault();
       onSend?.();
     }
