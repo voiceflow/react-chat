@@ -40,7 +40,6 @@ const ChatInput: React.FC<ChatInputProps> = ({ id, onSend, buffering, ...props }
 
       const textarea = textareaRef.current;
       textarea.scrollTop = textarea.scrollHeight;
-      textarea.setSelectionRange(value.length, value.length);
     } else {
       event.preventDefault();
       onSend?.();
