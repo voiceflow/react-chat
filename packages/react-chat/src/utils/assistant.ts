@@ -49,6 +49,7 @@ export const mergeAssistant = async (config: ChatConfig): Promise<Assistant> => 
 
   // fetch remote publishing config
   const runtime = new VoiceflowRuntime({ ...config, url });
+
   const publishing = await runtime.getPublishing({ ...(versionID && { versionID }) }).catch((error) => {
     console.error(error);
     return null;
