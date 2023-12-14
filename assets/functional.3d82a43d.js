@@ -1,2 +1,0 @@
-import{r as j,j as m}from"./jsx-runtime.d9826e37.js";const C=(c,e)=>({initialValue:r,...a})=>{var s,d;const h=j.exports.useState(r!=null?r:e==null?void 0:e.defaultValue),u=(d=(s=e==null?void 0:e.enrichProps)==null?void 0:s.call(e,a,h))!=null?d:a,[x,P]=h;return m(c,{...u,value:x,onValueChange:P})},g=(...c)=>(...e)=>c.forEach(r=>r==null?void 0:r(...e)),v=()=>{};export{C as a,g as c,v as n};
-//# sourceMappingURL=functional.3d82a43d.js.map
