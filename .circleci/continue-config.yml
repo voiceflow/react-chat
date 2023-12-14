@@ -12,7 +12,7 @@ parameters:
     default: false
 
 orbs:
-  vfcommon: voiceflow/common@0.39.1
+  vfcommon: voiceflow/common@0.48.0
   sonarcloud: sonarsource/sonarcloud@2.0.0
 
 defaults:
@@ -27,7 +27,7 @@ defaults:
 
 jobs:
   test: # Main unit, style, and dependency tests
-    executor: vfcommon/node-executor
+    executor: vfcommon/node-executor-node-20
     steps: # a collection of executable commands
       - checkout
       - attach_workspace:
@@ -35,13 +35,10 @@ jobs:
       - vfcommon/install_node_modules:
           avoid_post_install_scripts: false
       - vfcommon/monorepo_lint_report:
-          force_execution: << pipeline.parameters.build-all >>
           run_on_root: true
       - vfcommon/monorepo_dependency_tests:
-          force_execution: << pipeline.parameters.build-all >>
           run_on_root: true
       - vfcommon/monorepo_unit_tests:
-          force_execution: << pipeline.parameters.build-all >>
           run_on_root: true
       - vfcommon/monorepo_save_cache:
           package: "all"
@@ -51,7 +48,7 @@ jobs:
       # - sonarcloud/scan
 
   push-to-cdn: # Main unit, style, and dependency tests
-    executor: vfcommon/node-executor
+    executor: vfcommon/node-executor-node-20
     steps: # a collection of executable commands
       - attach_workspace:
           at: ~/voiceflow
@@ -66,6 +63,7 @@ workflows:
     jobs:
       - vfcommon/install_and_build:
           <<: *slack-fail-post-step
+          executor: vfcommon/node-large-executor-node-20
           context: dev-test
           avoid_post_install_scripts: false
           name: build
@@ -88,6 +86,7 @@ workflows:
 
       - vfcommon/monorepo_release:
           <<: *slack-fail-post-step
+          executor: vfcommon/node-executor-node-20
           avoid_post_install_scripts: false
           ssh_key: << pipeline.parameters.ssh-fingerprint >>
           context: dev-test
