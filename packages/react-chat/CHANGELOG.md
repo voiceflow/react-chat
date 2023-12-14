@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.51.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.50.4...@voiceflow/react-chat@1.51.0) (2023-12-14)
+
+### Features
+
+* new line on Shift + Enter (ACT-25) ([#95](https://github.com/voiceflow/react-chat/issues/95)) ([f38c705](https://github.com/voiceflow/react-chat/commit/f38c7054a017739222d33b3c05b3b96e56d66afd))
+
 ## [1.50.4](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.50.3...@voiceflow/react-chat@1.50.4) (2023-12-07)
 
 ### Bug Fixes
