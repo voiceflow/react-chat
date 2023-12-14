@@ -1,2 +1,0 @@
-import{V as o}from"./fixtures.e9667a2d.js";import{A as a}from"./index.c1f79a25.js";import{j as s}from"./jsx-runtime.44b7ae6c.js";import"./animation.b38ae99d.js";import"./iframe.eb54f574.js";const c={title:"Core/Avatar",component:a,argTypes:{size:{options:["small","large"],control:{type:"radio"},defaultValue:"small"}},args:{avatar:o}},r=t=>s(a,{...t}),e=r.bind({});e.args={size:"small"};const l=r.bind({});l.args={size:"large"};export{l as Large,e as Small,c as default};
-//# sourceMappingURL=Avatar.story.e058bfa2.js.map
