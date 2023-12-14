@@ -36,6 +36,7 @@ export const createControlled: {
   ({ initialValue, ...props }: ControlledProps<ControlProps<any>>) => {
     const stateAPI = useState<ControlProps<any>>((initialValue ?? options?.defaultValue)!);
     const enrichedProps = options?.enrichProps?.(props, stateAPI) ?? props;
+
     const [value, setValue] = stateAPI;
 
     return <Component {...enrichedProps} value={value} onValueChange={setValue} />;
