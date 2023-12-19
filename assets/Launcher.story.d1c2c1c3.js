@@ -1,0 +1,2 @@
+import{L as o}from"./index.5b4d6520.js";import{j as r}from"./jsx-runtime.9831d490.js";import"./tag.1cb7065b.js";import"./animation.0ed09c42.js";import"./iframe.171a5ade.js";const p={title:"Components/Launcher",component:o,parameters:{controls:{hideNoControlsWarning:!0}}},t=n=>r(o,{...n}),u=t.bind({}),s=t.bind({});s.args={image:"https://cm4-production-assets.s3.amazonaws.com/1668625107157-vf-nobg.png"};export{u as Default,s as IconOverride,p as default};
+//# sourceMappingURL=Launcher.story.d1c2c1c3.js.map
