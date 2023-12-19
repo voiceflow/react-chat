@@ -23,6 +23,7 @@ export enum ClassName {
   PROMPT = 'vfrc-prompt',
   SYSTEM_RESPONSE = 'vfrc-system-response',
   TIMESTAMP = 'vfrc-timestamp',
+  TEXTAREA = 'vfrc-textarea',
   TOOLTIP = 'vfrc-tooltip',
   TYPING_INDICATOR = 'vfrc-typing-indicator',
   USER_RESPONSE = 'vfrc-user-response',
