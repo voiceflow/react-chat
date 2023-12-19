@@ -14,7 +14,7 @@ export const ButtonContainer = styled(tag('label', 'button'), {
   display: 'inline-flex',
   justifyContent: 'center',
   alignItems: 'center',
-  paddingBottom: '9px',
+  paddingBottom: '8px',
   width: '$md',
   borderRadius: '$1',
   boxSizing: 'border-box',
