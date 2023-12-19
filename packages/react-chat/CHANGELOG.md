@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.51.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.51.1...@voiceflow/react-chat@1.51.2) (2023-12-19)
+
+### Bug Fixes
+
+*  textarea font size (DX-000) ([#99](https://github.com/voiceflow/react-chat/issues/99)) ([b2c6d0b](https://github.com/voiceflow/react-chat/commit/b2c6d0b73433cefbdaebc932f5564bd94b0161ed))
+
 ## [1.51.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.51.0...@voiceflow/react-chat@1.51.1) (2023-12-19)
 
 ### Bug Fixes
