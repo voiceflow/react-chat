@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.51.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.51.0...@voiceflow/react-chat@1.51.1) (2023-12-19)
+
+### Bug Fixes
+
+* message bubble white-space property (DX-876) ([#98](https://github.com/voiceflow/react-chat/issues/98)) ([eb9d24d](https://github.com/voiceflow/react-chat/commit/eb9d24dc985aebbc18b42ee02c515a6db36184ca))
+
 # [1.51.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.50.4...@voiceflow/react-chat@1.51.0) (2023-12-14)
 
 ### Features
