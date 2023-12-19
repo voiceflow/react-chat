@@ -6,6 +6,5 @@ export const ChatWindowContainer = styled('div', {
 
   [`& ${Chat.Container}`]: {
     height: '100%',
-    backgroundColor: '$red-100',
   },
 });
