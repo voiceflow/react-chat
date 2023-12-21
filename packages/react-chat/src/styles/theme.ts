@@ -61,7 +61,6 @@ export const { styled, config, keyframes, theme, createTheme } = createStitches(
       round: '50%',
     },
   },
-
   media: {
     mobile: '(max-width: 768px)',
   },

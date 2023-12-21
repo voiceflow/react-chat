@@ -27,8 +27,7 @@ export const textareaFocusStyles: CSS = {
 export const Container = styled(TextareaAutosize, {
   ...textareaStyles,
   ...textareaUniqueStyles,
-  // TODO use tokens
-  padding: '11px $4 10px',
+  padding: '9px $4 10px',
   color: '$black',
 
   '&:focus': {
