@@ -1,5 +1,4 @@
 import React from 'react';
-import { theme } from '../src/styles/theme';
 
 const preview = {
   parameters: {
@@ -15,7 +14,7 @@ const preview = {
   decorators: [
     (Story) => (
       <>
-        <section style={{background: 'red'}}>DECORATOR from preview.tsx</section>
+        <section style={{ background: 'red', height: '100px' }}>DECORATOR from preview.tsx</section>
         <Story />
       </>
     ),
