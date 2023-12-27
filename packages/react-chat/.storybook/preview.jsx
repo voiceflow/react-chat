@@ -14,7 +14,7 @@ const preview = {
   decorators: [
     (Story) => (
       <>
-        <section style={{ background: 'red', height: '100px' }}>DECORATOR from preview.tsx</section>
+        this is ignored 
         <Story />
       </>
     ),
