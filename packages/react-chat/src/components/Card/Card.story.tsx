@@ -1,6 +1,10 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
+import { styled } from '@/styles';
+
 import Card from '.';
+
+const Wrap = styled('article', { background: '#00ff' });
 
 export default {
   title: 'Components/Card',
@@ -13,7 +17,11 @@ export default {
   },
 } as ComponentMeta<typeof Card>;
 
-const Template: ComponentStory<typeof Card> = (args) => <Card {...args} />;
+const Template: ComponentStory<typeof Card> = (args) => (
+  <Wrap>
+    <Card {...args} />
+  </Wrap>
+);
 
 export const Simple = Template.bind({});
 
