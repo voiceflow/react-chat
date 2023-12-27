@@ -6,7 +6,7 @@ const tag = tagFactory(ClassName.AVATAR);
 
 export const AvatarContainer = styled(tag('div'), {
   flexShrink: 0,
-  borderRadius: '$round',
+  borderRadius: '$round', // theme.radii.round.value,
   backgroundColor: '$lightGrey',
   backgroundPosition: 'center',
   backgroundRepeat: 'no-repeat',
