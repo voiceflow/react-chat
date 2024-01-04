@@ -5413,7 +5413,7 @@ __metadata:
     "@voiceflow/prettier-config": 1.2.1
     "@voiceflow/sdk-runtime": 1.7.0
     "@voiceflow/slate-serializer": 1.5.5
-    "@voiceflow/stitches-react": 2.0.0
+    "@voiceflow/stitches-react": "file:../../../stitches/packages/react"
     "@voiceflow/tsconfig": 1.4.8
     "@voiceflow/voiceflow-types": 3.26.21
     bowser: ^2.11.0
@@ -5483,12 +5483,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@voiceflow/stitches-react@npm:2.0.0":
+"@voiceflow/stitches-react@file:../../../stitches/packages/react::locator=%40voiceflow%2Freact-chat%40workspace%3Apackages%2Freact-chat":
   version: 2.0.0
-  resolution: "@voiceflow/stitches-react@npm:2.0.0"
+  resolution: "@voiceflow/stitches-react@file:../../../stitches/packages/react#../../../stitches/packages/react::hash=748589&locator=%40voiceflow%2Freact-chat%40workspace%3Apackages%2Freact-chat"
   peerDependencies:
     react: ">= 16.3.0"
-  checksum: 4eeb9f8df72f05926def48e7b95855fd1b00f98bc629bb7cc1a31f792f8c8a0807c572087c2e5e82b4ca189cad5c1f8e1428b0f5014ae17a8bcaa3f8d69ca2a6
+  checksum: 6886862979e279ffcc84913341b53c425d8eb0370382ec90fa4b414d39e6391f1b60ffb70faeff084ee72145a80b0f602af00fce133515afc5c4decc704e445b
   languageName: node
   linkType: hard
 
