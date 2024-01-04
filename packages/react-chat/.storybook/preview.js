@@ -9,10 +9,6 @@ const preview = {
         date: /Date$/,
       },
     },
-    multipleThemesStitches: {
-      values: [{ name: 'light', theme }],
-      default: 'light',
-    },
   },
 };
 
