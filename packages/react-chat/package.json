@@ -12,7 +12,7 @@
     "@voiceflow/dtos": "1.10.0",
     "@voiceflow/sdk-runtime": "1.7.0",
     "@voiceflow/slate-serializer": "1.5.5",
-    "@voiceflow/stitches-react": "file:../../../stitches/packages/react",
+    "@voiceflow/stitches-react": "2.0.0",
     "@voiceflow/voiceflow-types": "3.26.21",
     "bowser": "^2.11.0",
     "chroma-js": "2.4.2",
