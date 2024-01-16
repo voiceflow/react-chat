@@ -1,4 +1,5 @@
-import ReactMarkdown from 'react-markdown';
+import { PureComponent } from 'react';
+import ReactMarkdown, { Options } from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import rehypeSanitize from 'rehype-sanitize';
 import remarkGfm from 'remark-gfm';
@@ -55,4 +56,32 @@ MarkdownText.defaultProps = {
   },
 };
 
-export default MarkdownText;
+class Markdown extends PureComponent<Options> {
+  state = {
+    hasError: false,
+  };
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidUpdate(prevProps: Readonly<Options>): void {
+    if (prevProps.children !== this.props.children) {
+      this.setState({ hasError: false });
+    }
+  }
+
+  componentDidCatch(error: unknown, errorInfo: unknown) {
+    console.error(error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <>Couldn't render markdown.</>;
+    }
+
+    return <MarkdownText {...this.props} />;
+  }
+}
+
+export default Markdown;
