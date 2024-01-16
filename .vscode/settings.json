@@ -2,8 +2,8 @@
   "editor.formatOnSave": true,
   "eslint.format.enable": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.tslint": true,
-    "source.fixAll.eslint": true
+    "source.fixAll.tslint": "explicit",
+    "source.fixAll.eslint": "explicit"
   },
   "eslint.runtime": "node",
   "eslint.execArgv": ["--max_old_space_size=8192"],
