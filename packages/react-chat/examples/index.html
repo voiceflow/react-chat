@@ -11,6 +11,7 @@
   </head>
 
   <body>
+    <div id="flat-chat" style="width: 50vw; margin-left: auto;"></div>
     <script>
       function _vf_load() {
         window.voiceflow.chat.load({
@@ -19,6 +20,10 @@
           versionID: '<%= VITE_VF_VERSION_ID %>',
           user: {
             name: 'Development User',
+          },
+          render: {
+            mode: 'embedded',
+            target: document.getElementById('flat-chat'),
           },
           allowDangerousHTML: false,
         });
