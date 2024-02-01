@@ -1,4 +1,4 @@
-import { ChatConfig } from '../common/types';
+import { ChatConfig, RenderMode } from '../common/types';
 import { isObject } from '../common/utils';
 
 export const RUNTIME_URL = 'https://general-runtime.voiceflow.com';
@@ -14,14 +14,29 @@ const tryDecodeURIComponent = (str: string) => {
     return str;
   }
 };
+//  ChatConfig['render']
+
+const sanitizeRenderOptions = (renderOptions: any): Partial<ChatConfig['render']> => {
+  if (!isObject(renderOptions)) {
+    // TODO revisit this default
+    return { mode: RenderMode.BUBBLE };
+  }
+  const { mode, target } = renderOptions;
+  // TODO check for valid target, if none - default to document.getElementById('voiceflow-chat-frame')
+  if (Object.values(RenderMode).includes(mode) && target instanceof HTMLElement) {
+    return { mode, target };
+  }
+  return { mode: RenderMode.BUBBLE };
+};
 
 export const sanitizeConfig = (config: unknown): Partial<ChatConfig> & Pick<ChatConfig, 'verify' | 'url'> => {
   const ref = isObject(config) ? config : {};
-  const { url, user, userID, versionID, verify, assistant, launch, allowDangerousHTML } = ref;
+  const { url, user, userID, versionID, verify, assistant, launch, allowDangerousHTML, render } = ref;
 
   if (!validateVerify(verify)) {
     throw new Error('no projectID on load');
   }
+  // TODO consult w Ben on what sanitization is needed for `render` options
 
   return {
     verify,
@@ -36,6 +51,7 @@ export const sanitizeConfig = (config: unknown): Partial<ChatConfig> & Pick<Chat
         ...(typeof user.image === 'string' && { image: user.image }),
       },
     }),
+    ...{ render: sanitizeRenderOptions(render as ChatConfig['render']) as any },
     ...(isObject(assistant) && ({ assistant } as Partial<Pick<ChatConfig, 'assistant'>>)),
     ...(isObject(launch) && ({ launch } as Pick<ChatConfig, 'launch'>)),
 
