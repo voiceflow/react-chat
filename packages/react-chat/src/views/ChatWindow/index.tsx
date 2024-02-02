@@ -46,6 +46,7 @@ const ChatWindow: React.FC = () => {
         onEnd={closeAndEnd}
         onSend={runtime.reply}
         onMinimize={runtime.close}
+        hasIndicator={state.indicator}
       >
         {state.session.turns.map((turn, turnIndex) =>
           match(turn)
@@ -57,10 +58,10 @@ const ChatWindow: React.FC = () => {
                 feedback={
                   assistant.feedback
                     ? {
-                        onClick: (feedback: FeedbackName) => {
-                          runtime.feedback(feedback, props.messages, getPreviousUserTurn(turnIndex));
-                        },
-                      }
+                      onClick: (feedback: FeedbackName) => {
+                        runtime.feedback(feedback, props.messages, getPreviousUserTurn(turnIndex));
+                      },
+                    }
                     : undefined
                 }
                 avatar={assistant.avatar}

@@ -24,6 +24,11 @@ export interface ChatProps extends HeaderProps, AssistantInfoProps, FooterProps,
   isLoading: boolean;
 
   /**
+   * If true, it is expecting a message from the server.
+   */
+  hasIndicator: boolean;
+
+  /**
    * A unix timestamp indicating the start of the conversation.
    */
   startTime?: Nullish<number>;
@@ -52,6 +57,7 @@ const Chat: React.FC<ChatProps> = ({
   description,
   startTime,
   isLoading,
+  hasIndicator,
   withWatermark,
   onMinimize,
   onEnd,
@@ -99,7 +105,7 @@ const Chat: React.FC<ChatProps> = ({
           {hasEnded && <Status>You have ended the chat</Status>}
         </AutoScrollProvider>
       </Dialog>
-      <Footer withWatermark={withWatermark} hasEnded={hasEnded} onStart={onStart} onSend={onSend} />
+      <Footer isDisabled={hasIndicator} withWatermark={withWatermark} hasEnded={hasEnded} onStart={onStart} onSend={onSend} />
       <Overlay />
       <Prompt accept={{ label: 'End Chat', type: 'warn', onClick: chain(onEnd, handleResume) }} cancel={{ label: 'Cancel', onClick: handleResume }} />
     </Container>

@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-autofocus */
+
 import { useState } from 'react';
 
 import Button from '@/components/Button';
@@ -18,6 +20,11 @@ export interface FooterProps {
   hasEnded?: boolean | undefined;
 
   /**
+   * If true, the user is prevented from typing and sending messages
+   */
+  isDisabled?: boolean | undefined;
+
+  /**
    * A callback to start a new conversation.
    */
   onStart?: (() => Promise<void>) | undefined;
@@ -28,14 +35,12 @@ export interface FooterProps {
   onSend?: ((message: string) => Promise<void>) | undefined;
 }
 
-const Footer: React.FC<FooterProps> = ({ withWatermark, hasEnded, onStart, onSend }) => {
+const Footer: React.FC<FooterProps> = ({ withWatermark, hasEnded, isDisabled, onStart, onSend }) => {
   const [message, setMessage] = useState('');
   const [buffering, setBuffering] = useState(false);
 
   const handleSend = async (): Promise<void> => {
-    if (!message || buffering) return;
-
-    setBuffering(true);
+    if (!message || isDisabled || buffering) return;
 
     setMessage('');
     await onSend?.(message);
@@ -48,8 +53,15 @@ const Footer: React.FC<FooterProps> = ({ withWatermark, hasEnded, onStart, onSen
       {hasEnded ? (
         <Button onClick={onStart}>Start New Chat</Button>
       ) : (
-        // eslint-disable-next-line jsx-a11y/no-autofocus
-        <ChatInput value={message} placeholder="Message…" autoFocus onValueChange={setMessage} onSend={handleSend} buffering={buffering} />
+        <ChatInput
+          autoFocus
+          value={message}
+          placeholder="Message…"
+          onValueChange={setMessage}
+          onSend={handleSend}
+          buffering={buffering}
+          disabled={isDisabled}
+        />
       )}
       {withWatermark && (
         <Watermark>
