@@ -1,7 +1,7 @@
-// import { RenderMode } from '@/common';
+import { RenderMode } from '@/common';
 import { RuntimeProvider } from '@/contexts';
-import { styled } from '@/styles/theme';
-// import { ChatWindow } from './views';
+
+import { ChatWidget, ChatWindow } from './views';
 
 interface IEntrypoint {
   config: any;
@@ -19,9 +19,8 @@ const Styled = styled('div', {
 export const Entrypoint: React.FC<IEntrypoint> = ({ assistant, config, shadowRoot, resolve }) => {
   return (
     <RuntimeProvider assistant={assistant} config={config} shadowRoot={shadowRoot}>
-      <Styled />
-      {/* {config.render?.mode === RenderMode.EMBEDDED && <ChatWindow />}
-      {config.render?.mode === RenderMode.BUBBLE && <ChatWidget chatAPI={window.voiceflow!.chat} ready={resolve} />} */}
+      {config.render?.mode === RenderMode.EMBEDDED && <ChatWindow />}
+      {config.render?.mode === RenderMode.BUBBLE && <ChatWidget chatAPI={window.voiceflow!.chat} ready={resolve} shadowRoot={shadowRoot} />}
     </RuntimeProvider>
   );
 };
