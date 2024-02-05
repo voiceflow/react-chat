@@ -8,8 +8,8 @@ export const RuntimeStateContext = createContext<RuntimeState['state']>({} as an
 
 interface RuntimeProviderProps extends React.PropsWithChildren, Settings {}
 
-export const RuntimeProvider = ({ children, assistant, config }: RuntimeProviderProps) => {
-  const store = useRuntimeState({ assistant, config });
+export const RuntimeProvider = ({ children, assistant, config, traceHandlers = [] }: RuntimeProviderProps) => {
+  const store = useRuntimeState({ assistant, config, traceHandlers });
 
   // api is a static object, so we can use useMemo to prevent unnecessary re-renders
   const api = useMemo(() => store.api, []);

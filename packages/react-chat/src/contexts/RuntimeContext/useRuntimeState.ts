@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 import { Assistant, RuntimeOptions, SendMessage, SessionOptions, SessionStatus } from '@/common';
 import { DEFAULT_MESSAGE_DELAY } from '@/components/SystemResponse/constants';
-import type { RuntimeMessage } from '@/contexts/RuntimeContext/messages';
+import type { MESSAGE_TRACES, RuntimeMessage } from '@/contexts/RuntimeContext/messages';
 import { useStateRef } from '@/hooks/useStateRef';
 import { TurnProps, TurnType } from '@/types';
 import { handleActions } from '@/utils/actions';
@@ -19,6 +19,7 @@ import { createContext, useRuntimeAPI } from './useRuntimeAPI';
 export interface Settings {
   assistant: Assistant;
   config: RuntimeOptions<PublicVerify>;
+  traceHandlers?: typeof MESSAGE_TRACES;
 }
 
 const DEFAULT_SESSION_PARAMS = {
@@ -27,7 +28,7 @@ const DEFAULT_SESSION_PARAMS = {
   status: SessionStatus.IDLE,
 };
 
-export const useRuntimeState = ({ assistant, config }: Settings) => {
+export const useRuntimeState = ({ assistant, config, traceHandlers = [] }: Settings) => {
   const [isOpen, setOpen] = useState(false);
 
   const [session, setSession, sessionRef] = useStateRef<Required<SessionOptions>>(() => ({
@@ -54,7 +55,7 @@ export const useRuntimeState = ({ assistant, config }: Settings) => {
     },
   };
 
-  const runtime = useRuntimeAPI({ ...config, ...session, traceHandlers: [noReplyHandler] });
+  const runtime = useRuntimeAPI({ ...config, ...session, traceHandlers: [noReplyHandler, ...traceHandlers] });
 
   // status management
   const setStatus = (status: SessionStatus) => {
