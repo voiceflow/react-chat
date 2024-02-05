@@ -16,7 +16,6 @@ export const RuntimeProvider = ({ children, assistant, config, shadowRoot }: Run
   const store = useRuntimeState({ assistant, config });
   const { render } = config;
 
-
   // api is a static object, so we can use useMemo to prevent unnecessary re-renders
   const api = useMemo(() => store.api, []);
 

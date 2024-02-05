@@ -10,6 +10,7 @@ import { ClassName } from '@/constants';
 import { useStitches } from '@/contexts';
 import { tagFactory } from '@/hocs';
 import { animationStyles, createTransition, fadeIn } from '@/styles';
+import { forwardRef } from 'react';
 
 const PROMPT_OVERFLOW = 10;
 
@@ -114,7 +115,7 @@ export const SessionTime = (props) => {
   return <Styled {...props} />;
 };
 
-export const Dialog = (props) => {
+export const Dialog = forwardRef(({ children, ...props }, ref) => {
   const { styled, keyframes } = useStitches();
   const Styled = styled(tag('main', 'dialog'), {
     display: 'flex',
@@ -171,8 +172,12 @@ export const Dialog = (props) => {
       marginBottom: 8,
     },
   });
-  return <Styled {...props} />;
-};
+  return (
+    <Styled {...props} ref={ref}>
+      {children}
+    </Styled>
+  );
+});
 
 export const Spacer = (props) => {
   const { styled } = useStitches();

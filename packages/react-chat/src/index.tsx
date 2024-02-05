@@ -46,6 +46,7 @@ function stringifyWithoutCycles(obj) {
   var result = detect(obj);
   return JSON.stringify(result, null, 2);
 }
+
 window.voiceflow ??= {};
 window.voiceflow.chat ??= {
   open: noop,
@@ -58,9 +59,8 @@ window.voiceflow.chat ??= {
     const config = sanitizeConfig(loadConfig);
     // extract config here from sanitize config
     const assistant = await mergeAssistant(config);
-    console.log('config', config);
+
     if (config.render?.mode === RenderMode.EMBEDDED) {
-      console.log('in embedded');
       const shadowRoot = config.render!.target!.attachShadow({ mode: 'open' });
       root = createRoot(shadowRoot);
 
