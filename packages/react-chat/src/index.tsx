@@ -1,7 +1,7 @@
 import { lazy } from 'react';
 import { createRoot } from 'react-dom/client';
 
-import { ChatConfig, RenderMode } from '@/common';
+import { ChatConfig, RenderMode } from '@/common/types';
 // import ChatWidget from '@/views/ChatWidget';
 // import { Entrypoint } from './entrypoints';
 import { initStitches } from '@/styles/theme';

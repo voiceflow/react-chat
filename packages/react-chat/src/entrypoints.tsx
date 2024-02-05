@@ -1,8 +1,6 @@
 // import { RenderMode } from '@/common';
 import { RuntimeProvider } from '@/contexts';
-
-// import ChatWidget from '@/views/ChatWidget';
-import { styled } from './globals';
+import { styled } from '@/styles/theme';
 // import { ChatWindow } from './views';
 
 interface IEntrypoint {

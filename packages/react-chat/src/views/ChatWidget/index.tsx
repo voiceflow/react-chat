@@ -1,7 +1,8 @@
 import { Trace } from '@voiceflow/base-types';
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 
-import { ChatPosition, isObject, useTheme } from '@/common';
+import { ChatPosition, isObject } from '@/common';
+import { useTheme } from '@/hooks';
 import Launcher from '@/components/Launcher';
 import Proactive from '@/components/Proactive';
 import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts';
