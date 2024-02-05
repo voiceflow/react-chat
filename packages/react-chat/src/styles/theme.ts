@@ -1,9 +1,6 @@
 import type { CSS as BaseCSS } from '@voiceflow/stitches-react';
-import { createStitches } from '@voiceflow/stitches-react';
 import type { PropertiesHyphen as CSSPropertiesHyphen } from 'csstype';
 import type { StringKeyOf } from 'type-fest';
-
-import { shadowRoot } from '@/shadow';
 
 import * as Color from './color';
 import * as Font from './font';
@@ -23,8 +20,8 @@ export interface FontOptions {
   height?: BaseCSS['lineHeight'] | Token<typeof Font['LINE_HEIGHTS']>;
 }
 
-export const { styled, config, keyframes, theme, createTheme } = createStitches({
-  ...(__USE_SHADOW_ROOT__ && { root: shadowRoot }),
+export const getDefaultTheme = (root: any) => ({
+  ...(__USE_SHADOW_ROOT__ && { root }),
 
   theme: {
     colors: Color.PALETTE,
@@ -84,10 +81,4 @@ export const { styled, config, keyframes, theme, createTheme } = createStitches(
   },
 });
 
-interface ThemeOverrides {
-  color?: string | undefined;
-}
-export const createCustomTheme = ({ color }: ThemeOverrides) =>
-  createTheme({
-    colors: color ? Color.createPrimaryColors(color) : {},
-  });
+// export const { styled, config, keyframes, theme, createTheme } = createStitches(getDefaultTheme(el));

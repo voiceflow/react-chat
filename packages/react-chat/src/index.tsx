@@ -7,10 +7,9 @@ import { sanitizeConfig } from '@/utils/config';
 import { noop } from '@/utils/functional';
 import ChatWidget from '@/views/ChatWidget';
 
-import { shadowRoot } from './shadow';
 import { ChatWindow } from './views';
 
-let root = createRoot(shadowRoot);
+let root;
 
 window.voiceflow ??= {};
 window.voiceflow.chat ??= {
@@ -26,18 +25,42 @@ window.voiceflow.chat ??= {
     const assistant = await mergeAssistant(config);
     console.log('config', config);
     if (config.render?.mode === RenderMode.EMBEDDED) {
-      const { target } = config.render;
-      root = createRoot(target!.attachShadow({ mode: 'open' }));
+      console.log('in embedded');
+      const shadowRoot = config.render!.target!.attachShadow({ mode: 'open' });
+      root = createRoot(shadowRoot);
+
+      // set root here
+      await new Promise<void>((resolve) => {
+        root.render(
+          <RuntimeProvider assistant={assistant} config={config} shadowRoot={shadowRoot}>
+            {config.render?.mode === RenderMode.EMBEDDED && <ChatWindow />}
+            {config.render?.mode === RenderMode.BUBBLE && <ChatWidget chatAPI={window.voiceflow!.chat} ready={resolve} />}
+            bobobo
+          </RuntimeProvider>
+        );
+      });
+    } else {
+      console.log('in bubble');
+      const VOICEFLOW_ID = 'voiceflow-chat';
+
+      const rootEl = document.createElement('div');
+      rootEl.id = VOICEFLOW_ID;
+
+      document.body.appendChild(rootEl);
+      const shadowRoot = rootEl.attachShadow({ mode: 'open' });
+      root = createRoot(document.getElementById('voiceflow-chat')!.attachShadow({ mode: 'open' }));
+
+      // set root here
+      await new Promise<void>((resolve) => {
+        root.render(
+          <RuntimeProvider assistant={assistant} config={config} shadowRoot={shadowRoot}>
+            {config.render?.mode === RenderMode.EMBEDDED && <ChatWindow />}
+            {config.render?.mode === RenderMode.BUBBLE && <ChatWidget chatAPI={window.voiceflow!.chat} ready={resolve} />}
+            bobobo
+          </RuntimeProvider>
+        );
+      });
     }
-    // set root here
-    await new Promise<void>((resolve) => {
-      root.render(
-        <RuntimeProvider assistant={assistant} config={config}>
-          {config.render?.mode === RenderMode.EMBEDDED && <ChatWindow />}
-          {config.render?.mode === RenderMode.BUBBLE && <ChatWidget chatAPI={window.voiceflow!.chat} ready={resolve} />}
-        </RuntimeProvider>
-      );
-    });
   },
 
   destroy: () => root.render(null),

@@ -1,6 +1,7 @@
 import TextareaAutosize from 'react-textarea-autosize';
 
-import { CSS, styled } from '@/styles';
+import { useStitches } from '@/contexts';
+import { CSS } from '@/styles';
 
 export const textareaUniqueStyles: CSS = {
   width: 'calc(100% - 42px)',
@@ -24,20 +25,24 @@ export const textareaFocusStyles: CSS = {
   border: '1px solid rgba(115,115,118,0.5)',
 };
 
-export const Container = styled(TextareaAutosize, {
-  ...textareaStyles,
-  ...textareaUniqueStyles,
-  // TODO use tokens
-  padding: '9px $4 10px',
-  color: '$black',
-
-  '&:focus': {
-    ...textareaFocusStyles,
+export const Container = (props) => {
+  const { styled } = useStitches();
+  const Styled = styled(TextareaAutosize, {
+    ...textareaStyles,
     ...textareaUniqueStyles,
-    outline: 'none',
-  },
+    // TODO use tokens
+    padding: '9px $4 10px',
+    color: '$black',
 
-  '&::placeholder': {
-    color: '$darkGrey',
-  },
-});
+    '&:focus': {
+      ...textareaFocusStyles,
+      ...textareaUniqueStyles,
+      outline: 'none',
+    },
+
+    '&::placeholder': {
+      color: '$darkGrey',
+    },
+  });
+  return <Styled {...props} />;
+};

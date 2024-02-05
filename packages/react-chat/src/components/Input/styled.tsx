@@ -1,6 +1,7 @@
 import { ClassName } from '@/constants';
+import { useStitches } from '@/contexts';
 import { tagFactory } from '@/hocs';
-import { CSS, styled } from '@/styles';
+import { CSS } from '@/styles';
 
 const tag = tagFactory(ClassName.INPUT);
 
@@ -18,18 +19,22 @@ export const inputFocusStyles: CSS = {
   border: '1px solid rgba(115,115,118,0.5)',
 };
 
-export const Container = styled(tag('input'), {
-  ...inputStyles,
-  padding: '0 $4',
-  typo: {},
-  color: '$black',
+export const Container = (props) => {
+  const { styled } = useStitches();
+  const Styled = styled(tag('input'), {
+    ...inputStyles,
+    padding: '0 $4',
+    typo: {},
+    color: '$black',
 
-  '&:focus': {
-    ...inputFocusStyles,
-    outline: 0,
-  },
+    '&:focus': {
+      ...inputFocusStyles,
+      outline: 0,
+    },
 
-  '&::placeholder': {
-    color: '$darkGrey',
-  },
-});
+    '&::placeholder': {
+      color: '$darkGrey',
+    },
+  });
+  return <Styled {...props} />;
+};

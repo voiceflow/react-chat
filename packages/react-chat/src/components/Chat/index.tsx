@@ -82,7 +82,8 @@ const Chat: React.FC<ChatProps> = ({
 
   return (
     <Container withPrompt={hasAlert}>
-      <Header
+      bobobo
+      {/* <Header
         title={title}
         image={image}
         actions={[
@@ -101,7 +102,7 @@ const Chat: React.FC<ChatProps> = ({
       </Dialog>
       <Footer withWatermark={withWatermark} hasEnded={hasEnded} onStart={onStart} onSend={onSend} />
       <Overlay />
-      <Prompt accept={{ label: 'End Chat', type: 'warn', onClick: chain(onEnd, handleResume) }} cancel={{ label: 'Cancel', onClick: handleResume }} />
+      <Prompt accept={{ label: 'End Chat', type: 'warn', onClick: chain(onEnd, handleResume) }} cancel={{ label: 'Cancel', onClick: handleResume }} /> */}
     </Container>
   );
 };
