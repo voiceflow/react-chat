@@ -1,5 +1,8 @@
+// import { createStitches } from '@voiceflow/stitches-react';
 import React, { createContext, useMemo } from 'react';
 
+// import { getDefaultTheme } from '@/styles';
+// import { StitchesContext } from '../../useStitches';
 import { RuntimeState, Settings, useRuntimeState } from './useRuntimeState';
 
 // split up API and state to prevent unnecessary re-renders
@@ -14,9 +17,15 @@ export const RuntimeProvider = ({ children, assistant, config }: RuntimeProvider
   // api is a static object, so we can use useMemo to prevent unnecessary re-renders
   const api = useMemo(() => store.api, []);
 
+  // const newLocal = createStitches(getDefaultTheme(shadowRoot));
+
   return (
     <RuntimeStateAPIContext.Provider value={api}>
-      <RuntimeStateContext.Provider value={store.state}>{children}</RuntimeStateContext.Provider>
+      <RuntimeStateContext.Provider value={store.state}>
+        {/* <StitchesContext.Provider value={{ value: newLocal }}> */}
+        {children}
+        {/* </StitchesContext.Provider> */}
+      </RuntimeStateContext.Provider>
     </RuntimeStateAPIContext.Provider>
   );
 };
