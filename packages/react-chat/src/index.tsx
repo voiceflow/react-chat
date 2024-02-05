@@ -2,15 +2,14 @@ import { lazy } from 'react';
 import { createRoot } from 'react-dom/client';
 
 import { ChatConfig, RenderMode } from '@/common';
+// import ChatWidget from '@/views/ChatWidget';
+// import { Entrypoint } from './entrypoints';
+import { initStitches } from '@/styles/theme';
 // import { RuntimeProvider } from '@/contexts';
 import { mergeAssistant } from '@/utils/assistant';
 import { sanitizeConfig } from '@/utils/config';
 import { noop } from '@/utils/functional';
 
-// import ChatWidget from '@/views/ChatWidget';
-// import { Entrypoint } from './entrypoints';
-import { initGlobals } from './globals';
-import { RuntimeProvider } from './contexts';
 // import { ChatWindow } from './views';
 
 const LazyEntrypoint = lazy(async () => {
@@ -37,7 +36,7 @@ window.voiceflow.chat ??= {
     if (config.render?.mode === RenderMode.EMBEDDED) {
       const shadowRoot = config.render!.target!.attachShadow({ mode: 'open' });
       root = createRoot(shadowRoot);
-      initGlobals(shadowRoot);
+      initStitches(shadowRoot);
 
       // set root here
       await new Promise<void>((resolve) => {
@@ -53,7 +52,7 @@ window.voiceflow.chat ??= {
       document.body.appendChild(rootEl);
       const shadowRoot = rootEl.attachShadow({ mode: 'open' });
       root = createRoot(shadowRoot);
-      initGlobals(shadowRoot);
+      initStitches(shadowRoot);
 
       // set root here
       await new Promise<void>((resolve) => {
