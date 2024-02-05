@@ -10,7 +10,42 @@ import ChatWidget from '@/views/ChatWidget';
 import { ChatWindow } from './views';
 
 let root;
+function stringifyWithoutCycles(obj) {
+  var seenObjects = new Set();
 
+  function detect(obj) {
+    if (obj && typeof obj === 'object') {
+      if (seenObjects.has(obj)) {
+        return '[Cyclic Reference]';
+      }
+
+      seenObjects.add(obj);
+
+      var result = Array.isArray(obj) ? [] : {};
+
+      for (var key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          var value = obj[key];
+          if (typeof value === 'object') {
+            result[key] = detect(value);
+            if (result[key] === '[Cyclic Reference]') {
+              return result;
+            }
+          } else {
+            result[key] = value;
+          }
+        }
+      }
+
+      return result;
+    }
+
+    return obj;
+  }
+
+  var result = detect(obj);
+  return JSON.stringify(result, null, 2);
+}
 window.voiceflow ??= {};
 window.voiceflow.chat ??= {
   open: noop,
@@ -26,15 +61,15 @@ window.voiceflow.chat ??= {
     console.log('config', config);
     if (config.render?.mode === RenderMode.EMBEDDED) {
       console.log('in embedded');
-      root = createRoot(config.render!.target!);
+      const shadowRoot = config.render!.target!.attachShadow({ mode: 'open' });
+      root = createRoot(shadowRoot);
 
       // set root here
       await new Promise<void>((resolve) => {
         root.render(
-          <RuntimeProvider assistant={assistant} config={config}>
+          <RuntimeProvider assistant={assistant} config={config} shadowRoot={shadowRoot}>
             {config.render?.mode === RenderMode.EMBEDDED && <ChatWindow />}
             {config.render?.mode === RenderMode.BUBBLE && <ChatWidget chatAPI={window.voiceflow!.chat} ready={resolve} />}
-            bobobo
           </RuntimeProvider>
         );
       });
@@ -46,17 +81,17 @@ window.voiceflow.chat ??= {
       rootEl.id = VOICEFLOW_ID;
 
       document.body.appendChild(rootEl);
-      root = createRoot(rootEl);
+      const shadowRoot = rootEl.attachShadow({ mode: 'open' });
+      root = createRoot(shadowRoot);
 
       // set root here
       await new Promise<void>((resolve) => {
-        console.log('Before rendering');
+        console.log('Before rendering', stringifyWithoutCycles(shadowRoot));
 
         root.render(
-          <RuntimeProvider assistant={assistant} config={config}>
+          <RuntimeProvider assistant={assistant} config={config} shadowRoot={shadowRoot}>
             {config.render?.mode === RenderMode.EMBEDDED && <ChatWindow />}
             {config.render?.mode === RenderMode.BUBBLE && <ChatWidget chatAPI={window.voiceflow!.chat} ready={resolve} />}
-            <div id="bobobo">bobobo</div>
           </RuntimeProvider>
         );
       });

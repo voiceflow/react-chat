@@ -12,16 +12,10 @@ export const RuntimeStateContext = createContext<RuntimeState['state']>({} as an
 
 interface RuntimeProviderProps extends React.PropsWithChildren, Settings {}
 
-export const RuntimeProvider = ({ children, assistant, config }: RuntimeProviderProps) => {
+export const RuntimeProvider = ({ children, assistant, config, shadowRoot }: RuntimeProviderProps) => {
   const store = useRuntimeState({ assistant, config });
   const { render } = config;
 
-  const shadowRoot = useMemo(() => {
-    if (render?.mode === 'bubble') {
-      return document.getElementById('voiceflow-chat')!.attachShadow({ mode: 'open' });
-    }
-    return render!.target!.attachShadow({ mode: 'open' });
-  }, [render, children]);
 
   // api is a static object, so we can use useMemo to prevent unnecessary re-renders
   const api = useMemo(() => store.api, []);
