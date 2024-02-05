@@ -26,13 +26,12 @@ window.voiceflow.chat ??= {
     console.log('config', config);
     if (config.render?.mode === RenderMode.EMBEDDED) {
       console.log('in embedded');
-      const shadowRoot = config.render!.target!.attachShadow({ mode: 'open' });
-      root = createRoot(shadowRoot);
+      root = createRoot(config.render!.target!);
 
       // set root here
       await new Promise<void>((resolve) => {
         root.render(
-          <RuntimeProvider assistant={assistant} config={config} shadowRoot={shadowRoot}>
+          <RuntimeProvider assistant={assistant} config={config}>
             {config.render?.mode === RenderMode.EMBEDDED && <ChatWindow />}
             {config.render?.mode === RenderMode.BUBBLE && <ChatWidget chatAPI={window.voiceflow!.chat} ready={resolve} />}
             bobobo
@@ -47,16 +46,17 @@ window.voiceflow.chat ??= {
       rootEl.id = VOICEFLOW_ID;
 
       document.body.appendChild(rootEl);
-      const shadowRoot = rootEl.attachShadow({ mode: 'open' });
-      root = createRoot(document.getElementById('voiceflow-chat')!.attachShadow({ mode: 'open' }));
+      root = createRoot(rootEl);
 
       // set root here
       await new Promise<void>((resolve) => {
+        console.log('Before rendering');
+
         root.render(
-          <RuntimeProvider assistant={assistant} config={config} shadowRoot={shadowRoot}>
+          <RuntimeProvider assistant={assistant} config={config}>
             {config.render?.mode === RenderMode.EMBEDDED && <ChatWindow />}
             {config.render?.mode === RenderMode.BUBBLE && <ChatWidget chatAPI={window.voiceflow!.chat} ready={resolve} />}
-            bobobo
+            <div id="bobobo">bobobo</div>
           </RuntimeProvider>
         );
       });
