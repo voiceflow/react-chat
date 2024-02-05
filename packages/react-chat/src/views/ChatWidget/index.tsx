@@ -18,7 +18,7 @@ interface ChatWidgetProps extends React.PropsWithChildren {
   ready?: () => void;
 }
 
-const ChatWidget: React.FC<ChatWidgetProps> = ({ chatAPI, ready }) => {
+const ChatWidget: React.FC<ChatWidgetProps> = ({ chatAPI, ready, shadowRoot }) => {
   const { assistant, open, close, interact } = useContext(RuntimeStateAPIContext);
   const { isOpen } = useContext(RuntimeStateContext);
 
@@ -27,7 +27,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ chatAPI, ready }) => {
   const [proactiveMessages, setProactiveMessages] = useState<Trace.AnyTrace[]>([]);
   const isMobile = useMemo(() => window.matchMedia('(max-width: 768px)').matches, []);
 
-  const theme = useTheme(assistant);
+  const theme = useTheme(assistant, shadowRoot);
 
   /** initialize window */
   useEffect(() => {
@@ -65,7 +65,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ chatAPI, ready }) => {
   const side = assistant?.position ?? ChatPosition.RIGHT;
   const position = { bottom: assistant?.spacing.bottom, [side]: assistant?.spacing.side };
 
-  const isStyleSheetResolved = useResolveAssistantStyleSheet(assistant);
+  const isStyleSheetResolved = useResolveAssistantStyleSheet(assistant, shadowRoot);
 
   if (!isStyleSheetResolved) return null;
 
