@@ -1,15 +1,19 @@
-import { styled } from '@/styles';
+import { useStitches } from '@/contexts';
 
 import { tag } from './Default';
 
-export const BackgroundImageBase = styled(tag('div', 'background'), {
-  height: 200,
-  width: 248,
-  backgroundColor: '$lightGrey',
-  backgroundPosition: 'center',
-  backgroundRepeat: 'no-repeat',
-  backgroundSize: 'cover',
-});
+export const BackgroundImageBase = (props) => {
+  const { styled } = useStitches();
+  const Styled = styled(tag('div', 'background'), {
+    height: 200,
+    width: 248,
+    backgroundColor: '$lightGrey',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+  });
+  return <Styled {...props} />;
+};
 
 export interface BackgroundImageProps extends React.ComponentProps<typeof BackgroundImageBase> {
   /**

@@ -4,40 +4,44 @@ import rehypeRaw from 'rehype-raw';
 import rehypeSanitize from 'rehype-sanitize';
 import remarkGfm from 'remark-gfm';
 
-import { styled } from '@/styles';
+import { useStitches } from '@/contexts';
 
 import { schema, transformURL } from './schema';
 
-const MarkdownText = styled(ReactMarkdown, {
-  blockquote: {
-    marginLeft: 0,
-    paddingLeft: '$4',
-    borderLeft: '3px solid $medGrey',
-  },
-  code: {
-    color: '#e83e8c',
-    whiteSpace: 'pre-wrap',
-  },
-  p: {
-    marginTop: 0,
-    whiteSpace: 'pre-wrap',
-  },
-  'img,video': {
-    maxWidth: '100%',
-    borderRadius: '$2',
-    marginBottom: '$4',
-  },
-  'ol,ul': {
-    paddingInlineStart: '$5',
-  },
-  '> *:first-child, blockquote>:first-child': {
-    marginTop: 0,
-  },
-  '> *:last-child, blockquote>:last-child': {
-    marginBottom: 0,
-  },
-});
+const MarkdownText = (props) => {
+  const { styled } = useStitches();
+  const Styled = styled(ReactMarkdown, {
+    blockquote: {
+      marginLeft: 0,
+      paddingLeft: '$4',
+      borderLeft: '3px solid $medGrey',
+    },
+    code: {
+      color: '#e83e8c',
+      whiteSpace: 'pre-wrap',
+    },
+    p: {
+      marginTop: 0,
+      whiteSpace: 'pre-wrap',
+    },
+    'img,video': {
+      maxWidth: '100%',
+      borderRadius: '$2',
+      marginBottom: '$4',
+    },
+    'ol,ul': {
+      paddingInlineStart: '$5',
+    },
+    '> *:first-child, blockquote>:first-child': {
+      marginTop: 0,
+    },
+    '> *:last-child, blockquote>:last-child': {
+      marginBottom: 0,
+    },
+  });
 
+  return <Styled {...props} />;
+};
 MarkdownText.defaultProps = {
   urlTransform: transformURL,
   rehypePlugins: [rehypeRaw, [rehypeSanitize, schema]],

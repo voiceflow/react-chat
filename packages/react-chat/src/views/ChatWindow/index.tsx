@@ -15,6 +15,7 @@ import { ChatWindowContainer } from './styled';
 const ChatWindow: React.FC = () => {
   const runtime = useContext(RuntimeStateAPIContext);
   const state = useContext(RuntimeStateContext);
+
   const { assistant } = runtime;
 
   // emitters
@@ -30,7 +31,6 @@ const ChatWindow: React.FC = () => {
     },
     [state.session.turns]
   );
-
   return (
     <ChatWindowContainer>
       <Chat

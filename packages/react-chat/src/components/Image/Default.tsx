@@ -1,24 +1,28 @@
 import { ClassName } from '@/constants';
+import { useStitches } from '@/contexts';
 import { tagFactory } from '@/hocs';
-import { styled } from '@/styles';
 import { VariantProp } from '@/types';
 
 export const tag = tagFactory(ClassName.IMAGE);
 
-export const DefaultImageBase = styled(tag('img'), {
-  width: 248,
+export const DefaultImageBase = (props) => {
+  const { styled } = useStitches();
+  const Styled = styled(tag('img'), {
+    width: 248,
 
-  variants: {
-    isRounded: {
-      true: {
-        borderRadius: '$1',
+    variants: {
+      isRounded: {
+        true: {
+          borderRadius: '$1',
+        },
       },
     },
-  },
-  defaultVariants: {
-    isRounded: true,
-  },
-});
+    defaultVariants: {
+      isRounded: true,
+    },
+  });
+  return <Styled {...props} />;
+};
 
 export interface DefaultImageProps extends React.ComponentProps<typeof DefaultImageBase> {
   /**
