@@ -1,17 +1,26 @@
+import { lazy } from 'react';
 import { createRoot } from 'react-dom/client';
 
 import { ChatConfig, RenderMode } from '@/common';
-import { RuntimeProvider } from '@/contexts';
+// import { RuntimeProvider } from '@/contexts';
 import { mergeAssistant } from '@/utils/assistant';
 import { sanitizeConfig } from '@/utils/config';
 import { noop } from '@/utils/functional';
-import ChatWidget from '@/views/ChatWidget';
 
-import { ChatWindow } from './views';
+// import ChatWidget from '@/views/ChatWidget';
+// import { Entrypoint } from './entrypoints';
+import { initGlobals } from './globals';
+// import { ChatWindow } from './views';
+
+const LazyEntrypoint = lazy(async () => {
+  const { Entrypoint } = await import('./entrypoints');
+
+  return { default: Entrypoint };
+});
 
 let root;
 function stringifyWithoutCycles(obj) {
-  var seenObjects = new Set();
+  const seenObjects = new Set();
 
   function detect(obj) {
     if (obj && typeof obj === 'object') {
@@ -21,11 +30,11 @@ function stringifyWithoutCycles(obj) {
 
       seenObjects.add(obj);
 
-      var result = Array.isArray(obj) ? [] : {};
+      const result = Array.isArray(obj) ? [] : {};
 
-      for (var key in obj) {
+      for (const key in obj) {
         if (obj.hasOwnProperty(key)) {
-          var value = obj[key];
+          const value = obj[key];
           if (typeof value === 'object') {
             result[key] = detect(value);
             if (result[key] === '[Cyclic Reference]') {
@@ -43,7 +52,7 @@ function stringifyWithoutCycles(obj) {
     return obj;
   }
 
-  var result = detect(obj);
+  const result = detect(obj);
   return JSON.stringify(result, null, 2);
 }
 
@@ -63,15 +72,11 @@ window.voiceflow.chat ??= {
     if (config.render?.mode === RenderMode.EMBEDDED) {
       const shadowRoot = config.render!.target!.attachShadow({ mode: 'open' });
       root = createRoot(shadowRoot);
+      initGlobals(shadowRoot);
 
       // set root here
       await new Promise<void>((resolve) => {
-        root.render(
-          <RuntimeProvider assistant={assistant} config={config} shadowRoot={shadowRoot}>
-            {config.render?.mode === RenderMode.EMBEDDED && <ChatWindow />}
-            {config.render?.mode === RenderMode.BUBBLE && <ChatWidget chatAPI={window.voiceflow!.chat} ready={resolve} />}
-          </RuntimeProvider>
-        );
+        root.render(<LazyEntrypoint config={config} assistant={assistant} shadowRoot={shadowRoot} resolve={resolve} />);
       });
     } else {
       console.log('in bubble');
@@ -83,17 +88,13 @@ window.voiceflow.chat ??= {
       document.body.appendChild(rootEl);
       const shadowRoot = rootEl.attachShadow({ mode: 'open' });
       root = createRoot(shadowRoot);
+      initGlobals(shadowRoot);
 
       // set root here
       await new Promise<void>((resolve) => {
         console.log('Before rendering', stringifyWithoutCycles(shadowRoot));
 
-        root.render(
-          <RuntimeProvider assistant={assistant} config={config} shadowRoot={shadowRoot}>
-            {config.render?.mode === RenderMode.EMBEDDED && <ChatWindow />}
-            {config.render?.mode === RenderMode.BUBBLE && <ChatWidget chatAPI={window.voiceflow!.chat} ready={resolve} />}
-          </RuntimeProvider>
-        );
+        root.render(<LazyEntrypoint config={config} assistant={assistant} shadowRoot={shadowRoot} resolve={resolve} />);
       });
     }
   },
