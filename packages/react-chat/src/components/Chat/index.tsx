@@ -59,6 +59,7 @@ const Chat: React.FC<ChatProps> = ({
   onSend,
   children,
 }) => {
+  // TODO Dialog forwardref
   const timestamp = useTimestamp(startTime);
   const dialogRef = useRef<HTMLElement>(null);
   const [hasAlert, setAlert] = useState(false);

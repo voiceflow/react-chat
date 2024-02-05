@@ -62,6 +62,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ chatAPI, ready }) => {
   }, []);
 
   const side = assistant?.position ?? ChatPosition.RIGHT;
+  
   const position = { bottom: assistant?.spacing.bottom, [side]: assistant?.spacing.side };
 
   const isStyleSheetResolved = useResolveAssistantStyleSheet(assistant);

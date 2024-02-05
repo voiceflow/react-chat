@@ -16,6 +16,8 @@ export interface AutoScrollProviderProps<T> extends React.PropsWithChildren {
 
 export const AutoScrollProvider = <T extends HTMLElement>({ target, children }: AutoScrollProviderProps<T>) => {
   const scrollToBottom = useCallback(() => {
+    console.log(target, '<<<<< target in AutoScrollProvider');
+
     requestAnimationFrame(() => {
       const el = target.current;
       if (!el) return;
