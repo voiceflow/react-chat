@@ -51,6 +51,8 @@ window.voiceflow.chat ??= {
 
       document.body.appendChild(rootEl);
       const shadowRoot = rootEl.attachShadow({ mode: 'open' });
+      console.log('shadowRoot', shadowRoot);
+
       root = createRoot(shadowRoot);
       initStitches(shadowRoot);
 
