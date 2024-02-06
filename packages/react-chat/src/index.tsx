@@ -29,7 +29,6 @@ window.voiceflow.chat ??= {
     const assistant = await mergeAssistant(config);
 
     if (config.render?.mode === RenderMode.EMBEDDED) {
-
       const shadowRoot = config.render!.target!.attachShadow({ mode: 'open' });
       root = createRoot(shadowRoot);
       initStitches(shadowRoot);

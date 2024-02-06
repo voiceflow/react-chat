@@ -1,6 +1,6 @@
 import '../../styles.css';
 
-import React, { useCallback, useContext, useEffect, useMemo } from 'react';
+import React, { useCallback, useContext, useLayoutEffect, useMemo, useState } from 'react';
 import * as R from 'remeda';
 import { match } from 'ts-pattern';
 
@@ -20,12 +20,27 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
   const runtime = useContext(RuntimeStateAPIContext);
   const state = useContext(RuntimeStateContext);
   const { assistant } = runtime;
+  const { autostart } = state;
+
+  const [initialRender, setInitialRender] = useState(true);
 
   // emitters
   const closeAndEnd = useCallback((): void => {
     runtime.setStatus(SessionStatus.ENDED);
     runtime.close();
   }, []);
+
+  useLayoutEffect(() => {
+    if (!initialRender) return;
+
+    // on first render if autostart is true, start the conversation
+    if (!autostart) {
+      runtime.setStatus(SessionStatus.ENDED);
+    } else {
+      runtime.launch();
+    }
+    setInitialRender(false);
+  }, [initialRender, runtime, autostart]);
 
   const getPreviousUserTurn = useCallback(
     (turnIndex: number): UserTurnProps | null => {
@@ -38,6 +53,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
   return (
     <ChatWindowContainer className={className}>
       <Chat
+        autostart={initialRender && autostart}
         title={assistant.title}
         description={assistant.description}
         image={assistant.image}

@@ -23,12 +23,11 @@ const sanitizeRenderOptions = (renderOptions: any): Partial<ChatConfig['render']
 
   if (mode === RenderMode.EMBEDDED && !target) {
     try {
-      const chatFrame = document.getElementById('voiceflow-chat-frame');
-      if (chatFrame instanceof HTMLElement) {
-        return { mode, target: chatFrame };
+      const fallbackHost = document.getElementById('voiceflow-chat-frame');
+      if (fallbackHost instanceof HTMLElement) {
+        return { mode, target: fallbackHost };
       }
     } catch (error) {
-      // this is never triggered though. It's a dead code.
       console.error('No target found for embedded mode, defaulting to bubble mode. Please provide a valid target.');
     }
   }
