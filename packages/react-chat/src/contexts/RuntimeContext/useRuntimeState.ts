@@ -25,6 +25,7 @@ const DEFAULT_SESSION_PARAMS = {
   turns: [],
   startTime: Date.now(),
   status: SessionStatus.IDLE,
+  autostart: false,
 };
 
 export const useRuntimeState = ({ assistant, config }: Settings) => {

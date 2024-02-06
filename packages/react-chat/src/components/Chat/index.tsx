@@ -1,4 +1,4 @@
-import React, { memo, useContext, useMemo, useRef, useState } from 'react';
+import React, { memo, useContext, useLayoutEffect, useMemo, useRef, useState } from 'react';
 
 import { RenderMode } from '@/common';
 import AssistantInfo, { AssistantInfoProps } from '@/components/AssistantInfo';
@@ -6,7 +6,7 @@ import Footer, { FooterProps } from '@/components/Footer';
 import Header, { HeaderProps } from '@/components/Header';
 import Loader from '@/components/Loader';
 import Prompt from '@/components/Prompt';
-import { AutoScrollProvider, RuntimeStateAPIContext } from '@/contexts';
+import { AutoScrollProvider, RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts';
 import { Nullish } from '@/types';
 import { chain } from '@/utils/functional';
 
@@ -59,6 +59,7 @@ const Chat: React.FC<ChatProps> = ({
   startTime,
   isLoading,
   withWatermark,
+  autostart,
   onMinimize,
   onEnd,
   onStart,
@@ -68,7 +69,18 @@ const Chat: React.FC<ChatProps> = ({
   const timestamp = useTimestamp(startTime);
   const dialogRef = useRef<HTMLElement>(null);
   const [hasAlert, setAlert] = useState(false);
-  const { config, autostart } = useContext(RuntimeStateAPIContext);
+  const [initialRender, setInitialRender] = useState(true);
+
+  useLayoutEffect(() => {
+    if (!initialRender) return;
+
+    if (!autostart) {
+      setInitialRender(false);
+    }
+  }, [initialRender, autostart]);
+
+  const { config } = useContext(RuntimeStateAPIContext);
+  const { session } = useContext(RuntimeStateContext);
 
   const handleClose = (event: React.MouseEvent<HTMLButtonElement>): void => {
     if (hasEnded) {
@@ -79,6 +91,8 @@ const Chat: React.FC<ChatProps> = ({
   };
 
   const handleResume = (): void => setAlert(false);
+
+  const hasAutostart = useMemo(() => (autostart && initialRender) || !initialRender, [autostart, initialRender]);
 
   const actions = useMemo(() => {
     if (config.render?.mode === RenderMode.BUBBLE) {
@@ -104,10 +118,14 @@ const Chat: React.FC<ChatProps> = ({
       <Dialog ref={dialogRef}>
         <AutoScrollProvider target={dialogRef}>
           <AssistantInfo title={title} avatar={avatar} description={description} />
-          <Spacer />
-          {!!timestamp && <SessionTime>{timestamp}</SessionTime>}
-          {children}
-          {hasEnded && <Status>You have ended the chat</Status>}
+          {hasAutostart && (
+            <>
+              <Spacer />
+              {!!timestamp && <SessionTime>{timestamp}</SessionTime>}
+              {children}
+              {hasEnded && <Status>You have ended the chat</Status>}
+            </>
+          )}
         </AutoScrollProvider>
       </Dialog>
       <Footer withWatermark={withWatermark} hasEnded={hasEnded} onStart={onStart} onSend={onSend} />
