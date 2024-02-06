@@ -18,7 +18,6 @@ const tryDecodeURIComponent = (str: string) => {
 
 const sanitizeRenderOptions = (renderOptions: any): Partial<ChatConfig['render']> => {
   if (!isObject(renderOptions)) {
-    // TODO revisit this default
     return { mode: RenderMode.BUBBLE };
   }
   const { mode, target } = renderOptions;
@@ -29,15 +28,28 @@ const sanitizeRenderOptions = (renderOptions: any): Partial<ChatConfig['render']
   return { mode: RenderMode.BUBBLE };
 };
 
+export const getAutostart = (mode: RenderMode, autostart?: boolean) => {
+  if (typeof autostart === 'boolean') return { autostart };
+  if (mode === RenderMode.EMBEDDED) {
+    return { autostart: true };
+  }
+  return { autostart: false };
+};
+
+export const getRenderOptions = (render: Partial<ChatConfig['render']>): ChatConfig['render'] => {
+  return sanitizeRenderOptions(render || {}) as ChatConfig['render'];
+};
+
 export const sanitizeConfig = (config: unknown): Partial<ChatConfig> & Pick<ChatConfig, 'verify' | 'url'> => {
   const ref = isObject(config) ? config : {};
-  const { url, user, userID, versionID, verify, assistant, launch, allowDangerousHTML, render } = ref;
+  const { url, user, userID, versionID, verify, assistant, launch, allowDangerousHTML, render, autostart } = ref;
 
   if (!validateVerify(verify)) {
     throw new Error('no projectID on load');
   }
   // TODO throw error from here in console when no target is found
 
+  const renderOptions = getRenderOptions(render || { mode: RenderMode.BUBBLE });
   return {
     verify,
     url: typeof url === 'string' ? url : RUNTIME_URL,
@@ -51,9 +63,10 @@ export const sanitizeConfig = (config: unknown): Partial<ChatConfig> & Pick<Chat
         ...(typeof user.image === 'string' && { image: user.image }),
       },
     }),
-    ...{ render: sanitizeRenderOptions(render as ChatConfig['render']) as any },
+    render: renderOptions,
     ...(isObject(assistant) && ({ assistant } as Partial<Pick<ChatConfig, 'assistant'>>)),
     ...(isObject(launch) && ({ launch } as Pick<ChatConfig, 'launch'>)),
+    ...getAutostart(renderOptions!.mode, autostart as boolean),
 
     // default to true during migration period, turn off later
     ...(typeof allowDangerousHTML === 'boolean' ? { allowDangerousHTML } : { allowDangerousHTML: true }),
