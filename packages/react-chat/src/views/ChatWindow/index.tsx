@@ -19,28 +19,14 @@ export interface ChatWindowProps {
 const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
   const runtime = useContext(RuntimeStateAPIContext);
   const state = useContext(RuntimeStateContext);
-  const { assistant } = runtime;
-  const { autostart } = state;
-
-  const [initialRender, setInitialRender] = useState(true);
+  const { assistant, setAutostart } = runtime;
+  const { session } = state;
 
   // emitters
   const closeAndEnd = useCallback((): void => {
     runtime.setStatus(SessionStatus.ENDED);
     runtime.close();
   }, []);
-
-  useLayoutEffect(() => {
-    if (!initialRender) return;
-
-    // on first render if autostart is true, start the conversation
-    if (!autostart) {
-      runtime.setStatus(SessionStatus.ENDED);
-    } else {
-      runtime.launch();
-    }
-    setInitialRender(false);
-  }, [initialRender, runtime, autostart]);
 
   const getPreviousUserTurn = useCallback(
     (turnIndex: number): UserTurnProps | null => {
@@ -53,7 +39,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
   return (
     <ChatWindowContainer className={className}>
       <Chat
-        autostart={initialRender && autostart}
+        autostart={session.autostart}
         title={assistant.title}
         description={assistant.description}
         image={assistant.image}
@@ -62,7 +48,12 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
         startTime={state.session.startTime}
         hasEnded={runtime.isStatus(SessionStatus.ENDED)}
         isLoading={!state.session.turns.length}
-        onStart={runtime.launch}
+        onStart={async () => {
+          if (!session.autostart) {
+            setAutostart(true);
+          }
+          await runtime.launch();
+        }}
         onEnd={closeAndEnd}
         onSend={runtime.reply}
         onMinimize={runtime.close}

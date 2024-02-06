@@ -38,7 +38,6 @@ export const useRuntimeState = ({ assistant, config }: Settings) => {
   }));
 
   const [indicator, setIndicator] = useState(false);
-
   const { clearNoReplyTimeout, setNoReplyTimeout } = useNoReply(() => ({ interact, isStatus }));
 
   const noReplyHandler: TraceDeclaration<RuntimeMessage, any> = {
@@ -63,6 +62,10 @@ export const useRuntimeState = ({ assistant, config }: Settings) => {
   };
   const isStatus = (status: SessionStatus) => {
     return sessionRef.current.status === status;
+  };
+
+  const setAutostart = (autostart: boolean) => {
+    setSession((prev) => (prev.autostart === autostart ? prev : { ...prev, autostart }));
   };
 
   // turn management
@@ -150,6 +153,7 @@ export const useRuntimeState = ({ assistant, config }: Settings) => {
       addTurn,
       feedback: runtime.saveFeedback,
       setStatus,
+      setAutostart,
       isStatus,
       reset,
 
