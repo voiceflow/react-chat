@@ -1,5 +1,6 @@
 import Avatar from '@/components/Avatar';
 import Button from '@/components/Button';
+import Image from '@/components/Image';
 import Message from '@/components/Message';
 import Timestamp from '@/components/Timestamp';
 import { ClassName } from '@/constants';
@@ -108,6 +109,9 @@ export const List = styled(tag('div', 'list'), {
         maxWidth: 'calc(100% - 54px - 50px)',
         [`& ${Message.Container}`]: {
           maxWidth: '100%',
+        },
+        [`& ${Image.Default}`]: {
+          width: '100%',
         },
       },
     },
