@@ -25,7 +25,6 @@ window.voiceflow.chat ??= {
 
   load: async (loadConfig: Partial<ChatConfig>) => {
     const config = sanitizeConfig(loadConfig);
-    // extract config here from sanitize config
     const assistant = await mergeAssistant(config);
 
     if (config.render?.mode === RenderMode.EMBEDDED) {
@@ -38,7 +37,6 @@ window.voiceflow.chat ??= {
         root.render(<LazyEntrypoint config={config} assistant={assistant} shadowRoot={shadowRoot} resolve={resolve} />);
       });
     } else {
-      console.log(config, '< con');
       const VOICEFLOW_ID = 'voiceflow-chat';
 
       const rootEl = document.createElement('div');

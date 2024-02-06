@@ -16,35 +16,25 @@ const tryDecodeURIComponent = (str: string) => {
 };
 
 const sanitizeRenderOptions = (renderOptions: any): Partial<ChatConfig['render']> => {
-  if (!isObject(renderOptions)) {
-    return { mode: RenderMode.BUBBLE };
-  }
+  if (!isObject(renderOptions)) return { mode: RenderMode.BUBBLE };
+
   const { mode, target } = renderOptions;
 
   if (mode === RenderMode.EMBEDDED && !target) {
-    try {
-      const fallbackHost = document.getElementById('voiceflow-chat-frame');
-      if (fallbackHost instanceof HTMLElement) {
-        return { mode, target: fallbackHost };
-      }
-    } catch (error) {
-      console.error('No target found for embedded mode, defaulting to bubble mode. Please provide a valid target.');
-    }
+    const fallbackHost = document.getElementById('voiceflow-chat-frame');
+    if (fallbackHost instanceof HTMLElement) return { mode, target: fallbackHost };
+
+    console.error('No valid target found for embedded mode. Defaulting to bubble mode.');
   }
 
-  if (mode && Object.values(RenderMode).includes(mode) && target instanceof HTMLElement) {
-    return { mode, target };
-  }
+  if (mode && Object.values(RenderMode).includes(mode) && target instanceof HTMLElement) return { mode, target };
+
   return { mode: RenderMode.BUBBLE };
 };
 
-export const getAutostart = (mode: RenderMode, autostart?: boolean) => {
-  if (typeof autostart === 'boolean') return { autostart };
-  if (mode === RenderMode.EMBEDDED) {
-    return { autostart: true };
-  }
-  return { autostart: false };
-};
+export const getAutostart = (mode: RenderMode, autostart?: boolean) => ({
+  autostart: typeof autostart === 'boolean' ? autostart : mode === RenderMode.EMBEDDED,
+});
 
 export const getRenderOptions = (render: Partial<ChatConfig['render']>): ChatConfig['render'] => {
   return sanitizeRenderOptions(render || {}) as ChatConfig['render'];
@@ -62,6 +52,7 @@ export const sanitizeConfig = (config: unknown): Partial<ChatConfig> & Pick<Chat
   return {
     verify,
     url: typeof url === 'string' ? url : RUNTIME_URL,
+    render: renderOptions,
     // decodeURIComponent incase the userID is already encodeURIComponent'd
     ...(typeof userID === 'string' && { userID: tryDecodeURIComponent(userID) }),
     ...(typeof userID === 'number' && { userID: userID.toString() }),
@@ -72,7 +63,7 @@ export const sanitizeConfig = (config: unknown): Partial<ChatConfig> & Pick<Chat
         ...(typeof user.image === 'string' && { image: user.image }),
       },
     }),
-    render: renderOptions,
+
     ...(isObject(assistant) && ({ assistant } as Partial<Pick<ChatConfig, 'assistant'>>)),
     ...(isObject(launch) && ({ launch } as Pick<ChatConfig, 'launch'>)),
     ...getAutostart(renderOptions!.mode, autostart as boolean),

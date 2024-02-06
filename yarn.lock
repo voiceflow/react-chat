@@ -5475,10 +5475,10 @@ __metadata:
 
 "@voiceflow/stitches-react@file:../../../stitches/packages/react::locator=%40voiceflow%2Freact-chat%40workspace%3Apackages%2Freact-chat":
   version: 2.0.0
-  resolution: "@voiceflow/stitches-react@file:../../../stitches/packages/react#../../../stitches/packages/react::hash=741f51&locator=%40voiceflow%2Freact-chat%40workspace%3Apackages%2Freact-chat"
+  resolution: "@voiceflow/stitches-react@file:../../../stitches/packages/react#../../../stitches/packages/react::hash=e73e3b&locator=%40voiceflow%2Freact-chat%40workspace%3Apackages%2Freact-chat"
   peerDependencies:
     react: ">= 16.3.0"
-  checksum: 25e4b42165c278527a1f58d39f5d964515647ca2656aaf33bea1d605c34398ce19a4c3982ae1bfba00010b6e4fd0aeebb9599efdecf44fcd039833e7634b9ef7
+  checksum: 367c98e6adbb722cec3ed553fb33d458cdbc1c26f4296f88a21bc16361d25bf80a70c592aa3c5809a72ee7b1dbd48d7a0b36cc57c73f9f625e5bca606286b8dc
   languageName: node
   linkType: hard
 

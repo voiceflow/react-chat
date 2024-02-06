@@ -69,13 +69,6 @@ const Chat: React.FC<ChatProps> = ({
   const timestamp = useTimestamp(startTime);
   const dialogRef = useRef<HTMLElement>(null);
   const [hasAlert, setAlert] = useState(false);
-  const [initialRender, setInitialRender] = useState(true);
-
-  useLayoutEffect(() => {
-    if (!initialRender) return;
-
-    setInitialRender(false);
-  }, [initialRender]);
 
   const { config } = useContext(RuntimeStateAPIContext);
 
@@ -107,8 +100,8 @@ const Chat: React.FC<ChatProps> = ({
     );
   }
 
-  if (!autostart && initialRender) {
-    console.log('initial render');
+  if (!autostart) {
+    onEnd?.(null);
     return (
       <Container withPrompt={hasAlert}>
         <Header title={title} image={image} actions={actions} />
