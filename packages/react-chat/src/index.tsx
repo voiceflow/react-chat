@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { createRoot } from 'react-dom/client';
+import { createRoot, Root } from 'react-dom/client';
 
 import { ChatConfig, RenderMode } from '@/common/types';
 import { initStitches } from '@/styles/theme';
@@ -15,6 +15,28 @@ const LazyEntrypoint = lazy(async () => {
 
 let root;
 
+const createChatRoot = (config: any): { shadowRoot: ShadowRoot; root: Root } => {
+  const VOICEFLOW_ID = 'voiceflow-chat';
+  let root;
+  let shadowRoot;
+
+  if (config.render?.mode === RenderMode.EMBEDDED) {
+    shadowRoot = config.render!.target!.attachShadow({ mode: 'open' });
+    root = createRoot(shadowRoot);
+    initStitches(shadowRoot);
+  } else {
+    const rootEl = document.createElement('div');
+    rootEl.id = VOICEFLOW_ID;
+    document.body.appendChild(rootEl);
+
+    shadowRoot = rootEl.attachShadow({ mode: 'open' });
+    root = createRoot(shadowRoot);
+    initStitches(shadowRoot);
+  }
+
+  return { shadowRoot, root };
+};
+
 window.voiceflow ??= {};
 window.voiceflow.chat ??= {
   open: noop,
@@ -27,32 +49,12 @@ window.voiceflow.chat ??= {
     const config = sanitizeConfig(loadConfig);
     const assistant = await mergeAssistant(config);
 
-    if (config.render?.mode === RenderMode.EMBEDDED) {
-      const shadowRoot = config.render!.target!.attachShadow({ mode: 'open' });
-      root = createRoot(shadowRoot);
-      initStitches(shadowRoot);
+    const { shadowRoot, root: chatRoot } = createChatRoot(config);
 
-      // set root here
-      await new Promise<void>((resolve) => {
-        root.render(<LazyEntrypoint config={config} assistant={assistant} shadowRoot={shadowRoot} resolve={resolve} />);
-      });
-    } else {
-      const VOICEFLOW_ID = 'voiceflow-chat';
-
-      const rootEl = document.createElement('div');
-      rootEl.id = VOICEFLOW_ID;
-
-      document.body.appendChild(rootEl);
-      const shadowRoot = rootEl.attachShadow({ mode: 'open' });
-
-      root = createRoot(shadowRoot);
-      initStitches(shadowRoot);
-
-      // set root here
-      await new Promise<void>((resolve) => {
-        root.render(<LazyEntrypoint config={config} assistant={assistant} shadowRoot={shadowRoot} resolve={resolve} />);
-      });
-    }
+    // set root here
+    await new Promise<void>((resolve) => {
+      chatRoot.render(<LazyEntrypoint config={config} assistant={assistant} shadowRoot={shadowRoot} resolve={resolve} />);
+    });
   },
 
   destroy: () => root.render(null),
