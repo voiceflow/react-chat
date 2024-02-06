@@ -21,8 +21,19 @@ const sanitizeRenderOptions = (renderOptions: any): Partial<ChatConfig['render']
     return { mode: RenderMode.BUBBLE };
   }
   const { mode, target } = renderOptions;
-  // TODO check for valid target, if none - default to document.getElementById('voiceflow-chat-frame')
-  if (Object.values(RenderMode).includes(mode) && target instanceof HTMLElement) {
+
+  if (mode === RenderMode.EMBEDDED && !target) {
+    try {
+      const chatFrame = document.getElementById('voiceflow-chat-frame');
+      if (chatFrame instanceof HTMLElement) {
+        return { mode, target: chatFrame };
+      }
+    } catch (error) {
+      console.error('No target found for embedded mode, defaulting to bubble mode. Please provide a valid target.');
+    }
+  }
+
+  if (mode && Object.values(RenderMode).includes(mode) && target instanceof HTMLElement) {
     return { mode, target };
   }
   return { mode: RenderMode.BUBBLE };
@@ -47,7 +58,6 @@ export const sanitizeConfig = (config: unknown): Partial<ChatConfig> & Pick<Chat
   if (!validateVerify(verify)) {
     throw new Error('no projectID on load');
   }
-  // TODO throw error from here in console when no target is found
 
   const renderOptions = getRenderOptions(render || { mode: RenderMode.BUBBLE });
   return {

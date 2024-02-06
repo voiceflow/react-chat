@@ -52,7 +52,6 @@ export interface ChatProps extends HeaderProps, AssistantInfoProps, FooterProps,
 
 const Chat: React.FC<ChatProps> = ({
   hasEnded,
-  autostart = false,
   title,
   image,
   avatar,
@@ -69,7 +68,7 @@ const Chat: React.FC<ChatProps> = ({
   const timestamp = useTimestamp(startTime);
   const dialogRef = useRef<HTMLElement>(null);
   const [hasAlert, setAlert] = useState(false);
-  const { config } = useContext(RuntimeStateAPIContext);
+  const { config, autostart } = useContext(RuntimeStateAPIContext);
 
   const handleClose = (event: React.MouseEvent<HTMLButtonElement>): void => {
     if (hasEnded) {
@@ -78,7 +77,9 @@ const Chat: React.FC<ChatProps> = ({
       setAlert(true);
     }
   };
+
   const handleResume = (): void => setAlert(false);
+
   const actions = useMemo(() => {
     if (config.render?.mode === RenderMode.BUBBLE) {
       return [
@@ -109,7 +110,7 @@ const Chat: React.FC<ChatProps> = ({
           {hasEnded && <Status>You have ended the chat</Status>}
         </AutoScrollProvider>
       </Dialog>
-      <Footer withWatermark={withWatermark} hasEnded={hasEnded || !config.autostart} onStart={onStart} onSend={onSend} />
+      <Footer withWatermark={withWatermark} hasEnded={hasEnded} onStart={onStart} onSend={onSend} />
       <Overlay />
       <Prompt accept={{ label: 'End Chat', type: 'warn', onClick: chain(onEnd, handleResume) }} cancel={{ label: 'Cancel', onClick: handleResume }} />
     </Container>
