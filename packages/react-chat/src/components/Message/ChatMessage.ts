@@ -16,8 +16,34 @@ export const ChatMessage = styled(tag(Container, 'chat'), {
         whiteSpace: 'break-spaces',
       },
     },
+
+    mode: {
+      embedded: {
+        maxWidth: '100%',
+      },
+      bubble: {
+        maxWidth: 248,
+      },
+    },
   },
   defaultVariants: {
     from: 'system',
+    mode: 'bubble',
   },
+  compoundVariants: [
+    {
+      from: 'system',
+      mode: 'embedded',
+      css: {
+        maxWidth: '100%',
+      },
+    },
+    {
+      from: 'user',
+      mode: 'embedded',
+      css: {
+        maxWidth: '80%',
+      },
+    },
+  ],
 });
