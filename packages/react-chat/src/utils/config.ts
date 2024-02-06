@@ -14,7 +14,6 @@ const tryDecodeURIComponent = (str: string) => {
     return str;
   }
 };
-//  ChatConfig['render']
 
 const sanitizeRenderOptions = (renderOptions: any): Partial<ChatConfig['render']> => {
   if (!isObject(renderOptions)) {
@@ -29,6 +28,7 @@ const sanitizeRenderOptions = (renderOptions: any): Partial<ChatConfig['render']
         return { mode, target: chatFrame };
       }
     } catch (error) {
+      // this is never triggered though. It's a dead code.
       console.error('No target found for embedded mode, defaulting to bubble mode. Please provide a valid target.');
     }
   }
