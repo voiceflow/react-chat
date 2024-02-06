@@ -33,6 +33,7 @@ export interface RuntimeOptions<Verify extends AuthVerify | PublicVerify = AuthV
   versionID?: string | undefined;
   launch?: LaunchOptions;
   render?: RenderOptions;
+  autostart?: boolean;
 
   allowDangerousHTML?: boolean;
 }

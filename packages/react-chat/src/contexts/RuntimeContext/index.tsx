@@ -4,7 +4,7 @@ import { RuntimeState, Settings, useRuntimeState } from './useRuntimeState';
 
 // split up API and state to prevent unnecessary re-renders
 export const RuntimeStateAPIContext = createContext<RuntimeState['api']>({} as any);
-export const RuntimeStateContext = createContext<RuntimeState['state'] & { shadowRoot: ShadowRoot }>({} as any);
+export const RuntimeStateContext = createContext<RuntimeState['state'] & { shadowRoot: ShadowRoot; autostart: boolean }>({} as any);
 
 interface RuntimeProviderProps extends React.PropsWithChildren, Settings {
   shadowRoot: ShadowRoot;
@@ -18,7 +18,7 @@ export const RuntimeProvider = ({ children, assistant, config, shadowRoot }: Run
 
   return (
     <RuntimeStateAPIContext.Provider value={api}>
-      <RuntimeStateContext.Provider value={{ ...store.state, shadowRoot }}>{children}</RuntimeStateContext.Provider>
+      <RuntimeStateContext.Provider value={{ ...store.state, shadowRoot, autostart: !!config.autostart }}>{children}</RuntimeStateContext.Provider>
     </RuntimeStateAPIContext.Provider>
   );
 };

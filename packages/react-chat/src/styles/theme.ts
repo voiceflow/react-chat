@@ -94,9 +94,7 @@ export let theme: CustomStitches['theme'] = null!;
 export let createTheme: CustomStitches['createTheme'] = null!;
 
 export const initStitches = (root: any) => {
-  console.dir('initStitches root', root);
   const stitches = createStitches(getDefaultTheme(root));
-  console.log(initStitches, 'initStitches');
 
   styled = stitches.styled;
   keyframes = stitches.keyframes;

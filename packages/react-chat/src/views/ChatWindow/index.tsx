@@ -1,6 +1,6 @@
 import '../../styles.css';
 
-import React, { useCallback, useContext } from 'react';
+import React, { useCallback, useContext, useEffect, useMemo } from 'react';
 import * as R from 'remeda';
 import { match } from 'ts-pattern';
 
@@ -14,10 +14,9 @@ import { ChatWindowContainer } from './styled';
 
 export interface ChatWindowProps {
   className?: string;
-  withHeader?: boolean;
 }
 
-const ChatWindow: React.FC<ChatWindowProps> = ({ className, withHeader = true }) => {
+const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
   const runtime = useContext(RuntimeStateAPIContext);
   const state = useContext(RuntimeStateContext);
   const { assistant } = runtime;
@@ -44,7 +43,6 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ className, withHeader = true })
         image={assistant.image}
         avatar={assistant.avatar}
         withWatermark={assistant.watermark}
-        withHeader={withHeader}
         startTime={state.session.startTime}
         hasEnded={runtime.isStatus(SessionStatus.ENDED)}
         isLoading={!state.session.turns.length}
