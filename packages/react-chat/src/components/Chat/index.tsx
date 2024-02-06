@@ -74,13 +74,10 @@ const Chat: React.FC<ChatProps> = ({
   useLayoutEffect(() => {
     if (!initialRender) return;
 
-    if (!autostart) {
-      setInitialRender(false);
-    }
-  }, [initialRender, autostart]);
+    setInitialRender(false);
+  }, [initialRender]);
 
   const { config } = useContext(RuntimeStateAPIContext);
-  const { session } = useContext(RuntimeStateContext);
 
   const handleClose = (event: React.MouseEvent<HTMLButtonElement>): void => {
     if (hasEnded) {
@@ -91,8 +88,6 @@ const Chat: React.FC<ChatProps> = ({
   };
 
   const handleResume = (): void => setAlert(false);
-
-  const hasAutostart = useMemo(() => (autostart && initialRender) || !initialRender, [autostart, initialRender]);
 
   const actions = useMemo(() => {
     if (config.render?.mode === RenderMode.BUBBLE) {
@@ -112,20 +107,36 @@ const Chat: React.FC<ChatProps> = ({
     );
   }
 
+  if (!autostart && initialRender) {
+    console.log('initial render');
+    return (
+      <Container withPrompt={hasAlert}>
+        <Header title={title} image={image} actions={actions} />
+        <Dialog ref={dialogRef}>
+          <AutoScrollProvider target={dialogRef}>
+            <AssistantInfo title={title} avatar={avatar} description={description} />
+          </AutoScrollProvider>
+        </Dialog>
+        <Footer withWatermark={withWatermark} hasEnded={hasEnded} onStart={onStart} onSend={onSend} />
+        <Overlay />
+        <Prompt
+          accept={{ label: 'End Chat', type: 'warn', onClick: chain(onEnd, handleResume) }}
+          cancel={{ label: 'Cancel', onClick: handleResume }}
+        />
+      </Container>
+    );
+  }
+
   return (
     <Container withPrompt={hasAlert}>
       <Header title={title} image={image} actions={actions} />
       <Dialog ref={dialogRef}>
         <AutoScrollProvider target={dialogRef}>
           <AssistantInfo title={title} avatar={avatar} description={description} />
-          {hasAutostart && (
-            <>
-              <Spacer />
-              {!!timestamp && <SessionTime>{timestamp}</SessionTime>}
-              {children}
-              {hasEnded && <Status>You have ended the chat</Status>}
-            </>
-          )}
+          <Spacer />
+          {!!timestamp && <SessionTime>{timestamp}</SessionTime>}
+          {children}
+          {hasEnded && <Status>You have ended the chat</Status>}
         </AutoScrollProvider>
       </Dialog>
       <Footer withWatermark={withWatermark} hasEnded={hasEnded} onStart={onStart} onSend={onSend} />
