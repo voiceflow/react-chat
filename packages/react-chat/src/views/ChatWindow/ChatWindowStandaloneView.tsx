@@ -14,7 +14,7 @@ const ChatWindowStandaloneView: React.FC = () => {
   const isStyleSheetResolved = useResolveAssistantStyleSheet(assistant, shadowRoot);
 
   if (!isStyleSheetResolved) return null;
-  return <ChatWindow className={theme} />;
+  return <ChatWindow className={theme} withHeader={false} />;
 };
 
 export default ChatWindowStandaloneView;

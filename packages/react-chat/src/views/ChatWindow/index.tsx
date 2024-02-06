@@ -12,7 +12,12 @@ import { TurnType, UserTurnProps } from '@/types';
 
 import { ChatWindowContainer } from './styled';
 
-const ChatWindow: React.FC<{ className?: string }> = ({ className }) => {
+export interface ChatWindowProps {
+  className?: string;
+  withHeader?: boolean;
+}
+
+const ChatWindow: React.FC<ChatWindowProps> = ({ className, withHeader = true }) => {
   const runtime = useContext(RuntimeStateAPIContext);
   const state = useContext(RuntimeStateContext);
   const { assistant } = runtime;
@@ -39,6 +44,7 @@ const ChatWindow: React.FC<{ className?: string }> = ({ className }) => {
         image={assistant.image}
         avatar={assistant.avatar}
         withWatermark={assistant.watermark}
+        withHeader={withHeader}
         startTime={state.session.startTime}
         hasEnded={runtime.isStatus(SessionStatus.ENDED)}
         isLoading={!state.session.turns.length}

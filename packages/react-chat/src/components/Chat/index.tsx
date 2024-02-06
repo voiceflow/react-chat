@@ -34,6 +34,11 @@ export interface ChatProps extends HeaderProps, AssistantInfoProps, FooterProps,
   withWatermark: boolean;
 
   /**
+   * If true, a header with close and hide buttons is added to the chat window.
+   */
+  withHeader?: boolean;
+
+  /**
    * A callback that is executed when the chat widget is minimized.
    */
   onMinimize?: React.MouseEventHandler<HTMLButtonElement>;
@@ -52,6 +57,7 @@ const Chat: React.FC<ChatProps> = ({
   description,
   startTime,
   isLoading,
+  withHeader = true,
   withWatermark,
   onMinimize,
   onEnd,
@@ -82,14 +88,16 @@ const Chat: React.FC<ChatProps> = ({
 
   return (
     <Container withPrompt={hasAlert}>
-      <Header
-        title={title}
-        image={image}
-        actions={[
-          { svg: 'minus', onClick: onMinimize },
-          { svg: 'close', onClick: handleClose },
-        ]}
-      />
+      {withHeader && (
+        <Header
+          title={title}
+          image={image}
+          actions={[
+            { svg: 'minus', onClick: onMinimize },
+            { svg: 'close', onClick: handleClose },
+          ]}
+        />
+      )}
       <Dialog ref={dialogRef}>
         <AutoScrollProvider target={dialogRef}>
           <AssistantInfo title={title} avatar={avatar} description={description} />
