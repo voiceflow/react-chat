@@ -67,28 +67,29 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
         onSend={runtime.reply}
         onMinimize={runtime.close}
       >
-        {state.session.turns.map((turn, turnIndex) =>
-          match(turn)
-            .with({ type: TurnType.USER }, ({ id, ...props }) => <UserResponse {...R.omit(props, ['type'])} key={id} />)
-            .with({ type: TurnType.SYSTEM }, ({ id, ...props }) => (
-              <SystemResponse
-                key={id}
-                {...R.omit(props, ['type'])}
-                feedback={
-                  assistant.feedback
-                    ? {
-                        onClick: (feedback: FeedbackName) => {
-                          runtime.feedback(feedback, props.messages, getPreviousUserTurn(turnIndex));
-                        },
-                      }
-                    : undefined
-                }
-                avatar={assistant.avatar}
-                isLast={turnIndex === state.session.turns.length - 1}
-              />
-            ))
-            .exhaustive()
-        )}
+        {!(initialRender && autostart) &&
+          state.session.turns.map((turn, turnIndex) =>
+            match(turn)
+              .with({ type: TurnType.USER }, ({ id, ...props }) => <UserResponse {...R.omit(props, ['type'])} key={id} />)
+              .with({ type: TurnType.SYSTEM }, ({ id, ...props }) => (
+                <SystemResponse
+                  key={id}
+                  {...R.omit(props, ['type'])}
+                  feedback={
+                    assistant.feedback
+                      ? {
+                          onClick: (feedback: FeedbackName) => {
+                            runtime.feedback(feedback, props.messages, getPreviousUserTurn(turnIndex));
+                          },
+                        }
+                      : undefined
+                  }
+                  avatar={assistant.avatar}
+                  isLast={turnIndex === state.session.turns.length - 1}
+                />
+              ))
+              .exhaustive()
+          )}
         {state.indicator && <SystemResponse.Indicator avatar={assistant.avatar} />}
       </Chat>
     </ChatWindowContainer>
