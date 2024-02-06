@@ -7,11 +7,19 @@
       body {
         background-color: #f9f9f9;
       }
+      #flat-chat {
+        width: 80%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 500px;
+      }
     </style>
   </head>
 
   <body>
-    <div id="flat-chat" style="width: 50vw; margin-left: auto"></div>
+    <div id="flat-chat"></div>
     <script>
       function _vf_load() {
         window.voiceflow.chat.load({

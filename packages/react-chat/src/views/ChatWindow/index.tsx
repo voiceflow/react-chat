@@ -12,7 +12,7 @@ import { TurnType, UserTurnProps } from '@/types';
 
 import { ChatWindowContainer } from './styled';
 
-const ChatWindow: React.FC = () => {
+const ChatWindow: React.FC<{ className?: string }> = ({ className }) => {
   const runtime = useContext(RuntimeStateAPIContext);
   const state = useContext(RuntimeStateContext);
   const { assistant } = runtime;
@@ -32,7 +32,7 @@ const ChatWindow: React.FC = () => {
   );
 
   return (
-    <ChatWindowContainer>
+    <ChatWindowContainer className={className}>
       <Chat
         title={assistant.title}
         description={assistant.description}

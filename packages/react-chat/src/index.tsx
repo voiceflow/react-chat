@@ -2,15 +2,10 @@ import { lazy } from 'react';
 import { createRoot } from 'react-dom/client';
 
 import { ChatConfig, RenderMode } from '@/common/types';
-// import ChatWidget from '@/views/ChatWidget';
-// import { Entrypoint } from './entrypoints';
 import { initStitches } from '@/styles/theme';
-// import { RuntimeProvider } from '@/contexts';
 import { mergeAssistant } from '@/utils/assistant';
 import { sanitizeConfig } from '@/utils/config';
 import { noop } from '@/utils/functional';
-
-// import { ChatWindow } from './views';
 
 const LazyEntrypoint = lazy(async () => {
   const { Entrypoint } = await import('./entrypoints');
@@ -32,7 +27,7 @@ window.voiceflow.chat ??= {
     const config = sanitizeConfig(loadConfig);
     // extract config here from sanitize config
     const assistant = await mergeAssistant(config);
-    console.log('config', config);
+
     if (config.render?.mode === RenderMode.EMBEDDED) {
       const shadowRoot = config.render!.target!.attachShadow({ mode: 'open' });
       root = createRoot(shadowRoot);
@@ -43,7 +38,6 @@ window.voiceflow.chat ??= {
         root.render(<LazyEntrypoint config={config} assistant={assistant} shadowRoot={shadowRoot} resolve={resolve} />);
       });
     } else {
-      console.log('in bubble');
       const VOICEFLOW_ID = 'voiceflow-chat';
 
       const rootEl = document.createElement('div');
@@ -61,15 +55,6 @@ window.voiceflow.chat ??= {
         root.render(<LazyEntrypoint config={config} assistant={assistant} shadowRoot={shadowRoot} resolve={resolve} />);
       });
     }
-    // // set root here
-    // await new Promise<void>((resolve) => {
-    //   root.render(
-    //     <RuntimeProvider assistant={assistant} config={config}>
-    //       {config.render?.mode === RenderMode.EMBEDDED && <ChatWindow />}
-    //       {config.render?.mode === RenderMode.BUBBLE && <ChatWidget chatAPI={window.voiceflow!.chat} ready={resolve} />}
-    //     </RuntimeProvider>
-    //   );
-    // });
   },
 
   destroy: () => root.render(null),

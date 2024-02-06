@@ -36,7 +36,7 @@ export const sanitizeConfig = (config: unknown): Partial<ChatConfig> & Pick<Chat
   if (!validateVerify(verify)) {
     throw new Error('no projectID on load');
   }
-  // TODO consult w Ben on what sanitization is needed for `render` options
+  // TODO throw error from here in console when no target is found
 
   return {
     verify,
