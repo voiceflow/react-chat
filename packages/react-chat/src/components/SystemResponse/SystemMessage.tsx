@@ -63,7 +63,7 @@ const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, feedback, timesta
           {children ??
             match(message)
               .with({ type: MessageType.TEXT }, ({ text }) => <Text text={text} />)
-              .with({ type: MessageType.IMAGE }, ({ url }) => <Image image={url} />)
+              .with({ type: MessageType.IMAGE }, ({ url }) => <Image image={url} mode={config.render?.mode} />)
               .with({ type: MessageType.CARD }, (props) => <Card {...R.omit(props, ['type'])} />)
               .with({ type: MessageType.CAROUSEL }, (props) => (
                 <Carousel {...R.omit(props, ['type'])} containerRef={containerRef} controlsRef={controlsRef} />

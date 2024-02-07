@@ -15,8 +15,6 @@ const getStorageSession = (storage: Storage, projectID: string): SessionOptions 
 };
 
 const setStorageSession = (storage: Storage, projectID: string, options: SessionOptions) => {
-  console.log('setStorageSession', options);
-
   storage.setItem(getSessionKey(projectID), JSON.stringify(options));
 
   return options;
@@ -47,8 +45,6 @@ export const getSession = (persistence: ChatPersistence, projectID: string, user
 };
 
 export const saveSession = (persistence: ChatPersistence, projectID: string, session: SessionOptions): void => {
-  console.log('Save settinon', session);
-
   broadcast({ type: BroadcastType.SAVE_SESSION, payload: session });
 
   if (persistence === ChatPersistence.LOCAL_STORAGE) {

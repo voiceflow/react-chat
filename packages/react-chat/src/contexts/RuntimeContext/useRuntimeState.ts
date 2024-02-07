@@ -29,7 +29,6 @@ const DEFAULT_SESSION_PARAMS = {
 
 export const useRuntimeState = ({ assistant, config }: Settings) => {
   const [isOpen, setOpen] = useState(false);
-  console.log('assistant.persistence', assistant.persistence);
 
   const [session, setSession, sessionRef] = useStateRef<Required<SessionOptions>>(() => ({
     ...DEFAULT_SESSION_PARAMS,

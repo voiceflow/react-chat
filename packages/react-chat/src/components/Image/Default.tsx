@@ -6,17 +6,24 @@ import { VariantProp } from '@/types';
 export const tag = tagFactory(ClassName.IMAGE);
 
 export const DefaultImageBase = styled(tag('img'), {
-  width: 248,
-
   variants: {
     isRounded: {
       true: {
         borderRadius: '$1',
       },
     },
+    mode: {
+      bubble: {
+        width: 248,
+      },
+      embedded: {
+        width: '100%',
+      },
+    },
   },
   defaultVariants: {
     isRounded: true,
+    mode: 'bubble',
   },
 });
 

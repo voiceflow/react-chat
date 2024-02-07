@@ -65,7 +65,6 @@ const Chat: React.FC<ChatProps> = ({
   onStart,
   onSend,
   children,
-  status,
 }) => {
   const timestamp = useTimestamp(startTime);
   const dialogRef = useRef<HTMLElement>(null);
@@ -74,7 +73,6 @@ const Chat: React.FC<ChatProps> = ({
   const { config } = useContext(RuntimeStateAPIContext);
 
   useEffect(() => {
-    console.log('autostart in useeffect', autostart);
     if (autostart) onStart?.();
   }, [autostart]);
 

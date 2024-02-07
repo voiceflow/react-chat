@@ -1,6 +1,6 @@
 import '../../styles.css';
 
-import React, { useCallback, useContext, useLayoutEffect, useMemo, useState } from 'react';
+import React, { useCallback, useContext } from 'react';
 import * as R from 'remeda';
 import { match } from 'ts-pattern';
 
@@ -20,8 +20,6 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
   const runtime = useContext(RuntimeStateAPIContext);
   const state = useContext(RuntimeStateContext);
   const { assistant, config } = runtime;
-  const { session } = state;
-  console.log('session', session.status);
 
   // emitters
   const closeAndEnd = useCallback((): void => {
@@ -40,7 +38,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
   return (
     <ChatWindowContainer className={className}>
       <Chat
-        autostart={config.autostart}
+        autostart={!!config.autostart}
         title={assistant.title}
         description={assistant.description}
         image={assistant.image}
@@ -49,12 +47,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
         startTime={state.session.startTime}
         hasEnded={runtime.isStatus(SessionStatus.ENDED)}
         isLoading={false}
-        onStart={async () => {
-          // if (!session.autostart) {
-          //   setAutostart(true);
-          // }
-          await runtime.launch();
-        }}
+        onStart={runtime.launch}
         onEnd={closeAndEnd}
         onSend={runtime.reply}
         onMinimize={runtime.close}
