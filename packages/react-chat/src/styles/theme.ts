@@ -24,7 +24,7 @@ export interface FontOptions {
   height?: BaseCSS['lineHeight'] | Token<typeof Font['LINE_HEIGHTS']>;
 }
 
-type CustomStitches = Stitches<'', {}>;
+type CustomStitches = Stitches<'', Record<string, never>>;
 
 export const getDefaultTheme = (root: ShadowRoot) => {
   return {
