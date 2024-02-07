@@ -25,11 +25,11 @@ const DEFAULT_SESSION_PARAMS = {
   turns: [],
   startTime: Date.now(),
   status: SessionStatus.IDLE,
-  autostart: false,
 };
 
 export const useRuntimeState = ({ assistant, config }: Settings) => {
   const [isOpen, setOpen] = useState(false);
+  console.log('assistant.persistence', assistant.persistence);
 
   const [session, setSession, sessionRef] = useStateRef<Required<SessionOptions>>(() => ({
     ...DEFAULT_SESSION_PARAMS,
@@ -62,10 +62,6 @@ export const useRuntimeState = ({ assistant, config }: Settings) => {
   };
   const isStatus = (status: SessionStatus) => {
     return sessionRef.current.status === status;
-  };
-
-  const setAutostart = (autostart: boolean) => {
-    setSession((prev) => (prev.autostart === autostart ? prev : { ...prev, autostart }));
   };
 
   // turn management
@@ -127,6 +123,7 @@ export const useRuntimeState = ({ assistant, config }: Settings) => {
   const open = async () => {
     broadcast({ type: BroadcastType.OPEN });
     setOpen(true);
+    // saveSession(assistant.persistence, config.verify.projectID, sessionRef.current);
 
     if (isStatus(SessionStatus.IDLE)) {
       await launch();
@@ -135,6 +132,8 @@ export const useRuntimeState = ({ assistant, config }: Settings) => {
 
   const close = () => {
     broadcast({ type: BroadcastType.CLOSE });
+    saveSession(assistant.persistence, config.verify.projectID, sessionRef.current);
+
     setOpen(false);
   };
 
@@ -153,7 +152,6 @@ export const useRuntimeState = ({ assistant, config }: Settings) => {
       addTurn,
       feedback: runtime.saveFeedback,
       setStatus,
-      setAutostart,
       isStatus,
       reset,
 

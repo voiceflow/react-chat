@@ -49,7 +49,6 @@ export interface SessionOptions {
   turns?: TurnProps[];
   startTime?: number;
   status?: SessionStatus;
-  autostart?: boolean;
 }
 
 export type Assistant = Omit<ChatPublishing & Required<Omit<ChatPublishing, 'launcher' | 'stylesheet'>>, 'selectedIntents'>;

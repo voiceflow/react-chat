@@ -1,4 +1,4 @@
-import React, { memo, useContext, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import React, { memo, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 
 import { RenderMode } from '@/common';
 import AssistantInfo, { AssistantInfoProps } from '@/components/AssistantInfo';
@@ -65,12 +65,18 @@ const Chat: React.FC<ChatProps> = ({
   onStart,
   onSend,
   children,
+  status,
 }) => {
   const timestamp = useTimestamp(startTime);
   const dialogRef = useRef<HTMLElement>(null);
   const [hasAlert, setAlert] = useState(false);
 
   const { config } = useContext(RuntimeStateAPIContext);
+
+  useEffect(() => {
+    console.log('autostart in useeffect', autostart);
+    if (autostart) onStart?.();
+  }, [autostart]);
 
   const handleClose = (event: React.MouseEvent<HTMLButtonElement>): void => {
     if (hasEnded) {
@@ -96,26 +102,6 @@ const Chat: React.FC<ChatProps> = ({
     return (
       <Container>
         <Loader />
-      </Container>
-    );
-  }
-
-  if (!autostart) {
-    onEnd?.(null);
-    return (
-      <Container withPrompt={hasAlert}>
-        <Header title={title} image={image} actions={actions} />
-        <Dialog ref={dialogRef}>
-          <AutoScrollProvider target={dialogRef}>
-            <AssistantInfo title={title} avatar={avatar} description={description} />
-          </AutoScrollProvider>
-        </Dialog>
-        <Footer withWatermark={withWatermark} hasEnded={hasEnded} onStart={onStart} onSend={onSend} />
-        <Overlay />
-        <Prompt
-          accept={{ label: 'End Chat', type: 'warn', onClick: chain(onEnd, handleResume) }}
-          cancel={{ label: 'Cancel', onClick: handleResume }}
-        />
       </Container>
     );
   }

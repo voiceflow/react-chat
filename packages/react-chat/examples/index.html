@@ -8,12 +8,11 @@
         background-color: #f9f9f9;
       }
       #flat-chat {
-        width: 80%;
+        width: 100vw;
+        height: 100vh;
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        height: 500px;
+        top: 0;
+        left: 0;
       }
     </style>
   </head>
@@ -32,10 +31,10 @@
             name: 'Development User',
           },
           render: {
-            mode: 'bubble',
+            mode: 'embedded', // 'embedded'
             target: document.getElementById('flat-chat'),
           },
-          autostart: false,
+          autostart: true,
           allowDangerousHTML: false,
         });
       }

@@ -19,8 +19,9 @@ export interface ChatWindowProps {
 const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
   const runtime = useContext(RuntimeStateAPIContext);
   const state = useContext(RuntimeStateContext);
-  const { assistant, setAutostart } = runtime;
+  const { assistant, config } = runtime;
   const { session } = state;
+  console.log('session', session.status);
 
   // emitters
   const closeAndEnd = useCallback((): void => {
@@ -39,7 +40,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
   return (
     <ChatWindowContainer className={className}>
       <Chat
-        autostart={session.autostart}
+        autostart={config.autostart}
         title={assistant.title}
         description={assistant.description}
         image={assistant.image}
@@ -47,11 +48,11 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
         withWatermark={assistant.watermark}
         startTime={state.session.startTime}
         hasEnded={runtime.isStatus(SessionStatus.ENDED)}
-        isLoading={!state.session.turns.length}
+        isLoading={false}
         onStart={async () => {
-          if (!session.autostart) {
-            setAutostart(true);
-          }
+          // if (!session.autostart) {
+          //   setAutostart(true);
+          // }
           await runtime.launch();
         }}
         onEnd={closeAndEnd}
