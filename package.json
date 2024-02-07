@@ -12,6 +12,14 @@
   "devDependencies": {
     "@commitlint/cli": "17.0.3",
     "@commitlint/config-conventional": "17.0.3",
+    "@storybook/addon-essentials": "^7.6.13",
+    "@storybook/addon-interactions": "^7.6.13",
+    "@storybook/addon-links": "^7.6.13",
+    "@storybook/addon-onboarding": "^1.0.11",
+    "@storybook/blocks": "^7.6.13",
+    "@storybook/react": "^7.6.13",
+    "@storybook/react-vite": "^7.6.13",
+    "@storybook/test": "^7.6.13",
     "@voiceflow/commitlint-config": "2.0.0",
     "@voiceflow/git-branch-check": "1.4.1",
     "cz-conventional-changelog": "^3.3.0",
@@ -19,6 +27,10 @@
     "fixpack": "^4.0.0",
     "husky": "7.0.0",
     "lint-staged": ">=10",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "storybook": "^7.6.13",
     "turbo": "1.5.5"
   },
   "engines": {
@@ -45,7 +57,9 @@
     "prepare": "husky install",
     "setup_github_pages": "./scripts/setup_github_pages.sh",
     "test:dependencies": "depcheck && turbo run test:dependencies",
-    "test:unit": "turbo run test:unit"
+    "test:unit": "turbo run test:unit",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "volta": {
     "node": "20.10.0",
@@ -53,5 +67,8 @@
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "@voiceflow/react-chat": "workspace:^"
+  }
 }
