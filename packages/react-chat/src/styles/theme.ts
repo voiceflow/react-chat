@@ -1,3 +1,5 @@
+/* eslint-disable import/no-mutable-exports */
+
 import type { CSS as BaseCSS } from '@voiceflow/stitches-react';
 import { createStitches } from '@voiceflow/stitches-react';
 import Stitches from '@voiceflow/stitches-react/types/stitches';
@@ -86,6 +88,7 @@ export const getDefaultTheme = (root: ShadowRoot) => {
     },
   };
 };
+
 export let styled: CustomStitches['styled'] = null!;
 export let keyframes: CustomStitches['keyframes'] = null!;
 export let global: CustomStitches['global'] = null!;
