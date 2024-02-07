@@ -32,8 +32,8 @@ const ChatWindowStandaloneView: React.FC<ChatWindowStandaloneViewProps> = ({ cha
       show: noop,
       interact,
       proactive: {
-        clear: noop, //() => setProactiveMessages([]),
-        push: noop, //(...messages: Trace.AnyTrace[]) => setProactiveMessages((prev) => [...prev, ...messages]),
+        clear: noop, // () => setProactiveMessages([]),
+        push: noop, // (...messages: Trace.AnyTrace[]) => setProactiveMessages((prev) => [...prev, ...messages]),
       },
     });
 

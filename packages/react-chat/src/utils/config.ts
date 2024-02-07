@@ -15,6 +15,7 @@ const tryDecodeURIComponent = (str: string) => {
   }
 };
 
+// eslint-disable-next-line xss/no-mixed-html
 const sanitizeRenderOptions = (renderOptions: any): Partial<ChatConfig['render']> => {
   if (!isObject(renderOptions)) return { mode: RenderMode.BUBBLE };
 
