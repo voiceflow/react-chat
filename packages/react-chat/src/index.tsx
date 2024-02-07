@@ -15,23 +15,33 @@ const LazyEntrypoint = lazy(async () => {
 
 let root;
 
-const createChatRoot = (config: any): { shadowRoot: ShadowRoot; root: Root } => {
+const initBubbleMode = () => {
   const VOICEFLOW_ID = 'voiceflow-chat';
+  const rootEl = document.createElement('div');
+  rootEl.id = VOICEFLOW_ID;
+  document.body.appendChild(rootEl);
 
+  const shadowRoot = rootEl.attachShadow({ mode: 'open' });
+  root = createRoot(shadowRoot);
+  initStitches(shadowRoot);
+  return { shadowRoot, root };
+};
+
+const createChatRoot = (config: any): { shadowRoot: ShadowRoot; root: Root } => {
   let shadowRoot;
 
   if (config.render?.mode === RenderMode.EMBEDDED) {
-    shadowRoot = config.render!.target!.attachShadow({ mode: 'open' });
-    root = createRoot(shadowRoot);
-    initStitches(shadowRoot);
+    try {
+      shadowRoot = config.render!.target!.attachShadow({ mode: 'open' });
+      root = createRoot(shadowRoot);
+      initStitches(shadowRoot);
+    } catch (e) {
+      console.error(`${e}. \nTarget: ${config.render!.target}`);
+    }
   } else {
-    const rootEl = document.createElement('div');
-    rootEl.id = VOICEFLOW_ID;
-    document.body.appendChild(rootEl);
-
-    shadowRoot = rootEl.attachShadow({ mode: 'open' });
-    root = createRoot(shadowRoot);
-    initStitches(shadowRoot);
+    const { root: bubbleRoot, shadowRoot: bubbleShadowRoot } = initBubbleMode();
+    root = bubbleRoot;
+    shadowRoot = bubbleShadowRoot;
   }
 
   return { shadowRoot, root };
