@@ -27,7 +27,12 @@ const sanitizeRenderOptions = (renderOptions: any): Partial<ChatConfig['render']
     console.error('No valid target found for embedded mode. Defaulting to bubble mode.');
   }
 
-  if (mode && Object.values(RenderMode).includes(mode) && target instanceof HTMLElement) return { mode, target };
+  if (mode && Object.values(RenderMode).includes(mode) && target instanceof HTMLElement) {
+    if (mode !== RenderMode.EMBEDDED) {
+      console.warn(`render.target has no effect in ${mode} mode.`);
+    }
+    return { mode, target };
+  }
 
   return { mode: RenderMode.BUBBLE };
 };

@@ -1,4 +1,4 @@
-import React, { memo, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import React, { memo, useContext, useEffect, useMemo, useRef, useState } from 'react';
 
 import { RenderMode } from '@/common';
 import AssistantInfo, { AssistantInfoProps } from '@/components/AssistantInfo';
@@ -71,6 +71,7 @@ const Chat: React.FC<ChatProps> = ({
   const [hasAlert, setAlert] = useState(false);
 
   const { config } = useContext(RuntimeStateAPIContext);
+  const state = useContext(RuntimeStateContext);
 
   useEffect(() => {
     if (autostart) onStart?.();
@@ -111,7 +112,7 @@ const Chat: React.FC<ChatProps> = ({
         <AutoScrollProvider target={dialogRef}>
           <AssistantInfo title={title} avatar={avatar} description={description} />
           <Spacer />
-          {!!timestamp && <SessionTime>{timestamp}</SessionTime>}
+          {!!timestamp && !!state.session.turns.length && <SessionTime>{timestamp}</SessionTime>}
           {children}
           {hasEnded && <Status>You have ended the chat</Status>}
         </AutoScrollProvider>

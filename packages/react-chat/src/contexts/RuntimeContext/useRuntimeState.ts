@@ -122,7 +122,6 @@ export const useRuntimeState = ({ assistant, config }: Settings) => {
   const open = async () => {
     broadcast({ type: BroadcastType.OPEN });
     setOpen(true);
-    // saveSession(assistant.persistence, config.verify.projectID, sessionRef.current);
 
     if (isStatus(SessionStatus.IDLE)) {
       await launch();

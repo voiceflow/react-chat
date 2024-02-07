@@ -18,7 +18,7 @@
   </head>
 
   <body>
-    <img id="flat-chat"/>
+    <div id="flat-chat"></div>
     <div id="voiceflow-chat-frame"></div>
 
     <script>
@@ -31,7 +31,7 @@
             name: 'Development User',
           },
           render: {
-            mode: 'bubble',
+            mode: 'embedded',
             target: document.getElementById('flat-chat'),
           },
           autostart: false,
