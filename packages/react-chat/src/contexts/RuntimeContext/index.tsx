@@ -15,10 +15,11 @@ export const RuntimeProvider = ({ children, assistant, config, shadowRoot }: Run
 
   // api is a static object, so we can use useMemo to prevent unnecessary re-renders
   const api = useMemo(() => store.api, []);
+  const state = useMemo(() => ({ ...store.state, shadowRoot, autostart: !!config.autostart }), [config, shadowRoot, store.state]);
 
   return (
     <RuntimeStateAPIContext.Provider value={api}>
-      <RuntimeStateContext.Provider value={{ ...store.state, shadowRoot, autostart: !!config.autostart }}>{children}</RuntimeStateContext.Provider>
+      <RuntimeStateContext.Provider value={state}>{children}</RuntimeStateContext.Provider>
     </RuntimeStateAPIContext.Provider>
   );
 };
