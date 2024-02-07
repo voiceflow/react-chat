@@ -46,7 +46,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
         withWatermark={assistant.watermark}
         startTime={state.session.startTime}
         hasEnded={runtime.isStatus(SessionStatus.ENDED)}
-        isLoading={false}
+        isLoading={runtime.isStatus(SessionStatus.IDLE) && state.session.turns.length === 0 && state.autostart}
         onStart={runtime.launch}
         onEnd={closeAndEnd}
         onSend={runtime.reply}
