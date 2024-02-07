@@ -1,10 +1,11 @@
 import { Trace } from '@voiceflow/base-types';
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 
-import { ChatPosition, isObject, useTheme } from '@/common';
+import { ChatPosition, isObject } from '@/common';
 import Launcher from '@/components/Launcher';
 import Proactive from '@/components/Proactive';
 import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts';
+import { useTheme } from '@/hooks';
 import { noop } from '@/utils/functional';
 import { useResolveAssistantStyleSheet } from '@/utils/stylesheet';
 import ChatWindow from '@/views/ChatWindow';
@@ -19,7 +20,7 @@ interface ChatWidgetProps extends React.PropsWithChildren {
 
 const ChatWidget: React.FC<ChatWidgetProps> = ({ chatAPI, ready }) => {
   const { assistant, open, close, interact } = useContext(RuntimeStateAPIContext);
-  const { isOpen } = useContext(RuntimeStateContext);
+  const { isOpen, shadowRoot } = useContext(RuntimeStateContext);
 
   /** initialization */
   const [isHidden, setHidden] = useState(false);
@@ -64,7 +65,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ chatAPI, ready }) => {
   const side = assistant?.position ?? ChatPosition.RIGHT;
   const position = { bottom: assistant?.spacing.bottom, [side]: assistant?.spacing.side };
 
-  const isStyleSheetResolved = useResolveAssistantStyleSheet(assistant);
+  const isStyleSheetResolved = useResolveAssistantStyleSheet(assistant, shadowRoot);
 
   if (!isStyleSheetResolved) return null;
 

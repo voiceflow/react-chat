@@ -37,7 +37,6 @@ export const useRuntimeState = ({ assistant, config }: Settings) => {
   }));
 
   const [indicator, setIndicator] = useState(false);
-
   const { clearNoReplyTimeout, setNoReplyTimeout } = useNoReply(() => ({ interact, isStatus }));
 
   const noReplyHandler: TraceDeclaration<RuntimeMessage, any> = {
@@ -131,6 +130,8 @@ export const useRuntimeState = ({ assistant, config }: Settings) => {
 
   const close = () => {
     broadcast({ type: BroadcastType.CLOSE });
+    saveSession(assistant.persistence, config.verify.projectID, sessionRef.current);
+
     setOpen(false);
   };
 

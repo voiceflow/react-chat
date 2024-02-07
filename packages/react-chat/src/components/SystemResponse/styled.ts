@@ -95,4 +95,24 @@ export const List = styled(tag('div', 'list'), {
       marginBottom: 0,
     },
   },
+
+  variants: {
+    mode: {
+      bubble: {
+        [`& ${Message.Container}`]: {
+          maxWidth: 248,
+        },
+      },
+      embedded: {
+        // minus avatar and paddings, minus timestamp width
+        maxWidth: 'calc(100% - 54px - 50px)',
+        [`& ${Message.Container}`]: {
+          maxWidth: '100%',
+        },
+      },
+    },
+  },
+  defaultVariants: {
+    mode: 'bubble',
+  },
 });
