@@ -17,7 +17,7 @@ let root;
 
 const createChatRoot = (config: any): { shadowRoot: ShadowRoot; root: Root } => {
   const VOICEFLOW_ID = 'voiceflow-chat';
-  let root;
+
   let shadowRoot;
 
   if (config.render?.mode === RenderMode.EMBEDDED) {
