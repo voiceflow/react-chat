@@ -1,7 +1,7 @@
 import Button from '@/components/Button';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
-import { styled } from '@/styles';
+import { styled } from '@/styles/theme';
 
 const tag = tagFactory(ClassName.PROMPT);
 

@@ -2,7 +2,7 @@ import Button from '@/components/Button';
 import Input from '@/components/Input';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
-import { styled } from '@/styles';
+import { styled } from '@/styles/theme';
 
 const tag = tagFactory(ClassName.FOOTER);
 

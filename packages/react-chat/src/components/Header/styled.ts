@@ -3,8 +3,8 @@ import BaseButton from '@/components/Button';
 import Icon from '@/components/Icon';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
-import { styled } from '@/styles';
 import { textOverflowStyles } from '@/styles/fragments';
+import { styled } from '@/styles/theme';
 
 const tag = tagFactory(ClassName.HEADER);
 

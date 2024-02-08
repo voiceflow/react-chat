@@ -1,6 +1,7 @@
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
-import { rotate, styled } from '@/styles';
+import { rotate } from '@/styles/animation';
+import { styled } from '@/styles/theme';
 
 const SIZE = 32;
 const ANIMATION_DURATION = 1000;

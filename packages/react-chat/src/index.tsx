@@ -17,7 +17,7 @@ const LazyEntrypoint = lazy(async () => {
 
 let root;
 
-const initBubbleMode = async () => {
+const initBubbleMode = () => {
   const VOICEFLOW_ID = 'voiceflow-chat';
   const rootEl = document.createElement('div');
   rootEl.id = VOICEFLOW_ID;
@@ -25,11 +25,11 @@ const initBubbleMode = async () => {
 
   const shadowRoot = rootEl.attachShadow({ mode: 'open' });
   root = createRoot(shadowRoot);
-  await initStitches(shadowRoot);
+  initStitches(shadowRoot);
   return { shadowRoot, root };
 };
 
-const createChatRoot = async (config: any): { shadowRoot: ShadowRoot; root: Root } => {
+const createChatRoot = (config: any): { shadowRoot: ShadowRoot; root: Root } => {
   let shadowRoot;
 
   if (config.render?.mode === RenderMode.EMBEDDED) {
@@ -42,7 +42,7 @@ const createChatRoot = async (config: any): { shadowRoot: ShadowRoot; root: Root
       console.error(`${e}. \nTarget: ${config.render!.target}`);
     }
   } else {
-    const { root: bubbleRoot, shadowRoot: bubbleShadowRoot } = await initBubbleMode();
+    const { root: bubbleRoot, shadowRoot: bubbleShadowRoot } = initBubbleMode();
     root = bubbleRoot;
     shadowRoot = bubbleShadowRoot;
   }
@@ -60,12 +60,12 @@ window.voiceflow.chat ??= {
 
   load: async (loadConfig: Partial<ChatConfig>) => {
     const config = sanitizeConfig(loadConfig);
+    const { shadowRoot, root: chatRoot } = createChatRoot(config);
     const assistant = await mergeAssistant(config);
 
-    const { shadowRoot, root: chatRoot } = await createChatRoot(config);
+    console.log('>>> before crashing');
 
-    console.log('>>> LOADED File: index BEFORE def view BEFORE THE CRASH', import('@/views/ChatWidget'), '<<');
-    // crashes here
+    // crashes here because styled is null in the chat widget file
     const { default: View } = await (config.render?.mode === RenderMode.EMBEDDED
       ? import('@/views/ChatWindow/ChatWindowStandaloneView')
       : import('@/views/ChatWidget'));

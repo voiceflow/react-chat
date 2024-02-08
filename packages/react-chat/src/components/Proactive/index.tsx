@@ -5,7 +5,8 @@ import { match } from 'ts-pattern';
 import { ChatPosition } from '@/common';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
-import { animationStyles, styled } from '@/styles';
+import { animationStyles } from '@/styles/animation';
+import { styled } from '@/styles/theme';
 
 import Close, { CloseContainer } from './Close';
 import Message, { MessageContainer } from './Message';

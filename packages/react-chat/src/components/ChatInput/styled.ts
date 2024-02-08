@@ -3,7 +3,7 @@ import Icon from '@/components/Icon';
 import { textareaFocusStyles, textareaStyles } from '@/components/Textarea/styled';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
-import { styled } from '@/styles';
+import { styled } from '@/styles/theme';
 
 import Textarea from '../Textarea';
 

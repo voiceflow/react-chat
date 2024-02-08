@@ -1,6 +1,8 @@
 import { ClassName } from '@/constants';
-import { tagFactory } from '@/hocs';
-import { CSS, styled } from '@/styles';
+import { tagFactory } from '@/hocs/tag';
+import { CSS, styled } from '@/styles/theme';
+
+console.log(styled, '< im widget styles styled is');
 
 const CHAT_WIDTH = 380;
 const MAX_CHAT_HEIGHT = 800;

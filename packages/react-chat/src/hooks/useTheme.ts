@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { createCustomTheme } from '@/styles';
+import { createCustomTheme } from '@/styles/theme';
 
 import { Assistant } from '../common/types';
 

@@ -4,7 +4,7 @@ import Message from '@/components/Message';
 import Timestamp from '@/components/Timestamp';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
-import { styled } from '@/styles';
+import { styled } from '@/styles/theme';
 
 const tag = tagFactory(ClassName.SYSTEM_RESPONSE);
 

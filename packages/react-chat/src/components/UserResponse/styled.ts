@@ -2,7 +2,7 @@ import Timestamp from '@/components/Timestamp';
 import Tooltip from '@/components/Tooltip';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
-import { styled } from '@/styles';
+import { styled } from '@/styles/theme';
 
 import Message from '../Message';
 

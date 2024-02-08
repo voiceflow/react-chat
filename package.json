@@ -16,6 +16,7 @@
     "@voiceflow/git-branch-check": "1.4.1",
     "cz-conventional-changelog": "^3.3.0",
     "depcheck": "^1.4.3",
+    "dependency-cruiser": "16.2.0",
     "fixpack": "^4.0.0",
     "husky": "7.0.0",
     "lint-staged": ">=10",
