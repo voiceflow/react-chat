@@ -8,7 +8,7 @@ import type { StringKeyOf } from 'type-fest';
 
 import * as Color from './color';
 import * as Font from './font';
-
+console.log('>>> LOADED File: packages/react-chat/src/styles/theme.ts');
 const ANIMATION_DURATION = 150;
 
 export const createTransition = (properties: Array<keyof CSSPropertiesHyphen>, duration = ANIMATION_DURATION) =>
@@ -98,7 +98,6 @@ export let createTheme: CustomStitches['createTheme'] = null!;
 
 export const initStitches = (root: any) => {
   const stitches = createStitches(getDefaultTheme(root));
-  console.log(stitches, '<<<<<< stitches');
 
   styled = stitches.styled;
   keyframes = stitches.keyframes;

@@ -6,6 +6,7 @@ import { initStitches } from '@/styles/theme';
 import { mergeAssistant } from '@/utils/assistant';
 import { sanitizeConfig } from '@/utils/config';
 import { noop } from '@/utils/functional';
+
 import { RuntimeProvider } from './contexts';
 
 const LazyEntrypoint = lazy(async () => {
@@ -16,7 +17,7 @@ const LazyEntrypoint = lazy(async () => {
 
 let root;
 
-const initBubbleMode = () => {
+const initBubbleMode = async () => {
   const VOICEFLOW_ID = 'voiceflow-chat';
   const rootEl = document.createElement('div');
   rootEl.id = VOICEFLOW_ID;
@@ -24,25 +25,24 @@ const initBubbleMode = () => {
 
   const shadowRoot = rootEl.attachShadow({ mode: 'open' });
   root = createRoot(shadowRoot);
-  initStitches(shadowRoot);
+  await initStitches(shadowRoot);
   return { shadowRoot, root };
 };
 
-const createChatRoot = (config: any): { shadowRoot: ShadowRoot; root: Root } => {
+const createChatRoot = async (config: any): { shadowRoot: ShadowRoot; root: Root } => {
   let shadowRoot;
 
   if (config.render?.mode === RenderMode.EMBEDDED) {
     try {
       shadowRoot = config.render!.target!.attachShadow({ mode: 'open' });
       root = createRoot(shadowRoot);
-      console.log(initStitches(shadowRoot), '<<<<<< initStitches(shadowRoot)');
 
       initStitches(shadowRoot);
     } catch (e) {
       console.error(`${e}. \nTarget: ${config.render!.target}`);
     }
   } else {
-    const { root: bubbleRoot, shadowRoot: bubbleShadowRoot } = initBubbleMode();
+    const { root: bubbleRoot, shadowRoot: bubbleShadowRoot } = await initBubbleMode();
     root = bubbleRoot;
     shadowRoot = bubbleShadowRoot;
   }
@@ -62,11 +62,15 @@ window.voiceflow.chat ??= {
     const config = sanitizeConfig(loadConfig);
     const assistant = await mergeAssistant(config);
 
-    const { shadowRoot, root: chatRoot } = createChatRoot(config);
+    const { shadowRoot, root: chatRoot } = await createChatRoot(config);
 
+    console.log('>>> LOADED File: index BEFORE def view BEFORE THE CRASH', import('@/views/ChatWidget'), '<<');
+    // crashes here
     const { default: View } = await (config.render?.mode === RenderMode.EMBEDDED
       ? import('@/views/ChatWindow/ChatWindowStandaloneView')
       : import('@/views/ChatWidget'));
+
+    console.log('>>> LOADED File: index after def view');
 
     await new Promise<void>((resolve) => {
       chatRoot.render(
