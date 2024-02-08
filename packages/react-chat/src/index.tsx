@@ -1,51 +1,15 @@
-import { lazy } from 'react';
-import { createRoot, Root } from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 
-import { ChatConfig, RenderMode } from '@/common/types';
-import { initStitches } from '@/styles/theme';
+import { ChatConfig } from '@/common';
+import { RuntimeProvider } from '@/contexts';
 import { mergeAssistant } from '@/utils/assistant';
 import { sanitizeConfig } from '@/utils/config';
 import { noop } from '@/utils/functional';
+import ChatWidget from '@/views/ChatWidget';
 
-const LazyEntrypoint = lazy(async () => {
-  const { Entrypoint } = await import('./entrypoints');
+import { shadowRoot } from './shadow';
 
-  return { default: Entrypoint };
-});
-
-let root;
-
-const initBubbleMode = () => {
-  const VOICEFLOW_ID = 'voiceflow-chat';
-  const rootEl = document.createElement('div');
-  rootEl.id = VOICEFLOW_ID;
-  document.body.appendChild(rootEl);
-
-  const shadowRoot = rootEl.attachShadow({ mode: 'open' });
-  root = createRoot(shadowRoot);
-  initStitches(shadowRoot);
-  return { shadowRoot, root };
-};
-
-const createChatRoot = (config: any): { shadowRoot: ShadowRoot; root: Root } => {
-  let shadowRoot;
-
-  if (config.render?.mode === RenderMode.EMBEDDED) {
-    try {
-      shadowRoot = config.render!.target!.attachShadow({ mode: 'open' });
-      root = createRoot(shadowRoot);
-      initStitches(shadowRoot);
-    } catch (e) {
-      console.error(`${e}. \nTarget: ${config.render!.target}`);
-    }
-  } else {
-    const { root: bubbleRoot, shadowRoot: bubbleShadowRoot } = initBubbleMode();
-    root = bubbleRoot;
-    shadowRoot = bubbleShadowRoot;
-  }
-
-  return { shadowRoot, root };
-};
+const root = createRoot(shadowRoot);
 
 window.voiceflow ??= {};
 window.voiceflow.chat ??= {
@@ -57,13 +21,15 @@ window.voiceflow.chat ??= {
 
   load: async (loadConfig: Partial<ChatConfig>) => {
     const config = sanitizeConfig(loadConfig);
+
     const assistant = await mergeAssistant(config);
 
-    const { shadowRoot, root: chatRoot } = createChatRoot(config);
-
-    // set root here
     await new Promise<void>((resolve) => {
-      chatRoot.render(<LazyEntrypoint config={config} assistant={assistant} shadowRoot={shadowRoot} resolve={resolve} />);
+      root.render(
+        <RuntimeProvider assistant={assistant} config={config}>
+          <ChatWidget chatAPI={window.voiceflow!.chat} ready={resolve} />
+        </RuntimeProvider>
+      );
     });
   },
 

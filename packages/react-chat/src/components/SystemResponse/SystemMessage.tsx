@@ -1,4 +1,4 @@
-import { useContext, useRef } from 'react';
+import { useRef } from 'react';
 import * as R from 'remeda';
 import { match } from 'ts-pattern';
 
@@ -8,7 +8,6 @@ import Carousel from '@/components/Carousel';
 import Image from '@/components/Image';
 import Text from '@/components/Text';
 import Timestamp from '@/components/Timestamp';
-import { RuntimeStateAPIContext } from '@/contexts';
 
 import Feedback, { FeedbackProps } from '../Feedback';
 import { MessageType } from './constants';
@@ -48,8 +47,6 @@ const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, feedback, timesta
   const containerRef = useRef<HTMLDivElement>(null);
   const controlsRef = useRef<HTMLSpanElement>(null);
 
-  const { config } = useContext(RuntimeStateAPIContext);
-
   if (!children && message?.type === MessageType.END) {
     return <EndState />;
   }
@@ -59,11 +56,11 @@ const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, feedback, timesta
       <Controls ref={controlsRef} />
       <MessageContainer ref={containerRef} withImage={withImage} scrollable={message?.type === MessageType.CAROUSEL}>
         <Avatar avatar={avatar} />
-        <List mode={config.render!.mode}>
+        <List>
           {children ??
             match(message)
               .with({ type: MessageType.TEXT }, ({ text }) => <Text text={text} />)
-              .with({ type: MessageType.IMAGE }, ({ url }) => <Image image={url} mode={config.render?.mode} />)
+              .with({ type: MessageType.IMAGE }, ({ url }) => <Image image={url} />)
               .with({ type: MessageType.CARD }, (props) => <Card {...R.omit(props, ['type'])} />)
               .with({ type: MessageType.CAROUSEL }, (props) => (
                 <Carousel {...R.omit(props, ['type'])} containerRef={containerRef} controlsRef={controlsRef} />

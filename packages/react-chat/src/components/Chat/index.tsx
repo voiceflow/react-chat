@@ -1,12 +1,11 @@
-import React, { memo, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import React, { memo, useRef, useState } from 'react';
 
-import { RenderMode } from '@/common';
 import AssistantInfo, { AssistantInfoProps } from '@/components/AssistantInfo';
 import Footer, { FooterProps } from '@/components/Footer';
 import Header, { HeaderProps } from '@/components/Header';
 import Loader from '@/components/Loader';
 import Prompt from '@/components/Prompt';
-import { AutoScrollProvider, RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts';
+import { AutoScrollProvider } from '@/contexts';
 import { Nullish } from '@/types';
 import { chain } from '@/utils/functional';
 
@@ -35,11 +34,6 @@ export interface ChatProps extends HeaderProps, AssistantInfoProps, FooterProps,
   withWatermark: boolean;
 
   /**
-   * If true, the chat messages are shown, and the session is active.
-   */
-  autostart?: boolean;
-
-  /**
    * A callback that is executed when the chat widget is minimized.
    */
   onMinimize?: React.MouseEventHandler<HTMLButtonElement>;
@@ -59,7 +53,6 @@ const Chat: React.FC<ChatProps> = ({
   startTime,
   isLoading,
   withWatermark,
-  autostart,
   onMinimize,
   onEnd,
   onStart,
@@ -70,13 +63,6 @@ const Chat: React.FC<ChatProps> = ({
   const dialogRef = useRef<HTMLElement>(null);
   const [hasAlert, setAlert] = useState(false);
 
-  const { config } = useContext(RuntimeStateAPIContext);
-  const state = useContext(RuntimeStateContext);
-
-  useEffect(() => {
-    if (autostart) onStart?.();
-  }, [autostart]);
-
   const handleClose = (event: React.MouseEvent<HTMLButtonElement>): void => {
     if (hasEnded) {
       onEnd?.(event);
@@ -84,18 +70,7 @@ const Chat: React.FC<ChatProps> = ({
       setAlert(true);
     }
   };
-
   const handleResume = (): void => setAlert(false);
-
-  const actions = useMemo(() => {
-    if (config.render?.mode === RenderMode.BUBBLE) {
-      return [
-        { svg: 'minus', onClick: onMinimize },
-        { svg: 'close', onClick: handleClose },
-      ];
-    }
-    return [{ svg: 'close', onClick: handleClose }];
-  }, [config, handleClose, onMinimize]);
 
   if (isLoading) {
     return (
@@ -107,12 +82,19 @@ const Chat: React.FC<ChatProps> = ({
 
   return (
     <Container withPrompt={hasAlert}>
-      <Header title={title} image={image} actions={actions} />
+      <Header
+        title={title}
+        image={image}
+        actions={[
+          { svg: 'minus', onClick: onMinimize },
+          { svg: 'close', onClick: handleClose },
+        ]}
+      />
       <Dialog ref={dialogRef}>
         <AutoScrollProvider target={dialogRef}>
           <AssistantInfo title={title} avatar={avatar} description={description} />
           <Spacer />
-          {!!timestamp && !!state.session.turns.length && <SessionTime>{timestamp}</SessionTime>}
+          {!!timestamp && <SessionTime>{timestamp}</SessionTime>}
           {children}
           {hasEnded && <Status>You have ended the chat</Status>}
         </AutoScrollProvider>
