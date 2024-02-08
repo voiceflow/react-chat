@@ -98,6 +98,7 @@ export let createTheme: CustomStitches['createTheme'] = null!;
 
 export const initStitches = (root: any) => {
   const stitches = createStitches(getDefaultTheme(root));
+  console.log(stitches, '<<<<<< stitches');
 
   styled = stitches.styled;
   keyframes = stitches.keyframes;

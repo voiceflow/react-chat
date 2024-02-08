@@ -6,6 +6,7 @@ import { initStitches } from '@/styles/theme';
 import { mergeAssistant } from '@/utils/assistant';
 import { sanitizeConfig } from '@/utils/config';
 import { noop } from '@/utils/functional';
+import { RuntimeProvider } from './contexts';
 
 const LazyEntrypoint = lazy(async () => {
   const { Entrypoint } = await import('./entrypoints');
@@ -34,6 +35,8 @@ const createChatRoot = (config: any): { shadowRoot: ShadowRoot; root: Root } => 
     try {
       shadowRoot = config.render!.target!.attachShadow({ mode: 'open' });
       root = createRoot(shadowRoot);
+      console.log(initStitches(shadowRoot), '<<<<<< initStitches(shadowRoot)');
+
       initStitches(shadowRoot);
     } catch (e) {
       console.error(`${e}. \nTarget: ${config.render!.target}`);
@@ -61,10 +64,22 @@ window.voiceflow.chat ??= {
 
     const { shadowRoot, root: chatRoot } = createChatRoot(config);
 
-    // set root here
+    const { default: View } = await (config.render?.mode === RenderMode.EMBEDDED
+      ? import('@/views/ChatWindow/ChatWindowStandaloneView')
+      : import('@/views/ChatWidget'));
+
     await new Promise<void>((resolve) => {
-      chatRoot.render(<LazyEntrypoint config={config} assistant={assistant} shadowRoot={shadowRoot} resolve={resolve} />);
+      chatRoot.render(
+        <RuntimeProvider assistant={assistant} config={config} shadowRoot={shadowRoot}>
+          <View chatAPI={window.voiceflow!.chat} ready={resolve} />
+        </RuntimeProvider>
+      );
     });
+
+    // // set root here
+    // await new Promise<void>((resolve) => {
+    //   chatRoot.render(<LazyEntrypoint config={config} assistant={assistant} shadowRoot={shadowRoot} resolve={resolve} />);
+    // });
   },
 
   destroy: () => root.render(null),
