@@ -2,11 +2,11 @@ import { lazy } from 'react';
 import { createRoot, Root } from 'react-dom/client';
 
 import { ChatConfig, RenderMode } from '@/common/types';
-import { initStitches } from '@/styles/theme';
 import { mergeAssistant } from '@/utils/assistant';
 import { sanitizeConfig } from '@/utils/config';
 import { noop } from '@/utils/functional';
 
+import { initStitches } from '../setup';
 import { RuntimeProvider } from './contexts';
 
 const LazyEntrypoint = lazy(async () => {

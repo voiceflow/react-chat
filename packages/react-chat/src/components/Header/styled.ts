@@ -4,7 +4,8 @@ import Icon from '@/components/Icon';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
 import { textOverflowStyles } from '@/styles/fragments';
-import { styled } from '@/styles/theme';
+
+import { styled } from '../../../setup';
 
 const tag = tagFactory(ClassName.HEADER);
 

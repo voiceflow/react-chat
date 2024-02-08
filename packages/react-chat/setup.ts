@@ -1,15 +1,31 @@
 /* eslint-disable import/no-mutable-exports */
+import type { CSS as BaseCSS } from '@voiceflow/stitches-react';
 import { createStitches } from '@voiceflow/stitches-react';
 
-console.log('>>> LOADED File: packages/react-chat/SETUP.ts');
+console.log('>>> LOADED File: ./SETUP.ts');
 
-export let styled = null!;
-export let keyframes = null!;
-export let global = null!;
-export let config = null!;
-export let theme = null!;
-export let createTheme = null!;
+export const createTransition = (properties: Array<keyof any>, duration = ANIMATION_DURATION) =>
+  properties.map((property) => `${String(property)} ${duration}ms ease`).join(', ');
+
+export type CSS = BaseCSS<any>;
+
+type Token<T extends Record<string, any>> = `$${any}`;
+
+export interface FontOptions {
+  size?: BaseCSS['fontSize'] | Token<any>;
+  weight?: BaseCSS['fontWeight'] | Token<any>;
+  height?: BaseCSS['lineHeight'] | Token<any>;
+}
+
+export let styled: any = null!;
+export let keyframes: any = null!;
+export let global: any = null!;
+export let config: any = null!;
+export let theme: any = null!;
+export let createTheme: any = null!;
+
 const ANIMATION_DURATION = 150;
+
 export const getDefaultTheme = (root: ShadowRoot) => {
   return {
     ...(__USE_SHADOW_ROOT__ && { root }),
@@ -77,3 +93,11 @@ export const initStitches = (root: any) => {
   theme = stitches.theme;
   createTheme = stitches.createTheme;
 };
+
+interface ThemeOverrides {
+  color?: string | undefined;
+}
+export const createCustomTheme = ({ color }: ThemeOverrides) =>
+  createTheme({
+    colors: color ? Color.createPrimaryColors(color) : {},
+  });

@@ -8,13 +8,14 @@ import type { StringKeyOf } from 'type-fest';
 
 import * as Color from './color';
 import * as Font from './font';
+
 console.log('>>> LOADED File: packages/react-chat/src/styles/theme.ts');
 const ANIMATION_DURATION = 150;
 
 export const createTransition = (properties: Array<keyof CSSPropertiesHyphen>, duration = ANIMATION_DURATION) =>
   properties.map((property) => `${property} ${duration}ms ease`).join(', ');
 
-export type CSS = BaseCSS<typeof config>;
+export type CSS = BaseCSS<typeof any>;
 
 type Token<T extends Record<string, any>> = `$${StringKeyOf<T>}`;
 
@@ -108,10 +109,10 @@ type CustomStitches = Stitches<'', Record<string, never>>;
 //   createTheme = stitches.createTheme;
 // };
 
-interface ThemeOverrides {
-  color?: string | undefined;
-}
-export const createCustomTheme = ({ color }: ThemeOverrides) =>
-  createTheme({
-    colors: color ? Color.createPrimaryColors(color) : {},
-  });
+// interface ThemeOverrides {
+//   color?: string | undefined;
+// }
+// export const createCustomTheme = ({ color }: ThemeOverrides) =>
+//   createTheme({
+//     colors: color ? Color.createPrimaryColors(color) : {},
+//   });

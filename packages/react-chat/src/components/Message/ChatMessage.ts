@@ -1,5 +1,4 @@
-import { styled } from '@/styles/theme';
-
+import { styled } from '../../../setup';
 import { Container, tag } from './styled';
 
 export const ChatMessage = styled(tag(Container, 'chat'), {

@@ -9,7 +9,8 @@ import UserResponse from '@/components/UserResponse';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
 import { animationStyles, fadeIn } from '@/styles/animation';
-import { createTransition, CSS, styled } from '@/styles/theme';
+
+import { createTransition, CSS, styled } from '../../../setup';
 
 const PROMPT_OVERFLOW = 10;
 

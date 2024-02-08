@@ -6,8 +6,8 @@ import { ChatPosition } from '@/common';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
 import { animationStyles } from '@/styles/animation';
-import { styled } from '@/styles/theme';
 
+import { styled } from '../../../setup';
 import Close, { CloseContainer } from './Close';
 import Message, { MessageContainer } from './Message';
 

@@ -1,5 +1,4 @@
-import { styled } from '@/styles/theme';
-
+import { styled } from '../../../setup';
 import { tag } from './Default';
 
 export const BackgroundImageBase = styled(tag('div', 'background'), {

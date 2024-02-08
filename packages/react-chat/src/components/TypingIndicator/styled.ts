@@ -1,7 +1,8 @@
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
 import { pulse } from '@/styles/animation';
-import { styled } from '@/styles/theme';
+
+import { styled } from '../../../setup';
 
 export const ANIMATION_DURATION = 1000;
 

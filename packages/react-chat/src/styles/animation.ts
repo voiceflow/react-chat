@@ -1,4 +1,4 @@
-import { CSS, keyframes } from './theme';
+import { CSS, keyframes } from '../../setup';
 
 export const pulse = keyframes({
   '50%': { opacity: 1 },

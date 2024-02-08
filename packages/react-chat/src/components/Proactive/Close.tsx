@@ -3,7 +3,8 @@ import React from 'react';
 import Icon from '@/components/Icon';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
-import { styled } from '@/styles/theme';
+
+import { styled } from '../../../setup';
 
 export const tag = tagFactory(ClassName.PROACTIVE_CLOSE);
 

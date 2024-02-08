@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { createCustomTheme } from '@/styles/theme';
-
+import { createCustomTheme } from '../../setup';
 import { Assistant } from '../common/types';
 
 export const useTheme = (assistant?: Assistant) => {

@@ -1,5 +1,4 @@
-import { styled } from '@/styles/theme';
-
+import { styled } from '../../../setup';
 import { ButtonVariant } from './constants';
 import { Container, tag } from './styled';
 

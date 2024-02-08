@@ -1,6 +1,7 @@
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs/tag';
-import { CSS, styled } from '@/styles/theme';
+
+import { CSS, styled } from '../../../setup';
 
 console.log(styled, '< im widget styles styled is');
 
