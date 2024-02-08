@@ -3,7 +3,7 @@ import { tagFactory } from '@/hocs/tag';
 
 import { CSS, styled } from '../../../setup';
 
-console.log(styled, '< im widget styles styled is');
+console.log(styled, '< styled() in ChatWidget/styled');
 
 const CHAT_WIDTH = 380;
 const MAX_CHAT_HEIGHT = 800;

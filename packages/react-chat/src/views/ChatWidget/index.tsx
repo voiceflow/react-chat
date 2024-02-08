@@ -2,7 +2,6 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 
 // import { styled } from '@/styles/theme';
-
 // import { ChatPosition, isObject } from '@/common';
 // import Launcher from '@/components/Launcher';
 // import Proactive from '@/components/Proactive';
