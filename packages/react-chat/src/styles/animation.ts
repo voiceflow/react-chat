@@ -1,5 +1,6 @@
 import { CSS, keyframes } from '@/styles/theme';
 console.log('>>> LOADED File: packages/react-chat/src/styles/animation.ts');
+console.log(keyframes, '<<< keyfr');
 export const pulse = keyframes({
   '50%': { opacity: 1 },
 });

@@ -1,6 +1,8 @@
 // import { Trace } from '@voiceflow/base-types';
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 
+import { styled } from '@/styles/theme';
+
 // import { ChatPosition, isObject } from '@/common';
 // import Launcher from '@/components/Launcher';
 // import Proactive from '@/components/Proactive';
@@ -9,7 +11,6 @@ import React, { useContext, useEffect, useMemo, useState } from 'react';
 // import { noop } from '@/utils/functional';
 // import { useResolveAssistantStyleSheet } from '@/utils/stylesheet';
 // import ChatWindow from '@/views/ChatWindow';
-
 // import { ChatContainer, Container, LauncherContainer } from './styled';
 import { ChatAPI } from './types';
 
@@ -19,7 +20,10 @@ interface ChatWidgetProps extends React.PropsWithChildren {
 }
 
 const ChatWidget: React.FC<ChatWidgetProps> = ({}) => {
-  return <>bububu</>;
+  const ComponentStyled = styled('div', { backgroundColor: 'red', width: 20, height: 20 });
+  console.log('ChatWidget inside', ComponentStyled, '<< component styled in side of it', styled);
+
+  return <ComponentStyled />;
   // const { assistant, open, close, interact } = useContext(RuntimeStateAPIContext);
   // const { isOpen, shadowRoot } = useContext(RuntimeStateContext);
 
@@ -89,5 +93,5 @@ export default Object.assign(ChatWidget, {
   //Launcher,
   // Container,
   // ChatContainer,
-  // LauncherContainer,
+  //  LauncherContainer,
 });
