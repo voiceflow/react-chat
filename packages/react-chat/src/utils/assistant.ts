@@ -2,7 +2,7 @@ import { VoiceflowRuntime } from '@voiceflow/sdk-runtime';
 import type { PartialDeep } from 'type-fest';
 
 import { Assistant, ChatConfig, ChatPersistence, ChatPosition, isEnumValue, isObject } from '@/common';
-import { PRIMARY } from '@/styles/color';
+import { PRIMARY } from '@/styles';
 
 export const DEFAULT_AVATAR = 'https://cdn.voiceflow.com/assets/logo.png';
 

@@ -9,19 +9,6 @@ export const BackgroundImageBase = styled(tag('div', 'background'), {
   backgroundPosition: 'center',
   backgroundRepeat: 'no-repeat',
   backgroundSize: 'cover',
-  variants: {
-    mode: {
-      bubble: {
-        width: 248,
-      },
-      embedded: {
-        width: '100%',
-      },
-    },
-  },
-  defaultVariants: {
-    mode: 'bubble',
-  },
 });
 
 export interface BackgroundImageProps extends React.ComponentProps<typeof BackgroundImageBase> {

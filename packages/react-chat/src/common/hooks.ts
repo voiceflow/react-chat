@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { createCustomTheme } from '@/styles';
 
-import { Assistant } from '../common/types';
+import { Assistant } from './types';
 
 export const useTheme = (assistant?: Assistant) => {
   const [theme, setTheme] = useState('');
