@@ -99,5 +99,5 @@ interface ThemeOverrides {
 }
 export const createCustomTheme = ({ color }: ThemeOverrides) =>
   createTheme({
-    colors: color ? Color.createPrimaryColors(color) : {},
+    colors: {}, // color ? Color.createPrimaryColors(color) : {},
   });

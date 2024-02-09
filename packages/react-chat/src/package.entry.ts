@@ -1,6 +1,4 @@
 import { GlobalOptions } from './constants';
-const madge = import('madge');
-ƒ
 
 // nothing else should reference package.entry.ts
 GlobalOptions.SHADOW_ROOT = false;

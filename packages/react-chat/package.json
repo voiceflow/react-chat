@@ -19,7 +19,6 @@
     "csstype": "3.1.0",
     "cuid": "^2.1.8",
     "dayjs": "^1.11.5",
-    "madge": "^6.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-markdown": "9.0.0",

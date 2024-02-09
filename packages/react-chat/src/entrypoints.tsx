@@ -1,7 +1,7 @@
-import { RenderMode } from '@/common';
-import { RuntimeProvider } from '@/contexts';
+// import { RenderMode } from '@/common';
+// import { RuntimeProvider } from '@/contexts';
 
-import { ChatWidget, ChatWindowStandaloneView } from './views';
+// import { ChatWidget, ChatWindowStandaloneView } from './views';
 
 interface IEntrypoint {
   config: any;
@@ -10,11 +10,12 @@ interface IEntrypoint {
   resolve: any;
 }
 
-export const Entrypoint: React.FC<IEntrypoint> = ({ assistant, config, shadowRoot, resolve }) => {
+export const Entrypoint: React.FC<IEntrypoint> = () => {
   return (
-    <RuntimeProvider assistant={assistant} config={config} shadowRoot={shadowRoot}>
-      {config.render?.mode === RenderMode.EMBEDDED && <ChatWindowStandaloneView chatAPI={window.voiceflow!.chat} ready={resolve} />}
-      {config.render?.mode === RenderMode.BUBBLE && <ChatWidget chatAPI={window.voiceflow!.chat} ready={resolve} />}
-    </RuntimeProvider>
+    <>div</>
+    // <RuntimeProvider assistant={assistant} config={config} shadowRoot={shadowRoot}>
+    //   {config.render?.mode === RenderMode.EMBEDDED && <ChatWindowStandaloneView chatAPI={window.voiceflow!.chat} ready={resolve} />}
+    //   {config.render?.mode === RenderMode.BUBBLE && <ChatWidget chatAPI={window.voiceflow!.chat} ready={resolve} />}
+    // </RuntimeProvider>
   );
 };
