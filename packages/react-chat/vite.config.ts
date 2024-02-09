@@ -45,6 +45,20 @@ export default defineConfig(({ mode }) => {
         output: {
           extend: true,
           entryFileNames: 'bundle.mjs',
+          
+          manualChunks(id) {
+            console.log('id in config >>>', id);
+
+            // Specify the chunk name for dynamic imports
+            if (id.includes('dynamicImports')) {
+              return 'dynamicImports';
+            }
+            // Bundle third-party dependencies separately
+            if (id.includes('node_modules')) {
+              return 'vendor';
+            }
+            return null; // Let Rollup handle other imports normally
+          },
         },
       },
     },
