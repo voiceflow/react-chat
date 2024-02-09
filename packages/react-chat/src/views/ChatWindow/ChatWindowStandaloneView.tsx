@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react';
 
 import { isObject } from '@/common/utils';
 import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts';
-import { useTheme } from '@/hooks';
+import { useTheme } from '@/hooks/useTheme';
 import { noop } from '@/utils/functional';
 import { useResolveAssistantStyleSheet } from '@/utils/stylesheet';
 

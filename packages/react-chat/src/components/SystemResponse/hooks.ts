@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { match } from 'ts-pattern';
 
-import { useDidUpdateEffect } from '@/hooks';
+import { useDidUpdateEffect } from '@/hooks/useDidUpdateEffect';
 
 import { DEFAULT_MESSAGE_DELAY } from './constants';
 import { MessageProps } from './types';

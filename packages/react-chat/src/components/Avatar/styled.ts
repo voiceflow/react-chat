@@ -1,5 +1,5 @@
 import { ClassName } from '@/constants';
-import { tagFactory } from '@/hocs';
+import { tagFactory } from '@/hocs/tag';
 
 import { styled } from '../../../setup';
 

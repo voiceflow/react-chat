@@ -3,9 +3,9 @@ import { useCallback, useRef } from 'react';
 
 import { SessionStatus } from '@/common';
 
-import type { RuntimeState } from './useRuntimeState';
+//import type { RuntimeState } from './RuntimeContext/useRuntimeState';
 
-export const useNoReply = (api: () => Pick<RuntimeState['api'], 'interact' | 'isStatus'>) => {
+export const useNoReply = (api: () => any) => {
   const noReplyTimeout = useRef<NodeJS.Timeout | null>(null);
 
   const clearNoReplyTimeout = useCallback(() => {

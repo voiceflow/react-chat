@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import { Assistant } from '@/common';
+import { Assistant } from '@/common/types';
 import { RuntimeStateContext } from '@/contexts/RuntimeContext';
 import { useResolveAssistantStyleSheet } from '@/utils/stylesheet';
 

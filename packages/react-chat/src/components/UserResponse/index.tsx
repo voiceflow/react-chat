@@ -4,7 +4,7 @@ import Message from '@/components/Message';
 import Timestamp from '@/components/Timestamp';
 import Tooltip from '@/components/Tooltip';
 import { RuntimeStateAPIContext } from '@/contexts';
-import { useAutoScroll } from '@/hooks';
+import { useAutoScroll } from '@/hooks/useAutoScroll';
 
 import { Container, Debug, Row } from './styled';
 

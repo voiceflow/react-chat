@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import type { RuntimeAction } from '@/common';
 import Button from '@/components/Button';
 import { RuntimeStateAPIContext } from '@/contexts';
-import { useAutoScroll } from '@/hooks';
+import { useAutoScroll } from '@/hooks/useAutoScroll';
 
 import Feedback, { FeedbackProps } from '../Feedback';
 import { MessageType } from './constants';

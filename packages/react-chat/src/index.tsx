@@ -1,4 +1,3 @@
-import { lazy } from 'react';
 import { createRoot, Root } from 'react-dom/client';
 
 import { ChatConfig, RenderMode } from '@/common/types';
@@ -7,13 +6,13 @@ import { sanitizeConfig } from '@/utils/config';
 import { noop } from '@/utils/functional';
 
 import { initStitches } from '../setup';
-import { RuntimeProvider } from './contexts';
+import { RuntimeProvider } from './contexts/RuntimeContext/index';
 
-const LazyEntrypoint = lazy(async () => {
-  const { Entrypoint } = await import('./entrypoints');
+// const LazyEntrypoint = lazy(async () => {
+//   const { Entrypoint } = await import('./entrypoints');
 
-  return { default: Entrypoint };
-});
+//   return { default: Entrypoint };
+// });
 
 let root;
 

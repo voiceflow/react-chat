@@ -3,7 +3,7 @@ import { serializeToText } from '@voiceflow/slate-serializer/text';
 import Bowser from 'bowser';
 import { useMemo } from 'react';
 
-import { RuntimeOptions, SessionOptions } from '@/common';
+import { RuntimeOptions, SessionOptions } from '@/common/types';
 import type { MessageProps } from '@/components/SystemResponse';
 import { MessageType } from '@/components/SystemResponse/constants';
 import { UserTurnProps } from '@/types';
