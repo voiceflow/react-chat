@@ -12,21 +12,21 @@
 </head>
 
 <body>
-  <script>
-    function _vf_load() {
-      window.voiceflow.chat.load({
-        url: '<%= VITE_VF_RUNTIME_URL %>',
-        verify: { projectID: '<%= VITE_VF_PROJECT_ID %>' },
-        versionID: '<%= VITE_VF_VERSION_ID %>',
-        user: {
-          name: 'Development User',
-        },
-        allowDangerousHTML: false,
-      });
-    }
+  <div id="voiceflow-chat" style="width: 600px; max-width: 90%; height: 80vh; margin: 2rem auto;"></div>
+  <script type="text/javascript">
+    (function (d, t) {
+      var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+      v.onload = function () {
+        window.voiceflow.chat.load({
+          verify: { projectID: '65ad4d9284bfc6caadf6ded4' },
+          url: 'https://general-runtime.voiceflow.com/',
+          versionID: 'production'
+        }).then(() => { setTimeout(() => { window.voiceflow.chat.open(); }, 500) });
+      }
+      v.src = "https://voiceflow.seefusion.tech/embed/widget/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+    })(document, 'script');
   </script>
-
-  <script type="module" src="../src/index.tsx" onload="_vf_load()"></script>
+  <link rel="stylesheet" href='/src/styles.css'>
 
 </body>
 

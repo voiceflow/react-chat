@@ -89,7 +89,7 @@ export const List = styled(tag('div', 'list'), {
 
   [`& ${Message.Container}`]: {
     marginBottom: '$1',
-    maxWidth: 248,
+    maxWidth: 400,
 
     '&:last-of-type': {
       marginBottom: 0,

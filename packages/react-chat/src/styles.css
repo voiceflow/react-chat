@@ -1,122 +1,107 @@
-/* use this file to override default styles when forking this repository */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
 
-/*
-  PAGE CONTENTS
+.vfrc-widget {
+  position: relative !important;
+  width: 100%;
+  height: 100%;
+  inset: initial;
+}
 
-  Customize the page that the chat bubble lives on
-*/
+.vfrc-widget--launcher {
+  display: none !important;
+}
 
-/* .voiceflow-chat {} */
+.vfrc-widget--chat {
+  position: fixed !important;
+  border: none !important;
 
-/* .vfrc-launcher {} */
+  /* Centrage du widget pour les grands écrans */
+  top: 50% !important;
+  /* Centre verticalement */
+  left: 50% !important;
+  /* Centre horizontalement */
+  width: 50% !important;
+  /* Largeur fixe pour les grands écrans */
+  height: 80% !important;
+  /* Hauteur fixe pour les grands écrans */
+  min-width: 768px !important;
+  /* Largeur minimale pour les grands écrans */
+  max-width: 800px !important;
+  max-height: 804px !important;
+  transform: translate(-50%, -50%) !important;
+  /* Ajustement pour un centrage précis */
+}
 
-/* .vfrc-chat--overlay {} */
+/* Responsive design pour les petits écrans */
+@media screen and (max-width: 768px) {
+  .vfrc-widget--chat {
+    top: 0 !important;
+    /* Aligner en haut */
+    left: 0 !important;
+    /* Aligner à gauche */
+    transform: none !important;
+    /* Aucune transformation nécessaire */
+    width: 100% !important;
+    /* Largeur complète de l'écran */
+    height: 100% !important;
+    /* Hauteur complète de l'écran */
+    min-width: 0 !important;
+    /* Aucune largeur minimale pour les petits écrans */
+    max-height: none !important;
+    /* Aucune hauteur maximale pour les petits écrans */
+  }
+}
 
-/* .vfrc-prompt {} */
+.vfrc-system-response--list .vfrc-message--chat {
+  min-width: 450px !important;
+  /* Largeur maximale pour les grands écrans */
+}
 
+.vfrc-user-response .vfrc-message--chat {
+  min-width: 400px !important;
+  /* Largeur maximale pour les grands écrans */
+}
 
-/*
-  CHAT WIDGET HEADER
+/* Responsive design pour les petits écrans */
+@media screen and (max-width: 768px) {
+  .vfrc-system-response--list .vfrc-message--chat {
+    max-width: 248px !important;
+    /* Largeur maximale adaptative pour les petits écrans */
+  }
+}
 
-  Customize the content, controls and styling included in your chat widget header, including the Assistant Information.
-  Note that changes to the assistant information here will be shared across other elements that consume this styling.
-*/
+@media screen and (max-width: 768px) {
+  .vfrc-user-response .vfrc-message--chat {
+    max-width: 282px !important;
+    /* Conservez cette valeur si elle fonctionne bien pour les messages utilisateur */
+  }
+}
 
-/* .vfrc-header {} */
+.vfrc-header--button {
+  display: none !important;
+}
 
-/* .vfrc-assistant-info {} */
+.vfrc-footer {
+  border-top: 2px solid var(--shadows-shadow4);
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
 
-/* .vfrc-assistant-info--title {} */
+.vfrc-card--description {
+  word-break: normal,
+    overflow: auto,
+    text-overflow: ellipsis,
+}
 
-/* .vfrc-assistant-info--description {} */
-
-/* .vfrc-avatar {} */
-
-/* .vfrc-icon {} */
-
-
-/*
-  CHAT MESSAGE BODY
-
-  Customize the layout and display of the chat body, and the conversation's metadata
-*/
-
-/* .vfrc-chat {} */
-
-/* .vfrc-chat--dialog {} */
-
-/* .vfrc-chat--spacer {} */
-
-/* .vfrc-chat--session-time {} */
-
-/* .vfrc-chat--status {} */
-
-/* .vfrc-message {} */
-
-/* .vfrc-timestamp {} */
-
-
-/*
-  ASSISTANT RESPONSES
-
-  Customize the style and layout of assistant response messages.
-*/
-
-/* .vfrc-system-response--indicator {} */
-
-/* .vfrc-system-response {} */
-
-/* .vfrc-system-response--controls {} */
-
-/* .vfrc-system-response--list {} */
-
-/* .vfrc-system-response--actions {} */
-
-/* .vfrc-button {} */
-
-/* .vfrc-image {} */
-
-/* .vfrc-image--background {} */
-
-/* .vfrc-card--content {} */
-
-/* .vfrc-card--header {} */
-
-/* .vfrc-card--description {} */
-
-/* .vfrc-carousel {} */
-
-/* .vfrc-carousel--button {} */
-
-/* Targeted styling for just the Assistant messages. */
-/* .vfrc-system-response .vfrc-message {} */
-
-/* Targeted styling for just the Assistant buttons. */
-/* .vfrc-system-response .vfrc-button {} */
-
-
-/*
-  USER RESPONSES
-
-  Customize the style and layout of users response messages.
-*/
-
-/* .vfrc-user-response {} */
-
-/* Targeted styling for just the User messages */
-/* .vfrc-user-response .vfrc-message {} */
-
-
-/*
-  FOOTER
-
-  Customize the layout and appearance of the message input field and the VF Branding
-*/
-
-/* .vf-footer {} */
-
-/* .vfrc-input {} */
-
-/* .vfrc-chat-input--button {} */
-
-/* .vfrc-footer--watermark {} */
+.vfrc-card--header {
+  word-break: break-all,
+    overflow: auto,
+    text-overflow: ellipsis,
+}
