@@ -1,3 +1,4 @@
+import legacy from '@vitejs/plugin-legacy';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import { defineConfig, loadEnv, PluginOption } from 'vite';
@@ -26,6 +27,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd());
 
   return {
+    type: 'module',
     server: {
       port: 3006,
       open: '/examples/index.html',
@@ -35,35 +37,33 @@ export default defineConfig(({ mode }) => {
       'process.env': '({})',
     },
     build: {
-      lib: {
-        entry: path.resolve(__dirname, 'src', 'index.tsx'),
-        name: 'voiceflow-react-chat',
-        fileName: 'bundle',
-        formats: ['iife'],
+      // lib: {
+      //   entry: path.resolve(__dirname, 'src', 'index.tsx'),
+      //   name: 'voiceflow-react-chat',
+      //   fileName: 'bundle',
+      //   formats: ['iife'],
+      // },
+      modulePreload: {
+        polyfill: true,
       },
+      manifest: true,
+      // rollupOptions: {
+      //   input: path.resolve(__dirname, 'src', 'index.tsx'),
+      //   output
+      // },
       rollupOptions: {
+        input: path.resolve(__dirname, 'src', 'index.tsx'),
         output: {
+          dir: 'dist',
           extend: true,
           entryFileNames: 'bundle.mjs',
-          
-          manualChunks(id) {
-            console.log('id in config >>>', id);
-
-            // Specify the chunk name for dynamic imports
-            if (id.includes('dynamicImports')) {
-              return 'dynamicImports';
-            }
-            // Bundle third-party dependencies separately
-            if (id.includes('node_modules')) {
-              return 'vendor';
-            }
-            return null; // Let Rollup handle other imports normally
-          },
         },
       },
     },
     plugins: [
+      legacy(),
       react(),
+      // The default options are listed below. Pass nothing to use them.
       ...(mode === 'development'
         ? [
             createHtmlPlugin({

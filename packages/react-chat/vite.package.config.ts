@@ -1,3 +1,5 @@
+// import 'vite/modulepreload-polyfill';
+
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import { defineConfig, loadEnv, PluginOption } from 'vite';
@@ -35,29 +37,19 @@ export default defineConfig(({ mode }) => {
       'process.env': '({})',
     },
     build: {
-      lib: {
-        entry: path.resolve(__dirname, 'src', 'index.tsx'),
-        name: 'voiceflow-react-chat',
-        fileName: 'bundle',
-        formats: ['iife'],
-      },
+      // lib: {
+      //   entry: path.resolve(__dirname, 'src', 'index.tsx'),
+      //   name: 'voiceflow-react-chat',
+      //   fileName: 'bundle',
+      //   formats: ['iife'],
+      // },
+      manifest: true,
       rollupOptions: {
+        input: path.resolve(__dirname, 'src', 'package.entry.ts'),
         output: {
           extend: true,
           entryFileNames: 'bundle.mjs',
-          manualChunks(id) {
-            console.log('id >>>', id);
-
-            // Specify the chunk name for dynamic imports
-            if (id.includes('dynamicImports')) {
-              return 'dynamicImports';
-            }
-            // Bundle third-party dependencies separately
-            if (id.includes('node_modules')) {
-              return 'vendor';
-            }
-            return null; // Let Rollup handle other imports normally
-          },
+          preserveModules: true,
         },
       },
     },

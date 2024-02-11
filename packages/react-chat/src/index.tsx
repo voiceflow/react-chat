@@ -48,42 +48,47 @@ const createChatRoot = (config: any): { shadowRoot: ShadowRoot; root: Root } => 
 
   return { shadowRoot, root };
 };
+console.log('index.tsx file loaded');
 
-window.voiceflow ??= {};
-window.voiceflow.chat ??= {
-  open: noop,
-  hide: noop,
-  show: noop,
-  close: noop,
-  interact: noop,
+(() => {
+  window.voiceflow ??= {};
+  window.voiceflow.chat ??= {
+    open: noop,
+    hide: noop,
+    show: noop,
+    close: noop,
+    interact: noop,
 
-  load: async (loadConfig: Partial<ChatConfig>) => {
-    const config = sanitizeConfig(loadConfig);
-    const { shadowRoot, root: chatRoot } = createChatRoot(config);
-    const assistant = await mergeAssistant(config);
+    load: async (loadConfig: Partial<ChatConfig>) => {
+      console.log('>>> LOAD method called');
 
-    console.log('>>> before crashing');
+      const config = sanitizeConfig(loadConfig);
+      const { shadowRoot, root: chatRoot } = createChatRoot(config);
+      const assistant = await mergeAssistant(config);
 
-    // crashes here because styled is null in the chat widget file
-    const { default: View } = await (config.render?.mode === RenderMode.EMBEDDED
-      ? import('@/views/ChatWindow/ChatWindowStandaloneView')
-      : import('@/views/ChatWidget'));
+      console.log('>>> before crashing');
 
-    console.log('>>> LOADED File: index after def view');
+      // crashes here because styled is null in the chat widget file
+      const { default: View } = await (config.render?.mode === RenderMode.EMBEDDED
+        ? import('@/views/ChatWindow/ChatWindowStandaloneView')
+        : import('@/views/ChatWidget'));
 
-    await new Promise<void>((resolve) => {
-      chatRoot.render(
-        <RuntimeProvider assistant={assistant} config={config} shadowRoot={shadowRoot}>
-          <View chatAPI={window.voiceflow!.chat} ready={resolve} />
-        </RuntimeProvider>
-      );
-    });
+      console.log('>>> LOADED File: index after def view');
 
-    // // set root here
-    // await new Promise<void>((resolve) => {
-    //   chatRoot.render(<LazyEntrypoint config={config} assistant={assistant} shadowRoot={shadowRoot} resolve={resolve} />);
-    // });
-  },
+      await new Promise<void>((resolve) => {
+        chatRoot.render(
+          <RuntimeProvider assistant={assistant} config={config} shadowRoot={shadowRoot}>
+            <View chatAPI={window.voiceflow!.chat} ready={resolve} />
+          </RuntimeProvider>
+        );
+      });
 
-  destroy: () => root.render(null),
-};
+      // // set root here
+      // await new Promise<void>((resolve) => {
+      //   chatRoot.render(<LazyEntrypoint config={config} assistant={assistant} shadowRoot={shadowRoot} resolve={resolve} />);
+      // });
+    },
+
+    destroy: () => root.render(null),
+  };
+})();
