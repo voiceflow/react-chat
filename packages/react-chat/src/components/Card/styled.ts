@@ -3,7 +3,7 @@ import Image from '@/components/Image';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
 
-import { styled } from '../../../setup';
+import { styled } from '@/styles/theme';
 
 export const CARD_WIDTH = 246;
 

@@ -1,6 +1,5 @@
 import Chat from '@/components/Chat';
-
-import { styled } from '../../../setup';
+import { styled } from '@/styles/theme';
 
 export const ChatWindowContainer = styled('div', {
   height: '100%',

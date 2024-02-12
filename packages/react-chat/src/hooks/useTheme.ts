@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 
-import { createCustomTheme } from '../../setup';
-import { Assistant } from '../common/types';
+import { createCustomTheme } from '@/styles/theme';
 
-console.log('>>> LOADED File: packages/react-chat/src/hooks/useTheme.ts');
+import { Assistant } from '../common/types';
 
 export const useTheme = (assistant?: Assistant) => {
   const [theme, setTheme] = useState('');

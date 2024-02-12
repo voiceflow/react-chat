@@ -4,7 +4,8 @@ import rehypeRaw from 'rehype-raw';
 import rehypeSanitize from 'rehype-sanitize';
 import remarkGfm from 'remark-gfm';
 
-import { styled } from '../../../setup';
+import { styled } from '@/styles/theme';
+
 import { schema, transformURL } from './schema';
 
 const MarkdownText = styled(ReactMarkdown, {

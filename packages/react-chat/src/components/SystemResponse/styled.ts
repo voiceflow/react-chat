@@ -5,7 +5,7 @@ import Timestamp from '@/components/Timestamp';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
 
-import { styled } from '../../../setup';
+import { styled } from '@/styles/theme';
 
 const tag = tagFactory(ClassName.SYSTEM_RESPONSE);
 

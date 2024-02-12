@@ -2,8 +2,7 @@ import BaseButton from '@/components/Button';
 import Message from '@/components/Message';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
-
-import { styled } from '../../../setup';
+import { styled } from '@/styles/theme';
 
 const tag = tagFactory(ClassName.TOOLTIP);
 

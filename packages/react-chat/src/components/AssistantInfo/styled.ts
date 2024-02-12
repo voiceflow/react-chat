@@ -2,8 +2,7 @@ import Avatar from '@/components/Avatar';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
 import { textOverflowStyles } from '@/styles/fragments';
-
-import { styled } from '../../../setup';
+import { styled } from '@/styles/theme';
 
 const tag = tagFactory(ClassName.ASSISTANT_INFO);
 

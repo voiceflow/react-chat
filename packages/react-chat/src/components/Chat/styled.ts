@@ -10,7 +10,7 @@ import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
 import { animationStyles, fadeIn } from '@/styles/animation';
 
-import { createTransition, CSS, styled } from '../../../setup';
+import { createTransition, CSS, styled } from '@/styles/theme';
 
 const PROMPT_OVERFLOW = 10;
 

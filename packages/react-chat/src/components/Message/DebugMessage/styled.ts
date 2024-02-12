@@ -1,4 +1,5 @@
-import { styled } from '../../../../setup';
+import { styled } from '@/styles/theme';
+
 import { Container as BaseContainer, tag } from '../styled';
 
 const CARET_HEIGHT = 6;

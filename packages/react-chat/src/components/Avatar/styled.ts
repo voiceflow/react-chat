@@ -1,9 +1,7 @@
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs/tag';
+import { styled } from '@/styles/theme';
 
-import { styled } from '../../../setup';
-
-console.log(styled, '<<< avatar file');
 const tag = tagFactory(ClassName.AVATAR);
 
 export const AvatarContainer = styled(tag('div'), {

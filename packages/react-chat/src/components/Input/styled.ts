@@ -1,7 +1,6 @@
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
-
-import { CSS, styled } from '../../../setup';
+import { CSS, styled } from '@/styles/theme';
 
 const tag = tagFactory(ClassName.INPUT);
 

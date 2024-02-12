@@ -1,9 +1,6 @@
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs/tag';
-
-import { CSS, styled } from '../../../setup';
-
-console.log(styled, '< styled() in ChatWidget/styled');
+import { CSS, styled } from '@/styles/theme';
 
 const CHAT_WIDTH = 380;
 const MAX_CHAT_HEIGHT = 800;

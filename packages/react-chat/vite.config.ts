@@ -1,4 +1,3 @@
-import legacy from '@vitejs/plugin-legacy';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import { defineConfig, loadEnv, PluginOption } from 'vite';
@@ -37,20 +36,9 @@ export default defineConfig(({ mode }) => {
       'process.env': '({})',
     },
     build: {
-      // lib: {
-      //   entry: path.resolve(__dirname, 'src', 'index.tsx'),
-      //   name: 'voiceflow-react-chat',
-      //   fileName: 'bundle',
-      //   formats: ['iife'],
-      // },
-      modulePreload: {
-        polyfill: true,
-      },
+      modulePreload: false,
       manifest: true,
-      // rollupOptions: {
-      //   input: path.resolve(__dirname, 'src', 'index.tsx'),
-      //   output
-      // },
+
       rollupOptions: {
         input: path.resolve(__dirname, 'src', 'index.tsx'),
         output: {
@@ -61,7 +49,6 @@ export default defineConfig(({ mode }) => {
       },
     },
     plugins: [
-      legacy(),
       react(),
       // The default options are listed below. Pass nothing to use them.
       ...(mode === 'development'

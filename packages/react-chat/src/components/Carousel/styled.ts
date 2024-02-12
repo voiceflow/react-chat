@@ -3,7 +3,7 @@ import Icon from '@/components/Icon';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
 
-import { styled } from '../../../setup';
+import { styled } from '@/styles/theme';
 
 const BUTTON_SIZE = 42;
 export const CAROUSEL_GUTTER_WIDTH = 12;
