@@ -8,12 +8,22 @@ const MAX_CHAT_HEIGHT = 800;
 const tag = tagFactory(ClassName.WIDGET);
 
 export const ChatContainer = styled(tag('div', 'chat'), {
-  width: CHAT_WIDTH,
+  // width: CHAT_WIDTH,
   overflow: 'hidden',
   borderRadius: '$2',
   boxShadow: '0 2px 48px rgba(19,33,68,0.16), 0 0 0 1px $shadow4',
-  height: '90%',
-  maxHeight: MAX_CHAT_HEIGHT,
+  // height: '90%',
+  // maxHeight: MAX_CHAT_HEIGHT,
+  position: "fixed",
+  border: "none",
+  top: "50%",
+  left: "50%",
+  width: "50%",
+  height: "80%",
+  minWidth: "768px",
+  maxWidth: "800px",
+  maxHeight: "805px",
+  transform: "translate(-50%, -50%)",
 
   '@mobile': {
     position: 'fixed',
@@ -34,7 +44,7 @@ export const LauncherContainer = styled(tag('div', 'launcher'), {});
 const animateInStyles: CSS = {
   opacity: 1,
   pointerEvents: 'auto',
-  transform: 'translateY(0%)',
+  // transform: 'translateY(0%)',
   transition: 'transform 300ms cubic-bezier(0, 0.95, 0.1, 1), opacity 150ms linear',
 };
 

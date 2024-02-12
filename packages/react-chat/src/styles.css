@@ -14,9 +14,9 @@ body {
   inset: initial;
 }
 
-.vfrc-widget--launcher {
+/* .vfrc-widget--launcher {
   display: none !important;
-}
+} */
 
 .vfrc-widget--chat {
   position: fixed !important;
@@ -59,13 +59,13 @@ body {
   }
 }
 
-.vfrc-system-response--list .vfrc-message--chat {
-  min-width: 450px !important;
+.vfrc-system-response--list .vfrc-message {
+  max-width: 450px !important;
   /* Largeur maximale pour les grands écrans */
 }
 
 .vfrc-user-response .vfrc-message--chat {
-  min-width: 400px !important;
+  max-width: 400px !important;
   /* Largeur maximale pour les grands écrans */
 }
 
@@ -95,13 +95,27 @@ body {
 }
 
 .vfrc-card--description {
-  word-break: normal,
-    overflow: auto,
-    text-overflow: ellipsis,
+  word-break: normal;
+  overflow: auto;
+  text-overflow: ellipsis;
 }
 
 .vfrc-card--header {
-  word-break: break-all,
-    overflow: auto,
-    text-overflow: ellipsis,
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
+  height: auto !important;
+  /*word-break: normal;
+  overflow: auto;
+  text-overflow: ellipsis;
+  white-space: normal;*/
+}
+
+.vfrc-card--content {
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
+  height: auto !important;
+  /*word-break: normal;
+  overflow: auto;
+  text-overflow: ellipsis;
+  white-space: normal;*/
 }

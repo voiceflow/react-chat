@@ -13,7 +13,7 @@
 
 <body>
   <div id="voiceflow-chat" style="width: 600px; max-width: 90%; height: 80vh; margin: 2rem auto;"></div>
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
     (function (d, t) {
       var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
       v.onload = function () {
@@ -21,11 +21,12 @@
           verify: { projectID: '65ad4d9284bfc6caadf6ded4' },
           url: 'https://general-runtime.voiceflow.com/',
           versionID: 'production'
-        }).then(() => { setTimeout(() => { window.voiceflow.chat.open(); }, 500) });
+        }).then(() => { setTimeout(() => { window.voiceflow.chat.open(); }, 10) });
       }
       v.src = "https://voiceflow.seefusion.tech/embed/widget/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
     })(document, 'script');
-  </script>
+  </script> -->
+  <script type="module" src="./src/index.tsx"></script>
   <link rel="stylesheet" href='/src/styles.css'>
 
 </body>

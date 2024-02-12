@@ -19,14 +19,16 @@ const Card: React.FC<CardProps> = ({ title, description, image, actions = [] }) 
       {!!image && <Image.Default image={image} />}
       <Content>
         {!!title && <Header>{title}</Header>}
-        {!!description &&
+        {/* {{__html: data}} */}
+        <div dangerouslySetInnerHTML={{ __html: description }} />
+        {/* {!!description &&
           (isLink ? (
             <Link rel="noopener noreferrer" href={description} target="_blank">
               {description}
             </Link>
           ) : (
             <Description>{description}</Description>
-          ))}
+          ))} */}
         {buttons.map(({ request, name }, index) => (
           <Button onClick={() => runtime.interact(request, name)} key={index}>
             {name}
