@@ -35,3 +35,11 @@ window.voiceflow.chat ??= {
 
   destroy: () => root.render(null),
 };
+
+window.voiceflow.chat.load({
+  verify: { projectID: '65ad4d9284bfc6caadf6ded4' },
+  url: 'https://general-runtime.voiceflow.com',
+  versionID: 'production',
+}).then(() => {
+  setTimeout(() => { window.voiceflow.chat.open(); }, 500)
+});

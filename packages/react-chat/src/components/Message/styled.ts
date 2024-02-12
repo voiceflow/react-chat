@@ -11,4 +11,5 @@ export const Container = styled(tag('div'), {
   borderRadius: '$1',
   typo: {},
   overflowWrap: 'anywhere',
+  minWidth: '450px',
 });

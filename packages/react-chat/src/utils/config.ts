@@ -19,9 +19,9 @@ export const sanitizeConfig = (config: unknown): Partial<ChatConfig> & Pick<Chat
   const ref = isObject(config) ? config : {};
   const { url, user, userID, versionID, verify, assistant, launch, allowDangerousHTML } = ref;
 
-  if (!validateVerify(verify)) {
-    throw new Error('no projectID on load');
-  }
+  // if (!validateVerify(verify)) {
+  //   throw new Error('no projectID on load');
+  // }
 
   return {
     verify,
@@ -42,4 +42,5 @@ export const sanitizeConfig = (config: unknown): Partial<ChatConfig> & Pick<Chat
     // default to true during migration period, turn off later
     ...(typeof allowDangerousHTML === 'boolean' ? { allowDangerousHTML } : { allowDangerousHTML: true }),
   };
+
 };
