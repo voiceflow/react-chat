@@ -2,7 +2,7 @@ import { lazy } from 'react';
 import { createRoot, Root } from 'react-dom/client';
 
 import { ChatConfig, RenderMode } from '@/common/types';
-import { initStitches } from '@/styles/theme';
+import { stitches } from '@/styles/theme';
 import { mergeAssistant } from '@/utils/assistant';
 import { sanitizeConfig } from '@/utils/config';
 import { noop } from '@/utils/functional';
@@ -23,7 +23,8 @@ const initBubbleMode = () => {
 
   const shadowRoot = rootEl.attachShadow({ mode: 'open' });
   root = createRoot(shadowRoot);
-  initStitches(shadowRoot);
+  console.log(stitches.sheet);
+  stitches.sheet.sheet.mount(shadowRoot);
   return { shadowRoot, root };
 };
 
@@ -34,7 +35,9 @@ const createChatRoot = (config: any): { shadowRoot: ShadowRoot; root: Root } => 
     try {
       shadowRoot = config.render!.target!.attachShadow({ mode: 'open' });
       root = createRoot(shadowRoot);
-      initStitches(shadowRoot);
+
+      console.log(stitches.sheet.sheet);
+      stitches.sheet.sheet.mount(shadowRoot);
     } catch (e) {
       console.error(`${e}. \nTarget: ${config.render!.target}`);
     }

@@ -14,7 +14,7 @@ const ANIMATION_DURATION = 150;
 export const createTransition = (properties: Array<keyof CSSPropertiesHyphen>, duration = ANIMATION_DURATION) =>
   properties.map((property) => `${property} ${duration}ms ease`).join(', ');
 
-export type CSS = BaseCSS<typeof config>;
+export type CSS = BaseCSS<any>;
 
 type Token<T extends Record<string, any>> = `$${StringKeyOf<T>}`;
 
@@ -26,9 +26,12 @@ export interface FontOptions {
 
 type CustomStitches = Stitches<'', Record<string, never>>;
 
-export const getDefaultTheme = (root: ShadowRoot) => {
+export const getDefaultTheme = () => {
   return {
-    ...(__USE_SHADOW_ROOT__ && { root }),
+    // ...(__USE_SHADOW_ROOT__ && { root }),
+
+    root: null,
+    deferMount: true,
 
     theme: {
       colors: Color.PALETTE,
@@ -89,23 +92,26 @@ export const getDefaultTheme = (root: ShadowRoot) => {
   };
 };
 
-export let styled: CustomStitches['styled'] = null!;
-export let keyframes: CustomStitches['keyframes'] = null!;
-export let global: CustomStitches['global'] = null!;
-export let config: CustomStitches['config'] = null!;
-export let theme: CustomStitches['theme'] = null!;
-export let createTheme: CustomStitches['createTheme'] = null!;
+export const stitches = createStitches(getDefaultTheme());
+export const { styled, keyframes, theme, createTheme } = stitches;
 
-export const initStitches = (root: any) => {
-  const stitches = createStitches(getDefaultTheme(root));
+// export let styled: CustomStitches['styled'] = null!;
+// export let keyframes: CustomStitches['keyframes'] = null!;
+// export let global: CustomStitches['global'] = null!;
+// export let config: CustomStitches['config'] = null!;
+// export let theme: CustomStitches['theme'] = null!;
+// export let createTheme: CustomStitches['createTheme'] = null!;
 
-  styled = stitches.styled;
-  keyframes = stitches.keyframes;
-  global = stitches.global;
-  config = stitches.config;
-  theme = stitches.theme;
-  createTheme = stitches.createTheme;
-};
+// export const initStitches = (root?: any) => {
+//   const stitches = createStitches(getDefaultTheme(root));
+
+//   styled = stitches.styled;
+//   keyframes = stitches.keyframes;
+//   global = stitches.global;
+//   config = stitches.config;
+//   theme = stitches.theme;
+//   createTheme = stitches.createTheme;
+// };
 
 interface ThemeOverrides {
   color?: string | undefined;
@@ -114,3 +120,9 @@ export const createCustomTheme = ({ color }: ThemeOverrides) =>
   createTheme({
     colors: color ? Color.createPrimaryColors(color) : {},
   });
+
+// (() => {
+//   if (!__USE_SHADOW_ROOT__) {
+//     initStitches();
+//   }
+// })();
