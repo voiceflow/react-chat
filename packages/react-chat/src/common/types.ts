@@ -12,6 +12,15 @@ export type SendMessage = (action: RuntimeAction, message?: string) => Promise<v
 export interface LaunchOptions {
   event?: BaseRequest.BaseRequest;
 }
+export enum RenderMode {
+  EMBEDDED = 'embedded',
+  BUBBLE = 'bubble',
+}
+
+export interface RenderOptions {
+  mode: RenderMode;
+  target?: HTMLElement | null;
+}
 
 export interface RuntimeOptions<Verify extends AuthVerify | PublicVerify = AuthVerify | PublicVerify> extends SDKRuntimeOptions<Verify> {
   user?:
@@ -23,6 +32,8 @@ export interface RuntimeOptions<Verify extends AuthVerify | PublicVerify = AuthV
   userID?: string;
   versionID?: string | undefined;
   launch?: LaunchOptions;
+  render?: RenderOptions;
+  autostart?: boolean;
 
   allowDangerousHTML?: boolean;
 }
