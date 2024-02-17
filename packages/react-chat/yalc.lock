@@ -2,7 +2,7 @@
   "version": "v1",
   "packages": {
     "@voiceflow/stitches-react": {
-      "signature": "66015ba9105ca333913a577db77cb395",
+      "signature": "8f9d5d85ee00470be52647067f86248e",
       "file": true,
       "replaced": "2.2.0"
     }

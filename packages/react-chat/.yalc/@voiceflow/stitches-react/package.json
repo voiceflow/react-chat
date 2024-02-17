@@ -1,6 +1,6 @@
 {
   "name": "@voiceflow/stitches-react",
-  "version": "2.2.0+66015ba9",
+  "version": "2.2.0+8f9d5d85",
   "description": "The modern CSS-in-JS library",
   "type": "module",
   "main": "dist/index.cjs",
@@ -88,5 +88,5 @@
     "react",
     "tsx"
   ],
-  "yalcSig": "66015ba9105ca333913a577db77cb395"
+  "yalcSig": "8f9d5d85ee00470be52647067f86248e"
 }
