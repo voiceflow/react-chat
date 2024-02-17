@@ -23,8 +23,8 @@ const initBubbleMode = () => {
 
   const shadowRoot = rootEl.attachShadow({ mode: 'open' });
   root = createRoot(shadowRoot);
-  console.log(stitches.sheet);
-  stitches.sheet.sheet.mount(shadowRoot);
+  console.log(stitches.sheet.sheet);
+  // stitches.reset(shadowRoot);
   return { shadowRoot, root };
 };
 
@@ -36,8 +36,30 @@ const createChatRoot = (config: any): { shadowRoot: ShadowRoot; root: Root } => 
       shadowRoot = config.render!.target!.attachShadow({ mode: 'open' });
       root = createRoot(shadowRoot);
 
-      console.log(stitches.sheet.sheet);
-      stitches.sheet.sheet.mount(shadowRoot);
+      // console.log(stitches.sheet.sheet.ownerNode);
+      const { cssRules } = stitches.sheet.sheet;
+      // shadowRoot.adoptedStyleSheets = [stitches.sheet.sheet];
+      // console.log(shadowRoot);
+      const style: HTMLStyleElement = shadowRoot.appendChild(stitches.sheet.sheet.ownerNode);
+      const { sheet } = style;
+      // cssRules.forEach((rule) => {
+      //   style.sheet.
+      // })
+      // console.log(cssRules);
+      // console.log(style.sheet.cssRules);
+
+      Array.from(cssRules).forEach((rule, index) => {
+        // console.log(rule);
+        sheet?.insertRule(rule.cssText, index);
+      });
+
+      ['themed', 'global', 'styled', 'onevar', 'resonevar', 'allvar', 'inline'].forEach((name, index) => {
+        stitches.sheet.rules[name].group = sheet?.cssRules[index * 2 + 1];
+      });
+
+      // console.log(style.sheet.cssRules);
+      // console.log(stitches.sheet);
+      // stitches.reset(shadowRoot);
     } catch (e) {
       console.error(`${e}. \nTarget: ${config.render!.target}`);
     }

@@ -27,11 +27,17 @@ export interface FontOptions {
 type CustomStitches = Stitches<'', Record<string, never>>;
 
 export const getDefaultTheme = () => {
+  // const root = document.createElement('span');
+  // root.id = 'stitches-virtual-root';
+  // document.body.appendChild(root);
+
+  // const shadow = root.attachShadow({ mode: 'closed' });
+
   return {
     // ...(__USE_SHADOW_ROOT__ && { root }),
 
-    root: null,
-    deferMount: true,
+    // root: shadow,
+    // deferMount: true,
 
     theme: {
       colors: Color.PALETTE,
