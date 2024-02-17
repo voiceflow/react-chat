@@ -5474,11 +5474,11 @@ __metadata:
   linkType: hard
 
 "@voiceflow/stitches-react@file:.yalc/@voiceflow/stitches-react::locator=%40voiceflow%2Freact-chat%40workspace%3Apackages%2Freact-chat":
-  version: 2.2.0+7ceaf3a5
-  resolution: "@voiceflow/stitches-react@file:.yalc/@voiceflow/stitches-react#.yalc/@voiceflow/stitches-react::hash=cd2260&locator=%40voiceflow%2Freact-chat%40workspace%3Apackages%2Freact-chat"
+  version: 2.2.0+f2ca0a87
+  resolution: "@voiceflow/stitches-react@file:.yalc/@voiceflow/stitches-react#.yalc/@voiceflow/stitches-react::hash=0c374d&locator=%40voiceflow%2Freact-chat%40workspace%3Apackages%2Freact-chat"
   peerDependencies:
     react: ">= 16.3.0"
-  checksum: b24c01d1a93cb78d89359abee0b7a2340c7cca7a53e9d8a29499d2978601b591653d2092371f21afc8eb931c6da685c613ea456bd0384a975e8493178e2eb8cb
+  checksum: 59af9d6a58156321d49445148c7a22565d05a123c78f8c61b9c079857edaf82fdf9a7ab653256482eefc6cced09b4f13031a50a3f854a6558d0f8cc124040631
   languageName: node
   linkType: hard
 

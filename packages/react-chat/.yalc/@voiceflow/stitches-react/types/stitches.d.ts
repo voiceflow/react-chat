@@ -204,6 +204,9 @@ export default interface Stitches<
 	reset: {
 		(): void
 	}
+	transplant: {
+		(nextRoot: Node): void
+	}
 	getCssText: {
 		(): string
 	}

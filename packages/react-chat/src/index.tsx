@@ -1,4 +1,3 @@
-import { lazy } from 'react';
 import { createRoot, Root } from 'react-dom/client';
 
 import { ChatConfig, RenderMode } from '@/common/types';
@@ -7,13 +6,10 @@ import { mergeAssistant } from '@/utils/assistant';
 import { sanitizeConfig } from '@/utils/config';
 import { noop } from '@/utils/functional';
 
-const LazyEntrypoint = lazy(async () => {
-  const { Entrypoint } = await import('./entrypoints');
+import { RuntimeProvider } from './contexts';
+import { ChatWidget, ChatWindowStandaloneView } from './views';
 
-  return { default: Entrypoint };
-});
-
-let root;
+let reactRoot: Root;
 
 const initBubbleMode = () => {
   const VOICEFLOW_ID = 'voiceflow-chat';
@@ -22,54 +18,31 @@ const initBubbleMode = () => {
   document.body.appendChild(rootEl);
 
   const shadowRoot = rootEl.attachShadow({ mode: 'open' });
-  root = createRoot(shadowRoot);
-  console.log(stitches.sheet.sheet);
-  // stitches.reset(shadowRoot);
-  return { shadowRoot, root };
+  reactRoot = createRoot(shadowRoot);
+  stitches.transplant(shadowRoot);
+
+  return { shadowRoot, reactRoot };
 };
 
-const createChatRoot = (config: any): { shadowRoot: ShadowRoot; root: Root } => {
-  let shadowRoot;
+const initEmbeddedMode = (rootEl: HTMLElement) => {
+  try {
+    const shadowRoot = rootEl.attachShadow({ mode: 'open' });
+    reactRoot = createRoot(shadowRoot);
+    stitches.transplant(shadowRoot);
 
+    return { shadowRoot, reactRoot };
+  } catch (e) {
+    console.error(`${e}. \nTarget: ${rootEl}`);
+    return null;
+  }
+};
+
+const createChatRoot = (config: ChatConfig) => {
   if (config.render?.mode === RenderMode.EMBEDDED) {
-    try {
-      shadowRoot = config.render!.target!.attachShadow({ mode: 'open' });
-      root = createRoot(shadowRoot);
-
-      // console.log(stitches.sheet.sheet.ownerNode);
-      const { cssRules } = stitches.sheet.sheet;
-      // shadowRoot.adoptedStyleSheets = [stitches.sheet.sheet];
-      // console.log(shadowRoot);
-      const style: HTMLStyleElement = shadowRoot.appendChild(stitches.sheet.sheet.ownerNode);
-      const { sheet } = style;
-      // cssRules.forEach((rule) => {
-      //   style.sheet.
-      // })
-      // console.log(cssRules);
-      // console.log(style.sheet.cssRules);
-
-      Array.from(cssRules).forEach((rule, index) => {
-        // console.log(rule);
-        sheet?.insertRule(rule.cssText, index);
-      });
-
-      ['themed', 'global', 'styled', 'onevar', 'resonevar', 'allvar', 'inline'].forEach((name, index) => {
-        stitches.sheet.rules[name].group = sheet?.cssRules[index * 2 + 1];
-      });
-
-      // console.log(style.sheet.cssRules);
-      // console.log(stitches.sheet);
-      // stitches.reset(shadowRoot);
-    } catch (e) {
-      console.error(`${e}. \nTarget: ${config.render!.target}`);
-    }
-  } else {
-    const { root: bubbleRoot, shadowRoot: bubbleShadowRoot } = initBubbleMode();
-    root = bubbleRoot;
-    shadowRoot = bubbleShadowRoot;
+    return initEmbeddedMode(config.render.target!);
   }
 
-  return { shadowRoot, root };
+  return initBubbleMode();
 };
 
 window.voiceflow ??= {};
@@ -84,13 +57,19 @@ window.voiceflow.chat ??= {
     const config = sanitizeConfig(loadConfig);
     const assistant = await mergeAssistant(config);
 
-    const { shadowRoot, root: chatRoot } = createChatRoot(config);
+    const chatRoot = createChatRoot(config);
+    if (!chatRoot) return;
 
     // set root here
     await new Promise<void>((resolve) => {
-      chatRoot.render(<LazyEntrypoint config={config} assistant={assistant} shadowRoot={shadowRoot} resolve={resolve} />);
+      chatRoot.reactRoot.render(
+        <RuntimeProvider assistant={assistant} config={config} shadowRoot={chatRoot.shadowRoot}>
+          {config.render?.mode === RenderMode.EMBEDDED && <ChatWindowStandaloneView chatAPI={window.voiceflow!.chat} ready={resolve} />}
+          {config.render?.mode === RenderMode.BUBBLE && <ChatWidget chatAPI={window.voiceflow!.chat} ready={resolve} />}
+        </RuntimeProvider>
+      );
     });
   },
 
-  destroy: () => root.render(null),
+  destroy: () => reactRoot.render(null),
 };
