@@ -25,15 +25,17 @@ const ChatWindowStandaloneView: React.FC<ChatWindowStandaloneViewProps> = ({ cha
     if (!isObject(chatAPI)) return undefined;
     console.info('Methods open, close, hide, show, proactive.clear, proactive.push have no effect in this mode.');
 
+    const noopWarn = (method: string) => () => console.warn(`Method '${method}' has no effect in this mode.`);
+
     Object.assign(chatAPI, {
-      open: noop,
-      close: noop,
-      hide: noop,
-      show: noop,
+      open: noopWarn('open'),
+      close: noopWarn('close'),
+      hide: noopWarn('hide'),
+      show: noopWarn('show'),
       interact,
       proactive: {
-        clear: noop, // () => setProactiveMessages([]),
-        push: noop, // (...messages: Trace.AnyTrace[]) => setProactiveMessages((prev) => [...prev, ...messages]),
+        clear: noopWarn('proactive.clear'),
+        push: noopWarn('proactive.push'),
       },
     });
 
