@@ -4,9 +4,9 @@ import { ChatConfig, RenderMode } from '@/common/types';
 import { stitches } from '@/styles/theme';
 import { mergeAssistant } from '@/utils/assistant';
 import { sanitizeConfig } from '@/utils/config';
-import { noop } from '@/utils/functional';
 
 import { RuntimeProvider } from './contexts';
+import { createPlaceholderMethods } from './utils/chat';
 import { ChatWidget, ChatWindowStandaloneView } from './views';
 
 let reactRoot: Root;
@@ -45,13 +45,12 @@ const createChatRoot = (config: ChatConfig) => {
   return initBubbleMode();
 };
 
+const methods = createPlaceholderMethods((method: string) => `Method '${method}' will have no effect until 'load' has been called.`);
+
 window.voiceflow ??= {};
 window.voiceflow.chat ??= {
-  open: noop,
-  hide: noop,
-  show: noop,
-  close: noop,
-  interact: noop,
+  ...methods,
+  proactive: { ...methods.proactive },
 
   load: async (loadConfig: Partial<ChatConfig>) => {
     const config = sanitizeConfig(loadConfig);
