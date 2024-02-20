@@ -49,8 +49,8 @@ const Footer: React.FC<FooterProps> = ({ withWatermark, hasEnded, onStart, onSen
   };
 
   return (
-    <Container withShadow={!!hasEnded || (!autostart && session.status === SessionStatus.IDLE)} withWatermark={withWatermark}>
-      {hasEnded || (!autostart && session.status === SessionStatus.IDLE) ? (
+    <Container withShadow={!!hasEnded} withWatermark={withWatermark}>
+      {hasEnded ? (
         <Button onClick={onStart}>Start New Chat</Button>
       ) : (
         // eslint-disable-next-line jsx-a11y/no-autofocus

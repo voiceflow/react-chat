@@ -24,7 +24,6 @@ export interface Settings {
 const DEFAULT_SESSION_PARAMS = {
   turns: [],
   startTime: Date.now(),
-  status: SessionStatus.IDLE,
 };
 
 export const useRuntimeState = ({ assistant, config }: Settings) => {
@@ -32,6 +31,7 @@ export const useRuntimeState = ({ assistant, config }: Settings) => {
 
   const [session, setSession, sessionRef] = useStateRef<Required<SessionOptions>>(() => ({
     ...DEFAULT_SESSION_PARAMS,
+    status: config.autostart ? SessionStatus.IDLE : SessionStatus.ENDED,
     // retrieve stored session
     ...getSession(assistant.persistence, config.verify.projectID, config.userID),
   }));
