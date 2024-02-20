@@ -5403,7 +5403,7 @@ __metadata:
     "@voiceflow/prettier-config": 1.2.1
     "@voiceflow/sdk-runtime": 1.7.0
     "@voiceflow/slate-serializer": 1.5.5
-    "@voiceflow/stitches-react": ^2.3.0
+    "@voiceflow/stitches-react": 2.3.0
     "@voiceflow/tsconfig": 1.4.8
     "@voiceflow/voiceflow-types": 3.26.21
     bowser: ^2.11.0
@@ -5473,7 +5473,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@voiceflow/stitches-react@npm:^2.3.0":
+"@voiceflow/stitches-react@npm:2.3.0":
   version: 2.3.0
   resolution: "@voiceflow/stitches-react@npm:2.3.0"
   peerDependencies:

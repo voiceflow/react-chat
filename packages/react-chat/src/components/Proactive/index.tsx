@@ -42,16 +42,6 @@ export const ProactiveContainer = styled(tag('div'), {
   },
 });
 
-// variants: {
-//   mode: {
-//     bubble: { width: 256 },
-//     embedded: { width: '100%' },
-//   },
-// },
-// defaultVariants: {
-//   mode: 'bubble',
-// },
-
 interface ProactiveQueueProps {
   side: ChatPosition;
   messages: Trace.AnyTrace[];

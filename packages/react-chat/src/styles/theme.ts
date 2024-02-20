@@ -21,66 +21,64 @@ export interface FontOptions {
   height?: BaseCSS['lineHeight'] | Token<typeof Font['LINE_HEIGHTS']>;
 }
 
-export const getDefaultTheme = () => {
-  return {
-    theme: {
-      colors: Color.PALETTE,
-      shadows: Color.SHADOWS,
+export const getDefaultTheme = () => ({
+  theme: {
+    colors: Color.PALETTE,
+    shadows: Color.SHADOWS,
 
-      space: {
-        1: '4px',
-        2: '6px',
-        3: '12px',
-        4: '16px',
-        5: '20px',
-        6: '24px',
-      },
-      sizes: {
-        xxs: '16px',
-        xs: '24px',
-        sm: '36px',
-        md: '42px',
-        lg: '56px',
-        xl: '60px',
-        xxl: '72px',
-      },
-
-      fonts: {
-        default: Font.FAMILY,
-      },
-      fontSizes: Font.SIZES,
-      fontWeights: Font.WEIGHTS,
-      lineHeights: Font.LINE_HEIGHTS,
-
-      radii: {
-        1: '8px',
-        2: '10px',
-        round: '50%',
-      },
+    space: {
+      1: '4px',
+      2: '6px',
+      3: '12px',
+      4: '16px',
+      5: '20px',
+      6: '24px',
+    },
+    sizes: {
+      xxs: '16px',
+      xs: '24px',
+      sm: '36px',
+      md: '42px',
+      lg: '56px',
+      xl: '60px',
+      xxl: '72px',
     },
 
-    media: {
-      mobile: '(max-width: 768px)',
+    fonts: {
+      default: Font.FAMILY,
     },
+    fontSizes: Font.SIZES,
+    fontWeights: Font.WEIGHTS,
+    lineHeights: Font.LINE_HEIGHTS,
 
-    utils: {
-      anim: (animations: Array<() => string>) => ({
-        animation: animations.map((animation) => `${animation} ${ANIMATION_DURATION}ms`).join(', '),
-      }),
-
-      trans: (properties: Array<keyof CSSPropertiesHyphen>) => ({
-        transition: createTransition(properties),
-      }),
-
-      typo: ({ size = Font.SIZES[2], weight = Font.WEIGHTS[1], height = Font.LINE_HEIGHTS[1] }: FontOptions) => ({
-        fontFamily: '$default',
-        fontSize: size,
-        fontWeight: weight,
-        lineHeight: height,
-      }),
+    radii: {
+      1: '8px',
+      2: '10px',
+      round: '50%',
     },
-  };
-};
+  },
+
+  media: {
+    mobile: '(max-width: 768px)',
+  },
+
+  utils: {
+    anim: (animations: Array<() => string>) => ({
+      animation: animations.map((animation) => `${animation} ${ANIMATION_DURATION}ms`).join(', '),
+    }),
+
+    trans: (properties: Array<keyof CSSPropertiesHyphen>) => ({
+      transition: createTransition(properties),
+    }),
+
+    typo: ({ size = Font.SIZES[2], weight = Font.WEIGHTS[1], height = Font.LINE_HEIGHTS[1] }: FontOptions) => ({
+      fontFamily: '$default',
+      fontSize: size,
+      fontWeight: weight,
+      lineHeight: height,
+    }),
+  },
+});
 
 export const stitches = createStitches(getDefaultTheme());
 export const { styled, keyframes, theme, createTheme } = stitches;
