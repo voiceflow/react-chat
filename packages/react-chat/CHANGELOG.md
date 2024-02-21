@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.54.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.53.1...@voiceflow/react-chat@1.54.0) (2024-02-21)
+
+### Features
+
+* add voiceflow:interact event to differentiate from voiceflow:save_session (DX-1078) ([#109](https://github.com/voiceflow/react-chat/issues/109)) ([d44c713](https://github.com/voiceflow/react-chat/commit/d44c713ce521a00c4405eea07536ca5dbdfcc742))
+
 ## [1.53.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.53.0...@voiceflow/react-chat@1.53.1) (2024-02-21)
 
 ### Reverts
