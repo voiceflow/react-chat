@@ -19,5 +19,5 @@ test('renders launcher and widget appears on click', async ({ page }) => {
 
   const proactiveMessage = page.locator('.vfrc-proactive-message');
   await proactiveMessage.waitFor({ state: 'visible' });
-  expect(proactiveMessage).toContainText(message);
+  expect(proactiveMessage).toHaveText(message, { timeout: 100 });
 });
