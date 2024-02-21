@@ -93,7 +93,7 @@ workflows:
           container_folder_to_copy: "" #Copy all
           post_build_steps:
             - persist_to_workspace:
-                root: "~/voiceflow"
+                root: "."
                 paths:
                   - ./packages/*/dist # persist dist folder too
 
