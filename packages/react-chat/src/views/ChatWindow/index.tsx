@@ -19,7 +19,7 @@ export interface ChatWindowProps {
 const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
   const runtime = useContext(RuntimeStateAPIContext);
   const state = useContext(RuntimeStateContext);
-  const { assistant } = runtime;
+  const { assistant, config } = runtime;
 
   // emitters
   const closeAndEnd = useCallback((): void => {
@@ -45,7 +45,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
         withWatermark={assistant.watermark}
         startTime={state.session.startTime}
         hasEnded={runtime.isStatus(SessionStatus.ENDED)}
-        isLoading={runtime.isStatus(SessionStatus.IDLE) && state.session.turns.length === 0 && state.autostart}
+        isLoading={runtime.isStatus(SessionStatus.IDLE) && state.session.turns.length === 0 && config.autostart}
         onStart={runtime.launch}
         onEnd={closeAndEnd}
         onSend={runtime.reply}
