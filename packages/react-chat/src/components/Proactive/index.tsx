@@ -1,10 +1,9 @@
 import { Trace } from '@voiceflow/base-types';
-import React, { useContext } from 'react';
+import React from 'react';
 import { match } from 'ts-pattern';
 
 import { ChatPosition } from '@/common';
 import { ClassName } from '@/constants';
-import { RuntimeStateAPIContext } from '@/contexts';
 import { tagFactory } from '@/hocs';
 import { animationStyles, styled } from '@/styles';
 
@@ -28,6 +27,7 @@ export const ProactiveMessageContainer = styled('div', {
 export const ProactiveContainer = styled(tag('div'), {
   position: 'absolute',
   bottom: '100%',
+  width: 256,
   display: 'flex',
   flexDirection: 'column',
 
@@ -40,20 +40,6 @@ export const ProactiveContainer = styled(tag('div'), {
       opacity: 1,
     },
   },
-
-  variants: {
-    mode: {
-      overlay: {
-        width: 256,
-      },
-      embedded: {
-        width: 512,
-      },
-    },
-  },
-  defaultVariants: {
-    mode: 'overlay',
-  },
 });
 
 interface ProactiveQueueProps {
@@ -63,7 +49,6 @@ interface ProactiveQueueProps {
 
 const ProactiveQueue: React.FC<ProactiveQueueProps> = ({ side, messages }) => {
   const [isClosed, setIsClosed] = React.useState(false);
-  const { config } = useContext(RuntimeStateAPIContext);
 
   const queue = React.useMemo(
     () =>
@@ -83,7 +68,7 @@ const ProactiveQueue: React.FC<ProactiveQueueProps> = ({ side, messages }) => {
   if (isClosed || !queue.length) return null;
 
   return (
-    <ProactiveContainer style={{ [side]: 0, alignItems: side === ChatPosition.LEFT ? 'start' : 'end' }} mode={config.render.mode}>
+    <ProactiveContainer style={{ [side]: 0, alignItems: side === ChatPosition.LEFT ? 'start' : 'end' }}>
       <Close onClick={() => setIsClosed(true)} />
       <ProactiveMessageContainer>{queue}</ProactiveMessageContainer>
     </ProactiveContainer>
