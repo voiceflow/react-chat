@@ -41,10 +41,10 @@ const UserResponse: React.FC<UserResponseProps> = ({ message, timestamp, debug }
 
   const { config } = useContext(RuntimeStateAPIContext);
   return (
-    <Container mode={config.render!.mode}>
+    <Container mode={config.render.mode}>
       <Row>
         <Timestamp value={timestamp} />
-        <Message from="user" mode={config.render!.mode}>
+        <Message from="user" mode={config.render.mode}>
           {message}
         </Message>
       </Row>
