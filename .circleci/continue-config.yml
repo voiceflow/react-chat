@@ -95,7 +95,7 @@ workflows:
             - persist_to_workspace:
                 root: "~/voiceflow"
                 paths:
-                  - ./packages/react-chat/dist # persist dist folder too
+                  - ./packages/*/dist # persist dist folder too
 
       - test:
           <<: *slack-fail-post-step
