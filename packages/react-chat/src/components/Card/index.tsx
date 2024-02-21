@@ -18,7 +18,7 @@ const Card: React.FC<CardProps> = ({ title, description, image, actions = [] }) 
 
   return (
     <Container>
-      {!!image && <Image.Default image={image} />}
+      {!!image && <Image image={image} />}
       <Content>
         {!!title && <Header>{title}</Header>}
         {!!description &&
