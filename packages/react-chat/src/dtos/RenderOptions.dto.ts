@@ -32,7 +32,7 @@ export const RenderOptions = z
         };
       }
 
-      console.error('No valid target found for embedded mode. Defaulting to bubble mode.');
+      console.error('No valid target found for embedded mode. Defaulting to overlay mode.');
     }
 
     return { mode: RenderMode.OVERLAY as const };

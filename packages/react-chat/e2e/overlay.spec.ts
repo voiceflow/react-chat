@@ -1,7 +1,7 @@
 import { test } from '@playwright/test';
 
 test('renders launcher and widget appears on click', async ({ page }) => {
-  await page.goto('bubble');
+  await page.goto('overlay');
 
   const launcher = page.locator('.vfrc-launcher');
   await launcher.waitFor({ state: 'visible' });

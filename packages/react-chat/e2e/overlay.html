@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Bubble mode</title>
+  <title>Overlay mode</title>
   <style>
     body {
       background-color: #f9f9f9;
@@ -17,7 +17,7 @@
       v.onload = function () {
         window.voiceflow.chat.load({
           verify: { projectID: 'projectID' },
-          render: { mode: 'bubble' }
+          render: { mode: 'overlay' }
         });
       }
       v.src = "../dist/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);

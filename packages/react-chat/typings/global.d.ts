@@ -12,7 +12,7 @@ declare global {
 
     interact: (action: RuntimeAction) => void;
 
-    /* bubble mode controls */
+    /* overlay mode controls */
     open: VoidFunction;
     close: VoidFunction;
     hide: VoidFunction;

@@ -9,7 +9,7 @@ describe('RenderOptions', () => {
   });
 
   describe('parse()', () => {
-    it('should render in bubble mode by default', () => {
+    it('should render in overlay mode by default', () => {
       const result = RenderOptions.parse(undefined);
 
       expect(result).toEqual({ mode: RenderMode.OVERLAY });
@@ -36,7 +36,7 @@ describe('RenderOptions', () => {
       expect(getElementById).toBeCalledWith(EMBEDDED_TARGET);
     });
 
-    it('should fallback to bubble mode when a target is not provided', () => {
+    it('should fallback to overlay mode when a target is not provided', () => {
       const result = RenderOptions.parse({ mode: RenderMode.EMBEDDED });
 
       expect(result).toEqual({ mode: RenderMode.OVERLAY });
