@@ -1,7 +1,7 @@
 /* eslint-disable xss/no-mixed-html */
 import { z } from 'zod';
 
-const EMBEDDED_TARGET = 'voiceflow-chat-frame';
+export const EMBEDDED_TARGET = 'voiceflow-chat-frame';
 
 export enum RenderMode {
   EMBEDDED = 'embedded',
@@ -18,13 +18,13 @@ export const RenderOptions = z
       .optional()
       .transform((x) => x ?? document.getElementById(EMBEDDED_TARGET) ?? undefined),
   })
-  .default({ mode: RenderMode.BUBBLE })
+  .optional()
   .transform((render) => {
-    if (render.target && render.mode !== RenderMode.EMBEDDED) {
+    if (render?.target && render.mode !== RenderMode.EMBEDDED) {
       console.warn(`render.target has no effect in ${render.mode} mode.`);
     }
 
-    if (render.mode === RenderMode.EMBEDDED) {
+    if (render?.mode === RenderMode.EMBEDDED) {
       if (render.target) {
         return {
           mode: RenderMode.EMBEDDED as const,

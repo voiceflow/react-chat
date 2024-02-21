@@ -6,7 +6,7 @@ import { z } from 'zod';
 import { RawAssistantOptions } from './AssistantOptions.dto';
 import { RenderMode, RenderOptions } from './RenderOptions.dto';
 
-const RUNTIME_URL = 'https://general-runtime.voiceflow.com';
+export const RUNTIME_URL = 'https://general-runtime.voiceflow.com';
 
 const tryDecodeURIComponent = (str: string) => {
   try {
