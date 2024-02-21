@@ -1,11 +1,12 @@
-import { PublicVerify, RuntimeAction, VoiceflowRuntime } from '@voiceflow/sdk-runtime';
+import { RuntimeAction, VoiceflowRuntime } from '@voiceflow/sdk-runtime';
 import { serializeToText } from '@voiceflow/slate-serializer/text';
 import Bowser from 'bowser';
 import { useMemo } from 'react';
 
-import { RuntimeOptions, SessionOptions } from '@/common';
+import { SessionOptions } from '@/common';
 import type { MessageProps } from '@/components/SystemResponse';
 import { MessageType } from '@/components/SystemResponse/constants';
+import { ChatConfig } from '@/dtos/ChatConfig.dto';
 import { UserTurnProps } from '@/types';
 
 import { MESSAGE_TRACES, RuntimeMessage } from './messages';
@@ -26,7 +27,7 @@ export const useRuntimeAPI = ({
   verify,
   versionID,
   traceHandlers = [],
-}: RuntimeOptions<PublicVerify> & Pick<SessionOptions, 'userID'> & { traceHandlers?: typeof MESSAGE_TRACES }) => {
+}: ChatConfig & Pick<SessionOptions, 'userID'> & { traceHandlers?: typeof MESSAGE_TRACES }) => {
   const runtime: VoiceflowRuntime<RuntimeMessage> = useMemo(
     () =>
       new VoiceflowRuntime<RuntimeMessage>({
@@ -71,7 +72,7 @@ export const useRuntimeAPI = ({
       ...(os && { os }),
       ...(browser && { browser }),
       ...(device && { device }),
-      ...(user && { user }),
+      ...(user && { user: user as { name: string } }),
     });
   };
 

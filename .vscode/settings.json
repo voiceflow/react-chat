@@ -8,7 +8,14 @@
   "eslint.runtime": "node",
   "eslint.execArgv": ["--max_old_space_size=8192"],
   "eslint.options": {
-    "extensions": [".js", ".jsx", ".md", ".mdx", ".ts", ".tsx"]
+    "extensions": [
+      ".js",
+      ".jsx",
+      ".md",
+      ".mdx",
+      ".ts",
+      ".tsx"
+    ]
   },
   "eslint.validate": [
     "markdown",

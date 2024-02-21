@@ -1,23 +1,23 @@
 import { Trace } from '@voiceflow/base-types';
-import React, { useContext, useEffect, useMemo, useState } from 'react';
+import React, { useContext, useMemo, useState } from 'react';
 
-import { ChatPosition, isObject, useTheme } from '@/common';
+import { ChatPosition } from '@/common';
 import Launcher from '@/components/Launcher';
 import Proactive from '@/components/Proactive';
 import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts';
-import { noop } from '@/utils/functional';
+import { useChatAPI, useTheme } from '@/hooks';
 import { useResolveAssistantStyleSheet } from '@/utils/stylesheet';
 import ChatWindow from '@/views/ChatWindow';
 
 import { ChatContainer, Container, LauncherContainer } from './styled';
-import { ChatAPI } from './types';
 
 interface ChatWidgetProps extends React.PropsWithChildren {
-  chatAPI?: ChatAPI | undefined;
+  shadowRoot: ShadowRoot;
+  chatAPI: VoiceflowChat | undefined;
   ready?: () => void;
 }
 
-const ChatWidget: React.FC<ChatWidgetProps> = ({ chatAPI, ready }) => {
+const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, ready }) => {
   const { assistant, open, close, interact } = useContext(RuntimeStateAPIContext);
   const { isOpen } = useContext(RuntimeStateContext);
 
@@ -28,11 +28,9 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ chatAPI, ready }) => {
 
   const theme = useTheme(assistant);
 
-  /** initialize window */
-  useEffect(() => {
-    if (!isObject(chatAPI)) return undefined;
-
-    Object.assign(chatAPI, {
+  useChatAPI(
+    chatAPI,
+    () => ({
       open,
       close,
       hide: () => setHidden(true),
@@ -42,29 +40,14 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ chatAPI, ready }) => {
         clear: () => setProactiveMessages([]),
         push: (...messages: Trace.AnyTrace[]) => setProactiveMessages((prev) => [...prev, ...messages]),
       },
-    });
-
-    ready?.();
-
-    return () => {
-      Object.assign(chatAPI, {
-        open: noop,
-        hide: noop,
-        show: noop,
-        close: noop,
-        interact: noop,
-        proactive: {
-          clear: noop,
-          push: noop,
-        },
-      });
-    };
-  }, []);
+    }),
+    ready
+  );
 
   const side = assistant?.position ?? ChatPosition.RIGHT;
   const position = { bottom: assistant?.spacing.bottom, [side]: assistant?.spacing.side };
 
-  const isStyleSheetResolved = useResolveAssistantStyleSheet(assistant);
+  const isStyleSheetResolved = useResolveAssistantStyleSheet(assistant, shadowRoot);
 
   if (!isStyleSheetResolved) return null;
 

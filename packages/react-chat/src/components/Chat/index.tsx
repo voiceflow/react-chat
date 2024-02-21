@@ -1,11 +1,12 @@
-import React, { memo, useRef, useState } from 'react';
+import React, { memo, useContext, useMemo, useRef, useState } from 'react';
 
 import AssistantInfo, { AssistantInfoProps } from '@/components/AssistantInfo';
 import Footer, { FooterProps } from '@/components/Footer';
-import Header, { HeaderProps } from '@/components/Header';
+import Header, { HeaderActionProps, HeaderProps } from '@/components/Header';
 import Loader from '@/components/Loader';
 import Prompt from '@/components/Prompt';
-import { AutoScrollProvider } from '@/contexts';
+import { AutoScrollProvider, RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts';
+import { RenderMode } from '@/dtos/RenderOptions.dto';
 import { Nullish } from '@/types';
 import { chain } from '@/utils/functional';
 
@@ -63,6 +64,9 @@ const Chat: React.FC<ChatProps> = ({
   const dialogRef = useRef<HTMLElement>(null);
   const [hasAlert, setAlert] = useState(false);
 
+  const { config } = useContext(RuntimeStateAPIContext);
+  const state = useContext(RuntimeStateContext);
+
   const handleClose = (event: React.MouseEvent<HTMLButtonElement>): void => {
     if (hasEnded) {
       onEnd?.(event);
@@ -70,7 +74,18 @@ const Chat: React.FC<ChatProps> = ({
       setAlert(true);
     }
   };
+
   const handleResume = (): void => setAlert(false);
+
+  const actions = useMemo<HeaderActionProps[]>(() => {
+    if (config.render?.mode === RenderMode.OVERLAY) {
+      return [
+        { svg: 'minus', onClick: onMinimize },
+        { svg: 'close', onClick: handleClose },
+      ];
+    }
+    return [{ svg: 'close', onClick: handleClose }];
+  }, [config.render, handleClose, onMinimize]);
 
   if (isLoading) {
     return (
@@ -82,21 +97,14 @@ const Chat: React.FC<ChatProps> = ({
 
   return (
     <Container withPrompt={hasAlert}>
-      <Header
-        title={title}
-        image={image}
-        actions={[
-          { svg: 'minus', onClick: onMinimize },
-          { svg: 'close', onClick: handleClose },
-        ]}
-      />
+      <Header title={title} image={image} actions={actions} />
       <Dialog ref={dialogRef}>
         <AutoScrollProvider target={dialogRef}>
           <AssistantInfo title={title} avatar={avatar} description={description} />
           <Spacer />
-          {!!timestamp && <SessionTime>{timestamp}</SessionTime>}
+          {!!timestamp && !!state.session.turns.length && <SessionTime>{timestamp}</SessionTime>}
           {children}
-          {hasEnded && <Status>You have ended the chat</Status>}
+          {hasEnded && !!state.session.turns.length && <Status>You have ended the chat</Status>}
         </AutoScrollProvider>
       </Dialog>
       <Footer withWatermark={withWatermark} hasEnded={hasEnded} onStart={onStart} onSend={onSend} />
