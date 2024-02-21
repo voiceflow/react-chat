@@ -8,6 +8,7 @@ export default defineConfig({
   retries: 0,
   workers: process.env.CI ? 1 : cpus().length - 1,
   reporter: 'html',
+  timeout: 5000,
   use: {
     baseURL: 'http://127.0.0.1:8080/e2e/',
 
