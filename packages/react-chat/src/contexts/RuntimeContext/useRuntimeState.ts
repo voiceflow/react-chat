@@ -1,14 +1,12 @@
 import { BaseRequest } from '@voiceflow/base-types';
 import { isTextRequest } from '@voiceflow/base-types/build/cjs/request';
-import { ActionType, Trace, TraceDeclaration } from '@voiceflow/sdk-runtime';
+import { ActionType, PublicVerify, Trace, TraceDeclaration } from '@voiceflow/sdk-runtime';
 import cuid from 'cuid';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
-import { SendMessage, SessionOptions, SessionStatus } from '@/common';
+import { Assistant, RuntimeOptions, SendMessage, SessionOptions, SessionStatus } from '@/common';
 import { DEFAULT_MESSAGE_DELAY } from '@/components/SystemResponse/constants';
 import type { RuntimeMessage } from '@/contexts/RuntimeContext/messages';
-import { AssistantOptions } from '@/dtos/AssistantOptions.dto';
-import { ChatConfig } from '@/dtos/ChatConfig.dto';
 import { useStateRef } from '@/hooks/useStateRef';
 import { TurnProps, TurnType } from '@/types';
 import { handleActions } from '@/utils/actions';
@@ -19,13 +17,14 @@ import { useNoReply } from './useNoReply';
 import { createContext, useRuntimeAPI } from './useRuntimeAPI';
 
 export interface Settings {
-  assistant: AssistantOptions;
-  config: ChatConfig;
+  assistant: Assistant;
+  config: RuntimeOptions<PublicVerify>;
 }
 
 const DEFAULT_SESSION_PARAMS = {
   turns: [],
   startTime: Date.now(),
+  status: SessionStatus.IDLE,
 };
 
 export const useRuntimeState = ({ assistant, config }: Settings) => {
@@ -33,12 +32,12 @@ export const useRuntimeState = ({ assistant, config }: Settings) => {
 
   const [session, setSession, sessionRef] = useStateRef<Required<SessionOptions>>(() => ({
     ...DEFAULT_SESSION_PARAMS,
-    status: config.autostart ? SessionStatus.IDLE : SessionStatus.ENDED,
     // retrieve stored session
     ...getSession(assistant.persistence, config.verify.projectID, config.userID),
   }));
 
   const [indicator, setIndicator] = useState(false);
+
   const { clearNoReplyTimeout, setNoReplyTimeout } = useNoReply(() => ({ interact, isStatus }));
 
   const noReplyHandler: TraceDeclaration<RuntimeMessage, any> = {
@@ -132,14 +131,8 @@ export const useRuntimeState = ({ assistant, config }: Settings) => {
 
   const close = () => {
     broadcast({ type: BroadcastType.CLOSE });
-    saveSession(assistant.persistence, config.verify.projectID, sessionRef.current);
-
     setOpen(false);
   };
-
-  useEffect(() => {
-    if (config.autostart) launch?.();
-  }, []);
 
   return {
     state: {

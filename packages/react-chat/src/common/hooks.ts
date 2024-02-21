@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 
-import { AssistantOptions } from '@/dtos/AssistantOptions.dto';
 import { createCustomTheme } from '@/styles';
 
-export const useTheme = (assistant?: AssistantOptions) => {
+import { Assistant } from './types';
+
+export const useTheme = (assistant?: Assistant) => {
   const [theme, setTheme] = useState('');
   useEffect(() => {
     if (assistant?.color) {

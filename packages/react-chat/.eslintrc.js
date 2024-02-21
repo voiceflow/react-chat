@@ -17,7 +17,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['test/**/*', 'e2e/**/*', 'config/**/*', '.storybook/**/*', '**/*.story.tsx', '**/*.test.*', '**/*.mdx', '*.config.ts'],
+      files: ['test/**/*', 'config/**/*', '.storybook/**/*', '**/*.story.tsx', '**/*.test.*', '**/*.mdx', '*.config.ts'],
       extends: ['@voiceflow/eslint-config/utility'],
       rules: {
         // off

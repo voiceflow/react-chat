@@ -1,4 +1,5 @@
 import Button from '@/components/Button';
+import Image from '@/components/Image';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
 import { styled } from '@/styles';
@@ -16,6 +17,10 @@ export const Container = styled(tag('section'), {
   boxSizing: 'content-box',
   overflow: 'hidden',
   backgroundColor: '$lightGrey',
+
+  [`& ${Image.Background.Base}`]: {
+    height: 150,
+  },
 
   [`& ${Button.Container}`]: {
     width: '100%',
