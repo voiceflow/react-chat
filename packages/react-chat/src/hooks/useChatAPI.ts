@@ -8,19 +8,15 @@ export const useChatAPI = (target: Record<string, any> | undefined, factory: () 
   useEffect(() => {
     if (!isObject(target)) return undefined;
 
-    const noopWarn = (method: string) => () => console.warn(`Method '${method}' has no effect in this mode.`);
-
+    const placeholders = createPlaceholderMethods((method) => `Method '${method}' has no effect in this mode.`);
     const methods = factory();
 
     Object.assign(target, {
-      open: methods.open ?? noopWarn('open'),
-      close: methods.close ?? noopWarn('close'),
-      hide: methods.hide ?? noopWarn('hide'),
-      show: methods.show ?? noopWarn('show'),
-      interact: methods.interact ?? noopWarn('interact'),
+      ...placeholders,
+      ...methods,
       proactive: {
-        clear: methods.proactive?.clear ?? noopWarn('proactive.clear'),
-        push: methods.proactive?.push ?? noopWarn('proactive.push'),
+        ...placeholders.proactive,
+        ...methods.proactive,
       },
     });
 
@@ -31,9 +27,6 @@ export const useChatAPI = (target: Record<string, any> | undefined, factory: () 
         (method) => `Method '${method}' has no effect after 'destroy' has been called. Call 'load' to render the chat and restore this method.`
       );
 
-      Object.assign(target, {
-        ...methods,
-        proactive: { ...methods.proactive },
-      });
+      Object.assign(target, methods);
     };
   }, []);
