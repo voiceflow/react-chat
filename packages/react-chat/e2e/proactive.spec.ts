@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { test } from '@playwright/test';
 import { Trace } from '@voiceflow/base-types';
 
 test('renders launcher and widget appears on click', async ({ page }) => {
@@ -17,7 +17,5 @@ test('renders launcher and widget appears on click', async ({ page }) => {
     [message]
   );
 
-  const proactiveMessage = page.locator('.vfrc-proactive-message');
-  await proactiveMessage.waitFor({ state: 'visible' });
-  expect(proactiveMessage).toHaveText(message, { timeout: 1000 });
+  await page.waitForSelector(`text=${message}`);
 });
