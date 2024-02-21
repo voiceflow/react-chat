@@ -108,6 +108,7 @@ export const useRuntimeState = ({ assistant, config }: Settings) => {
       ...context,
     });
 
+    broadcast({ type: BroadcastType.INTERACT, payload: { session: sessionRef.current, action } });
     saveSession(assistant.persistence, config.verify.projectID, sessionRef.current);
   };
 
