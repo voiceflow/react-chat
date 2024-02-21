@@ -63,6 +63,12 @@ jobs:
       - run:
           working_directory: packages/react-chat
           command: yarn test:e2e
+      - store_artifacts:
+          path: packages/react-chat/playwright-report/data
+          destination: recordings
+      - store_artifacts:
+          path: packages/react-chat/test-results
+          destination: traces
 
   push-to-cdn: # Main unit, style, and dependency tests
     executor: vfcommon/node-executor-node-20
