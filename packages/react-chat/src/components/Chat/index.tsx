@@ -78,14 +78,14 @@ const Chat: React.FC<ChatProps> = ({
   const handleResume = (): void => setAlert(false);
 
   const actions = useMemo<HeaderActionProps[]>(() => {
-    if (config.render?.mode === RenderMode.BUBBLE) {
+    if (config.render?.mode === RenderMode.OVERLAY) {
       return [
         { svg: 'minus', onClick: onMinimize },
         { svg: 'close', onClick: handleClose },
       ];
     }
     return [{ svg: 'close', onClick: handleClose }];
-  }, [config, handleClose, onMinimize]);
+  }, [config.render, handleClose, onMinimize]);
 
   if (isLoading) {
     return (

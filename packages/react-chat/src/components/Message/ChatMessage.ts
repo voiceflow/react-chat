@@ -21,14 +21,14 @@ export const ChatMessage = styled(tag(Container, 'chat'), {
       embedded: {
         maxWidth: '100%',
       },
-      bubble: {
+      overlay: {
         maxWidth: 248,
       },
     },
   },
   defaultVariants: {
     from: 'system',
-    mode: 'bubble',
+    mode: 'overlay',
   },
   compoundVariants: [
     {

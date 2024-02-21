@@ -6,7 +6,7 @@ import { RenderMode } from './dtos/RenderOptions.dto';
 import { stitches } from './styles/theme';
 import { mergeAssistantOptions } from './utils/assistant';
 import { createPlaceholderMethods } from './utils/chat';
-import { ChatWidget, ChatWindowStandaloneView } from './views';
+import { ChatEmbed, ChatWidget } from './views';
 
 const BUBBLE_TARGET = 'voiceflow-chat';
 
@@ -62,10 +62,8 @@ window.voiceflow.chat ??= {
     await new Promise<void>((resolve) => {
       reactRoot.render(
         <RuntimeProvider assistant={assistant} config={config}>
-          {config.render.mode === RenderMode.EMBEDDED && (
-            <ChatWindowStandaloneView shadowRoot={shadowRoot} chatAPI={window.voiceflow?.chat} ready={resolve} />
-          )}
-          {config.render.mode === RenderMode.BUBBLE && <ChatWidget shadowRoot={shadowRoot} chatAPI={window.voiceflow?.chat} ready={resolve} />}
+          {config.render.mode === RenderMode.EMBEDDED && <ChatEmbed shadowRoot={shadowRoot} chatAPI={window.voiceflow?.chat} ready={resolve} />}
+          {config.render.mode === RenderMode.OVERLAY && <ChatWidget shadowRoot={shadowRoot} chatAPI={window.voiceflow?.chat} ready={resolve} />}
         </RuntimeProvider>
       );
     });

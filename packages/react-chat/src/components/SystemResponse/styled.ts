@@ -98,7 +98,7 @@ export const List = styled(tag('div', 'list'), {
 
   variants: {
     mode: {
-      bubble: {
+      overlay: {
         [`& ${Message.Container}`]: {
           maxWidth: 248,
         },
@@ -113,6 +113,6 @@ export const List = styled(tag('div', 'list'), {
     },
   },
   defaultVariants: {
-    mode: 'bubble',
+    mode: 'overlay',
   },
 });

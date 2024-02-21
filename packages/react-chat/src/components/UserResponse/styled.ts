@@ -25,7 +25,7 @@ export const Container = styled(tag('div'), {
   },
   variants: {
     mode: {
-      bubble: {
+      overlay: {
         [`& ${Message.Container}`]: {
           maxWidth: 282,
         },
@@ -39,7 +39,7 @@ export const Container = styled(tag('div'), {
   },
 
   defaultVariants: {
-    mode: 'bubble',
+    mode: 'overlay',
   },
 });
 

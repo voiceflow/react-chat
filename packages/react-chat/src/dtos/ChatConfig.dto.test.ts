@@ -15,7 +15,7 @@ describe('ChatConfig', () => {
         allowDangerousHTML: true,
         url: RUNTIME_URL,
         verify: { projectID },
-        render: { mode: RenderMode.BUBBLE },
+        render: { mode: RenderMode.OVERLAY },
       });
     });
 
@@ -30,7 +30,7 @@ describe('ChatConfig', () => {
 
         verify: { projectID: 'local' },
         user: { name: 'local', image: 'local' },
-        render: { mode: RenderMode.BUBBLE },
+        render: { mode: RenderMode.OVERLAY },
         launch: { event: { type: 'local' } },
       };
 
@@ -52,7 +52,7 @@ describe('ChatConfig', () => {
         allowDangerousHTML: true,
         url: RUNTIME_URL,
         verify: { projectID },
-        render: { mode: RenderMode.BUBBLE },
+        render: { mode: RenderMode.OVERLAY },
         userID: '123',
       });
     });
@@ -70,7 +70,7 @@ describe('ChatConfig', () => {
         allowDangerousHTML: true,
         url: RUNTIME_URL,
         verify: { projectID },
-        render: { mode: RenderMode.BUBBLE },
+        render: { mode: RenderMode.OVERLAY },
         userID: 'foo bar',
       });
     });

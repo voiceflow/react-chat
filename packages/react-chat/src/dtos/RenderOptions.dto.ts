@@ -5,14 +5,14 @@ export const EMBEDDED_TARGET = 'voiceflow-chat-frame';
 
 export enum RenderMode {
   EMBEDDED = 'embedded',
-  BUBBLE = 'bubble',
+  OVERLAY = 'overlay',
 }
 
 export type RenderOptions = z.infer<typeof RenderOptions>;
 
 export const RenderOptions = z
   .object({
-    mode: z.nativeEnum(RenderMode).default(RenderMode.BUBBLE),
+    mode: z.nativeEnum(RenderMode).default(RenderMode.OVERLAY),
     target: z
       .instanceof(HTMLElement)
       .optional()
@@ -35,5 +35,5 @@ export const RenderOptions = z
       console.error('No valid target found for embedded mode. Defaulting to bubble mode.');
     }
 
-    return { mode: RenderMode.BUBBLE as const };
+    return { mode: RenderMode.OVERLAY as const };
   });

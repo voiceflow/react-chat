@@ -13,7 +13,7 @@ export const DefaultImageBase = styled(tag('img'), {
       },
     },
     mode: {
-      bubble: {
+      overlay: {
         width: 248,
       },
       embedded: {
@@ -23,7 +23,7 @@ export const DefaultImageBase = styled(tag('img'), {
   },
   defaultVariants: {
     isRounded: true,
-    mode: 'bubble',
+    mode: 'overlay',
   },
 });
 

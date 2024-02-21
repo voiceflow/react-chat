@@ -27,7 +27,7 @@ export const ProactiveMessageContainer = styled('div', {
 export const ProactiveContainer = styled(tag('div'), {
   position: 'absolute',
   bottom: '100%',
-
+  width: 256,
   display: 'flex',
   flexDirection: 'column',
 

@@ -4,15 +4,15 @@ import { RuntimeStateAPIContext } from '@/contexts';
 import { useChatAPI, useTheme } from '@/hooks';
 import { useResolveAssistantStyleSheet } from '@/utils/stylesheet';
 
-import ChatWindow from '.';
+import ChatWindow from '../ChatWindow';
 
-interface ChatWindowStandaloneViewProps extends React.PropsWithChildren {
+interface ChatEmbedProps extends React.PropsWithChildren {
   shadowRoot: ShadowRoot;
   chatAPI: VoiceflowChat | undefined;
   ready?: () => void;
 }
 
-const ChatWindowStandaloneView: React.FC<ChatWindowStandaloneViewProps> = ({ shadowRoot, chatAPI, ready }) => {
+const ChatEmbed: React.FC<ChatEmbedProps> = ({ shadowRoot, chatAPI, ready }) => {
   const { assistant, interact } = useContext(RuntimeStateAPIContext);
   const theme = useTheme(assistant);
 
@@ -32,4 +32,4 @@ const ChatWindowStandaloneView: React.FC<ChatWindowStandaloneViewProps> = ({ sha
   return <ChatWindow className={theme} />;
 };
 
-export default ChatWindowStandaloneView;
+export default ChatEmbed;

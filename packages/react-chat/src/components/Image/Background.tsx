@@ -11,7 +11,7 @@ export const BackgroundImageBase = styled(tag('div', 'background'), {
   backgroundSize: 'cover',
   variants: {
     mode: {
-      bubble: {
+      overlay: {
         width: 248,
       },
       embedded: {
@@ -20,7 +20,7 @@ export const BackgroundImageBase = styled(tag('div', 'background'), {
     },
   },
   defaultVariants: {
-    mode: 'bubble',
+    mode: 'overlay',
   },
 });
 
