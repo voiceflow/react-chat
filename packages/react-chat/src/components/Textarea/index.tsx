@@ -7,7 +7,7 @@ import { chain } from '@/utils/functional';
 
 import { Container } from './styled';
 
-export interface TextareaProps extends Merge<ControlProps<string>, TextareaAutosizeProps> {}
+export interface TextareaProps extends Merge<ControlProps<string>, Omit<TextareaAutosizeProps, 'value'>> {}
 
 const Textarea: ForwardRefExoticComponent<TextareaProps & RefAttributes<HTMLTextAreaElement>> = forwardRef<HTMLTextAreaElement, TextareaProps>(
   ({ onValueChange, onChange, rows = 1, ...props }, ref) => {

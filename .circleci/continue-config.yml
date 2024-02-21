@@ -25,6 +25,11 @@ defaults:
           template: basic_fail_1
           branch_pattern: master
 
+executors:
+  playwright:
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.41.1-jammy
+
 jobs:
   test: # Main unit, style, and dependency tests
     executor: vfcommon/node-executor-node-20
@@ -46,6 +51,20 @@ jobs:
           cache_identifier: "monorepo-test-cache"
       ## disable sonarcloud until project set up
       # - sonarcloud/scan
+
+  e2e:
+    executor: playwright
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/project
+      - vfcommon/install_node_modules:
+          avoid_post_install_scripts: false
+      - run:
+          working_directory: packages/react-chat
+          command: yarn test:e2e
+      - store_artifacts:
+          path: packages/react-chat/test-results
 
   push-to-cdn: # Main unit, style, and dependency tests
     executor: vfcommon/node-executor-node-20
@@ -76,9 +95,15 @@ workflows:
             - persist_to_workspace:
                 root: "."
                 paths:
-                  - ./*/*/dist # persist dist folder too
+                  - ./packages/*/dist # persist dist folder too
 
       - test:
+          <<: *slack-fail-post-step
+          context: dev-test
+          requires:
+            - build
+
+      - e2e:
           <<: *slack-fail-post-step
           context: dev-test
           requires:
@@ -94,6 +119,7 @@ workflows:
           commit_message: "chore(release): publish --skip-ci"
           requires:
             - test
+            - e2e
           filters:
             branches:
               only: master

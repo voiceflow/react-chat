@@ -95,4 +95,24 @@ export const List = styled(tag('div', 'list'), {
       marginBottom: 0,
     },
   },
+
+  variants: {
+    mode: {
+      overlay: {
+        [`& ${Message.Container}`]: {
+          maxWidth: 248,
+        },
+      },
+      embedded: {
+        // minus avatar and paddings, minus timestamp width
+        maxWidth: 'calc(100% - 54px - 50px)',
+        [`& ${Message.Container}`]: {
+          flexBasis: 'auto',
+        },
+      },
+    },
+  },
+  defaultVariants: {
+    mode: 'overlay',
+  },
 });
