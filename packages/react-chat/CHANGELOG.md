@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.53.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.52.1...@voiceflow/react-chat@1.53.0) (2024-02-21)
+
+### Features
+
+* embedded chat mode - lazy style attachment (DX-996) ([#108](https://github.com/voiceflow/react-chat/issues/108)) ([2e0af51](https://github.com/voiceflow/react-chat/commit/2e0af510fb59ca5b1f917935840cca8a3e661bdf))
+
 ## [1.52.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.52.0...@voiceflow/react-chat@1.52.1) (2024-02-08)
 
 ### Reverts
