@@ -57,7 +57,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ~/voiceflow
+          at: ~/project
       - vfcommon/install_node_modules:
           avoid_post_install_scripts: false
       - run:
