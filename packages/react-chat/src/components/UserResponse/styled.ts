@@ -20,26 +20,12 @@ export const Container = styled(tag('div'), {
   flexShrink: 0,
   alignItems: 'flex-end',
 
-  [`& > ${Tooltip.Container}`]: {
-    marginTop: '$1',
-  },
-  variants: {
-    mode: {
-      overlay: {
-        [`& ${Message.Container}`]: {
-          maxWidth: 282,
-        },
-      },
-      embedded: {
-        [`& ${Message.Container}`]: {
-          maxWidth: '80%',
-        },
-      },
-    },
+  [`& ${Message.Container}`]: {
+    maxWidth: 282,
   },
 
-  defaultVariants: {
-    mode: 'overlay',
+  [`& > ${Tooltip.Container}`]: {
+    marginTop: '$1',
   },
 });
 

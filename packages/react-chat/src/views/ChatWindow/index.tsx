@@ -12,14 +12,10 @@ import { TurnType, UserTurnProps } from '@/types';
 
 import { ChatWindowContainer } from './styled';
 
-export interface ChatWindowProps {
-  className?: string;
-}
-
-const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
+const ChatWindow: React.FC = () => {
   const runtime = useContext(RuntimeStateAPIContext);
   const state = useContext(RuntimeStateContext);
-  const { assistant, config } = runtime;
+  const { assistant } = runtime;
 
   // emitters
   const closeAndEnd = useCallback((): void => {
@@ -36,7 +32,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
   );
 
   return (
-    <ChatWindowContainer className={className}>
+    <ChatWindowContainer>
       <Chat
         title={assistant.title}
         description={assistant.description}
@@ -45,7 +41,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
         withWatermark={assistant.watermark}
         startTime={state.session.startTime}
         hasEnded={runtime.isStatus(SessionStatus.ENDED)}
-        isLoading={runtime.isStatus(SessionStatus.IDLE) && state.session.turns.length === 0 && config.autostart}
+        isLoading={!state.session.turns.length}
         onStart={runtime.launch}
         onEnd={closeAndEnd}
         onSend={runtime.reply}
