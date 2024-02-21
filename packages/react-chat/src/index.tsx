@@ -1,20 +1,20 @@
 import { createRoot, Root } from 'react-dom/client';
 
-import { ChatConfig, RenderMode } from '@/common/types';
-import { stitches } from '@/styles/theme';
-import { mergeAssistant } from '@/utils/assistant';
-import { sanitizeConfig } from '@/utils/config';
-
 import { RuntimeProvider } from './contexts';
+import { ChatConfig, LoadConfig } from './dtos/ChatConfig.dto';
+import { RenderMode } from './dtos/RenderOptions.dto';
+import { stitches } from './styles/theme';
+import { mergeAssistantOptions } from './utils/assistant';
 import { createPlaceholderMethods } from './utils/chat';
 import { ChatWidget, ChatWindowStandaloneView } from './views';
+
+const BUBBLE_TARGET = 'voiceflow-chat';
 
 let reactRoot: Root;
 
 const initBubbleMode = () => {
-  const VOICEFLOW_ID = 'voiceflow-chat';
   const rootEl = document.createElement('div');
-  rootEl.id = VOICEFLOW_ID;
+  rootEl.id = BUBBLE_TARGET;
   document.body.appendChild(rootEl);
 
   const shadowRoot = rootEl.attachShadow({ mode: 'open' });
@@ -32,14 +32,14 @@ const initEmbeddedMode = (rootEl: HTMLElement) => {
 
     return { shadowRoot, reactRoot };
   } catch (e) {
-    console.error(`${e}. \nTarget: ${rootEl}`);
-    return null;
+    console.error(`${e}. \nTarget:`, rootEl);
+    throw new Error('Failed to attach embedded chat to the provided target.');
   }
 };
 
 const createChatRoot = (config: ChatConfig) => {
-  if (config.render?.mode === RenderMode.EMBEDDED) {
-    return initEmbeddedMode(config.render.target!);
+  if (config.render.mode === RenderMode.EMBEDDED) {
+    return initEmbeddedMode(config.render.target);
   }
 
   return initBubbleMode();
@@ -52,19 +52,18 @@ window.voiceflow.chat ??= {
   ...methods,
   proactive: { ...methods.proactive },
 
-  load: async (loadConfig: Partial<ChatConfig>) => {
-    const config = sanitizeConfig(loadConfig);
-    const assistant = await mergeAssistant(config);
+  load: async (loadConfig: LoadConfig) => {
+    const config = ChatConfig.parse(loadConfig);
+    const assistant = await mergeAssistantOptions(config, loadConfig.assistant);
 
     const chatRoot = createChatRoot(config);
-    if (!chatRoot) return;
 
     // set root here
     await new Promise<void>((resolve) => {
       chatRoot.reactRoot.render(
         <RuntimeProvider assistant={assistant} config={config} shadowRoot={chatRoot.shadowRoot}>
-          {config.render?.mode === RenderMode.EMBEDDED && <ChatWindowStandaloneView chatAPI={window.voiceflow!.chat} ready={resolve} />}
-          {config.render?.mode === RenderMode.BUBBLE && <ChatWidget chatAPI={window.voiceflow!.chat} ready={resolve} />}
+          {config.render.mode === RenderMode.EMBEDDED && <ChatWindowStandaloneView chatAPI={window.voiceflow!.chat} ready={resolve} />}
+          {config.render.mode === RenderMode.BUBBLE && <ChatWidget chatAPI={window.voiceflow!.chat} ready={resolve} />}
         </RuntimeProvider>
       );
     });

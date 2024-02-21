@@ -1,13 +1,13 @@
 import type { Trace } from '@voiceflow/base-types';
 import type { RuntimeAction } from '@voiceflow/sdk-runtime';
 
-import type { ChatConfig } from '@/common';
+import type { LoadConfig } from '@/dtos/ChatConfig.dto';
 
 declare global {
   export const __USE_SHADOW_ROOT__: boolean;
 
   interface VoiceflowChat {
-    load: (config: ChatConfig) => void;
+    load: (config: LoadConfig) => Promise<void>;
     destroy: () => void;
 
     interact: (action: RuntimeAction) => void;

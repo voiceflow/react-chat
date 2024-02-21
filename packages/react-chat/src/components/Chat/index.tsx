@@ -1,12 +1,12 @@
 import React, { memo, useContext, useEffect, useMemo, useRef, useState } from 'react';
 
-import { RenderMode } from '@/common';
 import AssistantInfo, { AssistantInfoProps } from '@/components/AssistantInfo';
 import Footer, { FooterProps } from '@/components/Footer';
-import Header, { HeaderProps } from '@/components/Header';
+import Header, { HeaderActionProps, HeaderProps } from '@/components/Header';
 import Loader from '@/components/Loader';
 import Prompt from '@/components/Prompt';
 import { AutoScrollProvider, RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts';
+import { RenderMode } from '@/dtos/RenderOptions.dto';
 import { Nullish } from '@/types';
 import { chain } from '@/utils/functional';
 
@@ -87,7 +87,7 @@ const Chat: React.FC<ChatProps> = ({
 
   const handleResume = (): void => setAlert(false);
 
-  const actions = useMemo(() => {
+  const actions = useMemo<HeaderActionProps[]>(() => {
     if (config.render?.mode === RenderMode.BUBBLE) {
       return [
         { svg: 'minus', onClick: onMinimize },

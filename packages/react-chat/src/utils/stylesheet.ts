@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { Assistant } from '@/common';
+import { AssistantOptions } from '@/dtos/AssistantOptions.dto';
 
 // used to add stylesheets dynamically, resolves when loaded
 export const addStyleSheetURL = async (url: string, shadowRoot: ShadowRoot) => {
@@ -18,7 +18,7 @@ export const addStyleSheetURL = async (url: string, shadowRoot: ShadowRoot) => {
 };
 
 // do not load until stylesheet is resolved
-export const useResolveAssistantStyleSheet = (assistant?: Assistant, shadowRoot?: ShadowRoot): boolean => {
+export const useResolveAssistantStyleSheet = (assistant?: AssistantOptions, shadowRoot?: ShadowRoot): boolean => {
   const [isStyleSheetResolved, setStyleSheetResolved] = useState(false);
 
   useEffect(() => {

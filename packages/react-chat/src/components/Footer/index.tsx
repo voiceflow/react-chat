@@ -1,9 +1,7 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 
-import { SessionStatus } from '@/common';
 import Button from '@/components/Button';
 import ChatInput from '@/components/ChatInput';
-import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts';
 
 import { Container, Watermark } from './styled';
 
@@ -34,9 +32,6 @@ const Footer: React.FC<FooterProps> = ({ withWatermark, hasEnded, onStart, onSen
   const [message, setMessage] = useState('');
   const [buffering, setBuffering] = useState(false);
 
-  const { session } = useContext(RuntimeStateContext);
-  const { config } = useContext(RuntimeStateAPIContext);
-  const { autostart } = config;
   const handleSend = async (): Promise<void> => {
     if (!message || buffering) return;
 

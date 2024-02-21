@@ -8,6 +8,8 @@ import { Container, Content, Description, Header, Link } from './styled';
 import { CardProps } from './types';
 import { isValidHttpUrl } from './utils';
 
+export type { CardProps } from './types';
+
 const Card: React.FC<CardProps> = ({ title, description, image, actions = [] }) => {
   const runtime = useContext(RuntimeStateAPIContext);
   const isLink = isValidHttpUrl(description);
