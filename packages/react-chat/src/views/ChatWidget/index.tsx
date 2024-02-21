@@ -12,13 +12,14 @@ import ChatWindow from '@/views/ChatWindow';
 import { ChatContainer, Container, LauncherContainer } from './styled';
 
 interface ChatWidgetProps extends React.PropsWithChildren {
-  chatAPI?: VoiceflowChat | undefined;
+  shadowRoot: ShadowRoot;
+  chatAPI: VoiceflowChat | undefined;
   ready?: () => void;
 }
 
-const ChatWidget: React.FC<ChatWidgetProps> = ({ chatAPI, ready }) => {
+const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, ready }) => {
   const { assistant, open, close, interact } = useContext(RuntimeStateAPIContext);
-  const { isOpen, shadowRoot } = useContext(RuntimeStateContext);
+  const { isOpen } = useContext(RuntimeStateContext);
 
   /** initialization */
   const [isHidden, setHidden] = useState(false);

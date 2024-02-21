@@ -1,18 +1,18 @@
 import { useContext } from 'react';
 
-import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts';
+import { RuntimeStateAPIContext } from '@/contexts';
 import { useChatAPI, useTheme } from '@/hooks';
 import { useResolveAssistantStyleSheet } from '@/utils/stylesheet';
 
 import ChatWindow from '.';
 
 interface ChatWindowStandaloneViewProps extends React.PropsWithChildren {
-  chatAPI?: VoiceflowChat | undefined;
+  shadowRoot: ShadowRoot;
+  chatAPI: VoiceflowChat | undefined;
   ready?: () => void;
 }
 
-const ChatWindowStandaloneView: React.FC<ChatWindowStandaloneViewProps> = ({ chatAPI, ready }) => {
-  const { shadowRoot } = useContext(RuntimeStateContext);
+const ChatWindowStandaloneView: React.FC<ChatWindowStandaloneViewProps> = ({ shadowRoot, chatAPI, ready }) => {
   const { assistant, interact } = useContext(RuntimeStateAPIContext);
   const theme = useTheme(assistant);
 

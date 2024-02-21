@@ -56,14 +56,16 @@ window.voiceflow.chat ??= {
     const config = ChatConfig.parse(loadConfig);
     const assistant = await mergeAssistantOptions(config, loadConfig.assistant);
 
-    const chatRoot = createChatRoot(config);
+    const { reactRoot, shadowRoot } = createChatRoot(config);
 
     // set root here
     await new Promise<void>((resolve) => {
-      chatRoot.reactRoot.render(
-        <RuntimeProvider assistant={assistant} config={config} shadowRoot={chatRoot.shadowRoot}>
-          {config.render.mode === RenderMode.EMBEDDED && <ChatWindowStandaloneView chatAPI={window.voiceflow!.chat} ready={resolve} />}
-          {config.render.mode === RenderMode.BUBBLE && <ChatWidget chatAPI={window.voiceflow!.chat} ready={resolve} />}
+      reactRoot.render(
+        <RuntimeProvider assistant={assistant} config={config}>
+          {config.render.mode === RenderMode.EMBEDDED && (
+            <ChatWindowStandaloneView shadowRoot={shadowRoot} chatAPI={window.voiceflow?.chat} ready={resolve} />
+          )}
+          {config.render.mode === RenderMode.BUBBLE && <ChatWidget shadowRoot={shadowRoot} chatAPI={window.voiceflow?.chat} ready={resolve} />}
         </RuntimeProvider>
       );
     });
