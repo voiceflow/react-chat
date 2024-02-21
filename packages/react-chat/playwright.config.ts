@@ -12,7 +12,6 @@ export default defineConfig({
     baseURL: 'http://127.0.0.1:8080/e2e/',
 
     trace: 'retain-on-failure',
-    video: 'on',
   },
 
   projects: [
