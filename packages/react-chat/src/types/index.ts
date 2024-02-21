@@ -5,10 +5,6 @@ export * from './util';
 
 export type Nullish<T> = T | null | undefined;
 
-export type DeepPartial<T> = {
-  [P in keyof T]?: DeepPartial<T[P]>;
-};
-
 export type VariantProp<
   Component extends { [key: symbol | string]: any },
   Key extends keyof Component[$$StyledComponentProps]

@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
+import { PartialDeep } from 'type-fest';
 
 import { isObject } from '@/common';
-import { DeepPartial } from '@/types';
 import { createPlaceholderMethods } from '@/utils/chat';
 
-export const useChatAPI = (target: Record<string, any> | undefined, factory: () => DeepPartial<VoiceflowChat>, onReady?: () => void) =>
+export const useChatAPI = (target: Record<string, any> | undefined, factory: () => PartialDeep<VoiceflowChat>, onReady?: () => void) =>
   useEffect(() => {
     if (!isObject(target)) return undefined;
 
