@@ -19,7 +19,7 @@ export interface ChatWindowProps {
 const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
   const runtime = useContext(RuntimeStateAPIContext);
   const state = useContext(RuntimeStateContext);
-  const { assistant, config } = runtime;
+  const { assistant } = runtime;
 
   // emitters
   const closeAndEnd = useCallback((): void => {
@@ -38,7 +38,6 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
   return (
     <ChatWindowContainer className={className}>
       <Chat
-        autostart={!!config.autostart}
         title={assistant.title}
         description={assistant.description}
         image={assistant.image}

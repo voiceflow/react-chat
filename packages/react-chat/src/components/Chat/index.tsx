@@ -1,4 +1,4 @@
-import React, { memo, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import React, { memo, useContext, useMemo, useRef, useState } from 'react';
 
 import AssistantInfo, { AssistantInfoProps } from '@/components/AssistantInfo';
 import Footer, { FooterProps } from '@/components/Footer';
@@ -35,11 +35,6 @@ export interface ChatProps extends HeaderProps, AssistantInfoProps, FooterProps,
   withWatermark: boolean;
 
   /**
-   * If true, the chat messages are shown, and the session is active.
-   */
-  autostart?: boolean;
-
-  /**
    * A callback that is executed when the chat widget is minimized.
    */
   onMinimize?: React.MouseEventHandler<HTMLButtonElement>;
@@ -59,7 +54,6 @@ const Chat: React.FC<ChatProps> = ({
   startTime,
   isLoading,
   withWatermark,
-  autostart,
   onMinimize,
   onEnd,
   onStart,
@@ -72,10 +66,6 @@ const Chat: React.FC<ChatProps> = ({
 
   const { config } = useContext(RuntimeStateAPIContext);
   const state = useContext(RuntimeStateContext);
-
-  useEffect(() => {
-    if (autostart) onStart?.();
-  }, [autostart]);
 
   const handleClose = (event: React.MouseEvent<HTMLButtonElement>): void => {
     if (hasEnded) {

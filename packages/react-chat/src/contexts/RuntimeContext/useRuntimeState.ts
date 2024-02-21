@@ -2,7 +2,7 @@ import { BaseRequest } from '@voiceflow/base-types';
 import { isTextRequest } from '@voiceflow/base-types/build/cjs/request';
 import { ActionType, Trace, TraceDeclaration } from '@voiceflow/sdk-runtime';
 import cuid from 'cuid';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { SendMessage, SessionOptions, SessionStatus } from '@/common';
 import { DEFAULT_MESSAGE_DELAY } from '@/components/SystemResponse/constants';
@@ -136,6 +136,10 @@ export const useRuntimeState = ({ assistant, config }: Settings) => {
 
     setOpen(false);
   };
+
+  useEffect(() => {
+    if (config.autostart) launch?.();
+  }, []);
 
   return {
     state: {
