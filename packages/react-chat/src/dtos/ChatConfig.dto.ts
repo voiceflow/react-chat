@@ -71,6 +71,6 @@ export const ChatConfig = z
   .transform((config) => ({
     ...config,
 
-    // if not configured default to enabling autostart during embedded mode and disabling it otherwise
-    autostart: config.autostart ?? config.render.mode === RenderMode.EMBEDDED,
+    // if not configured default to enabling autostart during overlay mode and disabling it otherwise
+    autostart: config.autostart ?? config.render.mode === RenderMode.OVERLAY,
   }));
