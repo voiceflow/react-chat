@@ -6,11 +6,9 @@ test('renders launcher and widget appears on click', async ({ page }) => {
   const launcher = page.locator('.vfrc-launcher');
   await launcher.waitFor({ state: 'visible' });
   await launcher.click();
+  const chat = page.locator('.vfrc-chat');
 
-  await page.locator('.vfrc-chat').waitFor({ state: 'visible' });
-
-  page.locator('.vfrc-footer .vfrc-button').click();
-
+  await chat.waitFor({ state: 'visible' });
   await page.locator('.vfrc-chat-input').waitFor({ state: 'visible' });
 });
 
@@ -19,11 +17,15 @@ test('control widget visibility and open state', async ({ page }) => {
 
   const launcher = page.locator('.vfrc-launcher');
   const chat = page.locator('.vfrc-chat');
+  const startButton = page.locator('.vfrc-footer .vfrc-button');
+  console.log('startButton', startButton);
 
   await launcher.waitFor({ state: 'visible' });
 
   await page.evaluate(() => window.voiceflow?.chat?.open());
 
+  await startButton.waitFor({ state: 'visible' });
+  await startButton.click();
   await chat.waitFor({ state: 'visible' });
 
   await page.evaluate(() => window.voiceflow?.chat?.close());
