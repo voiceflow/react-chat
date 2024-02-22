@@ -17,7 +17,7 @@ export const DefaultImageBase = styled(tag('img'), {
         width: 248,
       },
       embedded: {
-        width: 512,
+        maxWidth: 512,
       },
     },
   },
