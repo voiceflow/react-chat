@@ -5,7 +5,7 @@ import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   define: {
-    __USE_SHADOW_ROOT__: true,
+    __USE_ISOLATED_ROOT__: true,
   },
   plugins: [react(), tsconfigPaths({ root: __dirname, projects: [path.join(__dirname, 'tsconfig.json')] })] as any[],
   test: {

@@ -22,6 +22,8 @@ export interface FontOptions {
 }
 
 export const getDefaultTheme = () => ({
+  ...(__USE_ISOLATED_ROOT__ && { root: document.createElement('div') }),
+
   theme: {
     colors: Color.PALETTE,
     shadows: Color.SHADOWS,

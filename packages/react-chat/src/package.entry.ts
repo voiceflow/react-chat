@@ -1,8 +1,3 @@
-import { GlobalOptions } from './constants';
-
-// nothing else should reference package.entry.ts
-GlobalOptions.SHADOW_ROOT = false;
-
 export * from './common';
 export * from './components';
 export * from './contexts';
