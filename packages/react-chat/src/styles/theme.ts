@@ -5,6 +5,7 @@ import type { StringKeyOf } from 'type-fest';
 
 import * as Color from './color';
 import * as Font from './font';
+import { shadowRoot } from './shadow';
 
 const ANIMATION_DURATION = 150;
 
@@ -22,7 +23,7 @@ export interface FontOptions {
 }
 
 export const getDefaultTheme = () => ({
-  ...(__USE_ISOLATED_ROOT__ && { root: document.createElement('div').attachShadow({ mode: 'open' }) }),
+  ...(__USE_SHADOW_ROOT__ && { root: shadowRoot }),
 
   theme: {
     colors: Color.PALETTE,

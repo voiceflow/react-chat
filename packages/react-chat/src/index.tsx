@@ -3,23 +3,16 @@ import { createRoot, Root } from 'react-dom/client';
 import { RuntimeProvider } from './contexts';
 import { ChatConfig, LoadConfig } from './dtos/ChatConfig.dto';
 import { RenderMode } from './dtos/RenderOptions.dto';
+import { shadowRoot } from './styles/shadow';
 import { stitches } from './styles/theme';
 import { mergeAssistantOptions } from './utils/assistant';
 import { createPlaceholderMethods } from './utils/chat';
 import { ChatEmbed, ChatWidget } from './views';
 
-const BUBBLE_TARGET = 'voiceflow-chat';
-
 let reactRoot: Root;
 
-const initBubbleMode = () => {
-  const rootEl = document.createElement('div');
-  rootEl.id = BUBBLE_TARGET;
-  document.body.appendChild(rootEl);
-
-  const shadowRoot = rootEl.attachShadow({ mode: 'open' });
+const initOverlayMode = () => {
   reactRoot = createRoot(shadowRoot);
-  stitches.transplant(shadowRoot);
 
   return { shadowRoot, reactRoot };
 };
@@ -42,7 +35,7 @@ const createChatRoot = (config: ChatConfig) => {
     return initEmbeddedMode(config.render.target);
   }
 
-  return initBubbleMode();
+  return initOverlayMode();
 };
 
 const methods = createPlaceholderMethods((method: string) => `Method '${method}' will have no effect until 'load' has been called.`);
