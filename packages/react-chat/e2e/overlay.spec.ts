@@ -6,11 +6,9 @@ test('renders launcher and widget appears on click', async ({ page }) => {
   const launcher = page.locator('.vfrc-launcher');
   await launcher.waitFor({ state: 'visible' });
   await launcher.click();
+  const chat = page.locator('.vfrc-chat');
 
-  await page.locator('.vfrc-chat').waitFor({ state: 'visible' });
-
-  page.locator('.vfrc-footer .vfrc-button').click();
-
+  await chat.waitFor({ state: 'visible' });
   await page.locator('.vfrc-chat-input').waitFor({ state: 'visible' });
 });
 

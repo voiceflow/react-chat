@@ -6,6 +6,7 @@ test('renders embedded webchat and starts automatically', async ({ page }) => {
   const chat = page.locator('.vfrc-chat');
   await chat.waitFor({ state: 'visible' });
   expect(chat).toBeInViewport();
+  page.locator('.vfrc-footer .vfrc-button').click();
 
   await page.locator('.vfrc-chat-input').waitFor({ state: 'visible' });
 });

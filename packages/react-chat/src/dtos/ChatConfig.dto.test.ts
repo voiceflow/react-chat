@@ -11,7 +11,7 @@ describe('ChatConfig', () => {
       });
 
       expect(result).toEqual({
-        autostart: false,
+        autostart: true,
         allowDangerousHTML: true,
         url: RUNTIME_URL,
         verify: { projectID },
@@ -48,7 +48,7 @@ describe('ChatConfig', () => {
       });
 
       expect(result).toEqual({
-        autostart: false,
+        autostart: true,
         allowDangerousHTML: true,
         url: RUNTIME_URL,
         verify: { projectID },
@@ -66,7 +66,7 @@ describe('ChatConfig', () => {
       });
 
       expect(result).toEqual({
-        autostart: false,
+        autostart: true,
         allowDangerousHTML: true,
         url: RUNTIME_URL,
         verify: { projectID },
