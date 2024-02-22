@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.55.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.55.1...@voiceflow/react-chat@1.55.2) (2024-02-22)
+
+### Bug Fixes
+
+* use isolated root (BUG-771) ([#112](https://github.com/voiceflow/react-chat/issues/112)) ([5926fe9](https://github.com/voiceflow/react-chat/commit/5926fe90de5bd423ea9b2452e2c517e308134901))
+
 ## [1.55.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.55.0...@voiceflow/react-chat@1.55.1) (2024-02-22)
 
 ### Bug Fixes
