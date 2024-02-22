@@ -40,8 +40,8 @@ export const UserOptions = z
   })
   .partial();
 
-export interface ChatConfig extends z.infer<typeof ChatConfig>, SDKRuntimeOptions<PublicVerify> {}
-export interface RawChatConfig extends z.input<typeof ChatConfig>, Omit<SDKRuntimeOptions<PublicVerify>, 'url'> {}
+export interface ChatConfig extends z.infer<typeof ChatConfig>, SDKRuntimeOptions<PublicVerify> { }
+export interface RawChatConfig extends z.input<typeof ChatConfig>, Omit<SDKRuntimeOptions<PublicVerify>, 'url'> { }
 
 export interface LoadConfig extends RawChatConfig {
   assistant?: RawAssistantOptions;
@@ -72,5 +72,5 @@ export const ChatConfig = z
     ...config,
 
     // if not configured default to enabling autostart during embedded mode and disabling it otherwise
-    autostart: config.autostart ?? config.render.mode === RenderMode.EMBEDDED,
+    autostart: config.autostart ?? config.render.mode === RenderMode.OVERLAY,
   }));
