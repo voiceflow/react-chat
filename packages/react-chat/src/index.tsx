@@ -1,37 +1,73 @@
-import { createRoot } from 'react-dom/client';
+import { createRoot, Root } from 'react-dom/client';
 
-import { ChatConfig } from '@/common';
-import { RuntimeProvider } from '@/contexts';
-import { mergeAssistant } from '@/utils/assistant';
-import { sanitizeConfig } from '@/utils/config';
-import { noop } from '@/utils/functional';
-import ChatWidget from '@/views/ChatWidget';
+import { RuntimeProvider } from './contexts';
+import { ChatConfig, LoadConfig } from './dtos/ChatConfig.dto';
+import { RenderMode } from './dtos/RenderOptions.dto';
+import { stitches } from './styles/theme';
+import { mergeAssistantOptions } from './utils/assistant';
+import { createPlaceholderMethods } from './utils/chat';
+import { ChatEmbed, ChatWidget } from './views';
 
-import { shadowRoot } from './shadow';
+const BUBBLE_TARGET = 'voiceflow-chat';
 
-const root = createRoot(shadowRoot);
+let reactRoot: Root;
+
+const initBubbleMode = () => {
+  const rootEl = document.createElement('div');
+  rootEl.id = BUBBLE_TARGET;
+  document.body.appendChild(rootEl);
+
+  const shadowRoot = rootEl.attachShadow({ mode: 'open' });
+  reactRoot = createRoot(shadowRoot);
+  stitches.transplant(shadowRoot);
+
+  return { shadowRoot, reactRoot };
+};
+
+const initEmbeddedMode = (rootEl: HTMLElement) => {
+  try {
+    const shadowRoot = rootEl.attachShadow({ mode: 'open' });
+    reactRoot = createRoot(shadowRoot);
+    stitches.transplant(shadowRoot);
+
+    return { shadowRoot, reactRoot };
+  } catch (e) {
+    console.error(`${e}. \nTarget:`, rootEl);
+    throw new Error('Failed to attach embedded chat to the provided target.');
+  }
+};
+
+const createChatRoot = (config: ChatConfig) => {
+  if (config.render.mode === RenderMode.EMBEDDED) {
+    return initEmbeddedMode(config.render.target);
+  }
+
+  return initBubbleMode();
+};
+
+const methods = createPlaceholderMethods((method: string) => `Method '${method}' will have no effect until 'load' has been called.`);
 
 window.voiceflow ??= {};
 window.voiceflow.chat ??= {
-  open: noop,
-  hide: noop,
-  show: noop,
-  close: noop,
-  interact: noop,
+  ...methods,
+  proactive: { ...methods.proactive },
 
-  load: async (loadConfig: Partial<ChatConfig>) => {
-    const config = sanitizeConfig(loadConfig);
+  load: async (loadConfig: LoadConfig) => {
+    const config = ChatConfig.parse(loadConfig);
+    const assistant = await mergeAssistantOptions(config, loadConfig.assistant);
 
-    const assistant = await mergeAssistant(config);
+    const { reactRoot, shadowRoot } = createChatRoot(config);
 
+    // set root here
     await new Promise<void>((resolve) => {
-      root.render(
+      reactRoot.render(
         <RuntimeProvider assistant={assistant} config={config}>
-          <ChatWidget chatAPI={window.voiceflow!.chat} ready={resolve} />
+          {config.render.mode === RenderMode.EMBEDDED && <ChatEmbed shadowRoot={shadowRoot} chatAPI={window.voiceflow?.chat} ready={resolve} />}
+          {config.render.mode === RenderMode.OVERLAY && <ChatWidget shadowRoot={shadowRoot} chatAPI={window.voiceflow?.chat} ready={resolve} />}
         </RuntimeProvider>
       );
     });
   },
 
-  destroy: () => root.render(null),
+  destroy: () => reactRoot.render(null),
 };

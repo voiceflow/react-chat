@@ -16,5 +16,6 @@ export default defineConfig({
       include: ['src/**'],
       all: true,
     },
+    include: ['**/*.test.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
   },
 });
