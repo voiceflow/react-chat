@@ -17,15 +17,11 @@ test('control widget visibility and open state', async ({ page }) => {
 
   const launcher = page.locator('.vfrc-launcher');
   const chat = page.locator('.vfrc-chat');
-  const startButton = page.locator('.vfrc-footer .vfrc-button');
-  console.log('startButton', startButton);
 
   await launcher.waitFor({ state: 'visible' });
 
   await page.evaluate(() => window.voiceflow?.chat?.open());
 
-  await startButton.waitFor({ state: 'visible' });
-  await startButton.click();
   await chat.waitFor({ state: 'visible' });
 
   await page.evaluate(() => window.voiceflow?.chat?.close());
