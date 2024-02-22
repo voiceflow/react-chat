@@ -22,7 +22,7 @@ export interface FontOptions {
 }
 
 export const getDefaultTheme = () => ({
-  ...(__USE_ISOLATED_ROOT__ && { root: document.createElement('div') }),
+  ...(__USE_ISOLATED_ROOT__ && { root: null }),
 
   theme: {
     colors: Color.PALETTE,
