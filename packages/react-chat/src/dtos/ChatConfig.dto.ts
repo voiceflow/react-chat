@@ -40,8 +40,8 @@ export const UserOptions = z
   })
   .partial();
 
-export interface ChatConfig extends z.infer<typeof ChatConfig>, SDKRuntimeOptions<PublicVerify> { }
-export interface RawChatConfig extends z.input<typeof ChatConfig>, Omit<SDKRuntimeOptions<PublicVerify>, 'url'> { }
+export interface ChatConfig extends z.infer<typeof ChatConfig>, SDKRuntimeOptions<PublicVerify> {}
+export interface RawChatConfig extends z.input<typeof ChatConfig>, Omit<SDKRuntimeOptions<PublicVerify>, 'url'> {}
 
 export interface LoadConfig extends RawChatConfig {
   assistant?: RawAssistantOptions;
