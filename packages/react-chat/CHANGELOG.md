@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.55.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.55.0...@voiceflow/react-chat@1.55.1) (2024-02-22)
+
+### Bug Fixes
+
+* autostart default value (DX-1087) ([#111](https://github.com/voiceflow/react-chat/issues/111)) ([d2e6978](https://github.com/voiceflow/react-chat/commit/d2e697845a96d15118b1214b2c18b3bf54abc0e6))
+
 # [1.55.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.54.0...@voiceflow/react-chat@1.55.0) (2024-02-22)
 
 ### Features
