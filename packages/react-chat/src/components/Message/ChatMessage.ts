@@ -19,10 +19,10 @@ export const ChatMessage = styled(tag(Container, 'chat'), {
 
     mode: {
       embedded: {
-        maxWidth: '100%',
+        //    maxWidth: '100%',
       },
       overlay: {
-        maxWidth: 248,
+        //  maxWidth: 248,
       },
     },
   },
