@@ -17,26 +17,17 @@ const Extension = <Type extends ExtensionType>(type: Type) =>
     match: z.function().transform((f) => f as (context: { trace: Trace.AnyTrace }) => boolean),
   });
 
-export interface EffectExtensionContext {
-  trace: Trace.AnyTrace;
-}
-
 export const EffectExtension = Extension(ExtensionType.EFFECT).extend({
   effect: z
     .function()
-    .transform((f) => f as (context: EffectExtensionContext) => Promise<void> | void)
+    .transform((f) => f as (context: { trace: Trace.AnyTrace }) => Promise<void> | void)
     .optional(),
 });
-
-export interface ResponseExtensionContext {
-  trace: Trace.AnyTrace;
-  element: HTMLElement;
-}
 
 export const ResponseExtension = Extension(ExtensionType.RESPONSE).extend({
   render: z
     .function()
-    .transform((f) => f as (context: ResponseExtensionContext) => void)
+    .transform((f) => f as (context: { trace: Trace.AnyTrace; element: HTMLElement }) => void)
     .optional(),
 });
 

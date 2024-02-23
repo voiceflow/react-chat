@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Embedded Mode</title>
+  <style>
+    body {
+      background-color: #f9f9f9;
+    }
+
+    #voiceflow-chat-frame {
+      width: 100vw;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+
+    #order-status {
+      position: absolute;
+      left: 50%;
+      top: 8px;
+      transform: translateX(-50%);
+      padding: 8px;
+      border-radius: 10px;
+      background-color: orangered;
+      z-index: 10;
+
+      font-family: 'Open Sans', sans-serif;
+      font-size: 20px;
+      font-weight: 400;
+    }
+  </style>
+</head>
+
+<body>
+  <span id="order-status" data-testid="status"></span>
+  <div id="voiceflow-chat-frame">
+  </div>
+
+  <script type="text/javascript">
+    (function (d, t) {
+      var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+      v.onload = function () {
+        window.voiceflow.chat.load({
+          verify: { projectID: 'projectID' },
+          render: { mode: 'embedded' },
+          autostart: true,
+          assistant: {
+            extensions: [
+              {
+                name: 'order_tracker',
+                type: 'effect',
+                match: function ({ trace }) { return trace.type === 'update_order_status'; },
+                effect: function ({ trace }) {
+                  var el = document.getElementById('order-status');
+                  var status = trace.payload
+
+                  el.innerText = status;
+                }
+              }
+            ]
+          }
+        });
+      }
+      v.src = "../dist/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+    })(document, 'script');
+  </script>
+</body>
+
+</html>
