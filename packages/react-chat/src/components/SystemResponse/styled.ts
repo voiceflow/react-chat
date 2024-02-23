@@ -107,7 +107,7 @@ export const List = styled(tag('div', 'list'), {
         // minus avatar and paddings, minus timestamp width
         maxWidth: 'calc(100% - 54px - 50px)',
         [`& ${Message.Container}`]: {
-          flexBasis: 'auto',
+          maxWidth: '100%',
         },
       },
     },
