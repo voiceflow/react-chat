@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.55.3](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.55.2...@voiceflow/react-chat@1.55.3) (2024-02-23)
+
+### Bug Fixes
+
+* autostart (CT-000) ([#114](https://github.com/voiceflow/react-chat/issues/114)) ([cb7ad34](https://github.com/voiceflow/react-chat/commit/cb7ad3400c82a3bebaa549260332d11135b13fcb))
+
 ## [1.55.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.55.1...@voiceflow/react-chat@1.55.2) (2024-02-22)
 
 ### Bug Fixes
