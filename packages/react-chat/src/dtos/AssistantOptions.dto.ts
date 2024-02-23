@@ -3,6 +3,8 @@ import { z } from 'zod';
 import { ChatPersistence, ChatPosition } from '@/common';
 import { PRIMARY } from '@/styles/color';
 
+import { AnyExtension } from './Extension.dto';
+
 export const DEFAULT_AVATAR = 'https://cdn.voiceflow.com/assets/logo.png';
 
 export type AssistantOptions = z.infer<typeof AssistantOptions>;
@@ -28,5 +30,7 @@ export const AssistantOptions = z
         bottom: z.number().default(30),
       })
       .default({}),
+
+    extensions: AnyExtension.array().default([]),
   })
   .default({});
