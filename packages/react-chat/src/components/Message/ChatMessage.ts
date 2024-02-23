@@ -18,33 +18,3 @@ export const ChatMessage = styled(tag(Container, 'chat'), {
     },
   },
 });
-//   mode: {
-//     embedded: {
-//       maxWidth: '100%',
-//     },
-//     overlay: {
-//       maxWidth: 248,
-//     },
-//   },
-// },
-// defaultVariants: {
-//   from: 'system',
-//   mode: 'overlay',
-// },
-// compoundVariants: [
-//   {
-//     from: 'system',
-//     mode: 'embedded',
-//     css: {
-//       maxWidth: '100%',
-//     },
-//   },
-//   {
-//     from: 'user',
-//     mode: 'embedded',
-//     css: {
-//       maxWidth: '80%',
-//     },
-//   },
-// ],
-// });
