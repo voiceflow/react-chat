@@ -75,6 +75,10 @@ const Chat: React.FC<ChatProps> = ({
     }
   };
 
+  React.useEffect(() => {
+    if (config.autostart) onStart?.();
+  }, [config.autostart]);
+
   const handleResume = (): void => setAlert(false);
 
   const actions = useMemo<HeaderActionProps[]>(() => {
