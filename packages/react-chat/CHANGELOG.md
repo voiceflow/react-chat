@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.55.4](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.55.3...@voiceflow/react-chat@1.55.4) (2024-02-26)
+
+### Bug Fixes
+
+* system response stretch behaviour(DX-1088) ([#113](https://github.com/voiceflow/react-chat/issues/113)) ([51a677f](https://github.com/voiceflow/react-chat/commit/51a677fdb5feaf68b31db12eda34f7ba4b2dcb60))
+
 ## [1.55.3](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.55.2...@voiceflow/react-chat@1.55.3) (2024-02-23)
 
 ### Bug Fixes
