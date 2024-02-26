@@ -86,33 +86,13 @@ export const List = styled(tag('div', 'list'), {
   display: 'flex',
   flexDirection: 'column',
   flexShrink: 0,
+  flex: 'inherit',
 
   [`& ${Message.Container}`]: {
     marginBottom: '$1',
-    maxWidth: 248,
 
     '&:last-of-type': {
       marginBottom: 0,
     },
-  },
-
-  variants: {
-    mode: {
-      overlay: {
-        [`& ${Message.Container}`]: {
-          maxWidth: 248,
-        },
-      },
-      embedded: {
-        // minus avatar and paddings, minus timestamp width
-        maxWidth: 'calc(100% - 54px - 50px)',
-        [`& ${Message.Container}`]: {
-          flexBasis: 'auto',
-        },
-      },
-    },
-  },
-  defaultVariants: {
-    mode: 'overlay',
   },
 });

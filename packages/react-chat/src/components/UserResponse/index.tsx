@@ -44,9 +44,7 @@ const UserResponse: React.FC<UserResponseProps> = ({ message, timestamp, debug }
     <Container mode={config.render.mode}>
       <Row>
         <Timestamp value={timestamp} />
-        <Message from="user" mode={config.render.mode}>
-          {message}
-        </Message>
+        <Message from="user">{message}</Message>
       </Row>
       {debug && (
         <>
