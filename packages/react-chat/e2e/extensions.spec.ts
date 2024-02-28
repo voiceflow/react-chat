@@ -77,14 +77,7 @@ test('render response extension from incoming trace', async ({ page }) => {
   await page.route(RUNTIME_URL, (route) =>
     route.fulfill({
       json: {
-        trace: [
-          slateMessage("Welcome to Sal's Salon! Tell me about yourself."),
-          {
-            type: 'onboarding',
-            defaultPath: 0,
-            paths: [{ event: { type: 'submit' } }],
-          },
-        ],
+        trace: [slateMessage("Welcome to Sal's Salon! Tell me about yourself."), { type: 'onboarding' }],
       },
     })
   );
