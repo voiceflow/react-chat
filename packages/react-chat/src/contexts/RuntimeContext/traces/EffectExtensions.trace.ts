@@ -5,27 +5,24 @@ import { AnyExtension, EffectExtension, ExtensionType } from '@/dtos/Extension.d
 
 import { RuntimeMessage } from '../messages';
 
-export const EffectExtensions = (extensions: AnyExtension[]): TraceDeclaration<RuntimeMessage, Trace.AnyTrace> => {
-  const effectExtensions = extensions.filter((extension): extension is EffectExtension => extension.type === ExtensionType.EFFECT);
+export const EffectExtensions = (extensions: AnyExtension[]): TraceDeclaration<RuntimeMessage, Trace.AnyTrace>[] => {
+  return extensions
+    .filter((extension): extension is EffectExtension => extension.type === ExtensionType.EFFECT)
+    .map((extension) => ({
+      canHandle: (trace) => extension.match({ trace }),
 
-  return {
-    // accept all traces to pass them on to extensions
-    canHandle: () => true,
+      handle: ({ context }, trace) => {
+        // NOTE: this promise is intentionally left unhandled
+        // we just want to capture and raise any errors thrown
+        (async () => {
+          try {
+            await extension.effect?.({ trace });
+          } catch (e) {
+            console.error(`Extension '${extension.name}' threw an error: ${e}`);
+          }
+        })();
 
-    handle: ({ context }, trace) => {
-      // NOTE: these promises are intentionally left unhandled
-      // we just want to capture and raise any errors thrown
-      effectExtensions.forEach(async (extension) => {
-        if (!extension.match({ trace })) return;
-
-        try {
-          await extension.effect?.({ trace });
-        } catch (e) {
-          console.error(`Extension '${extension.name}' threw an error: ${e}`);
-        }
-      });
-
-      return context;
-    },
-  };
+        return context;
+      },
+    }));
 };

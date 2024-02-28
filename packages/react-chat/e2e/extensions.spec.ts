@@ -1,51 +1,39 @@
 /* eslint-disable sonarjs/no-duplicate-string */
 import { expect, test } from '@playwright/test';
 
-const FIRST_MESSAGE = 'Welcome to the pizza palace!';
-const FIRST_RESPONSE = 'I want to order a pizza';
-const SECOND_MESSAGE = 'What kind of pizza do you want?';
-const SECOND_RESPONSE = 'Cheese please';
-const THIRD_MESSAGE = 'Your pizza is on the way!';
+import { slateMessage } from './utils';
 
-const slateMessage = (text: string) => ({
-  type: 'text',
-  payload: {
-    slate: {
-      id: text,
-      content: [{ children: [{ text }] }],
-      messageDelayMilliseconds: 100,
-    },
-    message: text,
-    delay: 100,
-  },
-});
+const RUNTIME_URL = 'https://general-runtime.voiceflow.com/public/projectID/state/user/*/interact';
 
 test('trigger effect extension on incoming trace', async ({ page }) => {
+  const systemMessages = ['Welcome to the pizza palace!', 'What kind of pizza do you want?', 'One cheese pizza coming right up'];
+  const userMessages = ['I want to order a pizza', 'Cheese please'];
+  const traceType = 'update_order_status';
   let count = 0;
 
   // eslint-disable-next-line consistent-return
-  await page.route('https://general-runtime.voiceflow.com/public/projectID/state/user/*/interact', async (route) => {
+  await page.route(RUNTIME_URL, async (route) => {
     count++;
 
     switch (count) {
       case 1:
         return route.fulfill({
           json: {
-            trace: [{ type: 'update_order_status', payload: 'idle' }, slateMessage(FIRST_MESSAGE)],
+            trace: [{ type: traceType, payload: 'idle' }, slateMessage(systemMessages[0])],
           },
         });
 
       case 2:
         return route.fulfill({
           json: {
-            trace: [{ type: 'update_order_status', payload: 'in progress' }, slateMessage(SECOND_MESSAGE)],
+            trace: [{ type: traceType, payload: 'in progress' }, slateMessage(systemMessages[1])],
           },
         });
 
       case 3:
         return route.fulfill({
           json: {
-            trace: [{ type: 'update_order_status', payload: 'ordered' }, slateMessage(THIRD_MESSAGE)],
+            trace: [{ type: traceType, payload: 'ordered' }, slateMessage(systemMessages[2])],
           },
         });
 
@@ -63,24 +51,58 @@ test('trigger effect extension on incoming trace', async ({ page }) => {
   await status.waitFor({ state: 'visible' });
   expect(status).toHaveText('idle');
 
-  await page.locator('.vfrc-message', { hasText: FIRST_MESSAGE }).waitFor({ state: 'visible' });
+  await page.locator('.vfrc-message', { hasText: systemMessages[0] }).waitFor({ state: 'visible' });
 
   const input = page.locator('.vfrc-chat-input textarea');
   await input.waitFor({ state: 'visible' });
-  await input.fill(FIRST_RESPONSE);
+  await input.fill(userMessages[0]);
 
   const submit = page.locator('.vfrc-chat-input .vfrc-bubble');
   await submit.click();
 
-  await page.locator('.vfrc-message', { hasText: FIRST_RESPONSE }).waitFor({ state: 'visible' });
-  await page.locator('.vfrc-message', { hasText: SECOND_MESSAGE }).waitFor({ state: 'visible' });
+  await page.locator('.vfrc-message', { hasText: userMessages[0] }).waitFor({ state: 'visible' });
+  await page.locator('.vfrc-message', { hasText: systemMessages[1] }).waitFor({ state: 'visible' });
   await page.getByTestId('status').waitFor({ state: 'visible' });
   expect(status).toHaveText('in progress');
 
-  await input.fill(SECOND_RESPONSE);
+  await input.fill(userMessages[1]);
   await submit.click();
 
-  await page.locator('.vfrc-message', { hasText: SECOND_RESPONSE }).waitFor({ state: 'visible' });
-  await page.locator('.vfrc-message', { hasText: THIRD_MESSAGE }).waitFor({ state: 'visible' });
+  await page.locator('.vfrc-message', { hasText: userMessages[1] }).waitFor({ state: 'visible' });
+  await page.locator('.vfrc-message', { hasText: systemMessages[2] }).waitFor({ state: 'visible' });
   expect(status).toHaveText('ordered');
+});
+
+test('render response extension from incoming trace', async ({ page }) => {
+  await page.route(RUNTIME_URL, (route) =>
+    route.fulfill({
+      json: {
+        trace: [
+          slateMessage("Welcome to Sal's Salon! Tell me about yourself."),
+          {
+            type: 'onboarding',
+            defaultPath: 0,
+            paths: [{ event: { type: 'submit' } }],
+          },
+        ],
+      },
+    })
+  );
+
+  await page.goto('extensions');
+
+  const chat = page.locator('.vfrc-chat');
+  await chat.waitFor({ state: 'visible' });
+  expect(chat).toBeInViewport();
+
+  await page.locator('.vfrc-message').waitFor({ state: 'visible' });
+
+  const extensionMessage = page.locator('.vfrc-message--extension-onboarding_form');
+  await extensionMessage.waitFor({ state: 'visible' });
+
+  await extensionMessage.locator('[name="name"]').fill('Alex');
+  await extensionMessage.locator('[name="role"][id="designer"]').click();
+  await extensionMessage.getByRole('button').click();
+
+  expect(extensionMessage).toHaveText(`submitted ✅`);
 });

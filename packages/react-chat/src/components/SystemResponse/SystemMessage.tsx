@@ -69,7 +69,7 @@ const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, feedback, timesta
               .with({ type: MessageType.CAROUSEL }, (props) => (
                 <Carousel {...R.omit(props, ['type'])} containerRef={containerRef} controlsRef={controlsRef} />
               ))
-              .with({ type: MessageType.EXTENSION }, ({ payload }) => <ExtensionMessage extensions={payload.extensions} trace={payload.trace} />)
+              .with({ type: MessageType.EXTENSION }, ({ payload }) => <ExtensionMessage extension={payload.extension} trace={payload.trace} />)
               .otherwise(() => null)}
           {feedback && <Feedback {...feedback} />}
         </List>

@@ -10,7 +10,7 @@ declare global {
     load: (config: LoadConfig) => Promise<void>;
     destroy: () => void;
 
-    interact: (action: RuntimeAction) => void;
+    interact: (action: RuntimeAction) => Promise<void>;
 
     /* overlay mode controls */
     open: VoidFunction;

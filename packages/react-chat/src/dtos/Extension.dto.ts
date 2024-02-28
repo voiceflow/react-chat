@@ -27,7 +27,7 @@ export const EffectExtension = Extension(ExtensionType.EFFECT).extend({
 export const ResponseExtension = Extension(ExtensionType.RESPONSE).extend({
   render: z
     .function()
-    .transform((f) => f as (context: { trace: Trace.AnyTrace; element: HTMLElement }) => void)
+    .transform((f) => f as (context: { trace: Trace.AnyTrace; element: HTMLElement }) => (() => void) | void)
     .optional(),
 });
 

@@ -38,7 +38,7 @@ export interface ExtensionMessage extends BaseMessageProps {
   type: StringifiedEnum<MessageType.EXTENSION>;
   payload: {
     trace: Trace.AnyTrace;
-    extensions: ResponseExtension[];
+    extension: ResponseExtension;
   };
 }
 

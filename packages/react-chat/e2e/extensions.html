@@ -18,6 +18,7 @@
 
     #order-status {
       position: absolute;
+      visibility: hidden;
       left: 50%;
       top: 8px;
       transform: translateX(-50%);
@@ -37,11 +38,24 @@
   <span id="order-status" data-testid="status"></span>
   <div id="voiceflow-chat-frame">
   </div>
+  <template id="complex-form">
+    <form>
+      <input name="name" placeholder="What is your name?" />
+      <fieldset>
+        <legend>What is your role?</legend>
+        <input type="radio" name="role" id="developer" value="developer" checked /><label
+          for="developer">Developer</label>
+        <input type="radio" name="role" id="designer" value="designer" /><label for="designer">Designer</label>
+        <input type="radio" name="role" id="manager" value="manager" /><label for="manager">Manager</label>
+      </fieldset>
+      <button>submit</button>
+    </form>
+  </template>
 
   <script type="text/javascript">
     (function (d, t) {
       var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
-      v.onload = function () {
+      v.onload = () => {
         window.voiceflow.chat.load({
           verify: { projectID: 'projectID' },
           render: { mode: 'embedded' },
@@ -51,12 +65,39 @@
               {
                 name: 'order_tracker',
                 type: 'effect',
-                match: function ({ trace }) { return trace.type === 'update_order_status'; },
-                effect: function ({ trace }) {
-                  var el = document.getElementById('order-status');
-                  var status = trace.payload
+                match: ({ trace }) => trace.type === 'update_order_status',
+                effect({ trace }) {
+                  const element = document.getElementById('order-status');
+                  const status = trace.payload;
 
-                  el.innerText = status;
+                  element.style.visibility = 'visible';
+                  element.innerText = status;
+                }
+              },
+              {
+                name: 'onboarding_form',
+                type: 'response',
+                match: ({ trace }) => trace.type === 'onboarding',
+                render({ trace, element }) {
+                  const template = document.getElementById('complex-form').content.cloneNode(true);
+                  const id = 'onboarding-form-' + Date.now();
+                  template.firstElementChild.id = id;
+
+                  element.appendChild(template);
+
+                  const form = element.querySelector(`#${id}`);
+                  form.addEventListener('submit', async (event) => {
+                    event.preventDefault();
+                    await window.voiceflow.chat.interact({ type: 'submit', payload: { role: 'my role' } });
+                    while (form.firstChild) {
+                      form.removeChild(form.firstChild);
+                    }
+
+                    const confirmation = document.createElement('em');
+                    confirmation.innerText = `submitted ✅`;
+
+                    form.appendChild(confirmation);
+                  });
                 }
               }
             ]

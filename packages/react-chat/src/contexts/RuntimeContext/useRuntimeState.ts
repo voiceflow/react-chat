@@ -14,6 +14,7 @@ import { getSession, saveSession } from '@/utils/session';
 
 import { EffectExtensions } from './traces/EffectExtensions.trace';
 import { NoReply } from './traces/NoReply.trace';
+import { ResponseExtensions } from './traces/ResponseExtensions.trace';
 import { useNoReply } from './useNoReply';
 import { createContext, useRuntimeAPI } from './useRuntimeAPI';
 
@@ -43,7 +44,7 @@ export const useRuntimeState = ({ assistant, config }: Settings) => {
   const runtime = useRuntimeAPI({
     ...config,
     ...session,
-    traceHandlers: [NoReply(setNoReplyTimeout), EffectExtensions(assistant.extensions)],
+    traceHandlers: [NoReply(setNoReplyTimeout), ...EffectExtensions(assistant.extensions), ...ResponseExtensions(assistant.extensions)],
   });
 
   // status management
