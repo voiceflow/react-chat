@@ -47,10 +47,7 @@ test('trigger effect extension on incoming trace', async ({ page }) => {
   await chat.waitFor({ state: 'visible' });
   expect(chat).toBeInViewport();
 
-  const status = page.getByTestId('status');
-  await status.waitFor({ state: 'visible' });
-  expect(status).toHaveText('idle');
-
+  await page.locator('[data-testid="status"]', { hasText: 'idle' }).waitFor({ state: 'visible' });
   await page.locator('.vfrc-message', { hasText: systemMessages[0] }).waitFor({ state: 'visible' });
 
   const input = page.locator('.vfrc-chat-input textarea');
@@ -62,15 +59,14 @@ test('trigger effect extension on incoming trace', async ({ page }) => {
 
   await page.locator('.vfrc-message', { hasText: userMessages[0] }).waitFor({ state: 'visible' });
   await page.locator('.vfrc-message', { hasText: systemMessages[1] }).waitFor({ state: 'visible' });
-  await page.getByTestId('status').waitFor({ state: 'visible' });
-  expect(status).toHaveText('in progress');
+  await page.locator('[data-testid="status"]', { hasText: 'in progress' }).waitFor({ state: 'visible' });
 
   await input.fill(userMessages[1]);
   await submit.click();
 
   await page.locator('.vfrc-message', { hasText: userMessages[1] }).waitFor({ state: 'visible' });
   await page.locator('.vfrc-message', { hasText: systemMessages[2] }).waitFor({ state: 'visible' });
-  expect(status).toHaveText('ordered');
+  await page.locator('[data-testid="status"]', { hasText: 'ordered' }).waitFor({ state: 'visible' });
 });
 
 test('render response extension from incoming trace', async ({ page }) => {
