@@ -74,13 +74,30 @@ test('trigger effect extension on incoming trace', async ({ page }) => {
 });
 
 test('render response extension from incoming trace', async ({ page }) => {
-  await page.route(RUNTIME_URL, (route) =>
-    route.fulfill({
-      json: {
-        trace: [slateMessage("Welcome to Sal's Salon! Tell me about yourself."), { type: 'onboarding' }],
-      },
-    })
-  );
+  let count = 0;
+
+  await page.route(RUNTIME_URL, (route) => {
+    count++;
+
+    switch (count) {
+      case 1:
+        return route.fulfill({
+          json: {
+            trace: [slateMessage("Welcome to Sal's Salon! Tell me about yourself."), { type: 'onboarding' }],
+          },
+        });
+      case 2:
+      default:
+        expect(route.request().postDataJSON()).toEqual({
+          action: {
+            type: 'submit',
+            payload: { name: 'Alex', hair: 'curly' },
+          },
+        });
+
+        return route.fulfill({ json: { trace: [] } });
+    }
+  });
 
   await page.goto('extensions');
 
@@ -94,7 +111,7 @@ test('render response extension from incoming trace', async ({ page }) => {
   await extensionMessage.waitFor({ state: 'visible' });
 
   await extensionMessage.locator('[name="name"]').fill('Alex');
-  await extensionMessage.locator('[name="role"][id="designer"]').click();
+  await extensionMessage.locator('[name="hair"][id="curly"]').click();
   await extensionMessage.getByRole('button').click();
 
   expect(extensionMessage).toHaveText(`submitted ✅`);

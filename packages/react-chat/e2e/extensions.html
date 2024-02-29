@@ -42,11 +42,17 @@
     <form>
       <input name="name" placeholder="What is your name?" />
       <fieldset>
-        <legend>What is your role?</legend>
-        <input type="radio" name="role" id="developer" value="developer" checked /><label
-          for="developer">Developer</label>
-        <input type="radio" name="role" id="designer" value="designer" /><label for="designer">Designer</label>
-        <input type="radio" name="role" id="manager" value="manager" /><label for="manager">Manager</label>
+        <legend>What kind of hair do you have?</legend>
+        <div>
+          <input type="radio" name="hair" id="straight" value="straight" checked /><label
+            for="straight">Straight</label>
+        </div>
+        <div>
+          <input type="radio" name="hair" id="curly" value="curly" /><label for="curly">Curly</label>
+        </div>
+        <div>
+          <input type="radio" name="hair" id="wavy" value="wavy" /><label for="wavy">Wavy</label>
+        </div>
       </fieldset>
       <button>submit</button>
     </form>
@@ -88,7 +94,14 @@
                   const form = element.querySelector(`#${id}`);
                   form.addEventListener('submit', async (event) => {
                     event.preventDefault();
-                    await window.voiceflow.chat.interact({ type: 'submit', payload: { role: 'my role' } });
+
+                    await window.voiceflow.chat.interact({
+                      type: 'submit',
+                      payload: {
+                        name: form.elements.name.value,
+                        hair: form.elements.hair.value
+                      }
+                    });
                     while (form.firstChild) {
                       form.removeChild(form.firstChild);
                     }
