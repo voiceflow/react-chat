@@ -109,6 +109,5 @@ test('render response extension from incoming trace', async ({ page }) => {
   await extensionMessage.locator('[name="name"]').fill('Alex');
   await extensionMessage.locator('[name="hair"][id="curly"]').click();
   await extensionMessage.getByRole('button').click();
-
-  expect(extensionMessage).toHaveText(`submitted ✅`);
+  await page.locator('.vfrc-message--extension-onboarding_form', { hasText: `submitted ✅` }).waitFor({ state: 'visible' });
 });
