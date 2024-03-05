@@ -28,5 +28,6 @@ export const mergeAssistantOptions = async (config: ChatConfig, overrides: RawAs
       ...publishing?.spacing,
       ...overrides?.spacing,
     },
+    extensions: [...(publishing?.extensions ?? []), ...(overrides?.extensions ?? [])],
   });
 };

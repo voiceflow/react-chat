@@ -1,12 +1,9 @@
 import { BaseRequest } from '@voiceflow/base-types';
 import { isTextRequest } from '@voiceflow/base-types/build/cjs/request';
-import { ActionType, Trace, TraceDeclaration } from '@voiceflow/sdk-runtime';
 import cuid from 'cuid';
 import { useState } from 'react';
 
 import { SendMessage, SessionOptions, SessionStatus } from '@/common';
-import { DEFAULT_MESSAGE_DELAY } from '@/components/SystemResponse/constants';
-import type { RuntimeMessage } from '@/contexts/RuntimeContext/messages';
 import { AssistantOptions } from '@/dtos/AssistantOptions.dto';
 import { ChatConfig } from '@/dtos/ChatConfig.dto';
 import { useStateRef } from '@/hooks/useStateRef';
@@ -15,6 +12,9 @@ import { handleActions } from '@/utils/actions';
 import { broadcast, BroadcastType } from '@/utils/broadcast';
 import { getSession, saveSession } from '@/utils/session';
 
+import { EffectExtensions } from './traces/EffectExtensions.trace';
+import { NoReply } from './traces/NoReply.trace';
+import { ResponseExtensions } from './traces/ResponseExtensions.trace';
 import { useNoReply } from './useNoReply';
 import { createContext, useRuntimeAPI } from './useRuntimeAPI';
 
@@ -41,21 +41,11 @@ export const useRuntimeState = ({ assistant, config }: Settings) => {
   const [indicator, setIndicator] = useState(false);
   const { clearNoReplyTimeout, setNoReplyTimeout } = useNoReply(() => ({ interact, isStatus }));
 
-  const noReplyHandler: TraceDeclaration<RuntimeMessage, any> = {
-    canHandle: ({ type }) => type === ActionType.NO_REPLY,
-    handle: ({ context }, trace: Trace.NoReplyTrace) => {
-      if (trace.payload?.timeout) {
-        // messages take 1 second to animate in, on top of the delay
-        const messageDelays = context.messages.reduce((acc, message) => acc + (message.delay ?? 1000) + DEFAULT_MESSAGE_DELAY, 0);
-        const timeout = trace.payload.timeout * 1000 + messageDelays;
-
-        setNoReplyTimeout(timeout);
-      }
-      return context;
-    },
-  };
-
-  const runtime = useRuntimeAPI({ ...config, ...session, traceHandlers: [noReplyHandler] });
+  const runtime = useRuntimeAPI({
+    ...config,
+    ...session,
+    traceHandlers: [NoReply(setNoReplyTimeout), ...EffectExtensions(assistant.extensions), ...ResponseExtensions(assistant.extensions)],
+  });
 
   // status management
   const setStatus = (status: SessionStatus) => {

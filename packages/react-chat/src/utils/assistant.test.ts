@@ -4,6 +4,7 @@ import { vi } from 'vitest';
 import { ChatPersistence, ChatPosition } from '@/common';
 import { DEFAULT_AVATAR, RawAssistantOptions } from '@/dtos/AssistantOptions.dto';
 import { ChatConfig } from '@/dtos/ChatConfig.dto';
+import { ExtensionType } from '@/dtos/Extension.dto';
 import { PRIMARY } from '@/styles';
 
 import { mergeAssistantOptions } from './assistant';
@@ -36,6 +37,7 @@ describe('assistant utils', () => {
         side: 100,
         bottom: 100,
       },
+      extensions: [{ name: 'remote_extension', type: ExtensionType.EFFECT, match: () => false }],
     };
 
     it('should fallback to default options when not configured', async () => {
@@ -55,6 +57,7 @@ describe('assistant utils', () => {
           side: 30,
           bottom: 30,
         },
+        extensions: [],
       });
     });
 
@@ -64,7 +67,10 @@ describe('assistant utils', () => {
 
       const merged = await mergeAssistantOptions(config, undefined);
 
-      expect(merged).toEqual(remoteOptions);
+      expect(merged).toEqual({
+        ...remoteOptions,
+        extensions: [expect.objectContaining({ name: 'remote_extension', type: ExtensionType.EFFECT })],
+      });
     });
 
     it('should prioritize local options over remote options (with some exceptions)', async () => {
@@ -82,6 +88,7 @@ describe('assistant utils', () => {
           side: 150,
           bottom: 150,
         },
+        extensions: [{ name: 'local_extension', type: ExtensionType.EFFECT, match: () => false }],
 
         // setting these locally should have no effect
         watermark: !remoteOptions.watermark,
@@ -94,6 +101,10 @@ describe('assistant utils', () => {
 
       expect(merged).toEqual({
         ...localOptions,
+        extensions: [
+          expect.objectContaining({ name: 'remote_extension', type: ExtensionType.EFFECT }),
+          expect.objectContaining({ name: 'local_extension', type: ExtensionType.EFFECT }),
+        ],
 
         // verify these setting have not changed from what is remote
         watermark: remoteOptions.watermark,
@@ -126,6 +137,7 @@ describe('assistant utils', () => {
           side: 100,
           bottom: 100,
         },
+        extensions: [],
       });
     });
   });
