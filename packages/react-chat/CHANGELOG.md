@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.56.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.55.4...@voiceflow/react-chat@1.56.0) (2024-03-05)
+
+### Features
+
+* effect and response extension support (DX-1100) ([#115](https://github.com/voiceflow/react-chat/issues/115)) ([6f195b3](https://github.com/voiceflow/react-chat/commit/6f195b356e11581f8761ae995d2e1eab6daa9901))
+
 ## [1.55.4](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.55.3...@voiceflow/react-chat@1.55.4) (2024-02-26)
 
 ### Bug Fixes
