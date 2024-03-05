@@ -1,6 +1,7 @@
-import { Text } from '@voiceflow/base-types';
+import { Text, Trace } from '@voiceflow/base-types';
 
 import { CardProps } from '@/components/Card/types';
+import { ResponseExtension } from '@/dtos/Extension.dto';
 import { StringifiedEnum } from '@/types/util';
 
 import { MessageType } from './constants';
@@ -33,9 +34,24 @@ export interface EndMessage extends BaseMessageProps {
   type: StringifiedEnum<MessageType.END>;
 }
 
+export interface ExtensionMessage extends BaseMessageProps {
+  type: StringifiedEnum<MessageType.EXTENSION>;
+  payload: {
+    trace: Trace.AnyTrace;
+    extension: ResponseExtension;
+  };
+}
+
 export interface CustomMessage extends BaseMessageProps {
   type: `custom_${string}`;
   payload: any;
 }
 
-export type MessageProps = TextMessageProps | ImageMessageProps | CardMessageProps | CarouselMessageProps | EndMessage | CustomMessage;
+export type MessageProps =
+  | TextMessageProps
+  | ImageMessageProps
+  | CardMessageProps
+  | CarouselMessageProps
+  | EndMessage
+  | ExtensionMessage
+  | CustomMessage;
