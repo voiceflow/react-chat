@@ -7,6 +7,11 @@ export const PrimaryButton = styled(tag(Container, ButtonVariant.PRIMARY), {
   height: '$md',
   color: '$white',
   trans: ['background-color'],
+  textOverflow: 'ellipsis',
+  overflow: 'hidden',
+  padding: '10px',
+  boxSizing: 'border-box',
+  whiteSpace: 'break-spaces',
 
   variants: {
     type: {
