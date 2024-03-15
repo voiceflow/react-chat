@@ -123,7 +123,7 @@ export const useRuntimeState = ({ assistant, config }: Settings) => {
 
   const close = () => {
     broadcast({ type: BroadcastType.CLOSE });
-
+    saveSession(assistant.persistence, config.verify.projectID, sessionRef.current);
     setOpen(false);
   };
 
