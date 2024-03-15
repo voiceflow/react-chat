@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.56.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.56.0...@voiceflow/react-chat@1.56.1) (2024-03-15)
+
+### Bug Fixes
+
+* save session status in persistent memory (DX-1549) ([#118](https://github.com/voiceflow/react-chat/issues/118)) ([3640462](https://github.com/voiceflow/react-chat/commit/3640462ea35b2258f8ae1fb340ba5736f5ec4512))
+
 # [1.56.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.55.4...@voiceflow/react-chat@1.56.0) (2024-03-05)
 
 ### Features
