@@ -1,8 +1,7 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 
 import Button from '@/components/Button';
 import ChatInput from '@/components/ChatInput';
-import { RuntimeStateContext } from '@/contexts/RuntimeContext';
 
 import { Container, Watermark } from './styled';
 
@@ -19,6 +18,11 @@ export interface FooterProps {
   hasEnded?: boolean | undefined;
 
   /**
+   * Do not allow a user to send a message while the assistant is processing a response.
+   */
+  disableSend?: boolean | undefined;
+
+  /**
    * A callback to start a new conversation.
    */
   onStart?: (() => Promise<void>) | undefined;
@@ -29,20 +33,14 @@ export interface FooterProps {
   onSend?: ((message: string) => Promise<void>) | undefined;
 }
 
-const Footer: React.FC<FooterProps> = ({ withWatermark, hasEnded, onStart, onSend }) => {
-  const state = useContext(RuntimeStateContext);
+const Footer: React.FC<FooterProps> = ({ withWatermark, hasEnded, disableSend, onStart, onSend }) => {
   const [message, setMessage] = useState('');
-  const [buffering, setBuffering] = useState(false);
 
   const handleSend = async (): Promise<void> => {
-    if (!message || buffering) return;
-
-    setBuffering(true);
+    if (!message || disableSend) return;
 
     setMessage('');
     await onSend?.(message);
-
-    setBuffering(false);
   };
 
   return (
@@ -57,7 +55,7 @@ const Footer: React.FC<FooterProps> = ({ withWatermark, hasEnded, onStart, onSen
           autoFocus
           onValueChange={setMessage}
           onSend={handleSend}
-          buffering={state.indicator || buffering}
+          disableSend={disableSend}
         />
       )}
       {withWatermark && (
