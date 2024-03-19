@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.56.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.56.1...@voiceflow/react-chat@1.56.2) (2024-03-19)
+
+### Bug Fixes
+
+* prevent sending message while waiting (BUG-739) ([#119](https://github.com/voiceflow/react-chat/issues/119)) ([e88df3b](https://github.com/voiceflow/react-chat/commit/e88df3b986c120674825f821b99eb4d983ae1952))
+
 ## [1.56.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.56.0...@voiceflow/react-chat@1.56.1) (2024-03-15)
 
 ### Bug Fixes
