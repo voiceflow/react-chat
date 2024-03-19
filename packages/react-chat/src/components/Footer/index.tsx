@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 import Button from '@/components/Button';
 import ChatInput from '@/components/ChatInput';
+import { RuntimeStateContext } from '@/contexts/RuntimeContext';
 
 import { Container, Watermark } from './styled';
 
@@ -29,6 +30,7 @@ export interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({ withWatermark, hasEnded, onStart, onSend }) => {
+  const state = useContext(RuntimeStateContext);
   const [message, setMessage] = useState('');
   const [buffering, setBuffering] = useState(false);
 
@@ -48,8 +50,15 @@ const Footer: React.FC<FooterProps> = ({ withWatermark, hasEnded, onStart, onSen
       {hasEnded ? (
         <Button onClick={onStart}>Start New Chat</Button>
       ) : (
-        // eslint-disable-next-line jsx-a11y/no-autofocus
-        <ChatInput value={message} placeholder="Message…" autoFocus onValueChange={setMessage} onSend={handleSend} buffering={buffering} />
+        <ChatInput
+          value={message}
+          placeholder="Message…"
+          // eslint-disable-next-line jsx-a11y/no-autofocus
+          autoFocus
+          onValueChange={setMessage}
+          onSend={handleSend}
+          buffering={state.indicator || buffering}
+        />
       )}
       {withWatermark && (
         <Watermark>
