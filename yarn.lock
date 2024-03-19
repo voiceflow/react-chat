@@ -5425,7 +5425,7 @@ __metadata:
     "@voiceflow/prettier-config": 1.2.1
     "@voiceflow/sdk-runtime": 1.7.0
     "@voiceflow/slate-serializer": 1.5.5
-    "@voiceflow/stitches-react": 2.3.0
+    "@voiceflow/stitches-react": 2.3.1
     "@voiceflow/tsconfig": 1.4.8
     "@voiceflow/voiceflow-types": 3.26.21
     bowser: ^2.11.0
@@ -5496,12 +5496,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@voiceflow/stitches-react@npm:2.3.0":
-  version: 2.3.0
-  resolution: "@voiceflow/stitches-react@npm:2.3.0"
+"@voiceflow/stitches-react@npm:2.3.1":
+  version: 2.3.1
+  resolution: "@voiceflow/stitches-react@npm:2.3.1"
   peerDependencies:
     react: ">= 16.3.0"
-  checksum: 522a61ce7c7becc5d0c68fbf2cf2bbdf119ce3a3a64a643b5e13e27678418e6ae3ca51048d4c3fc0fd4765337cdc7f05b311e2184eec2fb0b10bc570abb4e8a2
+  checksum: b141c538947a8a7845b1e3782cf4a2ba3bfcabf98e0d408d9fec033516aaf5b800466fe451f9cc44123f666cd147069f4e1ee336feea6806883a3c8efc0ecee8
   languageName: node
   linkType: hard
 
