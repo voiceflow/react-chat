@@ -104,10 +104,10 @@ const Chat: React.FC<ChatProps> = ({
           <Spacer />
           {!!timestamp && !!state.session.turns.length && <SessionTime>{timestamp}</SessionTime>}
           {children}
-          {hasEnded && !!state.session.turns.length && <Status>You have ended the chat</Status>}
+          {hasEnded && !!state.session.turns.length && <Status>The chat has ended</Status>}
         </AutoScrollProvider>
       </Dialog>
-      <Footer withWatermark={withWatermark} hasEnded={hasEnded} onStart={onStart} onSend={onSend} />
+      <Footer withWatermark={withWatermark} hasEnded={hasEnded} onStart={onStart} onSend={onSend} disableSend={state.indicator} />
       <Overlay />
       <Prompt accept={{ label: 'End Chat', type: 'warn', onClick: chain(onEnd, handleResume) }} cancel={{ label: 'Cancel', onClick: handleResume }} />
     </Container>
