@@ -11,7 +11,7 @@ export interface ChatInputProps extends TextareaProps {
   /**
    * If true, does not allow the user to submit a response.
    */
-  buffering?: boolean;
+  disableSend?: boolean | undefined;
 
   /**
    * A callback to submit the user response.
@@ -19,7 +19,7 @@ export interface ChatInputProps extends TextareaProps {
   onSend?: VoidFunction;
 }
 
-const ChatInput: React.FC<ChatInputProps> = ({ id, onSend, buffering, ...props }) => {
+const ChatInput: React.FC<ChatInputProps> = ({ id, onSend, disableSend, ...props }) => {
   const internalID = useMemo(() => `vf-chat-input--${cuid()}`, []) ?? id;
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -37,7 +37,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ id, onSend, buffering, ...props }
   return (
     <Container>
       <Textarea ref={textareaRef} id={internalID} onKeyDown={handleKeyPress} {...props} />
-      <ButtonContainer htmlFor={internalID} ready={!!props.value && !buffering}>
+      <ButtonContainer htmlFor={internalID} ready={!!props.value && !disableSend}>
         <Bubble size="small" svg="smallArrowUp" onClick={onSend} />
       </ButtonContainer>
     </Container>

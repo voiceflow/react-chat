@@ -16,7 +16,7 @@ export enum FeedbackName {
   NEGATIVE = 'Thumbs down',
 }
 
-export const createContext = () => ({
+export const createContext = (): RuntimeMessage => ({
   messages: [],
 });
 
