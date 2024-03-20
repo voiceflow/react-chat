@@ -5,14 +5,11 @@ import { createPlugins } from '../vite.config';
 import svgr from 'vite-plugin-svgr';
 
 const config: StorybookConfig = {
-  stories: ['../src/**/*.story.mdx', '../src/**/*.story.@(js|jsx|ts|tsx)', '../iframe/**/*.story.@(js|jsx|ts|tsx)'],
+  stories: ['../src/**/*.story.@(js|jsx|ts|tsx)', '../iframe/**/*.story.@(js|jsx|ts|tsx)'],
   addons: ['@storybook/addon-links', '@storybook/addon-essentials', '@storybook/addon-interactions', 'storybook-dark-mode'],
   framework: '@storybook/react-vite',
   core: {
     builder: '@storybook/builder-vite',
-  },
-  features: {
-    storyStoreV7: true,
   },
   typescript: {
     check: true,

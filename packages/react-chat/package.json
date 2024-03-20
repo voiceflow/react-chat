@@ -7,6 +7,7 @@
     "url": "https://github.com/voiceflow/react-chat/issues"
   },
   "dependencies": {
+    "@storybook/react": "^8.0.2",
     "@voiceflow/base-types": "2.97.3",
     "@voiceflow/dtos": "1.10.0",
     "@voiceflow/sdk-runtime": "1.7.0",

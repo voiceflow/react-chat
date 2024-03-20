@@ -1,4 +1,5 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+/* eslint-disable react-hooks/rules-of-hooks */
+import { Meta, StoryObj } from '@storybook/react';
 import { useRef } from 'react';
 
 import Avatar from '@/components/Avatar';
@@ -8,6 +9,14 @@ import { VF_ICON } from '@/fixtures';
 import { ChatWidget } from '@/views';
 
 import Carousel from '.';
+
+const meta: Meta<typeof Carousel> = {
+  component: Carousel,
+  title: 'Components/Carousel',
+};
+type Story = StoryObj<typeof Carousel>;
+
+export default meta;
 
 const IMAGE = 'https://source.unsplash.com/featured/248x150';
 const FIRST_CARD = {
@@ -20,6 +29,7 @@ const FIRST_CARD = {
     { request: {} as any, name: 'Third Button' },
   ],
 };
+
 const MULTIPLE_CARDS = [
   FIRST_CARD,
   {
@@ -37,41 +47,43 @@ const MULTIPLE_CARDS = [
   },
 ];
 
-export default {
-  title: 'Components/Carousel',
-  component: Carousel,
-} as ComponentMeta<typeof Carousel>;
-
-const Template: ComponentStory<typeof Carousel> = (args) => <Carousel {...args} />;
-
-export const SingleCard = Template.bind({});
-SingleCard.args = {
-  cards: [FIRST_CARD],
+export const SingleCard: Story = {
+  args: {
+    cards: [FIRST_CARD],
+  },
 };
 
-export const MultipleCards = Template.bind({});
-MultipleCards.args = {
-  cards: MULTIPLE_CARDS,
+export const MultipleCards: Story = {
+  args: {
+    cards: MULTIPLE_CARDS,
+  },
 };
 
-const ControlsTemplate: ComponentStory<typeof Carousel> = (args) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const controlsRef = useRef<HTMLDivElement>(null);
+export const ControlsTemplate: Story = {
+  args: {
+    cards: MULTIPLE_CARDS,
+  },
 
-  return (
-    <ChatWidget.ChatContainer>
-      <Chat.Dialog>
-        <SystemResponse.Controls ref={controlsRef} />
-        <SystemResponse.Container ref={containerRef} withImage scrollable>
-          <Avatar avatar={VF_ICON} />
-          <Carousel {...args} controlsRef={controlsRef} containerRef={containerRef} />
-        </SystemResponse.Container>
-      </Chat.Dialog>
-    </ChatWidget.ChatContainer>
-  );
+  render: (args) => {
+    const containerRef = useRef<HTMLDivElement>(null);
+    const controlsRef = useRef<HTMLDivElement>(null);
+
+    return (
+      <ChatWidget.ChatContainer>
+        <Chat.Dialog>
+          <SystemResponse.Controls ref={controlsRef} />
+          <SystemResponse.Container ref={containerRef} withImage scrollable>
+            <Avatar avatar={VF_ICON} />
+            <Carousel {...args} controlsRef={controlsRef} containerRef={containerRef} />
+          </SystemResponse.Container>
+        </Chat.Dialog>
+      </ChatWidget.ChatContainer>
+    );
+  },
 };
 
-export const WithControls = ControlsTemplate.bind({});
-WithControls.args = {
-  cards: MULTIPLE_CARDS,
-};
+export const WithControls: Story = {
+  args: {
+    cards: MULTIPLE_CARDS,
+  },
+}

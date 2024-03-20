@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import Chat from '@/components/Chat';
 import { VF_ICON } from '@/fixtures';
@@ -13,9 +13,9 @@ export default {
     description: "Voiceflow's virtual assistant is here to help.",
     avatar: VF_ICON,
   },
-} as ComponentMeta<typeof AssistantInfo>;
+} as Meta<typeof AssistantInfo>;
 
-const Template: ComponentStory<typeof AssistantInfo> = (args) => (
+const Template: StoryObj<typeof AssistantInfo> = (args) => (
   <Chat.Container>
     <AssistantInfo {...args} />
   </Chat.Container>
