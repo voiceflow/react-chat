@@ -30,6 +30,7 @@
     "husky",
     "lint-staged",
     "slate",
-    "zod"
+    "zod",
+    "chromatic"
   ]
 }

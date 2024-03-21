@@ -1,8 +1,10 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import Input from '.';
 
-export default {
+type Story = StoryObj<typeof Input>;
+
+const meta: Meta<typeof Input> = {
   title: 'Core/Input',
   component: Input,
   args: {
@@ -12,13 +14,15 @@ export default {
   parameters: {
     controls: { include: ['value', 'placeholder', 'onValueChange'] },
   },
-} as ComponentMeta<typeof Input>;
+  render: (args) => <Input.Controlled {...args} />,
+};
 
-const Template: ComponentStory<typeof Input> = (args) => <Input.Controlled {...args} />;
+export default meta;
 
-export const Default = Template.bind({});
+export const Default: Story = {};
 
-export const Placeholder = Template.bind({});
-Placeholder.args = {
-  placeholder: 'Message…',
+export const WithPlaceholder: Story = {
+  args: {
+    placeholder: 'Message…',
+  },
 };

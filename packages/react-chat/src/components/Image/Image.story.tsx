@@ -1,21 +1,26 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
+
+import { MOCK_IMAGE } from '@/fixtures';
 
 import Image from '.';
 
-export default {
+type Story = StoryObj<typeof Image>;
+
+const meta: Meta<typeof Image> = {
   title: 'Core/Image',
   component: Image,
   args: {
-    image: 'https://source.unsplash.com/featured/248x200',
+    image: MOCK_IMAGE,
     isRounded: true,
   },
-} as ComponentMeta<typeof Image>;
+};
 
-const Template: ComponentStory<typeof Image> = (args) => <Image {...args} />;
+export default meta;
 
-export const RoundCorners = Template.bind({});
+export const RoundCorners: Story = {};
 
-export const StraightCorners = Template.bind({});
-StraightCorners.args = {
-  isRounded: false,
+export const StraightCorners: Story = {
+  args: {
+    isRounded: false,
+  },
 };
