@@ -7,7 +7,7 @@ export const PrimaryButton = styled(tag(Container, ButtonVariant.PRIMARY), {
   minHeight: '$md',
   color: '$white',
   trans: ['background-color'],
-  padding: '10px',
+  padding: '10px 14px',
   boxSizing: 'border-box',
   whiteSpace: 'break-spaces',
 
