@@ -38,7 +38,7 @@ export const SystemChat: Story = {
     variant: Message.Variant.CHAT,
     from: 'system',
   },
-}
+};
 
 export const UserChat: Story = {
   args: {

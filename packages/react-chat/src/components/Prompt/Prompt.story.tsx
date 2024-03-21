@@ -12,11 +12,12 @@ const meta: Meta<typeof Prompt> = {
   args: {
     cancel: { label: 'Cancel' },
   },
-  render: args =>
+  render: (args) => (
     <Chat.Container withPrompt>
       <div style={{ height: 250, backgroundColor: 'lavender' }} />
       <Prompt {...args} />
     </Chat.Container>
+  ),
 };
 
 export default meta;

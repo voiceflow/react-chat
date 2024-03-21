@@ -11,16 +11,16 @@ const meta: Meta<typeof UserResponse> = {
   args: {
     timestamp: Date.now(),
   },
-  render: args =>
+  render: (args) => (
     <Chat.Container>
       <Chat.Dialog css={{ padding: '64px 0', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <UserResponse {...args} />
       </Chat.Dialog>
     </Chat.Container>
+  ),
 };
 
 export default meta;
-
 
 export const PlainText: Story = {
   args: {
@@ -30,7 +30,8 @@ export const PlainText: Story = {
 
 export const Wrapping: Story = {
   args: {
-    message: 'consecteturaconse cteturaconsecteturaconsecteturaconsecteturaconsectetura consecteturaconsecteturaconsecteturaconsecteturaconsecteturaconsectetura',
+    message:
+      'consecteturaconse cteturaconsecteturaconsecteturaconsecteturaconsectetura consecteturaconsecteturaconsecteturaconsecteturaconsecteturaconsectetura',
   },
 };
 

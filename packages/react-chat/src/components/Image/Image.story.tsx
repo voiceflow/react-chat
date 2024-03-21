@@ -1,7 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import Image from '.';
 import { MOCK_IMAGE } from '@/fixtures';
+
+import Image from '.';
 
 type Story = StoryObj<typeof Image>;
 

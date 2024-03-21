@@ -17,12 +17,12 @@ const preview: Preview = {
     },
   },
   decorators: [
-    (Story) =>
+    (Story) => (
       <RuntimeProvider config={MOCK_CONFIG} assistant={MOCK_ASSISTANT}>
         <Story />
       </RuntimeProvider>
-
-  ]
-}
+    ),
+  ],
+};
 
 export default preview;

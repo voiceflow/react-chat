@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 
 import Chat from '@/components/Chat';
-import { VF_ICON, MOCK_IMAGE } from '@/fixtures';
+import { MOCK_IMAGE, VF_ICON } from '@/fixtures';
 
 import SystemResponse, { MessageProps } from '.';
 
@@ -30,18 +30,16 @@ const meta: Meta<typeof SystemResponse> = {
     },
   },
   excludeStories: ['RawTemplate'],
-  render: (args) =>
+  render: (args) => (
     <Chat.Container>
       <Chat.Dialog css={{ padding: '64px 0', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <SystemResponse {...args} />
       </Chat.Dialog>
     </Chat.Container>
+  ),
 };
 
 export default meta;
-
-
-
 
 export const SimpleText: Story = {
   args: {
@@ -138,9 +136,7 @@ export const Carousel: Story = {
 
 export const Multiple: Story = {
   args: {
-    messages: [
-      CARD, TEXT_MESSAGE,
-    ],
+    messages: [CARD, TEXT_MESSAGE],
   },
 };
 
@@ -148,10 +144,8 @@ export const MultipleWithFeedback: Story = {
   args: {
     feedback: {
       // eslint-disable-next-line @typescript-eslint/no-empty-function
-      onClick: () => { },
+      onClick: () => {},
     },
-    messages: [
-      CARD, TEXT_MESSAGE,
-    ],
+    messages: [CARD, TEXT_MESSAGE],
   },
 };

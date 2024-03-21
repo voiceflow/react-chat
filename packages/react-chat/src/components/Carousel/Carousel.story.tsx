@@ -86,4 +86,4 @@ export const WithControls: Story = {
   args: {
     cards: MULTIPLE_CARDS,
   },
-}
+};

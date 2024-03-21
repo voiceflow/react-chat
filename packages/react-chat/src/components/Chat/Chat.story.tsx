@@ -42,14 +42,25 @@ export const Exhaustive: Story = {
         <SystemResponseTemplate messages={[{ type: 'text', text: 'Lorem ipsum dolor' }]} />
         <SystemResponseTemplate messages={[{ type: 'image', url: MOCK_IMAGE }]} />
         <UserResponseTemplate />
-        <SystemResponseTemplate messages={[{ type: 'text', text: 'Lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor consecteturaconsect turaconse lorem teturaconsecteturaconsecteturaconsectetura consectetura' }]} />
-        <UserResponseTemplate message={'Lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor consecteturaconsect turaconse lorem teturaconsecteturaconsecteturaconsectetura consecteturac onsecteturaconsecteturaconsecteturaco nsecteturaconsectetura'} />
-        <SystemResponseTemplate messages={[{
-          type: 'card',
-          title: 'Card Message',
-          description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem voluptas perspiciatis est quis dolores!',
-          image: MOCK_IMAGE,
-        }]} />
+        <SystemResponseTemplate
+          messages={[
+            {
+              type: 'text',
+              text: 'Lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor consecteturaconsect turaconse lorem teturaconsecteturaconsecteturaconsectetura consectetura',
+            },
+          ]}
+        />
+        <UserResponseTemplate message="Lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor consecteturaconsect turaconse lorem teturaconsecteturaconsecteturaconsectetura consecteturac onsecteturaconsecteturaconsecteturaco nsecteturaconsectetura" />
+        <SystemResponseTemplate
+          messages={[
+            {
+              type: 'card',
+              title: 'Card Message',
+              description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem voluptas perspiciatis est quis dolores!',
+              image: MOCK_IMAGE,
+            },
+          ]}
+        />
       </Chat>
     );
   },

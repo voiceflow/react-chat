@@ -13,7 +13,11 @@ const meta: Meta<typeof Header> = {
     image: VF_ICON,
     actions: [],
   },
-  render: (args) => <Chat.Container><Header {...args} /></Chat.Container>,
+  render: (args) => (
+    <Chat.Container>
+      <Header {...args} />
+    </Chat.Container>
+  ),
 };
 
 export default meta;

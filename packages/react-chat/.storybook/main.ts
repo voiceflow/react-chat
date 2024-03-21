@@ -1,8 +1,8 @@
 import { StorybookConfig } from '@storybook/react-vite';
 import { mergeConfig } from 'vite';
+import svgr from 'vite-plugin-svgr';
 
 import { createPlugins } from '../vite.config';
-import svgr from 'vite-plugin-svgr';
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.story.@(js|jsx|ts|tsx)', '../iframe/**/*.story.@(js|jsx|ts|tsx)'],

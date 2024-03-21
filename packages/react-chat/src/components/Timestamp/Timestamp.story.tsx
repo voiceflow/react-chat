@@ -13,7 +13,6 @@ const meta: Meta<typeof Timestamp> = {
 
 export default meta;
 
-
 export const Default: Story = {
   args: {
     value: Date.now(),

@@ -19,7 +19,7 @@ export const Base: Story = {
     value: 'Message text',
     rows: 1,
   },
-}
+};
 
 export const Disabled: Story = {
   args: {
@@ -27,4 +27,4 @@ export const Disabled: Story = {
     rows: 1,
     disabled: true,
   },
-}
+};

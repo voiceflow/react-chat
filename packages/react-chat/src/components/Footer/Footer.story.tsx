@@ -17,7 +17,11 @@ const meta: Meta<typeof Footer> = {
     hasEnded: false,
     withWatermark: false,
   },
-  render: (args) => <Chat.Container><Footer {...args} /></Chat.Container>,
+  render: (args) => (
+    <Chat.Container>
+      <Footer {...args} />
+    </Chat.Container>
+  ),
 };
 
 export default meta;

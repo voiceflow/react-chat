@@ -25,7 +25,7 @@ export const LeftOrientation: Story = {
   args: {
     orientation: 'left',
   },
-}
+};
 
 export const RightOrientation: Story = {
   args: {

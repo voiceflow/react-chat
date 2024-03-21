@@ -14,11 +14,10 @@ const meta: Meta<typeof Input> = {
   parameters: {
     controls: { include: ['value', 'placeholder', 'onValueChange'] },
   },
-  render: args => <Input.Controlled {...args} />
+  render: (args) => <Input.Controlled {...args} />,
 };
 
 export default meta;
-
 
 export const Default: Story = {};
 
@@ -26,4 +25,4 @@ export const WithPlaceholder: Story = {
   args: {
     placeholder: 'Message…',
   },
-}
+};

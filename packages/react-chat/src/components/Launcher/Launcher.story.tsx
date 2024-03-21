@@ -20,5 +20,5 @@ export const IconOverride: Story = {
   args: {
     // eslint-disable-next-line no-secrets/no-secrets
     image: 'https://cm4-production-assets.s3.amazonaws.com/1668625107157-vf-nobg.png',
-  }
+  },
 };

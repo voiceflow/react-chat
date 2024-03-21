@@ -13,5 +13,4 @@ const meta: Meta<typeof Loader> = {
 };
 export default meta;
 
-
 export const Default: Story = {};
