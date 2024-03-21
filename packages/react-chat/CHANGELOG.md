@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.56.3](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.56.2...@voiceflow/react-chat@1.56.3) (2024-03-21)
+
+### Bug Fixes
+
+* storybook build (DX-1551) ([#116](https://github.com/voiceflow/react-chat/issues/116)) ([dbf9e63](https://github.com/voiceflow/react-chat/commit/dbf9e632bb32f1113aa04d2d9dd04422464b70e2))
+
 ## [1.56.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.56.1...@voiceflow/react-chat@1.56.2) (2024-03-19)
 
 ### Bug Fixes
