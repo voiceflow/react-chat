@@ -26,7 +26,6 @@ const config: StorybookConfig = {
   },
 
   viteFinal: (config) => {
-    console.log('config', config);
     return mergeConfig(config, {
       plugins: [...createPlugins(__dirname), svgr()],
       define: {
