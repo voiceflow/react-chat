@@ -143,8 +143,7 @@ export const Multiple: Story = {
 export const MultipleWithFeedback: Story = {
   args: {
     feedback: {
-      // eslint-disable-next-line @typescript-eslint/no-empty-function
-      onClick: () => {},
+      onClick: () => null,
     },
     messages: [CARD, TEXT_MESSAGE],
   },
