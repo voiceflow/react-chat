@@ -50,7 +50,7 @@ export const Header = styled(tag('h3', 'header'), {
   typo: { weight: '$2' },
   color: '$black',
   wordBreak: 'break-word',
-  maxWidth: '100%'
+  maxWidth: '100%',
 });
 
 export const Description = styled(tag('p', 'description'), {

@@ -37,13 +37,10 @@ export const Actionable: Story = {
   },
 };
 
-
 export const WithLongTitle: Story = {
   args: {
     ...WithImage.args,
     title: 'Long card title to wrap inside the card. Some more text to test the growth of card.',
-    actions: [
-      { request: {} as any, name: 'First Button' },
-    ],
+    actions: [{ request: {} as any, name: 'First Button' }],
   },
 };
