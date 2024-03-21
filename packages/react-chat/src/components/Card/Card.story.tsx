@@ -36,3 +36,14 @@ export const Actionable: Story = {
     ],
   },
 };
+
+export const WithLongLabels: Story = {
+  args: {
+    ...WithImage.args,
+    actions: [
+      { request: {} as any, name: 'First Button with a very long long long wrapping label' },
+      { request: {} as any, name: 'Second Button with a shorter text' },
+      { request: {} as any, name: 'Third button, also with a shorter text' },
+    ],
+  },
+}
