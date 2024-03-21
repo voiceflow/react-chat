@@ -46,4 +46,4 @@ export const WithLongLabels: Story = {
       { request: {} as any, name: 'Third button, also with a shorter text' },
     ],
   },
-}
+};
