@@ -5,7 +5,7 @@ import svgr from 'vite-plugin-svgr';
 import { createPlugins } from '../vite.config';
 
 const config: StorybookConfig = {
-  stories: ['../src/components/Button/Button.story.tsx'], // ['../src/**/*.story.@(js|jsx|ts|tsx)', '../iframe/**/*.story.@(js|jsx|ts|tsx)'],
+  stories: ['../src/**/*.story.@(js|jsx|ts|tsx)'],
   addons: ['@storybook/addon-links', '@storybook/addon-essentials', '@storybook/addon-interactions', 'storybook-dark-mode'],
   framework: '@storybook/react-vite',
   core: {
