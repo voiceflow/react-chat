@@ -42,7 +42,7 @@ export const SystemChat: Story = {
 
 export const UserChat: Story = {
   args: {
-    ...SystemChat.args,
+    variant: Message.Variant.CHAT,
     from: 'user',
   },
 };
@@ -56,7 +56,7 @@ export const DebugLeft: Story = {
 
 export const DebugRight: Story = {
   args: {
-    ...DebugLeft.args,
+    variant: Message.Variant.DEBUG,
     orientation: 'right',
   },
 };

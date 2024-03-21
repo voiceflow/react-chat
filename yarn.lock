@@ -3955,7 +3955,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/react@npm:8.0.2":
+"@storybook/react@npm:8.0.2, @storybook/react@npm:^8.0.2":
   version: 8.0.2
   resolution: "@storybook/react@npm:8.0.2"
   dependencies:
@@ -5630,6 +5630,7 @@ __metadata:
     "@storybook/addon-links": 8.0.2
     "@storybook/builder-vite": 8.0.2
     "@storybook/eslint-config-storybook": ^3.1.2
+    "@storybook/react": ^8.0.2
     "@storybook/react-vite": 8.0.2
     "@storybook/testing-library": ^0.0.13
     "@testing-library/jest-dom": ^5.16.5

@@ -57,7 +57,7 @@ export const ActionableDebugReason: Story = {
   args: {
     ...DebugReason.args,
     debug: {
-      ...DebugReason.args.debug!,
+      message: 'Intent Name (97%)',
       action: { label: 'Add Missing Utterance' },
     },
   },

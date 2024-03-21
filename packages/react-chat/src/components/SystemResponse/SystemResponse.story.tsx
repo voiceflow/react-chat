@@ -22,7 +22,6 @@ const meta: Meta<typeof SystemResponse> = {
   args: {
     timestamp: Date.now(),
     avatar: VF_ICON,
-    messageDelay: 1,
     isLast: false,
   },
   argTypes: {
