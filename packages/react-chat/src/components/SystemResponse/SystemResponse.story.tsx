@@ -1,11 +1,11 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import Chat from '@/components/Chat';
-import { VF_ICON } from '@/fixtures';
+import { VF_ICON, MOCK_IMAGE } from '@/fixtures';
 
 import SystemResponse, { MessageProps } from '.';
 
-const CARD_IMAGE = 'https://source.unsplash.com/featured/248x150';
+const CARD_IMAGE = MOCK_IMAGE;
 const TEXT_MESSAGE: MessageProps = { type: 'text', text: 'Lorem ipsum dolor sit amet consectetur' };
 const CARD: MessageProps = {
   type: 'card',
@@ -142,7 +142,7 @@ export const MultipleWithFeedback = Template.bind({});
 MultipleWithFeedback.args = {
   feedback: {
     // eslint-disable-next-line @typescript-eslint/no-empty-function
-    onClick: () => {},
+    onClick: () => { },
   },
   messages: [
     ...(SimpleText.args.messages ?? []),

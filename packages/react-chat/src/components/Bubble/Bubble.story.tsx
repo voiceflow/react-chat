@@ -1,10 +1,12 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import * as SVGs from '@/assets/svg';
 
 import Bubble from '.';
 
-export default {
+type Story = StoryObj<typeof Bubble>;
+
+const meta: Meta<typeof Bubble> = {
   title: 'Core/Bubble',
   component: Bubble,
   args: {
@@ -21,18 +23,19 @@ export default {
       control: { type: 'radio' },
     },
   },
-} as ComponentMeta<typeof Bubble>;
+};
+export default meta;
 
-const Template: ComponentStory<typeof Bubble> = (args) => <Bubble {...args} />;
-
-export const Small = Template.bind({});
-Small.args = {
-  size: 'small',
-  svg: 'smallArrowUp',
+export const Small: Story = {
+  args: {
+    size: 'small',
+    svg: 'smallArrowUp',
+  },
 };
 
-export const Large = Template.bind({});
-Large.args = {
-  size: 'large',
-  svg: 'close',
+export const Large: Story = {
+  args: {
+    size: 'large',
+    svg: 'close',
+  },
 };

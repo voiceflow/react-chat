@@ -46,7 +46,7 @@ export interface ChatProps extends HeaderProps, AssistantInfoProps, FooterProps,
 }
 
 const Chat: React.FC<ChatProps> = ({
-  hasEnded,
+  hasEnded = false,
   title,
   image,
   avatar,
