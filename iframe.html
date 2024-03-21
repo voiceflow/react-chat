@@ -1,31 +1,69 @@
-<!DOCTYPE html>
+<!doctype html>
 <!--suppress HtmlUnknownTarget -->
 <html lang="en">
   <head>
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link rel="preload" as="style" onload="this.rel='stylesheet'" href="https://fonts.googleapis.com/css2?family=Open Sans:wght@400;600&display=swap">
 
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link rel="preload" as="style" onload="this.rel='stylesheet'" href="https://fonts.googleapis.com/css2?family=Open Sans:wght@400;600&display=swap">
+
     <meta charset="utf-8" />
     <title>Storybook</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link
+      rel="prefetch"
+      href="./sb-common-assets/nunito-sans-regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="prefetch"
+      href="./sb-common-assets/nunito-sans-italic.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="prefetch"
+      href="./sb-common-assets/nunito-sans-bold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="prefetch"
+      href="./sb-common-assets/nunito-sans-bold-italic.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="./sb-common-assets/fonts.css" />
+
     <script>
       window.CONFIG_TYPE = 'PRODUCTION';
       window.LOGLEVEL = 'info';
       window.FRAMEWORK_OPTIONS = {};
       window.CHANNEL_OPTIONS = {};
-      window.FEATURES = {"postcss":true,"emotionAlias":false,"warnOnLegacyHierarchySeparator":true,"buildStoriesJson":false,"storyStoreV7":true,"modernInlineRender":false,"breakingChangesV7":false,"interactionsDebugger":false,"babelModeV7":false,"argTypeTargetsV7":false,"previewMdx2":false};
-      window.STORIES = [{"titlePrefix":"","directory":"./src","files":"**/*.story.mdx","importPathMatcher":"^\\.[\\\\/](?:src(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.story\\.mdx)$"},{"titlePrefix":"","directory":"./src","files":"**/*.story.@(js|jsx|ts|tsx)","importPathMatcher":"^\\.[\\\\/](?:src(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.story\\.(js|jsx|ts|tsx))$"},{"titlePrefix":"","directory":"./iframe","files":"**/*.story.@(js|jsx|ts|tsx)","importPathMatcher":"^\\.[\\\\/](?:iframe(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.story\\.(js|jsx|ts|tsx))$"}];
-      window.SERVER_CHANNEL_URL = undefined;
+      window.FEATURES = {"argTypeTargetsV7":true,"legacyDecoratorFileOrder":false,"disallowImplicitActionsInRenderV8":true};
+      window.STORIES = [{"titlePrefix":"","directory":"./src","files":"**/*.story.@(js|jsx|ts|tsx)","importPathMatcher":"^\\.[\\\\/](?:src(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.story\\.(js|jsx|ts|tsx))$"}];
+      window.DOCS_OPTIONS = {"defaultName":"Docs","autodocs":"tag"};
+      window.TAGS_OPTIONS = {"dev-only":{"excludeFromDocsStories":true},"docs-only":{"excludeFromSidebar":true},"test-only":{"excludeFromSidebar":true,"excludeFromDocsStories":true}};
+
+      
 
       // We do this so that "module && module.hot" etc. in Storybook source code
       // doesn't fail (it will simply be disabled)
       window.module = undefined;
+      window.global = window;
     </script>
     <base target="_parent" />
 
 <style>
   /* While we aren't showing the main block yet, but still preparing, we want everything the user
-     has rendered, which may or may not be in #root, to be display none */
+     has rendered, which may or may not be in #storybook-root, to be display none */
   .sb-show-preparing-story:not(.sb-show-main) > :not(.sb-preparing-story) {
     display: none;
   }
@@ -49,7 +87,7 @@
     min-height: 100vh;
   }
 
-  .sb-show-main.sb-main-centered #root {
+  .sb-show-main.sb-main-centered #storybook-root {
     box-sizing: border-box;
     margin: auto;
     padding: 1rem;
@@ -85,8 +123,17 @@
     left: 0;
     right: 0;
     padding: 20px;
-    font-family: 'Nunito Sans', -apple-system, '.SFNSText-Regular', 'San Francisco',
-      BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family:
+      'Nunito Sans',
+      -apple-system,
+      '.SFNSText-Regular',
+      'San Francisco',
+      BlinkMacSystemFont,
+      'Segoe UI',
+      'Helvetica Neue',
+      Helvetica,
+      Arial,
+      sans-serif;
     -webkit-font-smoothing: antialiased;
     overflow: auto;
   }
@@ -280,7 +327,9 @@
 
   .sb-argstableBlock-body {
     border-radius: 4px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0 1px 3px 1px, rgba(0, 0, 0, 0.065) 0 0 0 1px;
+    box-shadow:
+      rgba(0, 0, 0, 0.1) 0 1px 3px 1px,
+      rgba(0, 0, 0, 0.065) 0 0 0 1px;
   }
   .sb-argstableBlock-body tr {
     background: transparent;
@@ -349,26 +398,6 @@
     // eslint-disable-next-line no-console
     console.warn('unable to connect to top frame for connecting dev tools');
   }
-
-  window.onerror = function onerror(message, source, line, column, err) {
-    if (window.CONFIG_TYPE !== 'DEVELOPMENT') return;
-    // eslint-disable-next-line no-var, vars-on-top
-    var xhr = new window.XMLHttpRequest();
-    xhr.open('POST', '/runtime-error');
-    xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-    xhr.send(
-      JSON.stringify({
-        /* eslint-disable object-shorthand */
-        message: message,
-        source: source,
-        line: line,
-        column: column,
-        error: err && { message: err.message, name: err.name, stack: err.stack },
-        origin: 'preview',
-        /* eslint-enable object-shorthand */
-      })
-    );
-  };
 </script>
 <style>
   body {
@@ -379,28 +408,12 @@
 
 <script>
   window.global = window;
+  __USE_SHADOW_ROOT__ = false;
 </script>
 
-    <script type="module" crossorigin src="/react-chat/assets/iframe.6ccf8efe.js"></script>
-  <style>
-    .sb-show-preparing-story:not(.sb-show-main) > :not(.sb-preparing-story) {
-      display: none;
-    }
-    .sb-show-preparing-docs:not(.sb-show-main) > :not(.sb-preparing-docs) {
-      display: none;
-    }
-    :not(.sb-show-preparing-story) > .sb-preparing-story,
-    :not(.sb-show-preparing-docs) > .sb-preparing-docs,
-    :not(.sb-show-nopreview) > .sb-nopreview,
-    :not(.sb-show-errordisplay) > .sb-errordisplay {
-      display: none;
-    }
-    #root[hidden],
-    #docs-root[hidden] {
-      display: none !important;
-    }
-  </style>
-</head>
+    <script type="module" crossorigin src="./assets/iframe.437bdf2e.js"></script>
+  </head>
+
   <body>
     <div class="sb-preparing-story sb-wrapper">
   <div class="sb-loader"></div>
@@ -490,8 +503,9 @@
   <pre class="sb-errordisplay_code"><code id="error-stack"></code></pre>
 </div>
 
-    <div id="root"></div>
-    <div id="docs-root"></div>
+    <div id="storybook-root"></div>
+    <div id="storybook-docs"></div>
+    
     
   </body>
 </html>

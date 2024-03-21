@@ -1,0 +1,13 @@
+Bundled license information:
+
+store2/dist/store2.js:
+  /*! store2 - v2.14.2 - 2022-07-18
+  * Copyright (c) 2022 Nathan Bubna; Licensed (MIT OR GPL-3.0) */
+
+isobject/index.cjs.js:
+  /*!
+   * isobject <https://github.com/jonschlinkert/isobject>
+   *
+   * Copyright (c) 2014-2017, Jon Schlinkert.
+   * Released under the MIT License.
+   */

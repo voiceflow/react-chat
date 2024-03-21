@@ -1,1 +1,0 @@
-{"version":3,"file":"fixtures.e9667a2d.js","sources":["../../src/fixtures.ts"],"sourcesContent":["export const VF_ICON = 'https://cm4-production-assets.s3.amazonaws.com/1668625026913-vf-icon.png';\n"],"names":["VF_ICON"],"mappings":"AAAO,MAAMA,EAAU"}
