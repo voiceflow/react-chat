@@ -1,19 +1,30 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import Textarea from '.';
 
-export default {
+type Story = StoryObj<typeof Textarea>;
+const meta: Meta<typeof Textarea> = {
   title: 'Core/Textarea',
   component: Textarea,
   args: {
     value: 'Message text',
     onChange: () => null,
   },
-} as ComponentMeta<typeof Textarea>;
-
-const Template: ComponentStory<typeof Textarea> = (args) => <Textarea {...args} />;
-
-export const Default = Template.bind({});
-Default.args = {
-  rows: 1,
 };
+
+export default meta;
+
+export const Base: Story = {
+  args: {
+    value: 'Message text',
+    rows: 1,
+  },
+}
+
+export const Disabled: Story = {
+  args: {
+    value: 'Message text',
+    rows: 1,
+    disabled: true,
+  },
+}

@@ -1,18 +1,21 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import Timestamp from '.';
 
-export default {
+type Story = StoryObj<typeof Timestamp>;
+const meta: Meta<typeof Timestamp> = {
   title: 'Core/Timestamp',
   component: Timestamp,
   argTypes: {
     value: { control: 'date' },
   },
-} as ComponentMeta<typeof Timestamp>;
+};
 
-const Template: ComponentStory<typeof Timestamp> = (args) => <Timestamp {...args} />;
+export default meta;
 
-export const Default = Template.bind({});
-Default.args = {
-  value: Date.now(),
+
+export const Default: Story = {
+  args: {
+    value: Date.now(),
+  },
 };

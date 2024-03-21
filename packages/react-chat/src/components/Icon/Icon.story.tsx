@@ -1,10 +1,12 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import * as SVGs from '@/assets/svg';
 
 import Icon from '.';
 
-export default {
+type Story = StoryObj<typeof Icon>;
+
+const meta: Meta<typeof Icon> = {
   title: 'Core/Icon',
   component: Icon,
   argTypes: {
@@ -16,16 +18,16 @@ export default {
   parameters: {
     controls: { include: ['svg'] },
   },
-} as ComponentMeta<typeof Icon>;
+};
 
-const Template: ComponentStory<typeof Icon> = (args) => <Icon {...args} />;
-
-export const Default = Template.bind({});
-Default.args = {
-  svg: 'close',
-  css: {
-    color: 'pink',
-    height: 50,
-    width: 50,
+export default meta;
+export const Default: Story = {
+  args: {
+    svg: 'close',
+    css: {
+      height: 50,
+      width: 50,
+    },
   },
 };
+

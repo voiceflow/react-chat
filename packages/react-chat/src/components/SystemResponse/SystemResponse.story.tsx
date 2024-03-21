@@ -1,12 +1,14 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import Chat from '@/components/Chat';
 import { VF_ICON, MOCK_IMAGE } from '@/fixtures';
 
 import SystemResponse, { MessageProps } from '.';
 
+type Story = StoryObj<typeof SystemResponse>;
+
 const CARD_IMAGE = MOCK_IMAGE;
-const TEXT_MESSAGE: MessageProps = { type: 'text', text: 'Lorem ipsum dolor sit amet consectetur' };
+const TEXT_MESSAGE: MessageProps = { type: 'text', text: 'Lorem ipsum dolor sit amet consectetur voluptas perspiciatis est quis dolores' };
 const CARD: MessageProps = {
   type: 'card',
   title: 'Card Message',
@@ -14,13 +16,13 @@ const CARD: MessageProps = {
   image: CARD_IMAGE,
 };
 
-export default {
+const meta: Meta<typeof SystemResponse> = {
   title: 'Components/Chat/SystemResponse',
   component: SystemResponse,
   args: {
     timestamp: Date.now(),
     avatar: VF_ICON,
-    messageDelay: 2000,
+    messageDelay: 1,
     isLast: false,
   },
   argTypes: {
@@ -29,128 +31,128 @@ export default {
     },
   },
   excludeStories: ['RawTemplate'],
-} as ComponentMeta<typeof SystemResponse>;
-
-const RawTemplate: ComponentStory<typeof SystemResponse> = (args) => <SystemResponse {...args} />;
-const Template: ComponentStory<typeof SystemResponse> = (args) => (
-  <Chat.Container>
-    <Chat.Dialog css={{ padding: '64px 0', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-      <RawTemplate {...args} />
-    </Chat.Dialog>
-  </Chat.Container>
-);
-
-export const SimpleText = Template.bind({});
-SimpleText.args = {
-  messages: [{ type: 'text', text: 'Lorem ipsum dolor' }],
+  render: (args) =>
+    <Chat.Container>
+      <Chat.Dialog css={{ padding: '64px 0', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+        <SystemResponse {...args} />
+      </Chat.Dialog>
+    </Chat.Container>
 };
 
-export const WrappingText = Template.bind({});
-WrappingText.args = {
-  messages: [{ type: 'text', text: 'consecteturaconsecteturaconsecteturaconsecteturaconsecteturaconsectetura' }],
-};
+export default meta;
 
-export const MultilineText = Template.bind({});
-MultilineText.args = {
-  messages: [TEXT_MESSAGE],
-};
 
-export const ActionableText = Template.bind({});
-ActionableText.args = {
-  messages: [TEXT_MESSAGE, TEXT_MESSAGE, TEXT_MESSAGE],
-  isLast: true,
-  actions: [
-    { request: {} as any, name: 'Button One' },
-    { request: {} as any, name: 'Button Two' },
-    { request: {} as any, name: 'Button Three' },
-  ],
-};
 
-export const Image = Template.bind({});
-Image.args = {
-  messages: [{ type: 'image', url: CARD_IMAGE }],
-};
 
-export const Card = Template.bind({});
-Card.args = {
-  messages: [CARD],
-};
-
-export const ActionableCard = Template.bind({});
-ActionableCard.args = {
-  messages: [
-    {
-      ...CARD,
-      actions: [
-        { request: {} as any, name: 'First Button' },
-        { request: {} as any, name: 'Second Button' },
-        { request: {} as any, name: 'Third Button' },
-      ],
-    },
-  ],
-};
-
-export const Carousel = Template.bind({});
-Carousel.args = {
-  messages: [
-    {
-      type: 'carousel',
-      cards: [
-        {
-          title: 'First Card',
-          description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem voluptas perspiciatis est quis dolores!',
-          image: CARD_IMAGE,
-          actions: [
-            { request: {} as any, name: 'First Button' },
-            { request: {} as any, name: 'Second Button' },
-            { request: {} as any, name: 'Third Button' },
-          ],
-        },
-        {
-          title: 'Second Card',
-          description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-          image: CARD_IMAGE,
-          actions: [
-            { request: {} as any, name: 'First Button' },
-            { request: {} as any, name: 'Second Button' },
-          ],
-        },
-        {
-          title: 'Third Card',
-          description: 'Lorem ipsum dolor sit amet',
-          image: CARD_IMAGE,
-        },
-      ],
-    },
-  ],
-};
-
-export const Multiple = Template.bind({});
-Multiple.args = {
-  messages: [
-    ...(SimpleText.args.messages ?? []),
-    ...(WrappingText.args.messages ?? []),
-    ...(MultilineText.args.messages ?? []),
-    ...(Image.args.messages ?? []),
-    ...(Card.args.messages ?? []),
-    ...(ActionableCard.args.messages ?? []),
-    ...(Carousel.args.messages ?? []),
-  ],
-};
-
-export const MultipleWithFeedback = Template.bind({});
-MultipleWithFeedback.args = {
-  feedback: {
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    onClick: () => { },
+export const SimpleText: Story = {
+  args: {
+    messages: [{ type: 'text', text: 'Lorem ipsum dolor' }],
   },
-  messages: [
-    ...(SimpleText.args.messages ?? []),
-    ...(WrappingText.args.messages ?? []),
-    ...(MultilineText.args.messages ?? []),
-    ...(Image.args.messages ?? []),
-    ...(Card.args.messages ?? []),
-    ...(ActionableCard.args.messages ?? []),
-    ...(Carousel.args.messages ?? []),
-  ],
+};
+
+export const WrappingText: Story = {
+  args: {
+    messages: [{ type: 'text', text: 'consecteturaconsecteturaconsecteturaconsecteturaconsecteturaconsectetura' }],
+  },
+};
+
+export const MultilineText: Story = {
+  args: {
+    messages: [TEXT_MESSAGE],
+  },
+};
+
+export const ActionableText: Story = {
+  args: {
+    messages: [TEXT_MESSAGE, TEXT_MESSAGE, TEXT_MESSAGE],
+    isLast: true,
+    actions: [
+      { request: {} as any, name: 'Button One' },
+      { request: {} as any, name: 'Button Two' },
+      { request: {} as any, name: 'Button Three' },
+    ],
+  },
+};
+
+export const Image: Story = {
+  args: {
+    messages: [{ type: 'image', url: CARD_IMAGE }],
+  },
+};
+
+export const Card: Story = {
+  args: {
+    messages: [CARD],
+  },
+};
+
+export const ActionableCard: Story = {
+  args: {
+    messages: [
+      {
+        ...CARD,
+        actions: [
+          { request: {} as any, name: 'First Button' },
+          { request: {} as any, name: 'Second Button' },
+          { request: {} as any, name: 'Third Button' },
+        ],
+      },
+    ],
+  },
+};
+
+export const Carousel: Story = {
+  args: {
+    messages: [
+      {
+        type: 'carousel',
+        cards: [
+          {
+            title: 'First Card',
+            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem voluptas perspiciatis est quis dolores!',
+            image: CARD_IMAGE,
+            actions: [
+              { request: {} as any, name: 'First Button' },
+              { request: {} as any, name: 'Second Button' },
+              { request: {} as any, name: 'Third Button' },
+            ],
+          },
+          {
+            title: 'Second Card',
+            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+            image: CARD_IMAGE,
+            actions: [
+              { request: {} as any, name: 'First Button' },
+              { request: {} as any, name: 'Second Button' },
+            ],
+          },
+          {
+            title: 'Third Card',
+            description: 'Lorem ipsum dolor sit amet',
+            image: CARD_IMAGE,
+          },
+        ],
+      },
+    ],
+  },
+};
+
+export const Multiple: Story = {
+  args: {
+    messages: [
+      CARD, TEXT_MESSAGE,
+    ],
+  },
+};
+
+export const MultipleWithFeedback: Story = {
+  args: {
+    feedback: {
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+      onClick: () => { },
+    },
+    messages: [
+      CARD, TEXT_MESSAGE,
+    ],
+  },
 };

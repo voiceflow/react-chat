@@ -1,8 +1,9 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import Tooltip from '.';
 
-export default {
+type Story = StoryObj<typeof Tooltip>;
+const meta: Meta<typeof Tooltip> = {
   title: 'Components/Tooltip',
   component: Tooltip,
   argTypes: {
@@ -16,21 +17,24 @@ export default {
   args: {
     children: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
   },
-} as ComponentMeta<typeof Tooltip>;
-
-const Template: ComponentStory<typeof Tooltip> = (args) => <Tooltip {...args} />;
-
-export const LeftOrientation = Template.bind({});
-LeftOrientation.args = {
-  orientation: 'left',
 };
 
-export const RightOrientation = Template.bind({});
-RightOrientation.args = {
-  orientation: 'right',
+export default meta;
+
+export const LeftOrientation: Story = {
+  args: {
+    orientation: 'left',
+  },
+}
+
+export const RightOrientation: Story = {
+  args: {
+    orientation: 'right',
+  },
 };
 
-export const Actionable = Template.bind({});
-Actionable.args = {
-  label: 'Action Label',
+export const Actionable: Story = {
+  args: {
+    label: 'Action Label',
+  },
 };

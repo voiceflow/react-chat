@@ -1,8 +1,10 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import Message from '.';
 
-export default {
+type Story = StoryObj<typeof Message>;
+
+const meta: Meta<typeof Message> = {
   title: 'Core/Message',
   component: Message,
   argTypes: {
@@ -27,30 +29,34 @@ export default {
   args: {
     children: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
   },
-} as ComponentMeta<typeof Message>;
-
-const Template: ComponentStory<typeof Message> = (args) => <Message {...args} />;
-
-export const SystemChat = Template.bind({});
-SystemChat.args = {
-  variant: Message.Variant.CHAT,
-  from: 'system',
 };
 
-export const UserChat = Template.bind({});
-UserChat.args = {
-  ...SystemChat.args,
-  from: 'user',
+export default meta;
+
+export const SystemChat: Story = {
+  args: {
+    variant: Message.Variant.CHAT,
+    from: 'system',
+  },
+}
+
+export const UserChat: Story = {
+  args: {
+    ...SystemChat.args,
+    from: 'user',
+  },
 };
 
-export const DebugLeft = Template.bind({});
-DebugLeft.args = {
-  variant: Message.Variant.DEBUG,
-  orientation: 'left',
+export const DebugLeft: Story = {
+  args: {
+    variant: Message.Variant.DEBUG,
+    orientation: 'left',
+  },
 };
 
-export const DebugRight = Template.bind({});
-DebugRight.args = {
-  ...DebugLeft.args,
-  orientation: 'right',
+export const DebugRight: Story = {
+  args: {
+    ...DebugLeft.args,
+    orientation: 'right',
+  },
 };
