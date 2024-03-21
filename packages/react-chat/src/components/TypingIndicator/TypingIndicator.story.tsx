@@ -1,15 +1,16 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import TypingIndicator from '.';
 
-export default {
+type Story = StoryObj<typeof TypingIndicator>;
+const meta: Meta<typeof TypingIndicator> = {
   title: 'Components/TypingIndicator',
   component: TypingIndicator,
   parameters: {
     controls: { hideNoControlsWarning: true },
   },
-} as ComponentMeta<typeof TypingIndicator>;
+};
 
-const Template: ComponentStory<typeof TypingIndicator> = (args) => <TypingIndicator {...args} />;
+export default meta;
 
-export const Default = Template.bind({});
+export const Default: Story = {};

@@ -1,8 +1,9 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import Button from '.';
 
-export default {
+type Story = StoryObj<typeof Button>;
+const meta: Meta<typeof Button> = {
   title: 'Core/Button',
   component: Button,
   argTypes: {
@@ -21,29 +22,33 @@ export default {
   args: {
     children: 'Button Label',
   },
-} as ComponentMeta<typeof Button>;
-
-const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
-
-export const PrimaryInfo = Template.bind({});
-PrimaryInfo.args = {
-  variant: Button.Variant.PRIMARY,
-  type: 'info',
 };
 
-export const PrimaryWarn = Template.bind({});
-PrimaryWarn.args = {
-  ...PrimaryInfo.args,
-  type: 'warn',
+export default meta;
+
+export const PrimaryInfo: Story = {
+  args: {
+    variant: Button.Variant.PRIMARY,
+    type: 'info',
+  },
 };
 
-export const PrimarySubtle = Template.bind({});
-PrimarySubtle.args = {
-  ...PrimaryInfo.args,
-  type: 'subtle',
+export const PrimaryWarn: Story = {
+  args: {
+    variant: Button.Variant.PRIMARY,
+    type: 'warn',
+  },
 };
 
-export const Secondary = Template.bind({});
-Secondary.args = {
-  variant: Button.Variant.SECONDARY,
+export const PrimarySubtle: Story = {
+  args: {
+    variant: Button.Variant.PRIMARY,
+    type: 'subtle',
+  },
+};
+
+export const Secondary: Story = {
+  args: {
+    variant: Button.Variant.SECONDARY,
+  },
 };

@@ -1,8 +1,12 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
+
+import { MOCK_IMAGE } from '@/fixtures';
 
 import Card from '.';
 
-export default {
+type Story = StoryObj<typeof Card>;
+
+const meta: Meta<typeof Card> = {
   title: 'Components/Card',
   component: Card,
   args: {
@@ -11,23 +15,24 @@ export default {
     description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa et aliquam sunt necessitatibus molestiae amet ipsum ut.',
     actions: [],
   },
-} as ComponentMeta<typeof Card>;
+};
+export default meta;
 
-const Template: ComponentStory<typeof Card> = (args) => <Card {...args} />;
+export const Simple: Story = {};
 
-export const Simple = Template.bind({});
-
-export const WithImage = Template.bind({});
-WithImage.args = {
-  image: 'https://source.unsplash.com/featured/248x150',
+export const WithImage: Story = {
+  args: {
+    image: MOCK_IMAGE,
+  },
 };
 
-export const Actionable = Template.bind({});
-Actionable.args = {
-  ...WithImage.args,
-  actions: [
-    { request: {} as any, name: 'First Button' },
-    { request: {} as any, name: 'Second Button' },
-    { request: {} as any, name: 'Third Button' },
-  ],
+export const Actionable: Story = {
+  args: {
+    ...WithImage.args,
+    actions: [
+      { request: {} as any, name: 'First Button' },
+      { request: {} as any, name: 'Second Button' },
+      { request: {} as any, name: 'Third Button' },
+    ],
+  },
 };

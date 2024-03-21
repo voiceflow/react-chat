@@ -38,19 +38,19 @@
     "access": "public"
   },
   "scripts": {
+    "//": "Scripts to make binaries available to workspaces",
     "build": "turbo run build",
     "build:all": "yarn build",
     "dev": "turbo run dev --parallel",
+    "g:run-p": "cd $INIT_CWD && run-p",
+    "g:tsc": "cd $INIT_CWD && tsc",
     "lint": "turbo run lint",
     "lint:fix": "turbo run lint:fix",
     "lint:report": "turbo run lint:report",
     "prepare": "husky install",
     "setup_github_pages": "./scripts/setup_github_pages.sh",
     "test:dependencies": "depcheck && turbo run test:dependencies",
-    "test:unit": "turbo run test:unit",
-    "//": "Scripts to make binaries available to workspaces",
-    "g:run-p": "cd $INIT_CWD && run-p",
-    "g:tsc": "cd $INIT_CWD && tsc"
+    "test:unit": "turbo run test:unit"
   },
   "volta": {
     "node": "20.10.0",

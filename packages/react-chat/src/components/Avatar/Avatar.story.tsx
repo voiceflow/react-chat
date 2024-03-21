@@ -1,10 +1,12 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import { VF_ICON } from '@/fixtures';
 
 import Avatar from '.';
 
-export default {
+type Story = StoryObj<typeof Avatar>;
+
+const meta: Meta<typeof Avatar> = {
   title: 'Core/Avatar',
   component: Avatar,
   argTypes: {
@@ -17,16 +19,17 @@ export default {
   args: {
     avatar: VF_ICON,
   },
-} as ComponentMeta<typeof Avatar>;
+};
+export default meta;
 
-const Template: ComponentStory<typeof Avatar> = (args) => <Avatar {...args} />;
-
-export const Small = Template.bind({});
-Small.args = {
-  size: 'small',
+export const Small: Story = {
+  args: {
+    size: 'small',
+  },
 };
 
-export const Large = Template.bind({});
-Large.args = {
-  size: 'large',
+export const Large: Story = {
+  args: {
+    size: 'large',
+  },
 };

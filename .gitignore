@@ -31,3 +31,5 @@ nyc_coverage*
 .turbo
 
 .env.*
+
+build-storybook.log

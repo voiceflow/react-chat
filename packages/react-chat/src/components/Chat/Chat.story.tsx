@@ -1,55 +1,67 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import SystemResponse, { SystemResponseProps } from '@/components/SystemResponse';
-import * as SystemResponseStory from '@/components/SystemResponse/SystemResponse.story';
 import UserResponse, { UserResponseProps } from '@/components/UserResponse';
-import * as UserResponseStory from '@/components/UserResponse/UserResponse.story';
-import { VF_ICON } from '@/fixtures';
+import { MOCK_IMAGE, VF_ICON } from '@/fixtures';
 
 import Chat from '.';
 
-export default {
+const meta: Meta<typeof Chat> = {
   title: 'Templates/Chat',
   component: Chat,
   args: {
+    isLoading: false,
+    actions: [],
     title: 'Assistant Name',
+    withWatermark: true,
     image: VF_ICON,
     description: "Voiceflow's virtual assistant is here to help.",
     startTime: Date.now(),
-    isOpen: true,
+    hasEnded: false,
   },
-} as ComponentMeta<typeof Chat>;
+};
 
-const Template: ComponentStory<typeof Chat> = (args) => <Chat {...args} />;
-const SystemResponseTemplate = (args: Partial<SystemResponseProps>) => (
-  <SystemResponse {...(SystemResponseStory.default.args as SystemResponseProps)} {...args} />
+export default meta;
+
+type Story = StoryObj<typeof Chat>;
+
+const SystemResponseTemplate = ({ messages, ...args }: Partial<SystemResponseProps>) => {
+  return <SystemResponse {...args} messages={messages as any} avatar={VF_ICON} timestamp={Date.now()} />;
+};
+
+const UserResponseTemplate = ({ message, ...args }: Partial<UserResponseProps>) => (
+  <UserResponse timestamp={Date.now()} message={message || 'Lorem ipsum dolor'} {...args} />
 );
-const UserResponseTemplate = (args: Partial<UserResponseProps>) => (
-  <UserResponse {...(UserResponseStory.default.args as UserResponseProps)} {...args} />
-);
 
-export const Empty = Template.bind({});
+export const Empty: Story = {};
 
-export const Exhaustive = Template.bind({});
-Exhaustive.args = {
-  children: (
-    <>
-      <SystemResponseTemplate {...SystemResponseStory.SimpleText.args} />
-      <UserResponseTemplate {...UserResponseStory.Simple.args} />
-      <SystemResponseTemplate {...SystemResponseStory.MultilineText.args} />
-      <UserResponseTemplate {...UserResponseStory.Multiline.args} />
-      <SystemResponseTemplate {...SystemResponseStory.WrappingText.args} />
-      <UserResponseTemplate {...UserResponseStory.Wrapping.args} />
-      <SystemResponseTemplate {...SystemResponseStory.Image.args} />
-      <UserResponseTemplate {...UserResponseStory.Debug.args} />
-      <SystemResponseTemplate {...SystemResponseStory.Card.args} />
-      <UserResponseTemplate {...UserResponseStory.DebugReason.args} />
-      <SystemResponseTemplate {...SystemResponseStory.ActionableCard.args} />
-      <UserResponseTemplate {...UserResponseStory.ActionableDebugReason.args} />
-      <SystemResponseTemplate {...SystemResponseStory.Multiple.args} />
-
-      <UserResponseTemplate {...UserResponseStory.ActionableDebugReason.args} />
-      <SystemResponseTemplate {...SystemResponseStory.MultipleWithFeedback.args} />
-    </>
-  ),
+export const Exhaustive: Story = {
+  render: (args) => {
+    return (
+      <Chat {...args}>
+        <SystemResponseTemplate messages={[{ type: 'text', text: 'Lorem ipsum dolor' }]} />
+        <SystemResponseTemplate messages={[{ type: 'image', url: MOCK_IMAGE }]} />
+        <UserResponseTemplate />
+        <SystemResponseTemplate
+          messages={[
+            {
+              type: 'text',
+              text: 'Lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor consecteturaconsect turaconse lorem teturaconsecteturaconsecteturaconsectetura consectetura',
+            },
+          ]}
+        />
+        <UserResponseTemplate message="Lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor consecteturaconsect turaconse lorem teturaconsecteturaconsecteturaconsectetura consecteturac onsecteturaconsecteturaconsecteturaco nsecteturaconsectetura" />
+        <SystemResponseTemplate
+          messages={[
+            {
+              type: 'card',
+              title: 'Card Message',
+              description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem voluptas perspiciatis est quis dolores!',
+              image: MOCK_IMAGE,
+            },
+          ]}
+        />
+      </Chat>
+    );
+  },
 };
