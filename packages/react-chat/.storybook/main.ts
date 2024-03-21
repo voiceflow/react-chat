@@ -1,17 +1,15 @@
-import { StorybookViteConfig } from '@storybook/builder-vite';
+import { StorybookConfig } from '@storybook/react-vite';
 import { mergeConfig } from 'vite';
+import svgr from 'vite-plugin-svgr';
 
 import { createPlugins } from '../vite.config';
 
-const config: StorybookViteConfig = {
-  stories: ['../src/**/*.story.mdx', '../src/**/*.story.@(js|jsx|ts|tsx)', '../iframe/**/*.story.@(js|jsx|ts|tsx)'],
+const config: StorybookConfig = {
+  stories: ['../src/**/*.story.@(js|jsx|ts|tsx)'],
   addons: ['@storybook/addon-links', '@storybook/addon-essentials', '@storybook/addon-interactions', 'storybook-dark-mode'],
-  framework: '@storybook/react',
+  framework: '@storybook/react-vite',
   core: {
     builder: '@storybook/builder-vite',
-  },
-  features: {
-    storyStoreV7: true,
   },
   typescript: {
     check: true,
@@ -27,11 +25,14 @@ const config: StorybookViteConfig = {
     },
   },
 
-  viteFinal: (config) =>
-    mergeConfig(config, {
-      base: '/react-chat/',
-      plugins: createPlugins(__dirname),
-    }),
+  viteFinal: (config) => {
+    return mergeConfig(config, {
+      plugins: [...createPlugins(__dirname), svgr()],
+      define: {
+        __USE_SHADOW_ROOT__: false,
+      },
+    });
+  },
 };
 
 export default config;

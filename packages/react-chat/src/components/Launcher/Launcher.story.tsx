@@ -1,21 +1,24 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import Launcher from '.';
 
-export default {
+type Story = StoryObj<typeof Launcher>;
+
+const meta: Meta<typeof Launcher> = {
   title: 'Components/Launcher',
   component: Launcher,
   parameters: {
     controls: { hideNoControlsWarning: true },
   },
-} as ComponentMeta<typeof Launcher>;
+};
 
-const Template: ComponentStory<typeof Launcher> = (args) => <Launcher {...args} />;
+export default meta;
 
-export const Default = Template.bind({});
+export const Default: Story = {};
 
-export const IconOverride = Template.bind({});
-IconOverride.args = {
-  // eslint-disable-next-line no-secrets/no-secrets
-  image: 'https://cm4-production-assets.s3.amazonaws.com/1668625107157-vf-nobg.png',
+export const IconOverride: Story = {
+  args: {
+    // eslint-disable-next-line no-secrets/no-secrets
+    image: 'https://cm4-production-assets.s3.amazonaws.com/1668625107157-vf-nobg.png',
+  },
 };

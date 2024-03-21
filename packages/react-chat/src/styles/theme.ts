@@ -83,7 +83,7 @@ export const getDefaultTheme = () => ({
   },
 });
 
-export const stitches = createStitches(getDefaultTheme());
+export const stitches = createStitches(getDefaultTheme(), __USE_SHADOW_ROOT__);
 export const { styled, keyframes, theme, createTheme } = stitches;
 
 interface ThemeOverrides {

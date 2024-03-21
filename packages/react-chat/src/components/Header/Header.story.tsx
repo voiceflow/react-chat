@@ -1,11 +1,11 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import Chat from '@/components/Chat';
 import { VF_ICON } from '@/fixtures';
 
 import Header from '.';
 
-export default {
+const meta: Meta<typeof Header> = {
   title: 'Components/Chat/Header',
   component: Header,
   args: {
@@ -13,17 +13,21 @@ export default {
     image: VF_ICON,
     actions: [],
   },
-} as ComponentMeta<typeof Header>;
+  render: (args) => (
+    <Chat.Container>
+      <Header {...args} />
+    </Chat.Container>
+  ),
+};
 
-const Template: ComponentStory<typeof Header> = (args) => (
-  <Chat.Container>
-    <Header {...args} />
-  </Chat.Container>
-);
+export default meta;
 
-export const Simple = Template.bind({});
+type Story = StoryObj<typeof Header>;
 
-export const Actionable = Template.bind({});
-Actionable.args = {
-  actions: [{ svg: 'minus' }, { svg: 'close' }],
+export const Base: Story = {};
+
+export const Actionable: Story = {
+  args: {
+    actions: [{ svg: 'minus' }, { svg: 'close' }],
+  },
 };
