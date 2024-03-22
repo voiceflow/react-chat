@@ -4,9 +4,12 @@ import { ButtonVariant } from './constants';
 import { Container, tag } from './styled';
 
 export const PrimaryButton = styled(tag(Container, ButtonVariant.PRIMARY), {
-  height: '$md',
+  minHeight: '$md',
   color: '$white',
   trans: ['background-color'],
+  padding: '10px 14px',
+  boxSizing: 'border-box',
+  whiteSpace: 'break-spaces',
 
   variants: {
     type: {

@@ -33,3 +33,4 @@ nyc_coverage*
 .env.*
 
 build-storybook.log
+storybook-static/

@@ -51,6 +51,7 @@ export const Header = styled(tag('h3', 'header'), {
   color: '$black',
   wordBreak: 'break-word',
   maxWidth: '100%',
+  whiteSpace: 'break-spaces',
 });
 
 export const Description = styled(tag('p', 'description'), {

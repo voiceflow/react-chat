@@ -38,10 +38,10 @@ const MULTIPLE_CARDS = [
     image: IMAGE,
   },
   {
-    title: 'Third Card',
+    title: 'Third Card with a long title that wraps',
     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
     actions: [
-      { request: {} as any, name: 'Fourth Button' },
+      { request: {} as any, name: 'Fourth Button with a long label that wraps' },
       { request: {} as any, name: 'Fifth Button' },
     ],
   },
