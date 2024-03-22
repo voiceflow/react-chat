@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.56.4](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.56.3...@voiceflow/react-chat@1.56.4) (2024-03-22)
+
+### Bug Fixes
+
+* card title wrapping(DX-1132) ([#129](https://github.com/voiceflow/react-chat/issues/129)) ([05b0125](https://github.com/voiceflow/react-chat/commit/05b012508c58ea4cd239c1efaea6a406bfcd17f3))
+
 ## [1.56.3](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.56.2...@voiceflow/react-chat@1.56.3) (2024-03-21)
 
 ### Bug Fixes
