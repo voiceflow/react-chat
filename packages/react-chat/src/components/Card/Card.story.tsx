@@ -37,7 +37,6 @@ export const Actionable: Story = {
   },
 };
 
-
 export const WithLongLabels: Story = {
   args: {
     ...WithImage.args,
