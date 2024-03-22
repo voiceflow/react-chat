@@ -5,7 +5,7 @@ import { useRef } from 'react';
 import Avatar from '@/components/Avatar';
 import Chat from '@/components/Chat';
 import SystemResponse from '@/components/SystemResponse';
-import { VF_ICON } from '@/fixtures';
+import { MOCK_IMAGE, VF_ICON } from '@/fixtures';
 import { ChatWidget } from '@/views';
 
 import Carousel from '.';
@@ -18,7 +18,7 @@ type Story = StoryObj<typeof Carousel>;
 
 export default meta;
 
-const IMAGE = 'https://source.unsplash.com/featured/248x150';
+const IMAGE = MOCK_IMAGE;
 const FIRST_CARD = {
   title: 'First Card',
   description: 'Lorem ipsum dolor sit amet',

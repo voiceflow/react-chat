@@ -49,7 +49,8 @@ export const Header = styled(tag('h3', 'header'), {
   margin: '0 0 $1 0',
   typo: { weight: '$2' },
   color: '$black',
-  wordBreak: 'break-all',
+  wordBreak: 'break-word',
+  maxWidth: '100%',
 });
 
 export const Description = styled(tag('p', 'description'), {
