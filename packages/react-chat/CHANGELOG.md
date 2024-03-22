@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.56.5](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.56.4...@voiceflow/react-chat@1.56.5) (2024-03-22)
+
+### Bug Fixes
+
+* button text overflow ([#117](https://github.com/voiceflow/react-chat/issues/117)) ([d7984ed](https://github.com/voiceflow/react-chat/commit/d7984ed8e94aae09ed144fc26e346512a7dfcfac))
+
 ## [1.56.4](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.56.3...@voiceflow/react-chat@1.56.4) (2024-03-22)
 
 ### Bug Fixes
