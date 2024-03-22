@@ -1,0 +1,5 @@
+import{C as o}from"./index.5d897ad3.js";import{j as n}from"./jsx-runtime.264ec44b.js";import"./index.484a71f2.js";import"./index.25ad6385.js";import"./index.53a044d3.js";import"./index.a988b399.js";import"./top-caret.6b52ad3c.js";import"./tag.acfbb551.js";import"./animation.fdae6ac9.js";import"./index.5216862f.js";import"./variants.1b0b2ced.js";import"./index.85e49540.js";import"./functional.2e4761c3.js";const D={title:"Components/Chat/ChatInput",component:o,args:{value:"",placeholder:""},parameters:{controls:{include:["value","placeholder","onValueChange"]}},render:l=>n.exports.jsx(o.Controlled,{...l})},e={},r={args:{placeholder:"Message\u2026"}};var a,t,s;e.parameters={...e.parameters,docs:{...(a=e.parameters)==null?void 0:a.docs,source:{originalSource:"{}",...(s=(t=e.parameters)==null?void 0:t.docs)==null?void 0:s.source}}};var p,m,c;r.parameters={...r.parameters,docs:{...(p=r.parameters)==null?void 0:p.docs,source:{originalSource:`{
+  args: {
+    placeholder: 'Message\u2026'
+  }
+}`,...(c=(m=r.parameters)==null?void 0:m.docs)==null?void 0:c.source}}};export{e as Default,r as Placeholder,D as default};
