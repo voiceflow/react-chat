@@ -6,13 +6,15 @@ import { RuntimeState, Settings, useRuntimeState } from './useRuntimeState';
 export const RuntimeStateAPIContext = createContext<RuntimeState['api']>({} as any);
 export const RuntimeStateContext = createContext<RuntimeState['state']>({} as any);
 
-interface RuntimeProviderProps extends React.PropsWithChildren, Settings {}
+interface RuntimeProviderProps extends React.PropsWithChildren, Settings {
+  extend?: (runtime: RuntimeState['api']) => RuntimeState['api'];
+}
 
-export const RuntimeProvider = ({ children, assistant, config }: RuntimeProviderProps) => {
-  const store = useRuntimeState({ assistant, config });
+export const RuntimeProvider = ({ children, extend, ...settings }: RuntimeProviderProps) => {
+  const store = useRuntimeState(settings);
 
   // api is a static object, so we can use useMemo to prevent unnecessary re-renders
-  const api = useMemo(() => store.api, []);
+  const api = useMemo(() => extend?.(store.api) ?? store.api, []);
 
   return (
     <RuntimeStateAPIContext.Provider value={api}>

@@ -22,9 +22,9 @@ export const useResolveAssistantStyleSheet = (assistant?: AssistantOptions, shad
   const [isStyleSheetResolved, setStyleSheetResolved] = useState(false);
 
   useEffect(() => {
-    if (!assistant || isStyleSheetResolved || !shadowRoot) return;
+    if (!assistant || isStyleSheetResolved) return;
 
-    if (!assistant.stylesheet) {
+    if (!assistant.stylesheet || !shadowRoot) {
       setStyleSheetResolved(true);
       return;
     }
