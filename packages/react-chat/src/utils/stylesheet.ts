@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { AssistantOptions } from '@/dtos/AssistantOptions.dto';
 
 // used to add stylesheets dynamically, resolves when loaded
-export const addStyleSheetURL = async (url: string, shadowRoot: ShadowRoot) => {
+export const addStyleSheetURL = async (url: string, root: Node) => {
   const link = document.createElement('link');
   const load = new Promise((resolve, reject) => {
     link.onload = resolve;
@@ -12,7 +12,7 @@ export const addStyleSheetURL = async (url: string, shadowRoot: ShadowRoot) => {
 
   link.rel = 'stylesheet';
   link.href = url;
-  shadowRoot.appendChild(link);
+  root.appendChild(link);
 
   await load;
 };
@@ -24,7 +24,7 @@ export const useResolveAssistantStyleSheet = (assistant?: AssistantOptions, shad
   useEffect(() => {
     if (!assistant || isStyleSheetResolved) return;
 
-    if (!assistant.stylesheet || !shadowRoot) {
+    if (!assistant.stylesheet) {
       setStyleSheetResolved(true);
       return;
     }
@@ -33,7 +33,7 @@ export const useResolveAssistantStyleSheet = (assistant?: AssistantOptions, shad
 
     // inject stylesheet url
     (async () => {
-      await addStyleSheetURL(stylesheet, shadowRoot!).catch((error) => {
+      await addStyleSheetURL(stylesheet, shadowRoot ?? document.head).catch((error) => {
         console.error(`failed to load stylesheet: ${assistant.stylesheet}`);
         console.error(error);
       });
