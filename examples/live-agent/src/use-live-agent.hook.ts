@@ -21,6 +21,23 @@ const createTurn = <Type extends TurnType>(type: Type) => ({
   timestamp: Date.now(),
 });
 
+const extractHistory = (api: RuntimeState['api']) =>
+  api.getTurns().flatMap((turn) =>
+    match(turn)
+      .with({ type: TurnType.USER }, (turn) => ({ author: 'user', text: turn.message }))
+      .with({ type: TurnType.SYSTEM }, (turn) =>
+        turn.messages.flatMap((message) =>
+          match(message)
+            .with({ type: 'text' }, (message) => ({
+              author: 'bot',
+              text: typeof message.text === 'string' ? message.text : serializeToText(message.text),
+            }))
+            .otherwise(() => [])
+        )
+      )
+      .exhaustive()
+  );
+
 export const useLiveAgent = (emitter: Emitter<LiveAgentEvents>) => {
   return useMemo(() => {
     const client = new FetchClient({ baseURL: 'http://localhost:9099' });
@@ -30,24 +47,6 @@ export const useLiveAgent = (emitter: Emitter<LiveAgentEvents>) => {
 
     return {
       extend: (api: RuntimeState['api']): RuntimeState['api'] => {
-        const extractHistory = () => {
-          return api.getTurns().flatMap((turn) =>
-            match(turn)
-              .with({ type: TurnType.USER }, (turn) => ({ author: 'user', text: turn.message }))
-              .with({ type: TurnType.SYSTEM }, (turn) =>
-                turn.messages.flatMap((message) =>
-                  match(message)
-                    .with({ type: 'text' }, (message) => ({
-                      author: 'bot',
-                      text: typeof message.text === 'string' ? message.text : serializeToText(message.text),
-                    }))
-                    .otherwise(() => [])
-                )
-              )
-              .exhaustive()
-          );
-        };
-
         const addSystemTurn = (message: string) =>
           api.addTurn({
             ...createTurn(TurnType.SYSTEM),
@@ -104,7 +103,7 @@ export const useLiveAgent = (emitter: Emitter<LiveAgentEvents>) => {
 
           isEnabled = true;
 
-          const history = extractHistory();
+          const history = extractHistory(api);
           const prevUserID = sessionStorage.getItem(SESSION_USER_ID_KEY);
 
           const { userID, conversationID } = await client
