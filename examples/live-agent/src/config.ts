@@ -8,7 +8,6 @@ export const ASSISTANT: AssistantOptions = AssistantOptions.parse({
   description: 'Demonstration of integrating Voiceflow with Intercom.',
   image: IMAGE,
   avatar: AVATAR,
-  extensions: [],
 });
 
 export const CONFIG = ChatConfig.parse({
