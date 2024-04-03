@@ -27,7 +27,7 @@ echo 'VF_PROJECT_ID=XXX` > .env.local
 The demo app will be available locally at <http://127.0.0.1:3006>.
 
 ```sh
-yarn dev
+yarn dev:app
 ```
 
 You will also need to run the WebSocket server located in `server/` to interact with Intercom's APIs.
@@ -35,6 +35,14 @@ See the [README](server/README.md) for more information.
 
 ```sh
 yarn dev:server
+```
+
+### Run Simultaneously
+
+For convenience you can run both the chat widget and the WebSocket server at the same time with this command.
+
+```sh
+yarn dev
 ```
 
 <img width="405" alt="Screenshot 2024-04-03 at 12 32 06" src="https://github.com/voiceflow/react-chat/assets/3784470/0674b429-fe12-4e73-8e65-a0d40200ee3a">

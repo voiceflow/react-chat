@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc -p tsconfig.json --noEmit",
-    "dev": "vite",
+    "dev": "yarn g:run-p dev:app dev:server",
+    "dev:app": "vite",
     "dev:server": "cd server && yarn dev"
   },
   "prettier": "@voiceflow/prettier-config",
@@ -29,6 +30,6 @@
     "@voiceflow/prettier-config": "1.3.0",
     "eslint": "8.42.0",
     "prettier": "2.8.8",
-    "vite": "3.2.2"
+    "vite": "4.3.9"
   }
 }
