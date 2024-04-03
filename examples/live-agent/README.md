@@ -37,7 +37,7 @@ See the [README](server/README.md) for more information.
 yarn dev:server
 ```
 
-<img width="442" alt="Screenshot 2023-06-12 at 3 53 10 AM" src="https://github.com/voiceflow/demo-react-chat/assets/3784470/417199c3-317f-4722-9b5f-e27fff78d6e8">
+<img width="405" alt="Screenshot 2024-04-03 at 12 32 06" src="https://github.com/voiceflow/react-chat/assets/3784470/0674b429-fe12-4e73-8e65-a0d40200ee3a">
 
 ## Invoke Custom Actions
 
