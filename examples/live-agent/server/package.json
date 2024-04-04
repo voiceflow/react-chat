@@ -12,7 +12,7 @@
     "express-ws": "5.0.2",
     "intercom-client": "4.0.0",
     "string-strip-html": "13.4.2",
-    "ts-pattern": "5.0.4",
+    "ts-pattern": "4.3.0",
     "ws": "8.13.0"
   },
   "devDependencies": {
