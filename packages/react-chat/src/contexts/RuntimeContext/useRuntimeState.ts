@@ -1,5 +1,6 @@
 import { BaseRequest } from '@voiceflow/base-types';
 import { isTextRequest } from '@voiceflow/base-types/build/cjs/request';
+import { TraceDeclaration } from '@voiceflow/sdk-runtime';
 import cuid from 'cuid';
 import { useState } from 'react';
 
@@ -12,6 +13,7 @@ import { handleActions } from '@/utils/actions';
 import { broadcast, BroadcastType } from '@/utils/broadcast';
 import { getSession, saveSession } from '@/utils/session';
 
+import { RuntimeMessage } from './messages';
 import { EffectExtensions } from './traces/EffectExtensions.trace';
 import { NoReply } from './traces/NoReply.trace';
 import { ResponseExtensions } from './traces/ResponseExtensions.trace';
@@ -21,6 +23,7 @@ import { createContext, useRuntimeAPI } from './useRuntimeAPI';
 export interface Settings {
   assistant: AssistantOptions;
   config: ChatConfig;
+  traceHandlers?: TraceDeclaration<RuntimeMessage, any>[];
 }
 
 const DEFAULT_SESSION_PARAMS = {
@@ -28,7 +31,7 @@ const DEFAULT_SESSION_PARAMS = {
   startTime: Date.now(),
 };
 
-export const useRuntimeState = ({ assistant, config }: Settings) => {
+export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) => {
   const [isOpen, setOpen] = useState(false);
 
   const [session, setSession, sessionRef] = useStateRef<Required<SessionOptions>>(() => ({
@@ -44,7 +47,12 @@ export const useRuntimeState = ({ assistant, config }: Settings) => {
   const runtime = useRuntimeAPI({
     ...config,
     ...session,
-    traceHandlers: [NoReply(setNoReplyTimeout), ...EffectExtensions(assistant.extensions), ...ResponseExtensions(assistant.extensions)],
+    traceHandlers: [
+      NoReply(setNoReplyTimeout),
+      ...EffectExtensions(assistant.extensions),
+      ...ResponseExtensions(assistant.extensions),
+      ...(traceHandlers ?? []),
+    ],
   });
 
   // status management
@@ -127,6 +135,8 @@ export const useRuntimeState = ({ assistant, config }: Settings) => {
     setOpen(false);
   };
 
+  const getTurns = () => sessionRef.current.turns;
+
   return {
     state: {
       session,
@@ -144,6 +154,7 @@ export const useRuntimeState = ({ assistant, config }: Settings) => {
       setStatus,
       isStatus,
       reset,
+      getTurns,
 
       // these are meant to be static, so bundling them with the API
       assistant,

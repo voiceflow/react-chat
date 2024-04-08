@@ -1,7 +1,6 @@
 import { Trace } from '@voiceflow/base-types';
 import React, { useContext, useMemo, useState } from 'react';
 
-import { ChatPosition } from '@/common';
 import Launcher from '@/components/Launcher';
 import Proactive from '@/components/Proactive';
 import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts';
@@ -12,7 +11,7 @@ import ChatWindow from '@/views/ChatWindow';
 import { ChatContainer, Container, LauncherContainer } from './styled';
 
 interface ChatWidgetProps extends React.PropsWithChildren {
-  shadowRoot: ShadowRoot;
+  shadowRoot?: ShadowRoot;
   chatAPI: VoiceflowChat | undefined;
   ready?: () => void;
 }
@@ -44,8 +43,8 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, ready }) =
     ready
   );
 
-  const side = assistant?.position ?? ChatPosition.RIGHT;
-  const position = { bottom: assistant?.spacing.bottom, [side]: assistant?.spacing.side };
+  const side = assistant.position;
+  const position = { bottom: assistant.spacing.bottom, [side]: assistant.spacing.side };
 
   const isStyleSheetResolved = useResolveAssistantStyleSheet(assistant, shadowRoot);
 
@@ -53,12 +52,10 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, ready }) =
 
   return (
     <Container withChat={isOpen} isHidden={isHidden} className={theme}>
-      {!!assistant && (
-        <LauncherContainer style={position}>
-          <Proactive side={side} messages={proactiveMessages} />
-          <Launcher onClick={open} image={assistant.launcher} />
-        </LauncherContainer>
-      )}
+      <LauncherContainer style={position}>
+        <Proactive side={side} messages={proactiveMessages} />
+        <Launcher onClick={open} image={assistant.launcher} />
+      </LauncherContainer>
       <ChatContainer style={isMobile ? {} : position}>
         <ChatWindow />
       </ChatContainer>

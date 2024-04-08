@@ -1,0 +1,35 @@
+{
+  "name": "@voiceflow-example/live-agent",
+  "private": true,
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "build": "yarn g:tsc -p tsconfig.json --noEmit",
+    "dev": "yarn g:run-p dev:app dev:server",
+    "dev:app": "vite",
+    "dev:server": "cd server && yarn dev"
+  },
+  "prettier": "@voiceflow/prettier-config",
+  "dependencies": {
+    "@voiceflow/exception": "1.4.0",
+    "@voiceflow/fetch": "1.5.2",
+    "@voiceflow/react-chat": "workspace:*",
+    "@voiceflow/slate-serializer": "1.4.2",
+    "nanoevents": "8.0.0",
+    "react": "18.2.0",
+    "react-calendar": "4.3.0",
+    "react-dom": "18.2.0",
+    "styled-components": "6.0.3",
+    "ts-pattern": "4.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "20.2.5",
+    "@types/react": "18.2.8",
+    "@types/react-dom": "18.2.4",
+    "@voiceflow/eslint-config": "7.1.0",
+    "@voiceflow/prettier-config": "1.3.0",
+    "eslint": "8.42.0",
+    "prettier": "2.8.8",
+    "vite": "4.3.9"
+  }
+}

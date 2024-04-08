@@ -12,14 +12,14 @@ const ANIMATION_DURATION = 150;
 export const createTransition = (properties: Array<keyof CSSPropertiesHyphen>, duration = ANIMATION_DURATION) =>
   properties.map((property) => `${property} ${duration}ms ease`).join(', ');
 
-export type CSS = BaseCSS<typeof stitches['config']>;
+export type CSS = BaseCSS<(typeof stitches)['config']>;
 
 type Token<T extends Record<string, any>> = `$${StringKeyOf<T>}`;
 
 export interface FontOptions {
-  size?: BaseCSS['fontSize'] | Token<typeof Font['SIZES']>;
-  weight?: BaseCSS['fontWeight'] | Token<typeof Font['WEIGHTS']>;
-  height?: BaseCSS['lineHeight'] | Token<typeof Font['LINE_HEIGHTS']>;
+  size?: BaseCSS['fontSize'] | Token<(typeof Font)['SIZES']>;
+  weight?: BaseCSS['fontWeight'] | Token<(typeof Font)['WEIGHTS']>;
+  height?: BaseCSS['lineHeight'] | Token<(typeof Font)['LINE_HEIGHTS']>;
 }
 
 export const getDefaultTheme = () => ({

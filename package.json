@@ -57,6 +57,8 @@
     "yarn": "3.2.1"
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "examples/*",
+    "examples/live-agent/server"
   ]
 }
