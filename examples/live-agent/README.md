@@ -26,18 +26,8 @@ echo 'VF_PROJECT_ID=XXX` > .env.local
 
 The demo app will be available locally at <http://127.0.0.1:3006>.
 
-```sh
-yarn dev:app
-```
-
-You will also need to run the WebSocket server located in `server/` to interact with Intercom's APIs.
+This will also start the WebSocket server located in `server/` to interact with Intercom's APIs.
 See the [README](server/README.md) for more information.
-
-```sh
-yarn dev:server
-```
-
-### Run Simultaneously
 
 For convenience you can run both the chat widget and the WebSocket server at the same time with this command.
 
