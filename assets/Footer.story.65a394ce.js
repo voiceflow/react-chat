@@ -1,0 +1,9 @@
+import{F as e,C as l}from"./index.449daf09.js";import{j as a}from"./jsx-runtime.264ec44b.js";import"./index.25ad6385.js";import"./index.020d6ec1.js";import"./tag.acfbb551.js";import"./animation.fdae6ac9.js";import"./index.5216862f.js";import"./variants.1b0b2ced.js";import"./index.5d897ad3.js";import"./index.484a71f2.js";import"./index.53a044d3.js";import"./index.a988b399.js";import"./top-caret.6b52ad3c.js";import"./index.85e49540.js";import"./functional.2e4761c3.js";import"./index.568a1dd4.js";import"./index.819c1879.js";import"./index.1dd9de67.js";import"./index.8dc73ce9.js";import"./index.f900372a.js";import"./_createSet.6d7dfaaa.js";import"./_baseToString.b9e23acf.js";import"./is-plain-object.3669604d.js";import"./index.6ea3386c.js";import"./index.4d2fc52f.js";import"./index.0cf33758.js";import"./index.067252bc.js";import"./index.4197d55f.js";const O={title:"Components/Chat/Footer",component:e,argTypes:{onStart:{action:"onStart"},onSend:{action:"send"}},args:{hasEnded:!1,withWatermark:!1},render:h=>a.exports.jsx(l.Container,{children:a.exports.jsx(e,{...h})})},r={},t={args:{hasEnded:!0}},o={args:{withWatermark:!0}};var s,m,p;r.parameters={...r.parameters,docs:{...(s=r.parameters)==null?void 0:s.docs,source:{originalSource:"{}",...(p=(m=r.parameters)==null?void 0:m.docs)==null?void 0:p.source}}};var i,n,c;t.parameters={...t.parameters,docs:{...(i=t.parameters)==null?void 0:i.docs,source:{originalSource:`{
+  args: {
+    hasEnded: true
+  }
+}`,...(c=(n=t.parameters)==null?void 0:n.docs)==null?void 0:c.source}}};var d,u,g;o.parameters={...o.parameters,docs:{...(d=o.parameters)==null?void 0:d.docs,source:{originalSource:`{
+  args: {
+    withWatermark: true
+  }
+}`,...(g=(u=o.parameters)==null?void 0:u.docs)==null?void 0:g.source}}};export{t as Ended,r as Running,o as WithWatermark,O as default};
