@@ -1,5 +1,6 @@
-import { defineConfig, devices } from '@playwright/test';
 import { cpus } from 'node:os';
+
+import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './e2e',
