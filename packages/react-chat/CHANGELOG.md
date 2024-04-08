@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.57.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.56.5...@voiceflow/react-chat@1.57.0) (2024-04-08)
+
+### Features
+
+* add live agent example (DX-1623) ([#133](https://github.com/voiceflow/react-chat/issues/133)) ([68cdf62](https://github.com/voiceflow/react-chat/commit/68cdf626a3a6acf3624e43cbc107fe7f0f9ea7f1))
+
 ## [1.56.5](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.56.4...@voiceflow/react-chat@1.56.5) (2024-03-22)
 
 ### Bug Fixes
