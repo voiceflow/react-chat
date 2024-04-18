@@ -76,13 +76,13 @@ Ensure that the `verify: { projectID: ... }` field is replaced with your Voicefl
       s = d.getElementsByTagName(t)[0];
     v.onload = function () {
       window.voiceflow.chat.load({
-        verify: { projectID: "XXXXXX..." },
+        verify: { projectID: 'XXXXXX...' },
       });
     };
-    v.src = "https://cdn.voiceflow.com/widget/bundle.mjs";
-    v.type = "text/javascript";
+    v.src = 'https://cdn.voiceflow.com/widget/bundle.mjs';
+    v.type = 'text/javascript';
     s.parentNode.insertBefore(v, s);
-  })(document, "script");
+  })(document, 'script');
 </script>
 ```
 

@@ -4,10 +4,10 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "build": "yarn g:tsc -p tsconfig.json --noEmit",
     "dev": "yarn g:run-p dev:app dev:server",
     "dev:app": "vite",
-    "dev:server": "cd server && yarn dev"
+    "dev:server": "cd server && yarn dev",
+    "test:types": "yarn g:tsc --noEmit"
   },
   "prettier": "@voiceflow/prettier-config",
   "dependencies": {

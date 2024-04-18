@@ -2,7 +2,8 @@
   "name": "@voiceflow-example/live-agent-server",
   "private": true,
   "scripts": {
-    "dev": "tsx --watch src/main.ts"
+    "dev": "tsx --watch src/main.ts",
+    "test:types": "yarn g:tsc --noEmit"
   },
   "dependencies": {
     "body-parser": "1.20.2",

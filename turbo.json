@@ -1,44 +1,33 @@
 {
   "$schema": "https://turborepo.org/schema.json",
   "pipeline": {
-    "build": {
-      "outputs": [
-        "build/**",
-        "dist/**"
-      ],
+    "build:cmd": {
+      "outputs": ["build/**", "dist/**"],
       "inputs": [
         "src/**",
         ":!src/**/*.test.ts",
         "package.json",
         "tsconfig.json",
-        "vite.config.json"
+        "tsconfig.build.json",
+        "tsconfig.build.*.json"
       ],
-      "dependsOn": ["^build"]
-    },
-    "test:dependencies": {
-      "inputs": ["src/**/*.test.ts", "package.json", "jest.config.js"]
-    },
-    "test:unit": {
-      "outputs": ["sonar/coverage/**/*"],
-      "inputs": ["src/**/*.test.ts", "package.json", "jest.config.js"]
+      "dependsOn": ["^build:cmd"]
     },
     "test:types": {
-      "outputs": [],
-      "inputs": ["src/**/*.test-d.ts", "package.json"]
+      "inputs": ["src/**", "package.json", "tsconfig.json", "tsconfig.build.json", "tsconfig.build.*.json"],
+      "dependsOn": ["^build:cmd"]
     },
-    "lint": {
-      "inputs": ["src/**"],
-      "outputs": []
+    "test:dependencies": {
+      "inputs": ["src/**", "package.json", ".dependency-cruiser.mjs", ".dependency-cruiser-known-violations.json"]
     },
-    "lint:fix": {
-      "inputs": ["src/**"],
-      "outputs": ["src/**"]
-    },
-    "lint:report": {
-      "outputs": ["sonar/report.json"]
+    "test:unit": {
+      "outputs": ["sonar/coverage/**", "unit.report.xml"],
+      "inputs": ["src/**", "package.json", "vite.config.mts", "vitest.config.mts"]
     },
     "dev": {
-      "cache": false
+      "dependsOn": ["^build:cmd"],
+      "cache": false,
+      "persistent": true
     },
     "clean": {
       "cache": false

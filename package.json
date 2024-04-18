@@ -32,7 +32,6 @@
     "test:unit": "turbo run test:unit",
     "prepare": "husky",
     "// global": "Scripts to make binaries available to workspaces",
-    "g:build:pkg": "cd $INIT_CWD && $PROJECT_CWD/scripts/build_pkg.sh",
     "g:depcruise": "cd $INIT_CWD && depcruise .",
     "g:eslint": "cd $INIT_CWD && eslint --config $PROJECT_CWD/eslint.config.mjs",
     "g:prettier": "cd $INIT_CWD && prettier --ignore-path $PROJECT_CWD/.prettierignore --log-level warn . '!**/*.{mdx,js,jsx,cjs,mjs,ts,tsx,cts,mts}'",
@@ -50,7 +49,7 @@
   },
   "lint-staged": {
     "*.{mdx,js,jsx,cjs,mjs,ts,tsx,cts,mts}": "eslint --fix",
-    "*.{md,json,yml,yaml,toml,css}": "prettier --write"
+    "*.{html,md,json,yml,yaml,toml,css}": "prettier --write"
   },
   "prettier": "@voiceflow/prettier-config",
   "devDependencies": {
