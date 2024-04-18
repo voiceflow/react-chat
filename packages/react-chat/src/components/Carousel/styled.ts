@@ -34,11 +34,11 @@ export const ButtonContainer = styled(tag('span', 'button'), {
     trans: ['color'],
   },
 
-  [`&:hover`]: {
+  '&:hover': {
     boxShadow: '0 1px 4px 1px $shadow4, 0 0 0 1px $shadow4, 0 2px 4px -3px $shadow12, 0 5px 8px -8px $shadow12',
   },
 
-  [`&:active`]: {
+  '&:active': {
     boxShadow: '0 1px 4px 1px $shadow8, 0 0 0 1px $shadow4, 0 2px 4px -3px $shadow12, 0 5px 8px -8px $shadow12',
   },
 

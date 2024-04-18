@@ -16,7 +16,6 @@ export interface DefaultTextProps {
 }
 
 // this is just eslint being dumb because "allowDangerousHTML" contains "HTML"
-// eslint-disable-next-line xss/no-mixed-html
 const DefaultText: React.FC<DefaultTextProps> = ({ text }) => {
   const api = React.useContext(RuntimeStateAPIContext);
 

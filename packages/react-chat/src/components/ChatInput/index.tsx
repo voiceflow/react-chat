@@ -2,7 +2,8 @@ import cuid from 'cuid';
 import { useMemo, useRef } from 'react';
 
 import Bubble from '@/components/Bubble';
-import Textarea, { TextareaProps } from '@/components/Textarea';
+import type { TextareaProps } from '@/components/Textarea';
+import Textarea from '@/components/Textarea';
 import { createControlled } from '@/utils/controls';
 
 import { ButtonContainer, Container } from './styled';

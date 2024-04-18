@@ -1,6 +1,6 @@
-import { TraceHandler } from '@voiceflow/react-chat';
+import type { TraceHandler } from '@voiceflow/react-chat';
 
-import { LiveAgentPlatform } from '../../shared/live-agent-platform.enum';
+import type { LiveAgentPlatform } from '../../shared/live-agent-platform.enum';
 
 export const LiveAgent = (handoff: (platform: LiveAgentPlatform) => void): TraceHandler => ({
   canHandle: ({ type }) => (type as string) === 'talk_to_agent',

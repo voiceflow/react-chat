@@ -1,6 +1,6 @@
-import { BaseRequest } from '@voiceflow/base-types';
+import type { BaseRequest } from '@voiceflow/base-types';
 
-import { SessionOptions } from '@/common';
+import type { SessionOptions } from '@/common';
 
 export enum BroadcastType {
   SAVE_SESSION = 'voiceflow:save_session',

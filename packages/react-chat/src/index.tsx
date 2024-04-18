@@ -1,7 +1,9 @@
-import { createRoot, Root } from 'react-dom/client';
+import type { Root } from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 
 import { RuntimeProvider } from './contexts';
-import { ChatConfig, LoadConfig } from './dtos/ChatConfig.dto';
+import type { LoadConfig } from './dtos/ChatConfig.dto';
+import { ChatConfig } from './dtos/ChatConfig.dto';
 import { RenderMode } from './dtos/RenderOptions.dto';
 import { shadowRoot } from './styles/shadow';
 import { stitches } from './styles/theme';
@@ -38,7 +40,9 @@ const createChatRoot = (config: ChatConfig) => {
   return initOverlayMode();
 };
 
-const methods = createPlaceholderMethods((method: string) => `Method '${method}' will have no effect until 'load' has been called.`);
+const methods = createPlaceholderMethods(
+  (method: string) => `Method '${method}' will have no effect until 'load' has been called.`
+);
 
 window.voiceflow ??= {};
 window.voiceflow.chat ??= {
@@ -55,8 +59,12 @@ window.voiceflow.chat ??= {
     await new Promise<void>((resolve) => {
       reactRoot.render(
         <RuntimeProvider assistant={assistant} config={config}>
-          {config.render.mode === RenderMode.EMBEDDED && <ChatEmbed shadowRoot={shadowRoot} chatAPI={window.voiceflow?.chat} ready={resolve} />}
-          {config.render.mode === RenderMode.OVERLAY && <ChatWidget shadowRoot={shadowRoot} chatAPI={window.voiceflow?.chat} ready={resolve} />}
+          {config.render.mode === RenderMode.EMBEDDED && (
+            <ChatEmbed shadowRoot={shadowRoot} chatAPI={window.voiceflow?.chat} ready={resolve} />
+          )}
+          {config.render.mode === RenderMode.OVERLAY && (
+            <ChatWidget shadowRoot={shadowRoot} chatAPI={window.voiceflow?.chat} ready={resolve} />
+          )}
         </RuntimeProvider>
       );
     });

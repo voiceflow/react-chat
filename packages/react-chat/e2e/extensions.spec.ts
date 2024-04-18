@@ -1,4 +1,3 @@
-/* eslint-disable sonarjs/no-duplicate-string */
 import { expect, test } from '@playwright/test';
 
 import { slateMessage } from './utils';
@@ -6,7 +5,11 @@ import { slateMessage } from './utils';
 const RUNTIME_URL = 'https://general-runtime.voiceflow.com/public/projectID/state/user/*/interact';
 
 test('trigger effect extension on incoming trace', async ({ page }) => {
-  const systemMessages = ['Welcome to the pizza palace!', 'What kind of pizza do you want?', 'One cheese pizza coming right up'];
+  const systemMessages = [
+    'Welcome to the pizza palace!',
+    'What kind of pizza do you want?',
+    'One cheese pizza coming right up',
+  ];
   const userMessages = ['I want to order a pizza', 'Cheese please'];
   const traceType = 'update_order_status';
   let count = 0;
@@ -109,5 +112,7 @@ test('render response extension from incoming trace', async ({ page }) => {
   await extensionMessage.locator('[name="name"]').fill('Alex');
   await extensionMessage.locator('[name="hair"][id="curly"]').click();
   await extensionMessage.getByRole('button').click();
-  await page.locator('.vfrc-message--extension-onboarding_form', { hasText: `submitted ✅` }).waitFor({ state: 'visible' });
+  await page
+    .locator('.vfrc-message--extension-onboarding_form', { hasText: 'submitted ✅' })
+    .waitFor({ state: 'visible' });
 });

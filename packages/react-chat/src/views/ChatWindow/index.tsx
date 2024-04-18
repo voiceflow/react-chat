@@ -8,7 +8,8 @@ import { SessionStatus } from '@/common';
 import { Chat, SystemResponse, UserResponse } from '@/components';
 import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts/RuntimeContext';
 import type { FeedbackName } from '@/contexts/RuntimeContext/useRuntimeAPI';
-import { TurnType, UserTurnProps } from '@/types';
+import type { UserTurnProps } from '@/types';
+import { TurnType } from '@/types';
 
 import { ChatWindowContainer } from './styled';
 

@@ -1,4 +1,5 @@
-import { ChatPersistence, cuid, SessionOptions } from '@/common';
+import type { SessionOptions } from '@/common';
+import { ChatPersistence, cuid } from '@/common';
 
 import { broadcast, BroadcastType } from './broadcast';
 

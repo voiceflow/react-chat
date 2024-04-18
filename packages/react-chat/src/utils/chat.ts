@@ -1,4 +1,6 @@
-export const createPlaceholderMethods = (createMessage: (method: string) => string): Omit<VoiceflowChat, 'load' | 'destroy'> => {
+export const createPlaceholderMethods = (
+  createMessage: (method: string) => string
+): Omit<VoiceflowChat, 'load' | 'destroy'> => {
   const noopWarn = (method: string) => (): any => console.warn(createMessage(method));
 
   return {

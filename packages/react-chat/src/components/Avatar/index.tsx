@@ -1,4 +1,4 @@
-import { VariantProp } from '@/types';
+import type { VariantProp } from '@/types';
 
 import { AvatarContainer } from './styled';
 

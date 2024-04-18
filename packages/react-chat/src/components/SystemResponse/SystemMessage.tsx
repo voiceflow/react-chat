@@ -10,12 +10,13 @@ import Text from '@/components/Text';
 import Timestamp from '@/components/Timestamp';
 import { RuntimeStateAPIContext } from '@/contexts';
 
-import Feedback, { FeedbackProps } from '../Feedback';
+import type { FeedbackProps } from '../Feedback';
+import Feedback from '../Feedback';
 import { MessageType } from './constants';
 import { ExtensionMessage } from './ExtensionMessage';
 import EndState from './state/end';
 import { Controls, List, MessageContainer } from './styled';
-import { MessageProps } from './types';
+import type { MessageProps } from './types';
 
 export interface SystemMessageProps extends React.PropsWithChildren {
   /**
@@ -29,7 +30,7 @@ export interface SystemMessageProps extends React.PropsWithChildren {
   timestamp: number;
 
   /**
-   * A single message to render with a {@link Message} component.
+   * A single message to render.
    */
   message?: MessageProps;
 
@@ -69,7 +70,9 @@ const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, feedback, timesta
               .with({ type: MessageType.CAROUSEL }, (props) => (
                 <Carousel {...R.omit(props, ['type'])} containerRef={containerRef} controlsRef={controlsRef} />
               ))
-              .with({ type: MessageType.EXTENSION }, ({ payload }) => <ExtensionMessage extension={payload.extension} trace={payload.trace} />)
+              .with({ type: MessageType.EXTENSION }, ({ payload }) => (
+                <ExtensionMessage extension={payload.extension} trace={payload.trace} />
+              ))
               .otherwise(() => null)}
           {feedback && <Feedback {...feedback} />}
         </List>

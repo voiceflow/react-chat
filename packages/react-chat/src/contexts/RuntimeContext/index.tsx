@@ -1,6 +1,7 @@
 import React, { createContext, useMemo } from 'react';
 
-import { RuntimeState, Settings, useRuntimeState } from './useRuntimeState';
+import type { RuntimeState, Settings } from './useRuntimeState';
+import { useRuntimeState } from './useRuntimeState';
 
 // split up API and state to prevent unnecessary re-renders
 export const RuntimeStateAPIContext = createContext<RuntimeState['api']>({} as any);

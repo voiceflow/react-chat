@@ -18,7 +18,6 @@ export const mergeAssistantOptions = async (
     .getPublishing({ ...(versionID && { versionID }) })
     .then((x) => x as PartialDeep<AssistantOptions>)
     .catch((error) => {
-      // eslint-disable-next-line no-console
       console.error(error);
       return null;
     });

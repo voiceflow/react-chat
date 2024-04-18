@@ -1,7 +1,7 @@
 import type { RuntimeAction } from '@voiceflow/sdk-runtime';
 import { ChatPersistence, ChatPosition } from '@voiceflow/voiceflow-types/build/cjs/version/chat';
 
-import { TurnProps } from '@/types';
+import type { TurnProps } from '@/types';
 
 export { ChatPersistence, ChatPosition };
 export type { RuntimeAction };

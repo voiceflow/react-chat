@@ -1,5 +1,5 @@
 /* eslint-disable consistent-return, import/no-relative-packages */
-import { Application } from 'express-ws';
+import type { Application } from 'express-ws';
 import { match } from 'ts-pattern';
 
 import { LiveAgentPlatform } from '../../../shared/live-agent-platform.enum';

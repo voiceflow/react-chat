@@ -1,6 +1,8 @@
-import { Dispatch, SetStateAction, useCallback, useRef, useState } from 'react';
+import type { Dispatch, SetStateAction } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
-const isFunction = <S>(setStateAction: SetStateAction<S>): setStateAction is (prevState: S) => S => typeof setStateAction === 'function';
+const isFunction = <S>(setStateAction: SetStateAction<S>): setStateAction is (prevState: S) => S =>
+  typeof setStateAction === 'function';
 
 interface ReadOnlyRefObject<T> {
   readonly current: T;

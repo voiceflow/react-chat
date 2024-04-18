@@ -1,11 +1,12 @@
 import { FetchClient } from '@voiceflow/fetch';
-import { RuntimeState, TurnType } from '@voiceflow/react-chat';
+import type { RuntimeState } from '@voiceflow/react-chat';
+import { TurnType } from '@voiceflow/react-chat';
 import { serializeToText } from '@voiceflow/slate-serializer/text';
-import { Emitter } from 'nanoevents';
+import type { Emitter } from 'nanoevents';
 import { useMemo } from 'react';
 import { match } from 'ts-pattern';
 
-import { LiveAgentPlatform } from '../shared/live-agent-platform.enum';
+import type { LiveAgentPlatform } from '../shared/live-agent-platform.enum';
 import { SocketEvent } from '../shared/socket-event.enum';
 
 const SESSION_USER_ID_KEY = 'session:user_id';
@@ -66,18 +67,22 @@ export const useLiveAgent = (emitter: Emitter<LiveAgentEvents>) => {
         };
 
         const subscribeToConversation = (platform: LiveAgentPlatform, userID: string, conversationID: string) => {
-          socket = new WebSocket(`ws://localhost:9099/${platform}/user/${userID}/conversation/${conversationID}/socket`);
+          socket = new WebSocket(
+            `ws://localhost:9099/${platform}/user/${userID}/conversation/${conversationID}/socket`
+          );
           socket.onmessage = (message) => {
             const event = JSON.parse(message.data);
 
             match(event)
-              .with({ type: SocketEvent.LIVE_AGENT_CONNECT }, () => addSystemTurn(`connecting you with ${event.data.agent.name}`))
+              .with({ type: SocketEvent.LIVE_AGENT_CONNECT }, () =>
+                addSystemTurn(`connecting you with ${event.data.agent.name}`)
+              )
               .with({ type: SocketEvent.LIVE_AGENT_MESSAGE }, () => addSystemTurn(event.data.message))
               .with({ type: SocketEvent.LIVE_AGENT_DISCONNECT }, () => {
                 addSystemTurn(`${event.data.agent.name} has left the chat`);
                 talkToRobot();
               })
-              .otherwise(() => console.log('unexpected event', event));
+              .otherwise(() => console.error('unexpected event', event));
           };
         };
 

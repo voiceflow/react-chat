@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { MOCK_IMAGE } from '@/fixtures';
 
@@ -12,7 +12,8 @@ const meta: Meta<typeof Card> = {
   args: {
     title: 'Card Header',
     image: '',
-    description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa et aliquam sunt necessitatibus molestiae amet ipsum ut.',
+    description:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa et aliquam sunt necessitatibus molestiae amet ipsum ut.',
     actions: [],
   },
 };

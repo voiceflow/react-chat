@@ -1,9 +1,8 @@
-/* eslint-disable xss/no-mixed-html */
-import { BaseRequest } from '@voiceflow/base-types';
+import type { BaseRequest } from '@voiceflow/base-types';
 import type { PublicVerify, RuntimeOptions as SDKRuntimeOptions } from '@voiceflow/sdk-runtime';
 import { z } from 'zod';
 
-import { RawAssistantOptions } from './AssistantOptions.dto';
+import type { RawAssistantOptions } from './AssistantOptions.dto';
 import { RenderMode, RenderOptions } from './RenderOptions.dto';
 
 export const RUNTIME_URL = 'https://general-runtime.voiceflow.com';

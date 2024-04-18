@@ -1,5 +1,5 @@
 /* eslint-disable sonarjs/prefer-single-boolean-return */
-import { StorybookConfig } from '@storybook/react-vite';
+import type { StorybookConfig } from '@storybook/react-vite';
 import { mergeConfig } from 'vite';
 import svgr from 'vite-plugin-svgr';
 
@@ -7,7 +7,12 @@ import { createPlugins } from '../vite.config';
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.story.@(js|jsx|ts|tsx)'],
-  addons: ['@storybook/addon-links', '@storybook/addon-essentials', '@storybook/addon-interactions', 'storybook-dark-mode'],
+  addons: [
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    '@storybook/addon-interactions',
+    'storybook-dark-mode',
+  ],
   framework: '@storybook/react-vite',
   core: {
     builder: '@storybook/builder-vite',

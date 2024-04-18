@@ -1,19 +1,21 @@
 import { BaseRequest } from '@voiceflow/base-types';
 import { isTextRequest } from '@voiceflow/base-types/build/cjs/request';
-import { TraceDeclaration } from '@voiceflow/sdk-runtime';
+import type { TraceDeclaration } from '@voiceflow/sdk-runtime';
 import cuid from 'cuid';
 import { useState } from 'react';
 
-import { SendMessage, SessionOptions, SessionStatus } from '@/common';
-import { AssistantOptions } from '@/dtos/AssistantOptions.dto';
-import { ChatConfig } from '@/dtos/ChatConfig.dto';
+import type { SendMessage, SessionOptions } from '@/common';
+import { SessionStatus } from '@/common';
+import type { AssistantOptions } from '@/dtos/AssistantOptions.dto';
+import type { ChatConfig } from '@/dtos/ChatConfig.dto';
 import { useStateRef } from '@/hooks/useStateRef';
-import { TurnProps, TurnType } from '@/types';
+import type { TurnProps } from '@/types';
+import { TurnType } from '@/types';
 import { handleActions } from '@/utils/actions';
 import { broadcast, BroadcastType } from '@/utils/broadcast';
 import { getSession, saveSession } from '@/utils/session';
 
-import { RuntimeMessage } from './messages';
+import type { RuntimeMessage } from './messages';
 import { EffectExtensions } from './traces/EffectExtensions.trace';
 import { NoReply } from './traces/NoReply.trace';
 import { ResponseExtensions } from './traces/ResponseExtensions.trace';
@@ -118,7 +120,8 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
     await interact(config.launch?.event ?? { type: BaseRequest.RequestType.LAUNCH, payload: null });
   };
 
-  const reply = async (message: string): Promise<void> => interact({ type: BaseRequest.RequestType.TEXT, payload: message });
+  const reply = async (message: string): Promise<void> =>
+    interact({ type: BaseRequest.RequestType.TEXT, payload: message });
 
   const open = async () => {
     broadcast({ type: BroadcastType.OPEN });

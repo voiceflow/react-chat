@@ -1,7 +1,8 @@
-import { RefObject } from 'react';
+import type { RefObject } from 'react';
 import { createPortal } from 'react-dom';
 
-import Card, { CardProps } from '@/components/Card';
+import type { CardProps } from '@/components/Card';
+import Card from '@/components/Card';
 
 import CarouselButton from './CarouselButton';
 import { CARD_WITH_GUTTER_WIDTH } from './constants';
@@ -26,7 +27,11 @@ export interface CarouselProps {
 }
 
 const Carousel: React.FC<CarouselProps> = ({ cards, containerRef, controlsRef }) => {
-  const { previousButtonRef, nextButtonRef, showPreviousButton, showNextButton } = useScrollObserver(containerRef, controlsRef, cards);
+  const { previousButtonRef, nextButtonRef, showPreviousButton, showNextButton } = useScrollObserver(
+    containerRef,
+    controlsRef,
+    cards
+  );
   const containerEl = containerRef?.current;
   const controlsEl = controlsRef?.current;
   const showControls = containerEl && controlsEl;
@@ -51,7 +56,13 @@ const Carousel: React.FC<CarouselProps> = ({ cards, containerRef, controlsRef })
               containerEl={containerEl}
               onClick={scrollToPrevious}
             />
-            <CarouselButton ref={nextButtonRef} alignment="right" visible={showNextButton} containerEl={containerEl} onClick={scrollToNext} />
+            <CarouselButton
+              ref={nextButtonRef}
+              alignment="right"
+              visible={showNextButton}
+              containerEl={containerEl}
+              onClick={scrollToNext}
+            />
           </>,
           controlsEl
         )}

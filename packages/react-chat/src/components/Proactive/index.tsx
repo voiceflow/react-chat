@@ -35,7 +35,7 @@ export const ProactiveContainer = styled(tag('div'), {
     opacity: 0,
   },
 
-  [`&:hover`]: {
+  '&:hover': {
     [`& ${CloseContainer}`]: {
       opacity: 1,
     },
@@ -54,7 +54,9 @@ const ProactiveQueue: React.FC<ProactiveQueueProps> = ({ side, messages }) => {
     () =>
       messages.map((message, index) =>
         match(message)
-          .with({ type: Trace.TraceType.TEXT }, ({ payload }) => <Message key={index}>{String(payload.message)}</Message>)
+          .with({ type: Trace.TraceType.TEXT }, ({ payload }) => (
+            <Message key={index}>{String(payload.message)}</Message>
+          ))
           .otherwise(() => null)
       ),
     [messages]

@@ -1,4 +1,4 @@
-import { $$StyledComponentProps } from '@voiceflow/stitches-react/types/styled-component';
+import type { $$StyledComponentProps } from '@voiceflow/stitches-react/types/styled-component';
 
 export * from './trace';
 export * from './turn';
@@ -8,5 +8,5 @@ export type Nullish<T> = T | null | undefined;
 
 export type VariantProp<
   Component extends { [key: symbol | string]: any },
-  Key extends keyof Component[$$StyledComponentProps]
+  Key extends keyof Component[$$StyledComponentProps],
 > = Component[$$StyledComponentProps][Key];

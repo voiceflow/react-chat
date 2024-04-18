@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { useRef } from 'react';
 
 import Avatar from '@/components/Avatar';
@@ -33,7 +33,8 @@ const MULTIPLE_CARDS = [
   FIRST_CARD,
   {
     title: 'Second Card',
-    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem voluptas perspiciatis est quis dolores!',
+    description:
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem voluptas perspiciatis est quis dolores!',
     image: IMAGE,
   },
   {

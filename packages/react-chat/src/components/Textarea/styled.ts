@@ -1,6 +1,7 @@
 import TextareaAutosize from 'react-textarea-autosize';
 
-import { CSS, styled } from '@/styles';
+import type { CSS } from '@/styles';
+import { styled } from '@/styles';
 
 export const textareaUniqueStyles: CSS = {
   width: 'calc(100% - 42px)',
