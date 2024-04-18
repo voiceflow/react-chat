@@ -4,6 +4,6 @@ import baseConfig from '@voiceflow/eslint-config';
 export default [
   ...baseConfig,
   {
-    ignores: ['**/dist/**', '**/storybook-static/**'],
+    ignores: ['**/dist/**', '**/storybook-static/**', '**/.yalc/**'],
   },
 ];

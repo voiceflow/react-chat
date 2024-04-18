@@ -6,8 +6,6 @@
     }
   },
   "compilerOptions": {
-    "module": "esnext",
-    "moduleResolution": "node",
     "lib": ["dom", "es2019"],
     "jsx": "react-jsx",
     "baseUrl": ".",

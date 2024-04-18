@@ -3,16 +3,25 @@ CHANGELOG.md
 # Node
 node_modules
 
-# TypeScript
+# output
 build
+dist
+storybook-static
 
 # Yarn
 .pnp.*
 .yarn
 *.lock
 
+# Yalc
+.yalc
+
 # Coverage
 sonar
 
 # Tests
 *.report.xml
+
+# Playwright
+playwright-report
+test-results

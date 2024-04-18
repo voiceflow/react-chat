@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest';
+
 import { ChatConfig, RUNTIME_URL } from './ChatConfig.dto';
 import { RenderMode } from './RenderOptions.dto';
 

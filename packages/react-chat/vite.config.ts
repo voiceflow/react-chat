@@ -1,13 +1,14 @@
 import react from '@vitejs/plugin-react';
 import path from 'path';
-import { defineConfig, loadEnv, PluginOption } from 'vite';
+import type { PluginOption } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 import fonts from 'vite-plugin-fonts';
 import { createHtmlPlugin } from 'vite-plugin-html';
 import svgr from 'vite-plugin-svgr';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
-export const createPlugins = (rootDir = __dirname): PluginOption[] => [
-  tsconfigPaths({ root: rootDir, projects: [path.join(__dirname, 'tsconfig.json')] }),
+export const createPlugins = (): PluginOption[] => [
+  tsconfigPaths(),
   svgr(),
   fonts({
     google: {
@@ -32,7 +33,7 @@ export default defineConfig(({ mode }) => {
     },
     define: {
       __USE_SHADOW_ROOT__: true,
-      'process.env': '({})',
+      'process.env': {},
     },
     build: {
       lib: {

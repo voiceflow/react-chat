@@ -34,6 +34,9 @@
   "search.exclude": {
     "**/node_modules": true,
     "**/build": true,
+    "**/dist": true,
+    "**/test-results": true,
+    "**/playwright-report": true,
     "**/sonar": true,
     "**/.husky": true,
     "**/.yarn": true,
