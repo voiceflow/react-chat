@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react';
 
-import { SessionStatus } from '@/common';
 import { RuntimeStateAPIContext } from '@/contexts';
+import { SessionStatus } from '@/types';
 
 const EndState: React.FC = () => {
   const runtime = useContext(RuntimeStateAPIContext);

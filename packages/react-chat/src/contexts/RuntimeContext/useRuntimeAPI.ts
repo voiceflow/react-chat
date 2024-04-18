@@ -4,11 +4,10 @@ import { serializeToText } from '@voiceflow/slate-serializer/text';
 import Bowser from 'bowser';
 import { useMemo } from 'react';
 
-import type { SessionOptions } from '@/common';
 import type { MessageProps } from '@/components/SystemResponse';
 import { MessageType } from '@/components/SystemResponse/constants';
 import type { ChatConfig } from '@/dtos/ChatConfig.dto';
-import type { UserTurnProps } from '@/types';
+import type { SessionOptions, UserTurnProps } from '@/types';
 
 import type { RuntimeMessage } from './messages';
 import { MESSAGE_TRACES } from './messages';

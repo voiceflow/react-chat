@@ -17,14 +17,12 @@ export default meta;
 export const Base: Story = {
   args: {
     value: 'Message text',
-    rows: 1,
   },
 };
 
 export const Disabled: Story = {
   args: {
     value: 'Message text',
-    rows: 1,
     disabled: true,
   },
 };

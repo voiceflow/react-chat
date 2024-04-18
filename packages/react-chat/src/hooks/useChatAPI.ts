@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
+import { isObject } from 'remeda';
 import type { PartialDeep } from 'type-fest';
 
-import { isObject } from '@/common';
 import { createPlaceholderMethods } from '@/utils/chat';
 
 export const useChatAPI = (

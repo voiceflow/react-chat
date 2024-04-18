@@ -1,8 +1,9 @@
 import type { $$StyledComponentProps } from '@voiceflow/stitches-react/types/styled-component';
-
+export * from './session';
 export * from './trace';
 export * from './turn';
 export * from './util';
+export { ChatPersistence, ChatPosition } from '@voiceflow/voiceflow-types/build/cjs/version/chat';
 
 export type Nullish<T> = T | null | undefined;
 

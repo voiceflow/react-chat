@@ -2,10 +2,10 @@ import { Trace } from '@voiceflow/base-types';
 import React from 'react';
 import { match } from 'ts-pattern';
 
-import { ChatPosition } from '@/common';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
 import { animationStyles, styled } from '@/styles';
+import { ChatPosition } from '@/types';
 
 import Close, { CloseContainer } from './Close';
 import Message, { MessageContainer } from './Message';

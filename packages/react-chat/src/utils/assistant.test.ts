@@ -3,12 +3,12 @@ import { createMock } from '@voiceflow/test-common/vitest';
 import type { Mock } from 'vitest';
 import { describe, expect, it, vi } from 'vitest';
 
-import { ChatPersistence, ChatPosition } from '@/common';
 import type { RawAssistantOptions } from '@/dtos/AssistantOptions.dto';
 import { DEFAULT_AVATAR } from '@/dtos/AssistantOptions.dto';
 import type { ChatConfig } from '@/dtos/ChatConfig.dto';
 import { ExtensionType } from '@/dtos/Extension.dto';
 import { PRIMARY } from '@/styles';
+import { ChatPersistence, ChatPosition } from '@/types';
 
 import { mergeAssistantOptions } from './assistant';
 

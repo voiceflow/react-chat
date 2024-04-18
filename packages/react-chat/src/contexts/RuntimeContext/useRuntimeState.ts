@@ -4,13 +4,11 @@ import type { TraceDeclaration } from '@voiceflow/sdk-runtime';
 import cuid from 'cuid';
 import { useState } from 'react';
 
-import type { SendMessage, SessionOptions } from '@/common';
-import { SessionStatus } from '@/common';
 import type { AssistantOptions } from '@/dtos/AssistantOptions.dto';
 import type { ChatConfig } from '@/dtos/ChatConfig.dto';
 import { useStateRef } from '@/hooks/useStateRef';
-import type { TurnProps } from '@/types';
-import { TurnType } from '@/types';
+import type { SendMessage, SessionOptions, TurnProps } from '@/types';
+import { SessionStatus, TurnType } from '@/types';
 import { handleActions } from '@/utils/actions';
 import { broadcast, BroadcastType } from '@/utils/broadcast';
 import { getSession, saveSession } from '@/utils/session';
