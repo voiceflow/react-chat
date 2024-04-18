@@ -1,64 +1,87 @@
 {
   "version": "1.0.0",
-  "author": "Ben Teichman, Tyler Han",
-  "bugs": {
-    "url": "https://github.com/voiceflow/react-chat/issues"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
-  },
-  "devDependencies": {
-    "@commitlint/cli": "17.0.3",
-    "@commitlint/config-conventional": "17.0.3",
-    "@voiceflow/commitlint-config": "2.0.0",
-    "@voiceflow/git-branch-check": "1.4.1",
-    "cz-conventional-changelog": "^3.3.0",
-    "depcheck": "^1.4.3",
-    "fixpack": "^4.0.0",
-    "husky": "7.0.0",
-    "lint-staged": ">=10",
-    "npm-run-all": "4.1.5",
-    "turbo": "1.5.5",
-    "typescript": "4.8.4"
-  },
-  "engines": {
-    "node": ">=12"
-  },
-  "homepage": "https://github.com/voiceflow/react-chat#readme",
+  "private": true,
   "keywords": [
     "react",
     "voiceflow"
   ],
+  "homepage": "https://github.com/voiceflow/react-chat#readme",
+  "bugs": {
+    "url": "https://github.com/voiceflow/react-chat/issues"
+  },
   "license": "ISC",
-  "packageManager": "yarn@3.2.1",
-  "private": true,
-  "publishConfig": {
-    "access": "public"
-  },
-  "scripts": {
-    "//": "Scripts to make binaries available to workspaces",
-    "build": "turbo run build",
-    "build:all": "yarn build",
-    "dev": "turbo run dev --parallel",
-    "g:run-p": "cd $INIT_CWD && run-p",
-    "g:tsc": "cd $INIT_CWD && tsc",
-    "lint": "turbo run lint",
-    "lint:fix": "turbo run lint:fix",
-    "lint:report": "turbo run lint:report",
-    "prepare": "husky install",
-    "setup_github_pages": "./scripts/setup_github_pages.sh",
-    "test:dependencies": "depcheck && turbo run test:dependencies",
-    "test:unit": "turbo run test:unit"
-  },
-  "volta": {
-    "node": "20.10.0",
-    "yarn": "3.2.1"
-  },
+  "author": "Ben Teichman, Tyler Han",
   "workspaces": [
     "packages/*",
     "examples/*",
     "examples/live-agent/server"
-  ]
+  ],
+  "scripts": {
+    "build": "turbo run build:cmd",
+    "build:all": "yarn build",
+    "clean": "turbo run clean && rimraf node_modules",
+    "dev": "turbo run dev --no-cache --parallel --continue",
+    "lint": "run-p -c lint:eslint lint:prettier",
+    "lint:eslint": "yarn g:eslint",
+    "lint:fix": "run-p -c \"g:eslint --fix\" \"g:prettier --write\"",
+    "lint:prettier": "yarn g:prettier --check",
+    "lint:report": "run-p -c \"lint:eslint --format ./node_modules/@voiceflow/eslint-config/src/formatter.js --quiet\" lint:prettier",
+    "test": "yarn g:run-p -c test:dependencies test:types test:unit",
+    "test:types": "turbo run test:types",
+    "test:dependencies": "turbo run test:dependencies",
+    "test:unit": "turbo run test:unit",
+    "prepare": "husky",
+    "// global": "Scripts to make binaries available to workspaces",
+    "g:build:pkg": "cd $INIT_CWD && $PROJECT_CWD/scripts/build_pkg.sh",
+    "g:depcruise": "cd $INIT_CWD && depcruise .",
+    "g:eslint": "cd $INIT_CWD && eslint --config $PROJECT_CWD/eslint.config.mjs",
+    "g:prettier": "cd $INIT_CWD && prettier --ignore-path $PROJECT_CWD/.prettierignore --log-level warn . '!**/*.{mdx,js,jsx,cjs,mjs,ts,tsx,cts,mts}'",
+    "g:rimraf": "cd $INIT_CWD && rimraf",
+    "g:run-p": "cd $INIT_CWD && run-p",
+    "g:tsc": "cd $INIT_CWD && tsc",
+    "g:tsc-alias": "cd $INIT_CWD && tsc-alias",
+    "g:turbo": "cd $INIT_CWD && turbo",
+    "g:vitest": "cd $INIT_CWD && vitest"
+  },
+  "commitlint": {
+    "extends": [
+      "@voiceflow/commitlint-config"
+    ]
+  },
+  "lint-staged": {
+    "*.{mdx,js,jsx,cjs,mjs,ts,tsx,cts,mts}": "eslint --fix",
+    "*.{md,json,yml,yaml,toml,css}": "prettier --write"
+  },
+  "prettier": "@voiceflow/prettier-config",
+  "devDependencies": {
+    "@commitlint/cli": "19.2.2",
+    "@commitlint/config-conventional": "19.2.2",
+    "@voiceflow/commitlint-config": "2.3.1",
+    "@voiceflow/dependency-cruiser-config": "1.8.2",
+    "@voiceflow/eslint-config": "7.4.1",
+    "@voiceflow/git-branch-check": "1.4.1",
+    "@voiceflow/prettier-config": "1.5.1",
+    "@voiceflow/tsconfig": "1.7.1",
+    "@voiceflow/vitest-config": "1.2.1",
+    "dependency-cruiser": "16.3.1",
+    "eslint": "9.0.0",
+    "husky": "9.0.11",
+    "lint-staged": "15.2.2",
+    "npm-run-all": "4.1.5",
+    "prettier": "3.2.5",
+    "rimraf": "5.0.5",
+    "source-map-support": "0.5.21",
+    "tsc-alias": "1.8.8",
+    "turbo": "1.13.2",
+    "typescript": "5.4.5",
+    "vitest": "1.5.0"
+  },
+  "packageManager": "yarn@3.2.1",
+  "engines": {
+    "node": "20"
+  },
+  "volta": {
+    "node": "20.12.1",
+    "yarn": "3.2.1"
+  }
 }

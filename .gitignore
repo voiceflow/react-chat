@@ -1,36 +1,46 @@
-.DS_Store
-.idea
+*.log
+*.local
+.cache
+
+# Node
 node_modules
-dump.rdb
 
-coverage
-log/
+# output
+build
+dist
+storybook-static
+docs
 
-.nyc_output
+# Turborepo
+.turbo
+
+# Dotenv
+.env
+.env.*
+!.env.e2e
+!.env.test
+
+# MacOS
+.DS_Store
+
+# ESlint
+.eslintcache
 
 # Yarn
 .pnp.*
-.yarn/*
+.yarn
 !.yarn/patches
 !.yarn/plugins
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
 
-# build folders
-build
-dist
+# Tests
+reports
+*.report.xml
 
-# docs
-docs
+# Coverage
+sonar
 
-#Sonar report
-sonar/
-nyc_coverage*
-
-.turbo
-
-.env.*
-
-build-storybook.log
-storybook-static/
+#jetbrains
+.idea
