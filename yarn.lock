@@ -6126,9 +6126,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@voiceflow/eslint-config@npm:7.4.1":
-  version: 7.4.1
-  resolution: "@voiceflow/eslint-config@npm:7.4.1"
+"@voiceflow/eslint-config@npm:7.4.3":
+  version: 7.4.3
+  resolution: "@voiceflow/eslint-config@npm:7.4.3"
   dependencies:
     "@typescript-eslint/eslint-plugin": 7.6.0
     "@typescript-eslint/parser": 7.6.0
@@ -6148,7 +6148,7 @@ __metadata:
     eslint-plugin-unicorn: 52.0.0
     eslint-plugin-you-dont-need-lodash-underscore: 6.14.0
     globals: 15.0.0
-  checksum: 9268d79f5f65dfc3579f3fc40323db338af1b6c11799b9a6585479589f1da691a33aef73ccde95b30ac2c4d2ebe1fa8877279ae08624f6187fb01807721449bf
+  checksum: dd4551c3e455a6228450fbe3572069803fd0dc659da21aceedea459a77082f4502a3359b700b6da1868c44ebcb400001f25f096bce76c332736e4fd89c6dce11
   languageName: node
   linkType: hard
 
@@ -6219,7 +6219,7 @@ __metadata:
     "@voiceflow/sdk-runtime": 1.7.0
     "@voiceflow/slate-serializer": 1.5.5
     "@voiceflow/stitches-react": 2.3.1
-    "@voiceflow/test-common": "file:.yalc/@voiceflow/test-common"
+    "@voiceflow/test-common": 1.10.3
     "@voiceflow/voiceflow-types": 3.26.21
     bowser: 2.11.0
     chroma-js: 2.4.2
@@ -6304,10 +6304,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@voiceflow/test-common@file:.yalc/@voiceflow/test-common::locator=%40voiceflow%2Freact-chat%40workspace%3Apackages%2Freact-chat":
-  version: 1.10.2+5553de6c
-  resolution: "@voiceflow/test-common@file:.yalc/@voiceflow/test-common#.yalc/@voiceflow/test-common::hash=ac3315&locator=%40voiceflow%2Freact-chat%40workspace%3Apackages%2Freact-chat"
-  checksum: 7cbca0aada53fd80d5f8a6eb867013adab3c12a7157c641dfd098ad7fd597e24f3ee34537fe8cca11a8f99ca33fa467484a458b7b318c1c87a97473954e3458d
+"@voiceflow/test-common@npm:1.10.3":
+  version: 1.10.3
+  resolution: "@voiceflow/test-common@npm:1.10.3"
+  checksum: 74b6485ab2adb33800f1fb72692a4a409ceed424871c0a1afe8fe5e99f1de37b269ac0d487794810b82ab6040a86275e795476722a6225ca552d168ead1084a7
   languageName: node
   linkType: hard
 
@@ -6318,15 +6318,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@voiceflow/vitest-config@npm:1.2.1":
-  version: 1.2.1
-  resolution: "@voiceflow/vitest-config@npm:1.2.1"
+"@voiceflow/vitest-config@npm:1.2.2":
+  version: 1.2.2
+  resolution: "@voiceflow/vitest-config@npm:1.2.2"
   dependencies:
     "@vitest/coverage-v8": 1.4.0
     vite-tsconfig-paths: 4.3.2
   peerDependencies:
     vitest: ^1
-  checksum: 1b8f81403038a0e6280ed3211ef3cbd66958a5ad49657fae4c6ba29087c0c87611955a45075d17b2071328c840254b3fe4cd6ed7a44a2610e1bdde28f6be0eeb
+  checksum: c8dbcdff4409932c1292ce84642d0d3a29c0d44b21cc5762b1ad22104dfbb0cbfaf8b82e1b0941687b0ac759686ac929ef24c61500f13572847e398565897a0c
   languageName: node
   linkType: hard
 
@@ -17348,11 +17348,11 @@ __metadata:
     "@commitlint/config-conventional": 19.2.2
     "@voiceflow/commitlint-config": 2.3.1
     "@voiceflow/dependency-cruiser-config": 1.8.2
-    "@voiceflow/eslint-config": 7.4.1
+    "@voiceflow/eslint-config": 7.4.3
     "@voiceflow/git-branch-check": 1.4.1
     "@voiceflow/prettier-config": 1.5.1
     "@voiceflow/tsconfig": 1.7.1
-    "@voiceflow/vitest-config": 1.2.1
+    "@voiceflow/vitest-config": 1.2.2
     dependency-cruiser: 16.3.1
     eslint: 9.0.0
     husky: 9.0.11
