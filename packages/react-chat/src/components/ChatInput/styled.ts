@@ -1,4 +1,5 @@
 import Bubble from '@/components/Bubble';
+import Button from '@/components/Button';
 import Icon from '@/components/Icon';
 import { textareaFocusStyles, textareaStyles } from '@/components/Textarea/styled';
 import { ClassName } from '@/constants';
@@ -13,32 +14,39 @@ export const ButtonContainer = styled(tag('label', 'button'), {
   ...textareaStyles,
   display: 'inline-flex',
   justifyContent: 'center',
-  alignItems: 'center',
-  paddingBottom: '8px',
+  alignItems: 'top',
   width: '$md',
   borderRadius: '$1',
   boxSizing: 'border-box',
   cursor: 'text',
 
-  [`& ${Bubble.Container}`]: {
-    transform: 'scale(0)',
-    marginTop: 'auto',
-    trans: ['background-color', 'transform'],
+  [`& ${Button.Container}`]: {
+    minHeight: 'auto',
+    height: 32,
+    width: 32,
+    padding: 0,
+    margin: 4,
+    textAlign: 'center',
   },
+});
 
-  variants: {
-    ready: {
-      true: {
-        [`& ${Bubble.Container}`]: {
-          transform: 'scale(1)',
-          cursor: 'pointer',
-        },
-      },
+export const InputBarContainer = styled(tag('div'), {
+  display: 'grid',
+  gridTemplateColumns: '1fr auto',
+  alignItems: 'top',
+
+  [`& ${Bubble.Container}`]: {
+    height: '32px',
+    width: '32px',
+    margin: '5px 0 5px 12px',
+
+    [`& ${Icon.Frame}`]: {
+      color: '$white',
     },
   },
 });
 
-export const Container = styled(tag('div'), {
+export const InputContainer = styled(tag('div'), {
   display: 'flex',
   boxShadow: '0 1px 12px $shadow2',
   trans: ['border-color', 'box-shadow'],
@@ -59,10 +67,6 @@ export const Container = styled(tag('div'), {
     borderLeftWidth: 0,
     borderTopLeftRadius: 0,
     borderBottomLeftRadius: 0,
-  },
-
-  [`& ${Icon.Frame}`]: {
-    color: '$white',
   },
 
   [`& ${Textarea.Container}:focus`]: {

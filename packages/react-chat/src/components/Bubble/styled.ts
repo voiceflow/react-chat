@@ -12,7 +12,7 @@ export const Container = styled(tag(Button.Reset), {
   alignItems: 'center',
   borderRadius: '$round',
   backgroundColor: '$primary',
-  trans: ['background-color', 'box-shadow'],
+  trans: ['background-color', 'box-shadow', 'opacity'],
 
   '&:hover': {
     backgroundColor: '$darkPrimary',
@@ -40,6 +40,13 @@ export const Container = styled(tag(Button.Reset), {
           width: '$sm',
           height: '$sm',
         },
+      },
+    },
+
+    disabled: {
+      true: {
+        pointerEvents: 'none',
+        opacity: 0.5,
       },
     },
   },

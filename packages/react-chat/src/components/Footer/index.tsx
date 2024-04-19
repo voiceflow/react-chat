@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import SpeechRecognition, { useSpeechRecognition as useReactSpeechRecognition } from 'react-speech-recognition';
 
 import Button from '@/components/Button';
 import ChatInput from '@/components/ChatInput';
@@ -36,8 +37,31 @@ export interface FooterProps {
 const Footer: React.FC<FooterProps> = ({ withWatermark, hasEnded, disableSend, onStart, onSend }) => {
   const [message, setMessage] = useState('');
 
+  const { listening, transcript, resetTranscript, isMicrophoneAvailable } = useReactSpeechRecognition({
+    clearTranscriptOnListen: true,
+  });
+
+  const onStartListening = async () => {
+    if (!isMicrophoneAvailable) return;
+    resetTranscript();
+    setMessage('');
+    await SpeechRecognition.startListening({ continuous: true });
+  };
+
+  useEffect(() => {
+    if (listening) setMessage(transcript);
+  }, [transcript]);
+
+  const onStopListening = async () => {
+    await SpeechRecognition.stopListening();
+    setMessage(transcript);
+  };
+
   const handleSend = async (): Promise<void> => {
+    console.log({ message, disableSend });
     if (!message || disableSend) return;
+
+    if (listening) await onStopListening();
 
     setMessage('');
     await onSend?.(message);
@@ -50,12 +74,14 @@ const Footer: React.FC<FooterProps> = ({ withWatermark, hasEnded, disableSend, o
       ) : (
         <ChatInput
           value={message}
-          placeholder="Message…"
           // eslint-disable-next-line jsx-a11y/no-autofocus
           autoFocus
           onValueChange={setMessage}
           onSend={handleSend}
           disableSend={disableSend}
+          listening={listening}
+          onStartListening={onStartListening}
+          onStopListening={onStopListening}
         />
       )}
       {withWatermark && (

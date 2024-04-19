@@ -5227,6 +5227,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/dom-speech-recognition@npm:*":
+  version: 0.0.4
+  resolution: "@types/dom-speech-recognition@npm:0.0.4"
+  checksum: d19266dc3a58610c517885eef46e54011ee6e59aa9a9fc703fc094731b0c34dd7c547d76cc0a48a1eb43a289b5bf787f6275c30a04a98e13942d3c2629f67ca3
+  languageName: node
+  linkType: hard
+
 "@types/ejs@npm:^3.1.1":
   version: 3.1.5
   resolution: "@types/ejs@npm:3.1.5"
@@ -5641,6 +5648,15 @@ __metadata:
   dependencies:
     "@types/react": "*"
   checksum: 8301f35cf1cbfec8c723e9477aecf87774e3c168bd457d353b23c45064737213d3e8008b067c6767b7b08e4f2b3823ee239242a6c225fc91e7f8725ef8734124
+  languageName: node
+  linkType: hard
+
+"@types/react-speech-recognition@npm:^3.9.5":
+  version: 3.9.5
+  resolution: "@types/react-speech-recognition@npm:3.9.5"
+  dependencies:
+    "@types/dom-speech-recognition": "*"
+  checksum: b1bc853e8bece3c8f553a16e82dcc61e7297f5dbf77f087894e0232fa3e712ca7580f5e86b3caa7ac0945dfc48071c475ac4333dbfbf12e7eedd84f4e1d53627
   languageName: node
   linkType: hard
 
@@ -6419,6 +6435,7 @@ __metadata:
     "@types/node": ^20.11.19
     "@types/react": 18.2.8
     "@types/react-dom": 18.2.4
+    "@types/react-speech-recognition": ^3.9.5
     "@vitejs/plugin-react": ^2.0.1
     "@vitest/coverage-c8": ^0.23.1
     "@voiceflow/base-types": 2.97.3
@@ -6451,7 +6468,9 @@ __metadata:
     react: 18.2.0
     react-dom: 18.2.0
     react-markdown: 9.0.0
+    react-speech-recognition: ^3.10.0
     react-textarea-autosize: 8.5.3
+    regenerator-runtime: ^0.14.1
     rehype-raw: 7.0.0
     rehype-sanitize: ^6.0.0
     remark-gfm: 4.0.0
@@ -17792,6 +17811,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-speech-recognition@npm:^3.10.0":
+  version: 3.10.0
+  resolution: "react-speech-recognition@npm:3.10.0"
+  peerDependencies:
+    react: ">=16.8.0"
+  checksum: 40f3a2561f525d2624b154ccb6da90592a32fe131c33b3258a8892041bcf0c6f8e4527d7310718aeaee119266b1e8a1c383f9842ae984b7c97987ce9d6a5203f
+  languageName: node
+  linkType: hard
+
 "react-textarea-autosize@npm:8.5.3":
   version: 8.5.3
   resolution: "react-textarea-autosize@npm:8.5.3"
@@ -17975,6 +18003,13 @@ __metadata:
   version: 0.14.0
   resolution: "regenerator-runtime@npm:0.14.0"
   checksum: 1c977ad82a82a4412e4f639d65d22be376d3ebdd30da2c003eeafdaaacd03fc00c2320f18120007ee700900979284fc78a9f00da7fb593f6e6eeebc673fba9a3
+  languageName: node
+  linkType: hard
+
+"regenerator-runtime@npm:^0.14.1":
+  version: 0.14.1
+  resolution: "regenerator-runtime@npm:0.14.1"
+  checksum: 9f57c93277b5585d3c83b0cf76be47b473ae8c6d9142a46ce8b0291a04bb2cf902059f0f8445dcabb3fb7378e5fe4bb4ea1e008876343d42e46d3b484534ce38
   languageName: node
   linkType: hard
 

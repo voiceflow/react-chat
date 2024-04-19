@@ -1,3 +1,5 @@
+import 'regenerator-runtime/runtime';
+
 import { createRoot, Root } from 'react-dom/client';
 
 import { RuntimeProvider } from './contexts';

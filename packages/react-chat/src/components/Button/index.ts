@@ -4,10 +4,12 @@ import { ButtonVariant } from './constants';
 import { PrimaryButton } from './Primary';
 import { SecondaryButton } from './Secondary';
 import { Container, Reset } from './styled';
+import { TertiaryButton } from './Tertiary';
 
 const VARIANTS = {
   [ButtonVariant.PRIMARY]: PrimaryButton,
   [ButtonVariant.SECONDARY]: SecondaryButton,
+  [ButtonVariant.TERTIARY]: TertiaryButton,
 };
 
 const Button = bindVariants(VARIANTS, ButtonVariant.PRIMARY);
@@ -24,4 +26,5 @@ export default Object.assign(Button, {
   Container,
   Primary: PrimaryButton,
   Secondary: SecondaryButton,
+  Tertiary: TertiaryButton,
 });

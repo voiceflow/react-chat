@@ -2,10 +2,12 @@ import cuid from 'cuid';
 import { useMemo, useRef } from 'react';
 
 import Bubble from '@/components/Bubble';
+import Button from '@/components/Button';
+import Icon from '@/components/Icon';
 import Textarea, { TextareaProps } from '@/components/Textarea';
 import { createControlled } from '@/utils/controls';
 
-import { ButtonContainer, Container } from './styled';
+import { ButtonContainer, InputBarContainer, InputContainer } from './styled';
 
 export interface ChatInputProps extends TextareaProps {
   /**
@@ -17,13 +19,19 @@ export interface ChatInputProps extends TextareaProps {
    * A callback to submit the user response.
    */
   onSend?: VoidFunction;
+
+  listening: boolean;
+
+  onStopListening: VoidFunction;
+
+  onStartListening: VoidFunction;
 }
 
-const ChatInput: React.FC<ChatInputProps> = ({ id, onSend, disableSend, ...props }) => {
+const ChatInput: React.FC<ChatInputProps> = ({ id, onSend, disableSend, listening, onStartListening, onStopListening, ...props }) => {
   const internalID = useMemo(() => `vf-chat-input--${cuid()}`, []) ?? id;
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  const handleKeyPress = (event: React.KeyboardEvent<HTMLTextAreaElement>): void => {
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLTextAreaElement> | React.KeyboardEvent<HTMLButtonElement>): void => {
     event.stopPropagation();
     const { shiftKey } = event;
 
@@ -34,13 +42,36 @@ const ChatInput: React.FC<ChatInputProps> = ({ id, onSend, disableSend, ...props
     }
   };
 
+  const stopListeningHandler = async () => {
+    textareaRef.current?.focus();
+    onStopListening();
+  };
+
   return (
-    <Container>
-      <Textarea ref={textareaRef} id={internalID} onKeyDown={handleKeyPress} {...props} />
-      <ButtonContainer htmlFor={internalID} ready={!!props.value && !disableSend}>
-        <Bubble size="small" svg="smallArrowUp" onClick={onSend} />
-      </ButtonContainer>
-    </Container>
+    <InputBarContainer>
+      <InputContainer>
+        <Textarea
+          ref={textareaRef}
+          id={internalID}
+          disabled={listening}
+          onKeyDown={handleKeyPress}
+          {...props}
+          placeholder={listening ? 'Listening...' : 'Message...'}
+        />
+        <ButtonContainer htmlFor={internalID}>
+          {listening ? (
+            <Button.Tertiary onClick={stopListeningHandler} onKeyDown={handleKeyPress}>
+              <Icon svg="stop" style={{ color: '#C62445' }} />
+            </Button.Tertiary>
+          ) : (
+            <Button.Secondary onClick={onStartListening}>
+              <Icon svg="microphone" />
+            </Button.Secondary>
+          )}
+        </ButtonContainer>
+      </InputContainer>
+      <Bubble size="small" svg="smallArrowUp" disabled={!props.value || !!disableSend} onClick={onSend} />
+    </InputBarContainer>
   );
 };
 
@@ -60,6 +91,5 @@ export default Object.assign(ChatInput, {
       },
     }),
   }),
-  Container,
   ButtonContainer,
 });
