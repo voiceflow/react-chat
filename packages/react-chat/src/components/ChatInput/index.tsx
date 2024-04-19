@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-autofocus */
 import cuid from 'cuid';
 import { useMemo, useRef } from 'react';
 
@@ -60,7 +61,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ id, onSend, disableSend, listenin
         />
         <ButtonContainer htmlFor={internalID}>
           {listening ? (
-            <Button.Tertiary onClick={stopListeningHandler} onKeyDown={handleKeyPress}>
+            <Button.Tertiary onClick={stopListeningHandler} autoFocus onKeyDown={handleKeyPress}>
               <Icon svg="stop" style={{ color: '#C62445' }} />
             </Button.Tertiary>
           ) : (

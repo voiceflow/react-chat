@@ -58,7 +58,6 @@ const Footer: React.FC<FooterProps> = ({ withWatermark, hasEnded, disableSend, o
   };
 
   const handleSend = async (): Promise<void> => {
-    console.log({ message, disableSend });
     if (!message || disableSend) return;
 
     if (listening) await onStopListening();
@@ -70,7 +69,9 @@ const Footer: React.FC<FooterProps> = ({ withWatermark, hasEnded, disableSend, o
   return (
     <Container withShadow={!!hasEnded} withWatermark={withWatermark}>
       {hasEnded ? (
-        <Button onClick={onStart}>Start New Chat</Button>
+        <Button onClick={onStart} style={{ width: '100%' }}>
+          Start New Chat
+        </Button>
       ) : (
         <ChatInput
           value={message}
