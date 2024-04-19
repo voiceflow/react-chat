@@ -54,7 +54,6 @@
   "prettier": "@voiceflow/prettier-config",
   "devDependencies": {
     "@commitlint/cli": "19.2.2",
-    "@commitlint/config-conventional": "19.2.2",
     "@voiceflow/commitlint-config": "2.3.1",
     "@voiceflow/dependency-cruiser-config": "1.8.2",
     "@voiceflow/eslint-config": "7.5.0",

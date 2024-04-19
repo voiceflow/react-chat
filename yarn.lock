@@ -2196,16 +2196,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/config-conventional@npm:19.2.2":
-  version: 19.2.2
-  resolution: "@commitlint/config-conventional@npm:19.2.2"
-  dependencies:
-    "@commitlint/types": ^19.0.3
-    conventional-changelog-conventionalcommits: ^7.0.2
-  checksum: fa6b5f763ff1e6c118e4d8434db81058a88afb622a76e6df13956d6b14b9462fd02b81160db5325895165ef0dd18641f6d762a2f1858f0b4fc70fae9720b5b15
-  languageName: node
-  linkType: hard
-
 "@commitlint/config-validator@npm:^19.0.3":
   version: 19.0.3
   resolution: "@commitlint/config-validator@npm:19.0.3"
@@ -17397,7 +17387,6 @@ __metadata:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@commitlint/cli": 19.2.2
-    "@commitlint/config-conventional": 19.2.2
     "@voiceflow/commitlint-config": 2.3.1
     "@voiceflow/dependency-cruiser-config": 1.8.2
     "@voiceflow/eslint-config": 7.5.0
