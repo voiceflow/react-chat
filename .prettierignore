@@ -23,5 +23,4 @@ sonar
 *.report.xml
 
 # Playwright
-playwright-report
 test-results
