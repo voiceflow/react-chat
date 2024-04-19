@@ -6137,9 +6137,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@voiceflow/eslint-config@npm:7.4.3":
-  version: 7.4.3
-  resolution: "@voiceflow/eslint-config@npm:7.4.3"
+"@voiceflow/eslint-config@npm:7.5.0":
+  version: 7.5.0
+  resolution: "@voiceflow/eslint-config@npm:7.5.0"
   dependencies:
     "@typescript-eslint/eslint-plugin": 7.6.0
     "@typescript-eslint/parser": 7.6.0
@@ -6150,6 +6150,7 @@ __metadata:
     eslint-import-resolver-typescript: 3.6.1
     eslint-plugin-eslint-comments: 3.2.0
     eslint-plugin-import: 2.29.1
+    eslint-plugin-jsdoc: 48.2.3
     eslint-plugin-no-secrets: 0.8.9
     eslint-plugin-prefer-arrow: 1.2.3
     eslint-plugin-prettier: 5.1.3
@@ -6159,7 +6160,7 @@ __metadata:
     eslint-plugin-unicorn: 52.0.0
     eslint-plugin-you-dont-need-lodash-underscore: 6.14.0
     globals: 15.0.0
-  checksum: dd4551c3e455a6228450fbe3572069803fd0dc659da21aceedea459a77082f4502a3359b700b6da1868c44ebcb400001f25f096bce76c332736e4fd89c6dce11
+  checksum: dff0fd544b7f8be02341eb9c40d45dcd455566f09b10abf47fdc5641e31a068aa6f0fe6d67605e2239f73dbe7ead04497d81d6a426a035bf04b31496df477116
   languageName: node
   linkType: hard
 
@@ -17399,14 +17400,13 @@ __metadata:
     "@commitlint/config-conventional": 19.2.2
     "@voiceflow/commitlint-config": 2.3.1
     "@voiceflow/dependency-cruiser-config": 1.8.2
-    "@voiceflow/eslint-config": 7.4.3
+    "@voiceflow/eslint-config": 7.5.0
     "@voiceflow/git-branch-check": 1.4.1
     "@voiceflow/prettier-config": 1.5.1
     "@voiceflow/tsconfig": 1.7.1
     "@voiceflow/vitest-config": 1.2.2
     dependency-cruiser: 16.3.1
     eslint: 9.0.0
-    eslint-plugin-jsdoc: 48.2.3
     husky: 9.0.11
     lint-staged: 15.2.2
     npm-run-all: 4.1.5
