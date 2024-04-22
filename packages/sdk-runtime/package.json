@@ -1,0 +1,33 @@
+{
+  "name": "@voiceflow/sdk-runtime",
+  "version": "1.7.0",
+  "exports": {
+    ".": {
+      "import": "./build/main.js",
+      "default": "./build/main.js"
+    }
+  },
+  "main": "build/main.js",
+  "types": "build/main.d.ts",
+  "scripts": {
+    "build": "yarn g:tsc -p tsconfig.build.json && yarn g:tsc-alias -p tsconfig.build.json",
+    "lint": "yarn g:run-p lint:eslint \"lint:prettier --check\"",
+    "lint:eslint": "yarn g:eslint \"src/**/*.{js,ts}\"",
+    "lint:fix": "yarn g:run-p \"lint:eslint --fix\" \"lint:prettier --write\"",
+    "lint:prettier": "yarn g:prettier . \"!**/*.{js,ts}\"",
+    "lint:report": "yarn g:eslint-output --quiet './src/**/*.{js,ts}'",
+    "test:dependencies": "depcheck",
+    "test:unit": "yarn g:jest --passWithNoTests"
+  },
+  "prettier": "@voiceflow/prettier-config",
+  "dependencies": {
+    "@voiceflow/base-types": "2.97.1",
+    "http-errors": "2.0.0"
+  },
+  "devDependencies": {
+    "@types/http-errors": "^1.8.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

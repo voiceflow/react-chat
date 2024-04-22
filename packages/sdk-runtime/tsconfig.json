@@ -1,0 +1,31 @@
+{
+  "extends": "@voiceflow/tsconfig/web.json",
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "lib": ["dom", "es2019"],
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "outDir": "build",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "types": ["node"],
+    "composite": false,
+    "declaration": true,
+    "declarationMap": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "inlineSources": false,
+    "isolatedModules": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "preserveWatchOutput": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "target": "ES2021"
+  },
+  "compileOnSave": false,
+  "exclude": ["node_modules", "build", "dist", "docs"]
+}
