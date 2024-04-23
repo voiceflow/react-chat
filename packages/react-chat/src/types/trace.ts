@@ -1,6 +1,6 @@
-import { Trace } from '@voiceflow/base-types';
-import { TraceDeclaration } from '@voiceflow/sdk-runtime';
+import type { Trace } from '@voiceflow/base-types';
+import type { TraceDeclaration } from '@voiceflow/sdk-runtime';
 
-import { RuntimeMessage } from '../contexts/RuntimeContext/messages';
+import type { RuntimeMessage } from '../contexts/RuntimeContext/messages';
 
-export type TraceHandler<Trace extends Trace.AnyTrace = Trace.AnyTrace> = TraceDeclaration<RuntimeMessage, Trace>;
+export type TraceHandler<T extends Trace.AnyTrace = Trace.AnyTrace> = TraceDeclaration<RuntimeMessage, T>;

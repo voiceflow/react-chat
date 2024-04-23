@@ -12,7 +12,7 @@ export interface FooterProps {
   withWatermark: boolean;
 
   /**
-   * If true, shows a prompt to start a new chat by calling the {@link onStart} handler.
+   * If true, shows a prompt to start a new chat by calling the {@link FooterProps.onStart} handler.
    * If false, renders controls for the user to write a response.
    */
   hasEnded?: boolean | undefined;
@@ -51,7 +51,6 @@ const Footer: React.FC<FooterProps> = ({ withWatermark, hasEnded, disableSend, o
         <ChatInput
           value={message}
           placeholder="Message…"
-          // eslint-disable-next-line jsx-a11y/no-autofocus
           autoFocus
           onValueChange={setMessage}
           onSend={handleSend}

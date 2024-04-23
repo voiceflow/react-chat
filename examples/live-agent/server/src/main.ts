@@ -15,4 +15,4 @@ app.use(bodyParser.json());
 intercomRoutes(app);
 
 app.listen(9099);
-console.log('server is running on port 9099');
+console.info('server is running on port 9099');

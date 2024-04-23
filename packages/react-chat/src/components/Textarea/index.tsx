@@ -1,20 +1,23 @@
-import { forwardRef, ForwardRefExoticComponent, RefAttributes } from 'react';
-import { TextareaAutosizeProps } from 'react-textarea-autosize';
-import { Merge } from 'type-fest';
+import type { ForwardRefExoticComponent, RefAttributes } from 'react';
+import { forwardRef } from 'react';
+import type { TextareaAutosizeProps } from 'react-textarea-autosize';
+import type { Merge } from 'type-fest';
 
-import { ControlProps, createControlled } from '@/utils/controls';
+import type { ControlProps } from '@/utils/controls';
+import { createControlled } from '@/utils/controls';
 import { chain } from '@/utils/functional';
 
 import { Container } from './styled';
 
-export interface TextareaProps extends Merge<ControlProps<string>, Omit<TextareaAutosizeProps, 'value'>> {}
+export interface TextareaProps extends Merge<ControlProps<string>, Omit<TextareaAutosizeProps, 'value' | 'rows'>> {}
 
-const Textarea: ForwardRefExoticComponent<TextareaProps & RefAttributes<HTMLTextAreaElement>> = forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ onValueChange, onChange, rows = 1, ...props }, ref) => {
-    const handleChange = chain(onChange, (event) => onValueChange(event.target.value));
-    return <Container ref={ref} {...props} onChange={handleChange} minRows={1} maxRows={5} style={{ height: 42 }} />;
-  }
-);
+const Textarea: ForwardRefExoticComponent<TextareaProps & RefAttributes<HTMLTextAreaElement>> = forwardRef<
+  HTMLTextAreaElement,
+  TextareaProps
+>(({ onValueChange, onChange, ...props }, ref) => {
+  const handleChange = chain(onChange, (event) => onValueChange(event.target.value));
+  return <Container ref={ref} {...props} onChange={handleChange} minRows={1} maxRows={5} style={{ height: 42 }} />;
+});
 
 /**
  * A textarea form control.

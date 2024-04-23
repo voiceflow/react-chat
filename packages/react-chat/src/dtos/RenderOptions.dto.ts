@@ -1,4 +1,3 @@
-/* eslint-disable xss/no-mixed-html */
 import { z } from 'zod';
 
 export const EMBEDDED_TARGET = 'voiceflow-chat-frame';

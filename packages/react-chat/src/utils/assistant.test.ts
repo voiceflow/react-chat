@@ -1,24 +1,31 @@
 import { VoiceflowRuntime } from '@voiceflow/sdk-runtime';
-import { vi } from 'vitest';
+import { createMock } from '@voiceflow/test-common/vitest';
+import type { Mock } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
-import { ChatPersistence, ChatPosition } from '@/common';
-import { DEFAULT_AVATAR, RawAssistantOptions } from '@/dtos/AssistantOptions.dto';
-import { ChatConfig } from '@/dtos/ChatConfig.dto';
+import type { RawAssistantOptions } from '@/dtos/AssistantOptions.dto';
+import { DEFAULT_AVATAR } from '@/dtos/AssistantOptions.dto';
+import type { ChatConfig } from '@/dtos/ChatConfig.dto';
 import { ExtensionType } from '@/dtos/Extension.dto';
 import { PRIMARY } from '@/styles';
+import { ChatPersistence, ChatPosition } from '@/types';
 
 import { mergeAssistantOptions } from './assistant';
 
-vi.mock('@voiceflow/sdk-runtime', () => {
-  const VoiceflowRuntime = vi.fn();
-  VoiceflowRuntime.prototype.getPublishing = vi.fn().mockResolvedValue({});
-
-  return { VoiceflowRuntime };
-});
-
-const getRuntimeMock = () => vi.mocked(VoiceflowRuntime).mock.instances[0];
+vi.mock('@voiceflow/sdk-runtime', () => ({ VoiceflowRuntime: vi.fn() }));
 
 describe('assistant utils', () => {
+  const mockGetPublishing = (): Mock<
+    Parameters<VoiceflowRuntime<any>['getPublishing']>,
+    ReturnType<VoiceflowRuntime<any>['getPublishing']>
+  > => {
+    const getPublishing = vi.fn().mockResolvedValue({});
+
+    vi.mocked(VoiceflowRuntime).mockImplementation(() => createMock<VoiceflowRuntime<any>>({ getPublishing }));
+
+    return getPublishing;
+  };
+
   describe('mergeAssistantOptions()', () => {
     const config = {} as ChatConfig;
     const remoteOptions: RawAssistantOptions = {
@@ -41,6 +48,8 @@ describe('assistant utils', () => {
     };
 
     it('should fallback to default options when not configured', async () => {
+      mockGetPublishing();
+
       const merged = await mergeAssistantOptions(config, {});
 
       expect(merged).toEqual({
@@ -62,8 +71,7 @@ describe('assistant utils', () => {
     });
 
     it('should use remote values pulled from publishing configuration', async () => {
-      const runtimeMock = vi.mocked(VoiceflowRuntime).mock.instances[0];
-      vi.mocked(runtimeMock.getPublishing).mockResolvedValue(remoteOptions);
+      mockGetPublishing().mockResolvedValue(remoteOptions);
 
       const merged = await mergeAssistantOptions(config, undefined);
 
@@ -94,8 +102,7 @@ describe('assistant utils', () => {
         watermark: !remoteOptions.watermark,
         feedback: !remoteOptions.feedback,
       };
-      const runtimeMock = vi.mocked(VoiceflowRuntime).mock.instances[0];
-      vi.mocked(runtimeMock.getPublishing).mockResolvedValue(remoteOptions);
+      mockGetPublishing().mockResolvedValue(remoteOptions);
 
       const merged = await mergeAssistantOptions(config, localOptions);
 
@@ -116,10 +123,7 @@ describe('assistant utils', () => {
       const localOptions: RawAssistantOptions = {
         spacing: { side: 100 },
       };
-      const runtimeMock = getRuntimeMock();
-      vi.mocked(runtimeMock.getPublishing).mockResolvedValue({
-        spacing: { bottom: 100 },
-      });
+      mockGetPublishing().mockResolvedValue({ spacing: { bottom: 100 } });
 
       const merged = await mergeAssistantOptions(config, localOptions);
 

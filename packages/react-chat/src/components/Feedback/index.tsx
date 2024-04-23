@@ -29,10 +29,18 @@ const Feedback: React.FC<FeedbackProps> = ({ question = 'Was this helpful?', onC
     <Container {...props}>
       <Description>{question}</Description>
       <ButtonsContainer>
-        <Button orientation="positive" active={active === FeedbackName.POSITIVE} onClick={() => handleClick(FeedbackName.POSITIVE)}>
+        <Button
+          orientation="positive"
+          active={active === FeedbackName.POSITIVE}
+          onClick={() => handleClick(FeedbackName.POSITIVE)}
+        >
           <ThumbsUp width="24px" height="24px" />
         </Button>
-        <Button orientation="negative" active={active === FeedbackName.NEGATIVE} onClick={() => handleClick(FeedbackName.NEGATIVE)}>
+        <Button
+          orientation="negative"
+          active={active === FeedbackName.NEGATIVE}
+          onClick={() => handleClick(FeedbackName.NEGATIVE)}
+        >
           <ThumbsUp width="24px" height="24px" />
         </Button>
       </ButtonsContainer>

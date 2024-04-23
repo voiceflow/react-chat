@@ -1,5 +1,6 @@
 import { PureComponent } from 'react';
-import ReactMarkdown, { Options } from 'react-markdown';
+import type { Options } from 'react-markdown';
+import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import rehypeSanitize from 'rehype-sanitize';
 import remarkGfm from 'remark-gfm';

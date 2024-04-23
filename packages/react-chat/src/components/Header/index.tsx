@@ -1,5 +1,6 @@
 import Avatar from '@/components/Avatar';
-import Icon, { IconProps } from '@/components/Icon';
+import type { IconProps } from '@/components/Icon';
+import Icon from '@/components/Icon';
 
 import { Button, Container, Title } from './styled';
 

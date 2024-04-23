@@ -2,10 +2,10 @@ import { Trace } from '@voiceflow/base-types';
 import React from 'react';
 import { match } from 'ts-pattern';
 
-import { ChatPosition } from '@/common';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
 import { animationStyles, styled } from '@/styles';
+import { ChatPosition } from '@/types';
 
 import Close, { CloseContainer } from './Close';
 import Message, { MessageContainer } from './Message';
@@ -35,7 +35,7 @@ export const ProactiveContainer = styled(tag('div'), {
     opacity: 0,
   },
 
-  [`&:hover`]: {
+  '&:hover': {
     [`& ${CloseContainer}`]: {
       opacity: 1,
     },
@@ -54,7 +54,9 @@ const ProactiveQueue: React.FC<ProactiveQueueProps> = ({ side, messages }) => {
     () =>
       messages.map((message, index) =>
         match(message)
-          .with({ type: Trace.TraceType.TEXT }, ({ payload }) => <Message key={index}>{String(payload.message)}</Message>)
+          .with({ type: Trace.TraceType.TEXT }, ({ payload }) => (
+            <Message key={index}>{String(payload.message)}</Message>
+          ))
           .otherwise(() => null)
       ),
     [messages]

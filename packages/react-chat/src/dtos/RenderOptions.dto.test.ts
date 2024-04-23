@@ -1,13 +1,8 @@
-/* eslint-disable xss/no-mixed-html */
-import { vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 import { EMBEDDED_TARGET, RenderMode, RenderOptions } from './RenderOptions.dto';
 
 describe('RenderOptions', () => {
-  beforeEach(() => {
-    vi.resetAllMocks();
-  });
-
   describe('parse()', () => {
     it('should render in overlay mode by default', () => {
       const result = RenderOptions.parse(undefined);

@@ -1,7 +1,7 @@
 import { BaseRequest } from '@voiceflow/base-types';
 import { useCallback, useRef } from 'react';
 
-import { SessionStatus } from '@/common';
+import { SessionStatus } from '@/types';
 
 import type { RuntimeState } from './useRuntimeState';
 

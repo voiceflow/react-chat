@@ -4,11 +4,11 @@ import React, { useCallback, useContext } from 'react';
 import * as R from 'remeda';
 import { match } from 'ts-pattern';
 
-import { SessionStatus } from '@/common';
 import { Chat, SystemResponse, UserResponse } from '@/components';
 import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts/RuntimeContext';
 import type { FeedbackName } from '@/contexts/RuntimeContext/useRuntimeAPI';
-import { TurnType, UserTurnProps } from '@/types';
+import type { UserTurnProps } from '@/types';
+import { SessionStatus, TurnType } from '@/types';
 
 import { ChatWindowContainer } from './styled';
 

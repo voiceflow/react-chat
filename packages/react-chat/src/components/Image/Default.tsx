@@ -1,7 +1,7 @@
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
 import { styled } from '@/styles';
-import { VariantProp } from '@/types';
+import type { VariantProp } from '@/types';
 
 export const tag = tagFactory(ClassName.IMAGE);
 
@@ -42,7 +42,9 @@ export interface DefaultImageProps extends React.ComponentProps<typeof DefaultIm
   isRounded?: VariantProp<typeof DefaultImageBase, 'isRounded'>;
 }
 
-const DefaultImage: React.FC<DefaultImageProps> = ({ image, ...props }) => <DefaultImageBase {...props} src={image || undefined} />;
+const DefaultImage: React.FC<DefaultImageProps> = ({ image, ...props }) => (
+  <DefaultImageBase {...props} src={image || undefined} />
+);
 
 /**
  * An image rendered as the `src` of an `<img>`.

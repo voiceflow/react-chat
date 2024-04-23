@@ -1,6 +1,7 @@
-import { Merge } from 'type-fest';
+import type { Merge } from 'type-fest';
 
-import { ControlProps, createControlled } from '@/utils/controls';
+import type { ControlProps } from '@/utils/controls';
+import { createControlled } from '@/utils/controls';
 import { chain } from '@/utils/functional';
 
 import { Container } from './styled';

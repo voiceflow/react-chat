@@ -1,15 +1,14 @@
 import * as DTOs from '@voiceflow/dtos';
+import type { RuntimeAction, TraceDeclaration } from '@voiceflow/sdk-runtime';
 import {
   CardV2TraceComponent,
   ChoiceTraceComponent,
-  RuntimeAction,
   TextTraceComponent,
   Trace,
-  TraceDeclaration,
   VisualTraceComponent,
 } from '@voiceflow/sdk-runtime';
 
-import { CardProps } from '@/components/Card/types';
+import type { CardProps } from '@/components/Card/types';
 import type { SystemResponseProps } from '@/components/SystemResponse';
 import { MessageType } from '@/components/SystemResponse/constants';
 

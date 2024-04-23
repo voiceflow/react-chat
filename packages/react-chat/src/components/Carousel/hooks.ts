@@ -1,6 +1,7 @@
-import { RefObject, useEffect, useRef, useState } from 'react';
+import type { RefObject } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-import { CardProps } from '../Card';
+import type { CardProps } from '../Card';
 import { CARD_WITH_GUTTER_WIDTH, NEXT_CONTROL_BOUNDARY, PREVIOUS_CONTROL_BOUNDARY } from './constants';
 import { CAROUSEL_GUTTER_WIDTH } from './styled';
 

@@ -1,7 +1,26 @@
-coverage
-.idea
-.nyc_output
-build
-dist
+CHANGELOG.md
+
+# Node
 node_modules
 
+# output
+build
+dist
+storybook-static
+
+# Yarn
+.pnp.*
+.yarn
+*.lock
+
+# Yalc
+.yalc
+
+# Coverage
+sonar
+
+# Tests
+*.report.xml
+
+# Playwright
+test-results

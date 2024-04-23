@@ -1,13 +1,16 @@
 import React, { memo, useContext, useMemo, useRef, useState } from 'react';
 
-import AssistantInfo, { AssistantInfoProps } from '@/components/AssistantInfo';
-import Footer, { FooterProps } from '@/components/Footer';
-import Header, { HeaderActionProps, HeaderProps } from '@/components/Header';
+import type { AssistantInfoProps } from '@/components/AssistantInfo';
+import AssistantInfo from '@/components/AssistantInfo';
+import type { FooterProps } from '@/components/Footer';
+import Footer from '@/components/Footer';
+import type { HeaderActionProps, HeaderProps } from '@/components/Header';
+import Header from '@/components/Header';
 import Loader from '@/components/Loader';
 import Prompt from '@/components/Prompt';
 import { AutoScrollProvider, RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts';
 import { RenderMode } from '@/dtos/RenderOptions.dto';
-import { Nullish } from '@/types';
+import type { Nullish } from '@/types';
 import { chain } from '@/utils/functional';
 
 import { useTimestamp } from './hooks';
@@ -107,9 +110,18 @@ const Chat: React.FC<ChatProps> = ({
           {hasEnded && !!state.session.turns.length && <Status>The chat has ended</Status>}
         </AutoScrollProvider>
       </Dialog>
-      <Footer withWatermark={withWatermark} hasEnded={hasEnded} onStart={onStart} onSend={onSend} disableSend={state.indicator} />
+      <Footer
+        withWatermark={withWatermark}
+        hasEnded={hasEnded}
+        onStart={onStart}
+        onSend={onSend}
+        disableSend={state.indicator}
+      />
       <Overlay />
-      <Prompt accept={{ label: 'End Chat', type: 'warn', onClick: chain(onEnd, handleResume) }} cancel={{ label: 'Cancel', onClick: handleResume }} />
+      <Prompt
+        accept={{ label: 'End Chat', type: 'warn', onClick: chain(onEnd, handleResume) }}
+        cancel={{ label: 'Cancel', onClick: handleResume }}
+      />
     </Container>
   );
 };

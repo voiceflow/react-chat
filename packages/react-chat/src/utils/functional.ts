@@ -3,5 +3,5 @@ export const chain =
   (...args: Args) =>
     fns.forEach((fn) => fn?.(...args));
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
+// eslint-disable-next-line no-empty-function
 export const noop = () => {};

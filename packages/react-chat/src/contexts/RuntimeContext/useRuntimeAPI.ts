@@ -1,15 +1,16 @@
-import { RuntimeAction, VoiceflowRuntime } from '@voiceflow/sdk-runtime';
+import type { RuntimeAction } from '@voiceflow/sdk-runtime';
+import { VoiceflowRuntime } from '@voiceflow/sdk-runtime';
 import { serializeToText } from '@voiceflow/slate-serializer/text';
 import Bowser from 'bowser';
 import { useMemo } from 'react';
 
-import { SessionOptions } from '@/common';
 import type { MessageProps } from '@/components/SystemResponse';
 import { MessageType } from '@/components/SystemResponse/constants';
-import { ChatConfig } from '@/dtos/ChatConfig.dto';
-import { UserTurnProps } from '@/types';
+import type { ChatConfig } from '@/dtos/ChatConfig.dto';
+import type { SessionOptions, UserTurnProps } from '@/types';
 
-import { MESSAGE_TRACES, RuntimeMessage } from './messages';
+import type { RuntimeMessage } from './messages';
+import { MESSAGE_TRACES } from './messages';
 
 export enum FeedbackName {
   POSITIVE = 'Thumbs up',
@@ -39,7 +40,11 @@ export const useRuntimeAPI = ({
   );
 
   const interact = async (action: RuntimeAction) =>
-    runtime.interact(createContext(), { sessionID: encodeURIComponent(userID), action, ...(versionID && { versionID }) });
+    runtime.interact(createContext(), {
+      sessionID: encodeURIComponent(userID),
+      action,
+      ...(versionID && { versionID }),
+    });
 
   const saveFeedback = async (name: FeedbackName, lastTurnMessages: MessageProps[], userTurn: UserTurnProps | null) => {
     const aiMessages: string[] = [];

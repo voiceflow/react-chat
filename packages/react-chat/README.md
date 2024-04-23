@@ -11,7 +11,16 @@ yarn add @voiceflow/react-chat
 For a more complete example see our [demo-react-chat](https://github.com/voiceflow/demo-react-chat) repository.
 
 ```tsx
-import { Chat, ChatWindow, Launcher, SessionStatus, SystemResponse, TurnType, UserResponse, useRuntime } from '@voiceflow/react-chat';
+import {
+  Chat,
+  ChatWindow,
+  Launcher,
+  SessionStatus,
+  SystemResponse,
+  TurnType,
+  UserResponse,
+  useRuntime,
+} from '@voiceflow/react-chat';
 import { useState } from 'react';
 import { match } from 'ts-pattern';
 
@@ -83,7 +92,12 @@ const MyChat: React.FC = () => {
             match(turn)
               .with({ type: TurnType.USER }, ({ id, type: _, ...props }) => <UserResponse {...props} key={id} />)
               .with({ type: TurnType.SYSTEM }, ({ id, type: _, ...props }) => (
-                <SystemResponse key={id} {...props} avatar={AVATAR} isLast={turnIndex === runtime.session.turns.length - 1} />
+                <SystemResponse
+                  key={id}
+                  {...props}
+                  avatar={AVATAR}
+                  isLast={turnIndex === runtime.session.turns.length - 1}
+                />
               ))
               .exhaustive()
           )}

@@ -65,7 +65,7 @@ export const Container = styled(tag('div'), {
         scrollbarWidth: 'none',
         '-ms-overflow-style': 'none',
 
-        [`&::-webkit-scrollbar`]: {
+        '&::-webkit-scrollbar': {
           display: 'none',
         },
       },

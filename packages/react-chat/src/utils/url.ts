@@ -24,7 +24,8 @@ export const STRICT_LINKS_REGEXS = [
 
 export const isAnyStrictLink = (str: string): boolean => !!STRICT_LINKS_REGEXS.some((regexp) => str.match(regexp));
 
-export const getValidHref = (href: string): string => (href.startsWith('//') || href.includes('://') || isAnyStrictLink(href) ? href : `//${href}`);
+export const getValidHref = (href: string): string =>
+  href.startsWith('//') || href.includes('://') || isAnyStrictLink(href) ? href : `//${href}`;
 
 /**
  * opens url in  anew tab, noopener and noreferrer is set to true by default

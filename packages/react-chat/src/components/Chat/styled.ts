@@ -8,7 +8,8 @@ import Timestamp from '@/components/Timestamp';
 import UserResponse from '@/components/UserResponse';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
-import { animationStyles, createTransition, CSS, fadeIn, styled } from '@/styles';
+import type { CSS } from '@/styles';
+import { animationStyles, createTransition, fadeIn, styled } from '@/styles';
 
 const PROMPT_OVERFLOW = 10;
 

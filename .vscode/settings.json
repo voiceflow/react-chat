@@ -1,28 +1,48 @@
 {
-  "editor.formatOnSave": true,
-  "eslint.format.enable": true,
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "editor.codeActionsOnSave": {
-    "source.fixAll.tslint": "explicit",
     "source.fixAll.eslint": "explicit"
   },
-  "eslint.runtime": "node",
-  "eslint.execArgv": ["--max_old_space_size=8192"],
-  "eslint.options": {
-    "extensions": [
-      ".js",
-      ".jsx",
-      ".md",
-      ".mdx",
-      ".ts",
-      ".tsx"
-    ]
-  },
-  "eslint.validate": [
-    "markdown",
-    "mdx",
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ]
+  "eslint.format.enable": true,
+  "eslint.experimental.useFlatConfig": true,
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/build": true,
+    "**/dist": true,
+    "**/test-results": true,
+    "**/playwright-report": true,
+    "**/sonar": true,
+    "**/.husky": true,
+    "**/.yarn": true,
+    "**/.turbo": true
+  }
 }

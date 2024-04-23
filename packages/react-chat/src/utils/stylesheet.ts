@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { AssistantOptions } from '@/dtos/AssistantOptions.dto';
+import type { AssistantOptions } from '@/dtos/AssistantOptions.dto';
 
 // used to add stylesheets dynamically, resolves when loaded
 export const addStyleSheetURL = async (url: string, root: Node) => {

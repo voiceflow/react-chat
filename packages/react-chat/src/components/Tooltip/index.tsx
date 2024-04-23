@@ -1,6 +1,6 @@
 import Message from '@/components/Message';
 
-import { DebugMessageProps } from '../Message/DebugMessage';
+import type { DebugMessageProps } from '../Message/DebugMessage';
 import { Button, Container } from './styled';
 
 export interface ActionMessageProps extends DebugMessageProps {

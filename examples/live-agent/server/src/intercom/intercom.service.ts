@@ -1,4 +1,4 @@
-/* eslint-disable no-await-in-loop, no-restricted-syntax, xss/no-mixed-html */
+/* eslint-disable no-await-in-loop */
 import { Client as IntercomClient } from 'intercom-client';
 import { stripHtml } from 'string-strip-html';
 import { WebSocket } from 'ws';
@@ -75,7 +75,11 @@ export class IntercomService {
     }
   }
 
-  public async subscribeToConversation(conversationID: string, ws: WebSocket, handler: (event: { type: string; data: any }) => any) {
+  public async subscribeToConversation(
+    conversationID: string,
+    ws: WebSocket,
+    handler: (event: { type: string; data: any }) => any
+  ) {
     const conversation = await this.intercom.conversations.find({ id: conversationID }).catch(() => null);
     if (!conversation) return;
 

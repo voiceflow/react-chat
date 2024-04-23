@@ -1,7 +1,5 @@
 {
   "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "outDir": "build",
-    "skipLibCheck": true
-  }
+  "include": ["src", "typings"],
+  "exclude": ["**/*.test.*", "**/*.story.tsx"]
 }
