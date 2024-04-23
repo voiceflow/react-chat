@@ -14,7 +14,6 @@
 
 /* .vfrc-prompt {} */
 
-
 /*
   CHAT WIDGET HEADER
 
@@ -33,7 +32,6 @@
 /* .vfrc-avatar {} */
 
 /* .vfrc-icon {} */
-
 
 /*
   CHAT MESSAGE BODY
@@ -54,7 +52,6 @@
 /* .vfrc-message {} */
 
 /* .vfrc-timestamp {} */
-
 
 /*
   ASSISTANT RESPONSES
@@ -94,7 +91,6 @@
 /* Targeted styling for just the Assistant buttons. */
 /* .vfrc-system-response .vfrc-button {} */
 
-
 /*
   USER RESPONSES
 
@@ -105,7 +101,6 @@
 
 /* Targeted styling for just the User messages */
 /* .vfrc-user-response .vfrc-message {} */
-
 
 /*
   FOOTER

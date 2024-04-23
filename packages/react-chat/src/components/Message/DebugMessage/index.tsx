@@ -1,5 +1,5 @@
 import { topCaret as TopCaret } from '@/assets/svg';
-import { VariantProp } from '@/types';
+import type { VariantProp } from '@/types';
 
 import { Container } from './styled';
 

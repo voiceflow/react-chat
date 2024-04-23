@@ -1,10 +1,14 @@
 import { VoiceflowRuntime } from '@voiceflow/sdk-runtime';
 import type { PartialDeep } from 'type-fest';
 
-import { AssistantOptions, RawAssistantOptions } from '@/dtos/AssistantOptions.dto';
-import { ChatConfig } from '@/dtos/ChatConfig.dto';
+import type { RawAssistantOptions } from '@/dtos/AssistantOptions.dto';
+import { AssistantOptions } from '@/dtos/AssistantOptions.dto';
+import type { ChatConfig } from '@/dtos/ChatConfig.dto';
 
-export const mergeAssistantOptions = async (config: ChatConfig, overrides: RawAssistantOptions): Promise<AssistantOptions> => {
+export const mergeAssistantOptions = async (
+  config: ChatConfig,
+  overrides: RawAssistantOptions
+): Promise<AssistantOptions> => {
   const { versionID } = config;
 
   // fetch remote publishing config

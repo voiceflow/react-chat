@@ -1,10 +1,10 @@
-import { Text, Trace } from '@voiceflow/base-types';
+import type { Text, Trace } from '@voiceflow/base-types';
 
-import { CardProps } from '@/components/Card/types';
-import { ResponseExtension } from '@/dtos/Extension.dto';
-import { StringifiedEnum } from '@/types/util';
+import type { CardProps } from '@/components/Card/types';
+import type { ResponseExtension } from '@/dtos/Extension.dto';
+import type { StringifiedEnum } from '@/types/util';
 
-import { MessageType } from './constants';
+import type { MessageType } from './constants';
 
 export interface BaseMessageProps {
   delay?: number | undefined;

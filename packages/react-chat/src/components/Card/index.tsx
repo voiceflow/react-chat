@@ -5,7 +5,7 @@ import Image from '@/components/Image';
 import { RuntimeStateAPIContext } from '@/contexts';
 
 import { Container, Content, Description, Header, Link } from './styled';
-import { CardProps } from './types';
+import type { CardProps } from './types';
 import { isValidHttpUrl } from './utils';
 
 export type { CardProps } from './types';

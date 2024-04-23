@@ -4,7 +4,8 @@ import { useMemo } from 'react';
 
 import { ASSISTANT, CONFIG } from './config';
 import { LiveAgent } from './traces/LiveAgent.trace';
-import { LiveAgentEvents, useLiveAgent } from './use-live-agent.hook';
+import type { LiveAgentEvents } from './use-live-agent.hook';
+import { useLiveAgent } from './use-live-agent.hook';
 
 export const RuntimeProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const emitter = useMemo(() => createNanoEvents<LiveAgentEvents>(), []);

@@ -1,7 +1,9 @@
-import { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
-import SystemResponse, { SystemResponseProps } from '@/components/SystemResponse';
-import UserResponse, { UserResponseProps } from '@/components/UserResponse';
+import type { SystemResponseProps } from '@/components/SystemResponse';
+import SystemResponse from '@/components/SystemResponse';
+import type { UserResponseProps } from '@/components/UserResponse';
+import UserResponse from '@/components/UserResponse';
 import { MOCK_IMAGE, VF_ICON } from '@/fixtures';
 
 import Chat from '.';
@@ -56,7 +58,8 @@ export const Exhaustive: Story = {
             {
               type: 'card',
               title: 'Card Message',
-              description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem voluptas perspiciatis est quis dolores!',
+              description:
+                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem voluptas perspiciatis est quis dolores!',
               image: MOCK_IMAGE,
             },
           ]}

@@ -1,18 +1,23 @@
-import { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import Chat from '@/components/Chat';
 import { MOCK_IMAGE, VF_ICON } from '@/fixtures';
 
-import SystemResponse, { MessageProps } from '.';
+import type { MessageProps } from '.';
+import SystemResponse from '.';
 
 type Story = StoryObj<typeof SystemResponse>;
 
 const CARD_IMAGE = MOCK_IMAGE;
-const TEXT_MESSAGE: MessageProps = { type: 'text', text: 'Lorem ipsum dolor sit amet consectetur voluptas perspiciatis est quis dolores' };
+const TEXT_MESSAGE: MessageProps = {
+  type: 'text',
+  text: 'Lorem ipsum dolor sit amet consectetur voluptas perspiciatis est quis dolores',
+};
 const CARD: MessageProps = {
   type: 'card',
   title: 'Card Message',
-  description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem voluptas perspiciatis est quis dolores!',
+  description:
+    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem voluptas perspiciatis est quis dolores!',
   image: CARD_IMAGE,
 };
 
@@ -106,7 +111,8 @@ export const Carousel: Story = {
         cards: [
           {
             title: 'First Card',
-            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem voluptas perspiciatis est quis dolores!',
+            description:
+              'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem voluptas perspiciatis est quis dolores!',
             image: CARD_IMAGE,
             actions: [
               { request: {} as any, name: 'First Button' },

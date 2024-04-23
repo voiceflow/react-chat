@@ -3,7 +3,7 @@ version: 2.1
 parameters:
   ssh-fingerprint:
     type: string
-    default: "SHA256:r/0YTSpeTcY6psL0RvgtmDjZJB+raeTcfd/5bcQQ2DQ"
+    default: 'SHA256:r/0YTSpeTcY6psL0RvgtmDjZJB+raeTcfd/5bcQQ2DQ'
   build-apps:
     type: boolean
     default: false
@@ -21,14 +21,14 @@ defaults:
       - vfcommon/notify_slack:
           channel: dev_general
           event: fail
-          mentions: "@eng_platform"
+          mentions: '@eng_platform'
           template: basic_fail_1
           branch_pattern: master
 
 executors:
   playwright:
     docker:
-      - image: mcr.microsoft.com/playwright:v1.41.1-jammy
+      - image: mcr.microsoft.com/playwright:v1.43.1-jammy
 
 jobs:
   test: # Main unit, style, and dependency tests
@@ -41,16 +41,25 @@ jobs:
           avoid_post_install_scripts: false
       - vfcommon/monorepo_lint_report:
           run_on_root: true
+      - vfcommon/monorepo_types_tests:
+          run_on_root: true
       - vfcommon/monorepo_dependency_tests:
           run_on_root: true
       - vfcommon/monorepo_unit_tests:
           run_on_root: true
+      - run:
+          name: Collect test reports
+          command: |
+            # copy all .report.xml files to the root directory
+            # and give them unique names based on their paths
+            find . -type f -name "*.report.xml" | xargs -I {} sh -c 'cp {} reports/$(echo {} | cut -c 3- | tr "/" "_")'
+      - store_test_results:
+          path: './reports'
       - vfcommon/monorepo_save_cache:
-          package: "all"
-          monorepo_engine: "turborepo"
-          cache_identifier: "monorepo-test-cache"
-      ## disable sonarcloud until project set up
-      # - sonarcloud/scan
+          package: 'all'
+          monorepo_engine: 'turborepo'
+          cache_identifier: 'monorepo-test-cache'
+      - sonarcloud/scan
 
   e2e:
     executor: playwright
@@ -65,6 +74,15 @@ jobs:
           command: yarn test:e2e
       - store_artifacts:
           path: packages/react-chat/test-results
+      - run:
+          name: Collect test reports
+          command: |
+            # copy all .report.xml files to the root directory
+            # and give them unique names based on their paths
+            mkdir -p reports
+            find . -type f -name "*.report.xml" | xargs -I {} sh -c 'cp {} reports/$(echo {} | cut -c 3- | tr "/" "_")'
+      - store_test_results:
+          path: './reports'
 
   push-to-cdn: # Main unit, style, and dependency tests
     executor: vfcommon/node-executor-node-20
@@ -87,13 +105,13 @@ workflows:
           avoid_post_install_scripts: false
           name: build
           package: all
-          monorepo_engine: "turborepo"
+          monorepo_engine: 'turborepo'
           force_execute: true
           run_in_container: false
-          container_folder_to_copy: "" #Copy all
+          container_folder_to_copy: '' #Copy all
           post_build_steps:
             - persist_to_workspace:
-                root: "."
+                root: '.'
                 paths:
                   - ./packages/*/dist # persist dist folder too
 
@@ -115,8 +133,8 @@ workflows:
           avoid_post_install_scripts: false
           ssh_key: << pipeline.parameters.ssh-fingerprint >>
           context: dev-test
-          release_engine: "lite"
-          commit_message: "chore(release): publish --skip-ci"
+          release_engine: 'lite'
+          commit_message: 'chore(release): publish --skip-ci'
           requires:
             - test
             - e2e

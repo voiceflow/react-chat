@@ -24,7 +24,7 @@ export const CloseContainer = styled(tag('div'), {
     height: 10,
   },
 
-  [`&:hover, &:active`]: {
+  '&:hover, &:active': {
     color: '#2B3239',
   },
 });

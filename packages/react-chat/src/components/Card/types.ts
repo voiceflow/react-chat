@@ -1,4 +1,4 @@
-import type { RuntimeAction } from '@/common';
+import type { RuntimeAction } from '@voiceflow/sdk-runtime';
 
 import type { Link } from './styled';
 

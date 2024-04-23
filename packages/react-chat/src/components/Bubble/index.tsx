@@ -1,5 +1,6 @@
-import Icon, { IconProps } from '@/components/Icon';
-import { VariantProp } from '@/types';
+import type { IconProps } from '@/components/Icon';
+import Icon from '@/components/Icon';
+import type { VariantProp } from '@/types';
 
 import { Container } from './styled';
 

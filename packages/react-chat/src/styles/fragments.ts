@@ -1,4 +1,4 @@
-import { CSS } from './theme';
+import type { CSS } from './theme';
 
 export const textOverflowStyles: CSS = {
   overflow: 'hidden',

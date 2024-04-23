@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SetRequired } from 'type-fest';
+import type { SetRequired } from 'type-fest';
 
 export interface ControlProps<T = any> {
   /**
@@ -21,16 +21,21 @@ export type ControlledProps<Props extends ControlProps<any>> = Omit<Props, keyof
 
 export interface ControlledOptions<Props extends ControlProps> {
   defaultValue?: ControlValue<Props>;
-  enrichProps?: <T extends Omit<Props, keyof ControlProps>>(props: T, state: [ControlValue<Props>, (value: ControlValue<Props>) => void]) => T;
+  enrichProps?: <T extends Omit<Props, keyof ControlProps>>(
+    props: T,
+    state: [ControlValue<Props>, (value: ControlValue<Props>) => void]
+  ) => T;
 }
 
 export const createControlled: {
-  <Props extends ControlProps>(Component: React.FC<Props>, options: SetRequired<ControlledOptions<Props>, 'defaultValue'>): React.FC<
-    ControlledProps<Props>
-  >;
-  <Props extends ControlProps>(Component: React.FC<Props>, options?: ControlledOptions<Props>): React.FC<
-    SetRequired<ControlledProps<Props>, 'initialValue'>
-  >;
+  <Props extends ControlProps>(
+    Component: React.FC<Props>,
+    options: SetRequired<ControlledOptions<Props>, 'defaultValue'>
+  ): React.FC<ControlledProps<Props>>;
+  <Props extends ControlProps>(
+    Component: React.FC<Props>,
+    options?: ControlledOptions<Props>
+  ): React.FC<SetRequired<ControlledProps<Props>, 'initialValue'>>;
 } =
   (Component: React.FC<ControlProps<any>>, options?: ControlledOptions<ControlProps<any>>) =>
   ({ initialValue, ...props }: ControlledProps<ControlProps<any>>) => {

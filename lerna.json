@@ -1,9 +1,5 @@
 {
-  "packages": [
-    "packages/*",
-    "examples/*",
-    "examples/live-agent/server"
-  ],
+  "packages": ["packages/*", "examples/*", "examples/live-agent/server"],
   "npmClient": "yarn",
   "useWorkspaces": true,
   "version": "independent",

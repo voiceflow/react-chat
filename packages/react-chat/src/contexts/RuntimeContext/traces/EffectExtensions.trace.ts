@@ -1,9 +1,10 @@
-import { Trace } from '@voiceflow/base-types';
-import { TraceDeclaration } from '@voiceflow/sdk-runtime';
+import type { Trace } from '@voiceflow/base-types';
+import type { TraceDeclaration } from '@voiceflow/sdk-runtime';
 
-import { AnyExtension, EffectExtension, ExtensionType } from '@/dtos/Extension.dto';
+import type { AnyExtension, EffectExtension } from '@/dtos/Extension.dto';
+import { ExtensionType } from '@/dtos/Extension.dto';
 
-import { RuntimeMessage } from '../messages';
+import type { RuntimeMessage } from '../messages';
 
 export const EffectExtensions = (extensions: AnyExtension[]): TraceDeclaration<RuntimeMessage, Trace.AnyTrace>[] => {
   return extensions

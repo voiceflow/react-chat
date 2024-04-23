@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { Trace } from '@voiceflow/base-types';
+import type { Trace } from '@voiceflow/base-types';
 
 test('renders launcher and widget appears on click', async ({ page }) => {
   const message = 'Welcome to our chat';

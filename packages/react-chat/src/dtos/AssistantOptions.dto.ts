@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
-import { ChatPersistence, ChatPosition } from '@/common';
 import { PRIMARY } from '@/styles/color';
+import { ChatPersistence, ChatPosition } from '@/types';
 
 import { AnyExtension } from './Extension.dto';
 

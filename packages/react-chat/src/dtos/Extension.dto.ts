@@ -1,4 +1,4 @@
-import { Trace } from '@voiceflow/base-types';
+import type { Trace } from '@voiceflow/base-types';
 import { z } from 'zod';
 
 export enum ExtensionType {

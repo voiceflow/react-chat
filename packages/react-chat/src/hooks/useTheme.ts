@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { AssistantOptions } from '@/dtos/AssistantOptions.dto';
+import type { AssistantOptions } from '@/dtos/AssistantOptions.dto';
 import { createCustomTheme } from '@/styles';
 
 export const useTheme = (assistant?: AssistantOptions) => {

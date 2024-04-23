@@ -1,35 +1,19 @@
 {
-  "extends": "@voiceflow/tsconfig/web.json",
+  "extends": "@voiceflow/tsconfig",
   "ts-node": {
     "compilerOptions": {
       "module": "commonjs"
     }
   },
   "compilerOptions": {
-    "skipLibCheck": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "lib": [
-      "dom",
-      "es2019"
-    ],
+    "lib": ["dom", "es2019"],
     "jsx": "react-jsx",
     "baseUrl": ".",
     "outDir": "build",
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["src/*"]
     },
-    "types": [
-      "node"
-    ]
+    "types": ["node"]
   },
-  "compileOnSave": false,
-  "exclude": [
-    "node_modules",
-    "build",
-    "dist",
-    "docs"
-  ]
+  "exclude": ["node_modules", "build", "dist", "docs"]
 }
