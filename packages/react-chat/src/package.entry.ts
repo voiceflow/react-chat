@@ -8,6 +8,7 @@ export * from './dtos/Extension.dto';
 export * from './dtos/RenderOptions.dto';
 export * from './hooks';
 export * from './styles';
+export { SessionStatus } from './types/session';
 export * from './types/trace';
 export * from './types/turn';
 export * from './utils/functional';

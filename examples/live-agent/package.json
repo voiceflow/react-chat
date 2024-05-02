@@ -11,6 +11,7 @@
   },
   "prettier": "@voiceflow/prettier-config",
   "dependencies": {
+    "@clerk/clerk-react": "5.0.3",
     "@voiceflow/exception": "1.4.0",
     "@voiceflow/fetch": "1.5.2",
     "@voiceflow/react-chat": "workspace:*",

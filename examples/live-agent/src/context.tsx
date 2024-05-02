@@ -1,3 +1,4 @@
+import { useUser } from '@clerk/clerk-react';
 import { RuntimeProvider as BaseProvider } from '@voiceflow/react-chat';
 import { createNanoEvents } from 'nanoevents';
 import { useMemo } from 'react';
@@ -10,11 +11,23 @@ import { useLiveAgent } from './use-live-agent.hook';
 export const RuntimeProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const emitter = useMemo(() => createNanoEvents<LiveAgentEvents>(), []);
   const liveAgent = useLiveAgent(emitter);
+  const { user } = useUser();
 
   return (
     <BaseProvider
       assistant={ASSISTANT}
-      config={CONFIG}
+      config={{
+        ...CONFIG,
+        launch: {
+          event: {
+            type: 'launch',
+            payload: {
+              id: user?.id,
+              name: user?.fullName,
+            },
+          },
+        },
+      }}
       traceHandlers={[LiveAgent((platform) => emitter.emit('live_agent', platform))]}
       extend={liveAgent.extend}
     >
