@@ -1,5 +1,6 @@
+import type { BaseRequest } from '@voiceflow/dtos';
+import { isTextRequest, RequestType } from '@voiceflow/dtos';
 import type { TraceDeclaration } from '@voiceflow/sdk-runtime';
-import { BaseRequest, isTextRequest, RequestType } from "@voiceflow/dtos";
 import cuid from 'cuid';
 import { useState } from 'react';
 
@@ -117,8 +118,7 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
     await interact(config.launch?.event ?? { type: RequestType.LAUNCH });
   };
 
-  const reply = async (message: string): Promise<void> =>
-    interact({ type: RequestType.TEXT, payload: message });
+  const reply = async (message: string): Promise<void> => interact({ type: RequestType.TEXT, payload: message });
 
   const open = async () => {
     broadcast({ type: BroadcastType.OPEN });
