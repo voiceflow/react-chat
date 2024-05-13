@@ -1,4 +1,4 @@
-import type { BaseRequest } from '@voiceflow/base-types';
+import type { BaseRequest } from "@voiceflow/dtos";
 import type { PublicVerify, RuntimeOptions as SDKRuntimeOptions } from '@voiceflow/sdk-runtime';
 import { z } from 'zod';
 
@@ -28,7 +28,7 @@ export const LaunchOptions = z
     event: z
       .object({ type: z.string() })
       .passthrough()
-      .transform((x) => x as unknown as BaseRequest.BaseRequest),
+      .transform((x) => x as unknown as BaseRequest),
   })
   .partial();
 

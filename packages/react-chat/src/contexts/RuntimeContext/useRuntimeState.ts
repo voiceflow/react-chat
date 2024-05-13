@@ -1,6 +1,5 @@
-import { BaseRequest } from '@voiceflow/base-types';
-import { isTextRequest } from '@voiceflow/base-types/build/cjs/request';
 import type { TraceDeclaration } from '@voiceflow/sdk-runtime';
+import { BaseRequest, isTextRequest, RequestType } from "@voiceflow/dtos";
 import cuid from 'cuid';
 import { useState } from 'react';
 
@@ -72,7 +71,7 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
 
   const reset = () => setTurns(() => []);
 
-  const interact: SendMessage = async (action: BaseRequest.BaseRequest, message?: string) => {
+  const interact: SendMessage = async (action: BaseRequest, message?: string) => {
     clearNoReplyTimeout();
 
     if (sessionRef.current.status === SessionStatus.ENDED) return;
@@ -115,11 +114,11 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
     if (sessionRef.current.turns.length) reset();
 
     setStatus(SessionStatus.ACTIVE);
-    await interact(config.launch?.event ?? { type: BaseRequest.RequestType.LAUNCH, payload: null });
+    await interact(config.launch?.event ?? { type: RequestType.LAUNCH });
   };
 
   const reply = async (message: string): Promise<void> =>
-    interact({ type: BaseRequest.RequestType.TEXT, payload: message });
+    interact({ type: RequestType.TEXT, payload: message });
 
   const open = async () => {
     broadcast({ type: BroadcastType.OPEN });
