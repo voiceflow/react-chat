@@ -1,4 +1,5 @@
 import type { RuntimeAction } from '@voiceflow/sdk-runtime';
+import { BaseRequest } from '@voiceflow/dtos';
 import { ChatPersistence, ChatPosition } from '@voiceflow/voiceflow-types/build/cjs/version/chat';
 
 import type { TurnProps } from './turn';
@@ -6,7 +7,7 @@ import type { TurnProps } from './turn';
 export { ChatPersistence, ChatPosition };
 export type { RuntimeAction };
 
-export type SendMessage = (action: RuntimeAction, message?: string) => Promise<void>;
+export type SendMessage = (action: BaseRequest, message?: string) => Promise<void>;
 
 export enum SessionStatus {
   IDLE = 'IDLE',
