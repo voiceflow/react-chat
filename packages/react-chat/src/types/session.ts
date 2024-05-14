@@ -1,5 +1,5 @@
+import type { BaseRequest } from '@voiceflow/dtos';
 import type { RuntimeAction } from '@voiceflow/sdk-runtime';
-import { BaseRequest } from '@voiceflow/dtos';
 import { ChatPersistence, ChatPosition } from '@voiceflow/voiceflow-types/build/cjs/version/chat';
 
 import type { TurnProps } from './turn';
