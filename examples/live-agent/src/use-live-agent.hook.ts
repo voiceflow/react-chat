@@ -63,7 +63,7 @@ export const useLiveAgent = (emitter: Emitter<LiveAgentEvents>) => {
         const continueConversation = () => {
           socket?.close();
           socket = null;
-          api.interact({ type: 'continue', payload: null });
+          api.interact({ type: 'continue' });
         };
 
         const subscribeToConversation = (platform: LiveAgentPlatform, userID: string, conversationID: string) => {
