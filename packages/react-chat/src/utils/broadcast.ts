@@ -1,4 +1,4 @@
-import type { BaseRequest } from '@voiceflow/base-types';
+import type { BaseRequest } from '@voiceflow/dtos';
 
 import type { SessionOptions } from '@/types';
 
@@ -25,7 +25,7 @@ export interface Interact extends BroadcastMessage {
   type: BroadcastType.INTERACT;
   payload: {
     session: SessionOptions;
-    action: BaseRequest.BaseRequest;
+    action: BaseRequest;
   };
 }
 
