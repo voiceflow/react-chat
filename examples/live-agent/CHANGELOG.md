@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/voiceflow/react-chat/compare/@voiceflow-example/live-agent@1.2.0...@voiceflow-example/live-agent@1.2.1) (2024-05-15)
+
+### Bug Fixes
+
+* malformed request payloads (PL-1037) ([#141](https://github.com/voiceflow/react-chat/issues/141)) ([9c30fdb](https://github.com/voiceflow/react-chat/commit/9c30fdba9d41660aeb735a41bdda0b58040b54b0))
+
 # [1.2.0](https://github.com/voiceflow/react-chat/compare/@voiceflow-example/live-agent@1.1.0...@voiceflow-example/live-agent@1.2.0) (2024-04-23)
 
 ### Features

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.58.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.58.0...@voiceflow/react-chat@1.58.1) (2024-05-15)
+
+### Bug Fixes
+
+* malformed request payloads (PL-1037) ([#141](https://github.com/voiceflow/react-chat/issues/141)) ([9c30fdb](https://github.com/voiceflow/react-chat/commit/9c30fdba9d41660aeb735a41bdda0b58040b54b0))
+
 # [1.58.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.57.0...@voiceflow/react-chat@1.58.0) (2024-04-23)
 
 ### Features
