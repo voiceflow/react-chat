@@ -6172,7 +6172,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@voiceflow/dtos@npm:^1.72.0":
+"@voiceflow/dtos@npm:1.72.0":
   version: 1.72.0
   resolution: "@voiceflow/dtos@npm:1.72.0"
   dependencies:
@@ -6286,7 +6286,7 @@ __metadata:
     "@types/react-dom": 18.2.4
     "@vitejs/plugin-react": 4.2.1
     "@voiceflow/base-types": 2.97.3
-    "@voiceflow/dtos": ^1.72.0
+    "@voiceflow/dtos": 1.72.0
     "@voiceflow/sdk-runtime": 1.7.0
     "@voiceflow/slate-serializer": 1.5.5
     "@voiceflow/stitches-react": 2.3.1
