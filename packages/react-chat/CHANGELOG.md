@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.58.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.58.1...@voiceflow/react-chat@1.58.2) (2024-05-22)
+
+### Bug Fixes
+
+* bumps dtos package [bugfix] (COR-2142) ([#142](https://github.com/voiceflow/react-chat/issues/142)) ([9df8e7d](https://github.com/voiceflow/react-chat/commit/9df8e7d18207d57fdd64152129d8da7259992511))
+
 ## [1.58.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.58.0...@voiceflow/react-chat@1.58.1) (2024-05-15)
 
 ### Bug Fixes
