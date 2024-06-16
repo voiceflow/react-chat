@@ -1,6 +1,6 @@
-import type { BaseRequest } from '@voiceflow/dtos';
+import type { BaseRequest, TextRequest } from '@voiceflow/dtos';
 import { isTextRequest, RequestType } from '@voiceflow/dtos';
-import type { TraceDeclaration } from '@voiceflow/sdk-runtime';
+import type { RuntimeAction, TraceDeclaration } from '@voiceflow/sdk-runtime';
 import cuid from 'cuid';
 import { useState } from 'react';
 
@@ -72,6 +72,23 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
 
   const reset = () => setTurns(() => []);
 
+  const getLastSystemTurn = (): TurnProps | null => {
+    const turns = getTurns();
+    for (let i = turns.length - 1; i >= 0; i--) {
+      if (turns[i].type === TurnType.SYSTEM) return turns[i];
+    }
+    return null;
+  };
+
+  const userRequestMatchingAction = (action: BaseRequest) => {
+    const systemTurn = getLastSystemTurn();
+    if (isTextRequest(action) && systemTurn?.type === TurnType.SYSTEM) {
+      return systemTurn.actions?.find((a) => a.name.toLowerCase() === action.payload.trim().toLowerCase())?.request;
+    }
+
+    return null;
+  };
+
   const interact: SendMessage = async (action: BaseRequest, message?: string) => {
     clearNoReplyTimeout();
 
@@ -92,8 +109,10 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
       });
     }
 
+    const userAction = userRequestMatchingAction(action) ?? action;
+
     setIndicator(true);
-    const context = await runtime.interact(action).catch((error) => {
+    const context = await runtime.interact(userAction).catch((error) => {
       // TODO: better define error condition
       console.error(error);
       return createContext();
@@ -107,7 +126,7 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
       ...context,
     });
 
-    broadcast({ type: BroadcastType.INTERACT, payload: { session: sessionRef.current, action } });
+    broadcast({ type: BroadcastType.INTERACT, payload: { session: sessionRef.current, action: userAction } });
     saveSession(assistant.persistence, config.verify.projectID, sessionRef.current);
   };
 
