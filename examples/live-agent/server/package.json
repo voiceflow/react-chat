@@ -14,7 +14,7 @@
     "intercom-client": "4.0.0",
     "string-strip-html": "13.4.2",
     "ts-pattern": "4.3.0",
-    "ws": "8.13.0"
+    "ws": "8.17.1"
   },
   "devDependencies": {
     "@types/cors": "2.8.13",
