@@ -149,7 +149,7 @@ yarn install
 yarn build
 
 # run dev server
-yarn dev
+yarn local
 ```
 
 Once the server is running it should automatically open your browser with the chat widget.

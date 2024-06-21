@@ -22,6 +22,7 @@
     "clean": "turbo run clean && rimraf node_modules",
     "dev": "turbo run dev --no-cache --parallel --continue",
     "lint": "run-p -c lint:eslint lint:prettier",
+    "local": "cd packages/react-chat; yarn local",
     "lint:eslint": "yarn g:eslint",
     "lint:fix": "run-p -c \"g:eslint --fix\" \"g:prettier --write\"",
     "lint:prettier": "yarn g:prettier --check",
