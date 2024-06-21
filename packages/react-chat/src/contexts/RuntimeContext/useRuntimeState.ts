@@ -82,7 +82,7 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
 
   const userRequestMatchingAction = (action: BaseRequest) => {
     const systemTurn = getLastSystemTurn();
-    if (isTextRequest(action) && systemTurn?.type === TurnType.SYSTEM) {
+    if (isTextRequest(action)) {
       return systemTurn.actions?.find((a) => a.name.toLowerCase() === action.payload.trim().toLowerCase())?.request;
     }
 
