@@ -14,6 +14,7 @@ import { broadcast, BroadcastType } from '@/utils/broadcast';
 import { getSession, saveSession } from '@/utils/session';
 
 import type { RuntimeMessage } from './messages';
+import { resolveAction } from './runtime.utils';
 import { EffectExtensions } from './traces/EffectExtensions.trace';
 import { NoReply } from './traces/NoReply.trace';
 import { ResponseExtensions } from './traces/ResponseExtensions.trace';
@@ -72,23 +73,6 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
 
   const reset = () => setTurns(() => []);
 
-  const getLastSystemTurn = (): TurnProps | null => {
-    const turns = getTurns();
-    for (let i = turns.length - 1; i >= 0; i--) {
-      if (turns[i].type === TurnType.SYSTEM) return turns[i];
-    }
-    return null;
-  };
-
-  const userRequestMatchingAction = (action: BaseRequest) => {
-    const systemTurn = getLastSystemTurn();
-    if (isTextRequest(action)) {
-      return systemTurn.actions?.find((a) => a.name.toLowerCase() === action.payload.trim().toLowerCase())?.request;
-    }
-
-    return null;
-  };
-
   const interact: SendMessage = async (action: BaseRequest, message?: string) => {
     clearNoReplyTimeout();
 
@@ -109,7 +93,7 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
       });
     }
 
-    const userAction = userRequestMatchingAction(action) ?? action;
+    const userAction = resolveAction(action, getTurns());
 
     setIndicator(true);
     const context = await runtime.interact(userAction).catch((error) => {
