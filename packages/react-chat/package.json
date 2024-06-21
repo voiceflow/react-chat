@@ -31,6 +31,7 @@
     "lint:eslint": "yarn g:eslint",
     "lint:fix": "yarn g:run-p -c \"lint:eslint --fix\" \"lint:prettier --write\"",
     "lint:prettier": "yarn g:prettier --check",
+    "local": "NODE_ENV=development vite",
     "start:e2e": "http-server -o e2e",
     "tdd": "yarn g:vitest",
     "test": "yarn g:run-p -c test:dependencies test:types test:unit",
