@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.58.3](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.58.2...@voiceflow/react-chat@1.58.3) (2024-06-21)
+
+### Bug Fixes
+
+* add local development workflow (ENG-158) ([#145](https://github.com/voiceflow/react-chat/issues/145)) ([4409650](https://github.com/voiceflow/react-chat/commit/4409650418b8f3ff02ae894b7af567e81d40e540))
+
 ## [1.58.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.58.1...@voiceflow/react-chat@1.58.2) (2024-05-22)
 
 ### Bug Fixes
