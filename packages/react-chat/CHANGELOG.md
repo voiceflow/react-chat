@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.59.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.58.3...@voiceflow/react-chat@1.59.0) (2024-06-23)
+
+### Features
+
+* allow button action by entering button label (COR-2196) ([#143](https://github.com/voiceflow/react-chat/issues/143)) ([4e190fe](https://github.com/voiceflow/react-chat/commit/4e190fe15827fb1a0be31f8e62fcdff80413f07d))
+
 ## [1.58.3](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.58.2...@voiceflow/react-chat@1.58.3) (2024-06-21)
 
 ### Bug Fixes
