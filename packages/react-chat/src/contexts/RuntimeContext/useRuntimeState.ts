@@ -14,6 +14,7 @@ import { broadcast, BroadcastType } from '@/utils/broadcast';
 import { getSession, saveSession } from '@/utils/session';
 
 import type { RuntimeMessage } from './messages';
+import { resolveAction } from './runtime.utils';
 import { EffectExtensions } from './traces/EffectExtensions.trace';
 import { NoReply } from './traces/NoReply.trace';
 import { ResponseExtensions } from './traces/ResponseExtensions.trace';
@@ -92,8 +93,10 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
       });
     }
 
+    const userAction = resolveAction(action, getTurns());
+
     setIndicator(true);
-    const context = await runtime.interact(action).catch((error) => {
+    const context = await runtime.interact(userAction).catch((error) => {
       // TODO: better define error condition
       console.error(error);
       return createContext();
@@ -107,7 +110,7 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
       ...context,
     });
 
-    broadcast({ type: BroadcastType.INTERACT, payload: { session: sessionRef.current, action } });
+    broadcast({ type: BroadcastType.INTERACT, payload: { session: sessionRef.current, action: userAction } });
     saveSession(assistant.persistence, config.verify.projectID, sessionRef.current);
   };
 
