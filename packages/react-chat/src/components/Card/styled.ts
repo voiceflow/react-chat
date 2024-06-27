@@ -59,7 +59,7 @@ export const Description = styled(tag('p', 'description'), {
   typo: { size: '$1' },
   color: '$darkGrey',
   whiteSpace: 'normal',
-  wordBreak: 'break-all',
+  wordBreak: 'break-word',
 });
 
 export const Link = styled(tag('a', 'link'), {
