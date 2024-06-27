@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.59.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.59.0...@voiceflow/react-chat@1.59.1) (2024-06-27)
+
+### Bug Fixes
+
+* word break in card descriptions && image mock url(DX-1996) ([#148](https://github.com/voiceflow/react-chat/issues/148)) ([6daa566](https://github.com/voiceflow/react-chat/commit/6daa566866950adde47bbe1d16398b96edf6c0ec))
+
 # [1.59.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.58.3...@voiceflow/react-chat@1.59.0) (2024-06-23)
 
 ### Features
