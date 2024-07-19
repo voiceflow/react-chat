@@ -39,7 +39,7 @@ export interface Close extends BroadcastMessage {
 export type AnyMessage = SaveSession | Interact | Open | Close;
 
 // send messages so that other scripts can listen to them
-//https://docs.voiceflow.com/docs/web-chat-api#events
+// https://docs.voiceflow.com/docs/web-chat-api#events
 export const broadcast = (message: AnyMessage) => {
   const encodedMessage = JSON.stringify(message);
   window.postMessage(encodedMessage);
