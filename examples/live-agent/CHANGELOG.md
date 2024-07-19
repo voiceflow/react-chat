@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.7](https://github.com/voiceflow/react-chat/compare/@voiceflow-example/live-agent@1.2.6...@voiceflow-example/live-agent@1.2.7) (2024-07-19)
+
+### Bug Fixes
+
+* upgrade express to latest (DX-2067) ([#152](https://github.com/voiceflow/react-chat/issues/152)) ([20e4014](https://github.com/voiceflow/react-chat/commit/20e401470785acb579e4085b23dae0d7f75966a6))
+
 ## [1.2.6](https://github.com/voiceflow/react-chat/compare/@voiceflow-example/live-agent@1.2.5...@voiceflow-example/live-agent@1.2.6) (2024-07-19)
 
 ### Bug Fixes
