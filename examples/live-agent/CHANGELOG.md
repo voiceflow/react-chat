@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.9](https://github.com/voiceflow/react-chat/compare/@voiceflow-example/live-agent@1.2.8...@voiceflow-example/live-agent@1.2.9) (2024-07-23)
+
+### Bug Fixes
+
+* update document links (COR-2745) ([#149](https://github.com/voiceflow/react-chat/issues/149)) ([522bba8](https://github.com/voiceflow/react-chat/commit/522bba89d7283bb4220ea295ba988ead296aebd6))
+
 ## [1.2.8](https://github.com/voiceflow/react-chat/compare/@voiceflow-example/live-agent@1.2.7...@voiceflow-example/live-agent@1.2.8) (2024-07-19)
 
 ### Bug Fixes
