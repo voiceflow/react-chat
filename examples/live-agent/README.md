@@ -13,7 +13,7 @@ It includes custom `account_info`, `calendar` and `video` actions.
 
 ## Configure Environment
 
-Follow [these instructions](https://developer.voiceflow.com/docs/step-3-deploy-assistant) to publish your Voiceflow Assistant.
+Follow [these instructions](https://docs.voiceflow.com/docs/publishing-environments-backups) to publish your Voiceflow Assistant.
 
 Copy the project ID from the Assistant Settings and write it to a `.env.local` file.
 
