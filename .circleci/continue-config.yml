@@ -94,6 +94,14 @@ jobs:
           from: packages/react-chat/dist
           to: s3://cdn.voiceflow.com/widget
           clean_destination: false
+  publish-to-chromatic:
+    executor: vfcommon/node-executor-node-20
+    steps:
+      - attach_workspace:
+          at: ~/voiceflow
+      - run:
+          name: Publish to Chromatic
+          command: npx chromatic --project-token $CHROMATIC_PROJECT_TOKEN --build-script-name build:storybook
 
 workflows:
   test-and-release:
