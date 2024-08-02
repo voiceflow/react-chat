@@ -116,6 +116,7 @@ workflows:
                   - ./packages/*/dist # persist dist folder too
             - run:
                 name: Publish to Chromatic
+                working_directory: packages/react-chat
                 command: npx chromatic --project-token $CHROMATIC_PROJECT_TOKEN --build-script-name build:storybook
 
       - test:
