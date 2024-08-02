@@ -114,6 +114,10 @@ workflows:
                 root: '.'
                 paths:
                   - ./packages/*/dist # persist dist folder too
+            - run:
+                name: Publish to Chromatic
+                working_directory: packages/react-chat
+                command: npx chromatic --project-token $CHROMATIC_PROJECT_TOKEN --build-script-name build:storybook --exit-zero-on-changes --exit-once-uploaded
 
       - test:
           <<: *slack-fail-post-step
