@@ -94,14 +94,6 @@ jobs:
           from: packages/react-chat/dist
           to: s3://cdn.voiceflow.com/widget
           clean_destination: false
-  publish-to-chromatic:
-    executor: vfcommon/node-executor-node-20
-    steps:
-      - attach_workspace:
-          at: ~/voiceflow
-      - run:
-          name: Publish to Chromatic
-          command: npx chromatic --project-token $CHROMATIC_PROJECT_TOKEN --build-script-name build:storybook
 
 workflows:
   test-and-release:
@@ -122,6 +114,15 @@ workflows:
                 root: '.'
                 paths:
                   - ./packages/*/dist # persist dist folder too
+            - run:
+                name: Publish to Chromatic
+                working_directory: packages/react-chat
+                command: |
+                  if [ "$CIRCLE_BRANCH" != "master" ] && [ -n "$CIRCLE_PULL_REQUEST" ]; then
+                    npx chromatic --project-token $CHROMATIC_PROJECT_TOKEN --build-script-name build:storybook --exit-zero-on-changes --exit-once-uploaded
+                  else
+                    echo "Skipping Chromatic on non-PR or master branch."
+                  fi
 
       - test:
           <<: *slack-fail-post-step
