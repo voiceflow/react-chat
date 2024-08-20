@@ -150,6 +150,16 @@ workflows:
           filters:
             branches:
               only: master
+          post-publish-steps:
+            - run:
+                name: Publish to Chromatic
+                command: yarn chromatic:publish -- --auto-accept-changes --exit-once-uploaded
+          requires:
+            - test
+            - build
+          filters:
+            branches:
+              only: master
 
       - push-to-cdn:
           context: dev-test
