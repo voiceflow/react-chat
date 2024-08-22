@@ -91,7 +91,7 @@ jobs:
       - run:
           name: Publish to Chromatic
           working_directory: packages/react-chat
-          command: yarn chromatic:publish --exit-zero-on-changes --exit-once-uploaded
+          command: yarn chromatic:publish --auto-accept-changes --exit-once-uploaded
 
   push-to-cdn: # Main unit, style, and dependency tests
     executor: vfcommon/node-executor-node-20
@@ -164,7 +164,7 @@ workflows:
       - publish-to-chromatic:
           context: dev-test
           requires:
-            - vfcommon/monorepo_release
+            - test
           filters:
             branches:
               only: master
