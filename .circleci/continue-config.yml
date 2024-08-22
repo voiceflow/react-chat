@@ -60,7 +60,6 @@ jobs:
           monorepo_engine: 'turborepo'
           cache_identifier: 'monorepo-test-cache'
       - sonarcloud/scan
-
   e2e:
     executor: playwright
     steps:
@@ -83,6 +82,16 @@ jobs:
             find . -type f -name "*.report.xml" | xargs -I {} sh -c 'cp {} reports/$(echo {} | cut -c 3- | tr "/" "_")'
       - store_test_results:
           path: './reports'
+
+  publish-to-chromatic: # Publish the baseline chromatic build from master
+    executor: vfcommon/node-executor-node-20
+    steps:
+      - attach_workspace:
+          at: ~/voiceflow
+      - run:
+          name: Publish to Chromatic
+          working_directory: packages/react-chat
+          command: yarn chromatic:publish --auto-accept-changes --exit-once-uploaded
 
   push-to-cdn: # Main unit, style, and dependency tests
     executor: vfcommon/node-executor-node-20
@@ -108,12 +117,21 @@ workflows:
           monorepo_engine: 'turborepo'
           force_execute: true
           run_in_container: false
-          container_folder_to_copy: '' #Copy all
+          container_folder_to_copy: '' # Copy all
           post_build_steps:
             - persist_to_workspace:
                 root: '.'
                 paths:
                   - ./packages/*/dist # persist dist folder too
+            - run:
+                name: Publish to Chromatic
+                working_directory: packages/react-chat
+                command: |
+                  if [ "$CIRCLE_BRANCH" != "master" ] && [ -n "$CIRCLE_PULL_REQUEST" ]; then
+                    npx chromatic --project-token $CHROMATIC_PROJECT_TOKEN --build-script-name build:storybook --exit-zero-on-changes --exit-once-uploaded
+                  else
+                    echo "Skipping Chromatic on non-PR or master branch."
+                  fi
 
       - test:
           <<: *slack-fail-post-step
@@ -135,9 +153,18 @@ workflows:
           context: dev-test
           release_engine: 'lite'
           commit_message: 'chore(release): publish --skip-ci'
+
           requires:
             - test
             - e2e
+          filters:
+            branches:
+              only: master
+
+      - publish-to-chromatic:
+          context: dev-test
+          requires:
+            - test
           filters:
             branches:
               only: master

@@ -25,6 +25,7 @@
     "build:cmd": "yarn g:run-p build:package build:bundle",
     "build:package": "NODE_ENV=production vite --config vite.package.config.ts build && yarn g:tsc-alias -p tsconfig.build.json",
     "build:storybook": "storybook build -o docs",
+    "chromatic:publish": "npx chromatic --project-token $CHROMATIC_PROJECT_TOKEN --build-script-name build:storybook",
     "clean": "yarn g:rimraf build dist",
     "dev": "storybook dev -p 6006",
     "lint": "yarn g:run-p -c lint:eslint lint:prettier",
