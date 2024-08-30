@@ -25,7 +25,10 @@
 
 /* .vfrc-assistant-info {} */
 
-/* .vfrc-assistant-info--title {} */
+.vfrc-assistant-info--title {
+  color: blue;
+  font-size: 80px; 
+}
 
 /* .vfrc-assistant-info--description {} */
 
