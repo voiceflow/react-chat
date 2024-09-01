@@ -3,11 +3,10 @@
 A `react`-based chat widget built to interact seamlessly with Voiceflow's runtime.
 
 ## Installation
+We recommend using `yarn` to install the package:
 
 ```sh
 yarn add @voiceflow/react-chat
-# or
-npm install @voiceflow/react-chat
 ```
 
 ## Configuration
