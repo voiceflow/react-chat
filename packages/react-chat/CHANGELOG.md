@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.59.3](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.59.2...@voiceflow/react-chat@1.59.3) (2024-09-01)
+
+### Bug Fixes
+
+* update dtos version(TEC-000) ([#158](https://github.com/voiceflow/react-chat/issues/158)) ([ce540ae](https://github.com/voiceflow/react-chat/commit/ce540ae8ec168b01e34ce92ed76905fe830a0da0))
+
 ## [1.59.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.59.1...@voiceflow/react-chat@1.59.2) (2024-07-23)
 
 ### Bug Fixes
