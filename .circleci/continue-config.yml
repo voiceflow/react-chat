@@ -87,6 +87,8 @@ jobs:
     executor: vfcommon/node-executor-node-20
     steps:
       - checkout
+      - attach_workspace:
+          at: ~/voiceflow
       - run:
           name: Publish to Chromatic
           working_directory: packages/react-chat
