@@ -86,8 +86,7 @@ jobs:
   publish-to-chromatic: # Publish the baseline chromatic build from master
     executor: vfcommon/node-executor-node-20
     steps:
-      - attach_workspace:
-          at: ~/voiceflow
+      - checkout
       - run:
           name: Publish to Chromatic
           working_directory: packages/react-chat
