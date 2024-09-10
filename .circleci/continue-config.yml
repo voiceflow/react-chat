@@ -89,6 +89,8 @@ jobs:
       - checkout
       - attach_workspace:
           at: ~/voiceflow
+      - vfcommon/install_node_modules:
+          avoid_post_install_scripts: false
       - run:
           name: Publish to Chromatic
           working_directory: packages/react-chat
