@@ -1,5 +1,5 @@
-import type { BaseRequest } from '@voiceflow/dtos';
-import { isTextRequest, RequestType } from '@voiceflow/dtos';
+import type { BaseRequest } from '@voiceflow/dtos-runtime';
+import { isTextRequest, RequestType } from '@voiceflow/dtos-runtime';
 import type { TraceDeclaration } from '@voiceflow/sdk-runtime';
 import cuid from 'cuid';
 import { useState } from 'react';
