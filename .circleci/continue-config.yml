@@ -86,6 +86,7 @@ jobs:
   publish-to-chromatic: # Publish the baseline chromatic build from master
     executor: vfcommon/node-executor-node-20
     steps:
+      - checkout
       - attach_workspace:
           at: ~/voiceflow
       - run:
