@@ -10,7 +10,7 @@ const hasActions = (action: RuntimeAction): action is BaseRequest.ActionRequest 
 
 export const handleActions = (action: RuntimeAction) => {
   if (hasActions(action)) {
-    action.payload.actions?.forEach((action) => {
+    action.payload?.actions?.forEach((action) => {
       if (BaseRequest.Action.isOpenURLAction(action) && action.payload.url) {
         openURLInANewTab(action.payload.url);
       }
