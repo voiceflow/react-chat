@@ -1,4 +1,4 @@
-import type { BaseRequest } from '@voiceflow/dtos';
+import type { BaseRequest } from '@voiceflow/dtos-interact';
 
 import type { SessionOptions } from '@/types';
 

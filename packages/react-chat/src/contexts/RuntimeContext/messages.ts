@@ -1,4 +1,4 @@
-import * as DTOs from '@voiceflow/dtos';
+import { CardTraceDTO, CarouselTraceDTO, ChoiceTraceDTO, TextTraceDTO, VisualTraceDTO } from '@voiceflow/dtos-interact';
 import type { RuntimeAction, TraceDeclaration } from '@voiceflow/sdk-runtime';
 import {
   CardV2TraceComponent,
@@ -20,7 +20,7 @@ const isValidCard = (card: CardProps) => {
 
 export const MESSAGE_TRACES: TraceDeclaration<RuntimeMessage, any>[] = [
   TextTraceComponent(({ context }, trace) => {
-    if (!DTOs.TextTraceDTO.safeParse(trace).success) return context;
+    if (!TextTraceDTO.safeParse(trace).success) return context;
 
     const { slate, message, ai, delay } = trace.payload;
 
@@ -34,13 +34,13 @@ export const MESSAGE_TRACES: TraceDeclaration<RuntimeMessage, any>[] = [
     return context;
   }),
   VisualTraceComponent(({ context }, trace) => {
-    if (!DTOs.VisualTraceDTO.safeParse(trace).success) return context;
+    if (!VisualTraceDTO.safeParse(trace).success) return context;
 
     context.messages.push({ type: MessageType.IMAGE, url: trace.payload.image });
     return context;
   }),
   ChoiceTraceComponent(({ context }, trace) => {
-    if (!DTOs.ChoiceTraceDTO.safeParse(trace).success) return context;
+    if (!ChoiceTraceDTO.safeParse(trace).success) return context;
 
     const {
       payload: { buttons },
@@ -52,7 +52,7 @@ export const MESSAGE_TRACES: TraceDeclaration<RuntimeMessage, any>[] = [
     return context;
   }),
   CardV2TraceComponent(({ context }, trace) => {
-    if (!DTOs.CardTraceDTO.safeParse(trace).success) return context;
+    if (!CardTraceDTO.safeParse(trace).success) return context;
 
     const {
       payload: { title, imageUrl, description, buttons },
@@ -75,7 +75,7 @@ export const MESSAGE_TRACES: TraceDeclaration<RuntimeMessage, any>[] = [
   {
     canHandle: ({ type }) => type === Trace.TraceType.CAROUSEL,
     handle: ({ context }, trace: Trace.Carousel) => {
-      if (!DTOs.CarouselTraceDTO.safeParse(trace).success) return context;
+      if (!CarouselTraceDTO.safeParse(trace).success) return context;
 
       const cards: CardProps[] = trace.payload.cards
         .map(({ title, description, imageUrl, buttons }) => ({
