@@ -1,0 +1,41 @@
+{
+  "name": "@voiceflow/sdk-runtime",
+  "version": "1.7.0",
+  "exports": {
+    ".": {
+      "import": "./build/esm/main.js",
+      "default": "./build/cjs/main.js"
+    }
+  },
+  "main": "build/cjs/main.js",
+  "types": "build/esm/main.d.ts",
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "build": "yarn g:turbo run build:cmd --filter=@voiceflow/sdk-runtime...",
+    "build:cjs": "yarn g:build:pkg cjs",
+    "build:cmd": "yarn g:run-p build:cjs build:esm",
+    "build:esm": "yarn g:build:pkg esm",
+    "lint": "yarn g:run-p -c lint:eslint lint:prettier",
+    "lint:eslint": "yarn g:eslint",
+    "lint:fix": "yarn g:run-p -c \"lint:eslint --fix\" \"lint:prettier --write\"",
+    "lint:prettier": "yarn g:prettier --check",
+    "test": "yarn g:run-p -c test:dependencies test:types",
+    "test:dependencies": "yarn g:depcruise",
+    "test:types": "yarn g:tsc --noEmit"
+  },
+  "dependencies": {
+    "@voiceflow/base-types": "2.111.4",
+    "http-errors": "2.0.0"
+  },
+  "devDependencies": {
+    "@types/http-errors": "^1.8.2"
+  },
+  "volta": {
+    "extends": "../../package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
