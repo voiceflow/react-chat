@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - master
-      - ben/dx-2338
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
