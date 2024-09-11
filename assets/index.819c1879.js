@@ -1,1 +1,0 @@
-import{t as r,C as t}from"./tag.acfbb551.js";import{s as a,r as i}from"./animation.fdae6ac9.js";const o=32,e=1e3,s=r(t.LOADER),m=a(s("div"),{height:o,width:o,borderWidth:"2px",borderStyle:"solid",borderRadius:"$round",borderColor:"#f0f0f0",borderTopColor:"#000",animation:`${i} ${e}ms linear`,animationIterationCount:"infinite"});export{m as L};
