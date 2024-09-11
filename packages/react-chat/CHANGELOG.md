@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.59.4](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.59.3...@voiceflow/react-chat@1.59.4) (2024-09-11)
+
+### Bug Fixes
+
+* use dtos-interact package to avoid private dependency (DX-2340) ([#163](https://github.com/voiceflow/react-chat/issues/163)) ([a10d014](https://github.com/voiceflow/react-chat/commit/a10d0145eaac8acffac947f53f49cf07aa6423ed))
+
 ## [1.59.3](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.59.2...@voiceflow/react-chat@1.59.3) (2024-09-01)
 
 ### Bug Fixes
