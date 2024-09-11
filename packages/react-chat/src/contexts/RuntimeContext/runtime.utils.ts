@@ -1,4 +1,4 @@
-import { type BaseRequest, isTextRequest } from '@voiceflow/dtos-runtime';
+import { type BaseRequest, isTextRequest } from '@voiceflow/dtos-interact';
 
 import type { SystemTurnProps, TurnProps } from '@/types';
 import { TurnType } from '@/types';

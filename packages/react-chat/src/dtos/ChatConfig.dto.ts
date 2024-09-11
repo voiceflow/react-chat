@@ -1,4 +1,4 @@
-import type { BaseRequest } from '@voiceflow/dtos-runtime';
+import type { BaseRequest } from '@voiceflow/dtos-interact';
 import type { PublicVerify, RuntimeOptions as SDKRuntimeOptions } from '@voiceflow/sdk-runtime';
 import { z } from 'zod';
 

@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "@voiceflow/base-types": "2.97.3",
-    "@voiceflow/dtos-runtime": "1.0.0",
+    "@voiceflow/dtos-interact": "1.1.0",
     "@voiceflow/sdk-runtime": "1.7.0",
     "@voiceflow/slate-serializer": "1.5.5",
     "@voiceflow/stitches-react": "2.3.1",

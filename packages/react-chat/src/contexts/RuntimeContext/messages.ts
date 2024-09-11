@@ -1,4 +1,4 @@
-import { CardTraceDTO, CarouselTraceDTO, ChoiceTraceDTO, TextTraceDTO, VisualTraceDTO } from '@voiceflow/dtos-runtime';
+import { CardTraceDTO, CarouselTraceDTO, ChoiceTraceDTO, TextTraceDTO, VisualTraceDTO } from '@voiceflow/dtos-interact';
 import type { RuntimeAction, TraceDeclaration } from '@voiceflow/sdk-runtime';
 import {
   CardV2TraceComponent,
