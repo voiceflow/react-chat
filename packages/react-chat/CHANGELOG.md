@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.60.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.59.4...@voiceflow/react-chat@1.60.0) (2024-09-11)
+
+### Features
+
+* ensure package works in ESM context (DX-2058) ([#166](https://github.com/voiceflow/react-chat/issues/166)) ([6919d71](https://github.com/voiceflow/react-chat/commit/6919d711aec66ad284298ac50e4b469e051e2e76))
+
 ## [1.59.4](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.59.3...@voiceflow/react-chat@1.59.4) (2024-09-11)
 
 ### Bug Fixes
