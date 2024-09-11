@@ -15,6 +15,6 @@ export default meta;
 
 export const Default: Story = {
   args: {
-    value: Date.now(),
+    value: new Date('2024-09-11T08:21:00.000Z').getTime(),
   },
 };
