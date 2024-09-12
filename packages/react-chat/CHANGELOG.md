@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.60.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.60.0...@voiceflow/react-chat@1.60.1) (2024-09-12)
+
+### Bug Fixes
+
+* ensure all sessionIDs are encoded (SOS-52) ([#168](https://github.com/voiceflow/react-chat/issues/168)) ([4109987](https://github.com/voiceflow/react-chat/commit/410998718dbcce665aa266d9280e5b6cdac42b6b))
+
 # [1.60.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.59.4...@voiceflow/react-chat@1.60.0) (2024-09-11)
 
 ### Features
