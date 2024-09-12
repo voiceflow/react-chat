@@ -26,7 +26,7 @@
     "test:types": "yarn g:tsc --noEmit"
   },
   "dependencies": {
-    "@voiceflow/base-types": "2.111.4",
+    "@voiceflow/base-types": "2.111.5",
     "http-errors": "2.0.0"
   },
   "devDependencies": {
