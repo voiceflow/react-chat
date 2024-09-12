@@ -73,7 +73,7 @@ export const useRuntimeAPI = ({
       platform: { type: device },
     } = Bowser.parse(window.navigator.userAgent);
 
-    await runtime.createTranscript(userID, {
+    await runtime.createTranscript(encodeURIComponent(userID), {
       ...(os && { os }),
       ...(browser && { browser }),
       ...(device && { device }),
