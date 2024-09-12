@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/sdk-runtime@1.8.0...@voiceflow/sdk-runtime@1.8.1) (2024-09-12)
+
+### Bug Fixes
+
+* use ESM-friendly version of @voiceflow/common (DX-2358) ([#169](https://github.com/voiceflow/react-chat/issues/169)) ([ea7dc8b](https://github.com/voiceflow/react-chat/commit/ea7dc8b042e5dd8e998ea8768da9c3f3d41cff6d))
+
 # 1.8.0 (2024-09-11)
 
 ### Features
