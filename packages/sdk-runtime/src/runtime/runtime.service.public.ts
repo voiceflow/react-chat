@@ -22,7 +22,7 @@ export class PublicRuntimeService extends RuntimeService {
     const { action, config, sessionID, versionID } = request;
 
     return this.send<Pick<RuntimeInteractResponse, 'trace'>>(
-      `public/${this.projectID}/state/user/${encodeURIComponent(sessionID)}/interact`,
+      `public/${this.projectID}/state/user/${sessionID}/interact`,
       {
         method: 'POST',
         body: { action, config },
@@ -37,7 +37,7 @@ export class PublicRuntimeService extends RuntimeService {
   public async feedback(request: RuntimeFeedbackRequest): Promise<void> {
     const { versionID, sessionID, ...body } = request;
 
-    await this.send(`feedback/${this.projectID}/user/${encodeURIComponent(sessionID)}`, {
+    await this.send(`feedback/${this.projectID}/user/${sessionID}`, {
       method: 'POST',
       body,
       headers: {

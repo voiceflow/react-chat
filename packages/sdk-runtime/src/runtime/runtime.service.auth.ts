@@ -18,7 +18,7 @@ export class AuthRuntimeService extends RuntimeService {
   public async interact(request: RuntimeInteractRequest): Promise<RuntimeInteractResponse> {
     const { action, config, sessionID, versionID } = request;
 
-    return this.send<RuntimeInteractResponse>(`state/user/${encodeURIComponent(sessionID)}/interact`, {
+    return this.send<RuntimeInteractResponse>(`state/user/${sessionID}/interact`, {
       method: 'POST',
       body: { action, config },
       headers: {
