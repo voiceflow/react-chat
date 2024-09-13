@@ -41,7 +41,7 @@ export const useRuntimeAPI = ({
 
   const interact = async (action: RuntimeAction) =>
     runtime.interact(createContext(), {
-      sessionID: encodeURIComponent(userID),
+      sessionID: userID,
       action,
       ...(versionID && { versionID }),
     });
@@ -58,7 +58,7 @@ export const useRuntimeAPI = ({
     });
 
     await runtime.feedback({
-      sessionID: encodeURIComponent(userID),
+      sessionID: userID,
       name,
       text: aiMessages,
       lastUserTurn: userTurn,
@@ -73,7 +73,7 @@ export const useRuntimeAPI = ({
       platform: { type: device },
     } = Bowser.parse(window.navigator.userAgent);
 
-    await runtime.createTranscript(encodeURIComponent(userID), {
+    await runtime.createTranscript(userID, {
       ...(os && { os }),
       ...(browser && { browser }),
       ...(device && { device }),
