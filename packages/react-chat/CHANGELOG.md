@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.60.3](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.60.2...@voiceflow/react-chat@1.60.3) (2024-09-13)
+
+### Bug Fixes
+
+* stop double-encoding sessionID (DX-2359) ([#170](https://github.com/voiceflow/react-chat/issues/170)) ([a00d7b5](https://github.com/voiceflow/react-chat/commit/a00d7b5b92ee52643d28175ad3603a6604569e5e))
+
 ## [1.60.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.60.1...@voiceflow/react-chat@1.60.2) (2024-09-12)
 
 ### Bug Fixes
