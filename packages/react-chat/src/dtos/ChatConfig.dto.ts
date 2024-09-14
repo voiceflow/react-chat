@@ -1,5 +1,5 @@
 import type { BaseRequest } from '@voiceflow/dtos-interact';
-import type { PublicVerify, RuntimeOptions as SDKRuntimeOptions } from '@voiceflow/sdk-runtime';
+import type { PrototypeVerify, PublicVerify, RuntimeOptions as SDKRuntimeOptions } from '@voiceflow/sdk-runtime';
 import { z } from 'zod';
 
 import type { RawAssistantOptions } from './AssistantOptions.dto';
@@ -19,9 +19,10 @@ export type VerifyOptions = z.infer<typeof VerifyOptions>;
 export type UserOptions = z.infer<typeof UserOptions>;
 export type LaunchOptions = z.infer<typeof LaunchOptions>;
 
-export const VerifyOptions = z.object({
-  projectID: z.string(),
-});
+export const VerifyOptions = z.union([
+  z.object({ projectID: z.string() }),
+  z.object({ projectID: z.string(), versionID: z.string(), prototype: z.literal(true) }),
+]);
 
 export const LaunchOptions = z
   .object({
@@ -39,10 +40,12 @@ export const UserOptions = z
   })
   .partial();
 
-export interface ChatConfig extends z.infer<typeof ChatConfig>, SDKRuntimeOptions<PublicVerify> {}
-export interface RawChatConfig extends z.input<typeof ChatConfig>, Omit<SDKRuntimeOptions<PublicVerify>, 'url'> {}
+type Config<T extends SDKRuntimeOptions<PublicVerify | PrototypeVerify>> = T;
 
-export interface LoadConfig extends RawChatConfig {
+export interface ChatConfig extends Config<z.infer<typeof ChatConfig>> {}
+
+export interface LoadConfig extends Omit<ChatConfig, 'url'> {
+  url?: ChatConfig['url'];
   assistant?: RawAssistantOptions;
 }
 
