@@ -5,7 +5,7 @@ export { Trace } from '@voiceflow/base-types';
 // Super broad type so that differing fetch types (ex. builtin, node-fetch, etc.) don't conflict with it
 type FetchFn = (...parameters: any[]) => Promise<any>;
 
-export interface RuntimeOptions<V = AuthVerify | PublicVerify> {
+export interface RuntimeOptions<V = AuthVerify | PublicVerify | PrototypeVerify> {
   url: string;
   verify: V;
 
@@ -24,16 +24,30 @@ export interface PublicVerify {
   projectID: string;
 }
 
-export const isAuthRuntimeOptions = (
-  options: RuntimeOptions<Partial<AuthVerify & PublicVerify>>
-): options is RuntimeOptions<AuthVerify> => {
+export interface PrototypeVerify {
+  projectID: string;
+  versionID: string;
+  prototype: true;
+}
+
+export type AnyVerify = Partial<AuthVerify & PublicVerify & PrototypeVerify>;
+
+export const isAuthRuntimeOptions = (options: RuntimeOptions<AnyVerify>): options is RuntimeOptions<AuthVerify> => {
   return !!options?.verify?.authorization;
 };
 
-export const isPublicRuntimeOptions = (
-  options: RuntimeOptions<Partial<AuthVerify & PublicVerify>>
-): options is RuntimeOptions<PublicVerify> => {
+export const isPublicRuntimeOptions = (options: RuntimeOptions<AnyVerify>): options is RuntimeOptions<PublicVerify> => {
   return typeof options?.verify?.projectID === 'string';
+};
+
+export const isPrototypeRuntimeOptions = (
+  options: RuntimeOptions<AnyVerify>
+): options is RuntimeOptions<PrototypeVerify> => {
+  return (
+    options?.verify?.prototype === true &&
+    typeof options?.verify?.versionID === 'string' &&
+    typeof options?.verify?.projectID === 'string'
+  );
 };
 
 export interface RuntimeInteractRequest {
@@ -85,6 +99,7 @@ export const createIntentAction = (payload: BaseRequest.IntentRequestPayload): B
 });
 
 export interface RuntimeState {
+  turn: Record<string, any>;
   storage: Record<string, any>;
   variables: Record<string, any>;
 }

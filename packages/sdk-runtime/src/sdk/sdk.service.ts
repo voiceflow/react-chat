@@ -1,5 +1,12 @@
 import type { RuntimeFeedbackRequest, RuntimeInteractRequest, RuntimeService } from '@/runtime';
-import { AuthRuntimeService, isAuthRuntimeOptions, isPublicRuntimeOptions, PublicRuntimeService } from '@/runtime';
+import {
+  AuthRuntimeService,
+  isAuthRuntimeOptions,
+  isPrototypeRuntimeOptions,
+  isPublicRuntimeOptions,
+  PrototypeRuntimeService,
+  PublicRuntimeService,
+} from '@/runtime';
 import type { TraceDeclaration } from '@/trace/trace.interface';
 import { TraceService } from '@/trace/trace.service';
 
@@ -13,7 +20,9 @@ export class VoiceflowRuntime<T> {
   public constructor(options: VoiceflowRuntimeOptions<T>) {
     this.trace = new TraceService(options);
 
-    if (isAuthRuntimeOptions(options)) {
+    if (isPrototypeRuntimeOptions(options)) {
+      this.runtime = new PrototypeRuntimeService(options);
+    } else if (isAuthRuntimeOptions(options)) {
       this.runtime = new AuthRuntimeService(options);
     } else if (isPublicRuntimeOptions(options)) {
       this.runtime = new PublicRuntimeService(options);
