@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/sdk-runtime@1.8.1...@voiceflow/sdk-runtime@1.8.2) (2024-09-17)
+
+### Bug Fixes
+
+* encode sessionID (DX-2369) ([#173](https://github.com/voiceflow/react-chat/issues/173)) ([4eedf91](https://github.com/voiceflow/react-chat/commit/4eedf91630f64a7af06e3b75634e7b739ab10a7c))
+
 ## [1.8.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/sdk-runtime@1.8.0...@voiceflow/sdk-runtime@1.8.1) (2024-09-12)
 
 ### Bug Fixes

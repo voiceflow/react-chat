@@ -1,6 +1,6 @@
 {
   "name": "@voiceflow/sdk-runtime",
-  "version": "1.8.1",
+  "version": "1.8.2",
   "exports": {
     ".": {
       "import": "./build/esm/main.js",
