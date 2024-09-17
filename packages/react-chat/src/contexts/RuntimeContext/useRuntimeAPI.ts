@@ -66,6 +66,10 @@ export const useRuntimeAPI = ({
     });
   };
 
+  const sanitizeUserNameToUTF8 = (userName: string): string => {
+    return userName.normalize('NFKD').replace(/[\u0300-\u036f]/g, ''); // Remove diacritical marks (accents) from the string
+  };
+
   const saveTranscript = async () => {
     const {
       browser: { name: browser },
@@ -77,7 +81,7 @@ export const useRuntimeAPI = ({
       ...(os && { os }),
       ...(browser && { browser }),
       ...(device && { device }),
-      ...(user && { user: user as { name: string } }),
+      ...(user && { name: sanitizeUserNameToUTF8((user as { name: string }).name) }),
     });
   };
 
