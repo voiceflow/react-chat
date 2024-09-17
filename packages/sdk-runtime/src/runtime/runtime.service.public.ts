@@ -27,7 +27,7 @@ export class PublicRuntimeService extends RuntimeService {
         method: 'POST',
         body: { action, config },
         headers: {
-          sessionID,
+          ...(sessionID && { sessionID: encodeURIComponent(sessionID) }),
           ...(versionID && { versionID }),
         },
       }
