@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/sdk-runtime@1.8.2...@voiceflow/sdk-runtime@1.9.0) (2024-09-17)
+
+### Features
+
+* prototype runtime (COR-000) ([#171](https://github.com/voiceflow/react-chat/issues/171)) ([1ad51a1](https://github.com/voiceflow/react-chat/commit/1ad51a1459fd76e16bc9ea7a796d08663d04cbd3))
+
 ## [1.8.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/sdk-runtime@1.8.1...@voiceflow/sdk-runtime@1.8.2) (2024-09-17)
 
 ### Bug Fixes
