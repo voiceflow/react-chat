@@ -48,7 +48,7 @@ export abstract class RuntimeService {
       method: args.method ?? 'GET',
       body: args.body ? JSON.stringify(args.body) : undefined,
       headers: {
-        'content-type': 'application/json',
+        'content-type': 'application/json; charset=UTF-8',
         ...(args.headers ?? {}),
       },
     });
