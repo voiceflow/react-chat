@@ -158,6 +158,7 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
       isStatus,
       reset,
       getTurns,
+      setIndicator,
 
       // these are meant to be static, so bundling them with the API
       assistant,
