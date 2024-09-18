@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Embedded Mode</title>
+    <style>
+      body {
+        background-color: #f9f9f9;
+      }
+
+      #flat-chat {
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="flat-chat"></div>
+
+    <script type="text/javascript">
+      (function (d, t) {
+        var v = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+        v.onload = function () {
+          window.voiceflow.chat.load({
+            verify: { projectID: 'projectID' },
+            render: {
+              mode: 'embedded',
+              target: document.getElementById('flat-chat'),
+            },
+          });
+        };
+        v.src = '../dist/bundle.mjs';
+        v.type = 'text/javascript';
+        s.parentNode.insertBefore(v, s);
+      })(document, 'script');
+    </script>
+  </body>
+</html>
