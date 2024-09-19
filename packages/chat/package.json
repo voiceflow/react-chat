@@ -2,6 +2,7 @@
   "name": "@voiceflow/chat",
   "version": "0.0.1",
   "description": "voiceflow chat ui",
+  "private": true,
   "keywords": [
     "chat",
     "chat widget",
