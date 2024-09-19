@@ -7,8 +7,6 @@ import type {
 } from '@/runtime/runtime.interface';
 import { RuntimeService } from '@/runtime/runtime.service';
 
-const notImplementedMsg = 'not implemented';
-
 export class PrototypeRuntimeService extends RuntimeService {
   private state: RuntimeState = {
     turn: {},
@@ -39,16 +37,16 @@ export class PrototypeRuntimeService extends RuntimeService {
   }
 
   public async feedback() {
-    return Promise.reject(new Error(notImplementedMsg));
+    return Promise.reject(new Error('not implemented'));
   }
 
   // TODO: expose authenticated publishing
   public getPublishing() {
-    return Promise.reject(new Error(notImplementedMsg));
+    return Promise.reject(new Error('not implemented'));
   }
 
   // TODO: expose authenticated createTranscript
   public createTranscript() {
-    return Promise.reject(new Error(notImplementedMsg));
+    return Promise.reject(new Error('not implemented'));
   }
 }
