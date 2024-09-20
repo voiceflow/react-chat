@@ -38,7 +38,7 @@ export default defineConfig(({ mode }) => {
     build: {
       lib: {
         entry: path.resolve(__dirname, 'src', 'index.tsx'),
-        name: 'voiceflow-react-chat',
+        name: 'voiceflow-chat',
         fileName: 'bundle',
         formats: ['iife'],
       },
@@ -53,11 +53,11 @@ export default defineConfig(({ mode }) => {
       react(),
       ...(mode === 'development'
         ? [
-            createHtmlPlugin({
-              template: 'examples/index.html',
-              inject: { data: env },
-            }),
-          ]
+          createHtmlPlugin({
+            template: 'examples/index.html',
+            inject: { data: env },
+          }),
+        ]
         : []),
       ...createPlugins(),
     ],

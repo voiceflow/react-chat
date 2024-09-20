@@ -1,0 +1,34 @@
+{
+  "name": "@voiceflow-example/live-chat",
+  "version": "0.0.1",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "dev": "yarn g:run-p dev:app dev:server",
+    "dev:app": "vite --force",
+    "dev:server": "cd ../live-agent/server && yarn dev",
+    "test:types": "yarn g:tsc --noEmit"
+  },
+  "prettier": "@voiceflow/prettier-config",
+  "dependencies": {
+    "@voiceflow/exception": "1.4.0",
+    "@voiceflow/fetch": "1.5.2",
+    "@voiceflow/react-chat": "workspace:*",
+    "@voiceflow/slate-serializer": "1.4.2",
+    "nanoevents": "8.0.0",
+    "react": "18.2.0",
+    "react-calendar": "4.3.0",
+    "react-dom": "18.2.0",
+    "styled-components": "6.0.3",
+    "ts-pattern": "4.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "20.12.7",
+    "@types/react": "18.2.8",
+    "@types/react-dom": "18.2.4",
+    "vite": "4.3.9"
+  },
+  "volta": {
+    "extends": "../../package.json"
+  }
+}
