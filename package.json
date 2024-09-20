@@ -21,7 +21,7 @@
     "build:all": "yarn build",
     "clean": "turbo run clean && rimraf node_modules",
     "dev": "turbo run dev --no-cache --parallel --continue",
-    "dev:chat": "turbo run dev --no-cache --parallel --continue --filter=!react-chat --filter=!live-agent",
+    "dev:chat": "NODE_ENV=development turbo run dev --no-cache --parallel --continue --filter=!react-chat --filter=!live-agent",
     "lint": "run-p -c lint:eslint lint:prettier",
     "local": "cd packages/react-chat; yarn local",
     "lint:eslint": "yarn g:eslint",
