@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Embedded Mode</title>
+    <style>
+      body {
+        background-color: #f9f9f9;
+      }
+
+      #voiceflow-chat-frame {
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+      }
+
+      #order-status {
+        position: absolute;
+        visibility: hidden;
+        left: 50%;
+        top: 8px;
+        transform: translateX(-50%);
+        padding: 8px;
+        border-radius: 10px;
+        background-color: orangered;
+        z-index: 10;
+
+        font-family: 'Open Sans', sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+      }
+    </style>
+  </head>
+
+  <body>
+    <span id="order-status" data-testid="status"></span>
+    <div id="voiceflow-chat-frame"></div>
+    <template id="complex-form">
+      <form>
+        <input name="name" placeholder="What is your name?" />
+        <fieldset>
+          <legend>What kind of hair do you have?</legend>
+          <div>
+            <input type="radio" name="hair" id="straight" value="straight" checked /><label for="straight"
+              >Straight</label
+            >
+          </div>
+          <div><input type="radio" name="hair" id="curly" value="curly" /><label for="curly">Curly</label></div>
+          <div><input type="radio" name="hair" id="wavy" value="wavy" /><label for="wavy">Wavy</label></div>
+        </fieldset>
+        <button>submit</button>
+      </form>
+    </template>
+
+    <script type="text/javascript">
+      (function (d, t) {
+        var v = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+        v.onload = () => {
+          window.voiceflow.chat.load({
+            verify: { projectID: 'projectID' },
+            render: { mode: 'embedded' },
+            autostart: true,
+            assistant: {
+              extensions: [
+                {
+                  name: 'order_tracker',
+                  type: 'effect',
+                  match: ({ trace }) => trace.type === 'update_order_status',
+                  effect({ trace }) {
+                    const element = document.getElementById('order-status');
+                    const status = trace.payload;
+
+                    element.style.visibility = 'visible';
+                    element.innerText = status;
+                  },
+                },
+                {
+                  name: 'onboarding_form',
+                  type: 'response',
+                  match: ({ trace }) => trace.type === 'onboarding',
+                  render({ trace, element }) {
+                    const template = document.getElementById('complex-form').content.cloneNode(true);
+                    const id = 'onboarding-form-' + Date.now();
+                    template.firstElementChild.id = id;
+
+                    element.appendChild(template);
+
+                    const form = element.querySelector(`#${id}`);
+                    form.addEventListener('submit', async (event) => {
+                      event.preventDefault();
+
+                      await window.voiceflow.chat.interact({
+                        type: 'submit',
+                        payload: {
+                          name: form.elements.name.value,
+                          hair: form.elements.hair.value,
+                        },
+                      });
+                      while (form.firstChild) {
+                        form.removeChild(form.firstChild);
+                      }
+
+                      const confirmation = document.createElement('em');
+                      confirmation.innerText = `submitted ✅`;
+
+                      form.appendChild(confirmation);
+                    });
+                  },
+                },
+              ],
+            },
+          });
+        };
+        v.src = '../dist/bundle.mjs';
+        v.type = 'text/javascript';
+        s.parentNode.insertBefore(v, s);
+      })(document, 'script');
+    </script>
+  </body>
+</html>

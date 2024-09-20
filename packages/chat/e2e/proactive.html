@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Overlay mode - proactive messages</title>
+    <style>
+      body {
+        background-color: #f9f9f9;
+      }
+    </style>
+  </head>
+
+  <body>
+    <script type="text/javascript">
+      (function (d, t) {
+        var v = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+        v.onload = function () {
+          window.voiceflow.chat.load({
+            verify: { projectID: 'projectID' },
+            render: { mode: 'overlay' },
+            autostart: true,
+          });
+        };
+        v.src = '../dist/bundle.mjs';
+        v.type = 'text/javascript';
+        s.parentNode.insertBefore(v, s);
+      })(document, 'script');
+    </script>
+  </body>
+</html>

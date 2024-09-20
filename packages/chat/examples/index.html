@@ -1,0 +1,43 @@
+<!-- THIS IS AN EXAMPLE PAGE AND SHOULD NOT BE USED OUTSIDE OF DEVELOPMENT -->
+<!doctype html>
+<html>
+  <head>
+    <title>Example Page</title>
+    <style>
+      body {
+        background-color: #f9f9f9;
+      }
+      #flat-chat {
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="flat-chat"></div>
+    <div id="voiceflow-chat-frame"></div>
+
+    <script>
+      function _vf_load() {
+        window.voiceflow.chat.load({
+          url: '<%= VITE_VF_RUNTIME_URL %>',
+          verify: { projectID: '<%= VITE_VF_PROJECT_ID %>' },
+          versionID: '<%= VITE_VF_VERSION_ID %>',
+          user: {
+            name: 'Development User',
+          },
+          render: {
+            mode: 'overlay',
+          },
+          autostart: true,
+          allowDangerousHTML: false,
+        });
+      }
+    </script>
+    <script type="module" src="../src/index.tsx" onload="_vf_load()"></script>
+  </body>
+</html>
