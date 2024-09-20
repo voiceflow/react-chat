@@ -53,11 +53,11 @@ export default defineConfig(({ mode }) => {
       react(),
       ...(mode === 'development'
         ? [
-          createHtmlPlugin({
-            template: 'examples/index.html',
-            inject: { data: env },
-          }),
-        ]
+            createHtmlPlugin({
+              template: 'examples/index.html',
+              inject: { data: env },
+            }),
+          ]
         : []),
       ...createPlugins(),
     ],
