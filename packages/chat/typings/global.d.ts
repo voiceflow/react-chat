@@ -5,6 +5,7 @@ import type { LoadConfig } from '@/dtos/ChatConfig.dto';
 
 declare global {
   export const __USE_SHADOW_ROOT__: boolean;
+  export const __STYLES_URL__: string;
 
   interface VoiceflowChat {
     load: (config: LoadConfig) => Promise<void>;

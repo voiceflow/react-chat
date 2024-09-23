@@ -9,6 +9,7 @@ import { shadowRoot } from './styles/shadow';
 import { stitches } from './styles/theme';
 import { mergeAssistantOptions } from './utils/assistant';
 import { createPlaceholderMethods } from './utils/chat';
+import { addStyleSheetURL } from './utils/stylesheet';
 import { ChatEmbed, ChatWidget } from './views';
 
 let reactRoot: Root;
@@ -23,6 +24,8 @@ const initEmbeddedMode = (rootEl: HTMLElement) => {
   try {
     const shadowRoot = rootEl.attachShadow({ mode: 'open' });
     reactRoot = createRoot(shadowRoot);
+
+    // TODO: Remove this once all usages of `react-stitches` are removed
     stitches.transplant(shadowRoot);
 
     return { shadowRoot, reactRoot };
@@ -54,6 +57,8 @@ window.voiceflow.chat ??= {
     const assistant = await mergeAssistantOptions(config, loadConfig.assistant);
 
     const { reactRoot, shadowRoot } = createChatRoot(config);
+
+    await addStyleSheetURL(__STYLES_URL__, shadowRoot ?? document.head);
 
     // set root here
     await new Promise<void>((resolve) => {

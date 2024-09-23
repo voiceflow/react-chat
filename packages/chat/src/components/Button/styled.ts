@@ -1,29 +1,10 @@
 import { ClassName } from '@/constants';
-import { tagFactory } from '@/hocs';
-import { styled } from '@/styles';
+import { classTagFactory } from '@/hocs';
 
-export const tag = tagFactory(ClassName.BUTTON);
+import { containerStyle, resetStyle } from './styles.css';
 
-export const Reset = styled('button', {
-  border: 0,
-  padding: 0,
+export const tag = classTagFactory(ClassName.BUTTON);
 
-  '&:focus': {
-    outline: 0,
-  },
+export const Reset = tag('button', resetStyle);
 
-  '&:hover': {
-    cursor: 'pointer',
-  },
-});
-
-export const Container = styled(tag(Reset), {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  padding: '0 14px',
-  borderRadius: '$1',
-  typo: { weight: '$2' },
-  whiteSpace: 'nowrap',
-  overflowWrap: 'anywhere',
-});
+export const Container = tag(Reset, containerStyle);

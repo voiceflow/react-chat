@@ -1,3 +1,4 @@
+import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import type { PluginOption } from 'vite';
@@ -8,6 +9,7 @@ import svgr from 'vite-plugin-svgr';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 export const createPlugins = (): PluginOption[] => [
+  vanillaExtractPlugin(),
   tsconfigPaths(),
   svgr(),
   fonts({
@@ -33,6 +35,8 @@ export default defineConfig(({ mode }) => {
     },
     define: {
       __USE_SHADOW_ROOT__: true,
+      // TODO: Make sure this is our deployed styles file url
+      __STYLES_URL__: 'https://cdn.voiceflow.com/widget/style.css',
       'process.env': {},
     },
     build: {
