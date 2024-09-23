@@ -40,7 +40,7 @@ export const getDefaultTheme = () => ({
     sizes: {
       xxs: '16px',
       xs: '24px',
-      sm: '36px',
+      sm: '33px',
       md: '42px',
       lg: '56px',
       xl: '60px',

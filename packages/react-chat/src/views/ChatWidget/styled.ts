@@ -11,7 +11,7 @@ const tag = tagFactory(ClassName.WIDGET);
 export const ChatContainer = styled(tag('div', 'chat'), {
   width: CHAT_WIDTH,
   overflow: 'hidden',
-  borderRadius: '$2',
+  borderRadius: '$3',
   boxShadow: '0 2px 48px rgba(19,33,68,0.16), 0 0 0 1px $shadow4',
   height: '90%',
   maxHeight: MAX_CHAT_HEIGHT,

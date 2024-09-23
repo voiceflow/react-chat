@@ -43,7 +43,9 @@ const UserResponse: React.FC<UserResponseProps> = ({ message, timestamp, debug }
   return (
     <Container mode={config.render.mode}>
       <Row>
-        <Timestamp value={timestamp} />
+        {/* just a hack instead of the timestamp, to hide it for now */}
+        <div style={{ flexGrow: 1 }}></div>
+        {/*<Timestamp value={timestamp} />*/}
         <Message from="user">{message}</Message>
       </Row>
       {debug && (
