@@ -6101,13 +6101,13 @@ __metadata:
     "@types/react": 18.2.8
     "@types/react-dom": 18.2.4
     "@vitejs/plugin-react": 4.2.1
-    "@voiceflow/base-types": 2.111.5
+    "@voiceflow/base-types": 2.113.1
     "@voiceflow/dtos-interact": 1.1.0
     "@voiceflow/sdk-runtime": "workspace:*"
     "@voiceflow/slate-serializer": 1.5.5
     "@voiceflow/stitches-react": 2.3.1
     "@voiceflow/test-common": 1.10.3
-    "@voiceflow/voiceflow-types": 3.31.6
+    "@voiceflow/voiceflow-types": 3.32.1
     bowser: 2.11.0
     chroma-js: 2.4.2
     chromatic: 11.2.0
