@@ -45,8 +45,10 @@ export class VoiceflowRuntime<T> {
     return this.runtime.feedback(request);
   }
 
-  public async getPublishing(...options: Parameters<RuntimeService['getPublishing']>) {
-    return this.runtime.getPublishing(...options);
+  public async getPublishing<T extends Record<string, unknown>>(
+    ...options: Parameters<RuntimeService['getPublishing']>
+  ) {
+    return this.runtime.getPublishing<T>(...options);
   }
 
   public async createTranscript(...options: Parameters<RuntimeService['createTranscript']>) {

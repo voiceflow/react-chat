@@ -92,6 +92,7 @@ test('render response extension from incoming trace', async ({ page }) => {
             type: 'submit',
             payload: { name: 'Alex', hair: 'curly' },
           },
+          config: { tts: false },
         });
 
         return route.fulfill({ json: { trace: [] } });

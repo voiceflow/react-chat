@@ -1,3 +1,5 @@
+import 'regenerator-runtime/runtime';
+
 import type { Preview } from '@storybook/react';
 import React from 'react';
 
