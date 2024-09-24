@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.18](https://github.com/voiceflow/react-chat/compare/@voiceflow-example/live-agent@1.2.17...@voiceflow-example/live-agent@1.2.18) (2024-09-24)
+
+**Note:** Version bump only for package @voiceflow-example/live-agent
+
 ## [1.2.17](https://github.com/voiceflow/react-chat/compare/@voiceflow-example/live-agent@1.2.16...@voiceflow-example/live-agent@1.2.17) (2024-09-17)
 
 **Note:** Version bump only for package @voiceflow-example/live-agent
