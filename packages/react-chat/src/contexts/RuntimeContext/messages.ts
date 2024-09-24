@@ -22,13 +22,14 @@ export const MESSAGE_TRACES: TraceDeclaration<RuntimeMessage, any>[] = [
   TextTraceComponent(({ context }, trace) => {
     if (!TextTraceDTO.safeParse(trace).success) return context;
 
-    const { slate, message, ai, delay } = trace.payload;
+    const { slate, message, ai, delay, audio } = trace.payload;
 
     context.messages.push({
       type: MessageType.TEXT,
       text: slate?.content || message,
       delay,
       ...(ai ? { ai } : {}),
+      ...(audio ? { audio } : {}),
     });
 
     return context;

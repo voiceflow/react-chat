@@ -5050,6 +5050,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/dom-speech-recognition@npm:*":
+  version: 0.0.4
+  resolution: "@types/dom-speech-recognition@npm:0.0.4"
+  checksum: d19266dc3a58610c517885eef46e54011ee6e59aa9a9fc703fc094731b0c34dd7c547d76cc0a48a1eb43a289b5bf787f6275c30a04a98e13942d3c2629f67ca3
+  languageName: node
+  linkType: hard
+
 "@types/ejs@npm:^3.1.1":
   version: 3.1.5
   resolution: "@types/ejs@npm:3.1.5"
@@ -5413,6 +5420,15 @@ __metadata:
   dependencies:
     "@types/react": "*"
   checksum: 85f9278d6456c6cdc76da6806a33b472588cdd029b08dde32e8b5636b25a3eae529b4ac2e08c848a3d7ca44e4e97ee9a3df406c96fa0768de935c8eed6e07590
+  languageName: node
+  linkType: hard
+
+"@types/react-speech-recognition@npm:^3.9.5":
+  version: 3.9.5
+  resolution: "@types/react-speech-recognition@npm:3.9.5"
+  dependencies:
+    "@types/dom-speech-recognition": "*"
+  checksum: b1bc853e8bece3c8f553a16e82dcc61e7297f5dbf77f087894e0232fa3e712ca7580f5e86b3caa7ac0945dfc48071c475ac4333dbfbf12e7eedd84f4e1d53627
   languageName: node
   linkType: hard
 
@@ -6039,23 +6055,23 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@voiceflow/base-types@npm:2.111.5":
-  version: 2.111.5
-  resolution: "@voiceflow/base-types@npm:2.111.5"
+"@voiceflow/base-types@npm:2.113.1":
+  version: 2.113.1
+  resolution: "@voiceflow/base-types@npm:2.113.1"
   dependencies:
     "@voiceflow/common": 8.3.1
     slate: 0.94.1
-  checksum: 78e0bb05b3683a504245acdd4c88bc0d0bb7657d8ee04719b7f95117e853254cd49cb212d0f30a4948ee3275fef6521fac3df5d77a8897950ac45104fdcf2f58
+  checksum: 2bad71fcfa6b02ab23e0fa97a4b5522d859e2b7f5c10220caf63ac8ac6740cf1c3782de66c41de6f09031123d928a93304d248866bb2d2f0c7a0b0815ba59923
   languageName: node
   linkType: hard
 
-"@voiceflow/chat-types@npm:2.14.10":
-  version: 2.14.10
-  resolution: "@voiceflow/chat-types@npm:2.14.10"
+"@voiceflow/chat-types@npm:2.14.14":
+  version: 2.14.14
+  resolution: "@voiceflow/chat-types@npm:2.14.14"
   dependencies:
-    "@voiceflow/base-types": 2.111.5
+    "@voiceflow/base-types": 2.113.1
     "@voiceflow/common": 8.3.1
-  checksum: b5abdbcbba4c449d2fb47e394179b407236c6d000bda986eaae81a314f60359e2eae50698cc5f7f0bb872086f2e0d04f0e18f97f533669a867404889c4892eb0
+  checksum: e67a678d8a58b9c7663fb90384b8cb975fcf962ca35d734904bb5f8ea59318782295641bcc6a14a9e88b8aa1deb0982e3b250bbc84347572ca602c820effc6ac
   languageName: node
   linkType: hard
 
@@ -6264,14 +6280,15 @@ __metadata:
     "@types/node": 20.12.7
     "@types/react": 18.2.8
     "@types/react-dom": 18.2.4
+    "@types/react-speech-recognition": ^3.9.5
     "@vitejs/plugin-react": 4.2.1
-    "@voiceflow/base-types": 2.111.5
+    "@voiceflow/base-types": 2.113.1
     "@voiceflow/dtos-interact": 1.1.0
     "@voiceflow/sdk-runtime": "workspace:*"
     "@voiceflow/slate-serializer": 1.5.5
     "@voiceflow/stitches-react": 2.3.1
     "@voiceflow/test-common": 1.10.3
-    "@voiceflow/voiceflow-types": 3.31.6
+    "@voiceflow/voiceflow-types": 3.32.1
     bowser: 2.11.0
     chroma-js: 2.4.2
     chromatic: 11.2.0
@@ -6286,7 +6303,9 @@ __metadata:
     react: 18.2.0
     react-dom: 18.2.0
     react-markdown: 9.0.0
+    react-speech-recognition: 3.10.0
     react-textarea-autosize: 8.5.3
+    regenerator-runtime: 0.13.11
     rehype-raw: 7.0.0
     rehype-sanitize: 6.0.0
     remark-gfm: 4.0.0
@@ -6315,7 +6334,7 @@ __metadata:
   resolution: "@voiceflow/sdk-runtime@workspace:packages/sdk-runtime"
   dependencies:
     "@types/http-errors": ^1.8.2
-    "@voiceflow/base-types": 2.111.5
+    "@voiceflow/base-types": 2.113.1
     http-errors: 2.0.0
   languageName: unknown
   linkType: soft
@@ -6381,24 +6400,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@voiceflow/voice-types@npm:2.10.10":
-  version: 2.10.10
-  resolution: "@voiceflow/voice-types@npm:2.10.10"
+"@voiceflow/voice-types@npm:2.10.14":
+  version: 2.10.14
+  resolution: "@voiceflow/voice-types@npm:2.10.14"
   dependencies:
-    "@voiceflow/base-types": 2.111.5
+    "@voiceflow/base-types": 2.113.1
     "@voiceflow/common": 8.3.1
-  checksum: 2922a9609af83265d660d8e3a8bc6e65fc902478eb871a6394358bb9ec6cf0bba01e6bcf47c9c3ca344cd6740c43263ea5e0f971eaa92a0aa98e8d44fdca4041
+  checksum: 557dde0ad4d3fc7e837d2a9d6bfbd41fca4025e93f440bd7c9325bddffb35c4428354b5771a2edd2644c9e785073a430abf302ac2604d24b6a8df05449bbbf37
   languageName: node
   linkType: hard
 
-"@voiceflow/voiceflow-types@npm:3.31.6":
-  version: 3.31.6
-  resolution: "@voiceflow/voiceflow-types@npm:3.31.6"
+"@voiceflow/voiceflow-types@npm:3.32.1":
+  version: 3.32.1
+  resolution: "@voiceflow/voiceflow-types@npm:3.32.1"
   dependencies:
-    "@voiceflow/base-types": 2.111.5
-    "@voiceflow/chat-types": 2.14.10
-    "@voiceflow/voice-types": 2.10.10
-  checksum: be91d75b45b2d61e22f07f4cf72be518b4081a04d543f90e48f933492d56d4a86ef81ec48c8a79b8100ecadcf06bb7b0db94875204d4eb45b37581abfb490bee
+    "@voiceflow/base-types": 2.113.1
+    "@voiceflow/chat-types": 2.14.14
+    "@voiceflow/voice-types": 2.10.14
+  checksum: 6bfa69699987e77d2db5e59cafeaefd6b911b3f8a0d3b3fb595d1adee8d3048fd21ff0a38cb146dda0c375f7bf63b3a3c2e138ea0c6ceaaeee1f594ecef44d89
   languageName: node
   linkType: hard
 
@@ -16425,6 +16444,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-speech-recognition@npm:3.10.0":
+  version: 3.10.0
+  resolution: "react-speech-recognition@npm:3.10.0"
+  peerDependencies:
+    react: ">=16.8.0"
+  checksum: 40f3a2561f525d2624b154ccb6da90592a32fe131c33b3258a8892041bcf0c6f8e4527d7310718aeaee119266b1e8a1c383f9842ae984b7c97987ce9d6a5203f
+  languageName: node
+  linkType: hard
+
 "react-textarea-autosize@npm:8.5.3":
   version: 8.5.3
   resolution: "react-textarea-autosize@npm:8.5.3"
@@ -16591,6 +16619,13 @@ __metadata:
   version: 1.4.2
   resolution: "regenerate@npm:1.4.2"
   checksum: 3317a09b2f802da8db09aa276e469b57a6c0dd818347e05b8862959c6193408242f150db5de83c12c3fa99091ad95fb42a6db2c3329bfaa12a0ea4cbbeb30cb0
+  languageName: node
+  linkType: hard
+
+"regenerator-runtime@npm:0.13.11":
+  version: 0.13.11
+  resolution: "regenerator-runtime@npm:0.13.11"
+  checksum: 27481628d22a1c4e3ff551096a683b424242a216fee44685467307f14d58020af1e19660bf2e26064de946bad7eff28950eae9f8209d55723e2d9351e632bbb4
   languageName: node
   linkType: hard
 

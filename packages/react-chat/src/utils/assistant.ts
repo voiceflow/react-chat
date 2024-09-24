@@ -15,8 +15,7 @@ export const mergeAssistantOptions = async (
   const runtime = new VoiceflowRuntime(config);
 
   const publishing = await runtime
-    .getPublishing({ ...(versionID && { versionID }) })
-    .then((x) => x as PartialDeep<AssistantOptions>)
+    .getPublishing<PartialDeep<AssistantOptions>>({ ...(versionID && { versionID }) })
     .catch((error) => {
       console.error(error);
       return null;

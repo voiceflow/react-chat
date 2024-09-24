@@ -28,6 +28,11 @@ export interface ChatProps extends HeaderProps, AssistantInfoProps, FooterProps,
   isLoading: boolean;
 
   /**
+   * If true, shows audio interface controls.
+   */
+  audioInterface?: boolean;
+
+  /**
    * A unix timestamp indicating the start of the conversation.
    */
   startTime?: Nullish<number>;
@@ -62,12 +67,13 @@ const Chat: React.FC<ChatProps> = ({
   onStart,
   onSend,
   children,
+  audioInterface,
 }) => {
   const timestamp = useTimestamp(startTime);
   const dialogRef = useRef<HTMLElement>(null);
   const [hasAlert, setAlert] = useState(false);
 
-  const { config } = useContext(RuntimeStateAPIContext);
+  const { config, toggleAudioOutput } = useContext(RuntimeStateAPIContext);
   const state = useContext(RuntimeStateContext);
 
   const handleClose = (event: React.MouseEvent<HTMLButtonElement>): void => {
@@ -81,14 +87,21 @@ const Chat: React.FC<ChatProps> = ({
   const handleResume = (): void => setAlert(false);
 
   const actions = useMemo<HeaderActionProps[]>(() => {
+    const items: HeaderActionProps[] = [{ svg: 'close', onClick: handleClose }];
+
     if (config.render?.mode === RenderMode.OVERLAY) {
-      return [
-        { svg: 'minus', onClick: onMinimize },
-        { svg: 'close', onClick: handleClose },
-      ];
+      items.unshift({ svg: 'minus', onClick: onMinimize });
     }
-    return [{ svg: 'close', onClick: handleClose }];
-  }, [config.render, handleClose, onMinimize]);
+
+    if (audioInterface) {
+      items.unshift({
+        svg: state.audioOutput ? 'sound' : 'soundOff',
+        onClick: toggleAudioOutput,
+      });
+    }
+
+    return items;
+  }, [config.render, handleClose, onMinimize, state.audioOutput, audioInterface]);
 
   if (isLoading) {
     return (
@@ -116,6 +129,8 @@ const Chat: React.FC<ChatProps> = ({
         onStart={onStart}
         onSend={onSend}
         disableSend={state.indicator}
+        audioInterface={audioInterface}
+        speechRecognition={config.speechRecognition}
       />
       <Overlay />
       <Prompt

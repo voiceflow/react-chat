@@ -45,10 +45,10 @@ export class PublicRuntimeService extends RuntimeService {
     });
   }
 
-  public async getPublishing(request: { versionID?: string }): Promise<Record<string, unknown>> {
+  public async getPublishing<T extends Record<string, unknown>>(request: { versionID?: string }): Promise<T> {
     const { versionID } = request;
 
-    return this.send<Record<string, unknown>>(`public/${this.projectID}/publishing`, {
+    return this.send<T>(`public/${this.projectID}/publishing`, {
       method: 'GET',
       headers: {
         ...(versionID ? { versionID } : {}),

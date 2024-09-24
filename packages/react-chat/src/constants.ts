@@ -1,3 +1,5 @@
+import Bowser from 'bowser';
+
 export enum ClassName {
   ASSISTANT_INFO = 'vfrc-assistant-info',
   AVATAR = 'vfrc-avatar',
@@ -28,3 +30,7 @@ export enum ClassName {
   PROACTIVE_MESSAGE = 'vfrc-proactive-message',
   PROACTIVE = 'vfrc-proactive',
 }
+
+export const DEVICE_INFO = Bowser.parse(window.navigator.userAgent);
+
+export const IS_IOS = DEVICE_INFO.os.name === 'iOS';
