@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.64.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.63.0...@voiceflow/react-chat@1.64.0) (2024-09-25)
+
+### Features
+
+* hide audio interface for non chrome browsers (COR-000) ([#187](https://github.com/voiceflow/react-chat/issues/187)) ([7b969b2](https://github.com/voiceflow/react-chat/commit/7b969b279d091b485dc5739cd41d0ec54fbac149))
+
 # [1.63.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.62.1...@voiceflow/react-chat@1.63.0) (2024-09-25)
 
 ### Features
