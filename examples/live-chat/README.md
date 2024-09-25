@@ -6,10 +6,10 @@ This is an example showing the new `chat` package.
 It is under construction, not nearly stable and shouldn't be used in any context.
 
 In order to run this example, from the project root directory, run:
+
 ```
 yarn run dev:chat
 ```
-
 
 ## Install Dependencies
 
