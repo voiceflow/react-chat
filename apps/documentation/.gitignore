@@ -1,4 +1,8 @@
 # next.js
+<<<<<<< HEAD
+=======
+/.next/
+>>>>>>> a64b9080 (feat: rewrite Avatar component (COR-3369))
 /out/
 
 # vercel
