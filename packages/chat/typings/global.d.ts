@@ -4,6 +4,7 @@ import type { RuntimeAction } from '@voiceflow/sdk-runtime';
 import type { LoadConfig } from '@/dtos/ChatConfig.dto';
 
 declare global {
+  export const __STYLES_URL__: string;
   export const __USE_SHADOW_ROOT__: boolean;
 
   interface VoiceflowChat {
