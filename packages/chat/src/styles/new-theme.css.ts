@@ -1,8 +1,18 @@
-export const newTheme = {
+import { createThemeContract } from '@vanilla-extract/css';
+
+const PRIMARY_COLOR = '#3d82e2';
+const FADED_PRIMARY = '#3b80e0';
+
+export const colorThemeVars = createThemeContract({
   colors: {
-    primary: '#3d82e2',
-    warn: '#db1b42',
+    primary: PRIMARY_COLOR,
+    darkPrimary: FADED_PRIMARY,
+    fadedPrimary: FADED_PRIMARY,
   },
+});
+
+export const newTheme = {
+  ...colorThemeVars,
   font: {
     weights: {
       light: '400',
@@ -24,3 +34,5 @@ export const newTheme = {
     round: '50%',
   },
 };
+
+export const themeVars = createThemeContract(newTheme);

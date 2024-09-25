@@ -1,9 +1,12 @@
+import { assignInlineVars } from '@vanilla-extract/dynamic';
 import type { RuntimeAction } from '@voiceflow/sdk-runtime';
 import { useContext } from 'react';
 
 import Button from '@/components/Button';
 import { RuntimeStateAPIContext } from '@/contexts';
 import { useAutoScroll } from '@/hooks';
+import { createPrimaryColors } from '@/styles';
+import { colorThemeVars } from '@/styles/new-theme.css';
 
 import type { FeedbackProps } from '../Feedback';
 import Feedback from '../Feedback';
@@ -70,7 +73,7 @@ const SystemResponse: React.FC<SystemResponseProps> = ({
   isLast,
   Message = SystemMessage,
 }) => {
-  const runtime = useContext(RuntimeStateAPIContext);
+  const { interact, assistant } = useContext(RuntimeStateAPIContext);
 
   const { showIndicator, visibleMessages, complete } = useAnimatedMessages({
     messages,
@@ -96,8 +99,15 @@ const SystemResponse: React.FC<SystemResponseProps> = ({
 
       {isLast && complete && !!actions.length && (
         <Actions>
+          {assistant.color}
+          {/* TODO: the `style` should not be set, but in the component itself, once we rewrite it */}
           {actions.map(({ request, name }, index) => (
-            <Button variant="secondary" onClick={() => runtime?.interact(request, name)} key={index}>
+            <Button
+              style={assignInlineVars(colorThemeVars, { colors: createPrimaryColors(assistant.color) })}
+              variant="secondary"
+              onClick={() => interact?.(request, name)}
+              key={index}
+            >
               {name}
             </Button>
           ))}
