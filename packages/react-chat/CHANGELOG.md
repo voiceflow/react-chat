@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.63.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.62.1...@voiceflow/react-chat@1.63.0) (2024-09-25)
+
+### Features
+
+* improve custom speech recognition logic (COR-000) ([#186](https://github.com/voiceflow/react-chat/issues/186)) ([986813a](https://github.com/voiceflow/react-chat/commit/986813a7c57d76d44f3780ec51b51c0f73982fc3))
+
 ## [1.62.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.62.0...@voiceflow/react-chat@1.62.1) (2024-09-25)
 
 ### Bug Fixes
