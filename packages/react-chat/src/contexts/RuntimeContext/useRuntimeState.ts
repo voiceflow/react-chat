@@ -9,6 +9,7 @@ import { IS_IOS } from '@/constants';
 import type { AssistantOptions } from '@/dtos/AssistantOptions.dto';
 import type { ChatConfig } from '@/dtos/ChatConfig.dto';
 import { useStateRef } from '@/hooks/useStateRef';
+import { useLocalStorageState } from '@/hooks/useStorage';
 import type { SendMessage, SessionOptions, TurnProps } from '@/types';
 import { SessionStatus, TurnType } from '@/types';
 import { handleActions } from '@/utils/actions';
@@ -40,7 +41,10 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
   const [audio] = useState(() => new AudioController());
   const playAudiosStack = useRef<string[]>([]);
   const [isOpen, setOpen] = useState(false);
-  const [audioOutput, setAudioOutput, audioOutputRef] = useStateRef(assistant.defaultAudioOutput ?? false);
+  const [audioOutput, setAudioOutput, audioOutputRef] = useLocalStorageState(
+    'audio-output',
+    assistant.defaultAudioOutput ?? false
+  );
 
   const [session, setSession, sessionRef] = useStateRef<Required<SessionOptions>>(() => ({
     ...DEFAULT_SESSION_PARAMS,
