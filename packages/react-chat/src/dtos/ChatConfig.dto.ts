@@ -53,6 +53,7 @@ export const ChatSpeechRecognitionState = z.object({
   listening: z.boolean(),
   transcript: z.string(),
   processing: z.boolean(),
+  initializing: z.boolean(),
   microphoneAvailable: z.boolean().describe('If false, the user has not given permission for their microphone.'),
 });
 
