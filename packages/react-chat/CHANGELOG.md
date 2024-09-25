@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.62.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.62.0...@voiceflow/react-chat@1.62.1) (2024-09-25)
+
+### Bug Fixes
+
+* update icons and persist audio interface setting (COR-000) ([#182](https://github.com/voiceflow/react-chat/issues/182)) ([f507ecf](https://github.com/voiceflow/react-chat/commit/f507ecfe8deaa89cd623e2fdbf8845b4387a76b0))
+
 # [1.62.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.61.0...@voiceflow/react-chat@1.62.0) (2024-09-24)
 
 ### Features
