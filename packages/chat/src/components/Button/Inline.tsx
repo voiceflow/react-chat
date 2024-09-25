@@ -6,7 +6,7 @@ import { ClassName } from '@/constants';
 
 import { buttonStyles } from './styles.css';
 
-const InlineButton = forwardRef<HTMLButtonElement, PropsWithChildren<any>>(({ ref, children, ...props }) => (
+const InlineButton = forwardRef<HTMLButtonElement, PropsWithChildren<any>>(({ children, ...props }, ref) => (
   <button ref={ref} className={clsx(ClassName.BUTTON, buttonStyles({ type: 'inline' }))} {...props}>
     {children}
   </button>

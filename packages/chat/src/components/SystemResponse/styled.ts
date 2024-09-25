@@ -1,4 +1,3 @@
-import Button from '@/components/Button';
 import Message from '@/components/Message';
 import Timestamp from '@/components/Timestamp';
 import { ClassName } from '@/constants';
@@ -6,6 +5,7 @@ import { tagFactory } from '@/hocs';
 import { styled } from '@/old-styles';
 
 import { avatarStyles } from '../Avatar/styles.css';
+import { buttonStyles } from '../Button/styles.css';
 
 const tag = tagFactory(ClassName.SYSTEM_RESPONSE);
 
@@ -15,7 +15,7 @@ export const Actions = styled(tag('div', 'actions'), {
   marginBottom: 8,
   padding: '0 $5 0 54px',
 
-  [`& ${Button.Container}`]: {
+  [`& .${buttonStyles.classNames.base}`]: {
     height: 'unset',
     paddingTop: 7,
     paddingBottom: 7,

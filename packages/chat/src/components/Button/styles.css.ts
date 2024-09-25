@@ -35,6 +35,10 @@ export const buttonStyles = recipe({
           color: BLUE[700],
           backgroundColor: BLUE[100],
         },
+        ':active': {
+          color: BLUE[800],
+          backgroundColor: BLUE[200],
+        },
       },
     },
   },
