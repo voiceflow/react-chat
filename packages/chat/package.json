@@ -91,6 +91,7 @@
     "@types/node": "20.12.7",
     "@types/react": "18.2.8",
     "@types/react-dom": "18.2.4",
+    "@vanilla-extract/dynamic": "^2.1.2",
     "@vanilla-extract/vite-plugin": "4.0.15",
     "@vitejs/plugin-react": "4.2.1",
     "@voiceflow/test-common": "1.10.3",
