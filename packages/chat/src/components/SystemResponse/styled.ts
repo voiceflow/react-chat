@@ -1,10 +1,11 @@
-import Avatar from '@/components/Avatar';
 import Button from '@/components/Button';
 import Message from '@/components/Message';
 import Timestamp from '@/components/Timestamp';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
 import { styled } from '@/old-styles';
+
+import { avatarStyles } from '../Avatar/styles.css';
 
 const tag = tagFactory(ClassName.SYSTEM_RESPONSE);
 
@@ -32,7 +33,7 @@ export const Controls = styled(tag('span', 'controls'), {
 export const Container = styled(tag('div'), {
   display: 'flex',
 
-  [`& ${Avatar.Container}`]: {
+  [`& .${avatarStyles.classNames.base}`]: {
     visibility: 'hidden',
     alignSelf: 'flex-end',
     margin: '0 8px 4px 0',
@@ -53,7 +54,7 @@ export const Container = styled(tag('div'), {
   variants: {
     withImage: {
       true: {
-        [`& ${Avatar.Container}`]: {
+        [`& .${avatarStyles.classNames.base}`]: {
           visibility: 'visible',
         },
       },

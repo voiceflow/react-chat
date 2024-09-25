@@ -1,8 +1,10 @@
-import type { VariantProp } from '@/types';
+import type { RecipeVariants } from '@vanilla-extract/recipes';
 
-import { AvatarContainer } from './styled';
+import { avatarStyles } from './styles.css';
 
-export interface AvatarProps extends React.ComponentProps<typeof AvatarContainer> {
+type AvatarVariants = NonNullable<RecipeVariants<typeof avatarStyles>>;
+
+export interface AvatarProps {
   /**
    * An image URL which will be rendered as the background.
    */
@@ -13,11 +15,11 @@ export interface AvatarProps extends React.ComponentProps<typeof AvatarContainer
    *
    * @default 'small'
    */
-  size?: VariantProp<typeof AvatarContainer, 'size'>;
+  size?: AvatarVariants['size'];
 }
 
 const Avatar: React.FC<AvatarProps> = ({ avatar, ...props }) => (
-  <AvatarContainer {...props} css={{ backgroundImage: `url(${avatar})`, ...props.css }} />
+  <div className={avatarStyles({ size: props.size })} style={{ backgroundImage: `url(${avatar})` }}></div>
 );
 
 /**
@@ -25,6 +27,4 @@ const Avatar: React.FC<AvatarProps> = ({ avatar, ...props }) => (
  *
  * @see {@link https://voiceflow.github.io/react-chat/?path=/story/core-avatar--small}
  */
-export default Object.assign(Avatar, {
-  Container: AvatarContainer,
-});
+export default Avatar;

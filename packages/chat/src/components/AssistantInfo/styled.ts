@@ -1,8 +1,9 @@
-import Avatar from '@/components/Avatar';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
 import { styled } from '@/old-styles';
 import { textOverflowStyles } from '@/old-styles/fragments';
+
+import { avatarStyles } from '../Avatar/styles.css';
 
 const tag = tagFactory(ClassName.ASSISTANT_INFO);
 
@@ -32,7 +33,7 @@ export const Container = styled(tag('div'), {
   padding: '48px 32px',
   textAlign: 'center',
 
-  [`& ${Avatar.Container}`]: {
+  [`& .${avatarStyles.classNames.base}`]: {
     marginBottom: '$4',
   },
 
