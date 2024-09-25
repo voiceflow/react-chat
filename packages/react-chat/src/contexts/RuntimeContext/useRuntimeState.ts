@@ -5,7 +5,7 @@ import cuid from 'cuid';
 import { useEffect, useRef, useState } from 'react';
 
 import { DEFAULT_MESSAGE_DELAY, MessageType } from '@/components/SystemResponse/constants';
-import { IS_IOS } from '@/constants';
+import { isIOS } from '@/device';
 import type { AssistantOptions } from '@/dtos/AssistantOptions.dto';
 import type { ChatConfig } from '@/dtos/ChatConfig.dto';
 import { useStateRef } from '@/hooks/useStateRef';
@@ -148,7 +148,7 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
     playAudiosStack.current = [];
 
     // we need to play a silent audio on user interaction to enable async audio playback
-    if (IS_IOS && isAudioOutputEnabled()) {
+    if (isIOS() && isAudioOutputEnabled()) {
       audio.play(silentAudio);
     }
 
@@ -184,8 +184,8 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
   const getTurns = () => sessionRef.current.turns;
 
   const stopAudios = () => {
-    audio.stop();
     playAudiosStack.current = [];
+    audio.stop();
   };
 
   const playAudioCircle = async () => {
