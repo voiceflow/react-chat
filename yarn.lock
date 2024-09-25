@@ -6055,6 +6055,27 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@voiceflow-example/live-chat@workspace:examples/live-chat":
+  version: 0.0.0-use.local
+  resolution: "@voiceflow-example/live-chat@workspace:examples/live-chat"
+  dependencies:
+    "@types/node": 20.12.7
+    "@types/react": 18.2.8
+    "@types/react-dom": 18.2.4
+    "@voiceflow/exception": 1.4.0
+    "@voiceflow/fetch": 1.5.2
+    "@voiceflow/react-chat": "workspace:*"
+    "@voiceflow/slate-serializer": 1.4.2
+    nanoevents: 8.0.0
+    react: 18.2.0
+    react-calendar: 4.3.0
+    react-dom: 18.2.0
+    styled-components: 6.0.3
+    ts-pattern: 4.3.0
+    vite: 4.3.9
+  languageName: unknown
+  linkType: soft
+
 "@voiceflow/base-types@npm:2.113.1":
   version: 2.113.1
   resolution: "@voiceflow/base-types@npm:2.113.1"
