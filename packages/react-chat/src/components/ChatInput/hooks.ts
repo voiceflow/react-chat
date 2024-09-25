@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import ReactSpeechRecognition, { useSpeechRecognition as useReactSpeechRecognition } from 'react-speech-recognition';
 
+import { isChrome } from '@/device';
 import type { ChatSpeechRecognitionConfig, ChatSpeechRecognitionState } from '@/dtos/ChatConfig.dto';
 
 export const useSpeechRecognition = ({
@@ -15,9 +16,9 @@ export const useSpeechRecognition = ({
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const reactSpeechRecognition = useReactSpeechRecognition({ clearTranscriptOnListen: true });
 
+  const browserSupportsSpeechRecognition = reactSpeechRecognition.browserSupportsSpeechRecognition && isChrome();
   const customSpeechRecognitionEnabled =
-    !!customSpeechRecognition &&
-    (customSpeechRecognition.overrideNative || !reactSpeechRecognition.browserSupportsSpeechRecognition);
+    !!customSpeechRecognition && (customSpeechRecognition.overrideNative || !browserSupportsSpeechRecognition);
 
   const prevListening = useRef(
     customSpeechRecognitionEnabled ? customSpeechRecognition.initialState.listening : reactSpeechRecognition.listening
@@ -94,7 +95,7 @@ export const useSpeechRecognition = ({
   }, [customSpeechRecognitionEnabled]);
 
   return {
-    available: customSpeechRecognitionEnabled || reactSpeechRecognition.browserSupportsSpeechRecognition,
+    available: customSpeechRecognitionEnabled || browserSupportsSpeechRecognition,
     listening: customSpeechRecognitionEnabled
       ? customSpeechRecognitionState.listening
       : reactSpeechRecognition.listening,
