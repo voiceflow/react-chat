@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import Button from '@/components/Button';
 import ChatInput from '@/components/ChatInput';
+import type { ChatSpeechRecognitionConfig } from '@/dtos/ChatConfig.dto';
 
 import { Container, Watermark } from './styled';
 
@@ -23,6 +24,11 @@ export interface FooterProps {
   disableSend?: boolean | undefined;
 
   /**
+   * If true, shows audio interface controls.
+   */
+  audioInterface?: boolean;
+
+  /**
    * A callback to start a new conversation.
    */
   onStart?: (() => Promise<void>) | undefined;
@@ -31,9 +37,22 @@ export interface FooterProps {
    * A callback to submit a user response.
    */
   onSend?: ((message: string) => Promise<void>) | undefined;
+
+  /**
+   * Custom speech recognition implementation.
+   */
+  speechRecognition?: ChatSpeechRecognitionConfig;
 }
 
-const Footer: React.FC<FooterProps> = ({ withWatermark, hasEnded, disableSend, onStart, onSend }) => {
+const Footer: React.FC<FooterProps> = ({
+  withWatermark,
+  hasEnded,
+  disableSend,
+  onStart,
+  onSend,
+  audioInterface,
+  speechRecognition,
+}) => {
   const [message, setMessage] = useState('');
 
   const handleSend = async (): Promise<void> => {
@@ -55,6 +74,8 @@ const Footer: React.FC<FooterProps> = ({ withWatermark, hasEnded, disableSend, o
           onValueChange={setMessage}
           onSend={handleSend}
           disableSend={disableSend}
+          audioInterface={audioInterface}
+          speechRecognition={speechRecognition}
         />
       )}
       {withWatermark && (

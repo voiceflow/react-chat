@@ -50,6 +50,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
         onEnd={closeAndEnd}
         onSend={runtime.reply}
         onMinimize={runtime.close}
+        audioInterface={assistant.audioInterface}
       >
         {state.session.turns.map((turn, turnIndex) =>
           match(turn)
