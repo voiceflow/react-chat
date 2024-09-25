@@ -35,6 +35,7 @@ export const useSpeechRecognition = ({
           listening: reactSpeechRecognition.listening,
           transcript: reactSpeechRecognition.transcript,
           processing: false,
+          initializing: false,
           microphoneAvailable: reactSpeechRecognition.isMicrophoneAvailable,
         }
   );
@@ -86,7 +87,10 @@ export const useSpeechRecognition = ({
   useEffect(() => {
     if (!customSpeechRecognitionEnabled) return undefined;
 
-    return customSpeechRecognition.onStateChange(setCustomSpeechRecognitionState);
+    return customSpeechRecognition.onStateChange((nextState) => {
+      onValueChange(nextState.transcript);
+      setCustomSpeechRecognitionState(nextState);
+    });
   }, [customSpeechRecognitionEnabled]);
 
   return {
@@ -96,6 +100,7 @@ export const useSpeechRecognition = ({
       : reactSpeechRecognition.listening,
     processing: customSpeechRecognitionEnabled ? customSpeechRecognitionState.processing : false,
     textareaRef,
+    initializing: customSpeechRecognitionEnabled ? customSpeechRecognitionState.initializing : false,
     stopListening: onStopListening,
     startListening: onStartListening,
     microphoneAvailable: customSpeechRecognitionEnabled
