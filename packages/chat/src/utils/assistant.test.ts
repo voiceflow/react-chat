@@ -7,7 +7,7 @@ import type { RawAssistantOptions } from '@/dtos/AssistantOptions.dto';
 import { DEFAULT_AVATAR } from '@/dtos/AssistantOptions.dto';
 import type { ChatConfig } from '@/dtos/ChatConfig.dto';
 import { ExtensionType } from '@/dtos/Extension.dto';
-import { PRIMARY } from '@/styles';
+import { PRIMARY } from '@/old-styles';
 import { ChatPersistence, ChatPosition } from '@/types';
 
 import { mergeAssistantOptions } from './assistant';

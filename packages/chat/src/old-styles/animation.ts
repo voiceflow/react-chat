@@ -1,5 +1,5 @@
-import type { CSS } from '@/styles/theme';
-import { keyframes } from '@/styles/theme';
+import type { CSS } from '@/old-styles/theme';
+import { keyframes } from '@/old-styles/theme';
 
 export const pulse = keyframes({
   '50%': { opacity: 1 },

@@ -1,4 +1,4 @@
-import { styled } from '@/styles';
+import { styled } from '@/old-styles';
 
 import { Container as BaseContainer, tag } from '../styled';
 
