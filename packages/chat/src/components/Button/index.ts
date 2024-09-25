@@ -1,6 +1,7 @@
 import { bindVariants } from '@/utils/variants';
 
 import { ButtonVariant } from './constants';
+import InlineButton from './Inline';
 import { PrimaryButton } from './Primary';
 import { SecondaryButton } from './Secondary';
 import { Container, Reset } from './styled';
@@ -8,6 +9,7 @@ import { Container, Reset } from './styled';
 const VARIANTS = {
   [ButtonVariant.PRIMARY]: PrimaryButton,
   [ButtonVariant.SECONDARY]: SecondaryButton,
+  [ButtonVariant.INLINE]: InlineButton,
 };
 
 const Button = bindVariants(VARIANTS, ButtonVariant.PRIMARY);
@@ -24,4 +26,5 @@ export default Object.assign(Button, {
   Container,
   Primary: PrimaryButton,
   Secondary: SecondaryButton,
+  Inline: InlineButton,
 });
