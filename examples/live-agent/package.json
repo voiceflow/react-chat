@@ -1,6 +1,6 @@
 {
   "name": "@voiceflow-example/live-agent",
-  "version": "1.2.19",
+  "version": "1.2.20",
   "private": true,
   "license": "MIT",
   "scripts": {
