@@ -44,8 +44,8 @@
     "test:unit": "yarn g:vitest run --coverage"
   },
   "dependencies": {
-    "@voiceflow/base-types": "2.113.1",
     "@vanilla-extract/css": "1.15.5",
+    "@voiceflow/base-types": "2.113.1",
     "@voiceflow/dtos-interact": "1.1.0",
     "@voiceflow/sdk-runtime": "workspace:*",
     "@voiceflow/slate-serializer": "1.5.5",
