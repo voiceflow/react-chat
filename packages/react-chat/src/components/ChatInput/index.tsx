@@ -1,11 +1,14 @@
 import cuid from 'cuid';
-import { useMemo, useRef } from 'react';
+import { useMemo } from 'react';
 
 import Bubble from '@/components/Bubble';
 import type { TextareaProps } from '@/components/Textarea';
 import Textarea from '@/components/Textarea';
+import type { ChatSpeechRecognitionConfig } from '@/dtos/ChatConfig.dto';
 import { createControlled } from '@/utils/controls';
 
+import { AudioInputButton } from './AudioInputButton';
+import { useSpeechRecognition } from './hooks';
 import { ButtonContainer, Container } from './styled';
 
 export interface ChatInputProps extends TextareaProps {
@@ -15,17 +18,36 @@ export interface ChatInputProps extends TextareaProps {
   disableSend?: boolean | undefined;
 
   /**
+   * if true, shows audio interface controls.
+   */
+  audioInterface?: boolean | undefined;
+
+  /**
    * A callback to submit the user response.
    */
   onSend?: VoidFunction;
+
+  /**
+   * Custom speech recognition implementation.
+   */
+  speechRecognition?: ChatSpeechRecognitionConfig;
 }
 
-const ChatInput: React.FC<ChatInputProps> = ({ id, onSend, disableSend, ...props }) => {
+const ChatInput: React.FC<ChatInputProps> = ({
+  id,
+  onSend,
+  disableSend,
+  onValueChange,
+  audioInterface,
+  speechRecognition: customSpeechRecognition,
+  ...props
+}) => {
   const internalID = useMemo(() => `vf-chat-input--${cuid()}`, []) ?? id;
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const speechRecognition = useSpeechRecognition({ onSend, onValueChange, customSpeechRecognition });
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLTextAreaElement>): void => {
     event.stopPropagation();
+
     const { shiftKey } = event;
 
     if (event.key !== 'Enter') return;
@@ -35,12 +57,31 @@ const ChatInput: React.FC<ChatInputProps> = ({ id, onSend, disableSend, ...props
     }
   };
 
+  const withSendButton = !!props.value && !disableSend && !speechRecognition.listening;
+  const withAudioInput =
+    speechRecognition.available && speechRecognition.microphoneAvailable && audioInterface && !withSendButton;
+
   return (
     <Container>
-      <Textarea ref={textareaRef} id={internalID} onKeyDown={handleKeyPress} {...props} />
-      <ButtonContainer htmlFor={internalID} ready={!!props.value && !disableSend}>
+      <Textarea
+        id={internalID}
+        ref={speechRecognition.textareaRef}
+        onKeyDown={handleKeyPress}
+        onValueChange={onValueChange}
+        {...props}
+      />
+
+      <ButtonContainer htmlFor={internalID} ready={withSendButton}>
         <Bubble size="small" svg="smallArrowUp" onClick={onSend} />
       </ButtonContainer>
+
+      {withAudioInput && (
+        <AudioInputButton
+          onStop={speechRecognition.stopListening}
+          onStart={speechRecognition.startListening}
+          listening={speechRecognition.listening}
+        />
+      )}
     </Container>
   );
 };

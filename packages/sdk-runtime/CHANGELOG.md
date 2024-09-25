@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/sdk-runtime@1.9.0...@voiceflow/sdk-runtime@1.10.0) (2024-09-24)
+
+### Features
+
+* add audio interface support (COR-000) ([#178](https://github.com/voiceflow/react-chat/issues/178)) ([f1954c1](https://github.com/voiceflow/react-chat/commit/f1954c1d3590814dffe1e99ab5e510334414ee8b))
+
 # [1.9.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/sdk-runtime@1.8.2...@voiceflow/sdk-runtime@1.9.0) (2024-09-17)
 
 ### Features

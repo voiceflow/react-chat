@@ -19,6 +19,7 @@ export const ButtonContainer = styled(tag('label', 'button'), {
   borderRadius: '$1',
   boxSizing: 'border-box',
   cursor: 'text',
+  pointerEvents: 'none',
 
   [`& ${Bubble.Container}`]: {
     transform: 'scale(0)',
@@ -32,6 +33,7 @@ export const ButtonContainer = styled(tag('label', 'button'), {
         [`& ${Bubble.Container}`]: {
           transform: 'scale(1)',
           cursor: 'pointer',
+          pointerEvents: 'all',
         },
       },
     },
@@ -42,6 +44,7 @@ export const Container = styled(tag('div'), {
   display: 'flex',
   boxShadow: '0 1px 12px $shadow2',
   trans: ['border-color', 'box-shadow'],
+  position: 'relative',
 
   [`& ${Textarea.Container}`]: {
     ...textareaStyles,
@@ -73,5 +76,55 @@ export const Container = styled(tag('div'), {
   [`& ${Textarea.Container}:focus + ${ButtonContainer}`]: {
     ...textareaFocusStyles,
     borderLeftWidth: 0,
+  },
+});
+
+export const AutoInputButtonContainer = styled(tag('button'), {
+  width: '$md',
+  position: 'absolute',
+  right: 0,
+  top: 0,
+  bottom: 0,
+  border: 'none',
+  background: 'transparent',
+  cursor: 'pointer',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  borderRadius: 0,
+
+  [`&& ${Icon.Frame}`]: {
+    color: '$darkGrey',
+    opacity: 0.8,
+    trans: ['opacity', 'color'],
+  },
+
+  '&:hover': {
+    [`&& ${Icon.Frame}`]: {
+      opacity: 1,
+    },
+  },
+
+  '&:active': {
+    [`&& ${Icon.Frame}`]: {
+      color: '$black',
+      opacity: 1,
+    },
+  },
+
+  variants: {
+    listening: {
+      true: {
+        [`&& ${Icon.Frame}`]: {
+          color: '$warn',
+        },
+
+        '&:active': {
+          [`&& ${Icon.Frame}`]: {
+            color: '$warn',
+          },
+        },
+      },
+    },
   },
 });
