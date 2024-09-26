@@ -20,7 +20,6 @@ const InlineButton = forwardRef<HTMLButtonElement, PropsWithChildren<any>>(({ ch
       className={clsx(ClassName.BUTTON, buttonStyles({ type: 'inline' }))}
       {...props}
     >
-      {assistant.color}
       {children}
     </button>
   );
