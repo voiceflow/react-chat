@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.65.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.64.0...@voiceflow/react-chat@1.65.0) (2024-09-27)
+
+### Features
+
+* add setOpen to the api (COR-000) ([#191](https://github.com/voiceflow/react-chat/issues/191)) ([79b54a4](https://github.com/voiceflow/react-chat/commit/79b54a42e64d669fb94b8666330c30f0f96454d6))
+
 # [1.64.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.63.0...@voiceflow/react-chat@1.64.0) (2024-09-25)
 
 ### Features
