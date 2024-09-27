@@ -14,7 +14,8 @@
   "workspaces": [
     "packages/*",
     "examples/*",
-    "examples/live-agent/server"
+    "examples/live-agent/server",
+    "apps/documentation"
   ],
   "scripts": {
     "build": "turbo run build:cmd",
