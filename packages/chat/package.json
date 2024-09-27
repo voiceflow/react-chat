@@ -15,20 +15,32 @@
   },
   "license": "MIT",
   "author": "Ben Teichman, Tyler Han",
+  "exports": {
+    ".": {
+      "import": "./build/index.es.js",
+      "require": "./build/index.cjs.js"
+    },
+    "./ui": {
+      "import": "./ui/components.es.js",
+      "require": "./ui/components.cjs.js"
+    }
+  },
   "main": "build/index.es.js",
   "types": "build/src/package.entry.d.ts",
   "files": [
     "build",
-    "dist"
+    "dist",
+    "ui"
   ],
   "scripts": {
     "build": "yarn g:turbo run build:cmd --filter=@voiceflow/chat...",
     "build:bundle": "NODE_ENV=production vite build",
-    "build:cmd": "yarn g:run-p build:package build:bundle",
+    "build:cmd": "yarn g:run-p build:package build:bundle build:components",
+    "build:components": "vite --config vite.components.config.ts build && yarn g:tsc-alias -p tsconfig.build-ui.json",
     "build:package": "NODE_ENV=production vite --config vite.package.config.ts build && yarn g:tsc-alias -p tsconfig.build.json",
     "build:storybook": "storybook build -o docs",
     "chromatic:publish": "npx chromatic --project-token $CHROMATIC_PROJECT_TOKEN --build-script-name build:storybook",
-    "clean": "yarn g:rimraf build dist",
+    "clean": "yarn g:rimraf build dist ui",
     "dev": "storybook dev -p 6006",
     "lint": "yarn g:run-p -c lint:eslint lint:prettier",
     "lint:eslint": "yarn g:eslint",
