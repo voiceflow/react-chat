@@ -225,6 +225,7 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
       addTurn,
       feedback: runtime.saveFeedback,
       setStatus,
+      setOpen,
       isStatus,
       reset,
       getTurns,
