@@ -17,30 +17,37 @@
   "author": "Ben Teichman, Tyler Han",
   "exports": {
     ".": {
-      "import": "./build/index.es.js",
-      "require": "./build/index.cjs.js"
+      "import": "./build/main.es.js",
+      "require": "./build/main.cjs.js",
+      "types": "./build/main.d.ts"
     },
     "./ui": {
-      "import": "./ui/components.es.js",
-      "require": "./ui/components.cjs.js"
+      "import": "./build/ui.es.js",
+      "require": "./build/ui.cjs.js",
+      "types": "./build/ui.d.ts"
     }
   },
-  "main": "build/index.es.js",
-  "types": "build/src/package.entry.d.ts",
+  "main": "build/main.es.js",
+  "types": "build/main.d.ts",
+  "typesVersions": {
+    "*": {
+      "ui": [
+        "./build/ui.d.ts"
+      ]
+    }
+  },
   "files": [
     "build",
-    "dist",
-    "ui"
+    "dist"
   ],
   "scripts": {
     "build": "yarn g:turbo run build:cmd --filter=@voiceflow/chat...",
-    "build:bundle": "NODE_ENV=production vite build",
-    "build:cmd": "yarn g:run-p build:package build:bundle build:components",
-    "build:components": "vite --config vite.components.config.ts build && yarn g:tsc-alias -p tsconfig.build-ui.json",
+    "build:cmd": "yarn g:run-p build:package build:widget",
     "build:package": "NODE_ENV=production vite --config vite.package.config.ts build && yarn g:tsc-alias -p tsconfig.build.json",
     "build:storybook": "storybook build -o docs",
+    "build:widget": "NODE_ENV=production vite --config vite.widget.config.ts build",
     "chromatic:publish": "npx chromatic --project-token $CHROMATIC_PROJECT_TOKEN --build-script-name build:storybook",
-    "clean": "yarn g:rimraf build dist ui",
+    "clean": "yarn g:rimraf build dist",
     "dev": "storybook dev -p 6006",
     "lint": "yarn g:run-p -c lint:eslint lint:prettier",
     "lint:eslint": "yarn g:eslint",

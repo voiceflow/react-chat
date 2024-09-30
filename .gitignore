@@ -10,7 +10,6 @@ build
 dist
 storybook-static
 docs
-ui
 
 # Turborepo
 .turbo
