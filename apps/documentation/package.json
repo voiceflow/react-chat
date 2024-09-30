@@ -14,6 +14,9 @@
   },
   "dependencies": {
     "@voiceflow/chat": "workspace:*",
+    "@voiceflow/icons": "1.29.1",
+    "@voiceflow/style": "1.8.0",
+    "@voiceflow/ui": "npm:@voiceflow/ui@2.310.4",
     "next": "14.2.13",
     "react": "18.2.0",
     "react-dom": "18.2.0"
