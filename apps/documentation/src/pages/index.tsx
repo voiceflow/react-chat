@@ -1,6 +1,6 @@
 'use client';
 
-import Howdy from '@voiceflow/chat/ui';
+import { Howdy } from '@voiceflow/chat';
 import localFont from 'next/font/local';
 import Head from 'next/head';
 
