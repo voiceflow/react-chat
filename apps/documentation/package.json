@@ -1,0 +1,26 @@
+{
+  "name": "documentation",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "yarn g:turbo run build:cmd --filter=documentation...",
+    "build:cmd": "next build",
+    "dev": "next dev",
+    "lint": "yarn g:run-p -c lint:eslint lint:prettier",
+    "lint:eslint": "yarn g:eslint",
+    "lint:fix": "yarn g:run-p -c \"lint:eslint --fix\" \"lint:prettier --write\"",
+    "lint:prettier": "yarn g:prettier --check",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@voiceflow/chat": "workspace:*",
+    "next": "14.2.13",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "20.12.7",
+    "@types/react": "18.2.8",
+    "@types/react-dom": "18.2.4"
+  }
+}
