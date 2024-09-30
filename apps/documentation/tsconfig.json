@@ -9,8 +9,9 @@
     "resolveJsonModule": true,
     "jsx": "preserve",
     "lib": ["dom", "dom.iterable", "esnext"],
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["/src/*"]
+      "@/*": ["src/*"]
     }
   },
   "exclude": ["node_modules", "build"],
