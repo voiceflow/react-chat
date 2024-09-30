@@ -1,4 +1,4 @@
-declare module '@voiceflow/chat/ui' {
-  const content: any;
+declare module '@voiceflow/chat/*' {
+  const content: { [key: string]: any };
   export default content;
 }
