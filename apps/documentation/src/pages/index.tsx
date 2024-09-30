@@ -1,6 +1,5 @@
 'use client';
 
-import { Howdy } from '@voiceflow/chat/ui';
 import localFont from 'next/font/local';
 import Head from 'next/head';
 
@@ -27,9 +26,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={`${styles.page} ${geistSans.variable} ${geistMono.variable}`}>
-        <main className={styles.main}>
-          <Howdy />
-        </main>
+        <main className={styles.main}>ChatKit - coming soon</main>
         <footer className={styles.footer}></footer>
       </div>
     </>
