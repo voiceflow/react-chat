@@ -6476,7 +6476,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vanilla-extract/next-plugin@npm:^2.4.5":
+"@vanilla-extract/next-plugin@npm:2.4.5":
   version: 2.4.5
   resolution: "@vanilla-extract/next-plugin@npm:2.4.5"
   dependencies:
@@ -9656,7 +9656,7 @@ __metadata:
     "@types/node": 20.12.7
     "@types/react": 18.2.8
     "@types/react-dom": 18.2.4
-    "@vanilla-extract/next-plugin": ^2.4.5
+    "@vanilla-extract/next-plugin": 2.4.5
     "@voiceflow/chat": "workspace:*"
     next: 14.2.13
     react: 18.2.0
