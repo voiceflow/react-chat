@@ -13,10 +13,13 @@ export default defineConfig({
   build: {
     outDir: path.resolve(__dirname, 'build'),
     lib: {
-      entry: path.resolve(__dirname, './src/main.ts'),
+      entry: {
+        main: path.resolve(__dirname, './src/main.ts'),
+        ui: path.resolve(__dirname, './src/ui.ts'),
+      },
       name: 'voiceflow-chat',
-      fileName: (format) => `main.${format}.js`,
-      formats: ['es', 'cjs', 'umd'],
+      fileName: (format, entry) => `${entry}.${format}.js`,
+      formats: ['es', 'cjs'],
     },
     rollupOptions: {
       external: ['react', 'react-dom'],

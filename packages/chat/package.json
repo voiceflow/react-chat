@@ -15,8 +15,27 @@
   },
   "license": "MIT",
   "author": "Ben Teichman, Tyler Han",
+  "exports": {
+    ".": {
+      "import": "./build/main.es.js",
+      "require": "./build/main.cjs.js",
+      "types": "./build/main.d.ts"
+    },
+    "./ui": {
+      "import": "./build/ui.es.js",
+      "require": "./build/ui.cjs.js",
+      "types": "./build/ui.d.ts"
+    }
+  },
   "main": "build/main.es.js",
   "types": "build/main.d.ts",
+  "typesVersions": {
+    "*": {
+      "ui": [
+        "./build/ui.d.ts"
+      ]
+    }
+  },
   "files": [
     "build",
     "dist"
