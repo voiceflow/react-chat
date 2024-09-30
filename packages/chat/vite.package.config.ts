@@ -6,6 +6,10 @@ import dts from 'vite-plugin-dts';
 import { createPlugins } from './vite.widget.config';
 
 export default defineConfig({
+  define: {
+    __USE_SHADOW_ROOT__: false,
+    'process.env': {},
+  },
   build: {
     outDir: path.resolve(__dirname, 'build'),
     lib: {
