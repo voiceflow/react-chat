@@ -32,5 +32,3 @@ export enum ClassName {
 }
 
 export const DEVICE_INFO = Bowser.parse(window.navigator.userAgent);
-
-export const IS_IOS = DEVICE_INFO.os.name === 'iOS';

@@ -36,6 +36,7 @@ export interface ChatInputProps extends TextareaProps {
 const ChatInput: React.FC<ChatInputProps> = ({
   id,
   onSend,
+  placeholder,
   disableSend,
   onValueChange,
   audioInterface,
@@ -61,12 +62,30 @@ const ChatInput: React.FC<ChatInputProps> = ({
   const withAudioInput =
     speechRecognition.available && speechRecognition.microphoneAvailable && audioInterface && !withSendButton;
 
+  const getPlaceholder = () => {
+    if (speechRecognition.initializing) {
+      return 'Initializing...';
+    }
+
+    if (speechRecognition.listening) {
+      return 'Listening...';
+    }
+
+    if (speechRecognition.processing) {
+      return 'Processing...';
+    }
+
+    return placeholder;
+  };
+
   return (
     <Container>
       <Textarea
         id={internalID}
         ref={speechRecognition.textareaRef}
+        readOnly={speechRecognition.initializing || speechRecognition.processing || speechRecognition.listening}
         onKeyDown={handleKeyPress}
+        placeholder={getPlaceholder()}
         onValueChange={onValueChange}
         {...props}
       />
@@ -80,6 +99,8 @@ const ChatInput: React.FC<ChatInputProps> = ({
           onStop={speechRecognition.stopListening}
           onStart={speechRecognition.startListening}
           listening={speechRecognition.listening}
+          processing={speechRecognition.processing}
+          initializing={speechRecognition.initializing}
         />
       )}
     </Container>

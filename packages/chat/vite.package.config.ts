@@ -3,7 +3,7 @@ import path from 'path';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 
-import { createPlugins } from './vite.config';
+import { createPlugins } from './vite.widget.config';
 
 export default defineConfig({
   define: {
@@ -14,9 +14,12 @@ export default defineConfig({
   build: {
     outDir: path.resolve(__dirname, 'build'),
     lib: {
-      entry: path.resolve(__dirname, 'src', 'package.entry.ts'),
+      entry: {
+        main: path.resolve(__dirname, './src/main.ts'),
+        ui: path.resolve(__dirname, './src/ui.ts'),
+      },
       name: 'voiceflow-chat',
-      fileName: (format) => `index.${format}.js`,
+      fileName: (format, entry) => `${entry}.${format}.js`,
       formats: ['es', 'cjs'],
     },
     rollupOptions: {
@@ -29,5 +32,5 @@ export default defineConfig({
       },
     },
   },
-  plugins: [react(), dts(), ...createPlugins()],
+  plugins: [react(), dts({ tsconfigPath: 'tsconfig.build.json' }), ...createPlugins()],
 });
