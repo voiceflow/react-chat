@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.5.1...@voiceflow/chat@0.6.0) (2024-10-01)
+
+### Features
+
+* add Storybook configuration for chat package ([#185](https://github.com/voiceflow/react-chat/issues/185)) ([79a809c](https://github.com/voiceflow/react-chat/commit/79a809c5ca7596003701ff3f4bfc9a3536745c88))
+
 ## [0.5.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.5.0...@voiceflow/chat@0.5.1) (2024-10-01)
 
 **Note:** Version bump only for package @voiceflow/chat
