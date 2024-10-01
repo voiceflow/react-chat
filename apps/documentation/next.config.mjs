@@ -1,7 +1,13 @@
-/** @type {import('next').NextConfig} */
+import nextra from 'nextra';
+
 const nextConfig = {
   reactStrictMode: true,
   distDir: 'build',
 };
 
-export default nextConfig;
+const withNextra = nextra({
+  theme: 'nextra-theme-docs',
+  themeConfig: './src/theme.config.tsx',
+});
+
+export default withNextra(nextConfig);
