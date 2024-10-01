@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.65.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.64.0...@voiceflow/react-chat@1.65.0) (2024-09-27)
+
+### Features
+
+* add setOpen to the api (COR-000) ([#191](https://github.com/voiceflow/react-chat/issues/191)) ([79b54a4](https://github.com/voiceflow/react-chat/commit/79b54a42e64d669fb94b8666330c30f0f96454d6))
+
+# [1.64.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.63.0...@voiceflow/react-chat@1.64.0) (2024-09-25)
+
+### Features
+
+* hide audio interface for non chrome browsers (COR-000) ([#187](https://github.com/voiceflow/react-chat/issues/187)) ([7b969b2](https://github.com/voiceflow/react-chat/commit/7b969b279d091b485dc5739cd41d0ec54fbac149))
+
+# [1.63.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.62.1...@voiceflow/react-chat@1.63.0) (2024-09-25)
+
+### Features
+
+* improve custom speech recognition logic (COR-000) ([#186](https://github.com/voiceflow/react-chat/issues/186)) ([986813a](https://github.com/voiceflow/react-chat/commit/986813a7c57d76d44f3780ec51b51c0f73982fc3))
+
 ## [1.62.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.62.0...@voiceflow/react-chat@1.62.1) (2024-09-25)
 
 ### Bug Fixes

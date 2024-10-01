@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import ReactSpeechRecognition, { useSpeechRecognition as useReactSpeechRecognition } from 'react-speech-recognition';
 
+import { isChrome } from '@/device';
 import type { ChatSpeechRecognitionConfig, ChatSpeechRecognitionState } from '@/dtos/ChatConfig.dto';
 
 export const useSpeechRecognition = ({
@@ -15,9 +16,9 @@ export const useSpeechRecognition = ({
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const reactSpeechRecognition = useReactSpeechRecognition({ clearTranscriptOnListen: true });
 
+  const browserSupportsSpeechRecognition = reactSpeechRecognition.browserSupportsSpeechRecognition && isChrome();
   const customSpeechRecognitionEnabled =
-    !!customSpeechRecognition &&
-    (customSpeechRecognition.overrideNative || !reactSpeechRecognition.browserSupportsSpeechRecognition);
+    !!customSpeechRecognition && (customSpeechRecognition.overrideNative || !browserSupportsSpeechRecognition);
 
   const prevListening = useRef(
     customSpeechRecognitionEnabled ? customSpeechRecognition.initialState.listening : reactSpeechRecognition.listening
@@ -35,6 +36,7 @@ export const useSpeechRecognition = ({
           listening: reactSpeechRecognition.listening,
           transcript: reactSpeechRecognition.transcript,
           processing: false,
+          initializing: false,
           microphoneAvailable: reactSpeechRecognition.isMicrophoneAvailable,
         }
   );
@@ -86,16 +88,20 @@ export const useSpeechRecognition = ({
   useEffect(() => {
     if (!customSpeechRecognitionEnabled) return undefined;
 
-    return customSpeechRecognition.onStateChange(setCustomSpeechRecognitionState);
+    return customSpeechRecognition.onStateChange((nextState) => {
+      onValueChange(nextState.transcript);
+      setCustomSpeechRecognitionState(nextState);
+    });
   }, [customSpeechRecognitionEnabled]);
 
   return {
-    available: customSpeechRecognitionEnabled || reactSpeechRecognition.browserSupportsSpeechRecognition,
+    available: customSpeechRecognitionEnabled || browserSupportsSpeechRecognition,
     listening: customSpeechRecognitionEnabled
       ? customSpeechRecognitionState.listening
       : reactSpeechRecognition.listening,
     processing: customSpeechRecognitionEnabled ? customSpeechRecognitionState.processing : false,
     textareaRef,
+    initializing: customSpeechRecognitionEnabled ? customSpeechRecognitionState.initializing : false,
     stopListening: onStopListening,
     startListening: onStartListening,
     microphoneAvailable: customSpeechRecognitionEnabled

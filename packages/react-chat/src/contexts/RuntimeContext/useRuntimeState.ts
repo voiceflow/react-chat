@@ -2,10 +2,10 @@ import type { BaseRequest } from '@voiceflow/dtos-interact';
 import { isTextRequest, RequestType } from '@voiceflow/dtos-interact';
 import type { TraceDeclaration } from '@voiceflow/sdk-runtime';
 import cuid from 'cuid';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { DEFAULT_MESSAGE_DELAY, MessageType } from '@/components/SystemResponse/constants';
-import { IS_IOS } from '@/constants';
+import { isIOS } from '@/device';
 import type { AssistantOptions } from '@/dtos/AssistantOptions.dto';
 import type { ChatConfig } from '@/dtos/ChatConfig.dto';
 import { useStateRef } from '@/hooks/useStateRef';
@@ -67,6 +67,8 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
     ],
   });
 
+  const isAudioOutputEnabled = () => assistant.audioInterface && audioOutputRef.current;
+
   // status management
   const setStatus = (status: SessionStatus) => {
     setSession((prev) => (prev.status === status ? prev : { ...prev, status }));
@@ -107,7 +109,7 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
     const userAction = resolveAction(action, getTurns());
 
     setIndicator(true);
-    const context = await runtime.interact(userAction, { tts: audioOutputRef.current }).catch((error) => {
+    const context = await runtime.interact(userAction, { tts: isAudioOutputEnabled() }).catch((error) => {
       // TODO: better define error condition
       console.error(error);
       return createContext();
@@ -121,9 +123,9 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
       ...context,
     });
 
-    const shouldPlay = audioOutputRef.current && playAudiosStack.current.length === 0;
+    const shouldPlay = isAudioOutputEnabled() && playAudiosStack.current.length === 0;
 
-    if (audioOutputRef.current) {
+    if (isAudioOutputEnabled()) {
       context.messages.forEach((message) => {
         if (message.type === MessageType.TEXT && message.audio?.src) {
           playAudiosStack.current.push(message.audio.src);
@@ -146,7 +148,7 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
     playAudiosStack.current = [];
 
     // we need to play a silent audio on user interaction to enable async audio playback
-    if (IS_IOS && audioOutputRef.current) {
+    if (isIOS() && isAudioOutputEnabled()) {
       audio.play(silentAudio);
     }
 
@@ -182,12 +184,12 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
   const getTurns = () => sessionRef.current.turns;
 
   const stopAudios = () => {
-    audio.stop();
     playAudiosStack.current = [];
+    audio.stop();
   };
 
   const playAudioCircle = async () => {
-    if (!audioOutputRef.current || !playAudiosStack.current.length) return;
+    if (!isAudioOutputEnabled() || !playAudiosStack.current.length) return;
 
     await audio.play(playAudiosStack.current.shift());
 
@@ -195,12 +197,17 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
   };
 
   const toggleAudioOutput = () => {
-    if (audioOutputRef.current) {
-      stopAudios();
-    }
-
+    stopAudios();
     setAudioOutput((prev) => !prev);
   };
+
+  useEffect(() => {
+    if (!isOpen) return undefined;
+
+    return () => {
+      stopAudios();
+    };
+  }, [isOpen]);
 
   return {
     state: {
@@ -218,6 +225,7 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
       addTurn,
       feedback: runtime.saveFeedback,
       setStatus,
+      setOpen,
       isStatus,
       reset,
       getTurns,
