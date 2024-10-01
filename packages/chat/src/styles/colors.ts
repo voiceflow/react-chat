@@ -15,6 +15,15 @@ export const createColorPalette = (primary: string) => ({
   900: chroma(primary).darken(2).hex(),
 });
 
+const NEUTRAL_DARK = {
+  100: '#656D75',
+  600: '#2B3239',
+  900: '#1A1E23',
+  9006: '#191D220F',
+  90012: '#1A1E231F',
+};
+
 export const COLORS = {
   white: '#fff',
+  NEUTRAL_DARK,
 };
