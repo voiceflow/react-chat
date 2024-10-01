@@ -1,11 +1,5 @@
 # next.js
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 /.next/
->>>>>>> a64b9080 (feat: rewrite Avatar component (COR-3369))
-=======
->>>>>>> Gilly/chat-storybook/COR-0000
 /out/
 
 # vercel
