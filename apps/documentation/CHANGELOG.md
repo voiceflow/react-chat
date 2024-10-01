@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/voiceflow/react-chat/compare/documentation@0.3.5...documentation@0.4.0) (2024-10-01)
+
+### Features
+
+* add nextra theme to docs app (COR-0000) ([#198](https://github.com/voiceflow/react-chat/issues/198)) ([4216a67](https://github.com/voiceflow/react-chat/commit/4216a678a3602aa8e0a83e141077ad0e62984338))
+
 ## [0.3.5](https://github.com/voiceflow/react-chat/compare/documentation@0.3.4...documentation@0.3.5) (2024-10-01)
 
 **Note:** Version bump only for package documentation
