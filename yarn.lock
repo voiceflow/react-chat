@@ -6436,7 +6436,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vanilla-extract/css@npm:^1.15.5":
+"@vanilla-extract/css@npm:1.15.5, @vanilla-extract/css@npm:^1.15.5":
   version: 1.15.5
   resolution: "@vanilla-extract/css@npm:1.15.5"
   dependencies:
@@ -6453,6 +6453,15 @@ __metadata:
     modern-ahocorasick: ^1.0.0
     picocolors: ^1.0.0
   checksum: 0c260e55a1648a827df74cae4475a1a61767e4ef3a7a3a299853ae3f77ed220d7a4b604737886140ea9e72a379eda4ee45b7349a4651cf3d5a4f2c8697448d6d
+  languageName: node
+  linkType: hard
+
+"@vanilla-extract/dynamic@npm:2.1.2":
+  version: 2.1.2
+  resolution: "@vanilla-extract/dynamic@npm:2.1.2"
+  dependencies:
+    "@vanilla-extract/private": ^1.0.6
+  checksum: ec6ec9b02c7ec8a9d60aebf63225fd3f930c06ad824321f03f683f1948eb6d4e554d934303da140b3230b4af2fa15bab494c6da2a3b9a172e4118c245b4f942a
   languageName: node
   linkType: hard
 
@@ -6491,6 +6500,17 @@ __metadata:
   version: 1.0.6
   resolution: "@vanilla-extract/private@npm:1.0.6"
   checksum: 2265b02af29d8cd40f6ddeeed197fb2df1a7695f5a9821d5e3597677179be8b83bcd8fe4df4a6178544f89123d745a3c6a13599d4fe4e5873b065a8ad329f690
+  languageName: node
+  linkType: hard
+
+"@vanilla-extract/vite-plugin@npm:4.0.15":
+  version: 4.0.15
+  resolution: "@vanilla-extract/vite-plugin@npm:4.0.15"
+  dependencies:
+    "@vanilla-extract/integration": ^7.1.9
+  peerDependencies:
+    vite: ^4.0.3 || ^5.0.0
+  checksum: b99f1bb339ea5bdb12129f7689dba01506329bc9a3234d25db7da599e58b98a3380abb3cbcfa18a891630f275c5129209bc0dc655c24502303c9ed9e4a4efa99
   languageName: node
   linkType: hard
 
@@ -6762,6 +6782,9 @@ __metadata:
     "@types/node": 20.12.7
     "@types/react": 18.2.8
     "@types/react-dom": 18.2.4
+    "@vanilla-extract/css": 1.15.5
+    "@vanilla-extract/dynamic": 2.1.2
+    "@vanilla-extract/vite-plugin": 4.0.15
     "@vitejs/plugin-react": 4.2.1
     "@voiceflow/base-types": 2.113.1
     "@voiceflow/dtos-interact": 1.1.0
