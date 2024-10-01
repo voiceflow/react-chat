@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.7.0...@voiceflow/chat@0.7.1) (2024-10-01)
+
+### Bug Fixes
+
+* export dist css file ([#196](https://github.com/voiceflow/react-chat/issues/196)) ([f3433b9](https://github.com/voiceflow/react-chat/commit/f3433b9db1e31fa531813f67ce52852cc6e032b0))
+
 # [0.7.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.6.0...@voiceflow/chat@0.7.0) (2024-10-01)
 
 ### Features
