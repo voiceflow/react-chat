@@ -25,6 +25,10 @@
       "import": "./build/ui.es.js",
       "require": "./build/ui.cjs.js",
       "types": "./build/ui.d.ts"
+    },
+    "./dist/*.css": {
+      "import": "./dist/*.css",
+      "require": "./dist/*.css"
     }
   },
   "main": "build/main.es.js",
