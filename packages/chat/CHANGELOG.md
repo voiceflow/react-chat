@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.6.0...@voiceflow/chat@0.7.0) (2024-10-01)
+
+### Features
+
+* add InlineButton component (COR-2143) ([#189](https://github.com/voiceflow/react-chat/issues/189)) ([6f9cf01](https://github.com/voiceflow/react-chat/commit/6f9cf0139a52c9f3c8efdba4232003b4d75c5e75))
+* rewrite Avatar component (COR-3369) ([#188](https://github.com/voiceflow/react-chat/issues/188)) ([b831ee8](https://github.com/voiceflow/react-chat/commit/b831ee84d244e79dafc7a26eebc6db81f91922f6))
+
 # [0.6.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.5.1...@voiceflow/chat@0.6.0) (2024-10-01)
 
 ### Features
