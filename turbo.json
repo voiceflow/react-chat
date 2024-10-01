@@ -6,6 +6,7 @@
       "inputs": [
         "src/**",
         ":!src/**/*.test.ts",
+        "next.config.mjs",
         "package.json",
         "tsconfig.json",
         "tsconfig.build.json",

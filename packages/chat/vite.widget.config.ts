@@ -37,7 +37,7 @@ export default defineConfig(({ mode }) => {
     },
     build: {
       lib: {
-        entry: path.resolve(__dirname, 'src', 'index.tsx'),
+        entry: path.resolve(__dirname, 'src', 'widget.tsx'),
         name: 'voiceflow-chat',
         fileName: 'bundle',
         formats: ['iife'],

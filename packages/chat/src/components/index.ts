@@ -8,6 +8,7 @@ export { default as Chat } from './Chat';
 export { default as ChatInput } from './ChatInput';
 export { default as Footer } from './Footer';
 export { default as Header } from './Header';
+export { Howdy } from './Howdy';
 export { default as Icon } from './Icon';
 export { default as Image } from './Image';
 export { default as Input } from './Input';
