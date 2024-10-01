@@ -126,5 +126,15 @@ export const AutoInputButtonContainer = styled(tag('button'), {
         },
       },
     },
+
+    disabled: {
+      true: {
+        cursor: 'not-allowed',
+
+        [`&& ${Icon.Frame}`]: {
+          opacity: 0.5,
+        },
+      },
+    },
   },
 });
