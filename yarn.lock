@@ -5821,6 +5821,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@taplo/core@npm:^0.1.0":
+  version: 0.1.1
+  resolution: "@taplo/core@npm:0.1.1"
+  checksum: 4673176900669a14e4d6a0900f7c5b6556b8275b85ab4541be517c150a95fe6b5883e7bf672f71d81488b723e3c115933cb5b36977d3dc0d8d75874495b52aaf
+  languageName: node
+  linkType: hard
+
+"@taplo/lib@npm:^0.4.0-alpha.2":
+  version: 0.4.0-alpha.2
+  resolution: "@taplo/lib@npm:0.4.0-alpha.2"
+  dependencies:
+    "@taplo/core": ^0.1.0
+  checksum: 891fbb433eed8f7faee33136d91352e79a82b1dad806369c2f796772a566afd08061d458d1a03464830c5d8df18517a5ff812c50dfe370786fab601f752702bc
+  languageName: node
+  linkType: hard
+
 "@testing-library/dom@npm:^10.0.0":
   version: 10.0.0
   resolution: "@testing-library/dom@npm:10.0.0"
@@ -7558,12 +7574,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@voiceflow/prettier-config@npm:1.5.1":
-  version: 1.5.1
-  resolution: "@voiceflow/prettier-config@npm:1.5.1"
+"@voiceflow/prettier-config@npm:1.6.0":
+  version: 1.6.0
+  resolution: "@voiceflow/prettier-config@npm:1.6.0"
   dependencies:
     prettier-plugin-packagejson: 2.4.14
-  checksum: 90c35c01fa525bfce6612f433d8f25e3982ce1b3d7bc7c8c1db36789d6fe4de75c29e6707a1913e3d12db7778b9d72e7fdb45d7be982ee59d666eeb113e45f6c
+    prettier-plugin-toml: 2.0.1
+  checksum: c038b24884bcd6d83df74f89998b37eb9d48743d635bf0afe221c3f0b8f48aa05119d62cbe7075325953cf73504237c08a4df62bcea81d44f2517ddc61ea7dc7
   languageName: node
   linkType: hard
 
@@ -18950,7 +18967,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:3.2.5, prettier@npm:^3.1.1":
+"prettier-plugin-toml@npm:2.0.1":
+  version: 2.0.1
+  resolution: "prettier-plugin-toml@npm:2.0.1"
+  dependencies:
+    "@taplo/lib": ^0.4.0-alpha.2
+  peerDependencies:
+    prettier: ^3.0.3
+  checksum: a327adde74fd2f804c56934e127f1b6687532be271d9fa4a425674b1373c4a038515f91bcce7654554515ae94e8144227cca3bad7ecdcfa5545a1d58a6fa248a
+  languageName: node
+  linkType: hard
+
+"prettier@npm:3.3.3":
+  version: 3.3.3
+  resolution: "prettier@npm:3.3.3"
+  bin:
+    prettier: bin/prettier.cjs
+  checksum: bc8604354805acfdde6106852d14b045bb20827ad76a5ffc2455b71a8257f94de93f17f14e463fe844808d2ccc87248364a5691488a3304f1031326e62d9276e
+  languageName: node
+  linkType: hard
+
+"prettier@npm:^3.1.1":
   version: 3.2.5
   resolution: "prettier@npm:3.2.5"
   bin:
@@ -20626,7 +20663,7 @@ __metadata:
     "@voiceflow/dependency-cruiser-config": 1.8.2
     "@voiceflow/eslint-config": 7.5.0
     "@voiceflow/git-branch-check": 1.4.1
-    "@voiceflow/prettier-config": 1.5.1
+    "@voiceflow/prettier-config": 1.6.0
     "@voiceflow/tsconfig": 1.7.1
     "@voiceflow/vitest-config": 1.2.2
     dependency-cruiser: 16.3.1
@@ -20634,7 +20671,7 @@ __metadata:
     husky: 9.0.11
     lint-staged: 15.2.2
     npm-run-all: 4.1.5
-    prettier: 3.2.5
+    prettier: 3.3.3
     rimraf: 5.0.5
     source-map-support: 0.5.21
     tsc-alias: 1.8.8
