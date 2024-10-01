@@ -6503,6 +6503,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vanilla-extract/recipes@npm:^0.5.5":
+  version: 0.5.5
+  resolution: "@vanilla-extract/recipes@npm:0.5.5"
+  peerDependencies:
+    "@vanilla-extract/css": ^1.0.0
+  checksum: 8d2b4f8163369424226ec9a47e754002b8a095bcf86c1a60a91b2183f59508519bd31ed41baefc950ad7ca225d75b3184c3b84d3c741c5c60d91618dd70452aa
+  languageName: node
+  linkType: hard
+
 "@vanilla-extract/vite-plugin@npm:4.0.15":
   version: 4.0.15
   resolution: "@vanilla-extract/vite-plugin@npm:4.0.15"
@@ -6784,6 +6793,7 @@ __metadata:
     "@types/react-dom": 18.2.4
     "@vanilla-extract/css": 1.15.5
     "@vanilla-extract/dynamic": 2.1.2
+    "@vanilla-extract/recipes": ^0.5.5
     "@vanilla-extract/vite-plugin": 4.0.15
     "@vitejs/plugin-react": 4.2.1
     "@voiceflow/base-types": 2.113.1

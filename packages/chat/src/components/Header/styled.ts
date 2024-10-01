@@ -1,10 +1,11 @@
-import Avatar from '@/components/Avatar';
 import BaseButton from '@/components/Button';
 import Icon from '@/components/Icon';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
 import { styled } from '@/old-styles';
 import { textOverflowStyles } from '@/old-styles/fragments';
+
+import { avatarStyles } from '../Avatar/styles.css';
 
 const tag = tagFactory(ClassName.HEADER);
 
@@ -50,7 +51,7 @@ export const Container = styled(tag('header'), {
   backgroundColor: '$primary',
   boxShadow: '0 1px 2px $shadow16',
 
-  [`& ${Avatar.Container}`]: {
+  [`& .${avatarStyles.classNames.base}`]: {
     height: 32,
     width: 32,
   },
