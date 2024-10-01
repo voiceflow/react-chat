@@ -5,7 +5,6 @@ import { RuntimeProvider } from '@/contexts';
 import { FeedbackButton } from './FeedbackButton.component';
 
 const MOCK_CONFIG = { render: { mode: 'embedded' }, verify: { projectID: ' ' } } as any;
-const MOCK_ASSISTANT = { persistence: {}, extensions: [], color: 'red' } as any;
 
 const meta: Meta<typeof FeedbackButton> = {
   title: 'Button/FeedbackButton',
@@ -15,16 +14,6 @@ const meta: Meta<typeof FeedbackButton> = {
 
 export default meta;
 type Story = StoryObj<typeof FeedbackButton>;
-
-export const Base: Story = {
-  decorators: [
-    (Story) => (
-      <RuntimeProvider config={MOCK_CONFIG} assistant={MOCK_ASSISTANT}>
-        <Story />
-      </RuntimeProvider>
-    ),
-  ],
-};
 
 const THEME_FIXTURE = [
   '#A3E4D7',
@@ -37,15 +26,27 @@ const THEME_FIXTURE = [
   '#5DADE2',
   '#E59866',
   '#D98880',
+  'blue',
+  'red',
+  'green',
+  'yellow',
+  'purple',
 ];
 
-const ActiveExampleComponent = () => {
+const VariantRenderer = ({ title, active }: { title: string; active?: boolean }) => {
   return (
     <>
-      <div style={{ display: 'flex', flexDirection: 'row' }}>
+      <h1>{title}</h1>
+      <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem' }}>
         {THEME_FIXTURE.map((color, index) => (
           <RuntimeProvider config={MOCK_CONFIG} assistant={{ persistence: {}, extensions: [], color } as any}>
-            <FeedbackButton key={index} onClick={() => null} testID={`chip-${index}`} />
+            <FeedbackButton
+              variant={index % 2 === 0 ? 'up' : 'down'}
+              active={active}
+              key={index}
+              onClick={() => null}
+              testID={`feedback-button--${index}`}
+            />
           </RuntimeProvider>
         ))}
       </div>
@@ -53,6 +54,10 @@ const ActiveExampleComponent = () => {
   );
 };
 
-export const ActiveExamples = {
-  render: () => <ActiveExampleComponent />,
+export const Base: Story = {
+  render: () => <VariantRenderer title="Base" />,
+};
+
+export const ActiveExamples: Story = {
+  render: () => <VariantRenderer title="Active state" active={true} />,
 };
