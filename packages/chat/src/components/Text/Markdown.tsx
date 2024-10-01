@@ -5,7 +5,7 @@ import rehypeRaw from 'rehype-raw';
 import rehypeSanitize from 'rehype-sanitize';
 import remarkGfm from 'remark-gfm';
 
-import { styled } from '@/styles';
+import { styled } from '@/old-styles';
 
 import { schema, transformURL } from './schema';
 

@@ -1,4 +1,4 @@
-import { styled } from '@/styles';
+import { styled } from '@/old-styles';
 
 import { ButtonVariant } from './constants';
 import { Container, tag } from './styled';

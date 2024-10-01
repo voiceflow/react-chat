@@ -4,7 +4,7 @@ import { match } from 'ts-pattern';
 
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
-import { animationStyles, styled } from '@/styles';
+import { animationStyles, styled } from '@/old-styles';
 import { ChatPosition } from '@/types';
 
 import Close, { CloseContainer } from './Close';

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import type { AssistantOptions } from '@/dtos/AssistantOptions.dto';
-import { createCustomTheme } from '@/styles';
+import { createCustomTheme } from '@/old-styles';
 
 export const useTheme = (assistant?: AssistantOptions) => {
   const [theme, setTheme] = useState('');

@@ -1,7 +1,7 @@
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
-import type { CSS } from '@/styles';
-import { styled } from '@/styles';
+import type { CSS } from '@/old-styles';
+import { styled } from '@/old-styles';
 
 const CHAT_WIDTH = 380;
 const MAX_CHAT_HEIGHT = 800;
