@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.3.0...@voiceflow/chat@0.4.0) (2024-10-01)
+
+### Features
+
+* UI export to docs (DX-000) ([#193](https://github.com/voiceflow/react-chat/issues/193)) ([83d3ef9](https://github.com/voiceflow/react-chat/commit/83d3ef93390ff8d98681c9dec129133f21a8e6bd))
+
 # [0.3.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.2.0...@voiceflow/chat@0.3.0) (2024-09-27)
 
 ### Features
