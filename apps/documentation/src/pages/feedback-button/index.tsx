@@ -1,27 +1,26 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import { RuntimeProvider } from '@voiceflow/chat';
+import { FeedbackButton } from '@voiceflow/chat/ui';
 
-import { COLOR_FIXTURE } from '@/__fixtures__/colors';
-import { RuntimeProvider } from '@/contexts';
+export default function FeedbackButtonPage() {
+  return (
+    <div>
+      howdy folks
+      <VariantRenderer title="Base" />
+      <VariantRenderer title="Active state" active={true} />
+    </div>
+  );
+}
 
-import { FeedbackButton } from './FeedbackButton.component';
+const THEME_FIXTURE = ['#A3E4D7', '#F1948A', '#85C1E9', '#F7DC6F', '#BB8FCE', 'green', 'black', 'yellow', 'purple'];
 
 const MOCK_CONFIG = { render: { mode: 'embedded' }, verify: { projectID: ' ' } } as any;
-
-const meta: Meta<typeof FeedbackButton> = {
-  title: 'Button/FeedbackButton',
-  component: FeedbackButton,
-  args: {},
-};
-
-export default meta;
-type Story = StoryObj<typeof FeedbackButton>;
 
 const VariantRenderer = ({ title, active }: { title: string; active?: boolean }) => {
   return (
     <>
       <h1>{title}</h1>
       <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem' }}>
-        {COLOR_FIXTURE.map((color, index) => (
+        {THEME_FIXTURE.map((color, index) => (
           <RuntimeProvider config={MOCK_CONFIG} assistant={{ persistence: {}, extensions: [], color } as any}>
             <FeedbackButton
               variant={index % 2 === 0 ? 'up' : 'down'}
@@ -35,12 +34,4 @@ const VariantRenderer = ({ title, active }: { title: string; active?: boolean })
       </div>
     </>
   );
-};
-
-export const Base: Story = {
-  render: () => <VariantRenderer title="Base" />,
-};
-
-export const ActiveExamples: Story = {
-  render: () => <VariantRenderer title="Active state" active={true} />,
 };

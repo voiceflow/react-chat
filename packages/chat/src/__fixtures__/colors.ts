@@ -1,0 +1,16 @@
+export const COLOR_FIXTURE = [
+  'orange',
+  '#397DFF',
+  '#A3E4D7',
+  'red',
+  'orange',
+  '#F1948A',
+  'blue',
+  '#85C1E9',
+  '#F7DC6F',
+  '#BB8FCE',
+  'green',
+  'black',
+  'yellow',
+  'purple',
+];
