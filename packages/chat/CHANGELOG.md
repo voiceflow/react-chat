@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.5.0...@voiceflow/chat@0.5.1) (2024-10-01)
+
+**Note:** Version bump only for package @voiceflow/chat
+
+# [0.5.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.4.0...@voiceflow/chat@0.5.0) (2024-10-01)
+
+### Features
+
+* add vanilla-extract to the new chat package (COR-3282) ([#183](https://github.com/voiceflow/react-chat/issues/183)) ([0816086](https://github.com/voiceflow/react-chat/commit/081608647896bdfdf832e61e580bcfcc25a3b93e))
+
 # [0.4.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.3.0...@voiceflow/chat@0.4.0) (2024-10-01)
 
 ### Features
