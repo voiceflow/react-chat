@@ -26,6 +26,11 @@
       "require": "./build/ui.cjs.js",
       "types": "./build/ui.d.ts"
     },
+    "./stories": {
+      "import": "./build/stories.es.js",
+      "require": "./build/stories.cjs.js",
+      "types": "./build/stories.d.ts"
+    },
     "./dist/*.css": {
       "import": "./dist/*.css",
       "require": "./dist/*.css"
@@ -37,6 +42,9 @@
     "*": {
       "ui": [
         "./build/ui.d.ts"
+      ],
+      "stories": [
+        "./build/stories.d.ts"
       ]
     }
   },

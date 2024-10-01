@@ -1,4 +1,5 @@
 import '@/styles/globals.css';
+import '@voiceflow/chat/dist/style.css';
 
 import type { AppProps } from 'next/app';
 
