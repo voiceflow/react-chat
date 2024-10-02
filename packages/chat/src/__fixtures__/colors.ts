@@ -3,7 +3,6 @@ export const COLOR_FIXTURE = [
   '#397DFF',
   '#A3E4D7',
   'red',
-  'orange',
   '#F1948A',
   '#0000FF',
   '#85C1E9',

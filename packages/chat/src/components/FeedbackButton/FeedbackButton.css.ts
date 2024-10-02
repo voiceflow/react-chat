@@ -44,7 +44,7 @@ export const feedbackButtonStyles = recipe({
 
 export const iconStyle = recipe({
   base: {
-    color: '#656D75',
+    color: COLORS.NEUTRAL_DARK[100],
     transition: transition(['color']),
   },
   variants: {
