@@ -1,6 +1,6 @@
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
-import { createColorPalette } from '@/styles/colors';
+import { createPalette } from '@/styles/colors';
 
 import { activeBackground, activeIconColor, feedbackButtonStyles, iconStyle } from './FeedbackButton.css';
 import type { IFeedbackButton } from './FeedbackButton.interface';
@@ -14,7 +14,7 @@ export const FeedbackButton: React.FC<IFeedbackButton> = ({
   onClick,
   testID,
 }) => {
-  const palette = createColorPalette(primaryColor);
+  const palette = createPalette(primaryColor);
 
   const buttonActiveColor = palette[500];
   const iconActiveColor = palette[50];

@@ -15,22 +15,26 @@ export const createColorPalette = (primary: string) => ({
   900: chroma(primary).darken(2).hex(),
 });
 
-export const createPalette = (primary: string) => {
-  const lightest = chroma(primary).brighten(2).hex(); // Lighten for accent50
-  const darkest = chroma(primary).darken(2).hex(); // Darken for accent900
-  const scale = chroma.scale([lightest, primary, darkest]).mode('rgb');
+export const createPalette = (baseColor: string) => {
+  const hue = chroma(baseColor).get('hsl.h');
+
+  const lightColor = chroma.hsl(hue, 1, 0.85).hex();
+
+  const darkColor = chroma.hsl(hue, 1, 0.15).hex();
+
+  const shades = chroma.scale([lightColor, baseColor, darkColor]).mode('hsl').colors(10);
 
   return {
-    50: lightest,
-    100: scale(0.2).hex(),
-    200: scale(0.3).hex(),
-    300: scale(0.4).hex(),
-    400: scale(0.5).hex(),
-    500: primary,
-    600: scale(0.6).hex(),
-    700: scale(0.7).hex(),
-    800: scale(0.8).hex(),
-    900: scale(0.9).hex(),
+    50: lightColor,
+    100: shades[1],
+    200: shades[2],
+    300: shades[3],
+    400: shades[4],
+    500: baseColor,
+    600: shades[6],
+    700: shades[7],
+    800: shades[8],
+    900: shades[9],
   };
 };
 
