@@ -8,16 +8,20 @@ import { RuntimeStateAPIContext } from '@/contexts';
 import { createColorPalette } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
 
-import { buttonStyles } from './styles.css';
+import { buttonStyles, roundButton } from './styles.css';
 
-const InlineButton = forwardRef<HTMLButtonElement, PropsWithChildren<any>>(({ children, ...props }, ref) => {
+interface ButtonProps {
+  round?: boolean;
+}
+
+const InlineButton = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(({ children, ...props }, ref) => {
   const { assistant } = useContext(RuntimeStateAPIContext);
 
   return (
     <button
       ref={ref}
       style={assignInlineVars(PALETTE, { colors: createColorPalette(assistant.color) })}
-      className={clsx(ClassName.BUTTON, buttonStyles({ type: 'inline' }))}
+      className={clsx(ClassName.BUTTON, buttonStyles({ type: 'inline' }), props.round && roundButton)}
       {...props}
     >
       {children}

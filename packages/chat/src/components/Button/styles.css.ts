@@ -1,9 +1,14 @@
+import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { PALETTE } from '@/styles/colors.css';
 import { SIZES } from '@/styles/sizes';
 
 import { buttonReset } from './reset.css';
+
+export const roundButton = style({
+  borderRadius: '999px !important',
+});
 
 export const buttonStyles = recipe({
   base: [
@@ -24,7 +29,6 @@ export const buttonStyles = recipe({
     type: {
       inline: {
         borderRadius: SIZES.radius.xs,
-        // TODO: This should be dynamic from user choice
         color: PALETTE.colors[500],
         backgroundColor: PALETTE.colors[50],
         fontSize: '14px',

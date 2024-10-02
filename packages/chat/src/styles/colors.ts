@@ -1,8 +1,10 @@
 import chroma from 'chroma-js';
 
+const defaultPrimary = '#387dff';
+
 // TODO: These shades don't match exactly the figma colors
 // TODO: Need to sit with Mike about these.
-export const createColorPalette = (primary: string) => ({
+export const createColorPalette = (primary = defaultPrimary) => ({
   50: chroma(primary).brighten(2.5).hex(),
   100: chroma(primary).brighten(2).hex(),
   200: chroma(primary).brighten(1.5).hex(),
