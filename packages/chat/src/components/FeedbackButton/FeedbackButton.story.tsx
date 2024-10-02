@@ -13,10 +13,9 @@ const meta: Meta<typeof FeedbackButton> = {
 export default meta;
 type Story = StoryObj<typeof FeedbackButton>;
 
-const VariantRenderer = ({ title, active }: { title: string; active?: boolean }) => {
+const VariantRenderer = ({ active }: { active?: boolean }) => {
   return (
     <>
-      <h1>{title}</h1>
       <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem' }}>
         {COLOR_FIXTURE.map((color, index) => (
           <FeedbackButton
@@ -34,9 +33,9 @@ const VariantRenderer = ({ title, active }: { title: string; active?: boolean })
 };
 
 export const Base: Story = {
-  render: () => <VariantRenderer title="Base" />,
+  render: () => <VariantRenderer />,
 };
 
 export const ActiveExamples: Story = {
-  render: () => <VariantRenderer title="Active state" active={true} />,
+  render: () => <VariantRenderer active={true} />,
 };
