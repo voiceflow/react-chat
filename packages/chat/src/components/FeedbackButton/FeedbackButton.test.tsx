@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from 'vitest';
 
 import { RuntimeProvider } from '@/contexts';
 
-import { FeedbackButton } from './FeedbackButton.component';
+import { FeedbackButton } from '.';
 
 describe('Button', () => {
   it('onClick callback fires properly', async () => {

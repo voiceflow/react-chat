@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { COLOR_FIXTURE } from '@/__fixtures__/colors';
 
-import { FeedbackButton } from './FeedbackButton.component';
+import { FeedbackButton } from '.';
 
 const meta: Meta<typeof FeedbackButton> = {
   title: 'Button/FeedbackButton',
