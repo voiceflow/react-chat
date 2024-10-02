@@ -15,25 +15,6 @@ export const createColorPalette = (primary: string) => ({
   900: chroma(primary).darken(2).hex(),
 });
 
-export const createPalette = (primary: string) => {
-  const lightest = chroma(primary).brighten(2).hex(); // Lighten for accent50
-  const darkest = chroma(primary).darken(2).hex(); // Darken for accent900
-  const scale = chroma.scale([lightest, primary, darkest]).mode('rgb');
-
-  return {
-    50: lightest,
-    100: scale(0.2).hex(),
-    200: scale(0.3).hex(),
-    300: scale(0.4).hex(),
-    400: scale(0.5).hex(),
-    500: primary,
-    600: scale(0.6).hex(),
-    700: scale(0.7).hex(),
-    800: scale(0.8).hex(),
-    900: scale(0.9).hex(),
-  };
-};
-
 const NEUTRAL_DARK = {
   100: '#656D75',
   600: '#2B3239',

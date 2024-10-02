@@ -1,10 +1,10 @@
-import { createColorPalette, createPalette } from '@/styles/colors';
+import { createColorPalette } from '@/styles/colors';
 
 import { container, derivativeColor, derivativeColorContainer, primaryColorBlock } from './ColorTheme.css';
 
 export const ColorTheme = ({ color }: { color: string }) => {
   const palette = createColorPalette(color);
-  const bezier = createPalette(color);
+  const bezier = createColorPalette(color);
   return (
     <div className={container}>
       <div className={primaryColorBlock} style={{ backgroundColor: palette[500] }}>
