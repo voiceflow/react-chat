@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 
 import type { ResponseExtension } from '@/dtos/Extension.dto';
 
-import Message from '../Message';
+import Message from '../OldMessage';
 
 export interface ExtensionMessageProps {
   extension: ResponseExtension;

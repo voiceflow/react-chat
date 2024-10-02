@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Message from '.';
+import { VF_ICON } from '@/fixtures';
+
+import { Message } from './Message.component';
 
 type Story = StoryObj<typeof Message>;
 
@@ -8,55 +10,26 @@ const meta: Meta<typeof Message> = {
   title: 'Core/Message',
   component: Message,
   argTypes: {
-    variant: {
-      options: Object.values(Message.Variant),
+    size: {
+      options: ['small', 'large'],
       control: { type: 'radio' },
-      defaultValue: Message.Variant.CHAT,
-    },
-    from: {
-      if: { arg: 'variant', eq: Message.Variant.CHAT },
-      options: ['system', 'user'],
-      control: { type: 'radio' },
-      defaultValue: 'system',
-    },
-    orientation: {
-      if: { arg: 'variant', eq: Message.Variant.DEBUG },
-      options: ['left', 'right'],
-      control: { type: 'radio' },
-      defaultValue: 'left',
+      defaultValue: 'small',
     },
   },
   args: {
-    children: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+    Message: VF_ICON,
   },
 };
-
 export default meta;
 
-export const SystemChat: Story = {
+export const Small: Story = {
   args: {
-    variant: Message.Variant.CHAT,
-    from: 'system',
+    size: 'small',
   },
 };
 
-export const UserChat: Story = {
+export const Large: Story = {
   args: {
-    variant: Message.Variant.CHAT,
-    from: 'user',
-  },
-};
-
-export const DebugLeft: Story = {
-  args: {
-    variant: Message.Variant.DEBUG,
-    orientation: 'left',
-  },
-};
-
-export const DebugRight: Story = {
-  args: {
-    variant: Message.Variant.DEBUG,
-    orientation: 'right',
+    size: 'large',
   },
 };

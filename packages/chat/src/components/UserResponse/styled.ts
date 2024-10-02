@@ -4,7 +4,7 @@ import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
 import { styled } from '@/old-styles';
 
-import Message from '../Message';
+import Message from '../OldMessage';
 
 const tag = tagFactory(ClassName.USER_RESPONSE);
 
