@@ -17,6 +17,7 @@ export default defineConfig({
       entry: {
         main: path.resolve(__dirname, './src/main.ts'),
         ui: path.resolve(__dirname, './src/ui.ts'),
+        stories: path.resolve(__dirname, './src/stories.ts'),
       },
       name: 'voiceflow-chat',
       fileName: (format, entry) => `${entry}.${format}.js`,
