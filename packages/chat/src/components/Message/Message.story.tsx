@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { VF_ICON } from '@/fixtures';
-
+import { MARKDOWN_FIXTURE } from './__fixtures__/markdown';
 import { Message } from './Message.component';
 
 type Story = StoryObj<typeof Message>;
@@ -9,27 +8,17 @@ type Story = StoryObj<typeof Message>;
 const meta: Meta<typeof Message> = {
   title: 'Core/Message',
   component: Message,
-  argTypes: {
-    size: {
-      options: ['small', 'large'],
-      control: { type: 'radio' },
-      defaultValue: 'small',
-    },
-  },
-  args: {
-    Message: VF_ICON,
-  },
 };
 export default meta;
 
 export const Small: Story = {
   args: {
-    size: 'small',
+    children: 'Lorem ipsum dolor sit amet consectetur alir tuesil',
   },
 };
 
-export const Large: Story = {
+export const Markdown: Story = {
   args: {
-    size: 'large',
+    children: MARKDOWN_FIXTURE,
   },
 };
