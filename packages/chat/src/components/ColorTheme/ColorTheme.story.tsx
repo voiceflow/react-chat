@@ -17,8 +17,8 @@ export const Primary: Story = {
     return (
       <div>
         {COLOR_FIXTURE.map((color, index) => (
-          <div style={{ marginBottom: '2rem' }}>
-            <ColorTheme color={color} key={index} />
+          <div style={{ marginBottom: '2rem' }} key={index}>
+            <ColorTheme color={color} />
           </div>
         ))}
       </div>
