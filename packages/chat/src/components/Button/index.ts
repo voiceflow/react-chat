@@ -2,17 +2,17 @@ import { bindVariants } from '@/utils/variants';
 
 import { ButtonVariant } from './constants';
 import InlineButton from './Inline';
-import { PrimaryButton } from './Primary';
-import { SecondaryButton } from './Secondary';
-import { Container, Reset } from './styled';
+// import { PrimaryButton } from './Primary';
+// import { SecondaryButton } from './Secondary';
+// import { Container, Reset } from './styled';
 
 const VARIANTS = {
-  [ButtonVariant.PRIMARY]: PrimaryButton,
-  [ButtonVariant.SECONDARY]: SecondaryButton,
+  // [ButtonVariant.PRIMARY]: PrimaryButton,
+  // [ButtonVariant.SECONDARY]: SecondaryButton,
   [ButtonVariant.INLINE]: InlineButton,
 };
 
-const Button = bindVariants(VARIANTS, ButtonVariant.PRIMARY);
+const Button = bindVariants(VARIANTS, ButtonVariant.INLINE);
 
 /**
  * A button with a label.
@@ -22,9 +22,9 @@ const Button = bindVariants(VARIANTS, ButtonVariant.PRIMARY);
 export default Object.assign(Button, {
   Variant: ButtonVariant,
 
-  Reset,
-  Container,
-  Primary: PrimaryButton,
-  Secondary: SecondaryButton,
+  // Reset,
+  // Container,
+  // Primary: PrimaryButton,
+  // Secondary: SecondaryButton,
   Inline: InlineButton,
 });

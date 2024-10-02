@@ -52,3 +52,10 @@ export const Secondary: Story = {
     variant: Button.Variant.SECONDARY,
   },
 };
+
+export const Inline: Story = {
+  args: {
+    variant: Button.Variant.INLINE,
+    color: '#387dff',
+  },
+};

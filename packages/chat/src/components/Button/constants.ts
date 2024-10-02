@@ -1,5 +1,5 @@
 export enum ButtonVariant {
-  PRIMARY = 'primary',
-  SECONDARY = 'secondary',
+  // PRIMARY = 'primary',
+  // SECONDARY = 'secondary',
   INLINE = 'inline',
 }
