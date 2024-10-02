@@ -7,8 +7,8 @@ export const container = style({
 });
 
 export const primaryColorBlock = style({
-  height: '250px',
   width: '250px',
+  height: '250px',
   color: 'white',
   display: 'flex',
   justifyContent: 'center',
@@ -25,9 +25,9 @@ export const derivativeColorContainer = style({
 export const derivativeColor = style({
   display: 'flex',
   gap: '1rem',
-  width: '100px',
   flexDirection: 'column',
   color: 'white',
+  padding: '1rem',
   justifyContent: 'center',
   alignItems: 'center',
 });

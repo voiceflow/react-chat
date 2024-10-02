@@ -6,6 +6,7 @@ export { default as Card } from './Card';
 export { default as Carousel } from './Carousel';
 export { default as Chat } from './Chat';
 export { default as ChatInput } from './ChatInput';
+export { ColorTheme } from './ColorTheme';
 export { FeedbackButton } from './FeedbackButton';
 export { default as Footer } from './Footer';
 export { default as Header } from './Header';
