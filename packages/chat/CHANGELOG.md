@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.7.1...@voiceflow/chat@0.8.0) (2024-10-02)
+
+### Features
+
+* add Avatar component to docs (COR-3369) ([#199](https://github.com/voiceflow/react-chat/issues/199)) ([6dd7c26](https://github.com/voiceflow/react-chat/commit/6dd7c262e3c8014405b2e380bb6c465487c36b20))
+
 ## [0.7.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.7.0...@voiceflow/chat@0.7.1) (2024-10-01)
 
 ### Bug Fixes
