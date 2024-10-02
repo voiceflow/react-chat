@@ -9,6 +9,7 @@ describe('Button', () => {
 
     render(<FeedbackButton primaryColor="green" onClick={onClick} />);
     screen.getByRole('button').click();
+
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 });
