@@ -1,7 +1,5 @@
 import { assignInlineVars } from '@vanilla-extract/dynamic';
-import { useContext } from 'react';
 
-import { RuntimeStateAPIContext } from '@/contexts';
 import { createColorPalette } from '@/styles/colors';
 
 import { activeBackground, activeIconColor, feedbackButtonStyles, iconStyle } from './FeedbackButton.css';
@@ -9,11 +7,14 @@ import type { IFeedbackButton } from './FeedbackButton.interface';
 import { ThumbsDownIcon } from './ThumbsDownIcon.component';
 import { ThumbsUpIcon } from './ThumbsUpIcon.component';
 
-export const FeedbackButton: React.FC<IFeedbackButton> = ({ variant = 'up', active, onClick, testID }) => {
-  const {
-    assistant: { color },
-  } = useContext(RuntimeStateAPIContext);
-  const palette = createColorPalette(color);
+export const FeedbackButton: React.FC<IFeedbackButton> = ({
+  primaryColor,
+  variant = 'up',
+  active,
+  onClick,
+  testID,
+}) => {
+  const palette = createColorPalette(primaryColor);
 
   const buttonActiveColor = palette[500];
   const iconActiveColor = palette[50];
