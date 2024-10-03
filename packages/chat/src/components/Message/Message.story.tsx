@@ -1,39 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { useEffect, useState } from 'react';
 
 import { MARKDOWN_FIXTURE } from './__fixtures__/markdown';
 import { Message } from './Message.component';
 
 type Story = StoryObj<typeof Message>;
 
-const meta: Meta<typeof Message> = {
-  title: 'Core/Message',
-  component: Message,
-  decorators: [
-    (Story) => (
-      <div style={{ maxWidth: '25%' }}>
-        {/* 👇 Decorators in Storybook also accept a function. Replace <Story/> with Story() to enable it  */}
-        <Story />
-      </div>
-    ),
-  ],
-};
-export default meta;
+const shortMessage = 'Howdy folks how yall doing out there?';
 
-export const Small: Story = {
-  args: {
-    children: 'Lorem ipsum dolor sit amet consectetur alir tuesil',
-  },
-};
-
-export const Markdown: Story = {
-  args: {
-    children: MARKDOWN_FIXTURE,
-  },
-};
-
-export const CodeBlock: Story = {
-  args: {
-    children: `
+const codeMessage = `
 \`\`\`javascript
 <script type="text/javascript">
   (function(d, t) {
@@ -49,6 +24,75 @@ export const CodeBlock: Story = {
   })(document, 'script');
 </script>
 \`\`\`
-`,
+`;
+
+const meta: Meta<typeof Message> = {
+  title: 'Core/Message',
+  component: Message,
+  decorators: [
+    (Story) => (
+      <div style={{ maxWidth: '25%' }}>
+        <Story />
+      </div>
+    ),
+  ],
+};
+export default meta;
+
+export const Small: Story = {
+  args: {
+    children: shortMessage,
+  },
+};
+
+export const Markdown: Story = {
+  args: {
+    children: MARKDOWN_FIXTURE,
+  },
+};
+
+export const CodeBlock: Story = {
+  args: {
+    children: codeMessage,
+  },
+};
+
+const StreamingExample = ({ message }: { message: string }) => {
+  const [text, setText] = useState('');
+
+  useEffect(() => {
+    let index = 0;
+    const interval = setInterval(() => {
+      setText(message.slice(0, index + 1));
+      index++;
+      if (index === message.length) {
+        clearInterval(interval);
+      }
+    }, 10);
+
+    return () => clearInterval(interval);
+  }, [message]);
+
+  return <Message>{text}</Message>;
+};
+
+export const Streaming: Story = {
+  render: () => <StreamingExample message={shortMessage} />,
+  parameters: {
+    chromatic: { disableSnapshot: true },
+  },
+};
+
+export const StreamingFullMarkdown: Story = {
+  render: () => <StreamingExample message={MARKDOWN_FIXTURE} />,
+  parameters: {
+    chromatic: { disableSnapshot: true },
+  },
+};
+
+export const StreamingCode: Story = {
+  render: () => <StreamingExample message={codeMessage} />,
+  parameters: {
+    chromatic: { disableSnapshot: true },
   },
 };
