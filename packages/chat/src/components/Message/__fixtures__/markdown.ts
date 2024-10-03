@@ -1,12 +1,11 @@
 export const MARKDOWN_FIXTURE = `
-# Headers
-
-# h1 Heading 8-)
-## h2 Heading
-### h3 Heading
-#### h4 Heading
-##### h5 Heading
-###### h6 Heading
+ 
+# H1 Howdy  
+## H2 Howdy
+### H3 Howdy
+#### H4 Howdy
+##### H5 Howdy
+###### H6 Howdy
 
 Alternatively, for H1 and H2, an underline-ish style:
 
@@ -15,6 +14,9 @@ Alt-H1
 
 Alt-H2
 ------
+
+Howdy folks, how you doing? This is a normal, just standard string inside a markdown file. How does 
+my line wrapping look? I hope it looks good. I'm going to keep typing until I hit the end of the
 
 # Emphasis
 
@@ -53,7 +55,7 @@ _This is italic text_
 
 # Links
 
-[I'm an inline-style link](https://www.google.com)
+[I'm an inline-style link to Voiceflow](https://www.voiceflow.com)
 
 # Images
 
@@ -73,24 +75,6 @@ Inline-style:
 > Blockquotes are very handy in email to emulate reply text.
 > This line is part of the same quote.
 
-# Code and Syntax Highlighting
-
-\`\`\`javascript
-function $initHighlight(block, cls) {
-  try {
-    if (cls.search(/\\bno\\-highlight\\b/) != -1)
-      return process(block, true, 0x0F) +
-             \` class="\${cls}"\`;
-  } catch (e) {
-    /* handle exception */
-  }
-  for (var i = 0 / 2; i < classes.length; i++) {
-    if (checkCondition(classes[i]) === undefined)
-      console.log('undefined');
-  }
-}
-export  $initHighlight;
-\`\`\`
 
 # Horizontal Rules
 
