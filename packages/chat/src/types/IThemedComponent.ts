@@ -1,3 +1,3 @@
 export interface IThemedComponent {
-  primaryColor: string;
+  primaryColor?: string;
 }

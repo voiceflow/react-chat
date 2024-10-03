@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import Button from '.';
+import { ButtonVariant } from './constants';
 
 type Story = StoryObj<typeof Button>;
 const meta: Meta<typeof Button> = {
@@ -8,47 +9,27 @@ const meta: Meta<typeof Button> = {
   component: Button,
   argTypes: {
     variant: {
-      options: Object.values(Button.Variant),
+      options: Object.values(ButtonVariant),
       control: { type: 'radio' },
-      defaultValue: Button.Variant.PRIMARY,
-    },
-    type: {
-      if: { arg: 'variant', eq: Button.Variant.PRIMARY },
-      options: ['info', 'warn', 'subtle'],
-      control: { type: 'radio' },
-      defaultValue: 'info',
+      defaultValue: ButtonVariant.PRIMARY,
     },
   },
   args: {
     children: 'Button Label',
+    round: false,
   },
 };
 
 export default meta;
 
-export const PrimaryInfo: Story = {
+export const Primary: Story = {
   args: {
-    variant: Button.Variant.PRIMARY,
-    type: 'info',
-  },
-};
-
-export const PrimaryWarn: Story = {
-  args: {
-    variant: Button.Variant.PRIMARY,
-    type: 'warn',
-  },
-};
-
-export const PrimarySubtle: Story = {
-  args: {
-    variant: Button.Variant.PRIMARY,
-    type: 'subtle',
+    variant: ButtonVariant.PRIMARY,
   },
 };
 
 export const Secondary: Story = {
   args: {
-    variant: Button.Variant.SECONDARY,
+    variant: ButtonVariant.SECONDARY,
   },
 };

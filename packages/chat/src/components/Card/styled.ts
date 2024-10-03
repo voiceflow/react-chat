@@ -1,7 +1,8 @@
-import Button from '@/components/Button';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
 import { styled } from '@/old-styles';
+
+import { buttonStyles } from '../Button/styles.css';
 
 export const CARD_WIDTH = 246;
 
@@ -17,7 +18,7 @@ export const Container = styled(tag('section'), {
   overflow: 'hidden',
   backgroundColor: '$lightGrey',
 
-  [`& ${Button.Container}`]: {
+  [`& .${buttonStyles.classNames.base}`]: {
     width: '100%',
     color: '$primary',
     backgroundColor: '$white',

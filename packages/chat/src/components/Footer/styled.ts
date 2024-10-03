@@ -1,8 +1,9 @@
-import Button from '@/components/Button';
 import Input from '@/components/Input';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
 import { styled } from '@/old-styles';
+
+import { buttonStyles } from '../Button/styles.css';
 
 const tag = tagFactory(ClassName.FOOTER);
 
@@ -14,7 +15,7 @@ export const Container = styled(tag('footer'), {
     flex: 1,
   },
 
-  [`& ${Button.Container}`]: {
+  [`& .${buttonStyles.classNames.base}`]: {
     width: '100%',
   },
 

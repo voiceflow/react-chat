@@ -119,7 +119,7 @@ const Chat: React.FC<ChatProps> = ({
       />
       <Overlay />
       <Prompt
-        accept={{ label: 'End Chat', type: 'warn', onClick: chain(onEnd, handleResume) }}
+        accept={{ label: 'End Chat', /* type: 'warn', */ onClick: chain(onEnd, handleResume) }}
         cancel={{ label: 'Cancel', onClick: handleResume }}
       />
     </Container>

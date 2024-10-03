@@ -5,6 +5,7 @@ import Button from '@/components/Button';
 import { RuntimeStateAPIContext } from '@/contexts';
 import { useAutoScroll } from '@/hooks';
 
+import { ButtonVariant } from '../Button/constants';
 import type { FeedbackProps } from '../Feedback';
 import Feedback from '../Feedback';
 import { MessageType } from './constants';
@@ -97,7 +98,7 @@ const SystemResponse: React.FC<SystemResponseProps> = ({
       {isLast && complete && !!actions.length && (
         <Actions>
           {actions.map(({ request, name }, index) => (
-            <Button variant="inline" onClick={() => runtime?.interact(request, name)} key={index}>
+            <Button variant={ButtonVariant.INLINE} onClick={() => runtime?.interact(request, name)} key={index}>
               {name}
             </Button>
           ))}

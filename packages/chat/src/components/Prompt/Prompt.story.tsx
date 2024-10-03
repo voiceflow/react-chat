@@ -30,6 +30,6 @@ export const Base: Story = {
 
 export const Dangerous: Story = {
   args: {
-    accept: { label: 'Dangerous Action', type: 'warn' },
+    accept: { label: 'Dangerous Action' },
   },
 };

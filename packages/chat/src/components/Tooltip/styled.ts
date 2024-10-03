@@ -1,4 +1,3 @@
-import BaseButton from '@/components/Button';
 import Message from '@/components/Message';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
@@ -6,7 +5,9 @@ import { styled } from '@/old-styles';
 
 const tag = tagFactory(ClassName.TOOLTIP);
 
-export const Button = styled(tag(BaseButton.Reset, 'button'), {
+// TODO: Missing class - fix this
+// export const Button = styled(tag(BaseButton.Reset, 'button'), {
+export const Button = styled('button', {
   height: '$md',
   border: '1px solid $medGrey',
   borderTopColor: 'rgba(223,223,223,0.5)',
