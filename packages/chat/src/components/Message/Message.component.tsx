@@ -1,5 +1,6 @@
 import Markdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import remarkGfm from 'remark-gfm';
 
 import codeTheme from './code-theme';
 import { messageContainer } from './Message.css';
@@ -16,6 +17,7 @@ export const Message: React.FC<IMessage> = ({ children }) => {
     <div className={messageContainer({ isCodeBlock: !!isCode })}>
       <Markdown
         children={children?.toString()}
+        remarkPlugins={[remarkGfm]}
         components={{
           code(props) {
             const { children, className, node, ref, ...rest } = props;
