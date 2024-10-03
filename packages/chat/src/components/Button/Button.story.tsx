@@ -33,3 +33,9 @@ export const Secondary: Story = {
     variant: ButtonVariant.SECONDARY,
   },
 };
+
+export const Inline: Story = {
+  args: {
+    variant: ButtonVariant.INLINE,
+  },
+};
