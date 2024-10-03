@@ -6,10 +6,6 @@ import { SIZES } from '@/styles/sizes';
 
 import { buttonReset } from './reset.css';
 
-export const roundButton = style({
-  borderRadius: '999px !important',
-});
-
 export const buttonStyles = recipe({
   base: [
     buttonReset,
