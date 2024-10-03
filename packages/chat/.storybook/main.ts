@@ -33,7 +33,7 @@ const config: StorybookConfig = {
 
   viteFinal: (config) => {
     return mergeConfig(config, {
-      plugins: [...createPlugins(__dirname), svgr()],
+      plugins: [...createPlugins(), svgr()],
       define: {
         __USE_SHADOW_ROOT__: false,
       },
