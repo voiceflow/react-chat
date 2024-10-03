@@ -5,7 +5,7 @@ import { PALETTE } from '@/styles/colors.css';
 
 import { buttonStyles } from '../Button/styles.css';
 
-export const sendButtonStyles = recipe({
+export const sendButtonStyle = recipe({
   base: [
     buttonStyles({ round: true }),
     {
@@ -18,10 +18,27 @@ export const sendButtonStyles = recipe({
     disabled: {
       true: {
         backgroundColor: COLORS.NEUTRAL_LIGHT[50],
-        color: COLORS.NEUTRAL_DARK[100],
       },
       false: {
         backgroundColor: PALETTE.colors[500],
+        ':hover': {
+          backgroundColor: PALETTE.colors[600],
+        },
+        ':active': {
+          backgroundColor: PALETTE.colors[700],
+        },
+      },
+    },
+  },
+});
+
+export const sendIconStyle = recipe({
+  variants: {
+    disabled: {
+      true: {
+        color: COLORS.NEUTRAL_DARK[100],
+      },
+      false: {
         color: COLORS.white,
       },
     },

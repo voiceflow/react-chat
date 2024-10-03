@@ -3,6 +3,8 @@ import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
 import { styled } from '@/old-styles';
 
+import { buttonStyles } from '../Button/styles.css';
+
 const tag = tagFactory(ClassName.FOOTER);
 
 export const Container = styled(tag('footer'), {
@@ -13,10 +15,9 @@ export const Container = styled(tag('footer'), {
     flex: 1,
   },
 
-  // TODO: Missing classes - fix this
-  /* [`& ${Button.Container}`]: {
+  [`& .${buttonStyles.classNames.base}`]: {
     width: '100%',
-  }, */
+  },
 
   variants: {
     withShadow: {
