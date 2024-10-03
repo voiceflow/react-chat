@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/voiceflow/react-chat/compare/documentation@0.5.0...documentation@0.6.0) (2024-10-03)
+
+### Features
+
+* FeedbackButton (DX-2405) ([#200](https://github.com/voiceflow/react-chat/issues/200)) ([46752af](https://github.com/voiceflow/react-chat/commit/46752afca27a0b2b8388b3241cc9d2c130c84688))
+
 # [0.5.0](https://github.com/voiceflow/react-chat/compare/documentation@0.4.0...documentation@0.5.0) (2024-10-02)
 
 ### Features
