@@ -17,7 +17,7 @@ export const createColorPalette = (primary = defaultPrimary) => ({
   900: chroma(primary).darken(2).hex(),
 });
 
-export const createPalette = (baseColor: string) => {
+export const createPalette = (baseColor: string = defaultPrimary) => {
   const hue = chroma(baseColor).get('hsl.h');
 
   const lightColor = chroma.hsl(hue, 1, 0.85).hex();
@@ -48,7 +48,12 @@ const NEUTRAL_DARK = {
   90012: '#1A1E231F',
 };
 
+const NEUTRAL_LIGHT = {
+  50: '#F1F1F2',
+};
+
 export const COLORS = {
   white: '#fff',
   NEUTRAL_DARK,
+  NEUTRAL_LIGHT,
 };

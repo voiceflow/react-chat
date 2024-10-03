@@ -27,6 +27,14 @@ export const buttonStyles = recipe({
 
   variants: {
     type: {
+      primary: {
+        // TODO(COR-3533) - Add Primary/Secondary buttons
+        // Currently just a placeholder
+      },
+      secondary: {
+        // TODO(COR-3533) - Add Primary/Secondary buttons
+        // Currently just a placeholder
+      },
       inline: {
         borderRadius: SIZES.radius.xs,
         color: PALETTE.colors[500],
@@ -43,6 +51,11 @@ export const buttonStyles = recipe({
           color: PALETTE.colors[800],
           backgroundColor: PALETTE.colors[200],
         },
+      },
+    },
+    round: {
+      true: {
+        borderRadius: 9999,
       },
     },
   },

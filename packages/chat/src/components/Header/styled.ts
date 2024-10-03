@@ -1,4 +1,3 @@
-import BaseButton from '@/components/Button';
 import Icon from '@/components/Icon';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
@@ -15,7 +14,9 @@ export const Title = styled(tag('h1', 'title'), {
   color: 'rgba(255,255,255,0.95)',
 });
 
-export const Button = styled(tag(BaseButton.Reset, 'button'), {
+// TODO: Removed component - fix this
+// export const Button = styled(tag(BaseButton.Reset, 'button'), {
+export const Button = styled('button', {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',

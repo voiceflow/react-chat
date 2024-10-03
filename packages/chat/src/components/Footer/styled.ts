@@ -1,4 +1,3 @@
-import Button from '@/components/Button';
 import Input from '@/components/Input';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
@@ -14,9 +13,10 @@ export const Container = styled(tag('footer'), {
     flex: 1,
   },
 
-  [`& ${Button.Container}`]: {
+  // TODO: Missing classes - fix this
+  /* [`& ${Button.Container}`]: {
     width: '100%',
-  },
+  }, */
 
   variants: {
     withShadow: {

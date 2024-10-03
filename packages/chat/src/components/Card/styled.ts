@@ -1,4 +1,4 @@
-import Button from '@/components/Button';
+// import Button from '@/components/Button';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
 import { styled } from '@/old-styles';
@@ -17,7 +17,8 @@ export const Container = styled(tag('section'), {
   overflow: 'hidden',
   backgroundColor: '$lightGrey',
 
-  [`& ${Button.Container}`]: {
+  // TODO: Missing classes - Fix this when we rewrite the Card component
+  /* [`& ${Button.Container}`]: {
     width: '100%',
     color: '$primary',
     backgroundColor: '$white',
@@ -38,7 +39,7 @@ export const Container = styled(tag('section'), {
     '&:last-of-type': {
       marginBottom: 0,
     },
-  },
+  }, */
 });
 
 export const Content = styled(tag('main', 'content'), {

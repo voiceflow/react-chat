@@ -1,4 +1,3 @@
-import Button from '@/components/Button';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
 import { styled } from '@/old-styles';
@@ -11,12 +10,13 @@ export const Container = styled(tag('div'), {
   backgroundColor: '$white',
   boxShadow: '0 12px 48px 4px $shadow12',
 
-  [`& ${Button.Container}`]: {
+  // TODO: Missing style - fix this
+  /* [`& ${Button.Container}`]: {
     width: '100%',
     marginTop: '$1',
 
     '&:first-of-type': {
       marginTop: 0,
     },
-  },
+  }, */
 });

@@ -1,8 +1,9 @@
 import Button from '@/components/Button';
 
+import { ButtonVariant } from '../Button/constants';
 import { Container } from './styled';
 
-export interface PromptOptionProps extends React.ComponentProps<typeof Button.Primary> {
+export interface PromptOptionProps extends React.ComponentProps<typeof Button> {
   /**
    * The label that will appear on the action button.
    */
@@ -23,10 +24,10 @@ export interface PromptProps {
 
 const Prompt: React.FC<PromptProps> = ({ accept, cancel }) => (
   <Container>
-    <Button.Primary tabIndex={-1} {...accept}>
+    <Button variant={ButtonVariant.PRIMARY} tabIndex={-1} {...accept}>
       {accept.label}
-    </Button.Primary>
-    <Button type="subtle" tabIndex={-1} {...cancel}>
+    </Button>
+    <Button variant={ButtonVariant.SECONDARY} tabIndex={-1} {...cancel}>
       {cancel.label}
     </Button>
   </Container>
