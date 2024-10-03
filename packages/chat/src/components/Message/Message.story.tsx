@@ -1,30 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useEffect, useState } from 'react';
 
+import { CODE_SNIPPET_FIXTURE } from './__fixtures__/code-snippet';
+import FULL_MARKDOWN_FIXTURE from './__fixtures__/full-markdown.md?raw'; // Ensure the file exists at this path
 import { MARKDOWN_FIXTURE } from './__fixtures__/markdown';
 import { Message } from './Message.component';
 
 type Story = StoryObj<typeof Message>;
 
 const shortMessage = 'Howdy folks how yall doing out there?';
-
-const codeMessage = `
-\`\`\`javascript
-<script type="text/javascript">
-  (function(d, t) {
-      var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
-      v.onload = function() {
-        window.voiceflow.chat.load({
-          verify: { projectID: 'howdy folks, very cool verification hash here' },
-          url: 'https://general-runtime.voiceflow.com',
-          versionID: 'production'
-        });
-      }
-      v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
-  })(document, 'script');
-</script>
-\`\`\`
-`;
 
 const meta: Meta<typeof Message> = {
   title: 'Core/Message',
@@ -51,9 +35,15 @@ export const Markdown: Story = {
   },
 };
 
+export const FullMarkdown: Story = {
+  args: {
+    children: FULL_MARKDOWN_FIXTURE,
+  },
+};
+
 export const CodeBlock: Story = {
   args: {
-    children: codeMessage,
+    children: CODE_SNIPPET_FIXTURE,
   },
 };
 
@@ -91,7 +81,7 @@ export const StreamingFullMarkdown: Story = {
 };
 
 export const StreamingCode: Story = {
-  render: () => <StreamingExample message={codeMessage} />,
+  render: () => <StreamingExample message={CODE_SNIPPET_FIXTURE} />,
   parameters: {
     chromatic: { disableSnapshot: true },
   },

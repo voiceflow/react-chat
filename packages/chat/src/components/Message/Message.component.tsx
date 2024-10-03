@@ -30,9 +30,9 @@ export const Message: React.FC<IMessage> = ({ children }) => {
                 style={codeTheme}
               />
             ) : (
-              <code {...rest} className={className}>
+              <div {...rest} className={className}>
                 {children}
-              </code>
+              </div>
             );
           },
         }}
