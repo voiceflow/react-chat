@@ -1,4 +1,7 @@
+import clsx from 'clsx';
 import { type ComponentPropsWithRef, forwardRef } from 'react';
+
+import { ClassName } from '@/constants';
 
 import Button from '../Button';
 import { SendIcon } from './SendIcon';
@@ -12,7 +15,7 @@ interface SendButtonProps extends ComponentPropsWithRef<'button'> {
 const SendButton: React.FC<SendButtonProps> = forwardRef<HTMLButtonElement, SendButtonProps>(
   ({ disabled, testID, ...props }, ref) => (
     <Button ref={ref} className={sendButtonStyle({ disabled: !!disabled })} data-testid={testID} {...props}>
-      <SendIcon className={sendIconStyle({ disabled: !!disabled })} />
+      <SendIcon className={clsx(ClassName.BUTTON, sendIconStyle({ disabled: !!disabled }))} />
     </Button>
   )
 );

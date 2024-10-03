@@ -13,5 +13,13 @@ export default meta;
 export const Default: Story = {
   args: {
     disabled: false,
+    color: '#387dff',
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+    color: '#387dff',
   },
 };
