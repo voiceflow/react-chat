@@ -46,7 +46,13 @@ export const aiIconModifier = style({
 });
 
 globalStyle(`${messageContainer} *`, {
+  // fontSize: '16px',
   marginTop: 0,
+});
+
+globalStyle(`${messageContainer} :is(h1, h2, h3, h4, h5, h6)`, {
+  fontSize: '16px',
+  marginBottom: '14px',
 });
 
 globalStyle(`${messageContainer} *:last-child`, {
