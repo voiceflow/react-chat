@@ -8,6 +8,7 @@ import { isCodeBlock } from './utils/is-code-block';
 
 interface IMessage {
   children: React.ReactNode;
+  generated?: boolean;
 }
 
 export const Message: React.FC<IMessage> = ({ children }) => {
