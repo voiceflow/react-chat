@@ -11,10 +11,10 @@ interface IMessage {
 }
 
 export const Message: React.FC<IMessage> = ({ children }) => {
-  const isCode = isCodeBlock(children);
+  const isCodeResponse = isCodeBlock(children);
 
   return (
-    <div className={messageContainer({ isCodeBlock: !!isCode })}>
+    <div className={messageContainer({ isCodeBlock: !!isCodeResponse })}>
       <Markdown
         children={children?.toString()}
         remarkPlugins={[remarkGfm]}

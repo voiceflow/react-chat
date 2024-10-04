@@ -1,3 +1,5 @@
+import { COLORS } from '@/styles/colors';
+
 export default {
   'code[class*="language-"]': {
     color: '#F1F2F2',
@@ -38,7 +40,7 @@ export default {
     margin: '.5em 0',
     overflow: 'auto',
     borderRadius: '0.3em',
-    background: '#2B3239',
+    background: COLORS.NEUTRAL_DARK[600],
   },
   ':not(pre) > code[class*="language-"]': {
     background: '#1d1f21',
@@ -135,7 +137,7 @@ export default {
     color: '#F9EE98',
   },
   function: {
-    color: '#DAD085',
+    color: '#8ACD6F',
   },
   regex: {
     color: '#E9C062',

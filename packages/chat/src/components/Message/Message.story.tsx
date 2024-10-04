@@ -1,9 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useEffect, useState } from 'react';
 
-import { CODE_SNIPPET_FIXTURE } from './__fixtures__/code-snippet';
-import FULL_MARKDOWN_FIXTURE from './__fixtures__/full-markdown.md?raw'; // Ensure the file exists at this path
-import { MARKDOWN_FIXTURE } from './__fixtures__/markdown';
+import CODE_RESPONSE_FIXTURE from './__fixtures__/code-response.md?raw';
+import CODE_SNIPPET_FIXTURE from './__fixtures__/inline-code.md?raw';
+import LISTS_FIXTURE from './__fixtures__/lists.md?raw';
+import TABLES_QUOTES_RULES from './__fixtures__/tables-quotes-rules.md?raw';
+import TEXT_TREATMENT_MARKDOWN from './__fixtures__/text-treatment.md?raw';
 import { Message } from './Message.component';
 
 type Story = StoryObj<typeof Message>;
@@ -31,19 +33,31 @@ export const Small: Story = {
 
 export const Markdown: Story = {
   args: {
-    children: MARKDOWN_FIXTURE,
+    children: TEXT_TREATMENT_MARKDOWN,
   },
 };
 
-export const FullMarkdown: Story = {
-  args: {
-    children: FULL_MARKDOWN_FIXTURE,
-  },
-};
-
-export const CodeBlock: Story = {
+export const InlineCode: Story = {
   args: {
     children: CODE_SNIPPET_FIXTURE,
+  },
+};
+
+export const CodeResponse: Story = {
+  args: {
+    children: CODE_RESPONSE_FIXTURE,
+  },
+};
+
+export const Tables: Story = {
+  args: {
+    children: TABLES_QUOTES_RULES,
+  },
+};
+
+export const Lists: Story = {
+  args: {
+    children: LISTS_FIXTURE,
   },
 };
 
@@ -58,7 +72,7 @@ const StreamingExample = ({ message }: { message: string }) => {
       if (index === message.length) {
         clearInterval(interval);
       }
-    }, 10);
+    }, 5);
 
     return () => clearInterval(interval);
   }, [message]);
@@ -74,7 +88,7 @@ export const Streaming: Story = {
 };
 
 export const StreamingFullMarkdown: Story = {
-  render: () => <StreamingExample message={MARKDOWN_FIXTURE} />,
+  render: () => <StreamingExample message={TEXT_TREATMENT_MARKDOWN} />,
   parameters: {
     chromatic: { disableSnapshot: true },
   },

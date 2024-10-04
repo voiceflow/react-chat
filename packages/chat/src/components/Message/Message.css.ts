@@ -10,8 +10,6 @@ export const messageContainer = recipe({
     padding: '11px 16px 10px',
     fontFamily: FAMILY,
     fontSize: '14px',
-    lineHeight: '20px',
-
     borderRadius: '10px',
   },
   variants: {
