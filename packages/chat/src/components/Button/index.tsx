@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { type ComponentPropsWithRef, forwardRef, type PropsWithChildren } from 'react';
 
 import { ClassName } from '@/constants';
-import { createColorPalette } from '@/styles/colors';
+import { createPalette } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
 import type { IThemedComponent } from '@/types';
 
@@ -21,7 +21,7 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(({ 
   return (
     <button
       ref={ref}
-      style={assignInlineVars(PALETTE, { colors: createColorPalette(props.primaryColor) })}
+      style={assignInlineVars(PALETTE, { colors: createPalette(props.primaryColor) })}
       className={clsx(ClassName.BUTTON, buttonStyles({ type: type ?? ButtonVariant.PRIMARY, round }))}
       {...props}
     >

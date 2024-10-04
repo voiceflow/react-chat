@@ -6,9 +6,9 @@ export const ColorTheme = ({ color }: { color: string }) => {
   const palette = createPalette(color);
   return (
     <div className={container}>
-      <div className={primaryColorBlock} style={{ backgroundColor: palette[500] }}>
+      <div className={primaryColorBlock} style={{ backgroundColor: color }}>
         <h2>500</h2>
-        <span>{palette[500]}</span>
+        <span>{color}</span>
       </div>
       <div className={derivativeColorContainer}>
         {Object.entries(palette).map(([key, value]) => (
