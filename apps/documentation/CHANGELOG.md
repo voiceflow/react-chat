@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/voiceflow/react-chat/compare/documentation@0.6.1...documentation@0.7.0) (2024-10-04)
+
+### Features
+
+* add InlineButton to docs (COR-0000) ([#206](https://github.com/voiceflow/react-chat/issues/206)) ([a3f0596](https://github.com/voiceflow/react-chat/commit/a3f0596abb474252158ef13f6dfad80bc67b2fae))
+
+### Reverts
+
+* Revert "chore(release): publish --skip-ci" ([9c2e101](https://github.com/voiceflow/react-chat/commit/9c2e101ed74959ea1db75f29fa0276e3ebbd35e8))
+
 # [0.6.0](https://github.com/voiceflow/react-chat/compare/documentation@0.5.0...documentation@0.6.0) (2024-10-03)
 
 ### Features
