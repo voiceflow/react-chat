@@ -19,6 +19,7 @@ export { default as Loader } from './Loader';
 export { default as Message } from './Message';
 export * as Proactive from './Proactive';
 export { default as Prompt } from './Prompt';
+export { default as SendButton } from './SendButton';
 export { default as SystemResponse } from './SystemResponse';
 export { Markdown, default as Text } from './Text';
 export { default as Textarea } from './Textarea';
