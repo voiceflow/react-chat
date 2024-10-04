@@ -6,7 +6,7 @@ import CODE_SNIPPET_FIXTURE from './__fixtures__/inline-code.md?raw';
 import LISTS_FIXTURE from './__fixtures__/lists.md?raw';
 import TABLES_QUOTES_RULES from './__fixtures__/tables-quotes-rules.md?raw';
 import TEXT_TREATMENT_MARKDOWN from './__fixtures__/text-treatment.md?raw';
-import { Message } from './Message.component';
+import Message from './index';
 
 type Story = StoryObj<typeof Message>;
 
@@ -84,7 +84,7 @@ const StreamingExample = ({ message }: { message: string }) => {
     return () => clearInterval(interval);
   }, [message]);
 
-  return <Message>{text}</Message>;
+  return <Message from="system">{text}</Message>;
 };
 
 export const Streaming: Story = {

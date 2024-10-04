@@ -1,4 +1,4 @@
-import Message from '@/components/Message';
+import Message from '@/components/OldMessage';
 
 import type { DebugMessageProps } from '../OldMessage/DebugMessage';
 import { Button, Container } from './styled';

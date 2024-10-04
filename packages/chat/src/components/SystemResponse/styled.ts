@@ -1,4 +1,4 @@
-import Message from '@/components/Message';
+import Message from '@/components/OldMessage';
 import Timestamp from '@/components/Timestamp';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';

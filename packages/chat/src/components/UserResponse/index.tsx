@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import Message from '@/components/Message';
+import Message from '@/components/OldMessage';
 import Timestamp from '@/components/Timestamp';
 import Tooltip from '@/components/Tooltip';
 import { RuntimeStateAPIContext } from '@/contexts';

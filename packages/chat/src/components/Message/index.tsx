@@ -9,10 +9,11 @@ import { isCodeBlock } from './utils/is-code-block';
 
 interface IMessage {
   children: React.ReactNode;
+  from: 'system' | 'user';
   generated?: boolean;
 }
 
-export const Message: React.FC<IMessage> = ({ children, generated }) => {
+const Message: React.FC<IMessage> = ({ children, generated }) => {
   const isCodeResponse = isCodeBlock(children);
 
   return (
@@ -52,3 +53,4 @@ export const Message: React.FC<IMessage> = ({ children, generated }) => {
     </>
   );
 };
+export default Message;
