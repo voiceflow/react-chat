@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.12.0...@voiceflow/chat@0.13.0) (2024-10-04)
+
+### Features
+
+* add SendButton to docs (COR-0000) ([#207](https://github.com/voiceflow/react-chat/issues/207)) ([c952373](https://github.com/voiceflow/react-chat/commit/c952373e37458e0a17867b5f743cbaa434bac67a))
+
 # [0.12.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.11.0...@voiceflow/chat@0.12.0) (2024-10-04)
 
 ### Features
