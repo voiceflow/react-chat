@@ -31,6 +31,13 @@ export const Small: Story = {
   },
 };
 
+export const AIGenerated: Story = {
+  args: {
+    children: shortMessage,
+    generated: true,
+  },
+};
+
 export const Markdown: Story = {
   args: {
     children: TEXT_TREATMENT_MARKDOWN,

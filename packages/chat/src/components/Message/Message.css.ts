@@ -1,7 +1,8 @@
-import { globalStyle } from '@vanilla-extract/css';
+import { globalStyle, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { FAMILY } from '@/old-styles/font';
+import { COLORS } from '@/styles/colors';
 
 export const messageContainer = recipe({
   base: {
@@ -18,12 +19,34 @@ export const messageContainer = recipe({
         padding: 0,
       },
     },
+    generated: {
+      true: {
+        borderBottomLeftRadius: 0,
+        borderBottomRightRadius: 0,
+      },
+    },
   },
+});
+
+export const generatedChin = style({
+  display: 'flex',
+  alignItems: 'center',
+  padding: '10px 16px 9px',
+  backgroundColor: COLORS.NEUTRAL_LIGHT[100],
+  color: COLORS.NEUTRAL_DARK[200],
+  fontFamily: FAMILY,
+  fontSize: '12px',
+  gap: 10,
+  fontWeight: 600,
+  borderRadius: '0 0 10px 10px',
+});
+
+export const aiIconModifier = style({
+  color: COLORS.NEUTRAL_DARK[100],
 });
 
 globalStyle(`${messageContainer} *`, {
   marginTop: 0,
-  marginBottom: 16,
 });
 
 globalStyle(`${messageContainer} *:last-child`, {
