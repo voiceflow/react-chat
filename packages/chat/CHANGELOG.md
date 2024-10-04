@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.11.0...@voiceflow/chat@0.12.0) (2024-10-04)
+
+### Features
+
+* adjust palette colors (COR-0000) ([#209](https://github.com/voiceflow/react-chat/issues/209)) ([16a443e](https://github.com/voiceflow/react-chat/commit/16a443e1b0cc7fb3308f81fbfd6098b2b0f10ead))
+
 # [0.11.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.10.0...@voiceflow/chat@0.11.0) (2024-10-04)
 
 ### Features
