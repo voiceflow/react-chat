@@ -1,5 +1,6 @@
 import { recipe } from '@vanilla-extract/recipes';
 
+import { COLORS } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
 import { SIZES } from '@/styles/sizes';
 
@@ -23,12 +24,32 @@ export const buttonStyles = recipe({
   variants: {
     type: {
       primary: {
-        // TODO(COR-3533) - Add Primary/Secondary buttons
-        // Currently just a placeholder
+        color: COLORS.white,
+        backgroundColor: PALETTE.colors[500],
+        borderRadius: SIZES.radius.xxs,
+        height: SIZES.sm,
+        fontWeight: 600,
+        ':hover': {
+          backgroundColor: PALETTE.colors[600],
+        },
+        ':active': {
+          backgroundColor: PALETTE.colors[700],
+        },
       },
       secondary: {
-        // TODO(COR-3533) - Add Primary/Secondary buttons
-        // Currently just a placeholder
+        color: COLORS.NEUTRAL_DARK[500],
+        backgroundColor: COLORS.NEUTRAL_DARK[9008],
+        borderRadius: SIZES.radius.xxs,
+        height: SIZES.sm,
+        fontWeight: 600,
+        ':hover': {
+          color: COLORS.NEUTRAL_DARK[700],
+          backgroundColor: COLORS.NEUTRAL_DARK[90012],
+        },
+        ':active': {
+          color: COLORS.NEUTRAL_DARK[900],
+          backgroundColor: COLORS.NEUTRAL_DARK[90020],
+        },
       },
       inline: {
         borderRadius: SIZES.radius.xs,
