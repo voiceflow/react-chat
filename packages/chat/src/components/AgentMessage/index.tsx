@@ -37,6 +37,10 @@ export const AgentMessage: React.FC<IAgentMessage> = ({ children, generated }) =
                   {/* <CopyButton value={children} /> */}
                   <SyntaxHighlighter
                     {...rest}
+                    lineProps={{
+                      style: { wordBreak: 'break-all', whiteSpace: 'pre-wrap', paddingLeft: 0, paddingRight: 0 },
+                    }}
+                    wrapLines={true}
                     wrapLongLines={true}
                     children={String(children).replace(/\n$/, '')}
                     language={match[1]}
