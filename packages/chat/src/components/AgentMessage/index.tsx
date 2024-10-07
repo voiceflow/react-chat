@@ -1,9 +1,13 @@
-// import './markdown-styles.css';
+import '../../styles.css';
 
 import clsx from 'clsx';
 import Markdown from 'react-markdown';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import remarkGfm from 'remark-gfm';
 
-import { generatedChin, messageContainer } from './AgentMessage.css';
+import Icon from '../Icon';
+import { aiIconModifier, generatedChin, messageContainer } from './AgentMessage.css';
+import codeTheme from './code-theme';
 
 interface IAgentMessage {
   children: React.ReactNode;
@@ -12,23 +16,46 @@ interface IAgentMessage {
 }
 
 export const AgentMessage: React.FC<IAgentMessage> = ({ children, generated }) => {
-  const isCodeBlock = (children: React.ReactNode): boolean => {
-    if (typeof children === 'string') {
-      return (
-        (children.startsWith('```') && (children.endsWith('```') || children.endsWith('```\n'))) ||
-        children.startsWith('\n```')
-      );
-    }
-    return false;
-  };
-  const isCodeResponse = isCodeBlock(children);
+  const content = children?.toString();
+
+  const isCodeResponse =
+    (content?.startsWith('```') && (content?.endsWith('```') || content.endsWith('```\n'))) ||
+    content?.startsWith('\n```');
 
   return (
     <>
       <div className={clsx('markdown', messageContainer({ isCodeBlock: !!isCodeResponse, generated }))}>
-        <Markdown children={children?.toString()} />
+        <Markdown
+          children={children?.toString()}
+          remarkPlugins={[remarkGfm]}
+          components={{
+            code(props) {
+              const { children, className, node, ref, ...rest } = props;
+              const match = /language-(\w+)/.exec(className || '');
+              return match ? (
+                <SyntaxHighlighter
+                  {...rest}
+                  wrapLines={true}
+                  wrapLongLines={true}
+                  children={String(children).replace(/\n$/, '')}
+                  language={match[1]}
+                  style={codeTheme}
+                />
+              ) : (
+                <div {...rest} className={className}>
+                  {children}
+                </div>
+              );
+            },
+          }}
+        />
       </div>
-      {generated && <div className={generatedChin}>Generate by AI, double-check for accuracy.</div>}
+      {generated && (
+        <div className={generatedChin}>
+          <Icon svg="ai" className={aiIconModifier} />
+          Generate by AI, double-check for accuracy.
+        </div>
+      )}
     </>
   );
 };
