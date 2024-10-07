@@ -49,6 +49,13 @@ export const CodeResponse: Story = {
   args: {
     children: CODE_RESPONSE_FIXTURE,
   },
+  render: ({ children, ...rest }) => {
+    return (
+      <div style={{ maxWidth: '300px' }}>
+        <AgentMessage {...rest}>{children}</AgentMessage>
+      </div>
+    );
+  },
 };
 
 export const Tables: Story = {

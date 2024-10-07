@@ -29,6 +29,7 @@ export const createPalette = (baseColor: string = defaultPrimary) => {
 const NEUTRAL_DARK = {
   50: '#30373F',
   100: '#656D75',
+  400: '#38414A',
   500: '#30373F',
   200: '#515A63',
   600: '#2B3239',
