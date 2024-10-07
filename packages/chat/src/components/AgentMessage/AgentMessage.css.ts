@@ -50,7 +50,6 @@ export const generatedChin = style({
 
 export const aiIconModifier = style({
   color: COLORS.NEUTRAL_DARK[100],
-  // transform: 'translateY(1px)',
 });
 
 export const codeBlockContainer = style({
