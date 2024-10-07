@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
-
-import TEXT_TREATMENT_MARKDOWN from '@/__fixtures__/markdown/text-treatment.md?raw';
+import { useEffect, useState } from 'react';
 
 // import { useEffect, useState } from 'react';
-// import CODE_RESPONSE_FIXTURE from './__fixtures__/code-response.md?raw';
-// import CODE_SNIPPET_FIXTURE from './__fixtures__/inline-code.md?raw';
-// import LISTS_FIXTURE from './__fixtures__/lists.md?raw';
-// import TABLES_QUOTES_RULES from './__fixtures__/tables-quotes-rules.md?raw';
-// import TEXT_TREATMENT_MARKDOWN from './__fixtures__/text-treatment.md?raw';
+import CODE_RESPONSE_FIXTURE from '@/__fixtures__/markdown/code-response.md?raw';
+import CODE_SNIPPET_FIXTURE from '@/__fixtures__/markdown/inline-code.md?raw';
+import LISTS_FIXTURE from '@/__fixtures__/markdown/lists.md?raw';
+import TABLES_QUOTES_RULES from '@/__fixtures__/markdown/tables-quotes-rules.md?raw';
+import TEXT_TREATMENT_MARKDOWN from '@/__fixtures__/markdown/text-treatment.md?raw';
+
 import { AgentMessage } from './index';
 
 type Story = StoryObj<typeof AgentMessage>;
@@ -39,59 +39,59 @@ export const Markdown: Story = {
   },
 };
 
-// export const InlineCode: Story = {
-//   args: {
-//     children: CODE_SNIPPET_FIXTURE,
-//   },
-// };
+export const InlineCode: Story = {
+  args: {
+    children: CODE_SNIPPET_FIXTURE,
+  },
+};
 
-// export const CodeResponse: Story = {
-//   args: {
-//     children: CODE_RESPONSE_FIXTURE,
-//   },
-// };
+export const CodeResponse: Story = {
+  args: {
+    children: CODE_RESPONSE_FIXTURE,
+  },
+};
 
-// export const Tables: Story = {
-//   args: {
-//     children: TABLES_QUOTES_RULES,
-//   },
-// };
+export const Tables: Story = {
+  args: {
+    children: TABLES_QUOTES_RULES,
+  },
+};
 
-// export const Lists: Story = {
-//   args: {
-//     children: LISTS_FIXTURE,
-//   },
-// };
+export const Lists: Story = {
+  args: {
+    children: LISTS_FIXTURE,
+  },
+};
 
-// const StreamingExample = ({ message }: { message: string }) => {
-//   const [text, setText] = useState('');
+const StreamingExample = ({ message }: { message: string }) => {
+  const [text, setText] = useState('');
 
-//   useEffect(() => {
-//     let index = 0;
-//     const interval = setInterval(() => {
-//       setText(message.slice(0, index + 1));
-//       index++;
-//       if (index === message.length) {
-//         clearInterval(interval);
-//       }
-//     }, 5);
+  useEffect(() => {
+    let index = 0;
+    const interval = setInterval(() => {
+      setText(message.slice(0, index + 1));
+      index++;
+      if (index === message.length) {
+        clearInterval(interval);
+      }
+    }, 5);
 
-//     return () => clearInterval(interval);
-//   }, [message]);
+    return () => clearInterval(interval);
+  }, [message]);
 
-//   return <AgentMessage from="system">{text}</AgentMessage>;
-// };
+  return <AgentMessage from="system">{text}</AgentMessage>;
+};
 
-// export const Streaming: Story = {
-//   render: () => <StreamingExample message={shortMessage} />,
-//   parameters: {
-//     chromatic: { disableSnapshot: true },
-//   },
-// };
+export const Streaming: Story = {
+  render: () => <StreamingExample message={shortMessage} />,
+  parameters: {
+    chromatic: { disableSnapshot: true },
+  },
+};
 
-// export const StreamingFullMarkdown: Story = {
-//   render: () => <StreamingExample message={TEXT_TREATMENT_MARKDOWN} />,
-//   parameters: {
-//     chromatic: { disableSnapshot: true },
-//   },
-// };
+export const StreamingFullMarkdown: Story = {
+  render: () => <StreamingExample message={TEXT_TREATMENT_MARKDOWN} />,
+  parameters: {
+    chromatic: { disableSnapshot: true },
+  },
+};
