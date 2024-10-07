@@ -6,7 +6,7 @@ import { COLORS } from '@/styles/colors';
 
 export const messageContainer = recipe({
   base: {
-    backgroundColor: '#F1F2F2',
+    backgroundColor: COLORS.NEUTRAL_LIGHT[50],
     // color: '#1A1E23',
     padding: '11px 16px 10px',
     fontFamily: FAMILY,
@@ -44,17 +44,3 @@ export const generatedChin = style({
 export const aiIconModifier = style({
   color: COLORS.NEUTRAL_DARK[100],
 });
-
-// globalStyle(`${messageContainer} *`, {
-//   // fontSize: '16px',
-//   marginBottom: '10px',
-//   marginTop: '10px',
-// });
-
-// globalStyle(`.${messageContainer} h1`, {
-//   fontSize: '16px',
-// });
-
-// globalStyle(`.${messageContainer} *:last-child`, {
-//   marginBottom: 0,
-// });
