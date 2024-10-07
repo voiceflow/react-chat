@@ -7,7 +7,7 @@ import { COLORS } from '@/styles/colors';
 export const messageContainer = recipe({
   base: {
     backgroundColor: COLORS.NEUTRAL_LIGHT[50],
-    // color: '#1A1E23',
+    color: COLORS.NEUTRAL_DARK[900],
     padding: '11px 16px 10px',
     fontFamily: FAMILY,
     fontSize: '14px',
