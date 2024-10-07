@@ -10,6 +10,7 @@ export const messageContainer = recipe({
     color: COLORS.NEUTRAL_DARK[900],
     padding: '11px 16px 10px',
     fontFamily: FAMILY,
+    position: 'relative',
     fontSize: '14px',
     lineHeight: '20px',
     borderRadius: '10px',
@@ -46,5 +47,4 @@ export const generatedChin = style({
 
 export const aiIconModifier = style({
   color: COLORS.NEUTRAL_DARK[100],
-  // transform: 'translateY(1px)',
 });

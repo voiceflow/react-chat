@@ -33,14 +33,16 @@ export const AgentMessage: React.FC<IAgentMessage> = ({ children, generated }) =
               const { children, className, node, ref, ...rest } = props;
               const match = /language-(\w+)/.exec(className || '');
               return match ? (
-                <SyntaxHighlighter
-                  {...rest}
-                  wrapLines={true}
-                  wrapLongLines={true}
-                  children={String(children).replace(/\n$/, '')}
-                  language={match[1]}
-                  style={codeTheme}
-                />
+                <>
+                  {/* <CopyButton value={children} /> */}
+                  <SyntaxHighlighter
+                    {...rest}
+                    wrapLongLines={true}
+                    children={String(children).replace(/\n$/, '')}
+                    language={match[1]}
+                    style={codeTheme}
+                  />
+                </>
               ) : (
                 <div {...rest} className={className}>
                   {children}
