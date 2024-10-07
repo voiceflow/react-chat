@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.13.0...@voiceflow/chat@0.14.0) (2024-10-07)
+
+### Features
+
+* add Primary/Secondary buttons (COR-3533) ([#210](https://github.com/voiceflow/react-chat/issues/210)) ([d8ff4ff](https://github.com/voiceflow/react-chat/commit/d8ff4ff8bb3383e13d9aebec47e8e597efde6b61))
+
 # [0.13.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.12.0...@voiceflow/chat@0.13.0) (2024-10-04)
 
 ### Features
