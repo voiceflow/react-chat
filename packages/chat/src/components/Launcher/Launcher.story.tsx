@@ -14,11 +14,16 @@ const meta: Meta<typeof Launcher> = {
 
 export default meta;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {
+    label: 'Hello',
+  },
+};
 
 export const IconOverride: Story = {
   args: {
     // eslint-disable-next-line no-secrets/no-secrets
     image: 'https://cm4-production-assets.s3.amazonaws.com/1668625107157-vf-nobg.png',
+    label: 'Hello',
   },
 };
