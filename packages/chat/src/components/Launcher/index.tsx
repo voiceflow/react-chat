@@ -2,7 +2,7 @@ import type { MouseEventHandler } from 'react';
 import React from 'react';
 
 import Button from '../Button';
-import launch from './launch.svg';
+import { PlayIcon } from './PlayIcon';
 import { launcherIconStyles, launcherLabelStyles, launcherStyles } from './styles.css';
 
 export interface LauncherProps {
@@ -28,8 +28,9 @@ const Launcher: React.FC<LauncherProps> = ({ image, label, onClick }) => {
   const withLabel = !!label?.length;
   return (
     <Button className={launcherStyles({ withLabel })} onClick={onClick}>
-      {label && <div className={launcherLabelStyles}>{label}</div>}
-      <img src={image || launch} className={launcherIconStyles({ withLabel })} alt="launch" />
+      {withLabel && <div className={launcherLabelStyles}>{label}</div>}
+      {image && <img src={image} className={launcherIconStyles({ withLabel })} alt="launch" />}
+      {!image && <PlayIcon className={launcherIconStyles({ withLabel })} />}
     </Button>
   );
 };

@@ -27,6 +27,7 @@ export const launcherStyles = recipe({
     {
       width: buttonSize.default.static,
       height: buttonSize.default.static,
+      padding: 12,
       backgroundColor: PALETTE.colors[500],
       transitionDuration: duration.default,
       transitionBehavior: timingFunction.easeOut,
@@ -49,6 +50,7 @@ export const launcherStyles = recipe({
       true: {
         width: 'auto',
         height: buttonSize.withLabel.static,
+        padding: 18,
         ':hover': {
           width: 'auto',
           height: buttonSize.withLabel.hover,
@@ -72,6 +74,9 @@ export const launcherLabelStyles = style({
 });
 
 export const launcherIconStyles = recipe({
+  base: {
+    color: COLORS.white,
+  },
   variants: {
     withLabel: {
       true: {
