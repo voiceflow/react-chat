@@ -9,7 +9,7 @@ interface IUserMessage {
 export const UserMessage: React.FC<IUserMessage> = ({ children }) => {
   return (
     <>
-      <div className={messageContainer()}>{children}</div>
+      <div className={messageContainer}>{children}</div>
     </>
   );
 };
