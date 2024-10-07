@@ -53,7 +53,7 @@ export const AgentMessage: React.FC<IAgentMessage> = ({ children, generated }) =
       {generated && (
         <div className={generatedChin}>
           <Icon svg="ai" className={aiIconModifier} />
-          Generate by AI, double-check for accuracy.
+          <span>Generate by AI, double-check for accuracy.</span>
         </div>
       )}
     </>
