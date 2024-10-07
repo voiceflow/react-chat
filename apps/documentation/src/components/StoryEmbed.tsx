@@ -1,6 +1,6 @@
 import type { StoryObj } from '@storybook/react';
 import type { DecoratorFunction } from '@storybook/types';
-import * as Stories from '@voiceflow/chat/stories';
+const Stories = typeof window !== 'undefined' ? require('@voiceflow/chat/stories') : {};
 import { useEffect, useMemo, useState } from 'react';
 
 const ComponentNotFound: React.FC = () => <h2>🚨 Component not found! 🚨</h2>;
