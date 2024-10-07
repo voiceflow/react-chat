@@ -2,6 +2,7 @@ import type { MouseEventHandler } from 'react';
 import React from 'react';
 
 import Button from '../Button';
+import { ChevronIcon } from './ChevronIcon';
 import { PlayIcon } from './PlayIcon';
 import { launcherIconStyles, launcherLabelStyles, launcherStyles } from './styles.css';
 
@@ -19,18 +20,25 @@ export interface LauncherProps {
   label?: string | undefined;
 
   /**
+   * Is the Chat widget opened ?
+   * If it's opened then we only show the close icon.
+   */
+  isOpen: boolean;
+
+  /**
    * A callback that will be executed when the button is clicked.
    */
   onClick: MouseEventHandler<HTMLButtonElement>;
 }
 
-const Launcher: React.FC<LauncherProps> = ({ image, label, onClick }) => {
+const Launcher: React.FC<LauncherProps> = ({ image, isOpen, label, onClick }) => {
   const withLabel = !!label?.length;
   return (
     <Button className={launcherStyles({ withLabel })} onClick={onClick}>
       {withLabel && <div className={launcherLabelStyles}>{label}</div>}
-      {image && <img src={image} className={launcherIconStyles({ withLabel })} alt="launch" />}
-      {!image && <PlayIcon className={launcherIconStyles({ withLabel })} />}
+      {image && !isOpen && <img src={image} className={launcherIconStyles({ withLabel })} alt="launch" />}
+      {!image && !isOpen && <PlayIcon className={launcherIconStyles({ withLabel })} />}
+      {isOpen && <ChevronIcon className={launcherIconStyles()} />}
     </Button>
   );
 };
