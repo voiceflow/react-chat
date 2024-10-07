@@ -20,7 +20,6 @@ const buttonSize = {
   },
 };
 
-// TODO: Check if i can define the size with a var or sprinkle
 export const launcherStyles = recipe({
   base: [
     buttonStyles({ round: true }),
@@ -76,6 +75,8 @@ export const launcherLabelStyles = style({
 export const launcherIconStyles = recipe({
   base: {
     color: COLORS.white,
+    width: 32,
+    height: 32,
   },
   variants: {
     withLabel: {
