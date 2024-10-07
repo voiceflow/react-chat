@@ -16,7 +16,7 @@ interface IMessage {
   generated?: boolean;
 }
 
-const Message: React.FC<IMessage> = ({ children, generated }) => {
+export const Message: React.FC<IMessage> = ({ children, generated }) => {
   const isCodeResponse = isCodeBlock(children);
 
   return (
@@ -56,4 +56,3 @@ const Message: React.FC<IMessage> = ({ children, generated }) => {
     </>
   );
 };
-export default Message;

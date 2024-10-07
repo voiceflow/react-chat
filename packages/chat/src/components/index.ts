@@ -16,7 +16,7 @@ export { default as Image } from './Image';
 export { default as Input } from './Input';
 export { default as Launcher } from './Launcher';
 export { default as Loader } from './Loader';
-export { default as Message } from './Message';
+export { Message } from './Message';
 export { default as OldMessage } from './OldMessage';
 export * as Proactive from './Proactive';
 export { default as Prompt } from './Prompt';
