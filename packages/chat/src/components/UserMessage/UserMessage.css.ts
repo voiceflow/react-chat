@@ -11,5 +11,6 @@ export const messageContainer = style({
   position: 'relative',
   fontSize: '14px',
   lineHeight: '20px',
+  width: 'fit-content',
   borderRadius: '10px',
 });
