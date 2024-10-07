@@ -1,4 +1,4 @@
-import { globalStyle, style } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { FAMILY } from '@/old-styles/font';
@@ -7,7 +7,7 @@ import { COLORS } from '@/styles/colors';
 export const messageContainer = recipe({
   base: {
     backgroundColor: '#F1F2F2',
-    color: '#1A1E23',
+    // color: '#1A1E23',
     padding: '11px 16px 10px',
     fontFamily: FAMILY,
     fontSize: '14px',
@@ -33,7 +33,7 @@ export const generatedChin = style({
   alignItems: 'center',
   padding: '10px 16px 9px',
   backgroundColor: COLORS.NEUTRAL_LIGHT[100],
-  color: COLORS.NEUTRAL_DARK[200],
+  // color: COLORS.NEUTRAL_DARK[200],
   fontFamily: FAMILY,
   fontSize: '12px',
   gap: 10,
@@ -45,16 +45,16 @@ export const aiIconModifier = style({
   color: COLORS.NEUTRAL_DARK[100],
 });
 
-globalStyle(`${messageContainer} *`, {
-  // fontSize: '16px',
-  marginTop: 0,
-});
+// globalStyle(`${messageContainer} *`, {
+//   // fontSize: '16px',
+//   marginBottom: '10px',
+//   marginTop: '10px',
+// });
 
-globalStyle(`${messageContainer} :is(h1, h2, h3, h4, h5, h6)`, {
-  fontSize: '16px',
-  marginBottom: '14px',
-});
+// globalStyle(`.${messageContainer} h1`, {
+//   fontSize: '16px',
+// });
 
-globalStyle(`${messageContainer} *:last-child`, {
-  marginBottom: 0,
-});
+// globalStyle(`.${messageContainer} *:last-child`, {
+//   marginBottom: 0,
+// });

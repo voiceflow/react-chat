@@ -1,3 +1,6 @@
+import './markdown-styles.css';
+
+import clsx from 'clsx';
 import Markdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import remarkGfm from 'remark-gfm';
@@ -18,7 +21,7 @@ const Message: React.FC<IMessage> = ({ children, generated }) => {
 
   return (
     <>
-      <div className={messageContainer({ isCodeBlock: !!isCodeResponse, generated })}>
+      <div className={clsx('markdown', messageContainer({ isCodeBlock: !!isCodeResponse, generated }))}>
         <Markdown
           children={children?.toString()}
           remarkPlugins={[remarkGfm]}

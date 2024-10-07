@@ -115,3 +115,10 @@
 /* .vfrc-chat-input--button {} */
 
 /* .vfrc-footer--watermark {} */
+
+.markdown {
+  font-size: 16px;
+  margin-bottom: 0;
+  margin-top: 0;
+  color: 'red';
+}
