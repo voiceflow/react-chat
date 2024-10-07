@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.14.0...@voiceflow/chat@0.15.0) (2024-10-07)
+
+### Features
+
+* add Launcher button to the mix (COR-3541) ([#211](https://github.com/voiceflow/react-chat/issues/211)) ([4c23a31](https://github.com/voiceflow/react-chat/commit/4c23a3168deb21e8e08dd26713aaca882f7a1184))
+
 # [0.14.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.13.0...@voiceflow/chat@0.14.0) (2024-10-07)
 
 ### Features
