@@ -40,7 +40,7 @@ export const generatedChin = style({
   fontSize: '12px',
   whiteSpace: 'nowrap',
   lineHeight: '17px',
-  gap: 10,
+  gap: '10px',
   fontWeight: 600,
   borderRadius: '0 0 10px 10px',
 });

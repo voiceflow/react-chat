@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useEffect, useState } from 'react';
 
-// import { useEffect, useState } from 'react';
 import CODE_RESPONSE_FIXTURE from '@/__fixtures__/markdown/code-response.md?raw';
 import CODE_SNIPPET_FIXTURE from '@/__fixtures__/markdown/inline-code.md?raw';
 import LISTS_FIXTURE from '@/__fixtures__/markdown/lists.md?raw';
