@@ -6,7 +6,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import remarkGfm from 'remark-gfm';
 
 import Icon from '../Icon';
-import { aiIconModifier, generatedChin, messageContainer } from './AgentMessage.css';
+import { aiIconModifier, contentStyle, generatedChin, messageContainer } from './AgentMessage.css';
 import codeTheme from './code-theme';
 
 interface IAgentMessage {
@@ -24,8 +24,8 @@ export const AgentMessage: React.FC<IAgentMessage> = ({ children, generated, gen
     content?.startsWith('\n```');
 
   return (
-    <>
-      <div className={clsx('markdown', messageContainer({ isCodeBlock: !!isCodeResponse, generated }))}>
+    <div className={clsx('markdown', messageContainer({ isCodeBlock: !!isCodeResponse }))}>
+      <div className={contentStyle}>
         <Markdown
           children={children?.toString()}
           remarkPlugins={[remarkGfm]}
@@ -63,6 +63,6 @@ export const AgentMessage: React.FC<IAgentMessage> = ({ children, generated, gen
           <span>{generatedMessage}</span>
         </div>
       )}
-    </>
+    </div>
   );
 };

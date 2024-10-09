@@ -8,9 +8,9 @@ export const messageContainer = recipe({
   base: {
     backgroundColor: COLORS.NEUTRAL_LIGHT[50],
     color: COLORS.NEUTRAL_DARK[900],
-    padding: '11px 16px 10px',
     fontFamily: FAMILY,
     position: 'relative',
+    width: 'fit-content',
     fontSize: '14px',
     lineHeight: '20px',
     borderRadius: '10px',
@@ -21,13 +21,11 @@ export const messageContainer = recipe({
         padding: 0,
       },
     },
-    generated: {
-      true: {
-        borderBottomLeftRadius: 0,
-        borderBottomRightRadius: 0,
-      },
-    },
   },
+});
+
+export const contentStyle = style({
+  padding: '11px 16px 10px',
 });
 
 export const generatedChin = style({
@@ -35,6 +33,10 @@ export const generatedChin = style({
   alignItems: 'center',
   padding: '10px 16px 9px',
   backgroundColor: COLORS.NEUTRAL_LIGHT[100],
+  left: 0,
+  right: 0,
+  bottom: 0,
+  width: 'fit-content',
   color: COLORS.NEUTRAL_DARK[200],
   fontFamily: FAMILY,
   fontSize: '12px',
