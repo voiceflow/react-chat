@@ -7,7 +7,6 @@ import { PALETTE } from '@/styles/colors.css';
 import { SIZES } from '@/styles/sizes';
 
 import { buttonReset } from '../Button/reset.css';
-import { buttonStyles } from '../Button/styles.css';
 
 export const headerContainer = style({
   display: 'flex',
@@ -35,8 +34,10 @@ export const headerTitle = style({
 export const headerActionButton = recipe({
   base: [
     buttonReset,
-    buttonStyles.classNames.base,
     {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
       width: 28,
       height: 28,
       borderRadius: SIZES.radius.xs,
@@ -51,4 +52,10 @@ export const headerActionButton = recipe({
       },
     },
   ],
+});
+
+export const headerActionIcon = style({
+  display: 'flex',
+  width: 24,
+  height: 24,
 });

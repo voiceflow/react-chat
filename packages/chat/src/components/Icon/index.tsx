@@ -1,10 +1,8 @@
 import * as SVGs from '@/assets/svg';
 
-import { Frame } from './styled';
-
 export type SVG = keyof typeof SVGs;
 
-export interface IconProps extends React.ComponentProps<typeof Frame> {
+export interface IconProps {
   /**
    * The name of the SVG icon to be rendered or a React component.
    *
@@ -17,9 +15,9 @@ const Icon: React.FC<IconProps> = ({ svg, ...props }) => {
   const SVG = typeof svg === 'string' ? SVGs[svg] : svg;
 
   return (
-    <Frame {...props}>
+    <div style={{ display: 'flex' }} {...props}>
       <SVG />
-    </Frame>
+    </div>
   );
 };
 
@@ -28,6 +26,4 @@ const Icon: React.FC<IconProps> = ({ svg, ...props }) => {
  *
  * @see {@link https://voiceflow.github.io/react-chat/?path=/story/core-icon--default}
  */
-export default Object.assign(Icon, {
-  Frame,
-});
+export default Icon;

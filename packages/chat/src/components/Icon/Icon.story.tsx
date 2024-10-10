@@ -24,9 +24,9 @@ export default meta;
 export const Default: Story = {
   args: {
     svg: 'close',
-    css: {
-      height: 50,
-      width: 50,
-    },
+    // css: {
+    //   height: 50,
+    //   width: 50,
+    // },
   },
 };
