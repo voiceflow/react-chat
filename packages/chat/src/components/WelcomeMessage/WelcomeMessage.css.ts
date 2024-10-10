@@ -6,7 +6,7 @@ export const welcomeMessageContainer = style({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  padding: '48px 16px 24px 16px',
+  padding: '48px 20px 24px 20px',
 });
 
 export const avatarContainer = style({
