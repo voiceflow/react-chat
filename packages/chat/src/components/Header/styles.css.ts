@@ -13,6 +13,7 @@ export const headerContainer = style({
   alignItems: 'center',
   backgroundColor: PALETTE.colors[500],
   padding: '12px 16px 12px 20px',
+  height: SIZES.sm,
 });
 
 export const headerInnerContainer = style({
@@ -31,15 +32,19 @@ export const headerTitle = style({
   marginLeft: 12,
 });
 
+export const headerActions = style({
+  display: 'flex',
+  gap: '6px',
+});
+
 export const headerActionButton = recipe({
   base: [
     buttonReset,
     {
-      display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      width: 28,
-      height: 28,
+      width: 32,
+      height: 32,
       borderRadius: SIZES.radius.xs,
       padding: 4,
       color: COLORS.white,
