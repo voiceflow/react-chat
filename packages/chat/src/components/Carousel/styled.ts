@@ -1,5 +1,4 @@
 import Card from '@/components/Card';
-import Icon from '@/components/Icon';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
 import { styled } from '@/old-styles';
