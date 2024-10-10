@@ -1,9 +1,11 @@
 import React from 'react';
 
-import Icon from '@/components/Icon';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
 import { styled } from '@/old-styles';
+
+import Icon from '../Icon';
+import { iconClassName } from '../Icon/styles.css';
 
 export const tag = tagFactory(ClassName.PROACTIVE_CLOSE);
 
@@ -19,7 +21,7 @@ export const CloseContainer = styled(tag('div'), {
   background: '$white',
   boxShadow: '$surfaceZ1Light',
 
-  [`& ${Icon.Frame}`]: {
+  [`& .${iconClassName}`]: {
     width: 10,
     height: 10,
   },

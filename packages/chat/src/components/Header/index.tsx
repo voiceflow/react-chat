@@ -1,8 +1,15 @@
-import Avatar from '@/components/Avatar';
-import type { IconProps } from '@/components/Icon';
-import Icon from '@/components/Icon';
+import { assignInlineVars } from '@vanilla-extract/dynamic';
+import clsx from 'clsx';
 
-import { Button, Container, Title } from './styled';
+import Avatar from '@/components/Avatar';
+import { ClassName } from '@/constants';
+import { createPalette } from '@/styles/colors';
+import { PALETTE } from '@/styles/colors.css';
+import type { IThemedComponent } from '@/types';
+
+import Button from '../Button';
+import Icon, { type IconProps } from '../Icon';
+import { headerActionButton, headerActions, headerContainer, headerInnerContainer, headerTitle } from './styles.css';
 
 export interface HeaderActionProps {
   /**
@@ -18,7 +25,7 @@ export interface HeaderActionProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
-export interface HeaderProps {
+export interface HeaderProps extends IThemedComponent {
   /**
    * The name of your assistant or title of the conversation.
    */
@@ -35,16 +42,23 @@ export interface HeaderProps {
   actions?: HeaderActionProps[];
 }
 
-const Header: React.FC<HeaderProps> = ({ title, image, actions = [] }) => (
-  <Container>
-    <Avatar avatar={image} />
-    <Title>{title}</Title>
-    {actions.map(({ svg, onClick }, index) => (
-      <Button onClick={onClick} key={index}>
-        <Icon svg={svg} />
-      </Button>
-    ))}
-  </Container>
+const Header: React.FC<HeaderProps> = ({ primaryColor, title, image, actions = [] }) => (
+  <div
+    style={assignInlineVars(PALETTE, { colors: createPalette(primaryColor) })}
+    className={clsx(ClassName.ICON, headerContainer)}
+  >
+    {!!image?.length && <Avatar size="small" avatar={image} />}
+    <div className={headerInnerContainer}>
+      <div className={headerTitle}>{title}</div>
+      <div className={headerActions}>
+        {actions.map(({ svg, onClick }, index) => (
+          <Button className={headerActionButton()} onClick={onClick} key={index}>
+            <Icon svg={svg} />
+          </Button>
+        ))}
+      </div>
+    </div>
+  </div>
 );
 
 /**
@@ -52,8 +66,4 @@ const Header: React.FC<HeaderProps> = ({ title, image, actions = [] }) => (
  *
  * @see {@link https://voiceflow.github.io/react-chat/?path=/docs/components-chat-header--simple}
  */
-export default Object.assign(Header, {
-  Container,
-  Title,
-  Button,
-});
+export default Header;

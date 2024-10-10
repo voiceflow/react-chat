@@ -28,6 +28,6 @@ export const Base: Story = {};
 
 export const Actionable: Story = {
   args: {
-    actions: [{ svg: 'minus' }, { svg: 'close' }],
+    actions: [{ svg: 'volume' }, { svg: 'reset' }, { svg: 'close' }],
   },
 };
