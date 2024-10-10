@@ -1,3 +1,4 @@
+export { default as ai } from './ai.svg?react';
 export { default as close } from './close.svg?react';
 export { default as closeV2 } from './closeV2.svg?react';
 export { default as largeArrowLeft } from './large-arrow-left.svg?react';

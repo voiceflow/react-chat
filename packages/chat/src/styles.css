@@ -115,3 +115,25 @@
 /* .vfrc-chat-input--button {} */
 
 /* .vfrc-footer--watermark {} */
+
+.markdown h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 8px;
+  margin-top: 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.markdown p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown hr {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
