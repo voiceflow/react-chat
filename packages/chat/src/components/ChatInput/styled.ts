@@ -1,9 +1,9 @@
-import Icon from '@/components/Icon';
 import { textareaFocusStyles, textareaStyles } from '@/components/Textarea/styled';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
 import { styled } from '@/old-styles';
 
+import { iconClassName } from '../Icon/styles.css';
 import Textarea from '../Textarea';
 
 const tag = tagFactory(ClassName.CHAT_INPUT);
@@ -60,7 +60,7 @@ export const Container = styled(tag('div'), {
     borderBottomLeftRadius: 0,
   },
 
-  [`& ${Icon.Frame}`]: {
+  [`& .${iconClassName}`]: {
     color: '$white',
   },
 

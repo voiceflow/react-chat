@@ -1,5 +1,7 @@
 import * as SVGs from '@/assets/svg';
 
+import { iconClassName } from './styles.css';
+
 export type SVG = keyof typeof SVGs;
 
 export interface IconProps {
@@ -15,7 +17,7 @@ const Icon: React.FC<IconProps> = ({ svg, ...props }) => {
   const SVG = typeof svg === 'string' ? SVGs[svg] : svg;
 
   return (
-    <div style={{ display: 'flex' }} {...props}>
+    <div className={iconClassName} {...props}>
       <SVG />
     </div>
   );
