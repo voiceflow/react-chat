@@ -1,4 +1,3 @@
-import Bubble from '@/components/Bubble';
 import Icon from '@/components/Icon';
 import { textareaFocusStyles, textareaStyles } from '@/components/Textarea/styled';
 import { ClassName } from '@/constants';
@@ -20,7 +19,7 @@ export const ButtonContainer = styled(tag('label', 'button'), {
   boxSizing: 'border-box',
   cursor: 'text',
 
-  [`& ${Bubble.Container}`]: {
+  /* [`& ${Bubble.Container}`]: {
     transform: 'scale(0)',
     marginTop: 'auto',
     trans: ['background-color', 'transform'],
@@ -35,7 +34,7 @@ export const ButtonContainer = styled(tag('label', 'button'), {
         },
       },
     },
-  },
+  }, */
 });
 
 export const Container = styled(tag('div'), {
