@@ -7,7 +7,7 @@ import LISTS_FIXTURE from '@/__fixtures__/markdown/lists.md?raw';
 import TABLES_QUOTES_RULES from '@/__fixtures__/markdown/tables-quotes-rules.md?raw';
 import TEXT_TREATMENT_MARKDOWN from '@/__fixtures__/markdown/text-treatment.md?raw';
 
-import { AgentMessage } from './index';
+import { AgentMessage } from '.';
 
 type Story = StoryObj<typeof AgentMessage>;
 
