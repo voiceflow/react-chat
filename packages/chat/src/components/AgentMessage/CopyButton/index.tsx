@@ -1,4 +1,4 @@
-import { Icon } from '@/main';
+import Icon from '@/components/Icon';
 
 export const CopyButton = ({ value = '', className }: { value: React.ReactNode; className: string }) => {
   const handleClick = () => {
