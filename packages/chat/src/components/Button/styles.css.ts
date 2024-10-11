@@ -22,7 +22,6 @@ export const buttonStyles = recipe({
       fontWeight: '400',
       whiteSpace: 'nowrap',
       overflowWrap: 'anywhere',
-      transition: transition(['color', 'background-color']),
     },
   ],
 
