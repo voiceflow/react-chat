@@ -1,9 +1,10 @@
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
-import { duration, timingFunction } from '@/styles/animations';
+import { timingFunction } from '@/styles/animations';
 import { COLORS } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
+import { transition } from '@/styles/transitions';
 
 import { buttonStyles } from '../Button/styles.css';
 
@@ -28,17 +29,13 @@ export const launcherStyles = recipe({
       height: buttonSize.default.static,
       padding: 12,
       backgroundColor: PALETTE.colors[500],
-      transitionDuration: duration.default,
-      transitionBehavior: timingFunction.easeOut,
-      transitionProperty: 'width height',
+      transition: transition(['transform'], { timingFunction: timingFunction.easeOut }),
       ':hover': {
-        width: buttonSize.default.hover,
-        height: buttonSize.default.hover,
+        transform: 'scale(1.1)',
         backgroundColor: PALETTE.colors[600],
       },
       ':active': {
-        width: buttonSize.default.active,
-        height: buttonSize.default.active,
+        transform: 'scale(0.8)',
         backgroundColor: PALETTE.colors[700],
       },
     },
@@ -50,14 +47,8 @@ export const launcherStyles = recipe({
         width: 'auto',
         height: buttonSize.withLabel.static,
         padding: 18,
-        ':hover': {
-          width: 'auto',
-          height: buttonSize.withLabel.hover,
-        },
-        ':active': {
-          width: 'auto',
-          height: buttonSize.withLabel.active,
-        },
+        ':hover': {},
+        ':active': {},
       },
     },
   },

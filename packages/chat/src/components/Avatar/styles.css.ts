@@ -18,7 +18,6 @@ export const avatarStyles = recipe({
       small: {
         height: SIZES.sm,
         width: SIZES.sm,
-        boxShadow: '0px -1px 0px 0px rgba(0, 0, 0, 0.04) inset',
       },
 
       large: {

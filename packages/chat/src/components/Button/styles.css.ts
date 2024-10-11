@@ -1,8 +1,11 @@
 import { recipe } from '@vanilla-extract/recipes';
 
+import { timingFunction } from '@/styles/animations';
 import { COLORS } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
+import { FAMILY } from '@/styles/font';
 import { SIZES } from '@/styles/sizes';
+import { transition } from '@/styles/transitions';
 
 import { buttonReset } from './reset.css';
 
@@ -10,6 +13,7 @@ export const buttonStyles = recipe({
   base: [
     buttonReset,
     {
+      fontFamily: FAMILY,
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
@@ -18,6 +22,7 @@ export const buttonStyles = recipe({
       fontWeight: '400',
       whiteSpace: 'nowrap',
       overflowWrap: 'anywhere',
+      transition: transition(['color', 'background-color'], { timingFunction: timingFunction.easeOut }),
     },
   ],
 

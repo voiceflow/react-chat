@@ -1,7 +1,9 @@
 import { recipe } from '@vanilla-extract/recipes';
 
+import { timingFunction } from '@/styles/animations';
 import { COLORS } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
+import { transition } from '@/styles/transitions';
 
 import { buttonStyles } from '../Button/styles.css';
 
@@ -12,19 +14,26 @@ export const sendButtonStyle = recipe({
       height: 32,
       width: 32,
       padding: 0,
+      boxShadow: '0px 0px 0px 1px rgba(0, 0, 0, 0.02) inset',
+      transition: transition(['transform'], { timingFunction: timingFunction.easeOut }),
     },
   ],
   variants: {
     disabled: {
       true: {
         backgroundColor: COLORS.NEUTRAL_LIGHT[50],
+        ':hover': {
+          cursor: 'not-allowed',
+        },
       },
       false: {
         backgroundColor: PALETTE.colors[500],
         ':hover': {
+          transform: 'scale(1.15)',
           backgroundColor: PALETTE.colors[600],
         },
         ':active': {
+          transform: 'scale(1)',
           backgroundColor: PALETTE.colors[700],
         },
       },
@@ -39,7 +48,7 @@ export const sendIconStyle = recipe({
         color: COLORS.NEUTRAL_DARK[100],
       },
       false: {
-        color: COLORS.white,
+        color: PALETTE.colors[50],
       },
     },
   },
