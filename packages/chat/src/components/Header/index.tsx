@@ -9,7 +9,6 @@ import type { IThemedComponent } from '@/types';
 
 import Button from '../Button';
 import Icon, { type IconProps } from '../Icon';
-import { headerActionButton, headerActions, headerContainer, headerInnerContainer, headerTitle } from './styles.css';
 
 export interface HeaderActionProps {
   /**

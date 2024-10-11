@@ -4,7 +4,7 @@ import { iconClassName } from './styles.css';
 
 export type SVG = keyof typeof SVGs;
 
-export interface IconProps {
+export interface IconProps extends React.ComponentPropsWithoutRef<'div'> {
   /**
    * The name of the SVG icon to be rendered or a React component.
    *

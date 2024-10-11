@@ -25,7 +25,7 @@ export const ButtonContainer = styled(tag('label', 'button'), {
     trans: ['background-color', 'transform'],
   },
 
-  variants: {
+  /* variants: {
     ready: {
       true: {
         [`& ${Bubble.Container}`]: {
@@ -34,7 +34,7 @@ export const ButtonContainer = styled(tag('label', 'button'), {
         },
       },
     },
-  },
+  }, */
 });
 
 export const Container = styled(tag('div'), {
