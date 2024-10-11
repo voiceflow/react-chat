@@ -1,8 +1,9 @@
 import Card from '@/components/Card';
-import Icon from '@/components/Icon';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
 import { styled } from '@/old-styles';
+
+import { iconClassName } from '../Icon/styles.css';
 
 const BUTTON_SIZE = 42;
 export const CAROUSEL_GUTTER_WIDTH = 12;
@@ -27,7 +28,7 @@ export const ButtonContainer = styled(tag('span', 'button'), {
   boxShadow: '0 1px 3px 1px $shadow1, 0 0 0 1px $shadow3, 0 2px 4px -3px $shadow12, 0 5px 8px -8px $shadow12',
   border: 'none',
 
-  [`& ${Icon.Frame}`]: {
+  [`& .${iconClassName}`]: {
     height: '$xxs',
     width: '$xxs',
     color: 'rgba(0,0,0,0.6)',
@@ -43,8 +44,8 @@ export const ButtonContainer = styled(tag('span', 'button'), {
   },
 
   [`
-      &:hover ${Icon.Frame},
-      &:active ${Icon.Frame}
+      &:hover .${iconClassName},
+      &:active .${iconClassName}
     `]: {
     color: 'rgba(0,0,0,0.8)',
   },
@@ -67,7 +68,7 @@ export const ButtonContainer = styled(tag('span', 'button'), {
       right: {
         right: 70 - BUTTON_SIZE / 2,
 
-        [`& ${Icon.Frame}`]: {
+        [`& .${iconClassName}`]: {
           transform: 'scaleX(-1)',
         },
       },

@@ -1,10 +1,9 @@
-import Bubble from '@/components/Bubble';
-import Icon from '@/components/Icon';
 import { textareaFocusStyles, textareaStyles } from '@/components/Textarea/styled';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
 import { styled } from '@/old-styles';
 
+import { iconClassName } from '../Icon/styles.css';
 import Textarea from '../Textarea';
 
 const tag = tagFactory(ClassName.CHAT_INPUT);
@@ -20,7 +19,7 @@ export const ButtonContainer = styled(tag('label', 'button'), {
   boxSizing: 'border-box',
   cursor: 'text',
 
-  [`& ${Bubble.Container}`]: {
+  [`& .${iconClassName}`]: {
     transform: 'scale(0)',
     marginTop: 'auto',
     trans: ['background-color', 'transform'],
@@ -29,10 +28,10 @@ export const ButtonContainer = styled(tag('label', 'button'), {
   variants: {
     ready: {
       true: {
-        [`& ${Bubble.Container}`]: {
+        /* [`& ${Bubble.Container}`]: {
           transform: 'scale(1)',
           cursor: 'pointer',
-        },
+        }, */
       },
     },
   },
@@ -61,7 +60,7 @@ export const Container = styled(tag('div'), {
     borderBottomLeftRadius: 0,
   },
 
-  [`& ${Icon.Frame}`]: {
+  [`& .${iconClassName}`]: {
     color: '$white',
   },
 

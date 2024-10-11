@@ -1,7 +1,6 @@
 import cuid from 'cuid';
 import { useMemo, useRef } from 'react';
 
-import Bubble from '@/components/Bubble';
 import type { TextareaProps } from '@/components/Textarea';
 import Textarea from '@/components/Textarea';
 import { createControlled } from '@/utils/controls';
@@ -39,7 +38,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ id, onSend, disableSend, ...props
     <Container>
       <Textarea ref={textareaRef} id={internalID} onKeyDown={handleKeyPress} {...props} />
       <ButtonContainer htmlFor={internalID} ready={!!props.value && !disableSend}>
-        <Bubble size="small" svg="smallArrowUp" onClick={onSend} />
+        {/* <Bubble size="small" svg="smallArrowUp" onClick={onSend} /> */}
       </ButtonContainer>
     </Container>
   );

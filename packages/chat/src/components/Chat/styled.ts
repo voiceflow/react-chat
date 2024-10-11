@@ -1,6 +1,5 @@
 import AssistantInfo from '@/components/AssistantInfo';
 import Footer from '@/components/Footer';
-import Header from '@/components/Header';
 import Loader from '@/components/Loader';
 import Prompt from '@/components/Prompt';
 import SystemResponse from '@/components/SystemResponse';
@@ -10,6 +9,8 @@ import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
 import type { CSS } from '@/old-styles';
 import { animationStyles, createTransition, fadeIn, styled } from '@/old-styles';
+
+import { headerContainer } from '../Header/styles.css';
 
 const PROMPT_OVERFLOW = 10;
 
@@ -35,7 +36,7 @@ export const Container = styled(tag('article'), {
     margin: 'auto',
   },
 
-  [`& ${Header.Container}`]: {
+  [`& .${headerContainer}`]: {
     animation: `${fadeIn} 150ms ease forwards`,
   },
 
