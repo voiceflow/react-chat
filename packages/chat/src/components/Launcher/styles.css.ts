@@ -1,7 +1,6 @@
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
-import { timingFunction } from '@/styles/animations';
 import { COLORS } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
 import { transition } from '@/styles/transitions';
@@ -29,7 +28,9 @@ export const launcherStyles = recipe({
       height: buttonSize.default.static,
       padding: 12,
       backgroundColor: PALETTE.colors[500],
-      transition: transition(['transform'], { timingFunction: timingFunction.easeOut }),
+      transition: transition(['transform']),
+      boxShadow:
+        '0px 1px 0px 0px rgba(22, 26, 30, 0.02), 0px 0px 0px 1px rgba(22, 26, 30, 0.04), 0px 1px 5px -4px rgba(22, 26, 30, 0.08), 0px 4px 8px -6px rgba(22, 26, 30, 0.08), 0px 1px 3px 1px rgba(22, 26, 30, 0.01)',
       ':hover': {
         transform: 'scale(1.1)',
         backgroundColor: PALETTE.colors[600],
@@ -47,8 +48,6 @@ export const launcherStyles = recipe({
         width: 'auto',
         height: buttonSize.withLabel.static,
         padding: 18,
-        ':hover': {},
-        ':active': {},
       },
     },
   },

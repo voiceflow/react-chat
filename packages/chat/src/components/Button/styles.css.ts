@@ -1,6 +1,5 @@
 import { recipe } from '@vanilla-extract/recipes';
 
-import { timingFunction } from '@/styles/animations';
 import { COLORS } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
 import { FAMILY } from '@/styles/font';
@@ -22,7 +21,7 @@ export const buttonStyles = recipe({
       fontWeight: '400',
       whiteSpace: 'nowrap',
       overflowWrap: 'anywhere',
-      transition: transition(['color', 'background-color'], { timingFunction: timingFunction.easeOut }),
+      transition: transition(['color', 'background-color']),
     },
   ],
 

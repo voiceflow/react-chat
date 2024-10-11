@@ -1,6 +1,5 @@
 import { recipe } from '@vanilla-extract/recipes';
 
-import { timingFunction } from '@/styles/animations';
 import { COLORS } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
 import { transition } from '@/styles/transitions';
@@ -15,7 +14,7 @@ export const sendButtonStyle = recipe({
       width: 32,
       padding: 0,
       boxShadow: '0px 0px 0px 1px rgba(0, 0, 0, 0.02) inset',
-      transition: transition(['transform'], { timingFunction: timingFunction.easeOut }),
+      transition: transition(['transform']),
     },
   ],
   variants: {
