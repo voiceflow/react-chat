@@ -52,7 +52,9 @@ export const aiIconModifier = style({
   color: COLORS.NEUTRAL_DARK[100],
 });
 
-export const codeBlockContainer = style({});
+export const codeBlockContainer = style({
+  position: 'relative',
+});
 
 export const copyButton = style({
   position: 'absolute',
