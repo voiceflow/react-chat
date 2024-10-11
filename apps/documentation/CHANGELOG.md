@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.1](https://github.com/voiceflow/react-chat/compare/documentation@0.9.0...documentation@0.9.1) (2024-10-11)
+
+### Bug Fixes
+
+* force light theme and show selector (COR-0000) ([#217](https://github.com/voiceflow/react-chat/issues/217)) ([90ca7d4](https://github.com/voiceflow/react-chat/commit/90ca7d4b4f85ef96557ca8b99f07eae90486c0d0))
+
 # [0.9.0](https://github.com/voiceflow/react-chat/compare/documentation@0.8.1...documentation@0.9.0) (2024-10-07)
 
 ### Features
