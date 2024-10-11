@@ -25,16 +25,16 @@ export const ButtonContainer = styled(tag('label', 'button'), {
     trans: ['background-color', 'transform'],
   },
 
-  /* variants: {
+  variants: {
     ready: {
       true: {
-        [`& ${Bubble.Container}`]: {
+        /* [`& ${Bubble.Container}`]: {
           transform: 'scale(1)',
           cursor: 'pointer',
-        },
+        }, */
       },
     },
-  }, */
+  },
 });
 
 export const Container = styled(tag('div'), {

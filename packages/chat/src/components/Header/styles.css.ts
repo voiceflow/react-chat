@@ -67,9 +67,3 @@ export const headerActionButton = recipe({
     },
   ],
 });
-
-export const headerActionIcon = style({
-  display: 'flex',
-  width: 24,
-  height: 24,
-});
