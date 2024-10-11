@@ -19,7 +19,7 @@ export const ButtonContainer = styled(tag('label', 'button'), {
   boxSizing: 'border-box',
   cursor: 'text',
 
-  /* [`& ${Bubble.Container}`]: {
+  [`& .${iconClassName}`]: {
     transform: 'scale(0)',
     marginTop: 'auto',
     trans: ['background-color', 'transform'],
@@ -34,7 +34,7 @@ export const ButtonContainer = styled(tag('label', 'button'), {
         },
       },
     },
-  }, */
+  },
 });
 
 export const Container = styled(tag('div'), {
