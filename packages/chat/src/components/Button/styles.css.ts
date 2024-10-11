@@ -3,6 +3,7 @@ import { recipe } from '@vanilla-extract/recipes';
 import { COLORS } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
 import { SIZES } from '@/styles/sizes';
+import { transition } from '@/styles/transitions';
 
 import { buttonReset } from './reset.css';
 
@@ -14,6 +15,7 @@ export const buttonStyles = recipe({
       justifyContent: 'center',
       alignItems: 'center',
       padding: '0 14px',
+      transition: transition(['background-color', 'color']),
       borderRadius: SIZES.radius.sm,
       fontWeight: '400',
       whiteSpace: 'nowrap',
