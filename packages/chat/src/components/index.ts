@@ -1,3 +1,4 @@
+export { AgentMessage } from './AgentMessage';
 export { default as AssistantInfo } from './AssistantInfo';
 export { default as Avatar } from './Avatar';
 export { default as Button } from './Button';
