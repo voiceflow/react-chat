@@ -1,4 +1,4 @@
-import '../../styles.css';
+import './styles.css';
 
 export * as AgentMessage from './components/AgentMessage/AgentMessage.story';
 export * as Avatar from './components/Avatar/Avatar.story';
