@@ -17,6 +17,7 @@ export const buttonStyles = recipe({
       justifyContent: 'center',
       alignItems: 'center',
       padding: '0 14px',
+      transition: transition(['background-color', 'color']),
       borderRadius: SIZES.radius.sm,
       fontWeight: '400',
       whiteSpace: 'nowrap',

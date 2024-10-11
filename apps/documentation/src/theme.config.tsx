@@ -20,8 +20,9 @@ const config: DocsThemeConfig = {
   footer: {
     content: 'Made with ❤️ by Voiceflow',
   },
-  darkMode: false,
+  darkMode: true,
   nextThemes: {
+    forcedTheme: 'light',
     defaultTheme: 'light',
   },
   sidebar: {
