@@ -79,11 +79,9 @@ export const copyButton = style({
       opacity: 1,
     },
     '&:hover': {
-      backgroundColor: COLORS.NEUTRAL_DARK[400],
-    },
-    '&:active': {
       backgroundColor: COLORS.NEUTRAL_DARK[200],
       color: COLORS.NEUTRAL_LIGHT[50],
     },
+    '&:active': {},
   },
 });
