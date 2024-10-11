@@ -41,13 +41,13 @@ export default {
     padding: '1em',
     margin: '.5em 0',
     overflow: 'auto',
-    borderRadius: '0.3em',
+    borderRadius: '10px',
     background: COLORS.NEUTRAL_DARK[600],
   },
   ':not(pre) > code[class*="language-"]': {
     background: '#1d1f21',
     padding: '.1em',
-    borderRadius: '.3em',
+    borderRadius: '10px',
   },
   comment: {
     color: '#F1F2F2',

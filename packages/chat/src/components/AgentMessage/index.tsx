@@ -6,8 +6,16 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import remarkGfm from 'remark-gfm';
 
 import Icon from '../Icon';
-import { aiIconModifier, contentStyle, generatedChin, messageContainer } from './AgentMessage.css';
+import {
+  aiIconModifier,
+  codeBlockContainer,
+  contentStyle,
+  copyButton,
+  generatedChin,
+  messageContainer,
+} from './AgentMessage.css';
 import codeTheme from './code-theme';
+import { CopyButton } from './CopyButton';
 
 interface IAgentMessage {
   children: React.ReactNode;
@@ -19,13 +27,13 @@ interface IAgentMessage {
 export const AgentMessage: React.FC<IAgentMessage> = ({ children, generated, generatedMessage }) => {
   const content = children?.toString();
 
-  const isCodeResponse =
+  const isCodeBlock =
     (content?.startsWith('```') && (content?.endsWith('```') || content.endsWith('```\n'))) ||
     content?.startsWith('\n```');
 
   return (
-    <div className={clsx('markdown', messageContainer({ isCodeBlock: !!isCodeResponse }))}>
-      <div className={contentStyle}>
+    <div className={clsx('markdown', messageContainer)}>
+      <div className={contentStyle({ isCodeBlock })}>
         <Markdown
           children={children?.toString()}
           remarkPlugins={[remarkGfm]}
@@ -34,8 +42,8 @@ export const AgentMessage: React.FC<IAgentMessage> = ({ children, generated, gen
               const { children, className, node, ref, ...rest } = props;
               const match = /language-(\w+)/.exec(className || '');
               return match ? (
-                <>
-                  {/* <CopyButton value={children} /> */}
+                <span className={codeBlockContainer}>
+                  <CopyButton value={children} className={copyButton} />
                   <SyntaxHighlighter
                     {...rest}
                     lineProps={{
@@ -47,7 +55,7 @@ export const AgentMessage: React.FC<IAgentMessage> = ({ children, generated, gen
                     language={match[1]}
                     style={codeTheme}
                   />
-                </>
+                </span>
               ) : (
                 <div {...rest} className={className}>
                   {children}
