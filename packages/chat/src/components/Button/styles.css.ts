@@ -2,6 +2,7 @@ import { recipe } from '@vanilla-extract/recipes';
 
 import { COLORS } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
+import { FAMILY } from '@/styles/font';
 import { SIZES } from '@/styles/sizes';
 import { transition } from '@/styles/transitions';
 
@@ -11,6 +12,7 @@ export const buttonStyles = recipe({
   base: [
     buttonReset,
     {
+      fontFamily: FAMILY,
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
