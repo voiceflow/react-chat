@@ -52,6 +52,17 @@ export const SimpleText: Story = {
   },
 };
 
+export const TextWithLinks: Story = {
+  args: {
+    messages: [
+      {
+        type: 'text',
+        text: 'All supported types of links include email links using [mailto](mailto:youremail@example.com), phone calls with [tel](tel:+14165551234), text messages via [sms](sms:+14165551234), location links with [geo](geo:37.7749,-122.4194), as well as regular web links like [http](http://example.com) and [https](https://example.com).',
+      },
+    ],
+  },
+};
+
 export const WrappingText: Story = {
   args: {
     messages: [{ type: 'text', text: 'consecteturaconsecteturaconsecteturaconsecteturaconsecteturaconsectetura' }],
