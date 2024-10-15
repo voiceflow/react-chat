@@ -1,6 +1,12 @@
 import { forwardRef, type PropsWithRef } from 'react';
 
-import { linkPreviewContainer } from './styles.css';
+import {
+  linkPreviewContainer,
+  linkPreviewDetails,
+  linkPreviewImage,
+  linkPreviewTitle,
+  linkPreviewUrl,
+} from './styles.css';
 
 interface ILinkPreviewProps {
   image?: string;
@@ -13,8 +19,8 @@ const LinkPreview = forwardRef<HTMLDivElement, PropsWithRef<ILinkPreviewProps>>(
   const { image, title, url, inline } = props;
 
   return (
-    <div ref={ref} className={linkPreviewContainer({ inline })} {...props}>
-      <div className={linkPreviewImage}>{image && <img url={image} />}</div>
+    <div ref={ref} style={{ width: '256px' }} className={linkPreviewContainer({ inline })} {...props}>
+      <div className={linkPreviewImage()}>{image && <img src={image} />}</div>
       <div className={linkPreviewDetails}>
         <div className={linkPreviewTitle}>{title}</div>
         <div className={linkPreviewUrl}>{url}</div>
