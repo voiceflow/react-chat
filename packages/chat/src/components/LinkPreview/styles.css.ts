@@ -15,7 +15,7 @@ export const linkPreviewContainer = recipe({
       padding: '6px 8px 6px 6px',
       backgroundColor: COLORS.NEUTRAL_LIGHT[50],
       fontFamily: FAMILY,
-      transition: transition(['background-color']),
+      transition: transition(['color', 'background-color']),
       height: 52,
       ':hover': {
         backgroundColor: COLORS.NEUTRAL_LIGHT[100],
