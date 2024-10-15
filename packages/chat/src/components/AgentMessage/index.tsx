@@ -22,7 +22,7 @@ interface IAgentMessage {
   generatedMessage?: string;
 }
 
-export const AgentMessage: React.FC<IAgentMessage> = ({ children, generated, generatedMessage }) => {
+const AgentMessage: React.FC<IAgentMessage> = ({ children, generated, generatedMessage }) => {
   const content = children?.toString();
 
   const isCodeBlock =
@@ -72,3 +72,5 @@ export const AgentMessage: React.FC<IAgentMessage> = ({ children, generated, gen
     </div>
   );
 };
+
+export default AgentMessage;
