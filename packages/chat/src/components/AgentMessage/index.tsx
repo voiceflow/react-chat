@@ -1,3 +1,5 @@
+import '../../styles.css';
+
 import clsx from 'clsx';
 import Markdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
