@@ -36,7 +36,7 @@ export const AgentMessage: React.FC<IAgentMessage> = ({ children, generated, gen
           children={children?.toString()}
           remarkPlugins={[remarkGfm]}
           components={{
-            code(props) {
+            code(props: any) {
               const { children, className, node, ref, ...rest } = props;
               const match = /language-(\w+)/.exec(className || '');
               return match ? (

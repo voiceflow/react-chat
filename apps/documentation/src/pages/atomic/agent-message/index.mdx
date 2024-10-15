@@ -1,5 +1,4 @@
 import { StoryEmbed } from '../../../components/StoryEmbed';
-import { ClientRenderer } from '../../../components/ClientRenderer';
 
 <div style={{maxWidth: '300px'}}>
 # Agent Message
@@ -7,36 +6,36 @@ import { ClientRenderer } from '../../../components/ClientRenderer';
 ## Base
 
 <br />
-<StoryEmbed for="AgentMessage" name="Small" />
+<StoryEmbed for="AgentMessage" name="Small" clientOnly={true} />
 
 ## AI Generated Chin
 
 <br />
-<StoryEmbed for="AgentMessage" name="AIGenerated" />
+<StoryEmbed for="AgentMessage" name="AIGenerated" clientOnly={true} />
 
 ## Text Treatment
 
 <br />
-<StoryEmbed for="AgentMessage" name="Markdown" />
+<StoryEmbed for="AgentMessage" name="Markdown" clientOnly={true} />
 
 ## Code Response
 
 <br />
-<StoryEmbed for="AgentMessage" name="CodeResponse" />
+<StoryEmbed for="AgentMessage" name="CodeResponse" clientOnly={true} />
 
 ## Inline Code Response
 
 <br />
-<StoryEmbed for="AgentMessage" name="InlineCode" />
+<StoryEmbed for="AgentMessage" name="InlineCode" clientOnly={true} />
 
 ## Tables
 
 <br />
-<StoryEmbed for="AgentMessage" name="Tables" />
+<StoryEmbed for="AgentMessage" name="Tables" clientOnly={true} />
 
 ## Lists
 
 <br />
-<StoryEmbed for="AgentMessage" name="Lists" />
+<StoryEmbed for="AgentMessage" name="Lists" clientOnly={true} />
 
 </div>

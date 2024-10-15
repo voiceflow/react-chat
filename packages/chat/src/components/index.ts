@@ -10,7 +10,6 @@ export { ColorTheme } from './ColorTheme/ColorTheme.component';
 export { FeedbackButton } from './FeedbackButton';
 export { default as Footer } from './Footer';
 export { default as Header } from './Header';
-export { Howdy } from './Howdy';
 export { default as Icon } from './Icon';
 export { default as Image } from './Image';
 export { default as Input } from './Input';
