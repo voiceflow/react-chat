@@ -41,7 +41,7 @@ const Launcher: React.FC<LauncherProps> = ({ image, isOpen, label, onClick }) =>
       {withLabel && <div className={launcherLabelStyles}>{label}</div>}
       {image && !isOpen && <img src={image} className={launcherIconStyles({ withLabel })} alt="launch" />}
       {!image && !isOpen && <PlayIcon className={launcherIconStyles({ withLabel })} />}
-      {isOpen && <ChevronIcon className={launcherIconStyles()} />}
+      {isOpen && <ChevronIcon className={launcherIconStyles({ withLabel })} />}
     </Button>
   );
 };
