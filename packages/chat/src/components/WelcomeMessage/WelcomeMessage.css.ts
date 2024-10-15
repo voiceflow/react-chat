@@ -13,11 +13,11 @@ export const welcomeMessageContainer = style({
 });
 
 export const avatarContainer = style({
-  marginBottom: 16,
+  marginBottom: '16px',
 });
 
 export const welcomeMessageTitle = style({
-  margin: '0 0 4px 0',
+  marginBottom: '4px',
   fontSize: '22px',
   fontWeight: 700,
   color: COLORS.NEUTRAL_DARK[900],
