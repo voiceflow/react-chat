@@ -49,18 +49,6 @@ export const launcherStyles = recipe({
         padding: 18,
       },
     },
-    isOpen: {
-      true: {
-        ':hover': {
-          transform: 'none',
-          backgroundColor: PALETTE.colors[500],
-        },
-        ':active': {
-          transform: 'none',
-          backgroundColor: PALETTE.colors[500],
-        },
-      },
-    },
   },
 });
 

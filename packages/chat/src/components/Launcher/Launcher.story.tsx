@@ -16,21 +16,19 @@ const meta: Meta<typeof Launcher> = {
 
 export default meta;
 
-// Show launcher with default icon and no label
-
 const CollapsableLauncher = (props: any) => {
   const [isOpen, setIsOpen] = useState(false);
   return <Launcher isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} {...props} />;
 };
 
-export const Default: Story = { render: () => <CollapsableLauncher /> };
+export const Default: Story = { render: () => <CollapsableLauncher image={tiledBg} /> };
 
 export const IconOverride: Story = {
   render: () => <CollapsableLauncher image={tiledBg} />,
 };
 
 export const WithLabel: Story = {
-  render: () => <CollapsableLauncher label="Label" />,
+  render: () => <CollapsableLauncher image={tiledBg} label="Label" />,
 };
 
 export const CustomIconWithLabel: Story = {
