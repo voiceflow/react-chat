@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { VF_ICON } from '@/fixtures';
-
+import EMPTY_IMAGE from '../../__fixtures__/empty-image.png';
 import Avatar from '.';
 
 type Story = StoryObj<typeof Avatar>;
@@ -17,7 +16,7 @@ const meta: Meta<typeof Avatar> = {
     },
   },
   args: {
-    avatar: VF_ICON,
+    avatar: EMPTY_IMAGE,
   },
 };
 export default meta;

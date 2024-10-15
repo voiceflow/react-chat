@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/voiceflow/react-chat/compare/documentation@0.12.0...documentation@0.13.0) (2024-10-15)
+
+### Features
+
+* UserMessage  (DX-2138) ([#213](https://github.com/voiceflow/react-chat/issues/213)) ([97fcc7b](https://github.com/voiceflow/react-chat/commit/97fcc7b1d806cbb430daf29157d5610396935841))
+
+# [0.12.0](https://github.com/voiceflow/react-chat/compare/documentation@0.11.0...documentation@0.12.0) (2024-10-15)
+
+### Features
+
+* WelcomeMessage (DX-2153) ([#214](https://github.com/voiceflow/react-chat/issues/214)) ([12d5b9d](https://github.com/voiceflow/react-chat/commit/12d5b9dfd8046bfe0d7f987674af39995a762ae0))
+
 # [0.11.0](https://github.com/voiceflow/react-chat/compare/documentation@0.10.1...documentation@0.11.0) (2024-10-11)
 
 ### Features
