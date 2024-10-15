@@ -1,5 +1,3 @@
-'use client';
-
 import type { StoryObj } from '@storybook/react';
 import type { DecoratorFunction } from '@storybook/types';
 import * as Stories from '@voiceflow/chat/stories';
