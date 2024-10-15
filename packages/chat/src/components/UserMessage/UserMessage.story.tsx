@@ -24,3 +24,11 @@ export const Long: Story = {
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget diam neque. Donec semper urna quis viverra tincidunt. Aliquam luctus purus nulla, vel vehicula est malesuada quis. Duis maximus ipsum ligula, vitae consectetur dui gravida quis. Integer pretium, nisl nec dapibus fringilla, nunc nibh sagittis urna, in sollicitudin massa nulla sed justo. Mauris venenatis ac nulla eu rutrum. Cras sapien arcu, tristique sit amet velit sed, fermentum placerat felis.',
   },
 };
+
+export const Green: Story = {
+  args: {
+    children:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget diam neque. Donec semper urna quis viverra tincidunt. Aliquam luctus purus nulla, vel vehicula est malesuada quis. Duis maximus ipsum ligula, vitae consectetur dui gravida quis. Integer pretium, nisl nec dapibus fringilla, nunc nibh sagittis urna, in sollicitudin massa nulla sed justo. Mauris venenatis ac nulla eu rutrum. Cras sapien arcu, tristique sit amet velit sed, fermentum placerat felis.',
+    color: 'green',
+  },
+};
