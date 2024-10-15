@@ -8,7 +8,7 @@ const meta: Meta<typeof Header> = {
   title: 'Components/Chat/Header',
   component: Header,
   args: {
-    title: 'Assistant Name',
+    title: 'Agent name',
     image: VF_ICON,
     actions: [],
   },

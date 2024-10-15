@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import tiledBg from '../../__fixtures__/tiled-bg.png';
 import Launcher from '.';
 
 type Story = StoryObj<typeof Launcher>;
@@ -19,21 +20,20 @@ export const Default: Story = {};
 
 export const IconOverride: Story = {
   args: {
-    // eslint-disable-next-line no-secrets/no-secrets
-    image: 'https://cm4-production-assets.s3.amazonaws.com/1668625107157-vf-nobg.png',
+    image: tiledBg,
   },
 };
 
 export const WithLabel: Story = {
   args: {
-    label: 'Chat',
+    label: 'Label',
   },
 };
 
 export const CustomIconWithLabel: Story = {
   args: {
     // eslint-disable-next-line no-secrets/no-secrets
-    image: 'https://cm4-production-assets.s3.amazonaws.com/1668625107157-vf-nobg.png',
-    label: 'Chat',
+    image: tiledBg,
+    label: 'Label',
   },
 };

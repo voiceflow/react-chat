@@ -13,13 +13,14 @@ export const sendButtonStyle = recipe({
       height: 32,
       width: 32,
       padding: 0,
-      boxShadow: '0px 0px 0px 1px rgba(0, 0, 0, 0.02) inset',
-      transition: transition(['transform']),
+      boxShadow: '0px -1px 0px 0px rgba(0, 0, 0, 0.16) inset',
+      transition: transition(['color', 'background-color', 'transform']),
     },
   ],
   variants: {
     disabled: {
       true: {
+        boxShadow: 'none',
         backgroundColor: COLORS.NEUTRAL_LIGHT[50],
         ':hover': {
           cursor: 'not-allowed',
