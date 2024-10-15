@@ -32,10 +32,11 @@ export const AgentMessage: React.FC<IAgentMessage> = ({ children, generated, gen
     content?.startsWith('\n```');
 
   return (
-    <div className={clsx('markdown', messageContainer)}>
-      <div className={contentStyle({ isCodeBlock })}>
+    <div className={messageContainer}>
+      <div className={clsx(contentStyle({ isCodeBlock }))}>
         <Markdown
           children={children?.toString()}
+          className={'markdown'}
           remarkPlugins={[remarkGfm]}
           components={{
             code(props) {
