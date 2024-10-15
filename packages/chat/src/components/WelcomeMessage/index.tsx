@@ -29,8 +29,8 @@ export const WelcomeMessage: React.FC<IWelcomeMessage> = ({ title, description, 
       <div className={avatarContainer}>
         <Avatar size="large" avatar={avatar} />
       </div>
-      <h1 className={welcomeMessageTitle}>{title}</h1>
-      <p className={welcomeMessageDescription}>{description}</p>
+      <div className={welcomeMessageTitle}>{title}</div>
+      <div className={welcomeMessageDescription}>{description}</div>
     </div>
   );
 };
