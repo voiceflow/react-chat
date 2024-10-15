@@ -3,6 +3,7 @@ import type { DecoratorFunction } from '@storybook/types';
 import { useEffect, useMemo, useState } from 'react';
 
 const Stories = typeof window !== 'undefined' ? require('@voiceflow/chat/stories') : {};
+
 const ComponentNotFound: React.FC = () => <h2>🚨 Component not found! 🚨</h2>;
 
 export interface IStoryEmbed {
