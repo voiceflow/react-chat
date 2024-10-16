@@ -15,20 +15,18 @@ type Story = StoryObj<typeof FeedbackButton>;
 
 const VariantRenderer = ({ active }: { active?: boolean }) => {
   return (
-    <>
-      <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem' }}>
-        {COLOR_FIXTURE.map((color, index) => (
-          <FeedbackButton
-            primaryColor={color}
-            variant={index % 2 === 0 ? 'up' : 'down'}
-            active={active}
-            key={index}
-            onClick={() => null}
-            testID={`feedback-button--${index}`}
-          />
-        ))}
-      </div>
-    </>
+    <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem' }}>
+      {COLOR_FIXTURE.map((color, index) => (
+        <FeedbackButton
+          primaryColor={color}
+          variant={index % 2 === 0 ? 'up' : 'down'}
+          active={active}
+          key={index}
+          onClick={() => null}
+          testID={`feedback-button--${index}`}
+        />
+      ))}
+    </div>
   );
 };
 

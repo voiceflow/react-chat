@@ -49,7 +49,7 @@ export class IntercomService {
     try {
       const existingUser = await this.intercom.contacts.find({ id: userID });
       finalUserID = existingUser.id;
-    } catch (e) {
+    } catch {
       const user = await this.intercom.contacts.createLead();
       finalUserID = user.id;
     }

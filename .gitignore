@@ -6,7 +6,9 @@
 node_modules
 
 # output
-build
+apps/*/build
+examples/*/build
+packages/*/build
 dist
 storybook-static
 docs
@@ -28,12 +30,9 @@ docs
 
 # Yarn
 .pnp.*
-.yarn
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
+.yarn/*.gz
+.yarn/cache
+.yarn/versions
 
 # Tests
 reports

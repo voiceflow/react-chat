@@ -5,7 +5,7 @@ import { TurnType } from '@/types';
 
 export const getLastSystemTurn = (turns: TurnProps[]): SystemTurnProps | null => {
   for (let i = turns.length - 1; i >= 0; i--) {
-    const turn = turns[i];
+    const turn = turns[i]!;
     if (turn.type === TurnType.SYSTEM) return turn;
   }
 

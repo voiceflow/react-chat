@@ -15,5 +15,5 @@ export const ClientRenderer: React.FC<IClientRenderer> = ({ children }) => {
     return null;
   }
 
-  return <>{children}</>;
+  return children;
 };

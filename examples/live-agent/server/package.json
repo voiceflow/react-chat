@@ -21,7 +21,7 @@
     "@types/express": "4.17.17",
     "@types/express-ws": "3.0.1",
     "@types/ws": "8.5.11",
-    "tsx": "4.7.2"
+    "tsx": "4.19.1"
   },
   "volta": {
     "extends": "../../../package.json"

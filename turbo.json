@@ -4,6 +4,7 @@
     "build:cmd": {
       "outputs": ["build/**", "dist/**"],
       "inputs": [
+        "../../scripts/build_pkg.sh",
         "src/**",
         ":!src/**/*.test.ts",
         "next.config.mjs",

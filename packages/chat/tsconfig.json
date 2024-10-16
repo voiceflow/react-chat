@@ -11,7 +11,7 @@
     "baseUrl": ".",
     "outDir": "build",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./src/*"]
     },
     "types": ["node"]
   },

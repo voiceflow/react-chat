@@ -8,8 +8,7 @@
     "emitDecoratorMetadata": true,
     "types": [],
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./src/*"]
     }
-  },
-  "exclude": ["node_modules", "build"]
+  }
 }
