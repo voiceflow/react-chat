@@ -7,18 +7,19 @@ type Story = StoryObj<typeof MessageInput>;
 const meta: Meta<typeof MessageInput> = {
   title: 'Core/MessageInput',
   component: MessageInput,
-  argTypes: {
-    size: {
-      options: ['small', 'large'],
-      control: { type: 'radio' },
-      defaultValue: 'small',
-    },
-  },
+  argTypes: {},
+  decorators: [
+    (Story) => (
+      <div style={{ width: '400px' }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 export default meta;
 
 export const Base: Story = {
   args: {
-    size: 'small',
+    placeholder: 'Message...',
   },
 };
