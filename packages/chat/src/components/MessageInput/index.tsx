@@ -1,7 +1,8 @@
+import { useRef } from 'react';
+
 import { chain } from '@/utils/functional';
 
-import Icon from '../Icon';
-import { buttonContainer, input, inputContainer } from './MessageInput.css';
+import { input, inputContainer, mockFocus } from './MessageInput.css';
 
 interface IMessageInput {
   message: string;
@@ -13,13 +14,16 @@ interface IMessageInput {
 export const MessageInput: React.FC<IMessageInput> = ({ onValueChange, onChange, placeholder }) => {
   const handleChange = chain(onChange, (event) => onValueChange(event.target.value));
 
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleContainerClick = () => {
+    inputRef.current?.focus();
+  };
+
   return (
-    <div className={inputContainer}>
-      <input placeholder={placeholder} className={input} onChange={handleChange} />
+    <div className={inputContainer} onClick={handleContainerClick}>
+      <div className={mockFocus} />
+      <input placeholder={placeholder} ref={inputRef} className={input} onChange={handleChange} />
     </div>
   );
 };
-
-// <div className={buttonContainer}>
-//   <Icon svg="voice" />
-// </div>
