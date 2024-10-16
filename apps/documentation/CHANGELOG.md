@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/voiceflow/react-chat/compare/documentation@0.13.0...documentation@0.14.0) (2024-10-16)
+
+### Features
+
+* cleaning up (COR-0000) ([#218](https://github.com/voiceflow/react-chat/issues/218)) ([0fc8593](https://github.com/voiceflow/react-chat/commit/0fc8593d299dcffe6f0995b2d022f63b98ca403c))
+
 # [0.13.0](https://github.com/voiceflow/react-chat/compare/documentation@0.12.0...documentation@0.13.0) (2024-10-15)
 
 ### Features
