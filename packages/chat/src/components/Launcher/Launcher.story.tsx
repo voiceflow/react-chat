@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
 
+import tiledBg from '../../__fixtures__/tiled-bg.png';
 import Launcher from '.';
 
 type Story = StoryObj<typeof Launcher>;
@@ -14,26 +16,21 @@ const meta: Meta<typeof Launcher> = {
 
 export default meta;
 
-// Show launcher with default icon and no label
-export const Default: Story = {};
+const CollapsableLauncher = (props: any) => {
+  const [isOpen, setIsOpen] = useState(false);
+  return <Launcher isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} {...props} />;
+};
+
+export const Default: Story = { render: () => <CollapsableLauncher image={tiledBg} /> };
 
 export const IconOverride: Story = {
-  args: {
-    // eslint-disable-next-line no-secrets/no-secrets
-    image: 'https://cm4-production-assets.s3.amazonaws.com/1668625107157-vf-nobg.png',
-  },
+  render: () => <CollapsableLauncher image={tiledBg} />,
 };
 
 export const WithLabel: Story = {
-  args: {
-    label: 'Chat',
-  },
+  render: () => <CollapsableLauncher image={tiledBg} label="Label" />,
 };
 
 export const CustomIconWithLabel: Story = {
-  args: {
-    // eslint-disable-next-line no-secrets/no-secrets
-    image: 'https://cm4-production-assets.s3.amazonaws.com/1668625107157-vf-nobg.png',
-    label: 'Chat',
-  },
+  render: () => <CollapsableLauncher image={tiledBg} label="Label" />,
 };

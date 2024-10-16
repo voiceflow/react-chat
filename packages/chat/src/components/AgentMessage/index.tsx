@@ -24,7 +24,7 @@ interface IAgentMessage {
   generatedMessage?: string;
 }
 
-export const AgentMessage: React.FC<IAgentMessage> = ({ children, generated, generatedMessage }) => {
+const AgentMessage: React.FC<IAgentMessage> = ({ children, generated, generatedMessage }) => {
   const content = children?.toString();
 
   const isCodeBlock =
@@ -39,7 +39,7 @@ export const AgentMessage: React.FC<IAgentMessage> = ({ children, generated, gen
           className={'markdown'}
           remarkPlugins={[remarkGfm]}
           components={{
-            code(props) {
+            code(props: any) {
               const { children, className, node, ref, ...rest } = props;
               const match = /language-(\w+)/.exec(className || '');
               return match ? (
@@ -75,3 +75,5 @@ export const AgentMessage: React.FC<IAgentMessage> = ({ children, generated, gen
     </div>
   );
 };
+
+export default AgentMessage;
