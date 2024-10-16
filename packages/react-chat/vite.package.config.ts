@@ -28,5 +28,5 @@ export default defineConfig({
       },
     },
   },
-  plugins: [react(), dts(), ...createPlugins()],
+  plugins: [react(), dts({ tsconfigPath: 'tsconfig.build.json' }), ...createPlugins()],
 });
