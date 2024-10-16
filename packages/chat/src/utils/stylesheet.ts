@@ -29,7 +29,12 @@ export const useResolveAssistantStyleSheet = (assistant?: AssistantOptions, shad
       return;
     }
 
-    const stylesheet = Array.isArray(assistant.stylesheet) ? assistant.stylesheet[0]! : assistant.stylesheet;
+    const stylesheet = Array.isArray(assistant.stylesheet) ? assistant.stylesheet[0] : assistant.stylesheet;
+
+    if (!stylesheet) {
+      setStyleSheetResolved(true);
+      return;
+    }
 
     // inject stylesheet url
     (async () => {
