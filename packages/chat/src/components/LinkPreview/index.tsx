@@ -1,9 +1,11 @@
 import { forwardRef, type PropsWithRef } from 'react';
 
+import { LoadingSpinner } from '../LoadingSpinner/LoadingSpinner';
 import {
   linkPreviewContainer,
   linkPreviewDetails,
   linkPreviewImage,
+  linkPreviewImageContainer,
   linkPreviewTitle,
   linkPreviewUrl,
 } from './styles.css';
@@ -20,10 +22,13 @@ const LinkPreview = forwardRef<HTMLDivElement, PropsWithRef<ILinkPreviewProps>>(
 
   return (
     <div ref={ref} style={{ width: '256px' }} className={linkPreviewContainer({ inline })} {...props}>
-      <div className={linkPreviewImage()}>{image && <img src={image} />}</div>
+      <div className={linkPreviewImageContainer({ loading: !image, inline })}>
+        {!image && <LoadingSpinner size="medium" />}
+        {image && <img className={linkPreviewImage} src={image} />}
+      </div>
       <div className={linkPreviewDetails}>
-        <div className={linkPreviewTitle}>{title}</div>
-        <div className={linkPreviewUrl}>{url}</div>
+        <div className={linkPreviewTitle({ inline })}>{title}</div>
+        <div className={linkPreviewUrl({ loading: !image, inline })}>{url}</div>
       </div>
     </div>
   );
