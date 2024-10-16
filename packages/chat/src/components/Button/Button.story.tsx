@@ -15,7 +15,7 @@ const meta: Meta<typeof Button> = {
     },
   },
   args: {
-    children: 'Button Label',
+    children: 'Button label',
     round: false,
   },
 };

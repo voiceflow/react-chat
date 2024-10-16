@@ -31,7 +31,7 @@ export const headerTitle = style({
   color: COLORS.white,
   fontWeight: 700,
   lineHeight: '23px',
-  marginLeft: 12,
+  margin: '0 12px',
   minWidth: 0,
   whiteSpace: 'nowrap',
   textOverflow: 'ellipsis',
@@ -59,9 +59,11 @@ export const headerActionButton = recipe({
       backgroundColor: 'transparent',
       transition: transition(['color', 'background-color']),
       ':hover': {
+        color: COLORS.white,
         backgroundColor: '#ffffff29',
       },
       ':active': {
+        color: COLORS.white,
         backgroundColor: '#ffffff52',
       },
     },
