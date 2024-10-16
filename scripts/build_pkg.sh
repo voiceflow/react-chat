@@ -18,6 +18,8 @@ if [ -n "${type}" ]; then
   fi
 fi
 
+set -e
+
 yarn g:rimraf "${build_dir}"
 yarn g:tsc -p "${tsconfig}" --outDir "${build_dir}" "$@"
 yarn g:tsc-alias -p "${tsconfig}" --outDir "${build_dir}"
