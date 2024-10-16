@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.65.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.65.0...@voiceflow/react-chat@1.65.1) (2024-10-16)
+
+### Bug Fixes
+
+* adds support for tel and other hyperlink protocols (DLC-228) ([#219](https://github.com/voiceflow/react-chat/issues/219)) ([d2a6404](https://github.com/voiceflow/react-chat/commit/d2a640484011c03dcbcedc4ee3d525b12add915e))
+
 # [1.65.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.64.0...@voiceflow/react-chat@1.65.0) (2024-09-27)
 
 ### Features
