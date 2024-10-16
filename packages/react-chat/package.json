@@ -14,7 +14,7 @@
   "license": "MIT",
   "author": "Ben Teichman, Tyler Han",
   "main": "build/index.es.js",
-  "types": "build/src/package.entry.d.ts",
+  "types": "build/package.entry.d.ts",
   "files": [
     "build",
     "dist"
