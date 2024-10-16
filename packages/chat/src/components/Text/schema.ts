@@ -8,7 +8,7 @@ export const schema = {
     ...defaultSchema.attributes,
     video: mediaAttributes,
     audio: mediaAttributes,
-    '*': [...defaultSchema.attributes!['*'], 'style'],
+    '*': [...(defaultSchema.attributes?.['*'] ?? []), 'style'],
   },
   protocols: {
     ...defaultSchema.protocols,

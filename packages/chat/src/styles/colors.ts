@@ -13,16 +13,16 @@ export const createPalette = (baseColor: string = defaultPrimary) => {
   }
 
   return {
-    50: shades[0],
-    100: shades[1],
-    200: shades[2],
-    300: shades[3],
-    400: shades[4],
+    50: shades[0]!,
+    100: shades[1]!,
+    200: shades[2]!,
+    300: shades[3]!,
+    400: shades[4]!,
     500: baseColor,
-    600: shades[6],
-    700: shades[7],
-    800: shades[8],
-    900: shades[9],
+    600: shades[6]!,
+    700: shades[7]!,
+    800: shades[8]!,
+    900: shades[9]!,
   };
 };
 

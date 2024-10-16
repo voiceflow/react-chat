@@ -2,8 +2,9 @@
   "$schema": "https://turborepo.org/schema.json",
   "pipeline": {
     "build:cmd": {
-      "outputs": ["build/**", "dist/**"],
+      "outputs": ["build/**", "dist/**", ".next/**", "next-env.d.ts"],
       "inputs": [
+        "../../scripts/build_pkg.sh",
         "src/**",
         ":!src/**/*.test.ts",
         "next.config.mjs",

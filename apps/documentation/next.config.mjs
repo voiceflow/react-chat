@@ -1,5 +1,6 @@
 import nextra from 'nextra';
 
+/** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   distDir: 'build',

@@ -1,13 +1,14 @@
 import type { StoryObj } from '@storybook/react';
 import type { DecoratorFunction } from '@storybook/types';
+import type * as StoriesType from '@voiceflow/chat/stories';
 import { useEffect, useMemo, useState } from 'react';
 
-const Stories = typeof window !== 'undefined' ? require('@voiceflow/chat/stories') : {};
+const Stories = typeof window !== 'undefined' ? await import('@voiceflow/chat/stories') : ({} as typeof StoriesType);
 
 const ComponentNotFound: React.FC = () => <h2>🚨 Component not found! 🚨</h2>;
 
 export interface IStoryEmbed {
-  for: keyof typeof Stories;
+  for: keyof typeof StoriesType;
   name: string;
   props?: Record<string, any>;
   clientOnly?: boolean;
