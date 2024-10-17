@@ -4,7 +4,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 import { SquareButton } from '../Buttons/SquareButton';
 import { StopButton } from '../Buttons/StopButton';
 import SendButton from '../SendButton';
-import { buttonContainer, input, inputBlock, inputContainer, mockFocusRing } from './MessageInput.css';
+import { buttonContainer, input, inputBlock, inputContainer, mockFocusRing, test } from './MessageInput.css';
 
 interface IMessageInput {
   message: string;
@@ -28,26 +28,28 @@ export const MessageInput: React.FC<IMessageInput> = ({
   };
 
   return (
-    <div className={inputContainer} onClick={handleContainerClick}>
-      <div className={mockFocusRing} />
-      <div className={inputBlock}>
-        <TextareaAutosize
-          placeholder={placeholder}
-          minRows={1}
-          autoFocus
-          maxRows={5}
-          ref={inputRef}
-          value={message}
-          className={input}
-          onChange={(event) => onValueChange(event.target.value)}
-        />
-      </div>
-      <div className={buttonContainer}>
-        {!message?.length && !isRecording && (
-          <SquareButton size="medium" iconName="microphone" onClick={() => setIsRecording(true)} />
-        )}
-        {isRecording && <StopButton onClick={() => setIsRecording(false)} />}
-        <SendButton onClick={() => onSubmit()} disabled={!message?.length} />
+    <div className={test}>
+      <div className={inputContainer} onClick={handleContainerClick}>
+        <div className={mockFocusRing} />
+        <div className={inputBlock}>
+          <TextareaAutosize
+            placeholder={placeholder}
+            minRows={1}
+            autoFocus
+            maxRows={5}
+            ref={inputRef}
+            value={message}
+            className={input}
+            onChange={(event) => onValueChange(event.target.value)}
+          />
+        </div>
+        <div className={buttonContainer}>
+          {!message?.length && !isRecording && (
+            <SquareButton size="medium" iconName="microphone" onClick={() => setIsRecording(true)} />
+          )}
+          {isRecording && <StopButton onClick={() => setIsRecording(false)} />}
+          <SendButton onClick={() => onSubmit()} disabled={!message?.length} />
+        </div>
       </div>
     </div>
   );
