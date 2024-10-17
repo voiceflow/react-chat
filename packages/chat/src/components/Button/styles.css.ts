@@ -37,6 +37,8 @@ export const buttonStyles = recipe({
         borderRadius: SIZES.radius.xxs,
         height: SIZES.sm,
         fontWeight: 600,
+        display: 'block',
+        width: '100%',
         ':hover': {
           backgroundColor: PALETTE.colors[600],
         },
@@ -85,6 +87,13 @@ export const buttonStyles = recipe({
         },
       },
     },
+
+    large: {
+      true: {
+        height: 40,
+      },
+    },
+
     round: {
       true: {
         borderRadius: 9999,
