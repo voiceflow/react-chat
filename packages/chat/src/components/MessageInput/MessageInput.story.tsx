@@ -43,9 +43,11 @@ export const Base: Story = {
 };
 
 export const LongValue: Story = {
-  args: {
-    message:
-      "Howdy folk how ya'll doing out there. This input was lovingly crafted by your favourite design engineering team here at Voiceflow. We hope you enjoy using it as much as we enjoyed making it. If you have any feedback, please let us know. We're always looking to improve our products. Thanks for using Voiceflow!",
-  },
-  render: ({ message }) => <MockComponent initialMessage={message} />,
+  render: () => (
+    <MockComponent
+      initialMessage={
+        "Howdy folk how ya'll doing out there. This input was lovingly crafted by your favourite design engineering team here at Voiceflow. We hope you enjoy using it as much as we enjoyed making it. If you have any feedback, please let us know. We're always looking to improve our products. Thanks for using Voiceflow!"
+      }
+    />
+  ),
 };
