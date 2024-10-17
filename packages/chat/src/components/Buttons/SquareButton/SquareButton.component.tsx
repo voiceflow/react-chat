@@ -8,16 +8,17 @@ import type { ISquareButton } from './types';
 
 export const SquareButton: React.FC<ISquareButton> = ({
   size = 'small',
-
   variant = 'light',
   iconName,
   isLoading,
+  isActive,
   iconClassName,
+  className,
   ...props
 }) => {
   const icon = SVGs[iconName];
   return (
-    <button {...props} className={clsx(squareButtonStyles({ size }), SquareButtonTheme[variant])}>
+    <button {...props} className={clsx(squareButtonStyles({ size, isActive }), SquareButtonTheme[variant], className)}>
       {icon({ title: iconName })}
     </button>
   );

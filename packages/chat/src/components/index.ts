@@ -16,6 +16,7 @@ export { default as Launcher } from './Launcher';
 export { default as LinkPreview } from './LinkPreview';
 export { default as Loader } from './Loader';
 export { default as Message } from './Message';
+export { MessageInput } from './MessageInput';
 export * as Proactive from './Proactive';
 export { default as Prompt } from './Prompt';
 export { default as SendButton } from './SendButton';
