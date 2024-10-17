@@ -5,7 +5,7 @@ import { chain } from '@/utils/functional';
 
 import SendButton from '../SendButton';
 import { SquareButton } from '../SquareButton';
-import { buttonContainer, input, inputContainer } from './MessageInput.css';
+import { buttonContainer, input, inputBlock, inputContainer } from './MessageInput.css';
 
 interface IMessageInput {
   message: string;
@@ -25,16 +25,18 @@ export const MessageInput: React.FC<IMessageInput> = ({ message, onValueChange, 
 
   return (
     <div className={inputContainer} onClick={handleContainerClick}>
-      <TextareaAutosize
-        placeholder={placeholder}
-        minRows={1}
-        autoFocus
-        maxRows={5}
-        ref={inputRef}
-        value={message}
-        className={input}
-        onChange={handleChange}
-      />
+      <div className={inputBlock}>
+        <TextareaAutosize
+          placeholder={placeholder}
+          minRows={1}
+          autoFocus
+          maxRows={5}
+          ref={inputRef}
+          value={message}
+          className={input}
+          onChange={handleChange}
+        />
+      </div>
       <div className={buttonContainer}>
         <SquareButton size="medium" iconName="microphone" />
         <SendButton disabled={!message?.length} />
@@ -42,16 +44,3 @@ export const MessageInput: React.FC<IMessageInput> = ({ message, onValueChange, 
     </div>
   );
 };
-
-// <div className={inputContainer} onClick={handleContainerClick}>
-//   <div className={mockFocus} />
-//   <TextareaAutosize
-//     placeholder={placeholder}
-//     minRows={1}
-//     maxRows={5}
-//     ref={inputRef}
-//     value={message}
-//     className={input}
-//     onChange={handleChange}
-//   />
-// </div>
