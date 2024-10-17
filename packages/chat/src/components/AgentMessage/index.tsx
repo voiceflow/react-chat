@@ -1,21 +1,11 @@
 import '../../styles.css';
 
 import clsx from 'clsx';
-import Markdown from 'react-markdown';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import remarkGfm from 'remark-gfm';
+import React from 'react';
 
 import Icon from '../Icon';
-import {
-  aiIconModifier,
-  codeBlockContainer,
-  contentStyle,
-  copyButton,
-  generatedChin,
-  messageContainer,
-} from './AgentMessage.css';
-import codeTheme from './code-theme';
-import { CopyButton } from './CopyButton';
+import { aiIconModifier, contentStyle, generatedChin, messageContainer } from './AgentMessage.css';
+import { MarkdownMessage } from './Markdown';
 
 interface IAgentMessage {
   children: React.ReactNode;
@@ -26,6 +16,7 @@ interface IAgentMessage {
 
 const AgentMessage: React.FC<IAgentMessage> = ({ children, generated, generatedMessage }) => {
   const content = children?.toString();
+  const isNode = React.isValidElement(children);
 
   const isCodeBlock =
     (content?.startsWith('```') && (content?.endsWith('```') || content.endsWith('```\n'))) ||
@@ -34,37 +25,8 @@ const AgentMessage: React.FC<IAgentMessage> = ({ children, generated, generatedM
   return (
     <div className={messageContainer}>
       <div className={clsx(contentStyle({ isCodeBlock }))}>
-        <Markdown
-          children={children?.toString()}
-          className={'markdown'}
-          remarkPlugins={[remarkGfm]}
-          components={{
-            code(props: any) {
-              const { children, className, node, ref, ...rest } = props;
-              const match = /language-(\w+)/.exec(className || '');
-              return match ? (
-                <span className={codeBlockContainer}>
-                  <CopyButton value={children} className={copyButton} />
-                  <SyntaxHighlighter
-                    {...rest}
-                    lineProps={{
-                      style: { wordBreak: 'break-all', whiteSpace: 'pre-wrap', paddingLeft: 0, paddingRight: 0 },
-                    }}
-                    wrapLines={true}
-                    wrapLongLines={true}
-                    children={String(children).replace(/\n$/, '')}
-                    language={match[1]}
-                    style={codeTheme}
-                  />
-                </span>
-              ) : (
-                <div {...rest} className={className}>
-                  {children}
-                </div>
-              );
-            },
-          }}
-        />
+        {isNode && children}
+        {!isNode && !isCodeBlock && <MarkdownMessage>{content}</MarkdownMessage>}
       </div>
       {generated && (
         <div className={generatedChin}>
