@@ -4,7 +4,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 import { SquareButton } from '../Buttons/SquareButton';
 import { StopButton } from '../Buttons/StopButton';
 import SendButton from '../SendButton';
-import { buttonContainer, input, inputBlock, inputContainer } from './MessageInput.css';
+import { buttonContainer, input, inputBlock, inputContainer, mockFocusRing } from './MessageInput.css';
 
 interface IMessageInput {
   message: string;
@@ -29,6 +29,7 @@ export const MessageInput: React.FC<IMessageInput> = ({
 
   return (
     <div className={inputContainer} onClick={handleContainerClick}>
+      <div className={mockFocusRing} />
       <div className={inputBlock}>
         <TextareaAutosize
           placeholder={placeholder}
