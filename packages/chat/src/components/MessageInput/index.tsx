@@ -1,23 +1,27 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 
-import { chain } from '@/utils/functional';
-
+import { SquareButton } from '../Buttons/SquareButton';
+import { StopButton } from '../Buttons/StopButton';
 import SendButton from '../SendButton';
-import { SquareButton } from '../SquareButton';
 import { buttonContainer, input, inputBlock, inputContainer } from './MessageInput.css';
 
 interface IMessageInput {
   message: string;
   onValueChange: (value: string) => void;
-  onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onDictationClick?: () => void;
   placeholder: string;
+  onSubmit: () => void;
 }
 
-export const MessageInput: React.FC<IMessageInput> = ({ message, onValueChange, onChange, placeholder }) => {
-  const handleChange = chain(onChange, (event) => onValueChange(event.target.value));
-
+export const MessageInput: React.FC<IMessageInput> = ({
+  message,
+  onSubmit,
+  onValueChange,
+  placeholder = 'Message...',
+}) => {
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const [isRecording, setIsRecording] = useState(false);
 
   const handleContainerClick = () => {
     inputRef.current?.focus();
@@ -34,12 +38,15 @@ export const MessageInput: React.FC<IMessageInput> = ({ message, onValueChange, 
           ref={inputRef}
           value={message}
           className={input}
-          onChange={handleChange}
+          onChange={(event) => onValueChange(event.target.value)}
         />
       </div>
       <div className={buttonContainer}>
-        <SquareButton size="medium" iconName="microphone" />
-        <SendButton disabled={!message?.length} />
+        {!message?.length && !isRecording && (
+          <SquareButton size="medium" iconName="microphone" onClick={() => setIsRecording(true)} />
+        )}
+        {isRecording && <StopButton onClick={() => setIsRecording(false)} />}
+        <SendButton onClick={() => onSubmit()} disabled={!message?.length} />
       </div>
     </div>
   );
