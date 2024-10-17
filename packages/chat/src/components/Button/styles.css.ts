@@ -32,6 +32,7 @@ export const buttonStyles = recipe({
   variants: {
     type: {
       primary: {
+        paddingTop: 2,
         color: COLORS.white,
         backgroundColor: PALETTE.colors[500],
         borderRadius: SIZES.radius.xxs,
@@ -47,6 +48,7 @@ export const buttonStyles = recipe({
         },
       },
       secondary: {
+        paddingTop: 2,
         color: COLORS.NEUTRAL_DARK[500],
         backgroundColor: COLORS.NEUTRAL_DARK[9008],
         borderRadius: SIZES.radius.xxs,
