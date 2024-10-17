@@ -23,14 +23,6 @@ const CollapsableLauncher = (props: any) => {
 
 export const Default: Story = { render: () => <CollapsableLauncher image={tiledBg} /> };
 
-export const IconOverride: Story = {
-  render: () => <CollapsableLauncher image={tiledBg} />,
-};
-
 export const WithLabel: Story = {
-  render: () => <CollapsableLauncher image={tiledBg} label="Label" />,
-};
-
-export const CustomIconWithLabel: Story = {
   render: () => <CollapsableLauncher image={tiledBg} label="Label" />,
 };

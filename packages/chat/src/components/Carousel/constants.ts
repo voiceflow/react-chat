@@ -1,5 +1,4 @@
-import { CARD_WIDTH } from '@/components/Card/styled';
-
+import { CARD_WIDTH } from '../Card/styles.css';
 import { CAROUSEL_GUTTER_WIDTH } from './styled';
 
 export const CARD_WITH_BORDER_WIDTH = CARD_WIDTH + 2;

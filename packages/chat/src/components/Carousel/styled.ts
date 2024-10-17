@@ -1,8 +1,8 @@
-import Card from '@/components/Card';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
 import { styled } from '@/old-styles';
 
+import { cardContainer } from '../Card/styles.css';
 import { iconClassName } from '../Icon/styles.css';
 
 const BUTTON_SIZE = 42;
@@ -80,7 +80,7 @@ export const Container = styled(tag('div'), {
   display: 'flex',
   whiteSpace: 'nowrap',
 
-  [`& ${Card.Container}`]: {
+  [`& .${cardContainer}`]: {
     height: 'fit-content',
     flexShrink: 0,
     marginLeft: CAROUSEL_GUTTER_WIDTH,
