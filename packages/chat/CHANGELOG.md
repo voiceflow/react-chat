@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.21.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.20.0...@voiceflow/chat@0.21.0) (2024-10-17)
+
+### Features
+
+* add Card component (COR-2149) ([#223](https://github.com/voiceflow/react-chat/issues/223)) ([1a4e1b8](https://github.com/voiceflow/react-chat/commit/1a4e1b8bcabe539cc5d71bbaabbb8e92e6e25f14))
+
 # [0.20.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.19.0...@voiceflow/chat@0.20.0) (2024-10-16)
 
 ### Features

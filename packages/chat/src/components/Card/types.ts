@@ -1,7 +1,5 @@
 import type { RuntimeAction } from '@voiceflow/sdk-runtime';
 
-import type { Link } from './styled';
-
 export interface CardActionProps {
   /**
    * The label that will appear on the button.
@@ -22,7 +20,6 @@ export interface CardProps {
 
   /**
    * Text content of the card.
-   * If the string is a valid URL it will be rendered in a {@link Link}.
    */
   description: string;
 

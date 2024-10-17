@@ -6,25 +6,15 @@ import { transition } from '@/styles/transitions';
 
 import { buttonStyles } from '../Button/styles.css';
 
-const buttonSize = {
-  default: {
-    static: 56,
-    hover: 62,
-    active: 45,
-  },
-  withLabel: {
-    static: 48,
-    hover: 53,
-    active: 43,
-  },
-};
+const buttonSize = 56;
+const buttonSizeWithLabel = 48;
 
 export const launcherStyles = recipe({
   base: [
     buttonStyles({ round: true }),
     {
-      width: buttonSize.default.static,
-      height: buttonSize.default.static,
+      width: buttonSize,
+      height: buttonSize,
       padding: 12,
       backgroundColor: PALETTE.colors[500],
       transition: transition(['color', 'background-color', 'transform']),
@@ -45,7 +35,7 @@ export const launcherStyles = recipe({
     withLabel: {
       true: {
         width: 'auto',
-        height: buttonSize.withLabel.static,
+        height: buttonSizeWithLabel,
         padding: 18,
       },
     },

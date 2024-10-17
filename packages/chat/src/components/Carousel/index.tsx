@@ -1,9 +1,9 @@
 import type { RefObject } from 'react';
 import { createPortal } from 'react-dom';
 
-import type { CardProps } from '@/components/Card';
 import Card from '@/components/Card';
 
+import type { CardProps } from '../Card/types';
 import CarouselButton from './CarouselButton';
 import { CARD_WITH_GUTTER_WIDTH } from './constants';
 import { useScrollObserver, useScrollTo } from './hooks';
