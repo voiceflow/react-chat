@@ -7,7 +7,6 @@ import { transition } from '@/styles/transitions';
 export const inputContainer = style({
   position: 'relative',
   borderRadius: '25px',
-  width: '100%',
   display: 'flex',
   justifyContent: 'space-between',
   paddingTop: '8px',
@@ -23,9 +22,23 @@ export const inputContainer = style({
     '&:hover': {
       outline: `1px solid ${COLORS.NEUTRAL_LIGHT[200]}`,
     },
-    '&:focus': {},
-    '&:focus-within': {
-      outline: `2px solid ${COLORS.ACCENT[500]}`,
+  },
+});
+
+export const mockFocusRing = style({
+  position: 'absolute',
+  top: '1px',
+  left: '1px',
+  right: '1px',
+  bottom: '1px',
+  borderRadius: '25px',
+  outline: `2px solid ${COLORS.ACCENT[500]}`,
+  pointerEvents: 'none',
+  opacity: 0,
+  transition: transition(['opacity']),
+  selectors: {
+    [`${inputContainer}:focus-within &`]: {
+      opacity: 1,
     },
   },
 });
