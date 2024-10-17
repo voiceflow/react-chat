@@ -4,6 +4,12 @@ import { COLORS } from '@/styles/colors';
 import { FAMILY } from '@/styles/font';
 import { transition } from '@/styles/transitions';
 
+export const test = style({
+  WebkitBoxSizing: 'border-box',
+  MozBoxSizing: 'border-box',
+  boxSizing: 'border-box',
+});
+
 export const inputContainer = style({
   position: 'relative',
   borderRadius: '25px',
@@ -12,12 +18,14 @@ export const inputContainer = style({
   paddingTop: '8px',
   paddingBottom: '8px',
   fontSize: '14px',
+
+  boxSizing: 'border-box',
   paddingLeft: '20px',
   paddingRight: '8px',
   border: `1px solid ${COLORS.NEUTRAL_LIGHT[100]}`,
   backgroundColor: COLORS.white,
   boxShadow: '0px 3px 4px 0px rgba(0, 0, 0, 0.02), 0px 8px 42px -16px rgba(0, 0, 0, 0.08)',
-  transition: transition(['border-color', 'outline', 'box-shadow']),
+  transition: transition(['border', 'box-shadow']),
   selectors: {
     '&:hover': {
       border: `1px solid ${COLORS.NEUTRAL_LIGHT[200]}`,
@@ -51,9 +59,11 @@ export const input = style({
   outlineColor: 'transparent',
   resize: 'none',
   fontFamily: FAMILY,
+  boxSizing: 'border-box',
+
   padding: '0',
   lineHeight: '20px',
-  marginTop: '2px',
+  paddingTop: '2px',
   color: COLORS.NEUTRAL_DARK[900],
   selectors: {
     '&::placeholder': {
