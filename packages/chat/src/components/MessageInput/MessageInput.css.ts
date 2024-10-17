@@ -47,6 +47,15 @@ export const input = style({
   },
 });
 
+export const inputBlock = style({
+  width: '100%',
+  display: 'flex',
+  background: 'blue',
+  flexDirection: 'column',
+  alignItems: 'center',
+  margin: 'auto',
+});
+
 export const buttonContainer = style({
   display: 'flex',
   alignItems: 'flex-start',
