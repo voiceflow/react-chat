@@ -6,6 +6,7 @@ import { FAMILY } from '@/styles/font';
 import { SIZES } from '@/styles/sizes';
 import { transition } from '@/styles/transitions';
 
+import { cardContainer } from '../Card/styles.css';
 import { buttonReset } from './reset.css';
 
 export const buttonStyles = recipe({
@@ -13,6 +14,7 @@ export const buttonStyles = recipe({
     buttonReset,
     {
       fontFamily: FAMILY,
+      fontSize: '14px',
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
@@ -22,6 +24,8 @@ export const buttonStyles = recipe({
       fontWeight: '400',
       whiteSpace: 'nowrap',
       overflowWrap: 'anywhere',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
     },
   ],
 
@@ -54,12 +58,20 @@ export const buttonStyles = recipe({
           color: COLORS.NEUTRAL_DARK[900],
           backgroundColor: COLORS.NEUTRAL_DARK[90020],
         },
+
+        selectors: {
+          // Specific styles for buttons inside the Card component
+          [`.${cardContainer} &`]: {
+            display: 'block',
+            width: '100%',
+            marginBottom: 4,
+          },
+        },
       },
       inline: {
         borderRadius: SIZES.radius.xs,
         color: PALETTE.colors[500],
         backgroundColor: PALETTE.colors[50],
-        fontSize: '14px',
         lineHeight: '20px',
         padding: '7px 12px 6px 12px',
 
