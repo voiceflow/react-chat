@@ -19,7 +19,7 @@ export const Default: Story = {
     image: tiledBg,
     title:
       'Lorem ipsum dolor sit amet consectetur. Quis risus nibh tincidunt platea. A donec amet gravida aliquam sed eget aliquet sollicitudin turpis.',
-    url: 'websiteexample.com',
+    link: 'websiteexample.com',
   },
 };
 
@@ -27,7 +27,23 @@ export const Loading: Story = {
   args: {
     title:
       'Lorem ipsum dolor sit amet consectetur. Quis risus nibh tincidunt platea. A donec amet gravida aliquam sed eget aliquet sollicitudin turpis.',
-    url: 'websiteexample.com',
+    link: 'websiteexample.com',
+  },
+};
+
+export const DocumentUrl: Story = {
+  args: {
+    title:
+      'Lorem ipsum dolor sit amet consectetur. Quis risus nibh tincidunt platea. A donec amet gravida aliquam sed eget aliquet sollicitudin turpis.',
+    link: 'https://google.com',
+  },
+};
+
+export const DocumentPdf: Story = {
+  args: {
+    title:
+      'Lorem ipsum dolor sit amet consectetur. Quis risus nibh tincidunt platea. A donec amet gravida aliquam sed eget aliquet sollicitudin turpis.',
+    link: 'some_guide.pdf',
   },
 };
 
@@ -37,7 +53,7 @@ export const Inline: Story = {
     image: tiledBg,
     title:
       'Lorem ipsum dolor sit amet consectetur. Quis risus nibh tincidunt platea. A donec amet gravida aliquam sed eget aliquet sollicitudin turpis.',
-    url: 'websiteexample.com',
+    link: 'websiteexample.com',
   },
 };
 
@@ -46,6 +62,24 @@ export const LoadingInline: Story = {
     inline: true,
     title:
       'Lorem ipsum dolor sit amet consectetur. Quis risus nibh tincidunt platea. A donec amet gravida aliquam sed eget aliquet sollicitudin turpis.',
-    url: 'websiteexample.com',
+    link: 'websiteexample.com',
+  },
+};
+
+export const InlineDocumentUrl: Story = {
+  args: {
+    inline: true,
+    title:
+      'Lorem ipsum dolor sit amet consectetur. Quis risus nibh tincidunt platea. A donec amet gravida aliquam sed eget aliquet sollicitudin turpis.',
+    link: 'https://google.com',
+  },
+};
+
+export const InlineDocumentPdf: Story = {
+  args: {
+    inline: true,
+    title:
+      'Lorem ipsum dolor sit amet consectetur. Quis risus nibh tincidunt platea. A donec amet gravida aliquam sed eget aliquet sollicitudin turpis.',
+    link: 'some_guide.pdf',
   },
 };

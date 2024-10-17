@@ -31,6 +31,7 @@ export const linkPreviewContainer = recipe({
       true: {
         height: 43,
         padding: '4px 8px 4px 4px',
+        borderRadius: SIZES.radius.xs,
         backgroundColor: COLORS.NEUTRAL_LIGHT[100],
         ':hover': {
           backgroundColor: COLORS.NEUTRAL_LIGHT[200],
@@ -56,6 +57,12 @@ export const linkPreviewImageContainer = recipe({
     marginRight: 8,
     backgroundColor: COLORS.NEUTRAL_DARK[9006],
     overflow: 'hidden',
+    ':hover': {
+      backgroundColor: COLORS.NEUTRAL_DARK[9008],
+    },
+    ':active': {
+      backgroundColor: COLORS.NEUTRAL_DARK[90012],
+    },
   },
 
   variants: {
@@ -63,11 +70,34 @@ export const linkPreviewImageContainer = recipe({
       true: {
         width: 35,
         height: 35,
+        color: COLORS.NEUTRAL_DARK[300],
+        backgroundColor: COLORS.NEUTRAL_DARK[9008],
+        ':hover': {
+          color: COLORS.NEUTRAL_DARK[500],
+          backgroundColor: COLORS.NEUTRAL_DARK[90012],
+        },
+        ':active': {
+          color: COLORS.NEUTRAL_DARK[700],
+          backgroundColor: COLORS.NEUTRAL_DARK[90016],
+        },
       },
     },
-    loading: {
+    shadow: {
       true: {
         boxShadow: 'none',
+      },
+      false: {
+        // Creates an inset box-shadow over an image
+        '::after': {
+          content: '',
+          position: 'absolute',
+          height: '100%',
+          width: '100%',
+          top: 0,
+          right: 0,
+          display: 'block',
+          boxShadow: '0px -1px 0px 0px rgba(0, 0, 0, 0.08) inset',
+        },
       },
     },
   },
@@ -75,16 +105,6 @@ export const linkPreviewImageContainer = recipe({
 
 export const linkPreviewImage = style({
   width: '100%',
-  '::after': {
-    content: '',
-    position: 'absolute',
-    height: '100%',
-    width: '100%',
-    top: 0,
-    right: 0,
-    display: 'block',
-    boxShadow: '0px -1px 0px 0px rgba(0, 0, 0, 0.04) inset',
-  },
 });
 
 export const linkPreviewDetails = style({
