@@ -14,13 +14,13 @@ export const inputContainer = style({
   fontSize: '14px',
   paddingLeft: '20px',
   paddingRight: '8px',
-  outline: `1px solid ${COLORS.NEUTRAL_LIGHT[100]}`,
+  border: `1px solid ${COLORS.NEUTRAL_LIGHT[100]}`,
   backgroundColor: COLORS.white,
   boxShadow: '0px 3px 4px 0px rgba(0, 0, 0, 0.02), 0px 8px 42px -16px rgba(0, 0, 0, 0.08)',
   transition: transition(['border-color', 'outline', 'box-shadow']),
   selectors: {
     '&:hover': {
-      outline: `1px solid ${COLORS.NEUTRAL_LIGHT[200]}`,
+      border: `1px solid ${COLORS.NEUTRAL_LIGHT[200]}`,
     },
   },
 });
