@@ -28,6 +28,13 @@ export const Primary: Story = {
   },
 };
 
+export const PrimaryLarge: Story = {
+  args: {
+    variant: ButtonVariant.PRIMARY,
+    large: true,
+  },
+};
+
 export const Secondary: Story = {
   args: {
     variant: ButtonVariant.SECONDARY,
