@@ -15,6 +15,7 @@ export { default as Image } from './Image';
 export { default as Input } from './Input';
 export { default as Launcher } from './Launcher';
 export { default as Loader } from './Loader';
+export { LoadingDots } from './LoadingDots';
 export { default as Message } from './Message';
 export * as Proactive from './Proactive';
 export { default as Prompt } from './Prompt';
