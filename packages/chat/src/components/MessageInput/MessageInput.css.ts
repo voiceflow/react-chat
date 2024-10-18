@@ -27,18 +27,19 @@ export const inputContainer = style({
 
 export const mockFocusRing = style({
   position: 'absolute',
-  top: '1px',
-  left: '1px',
-  right: '1px',
-  bottom: '1px',
+  top: '-1px',
+  left: '-1px',
+  right: '-1px',
+  bottom: '-1px',
   borderRadius: '25px',
-  outline: `2px solid ${COLORS.ACCENT[500]}`,
+  border: `0px solid ${COLORS.ACCENT[500]}`,
   pointerEvents: 'none',
   opacity: 0,
-  transition: transition(['opacity']),
+  transition: transition(['opacity', 'border']),
   selectors: {
     [`${inputContainer}:focus-within &`]: {
       opacity: 1,
+      border: `2px solid ${COLORS.ACCENT[500]}`,
     },
   },
 });
