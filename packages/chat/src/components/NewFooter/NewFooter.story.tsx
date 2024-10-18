@@ -42,7 +42,7 @@ const meta: Meta<typeof NewFooter> = {
   component: NewFooter,
   decorators: [
     (Story) => (
-      <div style={{ width: '400px' }}>
+      <div style={{ width: '400px', marginTop: '100px' }}>
         <Story />
       </div>
     ),

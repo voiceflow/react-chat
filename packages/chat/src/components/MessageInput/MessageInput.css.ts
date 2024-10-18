@@ -4,16 +4,11 @@ import { COLORS } from '@/styles/colors';
 import { FAMILY } from '@/styles/font';
 import { transition } from '@/styles/transitions';
 
-export const test = style({
-  WebkitBoxSizing: 'border-box',
-  MozBoxSizing: 'border-box',
-  boxSizing: 'border-box',
-});
-
 export const inputContainer = style({
   position: 'relative',
   borderRadius: '25px',
   display: 'flex',
+  zIndex: 1,
   justifyContent: 'space-between',
   paddingTop: '8px',
   paddingBottom: '8px',

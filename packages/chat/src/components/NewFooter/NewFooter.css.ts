@@ -1,19 +1,42 @@
 import { keyframes, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
+import { COLORS } from '@/styles/colors';
+import { FAMILY } from '@/styles/font';
+
 export const footerContainer = style({
-  display: 'flex',
-  flexDirection: 'column',
+  // display: 'flex',
+  // flexDirection: 'column',
+  position: 'relative',
+  // height: '41px',
 });
 
 export const scrollableButtonContainer = style({
   display: 'flex',
   gap: '8px',
   overflowX: 'scroll',
-  paddingBottom: '10px',
-  width: '100%',
   scrollbarWidth: 'none',
+  // position: 'absolute',
+  // top: '-46px',
+  // transform: 'translateY(-50%)',
   paddingLeft: '20px',
+});
+
+export const messageBackground = recipe({
+  base: {
+    backgroundColor: COLORS.white,
+    position: 'absolute',
+    height: '100%',
+    width: '100%',
+    top: '20px',
+  },
+  variants: {
+    showPoweredBy: {
+      true: {
+        paddingBottom: '20px',
+      },
+    },
+  },
 });
 
 export const messageContainer = recipe({
@@ -22,8 +45,8 @@ export const messageContainer = recipe({
   },
   variants: {
     showPoweredBy: {
-      false: {
-        paddingBottom: '20px',
+      true: {
+        // paddingBottom: '20px',
       },
     },
   },
@@ -41,6 +64,31 @@ const fadeIn = keyframes({
 export const scrollToButtomButtonContainer = style({
   display: 'flex',
   justifyContent: 'center',
-  paddingBottom: '12px',
+  position: 'absolute',
+  top: '-24px',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
   animation: `${fadeIn} .15s ease-in`, // Apply the fade-in animation
+});
+
+export const poweredByStyles = style({
+  color: COLORS.NEUTRAL_DARK[100],
+  fontFamily: FAMILY,
+  fontSize: '12px',
+  lineHeight: '17px',
+  position: 'absolute',
+  bottom: '10px',
+  left: '50%',
+  transform: 'translateX(-50%)',
+  display: 'flex',
+  alignItems: 'center',
+  gap: '8px',
+  justifyContent: 'center',
+});
+
+export const separator = style({
+  height: '2px',
+  width: '2px',
+  borderRadius: '100px',
+  backgroundColor: COLORS.NEUTRAL_LIGHT[500],
 });
