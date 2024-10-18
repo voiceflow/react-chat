@@ -40,12 +40,17 @@ export interface HeaderProps extends IThemedComponent {
    * A list of actions that will appear as icon buttons.
    */
   actions?: HeaderActionProps[];
+
+  /**
+   * The primary color of the header.
+   */
+  rounded?: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({ primaryColor, title, image, actions = [] }) => (
+const Header: React.FC<HeaderProps> = ({ primaryColor, title, image, actions = [], rounded }) => (
   <div
     style={assignInlineVars(PALETTE, { colors: createPalette(primaryColor) })}
-    className={clsx(ClassName.ICON, headerContainer)}
+    className={clsx(ClassName.ICON, headerContainer({ rounded }))}
   >
     {!!image?.length && <Avatar size="small" avatar={image} />}
     <div className={headerInnerContainer}>
