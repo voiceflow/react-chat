@@ -77,7 +77,6 @@ export const WithButtons: Story = {
 export const WithPoweredBy: Story = {
   ...Default,
   args: {
-    buttons,
     showPoweredBy: true,
   },
 };
