@@ -5,21 +5,25 @@ import { COLORS } from '@/styles/colors';
 import { FAMILY } from '@/styles/font';
 
 export const footerContainer = style({
-  // display: 'flex',
-  // flexDirection: 'column',
   position: 'relative',
-  // height: '41px',
+  display: 'flex',
+  flexDirection: 'column',
+  height: '100%',
+  width: '100%',
 });
 
+const BUTTON_HEIGHT = 33;
+const BUTTON_ROW_MARGIN = 10;
+const SCROLL_TO_BUTTON_MARGIN = 12;
+
 export const scrollableButtonContainer = style({
-  display: 'flex',
+  display: 'inline-flex',
   gap: '8px',
-  overflowX: 'scroll',
+  width: '100%',
+  overflowX: 'auto',
   scrollbarWidth: 'none',
-  // position: 'absolute',
-  // top: '-46px',
-  // transform: 'translateY(-50%)',
-  paddingLeft: '20px',
+  position: 'absolute',
+  top: `${-BUTTON_HEIGHT - BUTTON_ROW_MARGIN}px`,
 });
 
 export const messageBackground = recipe({
@@ -39,17 +43,22 @@ export const messageBackground = recipe({
   },
 });
 
-export const messageContainer = recipe({
-  base: {
-    padding: '0 20px',
-  },
-  variants: {
-    showPoweredBy: {
-      true: {
-        // paddingBottom: '20px',
-      },
-    },
-  },
+export const messageContainer = style({
+  position: 'relative',
+  display: 'flex',
+  flexDirection: 'column',
+});
+
+export const messageContent = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '8px',
+
+  flex: 1,
+});
+
+export const messagePadding = style({
+  padding: '0 20px',
 });
 
 const fadeIn = keyframes({
@@ -61,14 +70,23 @@ const fadeIn = keyframes({
   },
 });
 
-export const scrollToButtomButtonContainer = style({
-  display: 'flex',
-  justifyContent: 'center',
-  position: 'absolute',
-  top: '-24px',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  animation: `${fadeIn} .15s ease-in`, // Apply the fade-in animation
+export const scrollToButtomButtonContainer = recipe({
+  base: {
+    display: 'flex',
+    justifyContent: 'center',
+    position: 'absolute',
+    left: '50%',
+    top: `${-SCROLL_TO_BUTTON_MARGIN - 14}px`,
+    transform: 'translate(-50%, -50%)',
+    animation: `${fadeIn} .15s ease-in`,
+  },
+  variants: {
+    hasButtons: {
+      true: {
+        top: `${-BUTTON_HEIGHT - BUTTON_ROW_MARGIN - SCROLL_TO_BUTTON_MARGIN - 14}px`,
+      },
+    },
+  },
 });
 
 export const poweredByStyles = style({

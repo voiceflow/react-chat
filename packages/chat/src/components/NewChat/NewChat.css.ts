@@ -21,6 +21,7 @@ export const chatContent = style({
   display: 'flex',
   flexDirection: 'column',
   padding: '0 20px',
+  marginBottom: '40px',
 });
 
 const fadeIn = keyframes({

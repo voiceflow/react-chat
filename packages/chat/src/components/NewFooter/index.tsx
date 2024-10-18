@@ -4,16 +4,15 @@ import type { IMessageInput } from '../MessageInput';
 import { MessageInput } from '../MessageInput';
 import {
   footerContainer,
-  footerContent,
   messageBackground,
   messageContainer,
-  messagePositioner,
+  messageContent,
+  messagePadding,
   poweredByStyles,
   scrollableButtonContainer,
   scrollToButtomButtonContainer,
   separator,
 } from './NewFooter.css';
-import { PoweredBy } from './PoweredBy';
 import { ScrollButton } from './ScrollButton';
 
 export interface INewFooter {
@@ -33,8 +32,26 @@ export const NewFooter: React.FC<INewFooter> = ({
 }) => {
   return (
     <div className={footerContainer}>
-      <div className={messageContainer()}>
-        <MessageInput {...messageInputProps} />
+      <div className={messageContainer}>
+        <div className={messageContent}>
+          {showScrollToButton && (
+            <div className={scrollToButtomButtonContainer({ hasButtons: !!buttons?.length })}>
+              <ScrollButton onClick={onScrollToBottom} />
+            </div>
+          )}
+          {!!buttons?.length && (
+            <div className={scrollableButtonContainer}>
+              {buttons?.map((button) => (
+                <Button variant={ButtonVariant.INLINE} key={button.label} {...button}>
+                  {button.label}
+                </Button>
+              ))}
+            </div>
+          )}
+          <div className={messagePadding}>
+            <MessageInput {...messageInputProps} />
+          </div>
+        </div>
       </div>
       <div className={messageBackground({ showPoweredBy })}>
         {showPoweredBy && (
@@ -48,19 +65,3 @@ export const NewFooter: React.FC<INewFooter> = ({
     </div>
   );
 };
-
-// {showScrollToButton && (
-//   <div className={scrollToButtomButtonContainer}>
-//     <ScrollButton onClick={onScrollToBottom} />
-//   </div>
-// )}
-
-// {!!buttons?.length && (
-//   <div className={scrollableButtonContainer}>
-//     {buttons?.map((button) => (
-//       <Button variant={ButtonVariant.INLINE} key={button.label} {...button}>
-//         {button.label}
-//       </Button>
-//     ))}
-//   </div>
-// )}
