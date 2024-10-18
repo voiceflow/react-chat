@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
 
+import type { INewFooter } from '.';
 import { NewFooter } from '.';
 
 type Story = StoryObj<typeof NewFooter>;
@@ -49,7 +51,33 @@ const meta: Meta<typeof NewFooter> = {
 
 export default meta;
 
-export const Default: Story = {};
+const MockComponent = (props: Partial<INewFooter>) => {
+  const [message, setMessage] = useState('');
+
+  const handleValueChange = (value: string) => {
+    setMessage(value);
+  };
+
+  const onSubmit = () => {
+    setMessage('');
+  };
+
+  return (
+    <NewFooter
+      messageInputProps={{ message, onValueChange: handleValueChange, placeholder: 'Message...', onSubmit }}
+      {...props}
+    />
+  );
+};
+
+export const Default: Story = {
+  args: {
+    buttons: [],
+    showScrollToButton: false,
+    showPoweredBy: false,
+  },
+  render: (args) => <MockComponent {...args} />,
+};
 
 export const Everything: Story = {
   ...Default,

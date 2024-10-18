@@ -6,7 +6,7 @@ import { StopButton } from '../Buttons/StopButton';
 import SendButton from '../SendButton';
 import { buttonContainer, input, inputBlock, inputContainer, mockFocusRing, test } from './MessageInput.css';
 
-interface IMessageInput {
+export interface IMessageInput {
   message: string;
   onValueChange: (value: string) => void;
   onDictationClick?: () => void;

@@ -1,5 +1,6 @@
 import Button from '../Button';
 import { ButtonVariant } from '../Button/constants';
+import type { IMessageInput } from '../MessageInput';
 import { MessageInput } from '../MessageInput';
 import {
   footerContainer,
@@ -10,13 +11,14 @@ import {
 import { PoweredBy } from './PoweredBy';
 import { ScrollButton } from './ScrollButton';
 
-interface INewFooter {
-  buttons: { label: string; onClick: () => void }[];
+export interface INewFooter {
+  buttons?: { label: string; onClick: () => void }[];
   showScrollToButton?: boolean;
   showPoweredBy?: boolean;
+  messageInputProps: IMessageInput;
 }
 
-export const NewFooter: React.FC<INewFooter> = ({ buttons, showScrollToButton, showPoweredBy }) => {
+export const NewFooter: React.FC<INewFooter> = ({ buttons, showScrollToButton, showPoweredBy, messageInputProps }) => {
   return (
     <div className={footerContainer}>
       {showScrollToButton && (
@@ -34,7 +36,7 @@ export const NewFooter: React.FC<INewFooter> = ({ buttons, showScrollToButton, s
         </div>
       )}
       <div className={messageContainer({ showPoweredBy: !!showPoweredBy })}>
-        <MessageInput onValueChange={() => null} message="" placeholder="Message..." onSubmit={() => null} />
+        <MessageInput {...messageInputProps} />
       </div>
       {showPoweredBy && <PoweredBy />}
     </div>
