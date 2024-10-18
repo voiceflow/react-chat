@@ -4,7 +4,6 @@ import { recipe } from '@vanilla-extract/recipes';
 export const footerContainer = style({
   display: 'flex',
   flexDirection: 'column',
-  overflowX: 'hidden',
 });
 
 export const scrollableButtonContainer = style({
