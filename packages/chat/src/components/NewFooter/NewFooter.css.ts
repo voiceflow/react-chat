@@ -37,16 +37,20 @@ export const messageBackground = recipe({
   base: {
     backgroundColor: COLORS.white,
     position: 'absolute',
-    height: '50%',
     left: 0,
-    bottom: '-1px',
     width: '100%',
+    bottom: '-20px',
+    height: '48px',
+    borderBottomLeftRadius: '12px',
+    borderBottomRightRadius: '12px',
   },
   variants: {
     showPoweredBy: {
-      false: {
-        bottom: '-20px',
-        height: '48px',
+      true: {
+        height: '50%',
+        bottom: '-1px',
+        borderBottomLeftRadius: '0',
+        borderBottomRightRadius: '0',
       },
     },
   },
