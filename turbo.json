@@ -6,7 +6,7 @@
       "inputs": [
         "../../scripts/build_pkg.sh",
         "src/**",
-        ":!src/**/*.test.ts",
+        ":!src/**/*.test.*",
         "next.config.mjs",
         "package.json",
         "tsconfig.json",

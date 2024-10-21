@@ -96,7 +96,7 @@
     "@voiceflow/test-common": "1.13.0",
     "chromatic": "11.2.0",
     "eslint-plugin-mdx": "3.1.5",
-    "eslint-plugin-storybook": "0.8.0",
+    "eslint-plugin-storybook": "0.10.1",
     "happy-dom": "14.7.1",
     "http-server": "14.1.1",
     "react": "18.2.0",
