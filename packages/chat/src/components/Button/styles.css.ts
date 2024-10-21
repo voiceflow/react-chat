@@ -54,6 +54,8 @@ export const buttonStyles = recipe({
         borderRadius: SIZES.radius.xxs,
         height: SIZES.sm,
         fontWeight: 600,
+        display: 'block',
+        width: '100%',
         ':hover': {
           color: COLORS.NEUTRAL_DARK[700],
           backgroundColor: COLORS.NEUTRAL_DARK[90012],

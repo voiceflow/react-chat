@@ -41,6 +41,13 @@ export const Secondary: Story = {
   },
 };
 
+export const SecondaryLarge: Story = {
+  args: {
+    variant: ButtonVariant.SECONDARY,
+    large: true,
+  },
+};
+
 export const Inline: Story = {
   args: {
     variant: ButtonVariant.INLINE,
