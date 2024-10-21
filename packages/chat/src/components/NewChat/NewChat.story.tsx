@@ -10,7 +10,15 @@ import Header from '../Header';
 import { NewFooter } from '../NewFooter';
 import { UserMessage } from '../UserMessage';
 import { WelcomeMessage } from '../WelcomeMessage';
-import { agentMessage, avatarContainer, chatContainer, chatContent, scrollableArea, userMessage } from './NewChat.css';
+import {
+  agentMessage,
+  avatarContainer,
+  chatContainer,
+  chatContent,
+  footerContainer,
+  scrollableArea,
+  userMessage,
+} from './NewChat.css';
 
 const meta: Meta = {
   title: 'Widget',
@@ -71,7 +79,7 @@ const MockWidget = () => {
   const [newMessage, setNewMessage] = useState('');
   const [showScrollToBottom, setShowScrollToBottom] = useState(false);
 
-  const scrollableAreaRef = useRef<HTMLSpanElement>(null);
+  const scrollableAreaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (scrollableAreaRef.current) {
@@ -155,7 +163,7 @@ const MockWidget = () => {
   return (
     <div className={chatContainer}>
       <Header title="ChatKit V2" image={VF_ICON} rounded />
-      <span className={scrollableArea} ref={scrollableAreaRef}>
+      <div className={scrollableArea} ref={scrollableAreaRef}>
         <WelcomeMessage
           avatar={VF_ICON}
           title="ChatKit V2"
@@ -177,26 +185,28 @@ const MockWidget = () => {
             </div>
           ))}
         </div>
-      </span>
-      <NewFooter
-        showPoweredBy={true}
-        buttons={buttons}
-        onScrollToBottom={() => {
-          if (scrollableAreaRef.current) {
-            scrollableAreaRef.current.scrollTo({
-              top: scrollableAreaRef.current.scrollHeight,
-              behavior: 'smooth',
-            });
-          }
-        }}
-        showScrollToButton={showScrollToBottom}
-        messageInputProps={{
-          message: newMessage,
-          onValueChange: (e) => setNewMessage(e),
-          placeholder: 'Message...',
-          onSubmit: handleSubmit,
-        }}
-      />
+      </div>
+      <section className={footerContainer}>
+        <NewFooter
+          showPoweredBy={true}
+          buttons={buttons}
+          onScrollToBottom={() => {
+            if (scrollableAreaRef.current) {
+              scrollableAreaRef.current.scrollTo({
+                top: scrollableAreaRef.current.scrollHeight,
+                behavior: 'smooth',
+              });
+            }
+          }}
+          showScrollToButton={showScrollToBottom}
+          messageInputProps={{
+            message: newMessage,
+            onValueChange: (e) => setNewMessage(e),
+            placeholder: 'Message...',
+            onSubmit: handleSubmit,
+          }}
+        />
+      </section>
     </div>
   );
 };

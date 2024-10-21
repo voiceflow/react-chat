@@ -4,60 +4,16 @@ import { recipe } from '@vanilla-extract/recipes';
 import { COLORS } from '@/styles/colors';
 import { FAMILY } from '@/styles/font';
 
-export const footerContainer = style({
-  position: 'relative',
-  display: 'flex',
-  flexDirection: 'column',
-  height: '100%',
-  width: '100%',
-});
-
-const BUTTON_HEIGHT = 33;
 const BUTTON_ROW_MARGIN = 10;
-const SCROLL_TO_BUTTON_MARGIN = 12;
 
-export const scrollableButtonContainer = style({
-  display: 'inline-flex',
+export const buttonsContainer = style({
+  display: 'flex',
   gap: '8px',
-  width: '100%',
-  overflowX: 'auto',
+  flexWrap: 'nowrap',
+  marginBottom: `${BUTTON_ROW_MARGIN}px`,
+  overflow: 'hidden',
+  overflowX: 'scroll',
   scrollbarWidth: 'none',
-  position: 'absolute',
-  top: `${-BUTTON_HEIGHT - BUTTON_ROW_MARGIN}px`,
-});
-
-export const messageBackground = recipe({
-  base: {
-    backgroundColor: COLORS.white,
-    position: 'absolute',
-    height: '100%',
-    width: '100%',
-    top: '20px',
-  },
-  variants: {
-    showPoweredBy: {
-      true: {
-        paddingBottom: '20px',
-      },
-    },
-  },
-});
-
-export const messageContainer = style({
-  position: 'relative',
-  display: 'flex',
-  flexDirection: 'column',
-});
-
-export const messageContent = style({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '8px',
-
-  flex: 1,
-});
-
-export const messagePadding = style({
   padding: '0 20px',
 });
 
@@ -70,23 +26,35 @@ const fadeIn = keyframes({
   },
 });
 
-export const scrollToButtomButtonContainer = recipe({
+export const scrollButtonContainer = style({
+  display: 'flex',
+  justifyContent: 'center',
+  marginBottom: `${BUTTON_ROW_MARGIN}px`,
+  animation: `${fadeIn} .15s ease-in`, // Apply the fade-in animation
+});
+
+export const messageBackground = recipe({
   base: {
-    display: 'flex',
-    justifyContent: 'center',
+    backgroundColor: COLORS.white,
     position: 'absolute',
-    left: '50%',
-    top: `${-SCROLL_TO_BUTTON_MARGIN - 14}px`,
-    transform: 'translate(-50%, -50%)',
-    animation: `${fadeIn} .15s ease-in`,
+    height: '50%',
+    left: 0,
+    bottom: '-1px',
+    width: '100%',
   },
   variants: {
-    hasButtons: {
-      true: {
-        top: `${-BUTTON_HEIGHT - BUTTON_ROW_MARGIN - SCROLL_TO_BUTTON_MARGIN - 14}px`,
+    showPoweredBy: {
+      false: {
+        bottom: '-20px',
+        height: '48px',
       },
     },
   },
+});
+
+export const messageContainer = style({
+  position: 'relative',
+  padding: '0 20px',
 });
 
 export const poweredByStyles = style({
@@ -94,14 +62,15 @@ export const poweredByStyles = style({
   fontFamily: FAMILY,
   fontSize: '12px',
   lineHeight: '17px',
-  position: 'absolute',
-  bottom: '10px',
-  left: '50%',
-  transform: 'translateX(-50%)',
+  backgroundColor: COLORS.white,
+  width: '100%',
+  padding: '10px 0',
   display: 'flex',
   alignItems: 'center',
-  gap: '8px',
   justifyContent: 'center',
+  gap: '8px',
+  borderBottomRightRadius: '12px',
+  borderBottomLeftRadius: '12px',
 });
 
 export const separator = style({
