@@ -19,11 +19,9 @@ export const carouselButton = recipe({
       transition: transition(['color', 'transform']),
       ':hover': {
         color: COLORS.NEUTRAL_DARK[600],
-        transform: 'scale(1.15)',
       },
       ':active': {
         color: COLORS.NEUTRAL_DARK[800],
-        transform: 'scale(0.8)',
       },
 
       // When the buttons are inside a carousel
@@ -45,26 +43,32 @@ export const carouselButton = recipe({
         pointerEvents: 'none',
       },
     },
+
     direction: {
       right: {
-        transform: 'rotate(180)',
+        transform: 'none',
+        ':hover': {
+          transform: 'scale(1.15)',
+        },
+        ':active': {
+          transform: 'scale(0.8)',
+        },
+        [`.${carouselContainer} &`]: {
+          right: '3px',
+        },
       },
-      left: {},
-    },
-  },
-});
-
-export const carouselButtonIcon = recipe({
-  base: {},
-  variants: {
-    direction: {
-      right: {},
       left: {
         transform: 'rotate(180deg)',
+        ':hover': {
+          transform: 'rotate(180deg) scale(1.15)',
+        },
+        ':active': {
+          transform: 'rotate(180deg) scale(0.8)',
+        },
+        [`.${carouselContainer} &`]: {
+          left: '3px',
+        },
       },
     },
-  },
-  defaultVariants: {
-    direction: 'right',
   },
 });

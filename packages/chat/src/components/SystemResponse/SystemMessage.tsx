@@ -15,7 +15,7 @@ import Feedback from '../Feedback';
 import { MessageType } from './constants';
 import { ExtensionMessage } from './ExtensionMessage';
 import EndState from './state/end';
-import { Controls, List, MessageContainer } from './styled';
+import { List, MessageContainer } from './styled';
 import type { MessageProps } from './types';
 
 export interface SystemMessageProps extends React.PropsWithChildren {
@@ -48,7 +48,6 @@ export interface SystemMessageProps extends React.PropsWithChildren {
 
 const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, feedback, timestamp, message, withImage, children }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const controlsRef = useRef<HTMLSpanElement>(null);
 
   const { config } = useContext(RuntimeStateAPIContext);
 
@@ -58,7 +57,6 @@ const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, feedback, timesta
 
   return (
     <>
-      <Controls ref={controlsRef} />
       <MessageContainer ref={containerRef} withImage={withImage} scrollable={message?.type === MessageType.CAROUSEL}>
         <Avatar avatar={avatar} />
         <List>
@@ -67,9 +65,7 @@ const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, feedback, timesta
               .with({ type: MessageType.TEXT }, ({ text }) => <Text text={text} />)
               .with({ type: MessageType.IMAGE }, ({ url }) => <Image image={url} mode={config.render?.mode} />)
               .with({ type: MessageType.CARD }, (props) => <Card {...R.omit(props, ['type'])} />)
-              .with({ type: MessageType.CAROUSEL }, (props) => (
-                <Carousel {...R.omit(props, ['type'])} containerRef={containerRef} controlsRef={controlsRef} />
-              ))
+              .with({ type: MessageType.CAROUSEL }, (props) => <Carousel {...R.omit(props, ['type'])} />)
               .with({ type: MessageType.EXTENSION }, ({ payload }) => (
                 <ExtensionMessage extension={payload.extension} trace={payload.trace} />
               ))

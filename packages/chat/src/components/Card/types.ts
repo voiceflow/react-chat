@@ -32,4 +32,9 @@ export interface CardProps {
    * A list of actions that will appear as button controls at the bottom of the card.
    */
   actions?: CardActionProps[] | undefined;
+
+  /**
+   * Extra className to add to this component.
+   */
+  className?: string;
 }

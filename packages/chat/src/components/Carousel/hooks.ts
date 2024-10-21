@@ -1,5 +1,5 @@
 import type { RefObject } from 'react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import type { CardProps } from '../Card/types';
 import { CARD_WITH_GUTTER_WIDTH, NEXT_CONTROL_BOUNDARY, PREVIOUS_CONTROL_BOUNDARY } from './constants';
@@ -19,19 +19,13 @@ export const useScrollTo =
     });
   };
 
-export const useScrollObserver = (
-  containerRef: RefObject<HTMLDivElement> | undefined,
-  controlsRef: RefObject<HTMLSpanElement> | undefined,
-  cards: CardProps[]
-) => {
+export const useScrollObserver = (containerRef: RefObject<HTMLDivElement> | undefined, cards: CardProps[]) => {
   const [showPreviousButton, setShowPreviousButton] = useState(false);
   const [showNextButton, setShowNextButton] = useState(false);
-  const previousButtonRef = useRef<HTMLButtonElement>(null);
-  const nextButtonRef = useRef<HTMLButtonElement>(null);
   const hasMultipleCards = cards.length > 1;
 
   useEffect(() => {
-    if (!controlsRef?.current || !hasMultipleCards) return;
+    if (!hasMultipleCards) return;
 
     setShowNextButton(true);
   }, []);
@@ -57,8 +51,6 @@ export const useScrollObserver = (
   }, []);
 
   return {
-    previousButtonRef,
-    nextButtonRef,
     showPreviousButton,
     showNextButton,
   };
