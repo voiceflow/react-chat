@@ -1,4 +1,5 @@
 import { keyframes, style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
 import { COLORS } from '@/styles/colors';
 
@@ -18,19 +19,6 @@ export const scrollableArea = style({
   display: 'block',
 });
 
-export const chatContent = style({
-  display: 'flex',
-  flexDirection: 'column',
-  padding: '0 20px',
-  marginBottom: '40px',
-});
-
-export const footerContainer = style({
-  position: 'absolute',
-  bottom: 0,
-  width: '100%',
-});
-
 const fadeIn = keyframes({
   from: {
     opacity: 0,
@@ -40,12 +28,46 @@ const fadeIn = keyframes({
   },
 });
 
-export const agentMessage = style({
+export const chatContent = style({
+  display: 'flex',
+  flexDirection: 'column',
+  padding: '0 20px',
+  marginBottom: '40px',
+});
+
+const baseMessage = style({
+  display: 'flex',
+  animation: `${fadeIn} .15s ease-in`, // Apply the fade-in animation
   alignSelf: 'flex-start',
   justifyContent: 'flex-end',
-  display: 'flex',
-  marginBottom: '16px',
-  animation: `${fadeIn} .15s ease-in`, // Apply the fade-in animation
+  marginTop: '16px',
+});
+
+export const agentMessage = recipe({
+  base: [
+    baseMessage,
+    {
+      alignSelf: 'flex-start',
+    },
+  ],
+  variants: {
+    tight: {
+      true: {
+        marginTop: '8px',
+      },
+    },
+  },
+});
+
+export const userMessage = recipe({
+  base: [baseMessage, { alignSelf: 'flex-end' }],
+  variants: {
+    tight: {
+      true: {
+        marginTop: '8px',
+      },
+    },
+  },
 });
 
 export const avatarContainer = style({
@@ -54,18 +76,8 @@ export const avatarContainer = style({
   alignItems: 'flex-end',
 });
 
-export const userMessage = style({
-  alignSelf: 'flex-end',
-  backgroundColor: '#f0f0f0',
-  textAlign: 'left',
-  marginBottom: '16px',
-  animation: `${fadeIn} .15s ease-in`, // Apply the fade-in animation
-});
-
-export const scrollToButtomButtonContainer = style({
-  display: 'flex',
-  justifyContent: 'center',
+export const footerContainer = style({
   position: 'absolute',
   bottom: 0,
-  animation: `${fadeIn} .15s ease-in`,
+  width: '100%',
 });

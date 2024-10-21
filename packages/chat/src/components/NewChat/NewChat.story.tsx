@@ -60,9 +60,27 @@ const messages = [
 ];
 
 export const WithEntireFooter = {
-  render: () => <NewChat messages={messages} buttons={buttons} />,
+  render: () => (
+    <NewChat
+      messages={messages.splice(0, 1)}
+      footerProps={{
+        buttons,
+        showPoweredBy: true,
+        messageInputProps: { message: '', onSubmit: () => null, placeholder: 'Message...', onValueChange: () => null },
+      }}
+    />
+  ),
 };
 
 export const BaseFooter = {
-  render: () => <NewChat messages={messages} />,
+  render: () => (
+    <NewChat
+      messages={messages}
+      footerProps={{
+        buttons: [],
+        showPoweredBy: false,
+        messageInputProps: { message: '', onSubmit: () => null, placeholder: 'Message...', onValueChange: () => null },
+      }}
+    />
+  ),
 };

@@ -1,7 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { VF_ICON } from '@/fixtures';
+import CODE_RESPONSE_FIXTURE from '@/__fixtures__/markdown/code-response.md?raw';
+import CODE_SNIPPET_FIXTURE from '@/__fixtures__/markdown/inline-code.md?raw';
+import LISTS_FIXTURE from '@/__fixtures__/markdown/lists.md?raw';
+import TABLES_QUOTES_RULES from '@/__fixtures__/markdown/tables-quotes-rules.md?raw';
+import TEXT_TREATMENT_MARKDOWN from '@/__fixtures__/markdown/text-treatment.md?raw';
 
+import mockAvatar from '../../assets/blank-image.png';
 import { AgentMessage } from '../AgentMessage';
 import Avatar from '../Avatar';
 import Header from '../Header';
@@ -45,14 +50,13 @@ export const NewChat: React.FC<INewChat> = ({ messages, footerProps }) => {
     }
   }, []);
 
+  const handleScroll = () => {
+    if (scrollableAreaRef.current) {
+      const { scrollTop, scrollHeight, clientHeight } = scrollableAreaRef.current;
+      setShowScrollToBottom(scrollTop + clientHeight < scrollHeight - 1);
+    }
+  };
   useEffect(() => {
-    const handleScroll = () => {
-      if (scrollableAreaRef.current) {
-        const { scrollTop, scrollHeight, clientHeight } = scrollableAreaRef.current;
-        setShowScrollToBottom(scrollTop + clientHeight < scrollHeight - 1);
-      }
-    };
-
     if (scrollableAreaRef.current) {
       scrollableAreaRef.current.addEventListener('scroll', handleScroll);
     }
@@ -64,89 +68,71 @@ export const NewChat: React.FC<INewChat> = ({ messages, footerProps }) => {
     };
   }, []);
 
+  useEffect(() => {
+    handleScroll();
+  }, [chatMessages]);
+
   const handleSubmit = async () => {
     if (newMessage.trim()) {
       setChatMessages([...chatMessages, { from: 'user', text: newMessage }]);
       setNewMessage('');
     }
 
-    const llamaRes = await fetch('http://localhost:11434/api/generate', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        model: 'llama3',
-        prompt: newMessage,
-        stream: true, // Enable streaming
-      }),
-    });
-
-    const reader = llamaRes.body?.getReader();
-    const decoder = new TextDecoder();
-    let accumulatedMessage = '';
-
-    while (true) {
-      // eslint-disable-next-line no-await-in-loop, no-unsafe-optional-chaining, @typescript-eslint/no-non-null-asserted-optional-chain
-      const { done, value } = await reader?.read()!;
-      if (done) break;
-
-      const chunk = decoder.decode(value, { stream: true });
-      const jsonChunk = JSON.parse(chunk);
-      accumulatedMessage += jsonChunk.response;
-
-      // Update the UI by appending to the last system message
-
-      // eslint-disable-next-line no-loop-func
-      setChatMessages((prevMessages) => {
-        const lastMessage = prevMessages[prevMessages.length - 1];
-        if (lastMessage && lastMessage.from === 'system') {
-          return [...prevMessages.slice(0, -1), { from: 'system', text: accumulatedMessage }];
-        }
-        return [...prevMessages, { from: 'system', text: accumulatedMessage }];
-      });
-    }
-
-    // Ensure the final decoded value is flushed
-    accumulatedMessage += decoder.decode();
-    setChatMessages((prevMessages) => {
-      const lastMessage = prevMessages[prevMessages.length - 1];
-      if (lastMessage && lastMessage.from === 'system') {
-        return [...prevMessages.slice(0, -1), { from: 'system', text: accumulatedMessage }];
-      }
-      return [...prevMessages, { from: 'system', text: accumulatedMessage }];
-    });
+    // randomly respond with one of the fixtures
+    const randomIndex = Math.floor(Math.random() * 4);
+    const response = [TEXT_TREATMENT_MARKDOWN, CODE_SNIPPET_FIXTURE, CODE_RESPONSE_FIXTURE, TABLES_QUOTES_RULES][
+      randomIndex
+    ];
+    setTimeout(() => {
+      setChatMessages([...chatMessages, { from: 'system', text: response }]);
+    }, 500);
   };
 
   return (
     <div className={chatContainer}>
-      <Header title="ChatKit V2" image={VF_ICON} rounded />
+      <Header title="ChatKit V2" image={mockAvatar} rounded />
       <div className={scrollableArea} ref={scrollableAreaRef}>
         <WelcomeMessage
-          avatar={VF_ICON}
+          avatar={mockAvatar}
           title="ChatKit V2"
           description="Hi, I'm your new chat kit! Let's make some cool stuff."
         />
         <div className={chatContent}>
-          {chatMessages.map((msg, idx) => (
-            <div key={`${msg}-${idx}`} className={msg.from === 'system' ? agentMessage : userMessage}>
-              {msg.from === 'system' && (
-                <div className={avatarContainer}>
-                  <Avatar avatar={VF_ICON} />
-                </div>
-              )}
-              {msg.from === 'system' ? (
-                <AgentMessage from="system">{msg.text}</AgentMessage>
-              ) : (
-                <UserMessage from="user">{msg.text}</UserMessage>
-              )}
-            </div>
-          ))}
+          {chatMessages.map((msg, idx) => {
+            const isMessageSameAsPrevious = idx > 0 && chatMessages[idx - 1].from === msg.from;
+            return (
+              <div
+                key={`${msg}-${idx}`}
+                className={
+                  msg.from === 'system'
+                    ? agentMessage({ tight: isMessageSameAsPrevious })
+                    : userMessage({ tight: isMessageSameAsPrevious })
+                }
+              >
+                {msg.from === 'system' && (
+                  <div className={avatarContainer}>
+                    <Avatar avatar={mockAvatar} />
+                  </div>
+                )}
+                {msg.from === 'system' ? (
+                  <AgentMessage from="system">{msg.text}</AgentMessage>
+                ) : (
+                  <UserMessage from="user">{msg.text}</UserMessage>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
       <section className={footerContainer}>
         <NewFooter
           {...footerProps}
+          messageInputProps={{
+            ...footerProps.messageInputProps,
+            onValueChange: setNewMessage,
+            message: newMessage,
+            onSubmit: handleSubmit,
+          }}
           showScrollToButton={showScrollToBottom}
           onScrollToBottom={() => {
             if (scrollableAreaRef.current) {
