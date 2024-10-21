@@ -51,18 +51,11 @@ const Carousel: React.FC<CarouselProps> = ({ cards, containerRef, controlsRef })
           <>
             <CarouselButton
               ref={previousButtonRef}
-              alignment="left"
+              direction="left"
               visible={showPreviousButton}
-              containerEl={containerEl}
               onClick={scrollToPrevious}
             />
-            <CarouselButton
-              ref={nextButtonRef}
-              alignment="right"
-              visible={showNextButton}
-              containerEl={containerEl}
-              onClick={scrollToNext}
-            />
+            <CarouselButton ref={nextButtonRef} direction="right" visible={showNextButton} onClick={scrollToNext} />
           </>,
           controlsEl
         )}
