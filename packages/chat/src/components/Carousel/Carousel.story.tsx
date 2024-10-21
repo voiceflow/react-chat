@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { useRef } from 'react';
 
 import Avatar from '@/components/Avatar';
 import Chat from '@/components/Chat';
@@ -65,16 +64,12 @@ export const ControlsTemplate: Story = {
   },
 
   render: (args) => {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const controlsRef = useRef<HTMLDivElement>(null);
-
     return (
       <ChatWidget.ChatContainer>
         <Chat.Dialog>
-          <SystemResponse.Controls ref={controlsRef} />
-          <SystemResponse.Container ref={containerRef} withImage scrollable>
+          <SystemResponse.Container withImage scrollable>
             <Avatar avatar={VF_ICON} />
-            <Carousel {...args} controlsRef={controlsRef} containerRef={containerRef} />
+            <Carousel {...args} />
           </SystemResponse.Container>
         </Chat.Dialog>
       </ChatWidget.ChatContainer>

@@ -8,7 +8,7 @@ import type { CardProps } from '../Card/types';
 import CarouselButton from './CarouselButton';
 import { CARD_WITH_GUTTER_WIDTH } from './constants';
 import { useScrollObserver, useScrollTo } from './hooks';
-import { cardsContainer, cardsInnerContainer, cardStyle, carouselContainer } from './styles.css';
+import { cardsContainer, cardsInnerContainer, cardStyle, carouselContainer, lastCardSpacer } from './styles.css';
 
 export interface CarouselProps {
   /**
@@ -34,6 +34,7 @@ const Carousel: React.FC<CarouselProps> = ({ cards }) => {
           {cards.map((card, i) => (
             <Card className={cardStyle} {...card} key={i} />
           ))}
+          <div className={lastCardSpacer}> </div>
         </div>
       </div>
       <CarouselButton direction="left" visible={showPreviousButton} onClick={scrollToPrevious} />

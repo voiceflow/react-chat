@@ -4,14 +4,14 @@ import { COLORS } from '@/styles/colors';
 import { transition } from '@/styles/transitions';
 
 import { buttonStyles } from '../Button/styles.css';
-import { carouselContainer } from './styles.css';
+import { BUTTON_SIZE, carouselContainer } from './styles.css';
 
 export const carouselButton = recipe({
   base: [
     buttonStyles({ round: true }),
     {
-      height: 42,
-      width: 42,
+      height: BUTTON_SIZE,
+      width: BUTTON_SIZE,
       color: COLORS.NEUTRAL_DARK[100],
       border: `solid 1px ${COLORS.NEUTRAL_LIGHT[100]}`,
       backgroundColor: COLORS.white,
@@ -27,7 +27,7 @@ export const carouselButton = recipe({
       // When the buttons are inside a carousel
       [`.${carouselContainer} &`]: {
         position: 'absolute',
-        top: '60px',
+        top: '64px',
       },
     },
   ],
@@ -54,7 +54,7 @@ export const carouselButton = recipe({
           transform: 'scale(0.8)',
         },
         [`.${carouselContainer} &`]: {
-          right: '3px',
+          right: '23px',
         },
       },
       left: {
