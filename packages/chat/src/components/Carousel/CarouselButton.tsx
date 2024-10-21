@@ -3,7 +3,7 @@ import { forwardRef } from 'react';
 
 import Icon from '@/components/Icon';
 
-import { carouselButton, carouselButtonIcon } from './styles.css';
+import { carouselButton, carouselButtonIcon } from './carouselButtonStyles.css';
 
 export interface CarouselButtonProps {
   /**
