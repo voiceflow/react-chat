@@ -64,7 +64,7 @@
     "@voiceflow/commitlint-config": "2.4.0",
     "@voiceflow/dependency-cruiser-config": "1.8.7",
     "@voiceflow/eslint-config": "7.7.0",
-    "@voiceflow/git-branch-check": "1.4.1",
+    "@voiceflow/git-branch-check": "1.4.2",
     "@voiceflow/husky-config": "1.1.0",
     "@voiceflow/prettier-config": "1.7.0",
     "@voiceflow/tsconfig": "1.11.0",

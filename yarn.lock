@@ -8913,14 +8913,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@voiceflow/git-branch-check@npm:1.4.1":
-  version: 1.4.1
-  resolution: "@voiceflow/git-branch-check@npm:1.4.1"
+"@voiceflow/git-branch-check@npm:1.4.2":
+  version: 1.4.2
+  resolution: "@voiceflow/git-branch-check@npm:1.4.2"
   dependencies:
-    current-git-branch: ^1.1.0
+    current-git-branch: 1.1.0
   bin:
-    git-branch-check: index.js
-  checksum: 7573d448d4bc3f4b5fb548bab72cae68ae378c67f09ee1a1f555b2e62357ad0854990492b5ac8e3a5d1dbfc50c79cbf5d450f7fddc17f41405392bd1c9de12a8
+    git-branch-check: src/index.js
+  checksum: 1416f524b6f0a5d4d26b7d50604e87a2ffee2833ad8ae7ea1bb18f04218052dd66817b6944d9fbf263707a34f0745682e12d692c53301ac1955fcd8bf0e73ddf
   languageName: node
   linkType: hard
 
@@ -11487,7 +11487,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"current-git-branch@npm:^1.1.0":
+"current-git-branch@npm:1.1.0":
   version: 1.1.0
   resolution: "current-git-branch@npm:1.1.0"
   dependencies:
@@ -22696,7 +22696,7 @@ __metadata:
     "@voiceflow/commitlint-config": 2.4.0
     "@voiceflow/dependency-cruiser-config": 1.8.7
     "@voiceflow/eslint-config": 7.7.0
-    "@voiceflow/git-branch-check": 1.4.1
+    "@voiceflow/git-branch-check": 1.4.2
     "@voiceflow/husky-config": 1.1.0
     "@voiceflow/prettier-config": 1.7.0
     "@voiceflow/tsconfig": 1.11.0
