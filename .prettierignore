@@ -24,3 +24,6 @@ sonar
 
 # Playwright
 test-results
+
+# Turborepo
+.turbo

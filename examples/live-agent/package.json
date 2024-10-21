@@ -12,7 +12,7 @@
   "prettier": "@voiceflow/prettier-config",
   "dependencies": {
     "@voiceflow/exception": "1.4.0",
-    "@voiceflow/fetch": "1.5.2",
+    "@voiceflow/fetch": "1.7.0",
     "@voiceflow/react-chat": "workspace:*",
     "@voiceflow/slate-serializer": "1.4.2",
     "nanoevents": "8.0.0",
@@ -23,7 +23,7 @@
     "ts-pattern": "4.3.0"
   },
   "devDependencies": {
-    "@types/node": "20.12.7",
+    "@types/node": "22.7.5",
     "@types/react": "18.2.8",
     "@types/react-dom": "18.2.4",
     "vite": "4.3.9"

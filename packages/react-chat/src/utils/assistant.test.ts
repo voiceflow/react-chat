@@ -15,10 +15,7 @@ import { mergeAssistantOptions } from './assistant';
 vi.mock('@voiceflow/sdk-runtime', () => ({ VoiceflowRuntime: vi.fn() }));
 
 describe('assistant utils', () => {
-  const mockGetPublishing = (): Mock<
-    Parameters<VoiceflowRuntime<any>['getPublishing']>,
-    ReturnType<VoiceflowRuntime<any>['getPublishing']>
-  > => {
+  const mockGetPublishing = (): Mock<VoiceflowRuntime<any>['getPublishing']> => {
     const getPublishing = vi.fn().mockResolvedValue({});
 
     vi.mocked(VoiceflowRuntime).mockImplementation(() => createMock<VoiceflowRuntime<any>>({ getPublishing }));

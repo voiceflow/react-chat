@@ -14,7 +14,7 @@ test('renders launcher and widget appears on click', async ({ page }) => {
         type: 'text' as Trace.TraceType.TEXT,
         payload: { slate: { id: '', content: [] }, message },
       }),
-    [message]
+    [message] as const
   );
 
   await page.waitForSelector(`text=${message}`);

@@ -9,8 +9,8 @@ test('trigger effect extension on incoming trace', async ({ page }) => {
     'Welcome to the pizza palace!',
     'What kind of pizza do you want?',
     'One cheese pizza coming right up',
-  ];
-  const userMessages = ['I want to order a pizza', 'Cheese please'];
+  ] as const;
+  const userMessages = ['I want to order a pizza', 'Cheese please'] as const;
   const traceType = 'update_order_status';
   let count = 0;
 
