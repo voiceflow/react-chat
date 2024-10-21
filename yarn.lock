@@ -8805,7 +8805,6 @@ __metadata:
     storybook: 8.0.2
     storybook-dark-mode: 1.1.0
     ts-pattern: 4.3.0
-    tsc-alias: 1.8.10
     type-fest: 2.18.1
     vite: 5.2.9
     vite-plugin-dts: 3.8.3
@@ -9002,7 +9001,6 @@ __metadata:
     storybook: 8.0.2
     storybook-dark-mode: 1.1.0
     ts-pattern: 4.3.0
-    tsc-alias: 1.8.10
     type-fest: 2.18.1
     vite: 5.2.9
     vite-plugin-dts: 3.8.3

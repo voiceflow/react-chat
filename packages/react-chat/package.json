@@ -103,7 +103,6 @@
     "react-dom": "18.2.0",
     "storybook": "8.0.2",
     "storybook-dark-mode": "1.1.0",
-    "tsc-alias": "1.8.10",
     "vite": "5.2.9",
     "vite-plugin-dts": "3.8.3",
     "vite-plugin-fonts": "0.7.0",
