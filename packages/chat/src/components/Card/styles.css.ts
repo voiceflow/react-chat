@@ -10,6 +10,7 @@ export const cardContainer = style({
   display: 'inline-flex',
   flexDirection: 'column',
   width: CARD_WIDTH,
+  minWidth: CARD_WIDTH,
   boxSizing: 'content-box',
   overflow: 'hidden',
   borderRadius: SIZES.radius.sm,
