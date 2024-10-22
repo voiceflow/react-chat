@@ -8,16 +8,17 @@ import { buttonStyles } from './styles.css';
 
 interface ButtonProps extends ComponentPropsWithRef<'button'> {
   variant?: ButtonVariant;
+  large?: boolean;
   round?: boolean;
 }
 
 const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(({ children, ...props }, ref) => {
-  const { variant: type, round } = props;
+  const { variant: type, large, round } = props;
 
   return (
     <button
       ref={ref}
-      className={clsx(ClassName.BUTTON, buttonStyles({ type: type ?? ButtonVariant.PRIMARY, round }))}
+      className={clsx(ClassName.BUTTON, buttonStyles({ type: type ?? ButtonVariant.PRIMARY, large, round }))}
       {...props}
     >
       {children}
