@@ -1,5 +1,7 @@
 import type { Meta } from '@storybook/react';
 
+import TABLES_QUOTES_RULES from '@/__fixtures__/markdown/tables-quotes-rules.md?raw';
+
 import { NewChat } from '.';
 
 const meta: Meta = {
@@ -15,41 +17,41 @@ const meta: Meta = {
 
 export default meta;
 
-const buttons = [
-  {
-    label: 'Who built this?',
-    onClick: () => alert('Button 1 clicked'),
-  },
-  {
-    label: "Say 'Howdy'",
-    onClick: () => alert('Button 2 clicked'),
-  },
-  {
-    label: 'LFG 🚀',
-    onClick: () => alert('Button 3 clicked'),
-  },
-  {
-    label: 'What is this?',
-    onClick: () => alert('Button 4 clicked'),
-  },
-  {
-    label: 'Label',
-    onClick: () => alert('Button 5 clicked'),
-  },
-  {
-    label: 'Label',
-    onClick: () => alert('Button 6 clicked'),
-  },
-  {
-    label: 'Label',
-    onClick: () => alert('Button 6 clicked'),
-  },
-];
+// const buttons = [
+//   {
+//     label: 'Who built this?',
+//     onClick: () => alert('Button 1 clicked'),
+//   },
+//   {
+//     label: "Say 'Howdy'",
+//     onClick: () => alert('Button 2 clicked'),
+//   },
+//   {
+//     label: 'LFG 🚀',
+//     onClick: () => alert('Button 3 clicked'),
+//   },
+//   {
+//     label: 'What is this?',
+//     onClick: () => alert('Button 4 clicked'),
+//   },
+//   {
+//     label: 'Label',
+//     onClick: () => alert('Button 5 clicked'),
+//   },
+//   {
+//     label: 'Label',
+//     onClick: () => alert('Button 6 clicked'),
+//   },
+//   {
+//     label: 'Label',
+//     onClick: () => alert('Button 6 clicked'),
+//   },
+// ];
 
 const messages = [
   {
     from: 'system',
-    text: "Hi, I'm your new ChatKit, your assistant! I'm here to help you with your queries. How can I help you today?",
+    text: TABLES_QUOTES_RULES,
   },
   { from: 'user', text: 'Howdy!' },
   { from: 'user', text: 'What kinda sick stuff can you do?' },
@@ -64,7 +66,6 @@ export const WithEntireFooter = {
     <NewChat
       messages={messages.splice(0, 1)}
       footerProps={{
-        buttons,
         showPoweredBy: true,
         messageInputProps: { message: '', onSubmit: () => null, placeholder: 'Message...', onValueChange: () => null },
       }}

@@ -7,16 +7,21 @@ export const chatContainer = style({
   backgroundColor: COLORS.white,
   borderRadius: '16px',
   border: `.5px solid ${COLORS.NEUTRAL_LIGHT[100]}`,
-  position: 'relative',
+  position: 'relative', // Ensure chat container is relatively positioned
   boxShadow:
     '0px 0px 0px 1px rgba(22, 26, 30, 0.06), 0px 1px 1px 0px rgba(22, 26, 30, 0.04), 0px 4px 8px -32px rgba(22, 26, 30, 0.04), 0px 10px 16px -32px rgba(22, 26, 30, 0.06), 0px 16px 20px -32px rgba(22, 26, 30, 0.08), 0px 24px 32px -32px rgba(22, 26, 30, 0.08), 0px 32px 40px -32px rgba(22, 26, 30, 0.10), 0px 40px 64px -32px rgba(22, 26, 30, 0.12)',
+  display: 'flex',
+  flexDirection: 'column',
 });
 
 export const scrollableArea = style({
   overflowY: 'auto',
-  height: '559px',
-  width: '100%',
-  display: 'block',
+  flex: '1 1 auto', // Allow it to grow and shrink within flexbox layout
+
+  height: '545px',
+  display: 'flex',
+  flexDirection: 'column',
+  padding: '0 20px',
 });
 
 const fadeIn = keyframes({
@@ -28,12 +33,7 @@ const fadeIn = keyframes({
   },
 });
 
-export const chatContent = style({
-  display: 'flex',
-  flexDirection: 'column',
-  padding: '0 20px',
-  marginBottom: '40px',
-});
+export const chatContent = style({});
 
 const baseMessage = style({
   display: 'flex',
@@ -53,7 +53,7 @@ export const agentMessage = recipe({
   variants: {
     tight: {
       true: {
-        marginTop: '8px',
+        marginTop: '4px',
       },
     },
   },
@@ -64,7 +64,7 @@ export const userMessage = recipe({
   variants: {
     tight: {
       true: {
-        marginTop: '8px',
+        marginTop: '4px',
       },
     },
   },
@@ -77,7 +77,17 @@ export const avatarContainer = style({
 });
 
 export const footerContainer = style({
-  position: 'absolute',
   bottom: 0,
   width: '100%',
+  borderBottomRightRadius: '12px',
+  borderBottomLeftRadius: '24px',
+});
+
+export const scrollToButton = style({
+  position: 'absolute',
+  bottom: '97px ',
+  left: '50%',
+  transform: 'translateX(-50%)',
+  zIndex: 1,
+  animation: `${fadeIn} .15s ease-in`, // Apply the fade-in animation
 });

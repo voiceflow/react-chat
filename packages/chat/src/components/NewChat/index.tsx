@@ -11,15 +11,16 @@ import { AgentMessage } from '../AgentMessage';
 import Avatar from '../Avatar';
 import Header from '../Header';
 import { NewFooter } from '../NewFooter';
+import { ScrollButton } from '../NewFooter/ScrollButton';
 import { UserMessage } from '../UserMessage';
 import { WelcomeMessage } from '../WelcomeMessage';
 import {
   agentMessage,
   avatarContainer,
   chatContainer,
-  chatContent,
   footerContainer,
   scrollableArea,
+  scrollToButton,
   userMessage,
 } from './NewChat.css';
 
@@ -72,19 +73,27 @@ export const NewChat: React.FC<INewChat> = ({ messages, footerProps }) => {
     handleScroll();
   }, [chatMessages]);
 
-  const handleSubmit = async () => {
-    if (newMessage.trim()) {
-      setChatMessages([...chatMessages, { from: 'user', text: newMessage }]);
-      setNewMessage('');
+  const handleScrollToBottom = () => {
+    if (scrollableAreaRef.current) {
+      scrollableAreaRef.current.scrollTo({
+        top: scrollableAreaRef.current.scrollHeight,
+        behavior: 'smooth',
+      });
     }
+  };
 
+  const handleSubmit = async () => {
     // randomly respond with one of the fixtures
-    const randomIndex = Math.floor(Math.random() * 4);
-    const response = [TEXT_TREATMENT_MARKDOWN, CODE_SNIPPET_FIXTURE, CODE_RESPONSE_FIXTURE, TABLES_QUOTES_RULES][
-      randomIndex
-    ];
+    const randomIndex = Math.floor(Math.random() * 5);
+    const response = [
+      TEXT_TREATMENT_MARKDOWN,
+      CODE_SNIPPET_FIXTURE,
+      LISTS_FIXTURE,
+      CODE_RESPONSE_FIXTURE,
+      TABLES_QUOTES_RULES,
+    ][randomIndex];
     setTimeout(() => {
-      setChatMessages([...chatMessages, { from: 'system', text: response }]);
+      setChatMessages([...chatMessages, { from: 'user', text: newMessage }, { from: 'system', text: response }]);
     }, 500);
   };
 
@@ -97,33 +106,36 @@ export const NewChat: React.FC<INewChat> = ({ messages, footerProps }) => {
           title="ChatKit V2"
           description="Hi, I'm your new chat kit! Let's make some cool stuff."
         />
-        <div className={chatContent}>
-          {chatMessages.map((msg, idx) => {
-            const isMessageSameAsPrevious = idx > 0 && chatMessages[idx - 1].from === msg.from;
-            return (
-              <div
-                key={`${msg}-${idx}`}
-                className={
-                  msg.from === 'system'
-                    ? agentMessage({ tight: isMessageSameAsPrevious })
-                    : userMessage({ tight: isMessageSameAsPrevious })
-                }
-              >
-                {msg.from === 'system' && (
-                  <div className={avatarContainer}>
-                    <Avatar avatar={mockAvatar} />
-                  </div>
-                )}
-                {msg.from === 'system' ? (
-                  <AgentMessage from="system">{msg.text}</AgentMessage>
-                ) : (
-                  <UserMessage from="user">{msg.text}</UserMessage>
-                )}
-              </div>
-            );
-          })}
-        </div>
+        {chatMessages.map((msg, idx) => {
+          const isMessageSameAsPrevious = idx > 0 && chatMessages[idx - 1].from === msg.from;
+          return (
+            <div
+              key={`${msg}-${idx}`}
+              className={
+                msg.from === 'system'
+                  ? agentMessage({ tight: isMessageSameAsPrevious })
+                  : userMessage({ tight: isMessageSameAsPrevious })
+              }
+            >
+              {msg.from === 'system' && (
+                <div className={avatarContainer}>
+                  <Avatar avatar={mockAvatar} />
+                </div>
+              )}
+              {msg.from === 'system' ? (
+                <AgentMessage from="system">{msg.text}</AgentMessage>
+              ) : (
+                <UserMessage from="user">{msg.text}</UserMessage>
+              )}
+            </div>
+          );
+        })}
       </div>
+      {showScrollToBottom && (
+        <div className={scrollToButton}>
+          <ScrollButton onClick={handleScrollToBottom} />
+        </div>
+      )}
       <section className={footerContainer}>
         <NewFooter
           {...footerProps}
@@ -133,17 +145,12 @@ export const NewChat: React.FC<INewChat> = ({ messages, footerProps }) => {
             message: newMessage,
             onSubmit: handleSubmit,
           }}
-          showScrollToButton={showScrollToBottom}
-          onScrollToBottom={() => {
-            if (scrollableAreaRef.current) {
-              scrollableAreaRef.current.scrollTo({
-                top: scrollableAreaRef.current.scrollHeight,
-                behavior: 'smooth',
-              });
-            }
-          }}
         />
       </section>
     </div>
   );
 };
+
+// Howdy
+// <span style={{ background: 'orange', width: '100%', height: '1500px' }} />
+// folks

@@ -2,38 +2,23 @@ import Button from '../Button';
 import { ButtonVariant } from '../Button/constants';
 import type { IMessageInput } from '../MessageInput';
 import { MessageInput } from '../MessageInput';
-import {
-  buttonsContainer,
-  messageBackground,
-  messageContainer,
-  poweredByStyles,
-  scrollButtonContainer,
-  separator,
-} from './NewFooter.css';
-import { ScrollButton } from './ScrollButton';
+import { buttonsContainer, messageBackground, messageContainer, poweredByStyles, separator } from './NewFooter.css';
 
 export interface INewFooter {
   buttons?: { label: string; onClick: () => void }[];
-  showScrollToButton?: boolean;
-  onScrollToBottom?: () => void;
+
   showPoweredBy?: boolean;
   messageInputProps: IMessageInput;
 }
 
 export const NewFooter: React.FC<INewFooter> = ({
   buttons,
-  showScrollToButton,
-  onScrollToBottom,
+
   showPoweredBy,
   messageInputProps,
 }) => {
   return (
     <div>
-      {showScrollToButton && (
-        <div className={scrollButtonContainer}>
-          <ScrollButton onClick={onScrollToBottom} />
-        </div>
-      )}
       {(buttons?.length ?? 0) > 0 && (
         <div className={buttonsContainer}>
           {buttons?.map((button) => (

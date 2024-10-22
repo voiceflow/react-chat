@@ -5,6 +5,8 @@ import { WithPalette } from '@/storybook/decorators';
 import Button from '.';
 import { ButtonVariant } from './constants';
 
+const TEST_ID = 'test-id';
+
 type Story = StoryObj<typeof Button>;
 const meta: Meta<typeof Button> = {
   title: 'Core/Button',
@@ -19,6 +21,10 @@ const meta: Meta<typeof Button> = {
   args: {
     children: 'Button label',
     round: false,
+    onClick: () => {
+      alert('Button clicked');
+    },
+    testID: TEST_ID,
   },
   decorators: [WithPalette],
 };

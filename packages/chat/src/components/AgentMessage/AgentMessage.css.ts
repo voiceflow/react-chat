@@ -10,7 +10,7 @@ export const messageContainer = style({
   color: COLORS.NEUTRAL_DARK[900],
   fontFamily: FAMILY,
   position: 'relative',
-  width: 'fit-content',
+  // width: 'fit-content',
   fontSize: '14px',
   lineHeight: '20px',
   borderRadius: '10px',
