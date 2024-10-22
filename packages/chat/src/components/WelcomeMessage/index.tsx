@@ -1,3 +1,8 @@
+import clsx from 'clsx';
+
+import { ClassName } from '@/constants';
+import type { Testable } from '@/types/Testable';
+
 import Avatar from '../Avatar';
 import {
   avatarContainer,
@@ -23,9 +28,9 @@ export interface IWelcomeMessage {
   avatar: string;
 }
 
-export const WelcomeMessage: React.FC<IWelcomeMessage> = ({ title, description, avatar }) => {
+export const WelcomeMessage: React.FC<IWelcomeMessage> = ({ title, description, avatar, testID }) => {
   return (
-    <div className={welcomeMessageContainer}>
+    <div data-testid={testID} className={clsx(ClassName.ASSISTANT_INFO, welcomeMessageContainer)}>
       <div className={avatarContainer}>
         <Avatar size="large" avatar={avatar} />
       </div>
