@@ -35,14 +35,14 @@ export const mockFocusRing = style({
   right: '-1px',
   bottom: '-1px',
   borderRadius: '25px',
-  border: `0px solid ${COLORS.ACCENT[500]}`,
   pointerEvents: 'none',
   opacity: 0,
-  transition: transition(['opacity', 'border']),
+  boxShadow: `inset 0 0 0 0px ${COLORS.ACCENT[500]}`,
+  transition: transition(['opacity', 'box-shadow']),
   selectors: {
     [`${inputContainer}:focus-within &`]: {
       opacity: 1,
-      border: `2px solid ${COLORS.ACCENT[500]}`,
+      boxShadow: `inset 0 0 0 2px ${COLORS.ACCENT[500]}`,
     },
   },
 });
