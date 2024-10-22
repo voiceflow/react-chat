@@ -1,23 +1,15 @@
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
-import { createPalette } from '@/styles/colors';
+import { PALETTE } from '@/styles/colors.css';
 
 import { activeBackground, activeIconColor, feedbackButtonStyles, iconStyle } from './FeedbackButton.css';
 import type { IFeedbackButton } from './FeedbackButton.interface';
 import { ThumbsDownIcon } from './ThumbsDownIcon.component';
 import { ThumbsUpIcon } from './ThumbsUpIcon.component';
 
-export const FeedbackButton: React.FC<IFeedbackButton> = ({
-  primaryColor,
-  variant = 'up',
-  active,
-  onClick,
-  testID,
-}) => {
-  const palette = createPalette(primaryColor);
-
-  const buttonActiveColor = palette[500];
-  const iconActiveColor = palette[50];
+export const FeedbackButton: React.FC<IFeedbackButton> = ({ variant = 'up', active, onClick, testID }) => {
+  const buttonActiveColor = PALETTE.colors[500];
+  const iconActiveColor = PALETTE.colors[50];
   const Icon = variant === 'up' ? ThumbsUpIcon : ThumbsDownIcon;
 
   return (

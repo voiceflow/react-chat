@@ -1,6 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import { COLOR_FIXTURE } from '@/__fixtures__/colors';
+import { createPalette } from '@/styles/colors';
+import { PALETTE } from '@/styles/colors.css';
 
 import { FeedbackButton } from '.';
 
@@ -18,14 +21,15 @@ const VariantRenderer = ({ active }: { active?: boolean }) => {
     <>
       <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem' }}>
         {COLOR_FIXTURE.map((color, index) => (
-          <FeedbackButton
-            primaryColor={color}
-            variant={index % 2 === 0 ? 'up' : 'down'}
-            active={active}
-            key={index}
-            onClick={() => null}
-            testID={`feedback-button--${index}`}
-          />
+          <div style={assignInlineVars(PALETTE, { colors: createPalette(color) })}>
+            <FeedbackButton
+              variant={index % 2 === 0 ? 'up' : 'down'}
+              active={active}
+              key={index}
+              onClick={() => null}
+              testID={`feedback-button--${index}`}
+            />
+          </div>
         ))}
       </div>
     </>

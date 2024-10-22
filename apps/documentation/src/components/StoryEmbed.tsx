@@ -1,5 +1,6 @@
 import type { StoryObj } from '@storybook/react';
 import type { DecoratorFunction } from '@storybook/types';
+import { PALETTE } from '@voiceflow/chat';
 import { useEffect, useMemo, useState } from 'react';
 
 const Stories = typeof window !== 'undefined' ? require('@voiceflow/chat/stories') : {};

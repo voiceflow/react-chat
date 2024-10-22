@@ -1,11 +1,7 @@
-import { assignInlineVars } from '@vanilla-extract/dynamic';
 import clsx from 'clsx';
 
 import Avatar from '@/components/Avatar';
 import { ClassName } from '@/constants';
-import { createPalette } from '@/styles/colors';
-import { PALETTE } from '@/styles/colors.css';
-import type { IThemedComponent } from '@/types';
 
 import Button from '../Button';
 import Icon, { type IconProps } from '../Icon';
@@ -25,7 +21,7 @@ export interface HeaderActionProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
-export interface HeaderProps extends IThemedComponent {
+export interface HeaderProps {
   /**
    * The name of your assistant or title of the conversation.
    */
@@ -42,11 +38,8 @@ export interface HeaderProps extends IThemedComponent {
   actions?: HeaderActionProps[];
 }
 
-const Header: React.FC<HeaderProps> = ({ primaryColor, title, image, actions = [] }) => (
-  <div
-    style={assignInlineVars(PALETTE, { colors: createPalette(primaryColor) })}
-    className={clsx(ClassName.ICON, headerContainer)}
-  >
+const Header: React.FC<HeaderProps> = ({ title, image, actions = [] }) => (
+  <div className={clsx(ClassName.ICON, headerContainer)}>
     {!!image?.length && <Avatar size="small" avatar={image} />}
     <div className={headerInnerContainer}>
       <div className={headerTitle}>{title}</div>

@@ -1,5 +1,4 @@
 import type { $$StyledComponentProps } from '@voiceflow/stitches-react/types/styled-component';
-export * from './IThemedComponent';
 export * from './session';
 export * from './trace';
 export * from './turn';
