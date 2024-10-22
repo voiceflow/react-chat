@@ -2,16 +2,37 @@ import { StoryEmbed } from '../../../components/StoryEmbed';
 
 # Buttons
 
-The different kind of buttons we have in the ChatKit are:
-
-(🚫 = not ready yet. ✅ = ready)
-
-* 🚫 *Primary*: used for 'Start new chat'
-* ✅ *Inline*: action buttons displayed in system messages (not inside cards)
-* 🚫 *Launcher*: button that opens the chat widget
-
-
 
 ## Inline button
 
+Used to show actions coming from the chat response.
+
 <StoryEmbed for="Button" name="Inline" />
+
+## Primary button
+
+This is used in the 'exit prompt' (when user closes the chat) and in the disclaimer (if set).
+
+Added a mock container (width: 224px)
+<div style={{width: '224px'}}>
+
+<StoryEmbed for="Button" name="Primary" />
+<br/>
+<StoryEmbed for="Button" name="PrimaryLarge" />
+
+</div>
+
+## Secondary button
+
+Added a mock container (width: 224px)
+<div style={{width: '224px'}}>
+
+<StoryEmbed for="Button" name="Secondary" />
+<br/>
+<StoryEmbed for="Button" name="SecondaryLarge" />
+
+</div>
+
+Inside a card it will look like this:
+
+<StoryEmbed for="Card" name="Actionable" />

@@ -32,11 +32,14 @@ export const buttonStyles = recipe({
   variants: {
     type: {
       primary: {
+        paddingTop: 2,
         color: COLORS.white,
         backgroundColor: PALETTE.colors[500],
         borderRadius: SIZES.radius.xxs,
         height: SIZES.sm,
         fontWeight: 600,
+        display: 'block',
+        width: '100%',
         ':hover': {
           backgroundColor: PALETTE.colors[600],
         },
@@ -45,11 +48,14 @@ export const buttonStyles = recipe({
         },
       },
       secondary: {
+        paddingTop: 2,
         color: COLORS.NEUTRAL_DARK[500],
         backgroundColor: COLORS.NEUTRAL_DARK[9008],
         borderRadius: SIZES.radius.xxs,
         height: SIZES.sm,
         fontWeight: 600,
+        display: 'block',
+        width: '100%',
         ':hover': {
           color: COLORS.NEUTRAL_DARK[700],
           backgroundColor: COLORS.NEUTRAL_DARK[90012],
@@ -85,6 +91,13 @@ export const buttonStyles = recipe({
         },
       },
     },
+
+    large: {
+      true: {
+        height: 40,
+      },
+    },
+
     round: {
       true: {
         borderRadius: 9999,
