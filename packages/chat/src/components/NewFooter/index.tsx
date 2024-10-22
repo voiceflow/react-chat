@@ -2,7 +2,14 @@ import Button from '../Button';
 import { ButtonVariant } from '../Button/constants';
 import type { IMessageInput } from '../MessageInput';
 import { MessageInput } from '../MessageInput';
-import { buttonsContainer, messageBackground, messageContainer, poweredByStyles, separator } from './NewFooter.css';
+import {
+  buttonsContainer,
+  footerContainer,
+  messageBackground,
+  messageContainer,
+  poweredByStyles,
+  separator,
+} from './NewFooter.css';
 
 export interface INewFooter {
   buttons?: { label: string; onClick: () => void }[];
@@ -18,7 +25,7 @@ export const NewFooter: React.FC<INewFooter> = ({
   messageInputProps,
 }) => {
   return (
-    <div>
+    <div className={footerContainer}>
       {(buttons?.length ?? 0) > 0 && (
         <div className={buttonsContainer}>
           {buttons?.map((button) => (

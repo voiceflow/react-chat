@@ -6,6 +6,12 @@ import { FAMILY } from '@/styles/font';
 
 const BUTTON_ROW_MARGIN = 10;
 
+export const footerContainer = style({
+  // position: 'absolute',
+  // bottom: 0,
+  width: '100%',
+});
+
 export const buttonsContainer = style({
   display: 'flex',
   gap: '8px',
@@ -41,8 +47,8 @@ export const messageBackground = recipe({
     width: '100%',
     bottom: '-20px',
     height: '48px',
-    borderBottomLeftRadius: '12px',
-    borderBottomRightRadius: '12px',
+    borderBottomLeftRadius: '16px',
+    borderBottomRightRadius: '16px',
   },
   variants: {
     showPoweredBy: {
@@ -66,15 +72,15 @@ export const poweredByStyles = style({
   fontFamily: FAMILY,
   fontSize: '12px',
   lineHeight: '17px',
-  backgroundColor: COLORS.white,
   width: '100%',
   padding: '10px 0',
+  backgroundColor: COLORS.white,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   gap: '8px',
-  borderBottomRightRadius: '12px',
-  borderBottomLeftRadius: '12px',
+  borderBottomLeftRadius: '20px',
+  borderBottomRightRadius: '20px',
 });
 
 export const separator = style({

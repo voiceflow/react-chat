@@ -57,7 +57,7 @@ const messages = [
   { from: 'user', text: 'What kinda sick stuff can you do?' },
   { from: 'system', text: "You're in for a treat. We can do some pretty sick stuff." },
   { from: 'user', text: 'What kinda sick stuff can you do?' },
-  { from: 'user', text: 'What kinda sick stuff can you do?' },
+  { from: 'user', text: 'Rapid fire follow up' },
   { from: 'system', text: "You're in for a treat. We can do some pretty sick stuff." },
 ];
 
