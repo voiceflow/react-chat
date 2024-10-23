@@ -13,7 +13,11 @@ const meta: Meta<typeof CarouselButton> = {
 
 export default meta;
 
-export const Right: Story = {};
+export const Right: Story = {
+  args: {
+    direction: 'right',
+  },
+};
 
 export const Left: Story = {
   args: {
