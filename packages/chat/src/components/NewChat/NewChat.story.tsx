@@ -1,5 +1,7 @@
 import type { Meta } from '@storybook/react';
 
+import TEXT_TREATMENT_MARKDOWN from '@/__fixtures__/markdown/text-treatment.md?raw';
+
 import { NewChat } from '.';
 
 const meta: Meta = {
@@ -11,6 +13,9 @@ const meta: Meta = {
       </div>
     ),
   ],
+  parameters: {
+    layout: 'centered',
+  },
 };
 
 export default meta;
@@ -71,10 +76,23 @@ export const WithEntireFooter = {
   ),
 };
 
+export const Themed = {
+  render: () => (
+    <NewChat
+      color="orange"
+      messages={messages}
+      footerProps={{
+        showPoweredBy: true,
+        messageInputProps: { message: '', onSubmit: () => null, placeholder: 'Message...', onValueChange: () => null },
+      }}
+    />
+  ),
+};
+
 export const BaseFooter = {
   render: () => (
     <NewChat
-      messages={messages}
+      messages={[{ from: 'system', text: TEXT_TREATMENT_MARKDOWN }, ...messages]}
       footerProps={{
         buttons: [],
         showPoweredBy: false,

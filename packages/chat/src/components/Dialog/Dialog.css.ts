@@ -12,13 +12,12 @@ const fadeIn = keyframes({
   },
 });
 
-export const messagesContainer = recipe({
+export const dialogContainer = recipe({
   base: {
     overflowY: 'auto',
     display: 'flex',
     flexDirection: 'column',
     width: 'auto',
-    padding: '20px',
     paddingBottom: '63px',
     paddingTop: '0px',
     backgroundColor: COLORS.white,
@@ -32,6 +31,12 @@ export const messagesContainer = recipe({
       },
     },
   },
+});
+
+export const messagesContainer = style({
+  display: 'flex',
+  flexDirection: 'column',
+  padding: '0px 16px',
 });
 
 const baseMessage = style({
@@ -55,6 +60,11 @@ export const agentMessage = recipe({
         marginTop: '4px',
       },
     },
+    isFirst: {
+      true: {
+        marginTop: '0px',
+      },
+    },
   },
 });
 export const userMessage = recipe({
@@ -63,6 +73,11 @@ export const userMessage = recipe({
     tight: {
       true: {
         marginTop: '4px',
+      },
+    },
+    isFirst: {
+      true: {
+        marginTop: '0px',
       },
     },
   },
