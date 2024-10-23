@@ -13,8 +13,8 @@ jobs:
           persist-credentials: false
       - uses: volta-cli/action@v4
       - name: Install and Build
-        working-directory: ./packages/react-chat
         run: |
+          cd ./packages/react-chat
           yarn install
           yarn build:storybook
       - name: Deploy
