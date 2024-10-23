@@ -1,6 +1,7 @@
-import type { Meta } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import TEXT_TREATMENT_MARKDOWN from '@/__fixtures__/markdown/text-treatment.md?raw';
+import { WithPalette } from '@/storybook/decorators';
 
 import { NewChat } from '.';
 
@@ -9,14 +10,19 @@ const meta: Meta = {
   decorators: [
     (Story) => (
       <div style={{ width: '400px' }}>
-        <Story />
+        <WithPalette>
+          <Story />
+        </WithPalette>
       </div>
     ),
   ],
+
   parameters: {
     layout: 'centered',
   },
 };
+
+type Story = StoryObj<typeof NewChat>;
 
 export default meta;
 
@@ -77,16 +83,23 @@ export const WithEntireFooter = {
   ),
 };
 
-export const Themed = {
+export const Themed: Story = {
   render: () => (
-    <NewChat
-      color="orange"
-      messages={messages}
-      footerProps={{
-        showPoweredBy: true,
-        messageInputProps: { message: '', onSubmit: () => null, placeholder: 'Message...', onValueChange: () => null },
-      }}
-    />
+    <WithPalette color="red">
+      <NewChat
+        color="orange"
+        messages={messages}
+        footerProps={{
+          showPoweredBy: true,
+          messageInputProps: {
+            message: '',
+            onSubmit: () => null,
+            placeholder: 'Message...',
+            onValueChange: () => null,
+          },
+        }}
+      />
+    </WithPalette>
   ),
 };
 

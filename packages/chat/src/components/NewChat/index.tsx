@@ -85,7 +85,7 @@ export const NewChat: React.FC<INewChat> = ({ messages, color, footerProps }) =>
 
   return (
     <div className={chatContainer} onKeyDown={handleKeyDown}>
-      <Header title="ChatKit V2" image={mockAvatar} rounded primaryColor={color} />
+      <Header title="ChatKit V2" image={mockAvatar} rounded   />
       <div ref={scrollableAreaRef} className={dialogContainer}>
         <Dialog messages={chatMessages} showPoweredBy={footerProps.showPoweredBy} color={color} />
       </div>

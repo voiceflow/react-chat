@@ -1,13 +1,10 @@
-import { assignInlineVars } from '@vanilla-extract/dynamic';
 import { useRef, useState } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
-
-import { COLORS, createPalette } from '@/styles/colors';
 
 import { SquareButton } from '../Buttons/SquareButton';
 import { StopButton } from '../Buttons/StopButton';
 import SendButton from '../SendButton';
-import { buttonContainer, input, inputBlock, inputContainer, mockFocusRing, themedFocusRing } from './MessageInput.css';
+import { buttonContainer, input, inputBlock, inputContainer, mockFocusRing } from './MessageInput.css';
 
 export interface IMessageInput {
   message: string;
@@ -32,11 +29,9 @@ export const MessageInput: React.FC<IMessageInput> = ({
     inputRef.current?.focus();
   };
 
-  const messageColor = primaryColor ? createPalette(primaryColor)[500] : COLORS.ACCENT[500];
-
   return (
     <div className={inputContainer} onClick={handleContainerClick}>
-      <div style={assignInlineVars({ [themedFocusRing]: messageColor })} className={mockFocusRing} />
+      <div className={mockFocusRing} />
       <div className={inputBlock}>
         <TextareaAutosize
           placeholder={placeholder}

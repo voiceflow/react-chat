@@ -14,7 +14,7 @@ const meta: Meta<typeof Header> = {
     actions: [],
   },
   render: (args) => <Header {...args} />,
-  decorators: [WithPalette],
+  decorators: [(Story) => <WithPalette>{Story()}</WithPalette>],
 };
 
 export default meta;
@@ -27,4 +27,11 @@ export const Actionable: Story = {
   args: {
     actions: [{ svg: 'volume' }, { svg: 'reset' }, { svg: 'close' }],
   },
+};
+
+export const Themed: Story = {
+  args: {
+    actions: [{ svg: 'volume' }, { svg: 'reset' }, { svg: 'close' }],
+  },
+  decorators: [(Story) => <WithPalette color="green">{Story()}</WithPalette>],
 };

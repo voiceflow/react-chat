@@ -1,5 +1,5 @@
 import mockAvatar from '../../assets/blank-image.png';
-import { AgentMessage } from '../AgentMessage';
+import AgentMessage from '../AgentMessage';
 import Avatar from '../Avatar';
 import { UserMessage } from '../UserMessage';
 import { WelcomeMessage } from '../WelcomeMessage';
