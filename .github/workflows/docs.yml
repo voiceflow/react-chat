@@ -23,7 +23,7 @@ jobs:
           yarn install
           yarn build:storybook
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4.4.0
+        uses: JamesIves/github-pages-deploy-action@v4.6.8
         with:
           branch: docs
           folder: ./packages/react-chat/docs
