@@ -22,9 +22,16 @@ const fadeIn = keyframes({
   },
 });
 
+const MOBILE_WIDGET_HEIGHT = 600;
+
 export const dialogContainer = style({
   position: 'relative',
   marginBottom: '48px',
+  height: `${MOBILE_WIDGET_HEIGHT}px`,
+  overflow: 'hidden',
+  scrollbarWidth: 'none',
+
+  overflowY: 'auto',
 });
 
 export const chatFooter = style({

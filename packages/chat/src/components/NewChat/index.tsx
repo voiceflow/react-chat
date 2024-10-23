@@ -1,11 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 
-import CODE_RESPONSE_FIXTURE from '@/__fixtures__/markdown/code-response.md?raw';
-import CODE_SNIPPET_FIXTURE from '@/__fixtures__/markdown/inline-code.md?raw';
-import LISTS_FIXTURE from '@/__fixtures__/markdown/lists.md?raw';
-import TABLES_QUOTES_RULES from '@/__fixtures__/markdown/tables-quotes-rules.md?raw';
-import TEXT_TREATMENT_MARKDOWN from '@/__fixtures__/markdown/text-treatment.md?raw';
-
 import mockAvatar from '../../assets/blank-image.png';
 import { Dialog } from '../Dialog';
 import Header from '../Header';
@@ -43,7 +37,11 @@ export const NewChat: React.FC<INewChat> = ({ messages, footerProps }) => {
   const handleScroll = () => {
     if (scrollableAreaRef.current) {
       const { scrollTop, scrollHeight, clientHeight } = scrollableAreaRef.current;
-      setShowScrollToBottom(scrollTop + clientHeight < scrollHeight - 1);
+      const isAboveBottom = scrollTop + clientHeight < scrollHeight - 1;
+      setShowScrollToBottom(isAboveBottom);
+      if (!isAboveBottom) {
+        handleScrollToBottom();
+      }
     }
   };
   useEffect(() => {
@@ -72,25 +70,30 @@ export const NewChat: React.FC<INewChat> = ({ messages, footerProps }) => {
   };
 
   const handleSubmit = async () => {
-    // randomly respond with one of the fixtures
-    const randomIndex = Math.floor(Math.random() * 5);
-    const response = [
-      TEXT_TREATMENT_MARKDOWN,
-      CODE_SNIPPET_FIXTURE,
-      LISTS_FIXTURE,
-      CODE_RESPONSE_FIXTURE,
-      TABLES_QUOTES_RULES,
-    ][randomIndex];
-    setTimeout(() => {
-      setChatMessages([...chatMessages, { from: 'user', text: newMessage }, { from: 'system', text: response }]);
-    }, 500);
+    if (scrollableAreaRef.current) {
+      const { scrollTop, scrollHeight, clientHeight } = scrollableAreaRef.current;
+      const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1;
+
+      setTimeout(() => {
+        setChatMessages((prevMessages) => {
+          const updatedMessages = [...prevMessages, { from: 'user', text: newMessage }];
+          if (isAtBottom) {
+            scrollableAreaRef.current?.scrollTo({
+              top: scrollableAreaRef.current.scrollHeight,
+              behavior: 'smooth',
+            });
+          }
+          return updatedMessages;
+        });
+      }, 500);
+    }
   };
 
   return (
     <div className={chatContainer}>
       <Header title="ChatKit V2" image={mockAvatar} rounded />
       <div ref={scrollableAreaRef} className={dialogContainer}>
-        <Dialog messages={chatMessages} />
+        <Dialog messages={chatMessages} showPoweredBy={footerProps.showPoweredBy} />
       </div>
       {showScrollToBottom && (
         <div className={scrollToButton}>

@@ -39,32 +39,58 @@ export const scrollButtonContainer = style({
   animation: `${fadeIn} .15s ease-in`, // Apply the fade-in animation
 });
 
-export const messageBackground = recipe({
+// export const messageBackground = recipe({
+//   base: {
+
+//     position: 'absolute',
+//     left: 0,
+//     width: '100%',
+//     bottom: '-20px',
+//     height: '48px',
+//     borderBottomLeftRadius: '16px',
+//     borderBottomRightRadius: '16px',
+//   },
+//   variants: {
+//     showPoweredBy: {
+//       true: {
+//         height: '50%',
+//         bottom: '-1px',
+//         borderBottomLeftRadius: '0',
+//         borderBottomRightRadius: '0',
+//       },
+//     },
+//   },
+// });
+
+export const inputContainer = style({
+  padding: '0 20px',
+});
+
+export const messageContainer = recipe({
   base: {
-    backgroundColor: COLORS.white,
-    position: 'absolute',
-    left: 0,
-    width: '100%',
-    bottom: '-20px',
-    height: '48px',
-    borderBottomLeftRadius: '16px',
+    position: 'relative',
     borderBottomRightRadius: '16px',
+    borderBottomLeftRadius: '16px',
+    background:
+      'linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(255, 255, 255, 0.00) 29.49%, #FFF 29.5%, #F8F8F8 100%)',
   },
   variants: {
     showPoweredBy: {
-      true: {
-        height: '50%',
-        bottom: '-1px',
-        borderBottomLeftRadius: '0',
-        borderBottomRightRadius: '0',
+      false: {
+        paddingBottom: '20px',
       },
     },
   },
 });
 
-export const messageContainer = style({
-  position: 'relative',
-  padding: '0 20px',
+export const messageInputContainer = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '8px',
+  padding: '20px',
+  backgroundColor: COLORS.white,
+  borderTopLeftRadius: '20px',
+  borderTopRightRadius: '20px',
 });
 
 export const poweredByStyles = style({

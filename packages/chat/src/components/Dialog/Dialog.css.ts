@@ -12,17 +12,26 @@ const fadeIn = keyframes({
   },
 });
 
-const MOBILE_WIDGET_HEIGHT = 559;
-
-export const messagesContainer = style({
-  overflowY: 'auto',
-  display: 'flex',
-  flexDirection: 'column',
-  width: 'auto',
-  padding: '20px',
-  paddingBottom: '48px',
-  backgroundColor: COLORS.white,
-  height: `${MOBILE_WIDGET_HEIGHT}px`,
+export const messagesContainer = recipe({
+  base: {
+    overflowY: 'auto',
+    display: 'flex',
+    flexDirection: 'column',
+    width: 'auto',
+    padding: '20px',
+    paddingBottom: '63px',
+    paddingTop: '0px',
+    backgroundColor: COLORS.white,
+    borderBottomRightRadius: '16px',
+    borderBottomLeftRadius: '16px',
+  },
+  variants: {
+    showPoweredBy: {
+      false: {
+        paddingBottom: '46px',
+      },
+    },
+  },
 });
 
 const baseMessage = style({

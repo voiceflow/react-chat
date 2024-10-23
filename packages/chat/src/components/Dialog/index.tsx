@@ -7,11 +7,12 @@ import { agentMessage, avatarContainer, messagesContainer, userMessage } from '.
 
 interface IDialog {
   messages: { from: string; text: string }[];
+  showPoweredBy?: boolean;
 }
 
-export const Dialog: React.FC<IDialog> = ({ messages }) => {
+export const Dialog: React.FC<IDialog> = ({ messages, showPoweredBy }) => {
   return (
-    <div className={messagesContainer}>
+    <div className={messagesContainer({ showPoweredBy })}>
       <WelcomeMessage
         avatar={mockAvatar}
         title="ChatKit V2"

@@ -1,7 +1,5 @@
 import type { Meta } from '@storybook/react';
 
-import TABLES_QUOTES_RULES from '@/__fixtures__/markdown/tables-quotes-rules.md?raw';
-
 import { NewChat } from '.';
 
 const meta: Meta = {
@@ -51,7 +49,7 @@ export default meta;
 const messages = [
   {
     from: 'system',
-    text: TABLES_QUOTES_RULES,
+    text: "Hey there! I'm a chatbot. I can help you with a lot of things. Try me out!",
   },
   { from: 'user', text: 'Howdy!' },
   { from: 'user', text: 'What kinda sick stuff can you do?' },
@@ -64,7 +62,7 @@ const messages = [
 export const WithEntireFooter = {
   render: () => (
     <NewChat
-      messages={messages.splice(0, 1)}
+      messages={messages}
       footerProps={{
         showPoweredBy: true,
         messageInputProps: { message: '', onSubmit: () => null, placeholder: 'Message...', onValueChange: () => null },

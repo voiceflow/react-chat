@@ -5,7 +5,7 @@ import { MessageInput } from '../MessageInput';
 import {
   buttonsContainer,
   footerContainer,
-  messageBackground,
+  inputContainer,
   messageContainer,
   poweredByStyles,
   separator,
@@ -13,17 +13,11 @@ import {
 
 export interface INewFooter {
   buttons?: { label: string; onClick: () => void }[];
-
   showPoweredBy?: boolean;
   messageInputProps: IMessageInput;
 }
 
-export const NewFooter: React.FC<INewFooter> = ({
-  buttons,
-
-  showPoweredBy,
-  messageInputProps,
-}) => {
+export const NewFooter: React.FC<INewFooter> = ({ buttons, showPoweredBy, messageInputProps }) => {
   return (
     <div className={footerContainer}>
       {(buttons?.length ?? 0) > 0 && (
@@ -35,17 +29,19 @@ export const NewFooter: React.FC<INewFooter> = ({
           ))}
         </div>
       )}
-      <div className={messageContainer}>
-        <MessageInput {...messageInputProps} />
-        <div className={messageBackground({ showPoweredBy })} />
-      </div>
-      {showPoweredBy && (
-        <div className={poweredByStyles}>
-          <div>Powered by Voiceflow</div>
-          <div className={separator} />
-          <div>Privacy</div>
+      <div className={messageContainer({ showPoweredBy })}>
+        <div className={inputContainer}>
+          <MessageInput {...messageInputProps} />
         </div>
-      )}
+        {/* <div className={messageBackground({ showPoweredBy })} /> */}
+        {showPoweredBy && (
+          <div className={poweredByStyles}>
+            <div>Powered by Voiceflow</div>
+            <div className={separator} />
+            <div>Privacy</div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
