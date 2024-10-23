@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/voiceflow/react-chat/compare/documentation@0.16.0...documentation@0.17.0) (2024-10-22)
+
+### Features
+
+* add LinkPreview component (COR-3594) ([#222](https://github.com/voiceflow/react-chat/issues/222)) ([660b02f](https://github.com/voiceflow/react-chat/commit/660b02fea855e9c8a2e1c09c586c3bf8db8a8cc7))
+* add Primary/Secondary buttons to the docs for review (COR-3533) ([#226](https://github.com/voiceflow/react-chat/issues/226)) ([8df4f46](https://github.com/voiceflow/react-chat/commit/8df4f466a3bf418f2b96cddf9e64ebac5e1e4755))
+
 # [0.16.0](https://github.com/voiceflow/react-chat/compare/documentation@0.15.0...documentation@0.16.0) (2024-10-17)
 
 ### Features

@@ -1,5 +1,4 @@
 export { default as AgentMessage } from './AgentMessage';
-export { default as AssistantInfo } from './AssistantInfo';
 export { default as Avatar } from './Avatar';
 export { default as Button } from './Button';
 export { default as Card } from './Card';
@@ -14,6 +13,7 @@ export { default as Icon } from './Icon';
 export { default as Image } from './Image';
 export { default as Input } from './Input';
 export { default as Launcher } from './Launcher';
+export { default as LinkPreview } from './LinkPreview';
 export { default as Loader } from './Loader';
 export { default as Message } from './Message';
 export * as Proactive from './Proactive';

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { VF_ICON } from '@/fixtures';
+import { WithPalette } from '@/storybook/decorators';
 
 import Header from '.';
 
@@ -13,6 +14,7 @@ const meta: Meta<typeof Header> = {
     actions: [],
   },
   render: (args) => <Header {...args} />,
+  decorators: [WithPalette],
 };
 
 export default meta;
