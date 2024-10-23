@@ -1,10 +1,13 @@
+import { assignInlineVars } from '@vanilla-extract/dynamic';
 import { useRef, useState } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
+
+import { COLORS, createPalette } from '@/styles/colors';
 
 import { SquareButton } from '../Buttons/SquareButton';
 import { StopButton } from '../Buttons/StopButton';
 import SendButton from '../SendButton';
-import { buttonContainer, input, inputBlock, inputContainer, mockFocusRing } from './MessageInput.css';
+import { buttonContainer, input, inputBlock, inputContainer, mockFocusRing, themedFocusRing } from './MessageInput.css';
 
 export interface IMessageInput {
   message: string;
@@ -12,6 +15,7 @@ export interface IMessageInput {
   onDictationClick?: () => void;
   placeholder: string;
   onSubmit: () => void;
+  primaryColor?: string;
 }
 
 export const MessageInput: React.FC<IMessageInput> = ({
@@ -19,6 +23,7 @@ export const MessageInput: React.FC<IMessageInput> = ({
   onSubmit,
   onValueChange,
   placeholder = 'Message...',
+  primaryColor,
 }) => {
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const [isRecording, setIsRecording] = useState(false);
@@ -27,9 +32,11 @@ export const MessageInput: React.FC<IMessageInput> = ({
     inputRef.current?.focus();
   };
 
+  const messageColor = primaryColor ? createPalette(primaryColor)[500] : COLORS.ACCENT[500];
+
   return (
     <div className={inputContainer} onClick={handleContainerClick}>
-      <div className={mockFocusRing} />
+      <div style={assignInlineVars({ [themedFocusRing]: messageColor })} className={mockFocusRing} />
       <div className={inputBlock}>
         <TextareaAutosize
           placeholder={placeholder}
@@ -47,7 +54,7 @@ export const MessageInput: React.FC<IMessageInput> = ({
           <SquareButton size="medium" iconName="microphone" onClick={() => setIsRecording(true)} />
         )}
         {isRecording && <StopButton onClick={() => setIsRecording(false)} />}
-        <SendButton onClick={() => onSubmit()} disabled={!message?.length} />
+        <SendButton color={primaryColor} onClick={() => onSubmit()} disabled={!message?.length} />
       </div>
     </div>
   );

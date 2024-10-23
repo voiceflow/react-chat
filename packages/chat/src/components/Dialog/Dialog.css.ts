@@ -36,7 +36,8 @@ export const dialogContainer = recipe({
 export const messagesContainer = style({
   display: 'flex',
   flexDirection: 'column',
-  padding: '0px 16px',
+  padding: '20px',
+  paddingBottom: '0px',
 });
 
 const baseMessage = style({

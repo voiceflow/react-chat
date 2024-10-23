@@ -56,6 +56,7 @@ const messages = [
     from: 'system',
     text: "Hey there! I'm a chatbot. I can help you with a lot of things. Try me out!",
   },
+
   { from: 'user', text: 'Howdy!' },
   { from: 'user', text: 'What kinda sick stuff can you do?' },
   { from: 'system', text: "You're in for a treat. We can do some pretty sick stuff." },

@@ -30,15 +30,11 @@ export const NewChat: React.FC<INewChat> = ({ messages, color, footerProps }) =>
 
   useLayoutEffect(() => {
     if (scrollableAreaRef.current) {
-      const { scrollTop, scrollHeight, clientHeight } = scrollableAreaRef.current;
-      const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1;
-      if (isAtBottom) {
-        scrollableAreaRef.current.scrollTo({
+         scrollableAreaRef.current.scrollTo({
           top: scrollableAreaRef.current.scrollHeight,
           behavior: 'smooth',
         });
-      }
-    }
+     }
   }, [chatMessages]);
 
   const handleScroll = () => {
@@ -102,6 +98,7 @@ export const NewChat: React.FC<INewChat> = ({ messages, color, footerProps }) =>
         <NewFooter
           {...footerProps}
           messageInputProps={{
+            primaryColor: color,
             ...footerProps.messageInputProps,
             onValueChange: setNewMessage,
             message: newMessage,

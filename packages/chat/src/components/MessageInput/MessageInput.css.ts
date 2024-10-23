@@ -1,8 +1,10 @@
-import { style } from '@vanilla-extract/css';
+import { createVar, style } from '@vanilla-extract/css';
 
 import { COLORS } from '@/styles/colors';
 import { FAMILY } from '@/styles/font';
 import { transition } from '@/styles/transitions';
+
+export const themedFocusRing = createVar();
 
 export const inputContainer = style({
   position: 'relative',
@@ -37,12 +39,12 @@ export const mockFocusRing = style({
   borderRadius: '25px',
   pointerEvents: 'none',
   opacity: 0,
-  boxShadow: `inset 0 0 0 0px ${COLORS.ACCENT[500]}`,
+  boxShadow: `inset 0 0 0 0px ${themedFocusRing}`,
   transition: transition(['opacity', 'box-shadow']),
   selectors: {
     [`${inputContainer}:focus-within &`]: {
       opacity: 1,
-      boxShadow: `inset 0 0 0 2px ${COLORS.ACCENT[500]}`,
+      boxShadow: `inset 0 0 0 2px ${themedFocusRing}`,
     },
   },
 });
