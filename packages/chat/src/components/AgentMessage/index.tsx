@@ -25,7 +25,7 @@ interface IAgentMessage {
 }
 
 const AgentMessage: React.FC<IAgentMessage> = ({ children, generated, generatedMessage }) => {
-  const content = children?.toString();
+  const content = typeof children === 'string' ? children : '';
 
   const isCodeBlock =
     (content?.startsWith('```') && (content?.endsWith('```') || content.endsWith('```\n'))) ||
@@ -34,37 +34,41 @@ const AgentMessage: React.FC<IAgentMessage> = ({ children, generated, generatedM
   return (
     <div className={messageContainer}>
       <div className={clsx(contentStyle({ isCodeBlock }))}>
-        <Markdown
-          children={children?.toString()}
-          className={'markdown'}
-          remarkPlugins={[remarkGfm]}
-          components={{
-            code(props: any) {
-              const { children, className, node, ref, ...rest } = props;
-              const match = /language-(\w+)/.exec(className || '');
-              return match ? (
-                <span className={codeBlockContainer}>
-                  <CopyButton value={children} className={copyButton} />
-                  <SyntaxHighlighter
-                    {...rest}
-                    lineProps={{
-                      style: { wordBreak: 'break-all', whiteSpace: 'pre-wrap', paddingLeft: 0, paddingRight: 0 },
-                    }}
-                    wrapLines={true}
-                    wrapLongLines={true}
-                    children={String(children).replace(/\n$/, '')}
-                    language={match[1]}
-                    style={codeTheme}
-                  />
-                </span>
-              ) : (
-                <div {...rest} className={className}>
-                  {children}
-                </div>
-              );
-            },
-          }}
-        />
+        {typeof children === 'string' ? (
+          <Markdown
+            children={content}
+            className={'markdown'}
+            remarkPlugins={[remarkGfm]}
+            components={{
+              code(props: any) {
+                const { children, className, node, ref, ...rest } = props;
+                const match = /language-(\w+)/.exec(className || '');
+                return match ? (
+                  <span className={codeBlockContainer}>
+                    <CopyButton value={children} className={copyButton} />
+                    <SyntaxHighlighter
+                      {...rest}
+                      lineProps={{
+                        style: { wordBreak: 'break-all', whiteSpace: 'pre-wrap', paddingLeft: 0, paddingRight: 0 },
+                      }}
+                      wrapLines={true}
+                      wrapLongLines={true}
+                      children={String(children).replace(/\n$/, '')}
+                      language={match[1]}
+                      style={codeTheme}
+                    />
+                  </span>
+                ) : (
+                  <div {...rest} className={className}>
+                    {children}
+                  </div>
+                );
+              },
+            }}
+          />
+        ) : (
+          children
+        )}
       </div>
       {generated && (
         <div className={generatedChin}>

@@ -33,6 +33,12 @@ export const AIGenerated: Story = {
   },
 };
 
+export const WithLink: Story = {
+  args: {
+    children: shortMessage,
+  },
+};
+
 export const Markdown: Story = {
   args: {
     children: TEXT_TREATMENT_MARKDOWN,
