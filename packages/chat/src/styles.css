@@ -131,6 +131,8 @@ h6 {
 .markdown p {
   margin-top: 0;
   margin-bottom: 0;
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
 }
 
 .markdown hr {
@@ -159,4 +161,12 @@ h6 {
   padding: 0px;
   padding-inline-start: 20px;
   unicode-bidi: isolate;
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
 }

@@ -10,6 +10,7 @@ interface ButtonProps extends ComponentPropsWithRef<'button'> {
   variant?: ButtonVariant;
   large?: boolean;
   round?: boolean;
+  testID?: string;
 }
 
 const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(({ children, ...props }, ref) => {

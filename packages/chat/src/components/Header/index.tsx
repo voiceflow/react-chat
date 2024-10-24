@@ -36,10 +36,15 @@ export interface HeaderProps {
    * A list of actions that will appear as icon buttons.
    */
   actions?: HeaderActionProps[];
+
+  /**
+   * The primary color of the header.
+   */
+  rounded?: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({ title, image, actions = [] }) => (
-  <div className={clsx(ClassName.ICON, headerContainer)}>
+const Header: React.FC<HeaderProps> = ({ title, image, actions = [], rounded }) => (
+  <div className={clsx(ClassName.ICON, headerContainer({ rounded }))}>
     {!!image?.length && <Avatar size="small" avatar={image} />}
     <div className={headerInnerContainer}>
       <div className={headerTitle}>{title}</div>
