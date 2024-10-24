@@ -1,4 +1,7 @@
 import type { RecipeVariants } from '@vanilla-extract/recipes';
+import clsx from 'clsx';
+
+import { ClassName } from '@/constants';
 
 import { avatarStyles } from './styles.css';
 
@@ -19,7 +22,10 @@ export interface AvatarProps {
 }
 
 const Avatar: React.FC<AvatarProps> = ({ avatar, ...props }) => (
-  <div className={avatarStyles({ size: props.size })} style={{ backgroundImage: `url(${avatar})` }}></div>
+  <div
+    className={clsx(ClassName.AVATAR, avatarStyles({ size: props.size }))}
+    style={{ backgroundImage: `url(${avatar})` }}
+  ></div>
 );
 
 /**

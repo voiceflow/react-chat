@@ -1,4 +1,7 @@
+import clsx from 'clsx';
+
 import * as SVGs from '@/assets/svg';
+import { ClassName } from '@/constants';
 
 import { iconClassName } from './styles.css';
 
@@ -17,7 +20,7 @@ const Icon: React.FC<IconProps> = ({ svg, ...props }) => {
   const SVG = typeof svg === 'string' ? SVGs[svg] : svg;
 
   return (
-    <div className={iconClassName} {...props}>
+    <div className={clsx(ClassName.ICON, iconClassName)} {...props}>
       <SVG />
     </div>
   );

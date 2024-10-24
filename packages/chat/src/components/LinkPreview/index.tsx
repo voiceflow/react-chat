@@ -25,7 +25,7 @@ const LinkPreview = forwardRef<HTMLDivElement, PropsWithRef<ILinkPreviewProps>>(
   const shadow = linkType === 'custom' && !image;
 
   return (
-    <div ref={ref} style={{ width: '256px' }} className={linkPreviewContainer({ inline })} {...props}>
+    <div ref={ref} className={linkPreviewContainer({ inline })} {...props}>
       <div className={linkPreviewImageContainer({ shadow, inline })}>
         {linkType === 'pdf' && <Icon svg="documentPdf" />}
         {linkType === 'url' && <Icon svg="documentUrl" />}
