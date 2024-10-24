@@ -73,7 +73,6 @@ const MockComponent = (props: Partial<INewFooter>) => {
 export const Default: Story = {
   args: {
     buttons: [],
-    showScrollToButton: false,
     showPoweredBy: false,
   },
   render: (args) => <MockComponent {...args} />,
@@ -83,16 +82,13 @@ export const Everything: Story = {
   ...Default,
   args: {
     buttons,
-    showScrollToButton: true,
     showPoweredBy: true,
   },
 };
 
 export const WithScrollButton: Story = {
   ...Default,
-  args: {
-    showScrollToButton: true,
-  },
+  args: {},
 };
 
 export const WithButtons: Story = {
