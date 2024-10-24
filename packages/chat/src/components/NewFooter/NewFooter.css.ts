@@ -3,12 +3,11 @@ import { recipe } from '@vanilla-extract/recipes';
 
 import { COLORS } from '@/styles/colors';
 import { FAMILY } from '@/styles/font';
+import { transition } from '@/styles/transitions';
 
 const BUTTON_ROW_MARGIN = 10;
 
 export const footerContainer = style({
-  // position: 'absolute',
-  // bottom: 0,
   width: '100%',
 });
 
@@ -38,29 +37,6 @@ export const scrollButtonContainer = style({
   marginBottom: `${BUTTON_ROW_MARGIN}px`,
   animation: `${fadeIn} .15s ease-in`, // Apply the fade-in animation
 });
-
-// export const messageBackground = recipe({
-//   base: {
-
-//     position: 'absolute',
-//     left: 0,
-//     width: '100%',
-//     bottom: '-20px',
-//     height: '48px',
-//     borderBottomLeftRadius: '16px',
-//     borderBottomRightRadius: '16px',
-//   },
-//   variants: {
-//     showPoweredBy: {
-//       true: {
-//         height: '50%',
-//         bottom: '-1px',
-//         borderBottomLeftRadius: '0',
-//         borderBottomRightRadius: '0',
-//       },
-//     },
-//   },
-// });
 
 export const inputContainer = style({
   padding: '0 20px',
@@ -114,4 +90,24 @@ export const separator = style({
   width: '2px',
   borderRadius: '100px',
   backgroundColor: COLORS.NEUTRAL_LIGHT[500],
+});
+
+export const prviacyLinkStyles = style({
+  color: COLORS.NEUTRAL_DARK[100],
+  fontFamily: FAMILY,
+  fontSize: '12px',
+  lineHeight: '17px',
+  textDecorationColor: 'transparent',
+  transition: transition(['color', 'text-decoration-color']),
+  selectors: {
+    '&:hover': {
+      textDecoration: 'underline',
+      color: COLORS.ACCENT[500],
+      textDecorationColor: COLORS.ACCENT[500],
+    },
+    '&:active': {
+      color: COLORS.ACCENT[600],
+      textDecorationColor: COLORS.ACCENT[600],
+    },
+  },
 });

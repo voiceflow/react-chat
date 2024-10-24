@@ -44,6 +44,8 @@ export const Base = {
       messages={messages}
       footerProps={{
         showPoweredBy: true,
+        privacyURL: 'https://voiceflow.com',
+
         messageInputProps: { message: '', onSubmit: () => null, placeholder: 'Message...', onValueChange: () => null },
       }}
     />
@@ -60,9 +62,12 @@ export const Themed: Story = {
             messages={messages}
             footerProps={{
               showPoweredBy: true,
+              privacyURL: 'https://voiceflow.com',
+
               messageInputProps: {
                 message: '',
                 onSubmit: () => null,
+
                 placeholder: 'Message...',
                 onValueChange: () => null,
               },
@@ -77,6 +82,8 @@ export const Themed: Story = {
             messages={messages}
             footerProps={{
               showPoweredBy: true,
+              privacyURL: 'https://voiceflow.com',
+
               messageInputProps: {
                 message: '',
                 onSubmit: () => null,
@@ -94,6 +101,8 @@ export const Themed: Story = {
             messages={messages}
             footerProps={{
               showPoweredBy: true,
+              privacyURL: 'https://voiceflow.com',
+
               messageInputProps: {
                 message: '',
                 onSubmit: () => null,
@@ -114,6 +123,7 @@ export const NoPoweredBy = {
       messages={[{ from: 'system', text: TEXT_TREATMENT_MARKDOWN }, ...messages]}
       footerProps={{
         buttons: [],
+        privacyURL: 'https://voiceflow.com',
         showPoweredBy: false,
         messageInputProps: { message: '', onSubmit: () => null, placeholder: 'Message...', onValueChange: () => null },
       }}

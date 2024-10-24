@@ -8,6 +8,7 @@ import {
   inputContainer,
   messageContainer,
   poweredByStyles,
+  prviacyLinkStyles,
   separator,
 } from './NewFooter.css';
 
@@ -15,9 +16,10 @@ export interface INewFooter {
   buttons?: { label: string; onClick: () => void }[];
   showPoweredBy?: boolean;
   messageInputProps: IMessageInput;
+  privacyURL?: string;
 }
 
-export const NewFooter: React.FC<INewFooter> = ({ buttons, showPoweredBy, messageInputProps }) => {
+export const NewFooter: React.FC<INewFooter> = ({ buttons, showPoweredBy, messageInputProps, privacyURL }) => {
   return (
     <div className={footerContainer}>
       {(buttons?.length ?? 0) > 0 && (
@@ -38,7 +40,9 @@ export const NewFooter: React.FC<INewFooter> = ({ buttons, showPoweredBy, messag
           <div className={poweredByStyles}>
             <div>Powered by Voiceflow</div>
             <div className={separator} />
-            <div>Privacy</div>
+            <a href={privacyURL} className={prviacyLinkStyles}>
+              Privacy
+            </a>
           </div>
         )}
       </div>

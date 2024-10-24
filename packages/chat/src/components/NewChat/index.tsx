@@ -3,6 +3,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import mockAvatar from '../../assets/blank-image.png';
 import { Dialog } from '../Dialog';
 import Header from '../Header';
+import type { INewFooter } from '../NewFooter';
 import { NewFooter } from '../NewFooter';
 import { ScrollButton } from '../NewFooter/ScrollButton';
 import { chatContainer, chatFooter, dialogContainer, scrollToButton } from './NewChat.css';
@@ -11,8 +12,9 @@ interface INewChat {
   messages: { from: string; text: string }[];
   color?: string;
   footerProps: {
-    buttons?: { label: string; onClick: () => void }[];
-    showPoweredBy?: boolean;
+    buttons?: INewFooter['buttons'];
+    showPoweredBy?: INewFooter['showPoweredBy'];
+    privacyURL?: INewFooter['privacyURL'];
     messageInputProps: {
       message: string;
       onValueChange: (e: string) => void;
