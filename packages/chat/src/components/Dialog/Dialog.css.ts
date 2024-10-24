@@ -1,8 +1,6 @@
 import { keyframes, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
-import { COLORS } from '@/styles/colors';
-
 const fadeIn = keyframes({
   from: {
     opacity: 0,
@@ -20,9 +18,7 @@ export const dialogContainer = recipe({
     width: 'auto',
     paddingBottom: '63px',
     paddingTop: '0px',
-    backgroundColor: COLORS.white,
-    borderBottomRightRadius: '16px',
-    borderBottomLeftRadius: '16px',
+    backgroundColor: 'purple',
   },
   variants: {
     showPoweredBy: {

@@ -76,13 +76,10 @@ export const poweredByStyles = style({
   lineHeight: '17px',
   width: '100%',
   padding: '10px 0',
-  backgroundColor: COLORS.white,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   gap: '8px',
-  borderBottomLeftRadius: '20px',
-  borderBottomRightRadius: '20px',
 });
 
 export const separator = style({

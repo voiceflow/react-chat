@@ -6,7 +6,8 @@ export const chatContainer = style({
   height: '700px',
   width: '100%',
   borderRadius: '16px',
-  backgroundColor: COLORS.white,
+  // backgroundColor: COLORS.white,
+  backgroundColor: 'orange',
   border: `.5px solid ${COLORS.NEUTRAL_LIGHT[100]}`,
   position: 'relative',
   boxShadow:
@@ -30,7 +31,7 @@ export const dialogContainer = style({
   height: `${MOBILE_WIDGET_HEIGHT}px`,
   overflow: 'hidden',
   scrollbarWidth: 'none',
-
+  background: 'green',
   overflowY: 'auto',
 });
 

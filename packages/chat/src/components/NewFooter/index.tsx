@@ -35,12 +35,11 @@ export const NewFooter: React.FC<INewFooter> = ({ buttons, showPoweredBy, messag
         <div className={inputContainer}>
           <MessageInput {...messageInputProps} />
         </div>
-        {/* <div className={messageBackground({ showPoweredBy })} /> */}
         {showPoweredBy && (
           <div className={poweredByStyles}>
             <div>Powered by Voiceflow</div>
             <div className={separator} />
-            <a href={privacyURL} className={prviacyLinkStyles}>
+            <a href={privacyURL} target="_blank" className={prviacyLinkStyles}>
               Privacy
             </a>
           </div>
