@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.24.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.23.0...@voiceflow/chat@0.24.0) (2024-10-24)
+
+### Features
+
+* Widget Composition (DSN-000) ([#231](https://github.com/voiceflow/react-chat/issues/231)) ([2966da3](https://github.com/voiceflow/react-chat/commit/2966da31b6105e221729bc84f11e10a39ddc648c))
+
 # [0.23.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.22.0...@voiceflow/chat@0.23.0) (2024-10-22)
 
 ### Features
