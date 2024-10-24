@@ -11,6 +11,7 @@ import {
   codeBlockContainer,
   contentStyle,
   copyButton,
+  embeddedContent,
   generatedChin,
   messageContainer,
 } from './AgentMessage.css';
@@ -18,25 +19,25 @@ import codeTheme from './code-theme';
 import { CopyButton } from './CopyButton';
 
 interface IAgentMessage {
-  children: React.ReactNode;
+  message: string;
+  children?: React.ReactNode;
   from: 'system' | 'user';
   generated?: boolean;
   generatedMessage?: string;
 }
 
-const AgentMessage: React.FC<IAgentMessage> = ({ children, generated, generatedMessage }) => {
-  const content = children?.toString();
-
+const AgentMessage: React.FC<IAgentMessage> = ({ message, children, generated, generatedMessage }) => {
+  const content = typeof message === 'string' ? message : '';
   const isCodeBlock =
     (content?.startsWith('```') && (content?.endsWith('```') || content.endsWith('```\n'))) ||
     content?.startsWith('\n```');
 
   return (
     <div className={messageContainer}>
-      <div className={clsx(contentStyle({ isCodeBlock }))}>
+      <div>
         <Markdown
-          children={children?.toString()}
-          className={'markdown'}
+          children={content}
+          className={clsx('markdown', clsx(contentStyle({ isCodeBlock })))}
           remarkPlugins={[remarkGfm]}
           components={{
             code(props: any) {
@@ -65,6 +66,7 @@ const AgentMessage: React.FC<IAgentMessage> = ({ children, generated, generatedM
             },
           }}
         />
+        <div className={embeddedContent}>{children}</div>
       </div>
       {generated && (
         <div className={generatedChin}>
