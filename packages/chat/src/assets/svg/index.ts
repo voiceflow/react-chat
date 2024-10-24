@@ -1,5 +1,6 @@
 export { default as ai } from './ai.svg?react';
 export { default as arrowDown } from './arrow-down.svg?react';
+export { default as arrowRight } from './arrow-right.svg?react';
 export { default as checkmark } from './checkmark.svg?react';
 export { default as close } from './close.svg?react';
 export { default as closeV2 } from './closeV2.svg?react';

@@ -3,23 +3,18 @@ import { forwardRef } from 'react';
 
 import Icon from '@/components/Icon';
 
-import { ButtonContainer } from './styled';
+import { carouselButton } from './carouselButtonStyles.css';
 
 export interface CarouselButtonProps {
-  /**
-   * The end of the container where the button will be rendered.
-   */
-  alignment: 'left' | 'right';
-
   /**
    * If true then the button will be visible, otherwise hidden.
    */
   visible: boolean;
 
   /**
-   * The buttons will be centered vertically based on the height of this element.
+   * Which direction the button should point.
    */
-  containerEl: HTMLElement;
+  direction: 'right' | 'left';
 
   /**
    * A click handler for the button.
@@ -30,20 +25,10 @@ export interface CarouselButtonProps {
 /**
  * A button used to scroll to the previous or next Card in a Carousel.
  */
-const CarouselButton = forwardRef<HTMLElement, CarouselButtonProps>(
-  ({ onClick, alignment, visible, containerEl }, ref) => (
-    <ButtonContainer
-      ref={ref}
-      alignment={alignment}
-      visible={visible}
-      css={{
-        transform: `translateY(calc(${containerEl.clientHeight / 2}px - 50%))`,
-      }}
-      onClick={onClick}
-    >
-      <Icon svg="largeArrowLeft" />
-    </ButtonContainer>
-  )
-);
+const CarouselButton = forwardRef<HTMLButtonElement, CarouselButtonProps>(({ onClick, visible, direction }, ref) => (
+  <button ref={ref} className={carouselButton({ visible, direction })} onClick={onClick}>
+    <Icon svg="arrowRight" />
+  </button>
+));
 
 export default CarouselButton;

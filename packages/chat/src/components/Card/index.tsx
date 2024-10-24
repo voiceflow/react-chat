@@ -14,13 +14,13 @@ import type { CardProps } from './types';
  *
  * @see {@link https://voiceflow.github.io/react-chat/?path=/story/components-card--simple}
  */
-const Card: React.FC<CardProps> = ({ title, description, image, actions = [] }) => {
+const Card: React.FC<CardProps> = ({ title, description, image, actions = [], className = '' }) => {
   const runtime = useContext(RuntimeStateAPIContext);
 
   const buttons = useMemo(() => actions.filter(({ name }) => !!name), [actions]);
 
   return (
-    <div className={clsx(ClassName.CARD, cardContainer)}>
+    <div className={clsx(ClassName.CARD, cardContainer, className)}>
       {!!image && <img className={cardImage} src={image} />}
       {(title || description) && (
         <div className={cardContent}>

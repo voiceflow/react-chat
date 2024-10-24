@@ -1,72 +1,45 @@
-import type { RefObject } from 'react';
-import { createPortal } from 'react-dom';
+import clsx from 'clsx';
+import { useRef } from 'react';
 
-import Card from '@/components/Card';
+import { ClassName } from '@/constants';
 
+import Card from '../Card';
 import type { CardProps } from '../Card/types';
 import CarouselButton from './CarouselButton';
 import { CARD_WITH_GUTTER_WIDTH } from './constants';
 import { useScrollObserver, useScrollTo } from './hooks';
-import { Container } from './styled';
+import { cardsContainer, cardsInnerContainer, cardStyle, carouselContainer, lastCardSpacer } from './styles.css';
 
 export interface CarouselProps {
   /**
    * A list of props objects which will be passed to {@link Card} components.
    */
   cards: CardProps[];
-
-  /**
-   * A reference to the HTML element of a parent horizontal scrolling container.
-   */
-  containerRef?: RefObject<HTMLDivElement>;
-
-  /**
-   * A reference to an HTML element to anchor the carousel controls.
-   */
-  controlsRef?: RefObject<HTMLSpanElement>;
 }
 
-const Carousel: React.FC<CarouselProps> = ({ cards, containerRef, controlsRef }) => {
-  const { previousButtonRef, nextButtonRef, showPreviousButton, showNextButton } = useScrollObserver(
-    containerRef,
-    controlsRef,
-    cards
-  );
-  const containerEl = containerRef?.current;
-  const controlsEl = controlsRef?.current;
-  const showControls = containerEl && controlsEl;
+const Carousel: React.FC<CarouselProps> = ({ cards }) => {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const { showPreviousButton, showNextButton } = useScrollObserver(scrollContainerRef, cards);
 
-  const scrollToPrevious = useScrollTo(containerRef, (el) => Math.ceil(el.scrollLeft / CARD_WITH_GUTTER_WIDTH) - 1);
-  const scrollToNext = useScrollTo(containerRef, (el) => Math.floor(el.scrollLeft / CARD_WITH_GUTTER_WIDTH) + 1);
+  const scrollToPrevious = useScrollTo(
+    scrollContainerRef,
+    (el) => Math.ceil(el.scrollLeft / CARD_WITH_GUTTER_WIDTH) - 1
+  );
+  const scrollToNext = useScrollTo(scrollContainerRef, (el) => Math.floor(el.scrollLeft / CARD_WITH_GUTTER_WIDTH) + 1);
 
   return (
-    <>
-      <Container>
-        {cards.map((card, index) => (
-          <Card {...card} key={index} />
-        ))}
-      </Container>
-      {showControls &&
-        createPortal(
-          <>
-            <CarouselButton
-              ref={previousButtonRef}
-              alignment="left"
-              visible={showPreviousButton}
-              containerEl={containerEl}
-              onClick={scrollToPrevious}
-            />
-            <CarouselButton
-              ref={nextButtonRef}
-              alignment="right"
-              visible={showNextButton}
-              containerEl={containerEl}
-              onClick={scrollToNext}
-            />
-          </>,
-          controlsEl
-        )}
-    </>
+    <div className={carouselContainer}>
+      <div ref={scrollContainerRef} className={clsx(ClassName.CAROUSEL, cardsContainer)}>
+        <div className={cardsInnerContainer}>
+          {cards.map((card, i) => (
+            <Card className={cardStyle} {...card} key={i} />
+          ))}
+          <div className={lastCardSpacer}> </div>
+        </div>
+      </div>
+      <CarouselButton direction="left" visible={showPreviousButton} onClick={scrollToPrevious} />
+      <CarouselButton direction="right" visible={showNextButton} onClick={scrollToNext} />
+    </div>
   );
 };
 
@@ -75,6 +48,4 @@ const Carousel: React.FC<CarouselProps> = ({ cards, containerRef, controlsRef })
  *
  * @see {@link https://voiceflow.github.io/react-chat/?path=/story/components-carousel--single-card}
  */
-export default Object.assign(Carousel, {
-  Container,
-});
+export default Carousel;
