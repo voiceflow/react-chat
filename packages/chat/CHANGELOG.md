@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.23.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.22.0...@voiceflow/chat@0.23.0) (2024-10-22)
+
+### Features
+
+* add LinkPreview component (COR-3594) ([#222](https://github.com/voiceflow/react-chat/issues/222)) ([660b02f](https://github.com/voiceflow/react-chat/commit/660b02fea855e9c8a2e1c09c586c3bf8db8a8cc7))
+* add Primary/Secondary buttons to the docs for review (COR-3533) ([#226](https://github.com/voiceflow/react-chat/issues/226)) ([8df4f46](https://github.com/voiceflow/react-chat/commit/8df4f466a3bf418f2b96cddf9e64ebac5e1e4755))
+* aligning theme colors across components (COR-0000) ([#233](https://github.com/voiceflow/react-chat/issues/233)) ([ccf9dbb](https://github.com/voiceflow/react-chat/commit/ccf9dbb646a4dba8583e3c15b97567852750794b))
+
+# [0.22.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.21.0...@voiceflow/chat@0.22.0) (2024-10-17)
+
+### Features
+
+* touch ups for the launcher button (COR-0000) ([#221](https://github.com/voiceflow/react-chat/issues/221)) ([4175b8f](https://github.com/voiceflow/react-chat/commit/4175b8fd0fc20d86740c34635851ff6271a79fde))
+
+# [0.21.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.20.0...@voiceflow/chat@0.21.0) (2024-10-17)
+
+### Features
+
+* add Card component (COR-2149) ([#223](https://github.com/voiceflow/react-chat/issues/223)) ([1a4e1b8](https://github.com/voiceflow/react-chat/commit/1a4e1b8bcabe539cc5d71bbaabbb8e92e6e25f14))
+
+# [0.20.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.19.0...@voiceflow/chat@0.20.0) (2024-10-16)
+
+### Features
+
+* cleaning up (COR-0000) ([#218](https://github.com/voiceflow/react-chat/issues/218)) ([0fc8593](https://github.com/voiceflow/react-chat/commit/0fc8593d299dcffe6f0995b2d022f63b98ca403c))
+
+# [0.19.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.18.0...@voiceflow/chat@0.19.0) (2024-10-15)
+
+### Features
+
+* UserMessage  (DX-2138) ([#213](https://github.com/voiceflow/react-chat/issues/213)) ([97fcc7b](https://github.com/voiceflow/react-chat/commit/97fcc7b1d806cbb430daf29157d5610396935841))
+
 # [0.18.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.17.0...@voiceflow/chat@0.18.0) (2024-10-15)
 
 ### Features

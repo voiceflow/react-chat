@@ -4,6 +4,7 @@ export const SIZES = {
   xxl: '72px',
 
   radius: {
+    xxxs: '4px',
     xxs: '6px',
     xs: '8px',
     sm: '10px',

@@ -1,7 +1,5 @@
 import React, { memo, useContext, useMemo, useRef, useState } from 'react';
 
-import type { AssistantInfoProps } from '@/components/AssistantInfo';
-import AssistantInfo from '@/components/AssistantInfo';
 import type { FooterProps } from '@/components/Footer';
 import Footer from '@/components/Footer';
 import type { HeaderActionProps, HeaderProps } from '@/components/Header';
@@ -13,10 +11,11 @@ import { RenderMode } from '@/dtos/RenderOptions.dto';
 import type { Nullish } from '@/types';
 import { chain } from '@/utils/functional';
 
+import { type IWelcomeMessage, WelcomeMessage } from '../WelcomeMessage';
 import { useTimestamp } from './hooks';
 import { Container, Dialog, Overlay, SessionTime, Spacer, Status } from './styled';
 
-export interface ChatProps extends HeaderProps, AssistantInfoProps, FooterProps, React.PropsWithChildren<unknown> {
+export interface ChatProps extends HeaderProps, IWelcomeMessage, FooterProps, React.PropsWithChildren<unknown> {
   /**
    * A short description of the assistant to help frame the conversation.
    */
@@ -103,7 +102,7 @@ const Chat: React.FC<ChatProps> = ({
       <Header title={title} image={image} actions={actions} />
       <Dialog ref={dialogRef}>
         <AutoScrollProvider target={dialogRef}>
-          <AssistantInfo title={title} avatar={avatar} description={description} />
+          <WelcomeMessage title={title} avatar={avatar} description={description} />
           <Spacer />
           {!!timestamp && !!state.session.turns.length && <SessionTime>{timestamp}</SessionTime>}
           {children}

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Chat from '@/components/Chat';
 import { VF_ICON } from '@/fixtures';
+import { WithPalette } from '@/storybook/decorators';
 
 import Header from '.';
 
@@ -9,15 +9,12 @@ const meta: Meta<typeof Header> = {
   title: 'Components/Chat/Header',
   component: Header,
   args: {
-    title: 'Assistant Name',
+    title: 'Agent name',
     image: VF_ICON,
     actions: [],
   },
-  render: (args) => (
-    <Chat.Container>
-      <Header {...args} />
-    </Chat.Container>
-  ),
+  render: (args) => <Header {...args} />,
+  decorators: [WithPalette],
 };
 
 export default meta;

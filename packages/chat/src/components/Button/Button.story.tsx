@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { WithPalette } from '@/storybook/decorators';
+
 import Button from '.';
 import { ButtonVariant } from './constants';
 
@@ -15,9 +17,10 @@ const meta: Meta<typeof Button> = {
     },
   },
   args: {
-    children: 'Button Label',
+    children: 'Button label',
     round: false,
   },
+  decorators: [WithPalette],
 };
 
 export default meta;
@@ -28,9 +31,23 @@ export const Primary: Story = {
   },
 };
 
+export const PrimaryLarge: Story = {
+  args: {
+    variant: ButtonVariant.PRIMARY,
+    large: true,
+  },
+};
+
 export const Secondary: Story = {
   args: {
     variant: ButtonVariant.SECONDARY,
+  },
+};
+
+export const SecondaryLarge: Story = {
+  args: {
+    variant: ButtonVariant.SECONDARY,
+    large: true,
   },
 };
 

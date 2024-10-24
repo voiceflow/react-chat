@@ -1,5 +1,8 @@
+import clsx from 'clsx';
 import type { MouseEventHandler } from 'react';
 import React from 'react';
+
+import { ClassName } from '@/constants';
 
 import Button from '../Button';
 import { ChevronIcon } from './ChevronIcon';
@@ -34,11 +37,11 @@ export interface LauncherProps {
 const Launcher: React.FC<LauncherProps> = ({ image, isOpen, label, onClick }) => {
   const withLabel = !!label?.length;
   return (
-    <Button className={launcherStyles({ withLabel })} onClick={onClick}>
+    <Button className={clsx(ClassName.LAUNCHER, launcherStyles({ withLabel }))} onClick={onClick}>
       {withLabel && <div className={launcherLabelStyles}>{label}</div>}
       {image && !isOpen && <img src={image} className={launcherIconStyles({ withLabel })} alt="launch" />}
       {!image && !isOpen && <PlayIcon className={launcherIconStyles({ withLabel })} />}
-      {isOpen && <ChevronIcon className={launcherIconStyles()} />}
+      {isOpen && <ChevronIcon className={launcherIconStyles({ withLabel })} />}
     </Button>
   );
 };

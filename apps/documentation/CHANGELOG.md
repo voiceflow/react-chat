@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/voiceflow/react-chat/compare/documentation@0.16.0...documentation@0.17.0) (2024-10-22)
+
+### Features
+
+* add LinkPreview component (COR-3594) ([#222](https://github.com/voiceflow/react-chat/issues/222)) ([660b02f](https://github.com/voiceflow/react-chat/commit/660b02fea855e9c8a2e1c09c586c3bf8db8a8cc7))
+* add Primary/Secondary buttons to the docs for review (COR-3533) ([#226](https://github.com/voiceflow/react-chat/issues/226)) ([8df4f46](https://github.com/voiceflow/react-chat/commit/8df4f466a3bf418f2b96cddf9e64ebac5e1e4755))
+
+# [0.16.0](https://github.com/voiceflow/react-chat/compare/documentation@0.15.0...documentation@0.16.0) (2024-10-17)
+
+### Features
+
+* touch ups for the launcher button (COR-0000) ([#221](https://github.com/voiceflow/react-chat/issues/221)) ([4175b8f](https://github.com/voiceflow/react-chat/commit/4175b8fd0fc20d86740c34635851ff6271a79fde))
+
+# [0.15.0](https://github.com/voiceflow/react-chat/compare/documentation@0.14.0...documentation@0.15.0) (2024-10-17)
+
+### Features
+
+* add Card component (COR-2149) ([#223](https://github.com/voiceflow/react-chat/issues/223)) ([1a4e1b8](https://github.com/voiceflow/react-chat/commit/1a4e1b8bcabe539cc5d71bbaabbb8e92e6e25f14))
+
+# [0.14.0](https://github.com/voiceflow/react-chat/compare/documentation@0.13.0...documentation@0.14.0) (2024-10-16)
+
+### Features
+
+* cleaning up (COR-0000) ([#218](https://github.com/voiceflow/react-chat/issues/218)) ([0fc8593](https://github.com/voiceflow/react-chat/commit/0fc8593d299dcffe6f0995b2d022f63b98ca403c))
+
+# [0.13.0](https://github.com/voiceflow/react-chat/compare/documentation@0.12.0...documentation@0.13.0) (2024-10-15)
+
+### Features
+
+* UserMessage  (DX-2138) ([#213](https://github.com/voiceflow/react-chat/issues/213)) ([97fcc7b](https://github.com/voiceflow/react-chat/commit/97fcc7b1d806cbb430daf29157d5610396935841))
+
 # [0.12.0](https://github.com/voiceflow/react-chat/compare/documentation@0.11.0...documentation@0.12.0) (2024-10-15)
 
 ### Features

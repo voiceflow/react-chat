@@ -1,49 +1,44 @@
+import clsx from 'clsx';
 import { useContext, useMemo } from 'react';
 
-import Button from '@/components/Button';
-import Image from '@/components/Image';
+import { ClassName } from '@/constants';
 import { RuntimeStateAPIContext } from '@/contexts';
 
-import { Container, Content, Description, Header, Link } from './styled';
+import Button from '../Button';
+import { ButtonVariant } from '../Button/constants';
+import { cardActions, cardContainer, cardContent, cardDescription, cardImage, cardTitle } from './styles.css';
 import type { CardProps } from './types';
-import { isValidHttpUrl } from './utils';
-
-export type { CardProps } from './types';
-
-const Card: React.FC<CardProps> = ({ title, description, image, actions = [] }) => {
-  const runtime = useContext(RuntimeStateAPIContext);
-  const isLink = isValidHttpUrl(description);
-
-  const buttons = useMemo(() => actions.filter(({ name }) => !!name), [actions]);
-
-  return (
-    <Container>
-      {!!image && <Image image={image} />}
-      <Content>
-        {!!title && <Header>{title}</Header>}
-        {!!description &&
-          (isLink ? (
-            <Link rel="noopener noreferrer" href={description} target="_blank">
-              {description}
-            </Link>
-          ) : (
-            <Description>{description}</Description>
-          ))}
-        {buttons.map(({ request, name }, index) => (
-          <Button onClick={() => runtime.interact(request, name)} key={index}>
-            {name}
-          </Button>
-        ))}
-      </Content>
-    </Container>
-  );
-};
 
 /**
  * A titled card with content and optional controls.
  *
  * @see {@link https://voiceflow.github.io/react-chat/?path=/story/components-card--simple}
  */
-export default Object.assign(Card, {
-  Container,
-});
+const Card: React.FC<CardProps> = ({ title, description, image, actions = [] }) => {
+  const runtime = useContext(RuntimeStateAPIContext);
+
+  const buttons = useMemo(() => actions.filter(({ name }) => !!name), [actions]);
+
+  return (
+    <div className={clsx(ClassName.CARD, cardContainer)}>
+      {!!image && <img className={cardImage} src={image} />}
+      {(title || description) && (
+        <div className={cardContent}>
+          {title && <div className={cardTitle}>{title}</div>}
+          {description && <div className={cardDescription}>{description}</div>}
+        </div>
+      )}
+      {!!buttons?.length && (
+        <div className={cardActions}>
+          {buttons.map(({ request, name }, index) => (
+            <Button variant={ButtonVariant.SECONDARY} onClick={() => runtime.interact(request, name)} key={index}>
+              {name}
+            </Button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Card;

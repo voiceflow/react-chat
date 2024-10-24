@@ -12,12 +12,14 @@ export const schema = {
   },
   protocols: {
     ...defaultSchema.protocols,
+    href: ['https', 'http', 'mailto', 'tel', 'sms', 'geo'],
     poster: ['https'],
   },
   tagNames: [...defaultSchema.tagNames!, 'video', 'audio'],
 };
 
-const safeProtocol = /^(https?|ircs?|mailto|xmpp)$/i;
+const safeProtocol = /^(https?|ircs?|mailto|xmpp|tel|sms|geo)$/i;
+
 export function transformURL(value: string): string {
   const colon = value.indexOf(':');
   const questionMark = value.indexOf('?');

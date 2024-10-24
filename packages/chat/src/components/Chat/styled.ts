@@ -1,4 +1,3 @@
-import AssistantInfo from '@/components/AssistantInfo';
 import Footer from '@/components/Footer';
 import Loader from '@/components/Loader';
 import Prompt from '@/components/Prompt';
@@ -11,6 +10,7 @@ import type { CSS } from '@/old-styles';
 import { animationStyles, createTransition, fadeIn, styled } from '@/old-styles';
 
 import { headerContainer } from '../Header/styles.css';
+import { welcomeMessageContainer } from '../WelcomeMessage/WelcomeMessage.css';
 
 const PROMPT_OVERFLOW = 10;
 
@@ -111,7 +111,7 @@ export const Dialog = styled(tag('main', 'dialog'), {
     & ${UserResponse.Container},
     & ${SystemResponse.List},
     & ${SystemResponse.Actions},
-    & ${AssistantInfo.Container}
+    & .${welcomeMessageContainer}
   `]: {
     ...animationStyles({ duration: 150, delay: 0 }),
   },
