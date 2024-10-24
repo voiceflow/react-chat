@@ -23,7 +23,6 @@ const LinkPreview = forwardRef<HTMLDivElement, PropsWithRef<ILinkPreviewProps>>(
   const { image, title, link, inline } = props;
   const linkType = getImageTypeFromUrl(link);
   const shadow = linkType === 'custom' && !image;
-
   return (
     <div ref={ref} style={{ width: '256px' }} className={linkPreviewContainer({ inline })} {...props}>
       <div className={linkPreviewImageContainer({ shadow, inline })}>
