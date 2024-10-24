@@ -116,9 +116,6 @@ export const linkPreviewTitle = recipe({
   base: {
     flexGrow: 1,
     color: COLORS.NEUTRAL_DARK[900],
-    display: '-webkit-box',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
     maxHeight: '34px',
     ...lineClamp(2),
   },
