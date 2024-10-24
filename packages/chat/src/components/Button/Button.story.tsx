@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { WithPalette } from '@/storybook/decorators';
+import { WithDefaultPalette } from '@/storybook/decorators';
 
 import Button from '.';
 import { ButtonVariant } from './constants';
@@ -26,7 +26,7 @@ const meta: Meta<typeof Button> = {
     },
     testID: TEST_ID,
   },
-  decorators: [WithPalette],
+  decorators: [WithDefaultPalette],
 };
 
 export default meta;

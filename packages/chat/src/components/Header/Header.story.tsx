@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { VF_ICON } from '@/fixtures';
-import { WithPalette } from '@/storybook/decorators';
+import { WithDefaultPalette } from '@/storybook/decorators';
 
 import Header from '.';
 
@@ -14,7 +14,7 @@ const meta: Meta<typeof Header> = {
     actions: [],
   },
   render: (args) => <Header {...args} />,
-  decorators: [(Story) => <WithPalette>{Story()}</WithPalette>],
+  decorators: [WithDefaultPalette],
 };
 
 export default meta;
@@ -33,5 +33,5 @@ export const Themed: Story = {
   args: {
     actions: [{ svg: 'volume' }, { svg: 'reset' }, { svg: 'close' }],
   },
-  decorators: [(Story) => <WithPalette color="green">{Story()}</WithPalette>],
+  decorators: [WithDefaultPalette],
 };

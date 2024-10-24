@@ -1,19 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import TEXT_TREATMENT_MARKDOWN from '@/__fixtures__/markdown/text-treatment.md?raw';
-import { WithPalette } from '@/storybook/decorators';
+import { WithDefaultPalette } from '@/storybook/decorators';
+import { createPalette } from '@/styles/colors';
+import { PALETTE } from '@/styles/colors.css';
 
 import { NewChat } from '.';
 
 const meta: Meta = {
   title: 'Widget',
-  decorators: [
-    (Story) => (
-      <WithPalette>
-        <Story />
-      </WithPalette>
-    ),
-  ],
+  decorators: [WithDefaultPalette],
 
   parameters: {
     layout: 'centered',
@@ -55,64 +52,60 @@ export const Base = {
 export const Themed: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: '32px' }}>
-      <WithPalette color="red">
-        <div style={{ width: '400px' }}>
-          <NewChat
-            color="orange"
-            messages={messages}
-            footerProps={{
-              showPoweredBy: true,
-              privacyURL: 'https://voiceflow.com',
+      <div style={{ width: '400px', ...assignInlineVars(PALETTE, { colors: createPalette('red') }) }}>
+        <NewChat
+          color="orange"
+          messages={messages}
+          footerProps={{
+            showPoweredBy: true,
+            privacyURL: 'https://voiceflow.com',
 
-              messageInputProps: {
-                message: '',
-                onSubmit: () => null,
+            messageInputProps: {
+              message: '',
+              onSubmit: () => null,
 
-                placeholder: 'Message...',
-                onValueChange: () => null,
-              },
-            }}
-          />
-        </div>
-      </WithPalette>
-      <WithPalette color="green">
-        <div style={{ width: '400px' }}>
-          <NewChat
-            color="orange"
-            messages={messages}
-            footerProps={{
-              showPoweredBy: true,
-              privacyURL: 'https://voiceflow.com',
+              placeholder: 'Message...',
+              onValueChange: () => null,
+            },
+          }}
+        />
+      </div>
 
-              messageInputProps: {
-                message: '',
-                onSubmit: () => null,
-                placeholder: 'Message...',
-                onValueChange: () => null,
-              },
-            }}
-          />
-        </div>
-      </WithPalette>
-      <WithPalette color="purple">
-        <div style={{ width: '400px' }}>
-          <NewChat
-            color="orange"
-            messages={messages}
-            footerProps={{
-              showPoweredBy: true,
-              privacyURL: 'https://voiceflow.com',
+      <div style={{ width: '400px', ...assignInlineVars(PALETTE, { colors: createPalette('green') }) }}>
+        <NewChat
+          color="orange"
+          messages={messages}
+          footerProps={{
+            showPoweredBy: true,
+            privacyURL: 'https://voiceflow.com',
 
-              messageInputProps: {
-                message: '',
-                onSubmit: () => null,
-                placeholder: 'Message...',
-                onValueChange: () => null,
-              },
-            }}
-          />
-        </div>
-      </WithPalette>
+            messageInputProps: {
+              message: '',
+              onSubmit: () => null,
+              placeholder: 'Message...',
+              onValueChange: () => null,
+            },
+          }}
+        />
+      </div>
+
+      <div style={{ width: '400px', ...assignInlineVars(PALETTE, { colors: createPalette('purple') }) }}>
+        <NewChat
+          color="orange"
+          messages={messages}
+          footerProps={{
+            showPoweredBy: true,
+            privacyURL: 'https://voiceflow.com',
+
+            messageInputProps: {
+              message: '',
+              onSubmit: () => null,
+              placeholder: 'Message...',
+              onValueChange: () => null,
+            },
+          }}
+        />
+      </div>
     </div>
   ),
 };
