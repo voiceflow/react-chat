@@ -6,8 +6,7 @@ export const chatContainer = style({
   height: '700px',
   width: '100%',
   borderRadius: '16px',
-  // backgroundColor: COLORS.white,
-  backgroundColor: 'orange',
+  backgroundColor: COLORS.white,
   border: `.5px solid ${COLORS.NEUTRAL_LIGHT[100]}`,
   position: 'relative',
   boxShadow:
@@ -31,7 +30,6 @@ export const dialogContainer = style({
   height: `${MOBILE_WIDGET_HEIGHT}px`,
   overflow: 'hidden',
   scrollbarWidth: 'none',
-  background: 'green',
   overflowY: 'auto',
 });
 
@@ -47,5 +45,5 @@ export const scrollToButton = style({
   left: '50%',
   transform: 'translateX(-50%)',
   zIndex: 12,
-  animation: `${fadeIn} .15s ease-in`, // Apply the fade-in animation
+  animation: `${fadeIn} .15s ease-in`,
 });

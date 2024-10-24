@@ -18,7 +18,6 @@ export const dialogContainer = recipe({
     width: 'auto',
     paddingBottom: '63px',
     paddingTop: '0px',
-    backgroundColor: 'purple',
   },
   variants: {
     showPoweredBy: {
