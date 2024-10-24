@@ -1,6 +1,6 @@
 {
   "name": "@voiceflow/react-chat",
-  "version": "1.65.1",
+  "version": "1.65.2",
   "description": "voiceflow chat ui kit",
   "keywords": [
     "chat widget",
@@ -34,6 +34,7 @@
     "lint:prettier": "yarn g:prettier --check",
     "local": "NODE_ENV=development vite",
     "start:e2e": "http-server -o e2e",
+    "storybook:publish": "yarn build:storybook && touch ./docs/.nojekyll",
     "tdd": "yarn g:vitest",
     "test": "yarn g:run-p -c test:dependencies test:types test:unit",
     "test:dependencies": "yarn g:depcruise",
