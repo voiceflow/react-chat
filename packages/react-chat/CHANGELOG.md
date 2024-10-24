@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.65.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.65.1...@voiceflow/react-chat@1.65.2) (2024-10-24)
+
+### Bug Fixes
+
+* add .nojekyll file to fix storybook deployment (COR-0000) ([#239](https://github.com/voiceflow/react-chat/issues/239)) ([de13ea0](https://github.com/voiceflow/react-chat/commit/de13ea07ab86e8474fa1be6f0a0a421bacab5aa4))
+
 ## [1.65.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.65.0...@voiceflow/react-chat@1.65.1) (2024-10-16)
 
 ### Bug Fixes
