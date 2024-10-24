@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/voiceflow/react-chat/compare/documentation@0.18.0...documentation@0.19.0) (2024-10-24)
+
+### Features
+
+* add CarouselButton component (COR-3656) ([#228](https://github.com/voiceflow/react-chat/issues/228)) ([7d3a65e](https://github.com/voiceflow/react-chat/commit/7d3a65ea41a0ca5318ea6eccec5b3afe3abd8785))
+
 # [0.18.0](https://github.com/voiceflow/react-chat/compare/documentation@0.17.0...documentation@0.18.0) (2024-10-24)
 
 ### Features
