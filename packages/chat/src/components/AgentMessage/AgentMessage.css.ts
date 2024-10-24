@@ -13,6 +13,7 @@ export const messageContainer = style({
   fontSize: '14px',
   lineHeight: '20px',
   borderRadius: '10px',
+  width: 'fit-content',
 });
 
 export const contentStyle = recipe({
@@ -26,6 +27,13 @@ export const contentStyle = recipe({
       },
     },
   },
+});
+
+export const embeddedContent = style({
+  padding: '0 16px 12px',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '6px',
 });
 
 export const generatedChin = style({
@@ -49,6 +57,7 @@ export const generatedChin = style({
 
 export const aiIconModifier = style({
   color: COLORS.NEUTRAL_DARK[100],
+  height: '16px',
 });
 
 export const codeBlockContainer = style({

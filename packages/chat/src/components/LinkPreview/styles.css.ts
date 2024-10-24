@@ -15,7 +15,6 @@ export const linkPreviewContainer = recipe({
       backgroundColor: COLORS.NEUTRAL_LIGHT[50],
       fontFamily: FAMILY,
       transition: transition(['color', 'background-color']),
-      height: 64,
       ':hover': {
         cursor: 'pointer',
         backgroundColor: COLORS.NEUTRAL_LIGHT[100],
@@ -29,7 +28,6 @@ export const linkPreviewContainer = recipe({
   variants: {
     inline: {
       true: {
-        height: 43,
         padding: '4px 8px 4px 4px',
         borderRadius: SIZES.radius.xs,
         backgroundColor: COLORS.NEUTRAL_LIGHT[100],
@@ -108,8 +106,6 @@ export const linkPreviewImage = style({
 });
 
 export const linkPreviewDetails = style({
-  display: 'flex',
-  flexDirection: 'column',
   fontSize: '12px',
   fontWeight: 600,
   lineHeight: '17px',
@@ -120,6 +116,7 @@ export const linkPreviewTitle = recipe({
   base: {
     flexGrow: 1,
     color: COLORS.NEUTRAL_DARK[900],
+    maxHeight: '34px',
     ...lineClamp(2),
   },
   variants: {
@@ -127,6 +124,7 @@ export const linkPreviewTitle = recipe({
       true: {
         display: 'block',
         overflow: 'hidden',
+        maxHeight: '17px',
         textOverflow: 'ellipsis',
         whiteSpace: 'nowrap',
       },
