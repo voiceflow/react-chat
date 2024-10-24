@@ -9,11 +9,9 @@ const meta: Meta = {
   title: 'Widget',
   decorators: [
     (Story) => (
-      <div style={{ width: '400px' }}>
-        <WithPalette>
-          <Story />
-        </WithPalette>
-      </div>
+      <WithPalette>
+        <Story />
+      </WithPalette>
     ),
   ],
 
@@ -25,37 +23,6 @@ const meta: Meta = {
 type Story = StoryObj<typeof NewChat>;
 
 export default meta;
-
-// const buttons = [
-//   {
-//     label: 'Who built this?',
-//     onClick: () => alert('Button 1 clicked'),
-//   },
-//   {
-//     label: "Say 'Howdy'",
-//     onClick: () => alert('Button 2 clicked'),
-//   },
-//   {
-//     label: 'LFG 🚀',
-//     onClick: () => alert('Button 3 clicked'),
-//   },
-//   {
-//     label: 'What is this?',
-//     onClick: () => alert('Button 4 clicked'),
-//   },
-//   {
-//     label: 'Label',
-//     onClick: () => alert('Button 5 clicked'),
-//   },
-//   {
-//     label: 'Label',
-//     onClick: () => alert('Button 6 clicked'),
-//   },
-//   {
-//     label: 'Label',
-//     onClick: () => alert('Button 6 clicked'),
-//   },
-// ];
 
 const messages = [
   {
@@ -71,7 +38,7 @@ const messages = [
   { from: 'system', text: "You're in for a treat. We can do some pretty sick stuff." },
 ];
 
-export const WithEntireFooter = {
+export const Base = {
   render: () => (
     <NewChat
       messages={messages}
@@ -85,25 +52,63 @@ export const WithEntireFooter = {
 
 export const Themed: Story = {
   render: () => (
-    <WithPalette color="red">
-      <NewChat
-        color="orange"
-        messages={messages}
-        footerProps={{
-          showPoweredBy: true,
-          messageInputProps: {
-            message: '',
-            onSubmit: () => null,
-            placeholder: 'Message...',
-            onValueChange: () => null,
-          },
-        }}
-      />
-    </WithPalette>
+    <div style={{ display: 'flex', gap: '32px' }}>
+      <WithPalette color="red">
+        <div style={{ width: '400px' }}>
+          <NewChat
+            color="orange"
+            messages={messages}
+            footerProps={{
+              showPoweredBy: true,
+              messageInputProps: {
+                message: '',
+                onSubmit: () => null,
+                placeholder: 'Message...',
+                onValueChange: () => null,
+              },
+            }}
+          />
+        </div>
+      </WithPalette>
+      <WithPalette color="green">
+        <div style={{ width: '400px' }}>
+          <NewChat
+            color="orange"
+            messages={messages}
+            footerProps={{
+              showPoweredBy: true,
+              messageInputProps: {
+                message: '',
+                onSubmit: () => null,
+                placeholder: 'Message...',
+                onValueChange: () => null,
+              },
+            }}
+          />
+        </div>
+      </WithPalette>
+      <WithPalette color="purple">
+        <div style={{ width: '400px' }}>
+          <NewChat
+            color="orange"
+            messages={messages}
+            footerProps={{
+              showPoweredBy: true,
+              messageInputProps: {
+                message: '',
+                onSubmit: () => null,
+                placeholder: 'Message...',
+                onValueChange: () => null,
+              },
+            }}
+          />
+        </div>
+      </WithPalette>
+    </div>
   ),
 };
 
-export const BaseFooter = {
+export const NoPoweredBy = {
   render: () => (
     <NewChat
       messages={[{ from: 'system', text: TEXT_TREATMENT_MARKDOWN }, ...messages]}

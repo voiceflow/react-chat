@@ -1,3 +1,5 @@
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+
 import mockAvatar from '../../assets/blank-image.png';
 import { Dialog } from '../Dialog';
 import Header from '../Header';
@@ -19,7 +21,6 @@ interface INewChat {
     };
   };
 }
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 export const NewChat: React.FC<INewChat> = ({ messages, color, footerProps }) => {
   const [chatMessages, setChatMessages] = useState(messages);
@@ -30,11 +31,11 @@ export const NewChat: React.FC<INewChat> = ({ messages, color, footerProps }) =>
 
   useLayoutEffect(() => {
     if (scrollableAreaRef.current) {
-         scrollableAreaRef.current.scrollTo({
-          top: scrollableAreaRef.current.scrollHeight,
-          behavior: 'smooth',
-        });
-     }
+      scrollableAreaRef.current.scrollTo({
+        top: scrollableAreaRef.current.scrollHeight,
+        behavior: 'smooth',
+      });
+    }
   }, [chatMessages]);
 
   const handleScroll = () => {
@@ -59,10 +60,7 @@ export const NewChat: React.FC<INewChat> = ({ messages, color, footerProps }) =>
 
   const handleSubmit = async () => {
     if (newMessage.trim()) {
-      setChatMessages((prevMessages) => [
-        ...prevMessages,
-        { from: 'user', text: newMessage },
-       ]);
+      setChatMessages((prevMessages) => [...prevMessages, { from: 'user', text: newMessage }]);
       setNewMessage('');
     }
   };
@@ -85,7 +83,7 @@ export const NewChat: React.FC<INewChat> = ({ messages, color, footerProps }) =>
 
   return (
     <div className={chatContainer} onKeyDown={handleKeyDown}>
-      <Header title="ChatKit V2" image={mockAvatar} rounded   />
+      <Header title="ChatKit V2" image={mockAvatar} rounded />
       <div ref={scrollableAreaRef} className={dialogContainer}>
         <Dialog messages={chatMessages} showPoweredBy={footerProps.showPoweredBy} color={color} />
       </div>
