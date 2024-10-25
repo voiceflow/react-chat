@@ -1,5 +1,4 @@
 import Message from '@/components/Message';
-import Timestamp from '@/components/Timestamp';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
 import { styled } from '@/old-styles';
@@ -37,18 +36,6 @@ export const Container = styled(tag('div'), {
     visibility: 'hidden',
     alignSelf: 'flex-end',
     margin: '0 8px 4px 0',
-  },
-
-  [`& ${Timestamp.Container}`]: {
-    alignSelf: 'center',
-    whiteSpace: 'nowrap',
-    marginLeft: 8,
-    opacity: '0%',
-    trans: ['opacity'],
-  },
-
-  [`&:hover ${Timestamp.Container}`]: {
-    opacity: '100%',
   },
 
   variants: {

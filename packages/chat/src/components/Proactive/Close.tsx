@@ -4,7 +4,7 @@ import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
 import { styled } from '@/old-styles';
 
-import Icon from '../Icon';
+import { Icon } from '../Icon';
 import { iconClassName } from '../Icon/styles.css';
 
 export const tag = tagFactory(ClassName.PROACTIVE_CLOSE);

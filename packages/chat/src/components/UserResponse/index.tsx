@@ -1,7 +1,6 @@
 import { useContext } from 'react';
 
 import Message from '@/components/Message';
-import Timestamp from '@/components/Timestamp';
 import Tooltip from '@/components/Tooltip';
 import { RuntimeStateAPIContext } from '@/contexts';
 import { useAutoScroll } from '@/hooks';
@@ -36,14 +35,14 @@ export interface UserResponseProps {
   debug?: DebugResponseProps;
 }
 
-const UserResponse: React.FC<UserResponseProps> = ({ message, timestamp, debug }) => {
+const UserResponse: React.FC<UserResponseProps> = ({ message, debug }) => {
   useAutoScroll();
 
   const { config } = useContext(RuntimeStateAPIContext);
   return (
     <Container mode={config.render.mode}>
       <Row>
-        <Timestamp value={timestamp} />
+        {/* <Timestamp value={timestamp} /> */}
         <Message from="user">{message}</Message>
       </Row>
       {debug && (

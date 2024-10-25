@@ -13,7 +13,7 @@ interface ButtonProps extends ComponentPropsWithRef<'button'> {
   testID?: string;
 }
 
-const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(({ children, ...props }, ref) => {
+export const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(({ children, ...props }, ref) => {
   const { variant: type, large, round } = props;
 
   return (
@@ -26,5 +26,3 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(({ 
     </button>
   );
 });
-
-export default Button;

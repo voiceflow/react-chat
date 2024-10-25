@@ -5,7 +5,7 @@ import Markdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import remarkGfm from 'remark-gfm';
 
-import Icon from '../Icon';
+import { Icon } from '../Icon';
 import {
   aiIconModifier,
   codeBlockContainer,
@@ -24,7 +24,7 @@ interface IAgentMessage {
   generatedMessage?: string;
 }
 
-const AgentMessage: React.FC<IAgentMessage> = ({ children, generated, generatedMessage }) => {
+export const AgentMessage: React.FC<IAgentMessage> = ({ children, generated, generatedMessage }) => {
   const content = children?.toString();
 
   const isCodeBlock =
@@ -75,5 +75,3 @@ const AgentMessage: React.FC<IAgentMessage> = ({ children, generated, generatedM
     </div>
   );
 };
-
-export default AgentMessage;

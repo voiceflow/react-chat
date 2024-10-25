@@ -1,4 +1,3 @@
-import Timestamp from '@/components/Timestamp';
 import Tooltip from '@/components/Tooltip';
 import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
@@ -47,16 +46,4 @@ export const Row = styled(tag('div', 'row'), {
   display: 'flex',
   width: '100%',
   alignItems: 'center',
-
-  [`& ${Timestamp.Container}`]: {
-    flexGrow: 1,
-    marginRight: 8,
-    textAlign: 'end',
-    opacity: '0%',
-    trans: ['opacity'],
-  },
-
-  [`&:hover ${Timestamp.Container}`]: {
-    opacity: '100%',
-  },
 });

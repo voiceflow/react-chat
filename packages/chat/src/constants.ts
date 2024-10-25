@@ -1,7 +1,7 @@
 export enum ClassName {
   ASSISTANT_INFO = 'vfrc-assistant-info',
   AVATAR = 'vfrc-avatar',
-  BUBBLE = 'vfrc-bubble',
+  BUBBLE = 'vfrc-bubble', // Not in use anymore
   BUTTON = 'vfrc-button',
   CARD = 'vfrc-card',
   CAROUSEL = 'vfrc-carousel',

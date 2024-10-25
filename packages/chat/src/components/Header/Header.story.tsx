@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { VF_ICON } from '@/fixtures';
 import { WithDefaultPalette } from '@/storybook/decorators';
 
-import Header from '.';
+import { Header } from '.';
 
 const meta: Meta<typeof Header> = {
   title: 'Components/Chat/Header',

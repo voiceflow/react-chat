@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 
 import tiledBg from '../../__fixtures__/tiled-bg.png';
-import Launcher from '.';
+import { Launcher } from '.';
 
 type Story = StoryObj<typeof Launcher>;
 

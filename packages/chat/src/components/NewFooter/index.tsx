@@ -1,4 +1,8 @@
-import Button from '../Button';
+import clsx from 'clsx';
+
+import { ClassName } from '@/constants';
+
+import { Button } from '../Button';
 import { ButtonVariant } from '../Button/constants';
 import type { IMessageInput } from '../MessageInput';
 import { MessageInput } from '../MessageInput';
@@ -21,7 +25,7 @@ export interface INewFooter {
 
 export const NewFooter: React.FC<INewFooter> = ({ buttons, showPoweredBy, messageInputProps, privacyURL }) => {
   return (
-    <div className={footerContainer}>
+    <div className={clsx(ClassName.FOOTER, footerContainer)}>
       {(buttons?.length ?? 0) > 0 && (
         <div className={buttonsContainer}>
           {buttons?.map((button) => (

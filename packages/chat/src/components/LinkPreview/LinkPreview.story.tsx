@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import tiledBg from '../../__fixtures__/tiled-bg.png';
-import LinkPreview from '.';
+import { LinkPreview } from '.';
 type Story = StoryObj<typeof LinkPreview>;
 
 const meta: Meta<typeof LinkPreview> = {

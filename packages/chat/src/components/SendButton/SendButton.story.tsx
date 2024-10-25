@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import SendButton from '.';
+import { SendButton } from '.';
 
 type Story = StoryObj<typeof SendButton>;
 

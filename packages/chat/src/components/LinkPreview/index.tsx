@@ -1,6 +1,6 @@
 import { forwardRef, type PropsWithRef } from 'react';
 
-import Icon from '../Icon';
+import { Icon } from '../Icon';
 import { LoadingSpinner } from '../LoadingSpinner/LoadingSpinner';
 import {
   linkPreviewContainer,
@@ -19,7 +19,7 @@ interface ILinkPreviewProps {
   inline?: boolean;
 }
 
-const LinkPreview = forwardRef<HTMLDivElement, PropsWithRef<ILinkPreviewProps>>((props: any, ref) => {
+export const LinkPreview = forwardRef<HTMLDivElement, PropsWithRef<ILinkPreviewProps>>((props: any, ref) => {
   const { image, title, link, inline } = props;
   const linkType = getImageTypeFromUrl(link);
   const shadow = linkType === 'custom' && !image;
@@ -39,5 +39,3 @@ const LinkPreview = forwardRef<HTMLDivElement, PropsWithRef<ILinkPreviewProps>>(
     </div>
   );
 });
-
-export default LinkPreview;

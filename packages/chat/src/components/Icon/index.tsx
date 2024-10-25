@@ -1,4 +1,7 @@
+import clsx from 'clsx';
+
 import * as SVGs from '@/assets/svg';
+import { ClassName } from '@/constants';
 
 import { iconClassName } from './styles.css';
 
@@ -13,19 +16,17 @@ export interface IconProps extends React.ComponentPropsWithoutRef<'div'> {
   svg: SVG | React.ComponentType;
 }
 
-const Icon: React.FC<IconProps> = ({ svg, ...props }) => {
-  const SVG = typeof svg === 'string' ? SVGs[svg] : svg;
-
-  return (
-    <div className={iconClassName} {...props}>
-      <SVG />
-    </div>
-  );
-};
-
 /**
  * A component for rendering a pre-packaged SVG icon.
  *
  * @see {@link https://voiceflow.github.io/react-chat/?path=/story/core-icon--default}
  */
-export default Icon;
+export const Icon: React.FC<IconProps> = ({ svg, ...props }) => {
+  const SVG = typeof svg === 'string' ? SVGs[svg] : svg;
+
+  return (
+    <div className={clsx(ClassName.ICON, iconClassName)} {...props}>
+      <SVG />
+    </div>
+  );
+};

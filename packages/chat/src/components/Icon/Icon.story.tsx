@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import * as SVGs from '@/assets/svg';
 
-import Icon from '.';
+import { Icon } from '.';
 
 type Story = StoryObj<typeof Icon>;
 

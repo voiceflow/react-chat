@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import CarouselButton from './CarouselButton';
+import { CarouselButton } from './CarouselButton';
 
 type Story = StoryObj<typeof CarouselButton>;
 const meta: Meta<typeof CarouselButton> = {
