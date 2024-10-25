@@ -9,9 +9,9 @@ import { MessageInput } from '../MessageInput';
 import {
   buttonsContainer,
   footerContainer,
+  footerLinksContainer,
   inputContainer,
   messageContainer,
-  poweredByStyles,
   prviacyLinkStyles,
   separator,
 } from './NewFooter.css';
@@ -39,15 +39,17 @@ export const NewFooter: React.FC<INewFooter> = ({ buttons, showPoweredBy, messag
         <div className={inputContainer}>
           <MessageInput {...messageInputProps} />
         </div>
-        {showPoweredBy && (
-          <div className={poweredByStyles}>
-            <div>Powered by Voiceflow</div>
-            <div className={separator} />
-            <a href={privacyURL} target="_blank" className={prviacyLinkStyles}>
-              Privacy
-            </a>
-          </div>
-        )}
+        <div className={footerLinksContainer}>
+          {showPoweredBy && (
+            <>
+              <div>Powered by Voiceflow</div>
+              <div className={separator} />
+            </>
+          )}
+          <a href={privacyURL} target="_blank" className={prviacyLinkStyles}>
+            Privacy
+          </a>
+        </div>
       </div>
     </div>
   );

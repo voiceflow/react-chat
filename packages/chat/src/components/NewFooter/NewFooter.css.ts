@@ -53,6 +53,7 @@ export const messageContainer = recipe({
   variants: {
     showPoweredBy: {
       false: {
+        // TODO: Do we really want a large padding here if the message isn't here ?
         paddingBottom: '20px',
       },
     },
@@ -69,7 +70,7 @@ export const messageInputContainer = style({
   borderTopRightRadius: '20px',
 });
 
-export const poweredByStyles = style({
+export const footerLinksContainer = style({
   color: COLORS.NEUTRAL_DARK[100],
   fontFamily: FAMILY,
   fontSize: '12px',
