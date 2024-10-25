@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-// import { Chat } from '@/components/Chat';
-import Prompt from '.';
+import { WithDefaultPalette } from '@/storybook/decorators';
+
+import { Prompt } from '.';
 
 type Story = StoryObj<typeof Prompt>;
 
@@ -17,18 +18,21 @@ const meta: Meta<typeof Prompt> = {
       <Prompt {...args} />
     </>
   ),
+  decorators: [WithDefaultPalette],
 };
 
 export default meta;
 
 export const Base: Story = {
   args: {
+    visible: true,
     accept: { label: 'Primary Action' },
   },
 };
 
 export const Dangerous: Story = {
   args: {
+    visible: true,
     accept: { label: 'Dangerous Action' },
   },
 };
