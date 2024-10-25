@@ -57,7 +57,7 @@ MarkdownText.defaultProps = {
   },
 };
 
-class Markdown extends PureComponent<Options> {
+export class Markdown extends PureComponent<Options> {
   state = {
     hasError: false,
   };
@@ -84,5 +84,3 @@ class Markdown extends PureComponent<Options> {
     return <MarkdownText {...this.props} />;
   }
 }
-
-export default Markdown;

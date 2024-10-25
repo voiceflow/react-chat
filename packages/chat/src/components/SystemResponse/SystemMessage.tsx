@@ -71,7 +71,6 @@ const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, feedback, message
               .otherwise(() => null)}
           {feedback && <FeedbackButton {...feedback} />}
         </List>
-        {/* <Timestamp value={timestamp} /> */}
       </MessageContainer>
     </>
   );

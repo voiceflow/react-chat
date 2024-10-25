@@ -6,7 +6,7 @@ import Message from '@/components/Message';
 import type { TextMessageProps } from '@/components/SystemResponse/types';
 import { RuntimeStateAPIContext } from '@/contexts';
 
-import Markdown from './Markdown';
+import { Markdown } from './Markdown';
 
 export interface DefaultTextProps {
   /**
@@ -37,4 +37,4 @@ const DefaultText: React.FC<DefaultTextProps> = ({ text }) => {
 };
 
 // memoize to prevent re-rendering
-export default React.memo(DefaultText);
+export const Text = React.memo(DefaultText);
