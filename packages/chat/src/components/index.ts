@@ -7,7 +7,7 @@ export { ColorTheme } from './ColorTheme/ColorTheme.component';
 export { FeedbackButton } from './FeedbackButton';
 export { Header } from './Header';
 export { Icon } from './Icon';
-export { default as Image } from './Image';
+export { Image } from './Image';
 export { Launcher } from './Launcher';
 export { LinkPreview } from './LinkPreview';
 export { default as Message } from './Message';
