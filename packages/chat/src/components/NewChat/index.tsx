@@ -1,18 +1,15 @@
-import { useEffect, useRef, useState } from 'react';
-import * as R from 'remeda';
-import { match } from 'ts-pattern';
+import clsx from 'clsx';
+import { useRef, useState } from 'react';
 
-import { type TurnProps, TurnType } from '@/types';
+import { ClassName } from '@/constants';
+import { type TurnProps } from '@/types';
 
 import mockAvatar from '../../assets/blank-image.png';
 import { Header, type HeaderProps } from '../Header';
 import type { INewFooter } from '../NewFooter';
 import { NewFooter } from '../NewFooter';
-import { ScrollButton } from '../NewFooter/ScrollButton';
-import SystemResponse from '../SystemResponse';
-import { UserMessage } from '../UserMessage';
 import { type IWelcomeMessage, WelcomeMessage } from '../WelcomeMessage';
-import { chatContainer, chatFooter, dialogContainer, scrollToButton } from './NewChat.css';
+import { chatContainer, dialogContainer } from './NewChat.css';
 
 interface INewChat extends HeaderProps, IWelcomeMessage, INewFooter {
   turns: TurnProps[];
@@ -21,7 +18,6 @@ interface INewChat extends HeaderProps, IWelcomeMessage, INewFooter {
 }
 
 export const NewChat: React.FC<INewChat> = ({
-  turns,
   buttons,
   showPoweredBy,
   messageInputProps,
@@ -29,10 +25,11 @@ export const NewChat: React.FC<INewChat> = ({
   description,
   avatar,
   privacyURL,
+  children,
 }) => {
   // const [chatMessages, setChatMessages] = useState(messages ?? []);
   const [newMessage, setNewMessage] = useState('');
-  const [showScrollToBottom, setShowScrollToBottom] = useState(false);
+  // const [showScrollToBottom, setShowScrollToBottom] = useState(false);
 
   const scrollableAreaRef = useRef<HTMLDivElement>(null);
 
@@ -45,25 +42,25 @@ export const NewChat: React.FC<INewChat> = ({
   //   }
   // }, [chatMessages]);
 
-  const handleScroll = () => {
-    if (scrollableAreaRef.current) {
-      const { scrollTop, scrollHeight, clientHeight } = scrollableAreaRef.current;
-      const isAboveBottom = scrollTop + clientHeight < scrollHeight - 1;
-      setShowScrollToBottom(isAboveBottom);
-    }
-  };
+  // const handleScroll = () => {
+  //   if (scrollableAreaRef.current) {
+  //     const { scrollTop, scrollHeight, clientHeight } = scrollableAreaRef.current;
+  //     const isAboveBottom = scrollTop + clientHeight < scrollHeight - 1;
+  //     setShowScrollToBottom(isAboveBottom);
+  //   }
+  // };
 
-  useEffect(() => {
-    const currentRef = scrollableAreaRef.current;
-    if (currentRef) {
-      currentRef.addEventListener('scroll', handleScroll);
-    }
-    return () => {
-      if (currentRef) {
-        currentRef.removeEventListener('scroll', handleScroll);
-      }
-    };
-  }, []);
+  // useEffect(() => {
+  //   const currentRef = scrollableAreaRef.current;
+  //   if (currentRef) {
+  //     currentRef.addEventListener('scroll', handleScroll);
+  //   }
+  //   return () => {
+  //     if (currentRef) {
+  //       currentRef.removeEventListener('scroll', handleScroll);
+  //     }
+  //   };
+  // }, []);
 
   const handleSubmit = async () => {
     if (newMessage.trim()) {
@@ -79,21 +76,22 @@ export const NewChat: React.FC<INewChat> = ({
   };
 
   // Trigger scroll when manually clicking the scroll button
-  const handleScrollToBottom = () => {
-    if (scrollableAreaRef.current) {
-      scrollableAreaRef.current.scrollTo({
-        top: scrollableAreaRef.current.scrollHeight,
-        behavior: 'smooth',
-      });
-    }
-  };
+  // const handleScrollToBottom = () => {
+  //   if (scrollableAreaRef.current) {
+  //     scrollableAreaRef.current.scrollTo({
+  //       top: scrollableAreaRef.current.scrollHeight,
+  //       behavior: 'smooth',
+  //     });
+  //   }
+  // };
 
   return (
-    <div className={chatContainer} onKeyDown={handleKeyDown}>
-      <Header title={title} image={mockAvatar} rounded />
+    <div className={clsx(ClassName.CHAT, chatContainer)} onKeyDown={handleKeyDown}>
+      <Header title={title} image={mockAvatar} />
       <div ref={scrollableAreaRef} className={dialogContainer}>
         <WelcomeMessage title={title} description={description} avatar={avatar} />
-        {turns.map((turn, turnIndex) =>
+        {children}
+        {/* turns.map((turn, turnIndex) =>
           match(turn)
             .with({ type: TurnType.USER }, ({ id, ...props }) => <UserMessage {...R.omit(props, ['type'])} key={id} />)
             .with({ type: TurnType.SYSTEM }, ({ id, ...props }) => (
@@ -114,21 +112,19 @@ export const NewChat: React.FC<INewChat> = ({
               />
             ))
             .exhaustive()
-        )}
+        ) */}
       </div>
-      {showScrollToBottom && (
+      {/* showScrollToBottom && (
         <div className={scrollToButton}>
           <ScrollButton onClick={handleScrollToBottom} />
         </div>
-      )}
-      <div className={chatFooter}>
-        <NewFooter
-          buttons={buttons}
-          showPoweredBy={showPoweredBy}
-          privacyURL={privacyURL}
-          messageInputProps={{ ...messageInputProps }}
-        />
-      </div>
+      ) */}
+      <NewFooter
+        buttons={buttons}
+        showPoweredBy={showPoweredBy}
+        privacyURL={privacyURL}
+        messageInputProps={{ ...messageInputProps }}
+      />
     </div>
   );
 };

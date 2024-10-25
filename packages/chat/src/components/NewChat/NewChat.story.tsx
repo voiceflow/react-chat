@@ -26,9 +26,9 @@ export default meta;
 export const Base = {
   render: () => (
     <NewChat
-      title=""
+      title="Your AI assistant"
       image=""
-      description=""
+      description="Hello, I am here to help with whatever you need."
       avatar={EMPTY_IMAGE}
       turns={[...MOCK_CONVERSATION_1.turns, ...MOCK_CONVERSATION_1.turns] as TurnProps[]}
       showPoweredBy={true}
@@ -43,9 +43,9 @@ export const Themed: Story = {
     <div style={{ display: 'flex', gap: '32px' }}>
       <div style={{ width: '400px', ...assignInlineVars(PALETTE, { colors: createPalette('red') }) }}>
         <NewChat
-          title=""
+          title="Your AI assistant"
           image=""
-          description=""
+          description="Hello, I am here to help with whatever you need."
           avatar={EMPTY_IMAGE}
           color="orange"
           turns={[...MOCK_CONVERSATION_1.turns, ...MOCK_CONVERSATION_1.turns] as TurnProps[]}
@@ -63,9 +63,9 @@ export const Themed: Story = {
 
       <div style={{ width: '400px', ...assignInlineVars(PALETTE, { colors: createPalette('green') }) }}>
         <NewChat
-          title=""
+          title="Your AI assistant"
           image=""
-          description=""
+          description="Hello, I am here to help with whatever you need."
           avatar={EMPTY_IMAGE}
           color="orange"
           turns={MOCK_CONVERSATION_1.turns as TurnProps[]}
@@ -105,9 +105,9 @@ export const Themed: Story = {
 export const NoPoweredBy = {
   render: () => (
     <NewChat
-      title=""
+      title="Your AI assistant"
       image=""
-      description=""
+      description="Let's get this party started already!"
       avatar={EMPTY_IMAGE}
       turns={MOCK_CONVERSATION_1.turns as TurnProps[]}
       buttons={[]}
