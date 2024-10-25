@@ -1,7 +1,10 @@
+import clsx from 'clsx';
+
 import { Button } from '@/components/Button';
+import { ClassName } from '@/constants';
 
 import { ButtonVariant } from '../Button/constants';
-import { Container } from './styled';
+import { chatOverlay, promptContainer } from './styles.css';
 
 export interface PromptOptionProps extends React.ComponentProps<typeof Button> {
   /**
@@ -11,6 +14,11 @@ export interface PromptOptionProps extends React.ComponentProps<typeof Button> {
 }
 
 export interface PromptProps {
+  /**
+   * Is the prompt visible.
+   */
+  visible: boolean;
+
   /**
    * Configuration for the "accept" action.
    */
@@ -22,22 +30,21 @@ export interface PromptProps {
   cancel: PromptOptionProps;
 }
 
-const Prompt: React.FC<PromptProps> = ({ accept, cancel }) => (
-  <Container>
-    <Button variant={ButtonVariant.PRIMARY} tabIndex={-1} {...accept}>
-      {accept.label}
-    </Button>
-    <Button variant={ButtonVariant.SECONDARY} tabIndex={-1} {...cancel}>
-      {cancel.label}
-    </Button>
-  </Container>
-);
-
 /**
  * A popup that prompts the user with cancel and accept actions.
  *
  * @see {@link https://voiceflow.github.io/react-chat/?path=/story/components-chat-prompt--default}
  */
-export default Object.assign(Prompt, {
-  Container,
-});
+export const Prompt: React.FC<PromptProps> = ({ visible, accept, cancel }) => (
+  <>
+    <div className={clsx('overlay', chatOverlay({ visible }))}></div>
+    <div className={clsx(ClassName.PROMPT, promptContainer({ visible }))}>
+      <Button variant={ButtonVariant.PRIMARY} large tabIndex={-1} {...accept}>
+        {accept.label}
+      </Button>
+      <Button variant={ButtonVariant.SECONDARY} large tabIndex={-1} {...cancel}>
+        {cancel.label}
+      </Button>
+    </div>
+  </>
+);
