@@ -1,4 +1,4 @@
-import Button from '@/components/Button';
+import { Button } from '@/components/Button';
 
 import { ButtonVariant } from '../Button/constants';
 import { Container } from './styled';

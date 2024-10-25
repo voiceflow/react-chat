@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import tiledBg from '../../__fixtures__/tiled-bg.png';
-import Card from '.';
+import { Card } from '.';
 
 type Story = StoryObj<typeof Card>;
 

@@ -2,16 +2,15 @@ import { useContext, useRef } from 'react';
 import * as R from 'remeda';
 import { match } from 'ts-pattern';
 
-import Avatar from '@/components/Avatar';
-import Card from '@/components/Card';
-import Carousel from '@/components/Carousel';
-import Image from '@/components/Image';
-import Text from '@/components/Text';
-import Timestamp from '@/components/Timestamp';
+import { Text } from '@/components/Text';
 import { RuntimeStateAPIContext } from '@/contexts';
 
-import type { FeedbackProps } from '../Feedback';
-import Feedback from '../Feedback';
+import { Avatar } from '../Avatar';
+import { Card } from '../Card';
+import { Carousel } from '../Carousel';
+import { FeedbackButton } from '../FeedbackButton';
+import type { IFeedbackButton } from '../FeedbackButton/FeedbackButton.interface';
+import Image from '../Image';
 import { MessageType } from './constants';
 import { ExtensionMessage } from './ExtensionMessage';
 import EndState from './state/end';
@@ -40,13 +39,13 @@ export interface SystemMessageProps extends React.PropsWithChildren {
   withImage: boolean;
 
   /**
-   * If provided, will display {@link Feedback} component.
+   * If provided, will display {@link FeedbackButton} component.
    * @default false
    */
-  feedback?: FeedbackProps | undefined;
+  feedback?: IFeedbackButton | undefined;
 }
 
-const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, feedback, timestamp, message, withImage, children }) => {
+const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, feedback, message, withImage, children }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const { config } = useContext(RuntimeStateAPIContext);
@@ -70,9 +69,8 @@ const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, feedback, timesta
                 <ExtensionMessage extension={payload.extension} trace={payload.trace} />
               ))
               .otherwise(() => null)}
-          {feedback && <Feedback {...feedback} />}
+          {feedback && <FeedbackButton {...feedback} />}
         </List>
-        <Timestamp value={timestamp} />
       </MessageContainer>
     </>
   );

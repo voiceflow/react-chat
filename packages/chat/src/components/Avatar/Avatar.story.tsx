@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import EMPTY_IMAGE from '../../__fixtures__/empty-image.png';
-import Avatar from '.';
+import { Avatar } from '.';
 
 type Story = StoryObj<typeof Avatar>;
 

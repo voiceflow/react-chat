@@ -38,13 +38,14 @@ const messages = [
 export const Base = {
   render: () => (
     <NewChat
+      title=""
+      image=""
+      description=""
+      avatar=""
       messages={messages}
-      footerProps={{
-        showPoweredBy: true,
-        privacyURL: 'https://voiceflow.com',
-
-        messageInputProps: { message: '', onSubmit: () => null, placeholder: 'Message...', onValueChange: () => null },
-      }}
+      showPoweredBy={true}
+      privacyURL="https://voiceflow.com"
+      messageInputProps={{ message: '', onSubmit: () => null, placeholder: 'Message...', onValueChange: () => null }}
     />
   ),
 };
@@ -54,55 +55,58 @@ export const Themed: Story = {
     <div style={{ display: 'flex', gap: '32px' }}>
       <div style={{ width: '400px', ...assignInlineVars(PALETTE, { colors: createPalette('red') }) }}>
         <NewChat
+          title=""
+          image=""
+          description=""
+          avatar=""
           color="orange"
           messages={messages}
-          footerProps={{
-            showPoweredBy: true,
-            privacyURL: 'https://voiceflow.com',
+          showPoweredBy={true}
+          privacyURL="https://voiceflow.com"
+          messageInputProps={{
+            message: '',
+            onSubmit: () => null,
 
-            messageInputProps: {
-              message: '',
-              onSubmit: () => null,
-
-              placeholder: 'Message...',
-              onValueChange: () => null,
-            },
+            placeholder: 'Message...',
+            onValueChange: () => null,
           }}
         />
       </div>
 
       <div style={{ width: '400px', ...assignInlineVars(PALETTE, { colors: createPalette('green') }) }}>
         <NewChat
+          title=""
+          image=""
+          description=""
+          avatar=""
           color="orange"
           messages={messages}
-          footerProps={{
-            showPoweredBy: true,
-            privacyURL: 'https://voiceflow.com',
-
-            messageInputProps: {
-              message: '',
-              onSubmit: () => null,
-              placeholder: 'Message...',
-              onValueChange: () => null,
-            },
+          showPoweredBy={true}
+          privacyURL="https://voiceflow.com"
+          messageInputProps={{
+            message: '',
+            onSubmit: () => null,
+            placeholder: 'Message...',
+            onValueChange: () => null,
           }}
         />
       </div>
 
       <div style={{ width: '400px', ...assignInlineVars(PALETTE, { colors: createPalette('purple') }) }}>
         <NewChat
+          title=""
+          image=""
+          description=""
+          avatar=""
           color="orange"
           messages={messages}
-          footerProps={{
-            showPoweredBy: true,
-            privacyURL: 'https://voiceflow.com',
-
-            messageInputProps: {
-              message: '',
-              onSubmit: () => null,
-              placeholder: 'Message...',
-              onValueChange: () => null,
-            },
+          showPoweredBy={true}
+          privacyURL="https://voiceflow.com"
+          messageInputProps={{
+            message: '',
+            onSubmit: () => null,
+            placeholder: 'Message...',
+            onValueChange: () => null,
           }}
         />
       </div>
@@ -113,13 +117,15 @@ export const Themed: Story = {
 export const NoPoweredBy = {
   render: () => (
     <NewChat
+      title=""
+      image=""
+      description=""
+      avatar=""
       messages={[{ from: 'system', text: TEXT_TREATMENT_MARKDOWN }, ...messages]}
-      footerProps={{
-        buttons: [],
-        privacyURL: 'https://voiceflow.com',
-        showPoweredBy: false,
-        messageInputProps: { message: '', onSubmit: () => null, placeholder: 'Message...', onValueChange: () => null },
-      }}
+      buttons={[]}
+      privacyURL="https://voiceflow.com"
+      showPoweredBy={false}
+      messageInputProps={{ message: '', onSubmit: () => null, placeholder: 'Message...', onValueChange: () => null }}
     />
   ),
 };

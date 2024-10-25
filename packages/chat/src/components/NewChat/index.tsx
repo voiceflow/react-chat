@@ -2,30 +2,27 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 import mockAvatar from '../../assets/blank-image.png';
 import { Dialog } from '../Dialog';
-import Header from '../Header';
+import { Header, type HeaderProps } from '../Header';
 import type { INewFooter } from '../NewFooter';
 import { NewFooter } from '../NewFooter';
 import { ScrollButton } from '../NewFooter/ScrollButton';
+import type { IWelcomeMessage } from '../WelcomeMessage';
 import { chatContainer, chatFooter, dialogContainer, scrollToButton } from './NewChat.css';
 
-interface INewChat {
-  messages: { from: string; text: string }[];
+interface INewChat extends HeaderProps, IWelcomeMessage, INewFooter {
+  messages?: { from: string; text: string }[];
   color?: string;
-  footerProps: {
-    buttons?: INewFooter['buttons'];
-    showPoweredBy?: INewFooter['showPoweredBy'];
-    privacyURL?: INewFooter['privacyURL'];
-    messageInputProps: {
-      message: string;
-      onValueChange: (e: string) => void;
-      placeholder: string;
-      onSubmit: () => void;
-    };
-  };
 }
 
-export const NewChat: React.FC<INewChat> = ({ messages, color, footerProps }) => {
-  const [chatMessages, setChatMessages] = useState(messages);
+export const NewChat: React.FC<INewChat> = ({
+  messages,
+  color,
+  buttons,
+  showPoweredBy,
+  messageInputProps,
+  privacyURL,
+}) => {
+  const [chatMessages, setChatMessages] = useState(messages ?? []);
   const [newMessage, setNewMessage] = useState('');
   const [showScrollToBottom, setShowScrollToBottom] = useState(false);
 
@@ -87,7 +84,7 @@ export const NewChat: React.FC<INewChat> = ({ messages, color, footerProps }) =>
     <div className={chatContainer} onKeyDown={handleKeyDown}>
       <Header title="ChatKit V2" image={mockAvatar} rounded />
       <div ref={scrollableAreaRef} className={dialogContainer}>
-        <Dialog messages={chatMessages} showPoweredBy={footerProps.showPoweredBy} color={color} />
+        <Dialog messages={chatMessages} showPoweredBy={showPoweredBy} color={color} />
       </div>
       {showScrollToBottom && (
         <div className={scrollToButton}>
@@ -96,14 +93,10 @@ export const NewChat: React.FC<INewChat> = ({ messages, color, footerProps }) =>
       )}
       <div className={chatFooter}>
         <NewFooter
-          {...footerProps}
-          messageInputProps={{
-            primaryColor: color,
-            ...footerProps.messageInputProps,
-            onValueChange: setNewMessage,
-            message: newMessage,
-            onSubmit: handleSubmit,
-          }}
+          buttons={buttons}
+          showPoweredBy={showPoweredBy}
+          privacyURL={privacyURL}
+          messageInputProps={{ ...messageInputProps }}
         />
       </div>
     </div>

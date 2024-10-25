@@ -3,14 +3,14 @@ import TextareaAutosize from 'react-textarea-autosize';
 
 import { SquareButton } from '../Buttons/SquareButton';
 import { StopButton } from '../Buttons/StopButton';
-import SendButton from '../SendButton';
+import { SendButton } from '../SendButton';
 import { buttonContainer, input, inputBlock, inputContainer, mockFocusRing } from './MessageInput.css';
 
 export interface IMessageInput {
   message: string;
   onValueChange: (value: string) => void;
   onDictationClick?: () => void;
-  placeholder: string;
+  placeholder?: string;
   onSubmit: () => void;
   primaryColor?: string;
 }

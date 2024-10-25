@@ -1,13 +1,13 @@
 import type { RuntimeAction } from '@voiceflow/sdk-runtime';
 import { useContext } from 'react';
 
-import Button from '@/components/Button';
+import { Button } from '@/components/Button';
 import { RuntimeStateAPIContext } from '@/contexts';
 import { useAutoScroll } from '@/hooks';
 
 import { ButtonVariant } from '../Button/constants';
-import type { FeedbackProps } from '../Feedback';
-import Feedback from '../Feedback';
+import { FeedbackButton } from '../FeedbackButton';
+import type { IFeedbackButton } from '../FeedbackButton/FeedbackButton.interface';
 import { MessageType } from './constants';
 import { useAnimatedMessages } from './hooks';
 import Indicator from './Indicator';
@@ -51,10 +51,10 @@ export interface SystemResponseProps {
   isLast?: boolean;
 
   /**
-   * If provided, will display {@link Feedback} component under the last message.
+   * If provided, will display {@link FeedbackButton} component under the last message.
    * @default false
    */
-  feedback?: FeedbackProps | undefined;
+  feedback?: IFeedbackButton | undefined;
 
   /**
    * Override the rendering of individual messages.

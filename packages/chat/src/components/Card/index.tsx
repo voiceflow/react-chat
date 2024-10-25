@@ -4,7 +4,7 @@ import { useContext, useMemo } from 'react';
 import { ClassName } from '@/constants';
 import { RuntimeStateAPIContext } from '@/contexts';
 
-import Button from '../Button';
+import { Button } from '../Button';
 import { ButtonVariant } from '../Button/constants';
 import { cardActions, cardContainer, cardContent, cardDescription, cardImage, cardTitle } from './styles.css';
 import type { CardProps } from './types';
@@ -14,7 +14,7 @@ import type { CardProps } from './types';
  *
  * @see {@link https://voiceflow.github.io/react-chat/?path=/story/components-card--simple}
  */
-const Card: React.FC<CardProps> = ({ title, description, image, actions = [], className = '' }) => {
+export const Card: React.FC<CardProps> = ({ title, description, image, actions = [], className = '' }) => {
   const runtime = useContext(RuntimeStateAPIContext);
 
   const buttons = useMemo(() => actions.filter(({ name }) => !!name), [actions]);
@@ -40,5 +40,3 @@ const Card: React.FC<CardProps> = ({ title, description, image, actions = [], cl
     </div>
   );
 };
-
-export default Card;

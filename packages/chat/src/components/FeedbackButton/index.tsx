@@ -1,5 +1,7 @@
 import { assignInlineVars } from '@vanilla-extract/dynamic';
+import clsx from 'clsx';
 
+import { ClassName } from '@/constants';
 import { PALETTE } from '@/styles/colors.css';
 
 import { activeBackground, activeIconColor, feedbackButtonStyles, iconStyle } from './FeedbackButton.css';
@@ -14,7 +16,7 @@ export const FeedbackButton: React.FC<IFeedbackButton> = ({ variant = 'up', acti
 
   return (
     <button
-      className={feedbackButtonStyles({ isActive: !!active })}
+      className={clsx(ClassName.FEEDBACK, feedbackButtonStyles({ isActive: !!active }))}
       onClick={onClick}
       data-testid={testID}
       style={assignInlineVars({ [activeBackground]: buttonActiveColor, [activeIconColor]: iconActiveColor })}

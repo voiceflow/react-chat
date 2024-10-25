@@ -1,5 +1,2 @@
-import Default from './Default';
-
-export { default as Markdown } from './Markdown';
-
-export default Default;
+export { Text } from './Default';
+export { Markdown } from './Markdown';
