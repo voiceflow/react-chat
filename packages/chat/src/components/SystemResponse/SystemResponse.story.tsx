@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Chat from '@/components/Chat';
 import { MOCK_IMAGE, VF_ICON } from '@/fixtures';
 
 import type { MessageProps } from '.';
@@ -35,13 +34,7 @@ const meta: Meta<typeof SystemResponse> = {
     },
   },
   excludeStories: ['RawTemplate'],
-  render: (args) => (
-    <Chat.Container>
-      <Chat.Dialog css={{ padding: '64px 0', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-        <SystemResponse {...args} />
-      </Chat.Dialog>
-    </Chat.Container>
-  ),
+  render: (args) => <SystemResponse {...args} />,
 };
 
 export default meta;

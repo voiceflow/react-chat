@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Chat from '@/components/Chat';
-
 import UserResponse from '.';
 
 type Story = StoryObj<typeof UserResponse>;
@@ -11,13 +9,7 @@ const meta: Meta<typeof UserResponse> = {
   args: {
     timestamp: Date.now(),
   },
-  render: (args) => (
-    <Chat.Container>
-      <Chat.Dialog css={{ padding: '64px 0', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-        <UserResponse {...args} />
-      </Chat.Dialog>
-    </Chat.Container>
-  ),
+  render: (args) => <UserResponse {...args} />,
 };
 
 export default meta;

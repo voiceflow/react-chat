@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Chat from '@/components/Chat';
-
+// import { Chat } from '@/components/Chat';
 import Prompt from '.';
 
 type Story = StoryObj<typeof Prompt>;
@@ -13,10 +12,10 @@ const meta: Meta<typeof Prompt> = {
     cancel: { label: 'Cancel' },
   },
   render: (args) => (
-    <Chat.Container withPrompt>
+    <>
       <div style={{ height: 250, backgroundColor: 'lavender' }} />
       <Prompt {...args} />
-    </Chat.Container>
+    </>
   ),
 };
 
