@@ -2,8 +2,12 @@ import type { RefObject } from 'react';
 import { useEffect, useState } from 'react';
 
 import type { CardProps } from '../Card/types';
-import { CARD_WITH_GUTTER_WIDTH, NEXT_CONTROL_BOUNDARY, PREVIOUS_CONTROL_BOUNDARY } from './constants';
-import { CAROUSEL_GUTTER_WIDTH } from './styled';
+import {
+  CARD_WITH_GUTTER_WIDTH,
+  CAROUSEL_GUTTER_WIDTH,
+  NEXT_CONTROL_BOUNDARY,
+  PREVIOUS_CONTROL_BOUNDARY,
+} from './constants';
 
 export const useScrollTo =
   <T extends HTMLElement>(ref: RefObject<T> | undefined, getNextIndex: (el: T) => number) =>
