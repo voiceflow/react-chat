@@ -11,6 +11,7 @@ export * as Launcher from './components/Launcher/Launcher.story';
 export * as LinkPreview from './components/LinkPreview/LinkPreview.story';
 export * as MessageInput from './components/MessageInput/MessageInput.story';
 export * as NewChat from './components/NewChat/NewChat.story';
+export * as Prompt from './components/Prompt/Prompt.story';
 export * as SendButton from './components/SendButton/SendButton.story';
 export * as UserMessage from './components/UserMessage/UserMessage.story';
 export * as WelcomeMessage from './components/WelcomeMessage/WelcomeMessage.story';

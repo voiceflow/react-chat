@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.26.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.25.1...@voiceflow/chat@0.26.0) (2024-10-25)
+
+### Features
+
+* convert Image component to vanilla-extract (COR-0000) ([#245](https://github.com/voiceflow/react-chat/issues/245)) ([e8836c6](https://github.com/voiceflow/react-chat/commit/e8836c6f76b50eb117345abac6a2f95e0e83b661))
+* convert Prompt component (COR-0000) ([#246](https://github.com/voiceflow/react-chat/issues/246)) ([5d70e21](https://github.com/voiceflow/react-chat/commit/5d70e21b3d04e65090dc43caa91b845a48e4a448))
+
+## [0.25.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.25.0...@voiceflow/chat@0.25.1) (2024-10-25)
+
+**Note:** Version bump only for package @voiceflow/chat
+
 # [0.25.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.24.0...@voiceflow/chat@0.25.0) (2024-10-24)
 
 ### Features
