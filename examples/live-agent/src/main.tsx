@@ -1,3 +1,4 @@
+import 'regenerator-runtime/runtime';
 import { ChatWidget } from '@voiceflow/react-chat';
 import { createRoot } from 'react-dom/client';
 
