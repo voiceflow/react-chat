@@ -1,8 +1,9 @@
 import type { RecipeVariants } from '@vanilla-extract/recipes';
+import clsx from 'clsx';
+
+import { ClassName } from '@/constants';
 
 import { avatarStyles } from './styles.css';
-import clsx from 'clsx';
-import { ClassName } from '@/constants';
 
 type AvatarVariants = NonNullable<RecipeVariants<typeof avatarStyles>>;
 

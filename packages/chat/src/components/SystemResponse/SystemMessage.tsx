@@ -2,10 +2,11 @@ import { useContext, useRef } from 'react';
 import * as R from 'remeda';
 import { match } from 'ts-pattern';
 
-import Text from '@/components/Text';
+import { Text } from '@/components/Text';
 import { RuntimeStateAPIContext } from '@/contexts';
 
 import { Avatar } from '../Avatar';
+import { Card } from '../Card';
 import { Carousel } from '../Carousel';
 import { FeedbackButton } from '../FeedbackButton';
 import type { IFeedbackButton } from '../FeedbackButton/FeedbackButton.interface';
@@ -15,7 +16,6 @@ import { ExtensionMessage } from './ExtensionMessage';
 import EndState from './state/end';
 import { List, MessageContainer } from './styled';
 import type { MessageProps } from './types';
-import { Card } from '../Card';
 
 export interface SystemMessageProps extends React.PropsWithChildren {
   /**

@@ -1,3 +1,5 @@
+/* eslint-disable no-empty-function */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import '../../styles.css';
 
 import React, { useCallback, useContext } from 'react';
