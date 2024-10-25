@@ -10,7 +10,6 @@ export { Icon } from './Icon';
 export { default as Image } from './Image';
 export { Launcher } from './Launcher';
 export { LinkPreview } from './LinkPreview';
-export { default as Loader } from './Loader';
 export { default as Message } from './Message';
 export { MessageInput } from './MessageInput';
 export { NewChat } from './NewChat';
