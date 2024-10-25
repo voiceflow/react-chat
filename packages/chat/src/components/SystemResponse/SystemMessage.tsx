@@ -10,7 +10,7 @@ import { Card } from '../Card';
 import { Carousel } from '../Carousel';
 import { FeedbackButton } from '../FeedbackButton';
 import type { IFeedbackButton } from '../FeedbackButton/FeedbackButton.interface';
-import Image from '../Image';
+import { Image } from '../Image';
 import { MessageType } from './constants';
 import { ExtensionMessage } from './ExtensionMessage';
 import EndState from './state/end';
