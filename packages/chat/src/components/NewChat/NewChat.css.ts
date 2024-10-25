@@ -31,6 +31,7 @@ export const dialogContainer = style({
   height: `${MOBILE_WIDGET_HEIGHT}px`,
   overflow: 'hidden',
   scrollbarWidth: 'none',
+
   overflowY: 'auto',
 });
 
