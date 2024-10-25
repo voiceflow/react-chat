@@ -50,14 +50,6 @@ export const messageContainer = recipe({
     background:
       'linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(255, 255, 255, 0.00) 29.49%, #FFF 29.5%, #F8F8F8 100%)',
   },
-  variants: {
-    showPoweredBy: {
-      false: {
-        // TODO: Do we really want a large padding here if the message isn't here ?
-        paddingBottom: '20px',
-      },
-    },
-  },
 });
 
 export const messageInputContainer = style({

@@ -3,11 +3,13 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import { MOCK_CONVERSATION_1 } from '@/__fixtures__/conversations';
 import EMPTY_IMAGE from '@/__fixtures__/empty-image.png';
+import { DEFAULT_AVATAR, UserMessage } from '@/main';
 import { WithDefaultPalette } from '@/storybook/decorators';
 import { createPalette } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
 import type { TurnProps } from '@/types';
 
+import SystemMessage from '../SystemResponse/SystemMessage';
 import { NewChat } from '.';
 
 const meta: Meta = {
@@ -34,7 +36,10 @@ export const Base = {
       showPoweredBy={true}
       privacyURL="https://voiceflow.com"
       messageInputProps={{ message: '', onSubmit: () => null, placeholder: 'Message...', onValueChange: () => null }}
-    />
+    >
+      <SystemMessage avatar={DEFAULT_AVATAR} message={{ type: 'text', text: 'Good morning' }} withImage />
+      <UserMessage message="Hey, how are you today?" />
+    </NewChat>
   ),
 };
 

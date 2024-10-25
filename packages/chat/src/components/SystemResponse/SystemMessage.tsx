@@ -26,7 +26,7 @@ export interface SystemMessageProps extends React.PropsWithChildren {
   /**
    * A unix timestamp indicating when this message was sent.
    */
-  timestamp: number;
+  timestamp?: number;
 
   /**
    * A single message to render.

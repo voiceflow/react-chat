@@ -35,7 +35,7 @@ export const NewFooter: React.FC<INewFooter> = ({ buttons, showPoweredBy, messag
           ))}
         </div>
       )}
-      <div className={messageContainer({ showPoweredBy })}>
+      <div className={messageContainer()}>
         <div className={inputContainer}>
           <MessageInput {...messageInputProps} />
         </div>
