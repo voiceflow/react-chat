@@ -8,7 +8,6 @@ export { FeedbackButton } from './FeedbackButton';
 export { Header } from './Header';
 export { Icon } from './Icon';
 export { default as Image } from './Image';
-export { default as Input } from './Input';
 export { Launcher } from './Launcher';
 export { LinkPreview } from './LinkPreview';
 export { default as Loader } from './Loader';
