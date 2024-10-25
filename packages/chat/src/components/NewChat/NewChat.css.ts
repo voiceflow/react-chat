@@ -26,6 +26,7 @@ const MOBILE_WIDGET_HEIGHT = 600;
 
 export const dialogContainer = style({
   position: 'relative',
+  padding: '0 20px',
   marginBottom: '48px',
   height: `${MOBILE_WIDGET_HEIGHT}px`,
   overflow: 'hidden',

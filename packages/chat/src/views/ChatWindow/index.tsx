@@ -1,14 +1,17 @@
-/* eslint-disable no-empty-function */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import '../../styles.css';
 
+import { assignInlineVars } from '@vanilla-extract/dynamic';
+import clsx from 'clsx';
 import React, { useCallback, useContext } from 'react';
 import * as R from 'remeda';
 import { match } from 'ts-pattern';
 
-import { NewChat, SystemResponse, UserResponse } from '@/components';
+import { Header, NewChat, NewFooter, SystemResponse, UserMessage, UserResponse, WelcomeMessage } from '@/components';
 import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts/RuntimeContext';
 import type { FeedbackName } from '@/contexts/RuntimeContext/useRuntimeAPI';
+import { createPalette } from '@/styles/colors';
+import { PALETTE } from '@/styles/colors.css';
 import type { UserTurnProps } from '@/types';
 import { SessionStatus, TurnType } from '@/types';
 
@@ -29,6 +32,8 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
     runtime.close();
   }, []);
 
+  const [newMessage, setNewMessage] = React.useState('');
+
   const getPreviousUserTurn = useCallback(
     (turnIndex: number): UserTurnProps | null => {
       const turn = state.session.turns[turnIndex - 1];
@@ -37,57 +42,48 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
     [state.session.turns]
   );
 
+  const handleUserReply = (): void => {
+    runtime.reply(newMessage);
+  };
+
   return (
-    <ChatWindowContainer className={className}>
+    <div style={assignInlineVars(PALETTE, { colors: createPalette(assistant.color) })}>
       <NewChat
         title={assistant.title}
-        image={assistant.image}
         description={assistant.description}
+        image={assistant.image}
+        turns={state.session.turns}
         avatar={assistant.avatar}
-        showPoweredBy={assistant.watermark}
         messageInputProps={{
-          message: '',
-          onValueChange: () => {},
-          onSubmit: () => {},
+          message: newMessage,
+          onValueChange: setNewMessage,
+          onSubmit: handleUserReply,
         }}
-        /*
-        startTime={state.session.startTime}
-        hasEnded={runtime.isStatus(SessionStatus.ENDED)}
-        isLoading={runtime.isStatus(SessionStatus.IDLE) && state.session.turns.length === 0 && config.autostart}
-        onStart={runtime.launch}
-        onEnd={closeAndEnd}
-        onSend={runtime.reply}
-        onMinimize={runtime.close}
-        */
-      >
-        {/*
-        {state.session.turns.map((turn, turnIndex) =>
-          match(turn)
-            .with({ type: TurnType.USER }, ({ id, ...props }) => <UserResponse {...R.omit(props, ['type'])} key={id} />)
-            .with({ type: TurnType.SYSTEM }, ({ id, ...props }) => (
-              <SystemResponse
-                key={id}
-                {...R.omit(props, ['type'])}
-                feedback={
-                  assistant.feedback
-                    ? {
-                        onClick: (feedback: FeedbackName) => {
-                          runtime.feedback(feedback, props.messages, getPreviousUserTurn(turnIndex));
-                        },
-                      }
-                    : undefined
-                }
-                avatar={assistant.avatar}
-                isLast={turnIndex === state.session.turns.length - 1}
-              />
-            ))
-            .exhaustive()
-        )}
-        */}
-        {/* state.indicator && <SystemResponse.Indicator avatar={assistant.avatar} /> */}
-      </NewChat>
-    </ChatWindowContainer>
+      />
+    </div>
   );
 };
 
 export default Object.assign(ChatWindow, { Container: ChatWindowContainer });
+
+// {/* <NewChat
+//   title={assistant.title}
+//   image={assistant.image}
+//   description={assistant.description}
+//   avatar={assistant.avatar}
+//   showPoweredBy={false}
+//   messageInputProps={{
+//     message: '',
+//     onValueChange: () => {},
+//     onSubmit: () => {},
+//   }}
+//   messages={state.session.turns}
+//   /*
+//   startTime={state.session.startTime}
+//   hasEnded={runtime.isStatus(SessionStatus.ENDED)}
+//   isLoading={runtime.isStatus(SessionStatus.IDLE) && state.session.turns.length === 0 && config.autostart}
+//   onStart={runtime.launch}
+//   onEnd={closeAndEnd}
+//   onMinimize={runtime.close}
+//   */
+// // > */}

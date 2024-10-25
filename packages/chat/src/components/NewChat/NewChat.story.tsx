@@ -1,10 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
-import TEXT_TREATMENT_MARKDOWN from '@/__fixtures__/markdown/text-treatment.md?raw';
+import { MOCK_CONVERSATION_1 } from '@/__fixtures__/conversations';
+import EMPTY_IMAGE from '@/__fixtures__/empty-image.png';
 import { WithDefaultPalette } from '@/storybook/decorators';
 import { createPalette } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
+import type { TurnProps } from '@/types';
 
 import { NewChat } from '.';
 
@@ -21,28 +23,14 @@ type Story = StoryObj<typeof NewChat>;
 
 export default meta;
 
-const messages = [
-  {
-    from: 'system',
-    text: "Hey there! I'm a chatbot. I can help you with a lot of things. Try me out!",
-  },
-
-  { from: 'user', text: 'Howdy!' },
-  { from: 'user', text: 'What kinda sick stuff can you do?' },
-  { from: 'system', text: "You're in for a treat. We can do some pretty sick stuff." },
-  { from: 'user', text: 'What kinda sick stuff can you do?' },
-  { from: 'user', text: 'Rapid fire follow up' },
-  { from: 'system', text: "You're in for a treat. We can do some pretty sick stuff." },
-];
-
 export const Base = {
   render: () => (
     <NewChat
       title=""
       image=""
       description=""
-      avatar=""
-      messages={messages}
+      avatar={EMPTY_IMAGE}
+      turns={[...MOCK_CONVERSATION_1.turns, ...MOCK_CONVERSATION_1.turns] as TurnProps[]}
       showPoweredBy={true}
       privacyURL="https://voiceflow.com"
       messageInputProps={{ message: '', onSubmit: () => null, placeholder: 'Message...', onValueChange: () => null }}
@@ -58,9 +46,9 @@ export const Themed: Story = {
           title=""
           image=""
           description=""
-          avatar=""
+          avatar={EMPTY_IMAGE}
           color="orange"
-          messages={messages}
+          turns={[...MOCK_CONVERSATION_1.turns, ...MOCK_CONVERSATION_1.turns] as TurnProps[]}
           showPoweredBy={true}
           privacyURL="https://voiceflow.com"
           messageInputProps={{
@@ -78,9 +66,9 @@ export const Themed: Story = {
           title=""
           image=""
           description=""
-          avatar=""
+          avatar={EMPTY_IMAGE}
           color="orange"
-          messages={messages}
+          turns={MOCK_CONVERSATION_1.turns as TurnProps[]}
           showPoweredBy={true}
           privacyURL="https://voiceflow.com"
           messageInputProps={{
@@ -97,9 +85,9 @@ export const Themed: Story = {
           title=""
           image=""
           description=""
-          avatar=""
+          avatar={EMPTY_IMAGE}
           color="orange"
-          messages={messages}
+          turns={MOCK_CONVERSATION_1.turns as TurnProps[]}
           showPoweredBy={true}
           privacyURL="https://voiceflow.com"
           messageInputProps={{
@@ -120,8 +108,8 @@ export const NoPoweredBy = {
       title=""
       image=""
       description=""
-      avatar=""
-      messages={[{ from: 'system', text: TEXT_TREATMENT_MARKDOWN }, ...messages]}
+      avatar={EMPTY_IMAGE}
+      turns={MOCK_CONVERSATION_1.turns as TurnProps[]}
       buttons={[]}
       privacyURL="https://voiceflow.com"
       showPoweredBy={false}

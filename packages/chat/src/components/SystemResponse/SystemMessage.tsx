@@ -2,9 +2,9 @@ import { useContext, useRef } from 'react';
 import * as R from 'remeda';
 import { match } from 'ts-pattern';
 
-import { Text } from '@/components/Text';
 import { RuntimeStateAPIContext } from '@/contexts';
 
+import { AgentMessage } from '../AgentMessage';
 import { Avatar } from '../Avatar';
 import { Card } from '../Card';
 import { Carousel } from '../Carousel';
@@ -14,7 +14,7 @@ import Image from '../Image';
 import { MessageType } from './constants';
 import { ExtensionMessage } from './ExtensionMessage';
 import EndState from './state/end';
-import { List, MessageContainer } from './styled';
+import { MessageContainer } from './styled';
 import type { MessageProps } from './types';
 
 export interface SystemMessageProps extends React.PropsWithChildren {
@@ -58,19 +58,17 @@ const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, feedback, message
     <>
       <MessageContainer ref={containerRef} withImage={withImage} scrollable={message?.type === MessageType.CAROUSEL}>
         <Avatar avatar={avatar} />
-        <List>
-          {children ??
-            match(message)
-              .with({ type: MessageType.TEXT }, ({ text }) => <Text text={text} />)
-              .with({ type: MessageType.IMAGE }, ({ url }) => <Image image={url} mode={config.render?.mode} />)
-              .with({ type: MessageType.CARD }, (props) => <Card {...R.omit(props, ['type'])} />)
-              .with({ type: MessageType.CAROUSEL }, (props) => <Carousel {...R.omit(props, ['type'])} />)
-              .with({ type: MessageType.EXTENSION }, ({ payload }) => (
-                <ExtensionMessage extension={payload.extension} trace={payload.trace} />
-              ))
-              .otherwise(() => null)}
-          {feedback && <FeedbackButton {...feedback} />}
-        </List>
+        {children ??
+          match(message)
+            .with({ type: MessageType.TEXT }, ({ text, ai }) => <AgentMessage text={text} aiGenerated={ai} />)
+            .with({ type: MessageType.IMAGE }, ({ url }) => <Image image={url} mode={config.render?.mode} />)
+            .with({ type: MessageType.CARD }, (props) => <Card {...R.omit(props, ['type'])} />)
+            .with({ type: MessageType.CAROUSEL }, (props) => <Carousel {...R.omit(props, ['type'])} />)
+            .with({ type: MessageType.EXTENSION }, ({ payload }) => (
+              <ExtensionMessage extension={payload.extension} trace={payload.trace} />
+            ))
+            .otherwise(() => null)}
+        {feedback && <FeedbackButton {...feedback} />}
       </MessageContainer>
     </>
   );
