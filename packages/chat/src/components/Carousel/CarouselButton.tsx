@@ -1,7 +1,7 @@
 import type { MouseEventHandler } from 'react';
 import { forwardRef } from 'react';
 
-import Icon from '@/components/Icon';
+import { Icon } from '@/components/Icon';
 
 import { carouselButton } from './carouselButtonStyles.css';
 
@@ -25,10 +25,10 @@ export interface CarouselButtonProps {
 /**
  * A button used to scroll to the previous or next Card in a Carousel.
  */
-const CarouselButton = forwardRef<HTMLButtonElement, CarouselButtonProps>(({ onClick, visible, direction }, ref) => (
-  <button ref={ref} className={carouselButton({ visible, direction })} onClick={onClick}>
-    <Icon svg="arrowRight" />
-  </button>
-));
-
-export default CarouselButton;
+export const CarouselButton = forwardRef<HTMLButtonElement, CarouselButtonProps>(
+  ({ onClick, visible, direction }, ref) => (
+    <button ref={ref} className={carouselButton({ visible, direction })} onClick={onClick}>
+      <Icon svg="arrowRight" />
+    </button>
+  )
+);

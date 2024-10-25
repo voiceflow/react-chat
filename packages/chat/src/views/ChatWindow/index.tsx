@@ -4,7 +4,7 @@ import React, { useCallback, useContext } from 'react';
 import * as R from 'remeda';
 import { match } from 'ts-pattern';
 
-import { Chat, SystemResponse, UserResponse } from '@/components';
+import { NewChat, SystemResponse, UserResponse } from '@/components';
 import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts/RuntimeContext';
 import type { FeedbackName } from '@/contexts/RuntimeContext/useRuntimeAPI';
 import type { UserTurnProps } from '@/types';
@@ -37,12 +37,18 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
 
   return (
     <ChatWindowContainer className={className}>
-      <Chat
+      <NewChat
         title={assistant.title}
-        description={assistant.description}
         image={assistant.image}
+        description={assistant.description}
         avatar={assistant.avatar}
-        withWatermark={assistant.watermark}
+        showPoweredBy={assistant.watermark}
+        messageInputProps={{
+          message: '',
+          onValueChange: () => {},
+          onSubmit: () => {},
+        }}
+        /*
         startTime={state.session.startTime}
         hasEnded={runtime.isStatus(SessionStatus.ENDED)}
         isLoading={runtime.isStatus(SessionStatus.IDLE) && state.session.turns.length === 0 && config.autostart}
@@ -50,7 +56,9 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
         onEnd={closeAndEnd}
         onSend={runtime.reply}
         onMinimize={runtime.close}
+        */
       >
+        {/*
         {state.session.turns.map((turn, turnIndex) =>
           match(turn)
             .with({ type: TurnType.USER }, ({ id, ...props }) => <UserResponse {...R.omit(props, ['type'])} key={id} />)
@@ -73,8 +81,9 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
             ))
             .exhaustive()
         )}
-        {state.indicator && <SystemResponse.Indicator avatar={assistant.avatar} />}
-      </Chat>
+        */}
+        {/* state.indicator && <SystemResponse.Indicator avatar={assistant.avatar} /> */}
+      </NewChat>
     </ChatWindowContainer>
   );
 };

@@ -1,4 +1,8 @@
-import Avatar from '../Avatar';
+import clsx from 'clsx';
+
+import { ClassName } from '@/constants';
+
+import { Avatar } from '../Avatar';
 import {
   avatarContainer,
   welcomeMessageContainer,
@@ -25,7 +29,7 @@ export interface IWelcomeMessage {
 
 export const WelcomeMessage: React.FC<IWelcomeMessage> = ({ title, description, avatar }) => {
   return (
-    <div className={welcomeMessageContainer}>
+    <div className={clsx(ClassName.ASSISTANT_INFO, welcomeMessageContainer)}>
       <div className={avatarContainer}>
         <Avatar size="large" avatar={avatar} />
       </div>

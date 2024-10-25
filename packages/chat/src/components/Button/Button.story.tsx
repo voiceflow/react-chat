@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { WithDefaultPalette } from '@/storybook/decorators';
 
-import Button from '.';
+import { Button } from '.';
 import { ButtonVariant } from './constants';
 
 const TEST_ID = 'test-id';

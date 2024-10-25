@@ -1,4 +1,4 @@
-import Avatar from '@/components/Avatar';
+import { Avatar } from '@/components/Avatar';
 import TypingIndicator from '@/components/TypingIndicator';
 
 import { IndicatorContainer } from './styled';

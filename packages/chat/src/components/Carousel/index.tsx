@@ -3,9 +3,9 @@ import { useRef } from 'react';
 
 import { ClassName } from '@/constants';
 
-import Card from '../Card';
+import { Card } from '../Card';
 import type { CardProps } from '../Card/types';
-import CarouselButton from './CarouselButton';
+import { CarouselButton } from './CarouselButton';
 import { CARD_WITH_GUTTER_WIDTH } from './constants';
 import { useScrollObserver, useScrollTo } from './hooks';
 import { cardsContainer, cardsInnerContainer, cardStyle, carouselContainer, lastCardSpacer } from './styles.css';
@@ -17,7 +17,12 @@ export interface CarouselProps {
   cards: CardProps[];
 }
 
-const Carousel: React.FC<CarouselProps> = ({ cards }) => {
+/**
+ * A carousel of {@link Card} components that can be scrolled natively or with buttons.
+ *
+ * @see {@link https://voiceflow.github.io/react-chat/?path=/story/components-carousel--single-card}
+ */
+export const Carousel: React.FC<CarouselProps> = ({ cards }) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const { showPreviousButton, showNextButton } = useScrollObserver(scrollContainerRef, cards);
 
@@ -28,8 +33,8 @@ const Carousel: React.FC<CarouselProps> = ({ cards }) => {
   const scrollToNext = useScrollTo(scrollContainerRef, (el) => Math.floor(el.scrollLeft / CARD_WITH_GUTTER_WIDTH) + 1);
 
   return (
-    <div className={carouselContainer}>
-      <div ref={scrollContainerRef} className={clsx(ClassName.CAROUSEL, cardsContainer)}>
+    <div className={clsx(ClassName.CAROUSEL, carouselContainer)}>
+      <div ref={scrollContainerRef} className={cardsContainer}>
         <div className={cardsInnerContainer}>
           {cards.map((card, i) => (
             <Card className={cardStyle} {...card} key={i} />
@@ -42,10 +47,3 @@ const Carousel: React.FC<CarouselProps> = ({ cards }) => {
     </div>
   );
 };
-
-/**
- * A carousel of {@link Card} components that can be scrolled natively or with buttons.
- *
- * @see {@link https://voiceflow.github.io/react-chat/?path=/story/components-carousel--single-card}
- */
-export default Carousel;

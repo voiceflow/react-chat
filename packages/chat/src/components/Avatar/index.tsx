@@ -1,6 +1,8 @@
 import type { RecipeVariants } from '@vanilla-extract/recipes';
 
 import { avatarStyles } from './styles.css';
+import clsx from 'clsx';
+import { ClassName } from '@/constants';
 
 type AvatarVariants = NonNullable<RecipeVariants<typeof avatarStyles>>;
 
@@ -18,13 +20,14 @@ export interface AvatarProps {
   size?: AvatarVariants['size'];
 }
 
-const Avatar: React.FC<AvatarProps> = ({ avatar, ...props }) => (
-  <div className={avatarStyles({ size: props.size })} style={{ backgroundImage: `url(${avatar})` }}></div>
-);
-
 /**
  * Displays an image in a circular frame.
  *
  * @see {@link https://voiceflow.github.io/react-chat/?path=/story/core-avatar--small}
  */
-export default Avatar;
+export const Avatar: React.FC<AvatarProps> = ({ avatar, ...props }) => (
+  <div
+    className={clsx(ClassName.AVATAR, avatarStyles({ size: props.size }))}
+    style={{ backgroundImage: `url(${avatar})` }}
+  ></div>
+);

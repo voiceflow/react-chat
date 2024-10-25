@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import Icon from '@/components/Icon';
+import { Icon } from '@/components/Icon';
 
 export const CopyButton = ({ value = '', className }: { value: React.ReactNode; className: string }) => {
   const [isCopied, setIsCopied] = useState(false);

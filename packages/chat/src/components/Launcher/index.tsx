@@ -4,7 +4,7 @@ import React from 'react';
 
 import { ClassName } from '@/constants';
 
-import Button from '../Button';
+import { Button } from '../Button';
 import { ChevronIcon } from './ChevronIcon';
 import { PlayIcon } from './PlayIcon';
 import { launcherIconStyles, launcherLabelStyles, launcherStyles } from './styles.css';
@@ -34,7 +34,12 @@ export interface LauncherProps {
   onClick: MouseEventHandler<HTMLButtonElement>;
 }
 
-const Launcher: React.FC<LauncherProps> = ({ image, isOpen, label, onClick }) => {
+/**
+ * A floating action button used to launch the chat widget.
+ *
+ * @see {@link https://voiceflow.github.io/react-chat/?path=/story/components-launcher--default}
+ */
+export const Launcher: React.FC<LauncherProps> = ({ image, isOpen, label, onClick }) => {
   const withLabel = !!label?.length;
   return (
     <Button className={clsx(ClassName.LAUNCHER, launcherStyles({ withLabel }))} onClick={onClick}>
@@ -45,10 +50,3 @@ const Launcher: React.FC<LauncherProps> = ({ image, isOpen, label, onClick }) =>
     </Button>
   );
 };
-
-/**
- * A floating action button used to launch the chat widget.
- *
- * @see {@link https://voiceflow.github.io/react-chat/?path=/story/components-launcher--default}
- */
-export default Launcher;

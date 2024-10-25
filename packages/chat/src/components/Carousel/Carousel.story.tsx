@@ -1,12 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Avatar from '@/components/Avatar';
-import Chat from '@/components/Chat';
+import { Avatar } from '@/components/Avatar';
 import SystemResponse from '@/components/SystemResponse';
 import { MOCK_IMAGE, VF_ICON } from '@/fixtures';
-import { ChatWidget } from '@/views';
 
-import Carousel from '.';
+import { Carousel } from '.';
 
 const meta: Meta<typeof Carousel> = {
   component: Carousel,
@@ -65,14 +63,10 @@ export const ControlsTemplate: Story = {
 
   render: (args) => {
     return (
-      <ChatWidget.ChatContainer>
-        <Chat.Dialog>
-          <SystemResponse.Container withImage scrollable>
-            <Avatar avatar={VF_ICON} />
-            <Carousel {...args} />
-          </SystemResponse.Container>
-        </Chat.Dialog>
-      </ChatWidget.ChatContainer>
+      <SystemResponse.Container withImage scrollable>
+        <Avatar avatar={VF_ICON} />
+        <Carousel {...args} />
+      </SystemResponse.Container>
     );
   },
 };
