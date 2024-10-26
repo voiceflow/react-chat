@@ -16,13 +16,11 @@ import { PALETTE } from '@/styles/colors.css';
 import type { UserTurnProps } from '@/types';
 import { SessionStatus, TurnType } from '@/types';
 
-import { ChatWindowContainer } from './styled';
-
 export interface ChatWindowProps {
   className?: string;
 }
 
-const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
+export const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
   const runtime = useContext(RuntimeStateAPIContext);
   const state = useContext(RuntimeStateContext);
   const { assistant, config } = runtime;
@@ -48,7 +46,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
   };
 
   return (
-    <div style={assignInlineVars(PALETTE, { colors: createPalette(assistant.color) })}>
+    <div style={assignInlineVars(PALETTE, { colors: createPalette(assistant.color) })} className={className}>
       <NewChat
         title={assistant.title}
         description={assistant.description}
@@ -86,27 +84,3 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
     </div>
   );
 };
-
-export default Object.assign(ChatWindow, { Container: ChatWindowContainer });
-
-// {/* <NewChat
-//   title={assistant.title}
-//   image={assistant.image}
-//   description={assistant.description}
-//   avatar={assistant.avatar}
-//   showPoweredBy={false}
-//   messageInputProps={{
-//     message: '',
-//     onValueChange: () => {},
-//     onSubmit: () => {},
-//   }}
-//   messages={state.session.turns}
-//   /*
-//   startTime={state.session.startTime}
-//   hasEnded={runtime.isStatus(SessionStatus.ENDED)}
-//   isLoading={runtime.isStatus(SessionStatus.IDLE) && state.session.turns.length === 0 && config.autostart}
-//   onStart={runtime.launch}
-//   onEnd={closeAndEnd}
-//   onMinimize={runtime.close}
-//   */
-// // > */}

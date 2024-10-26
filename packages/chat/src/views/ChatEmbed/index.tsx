@@ -4,7 +4,7 @@ import { RuntimeStateAPIContext } from '@/contexts';
 import { useChatAPI, useTheme } from '@/hooks';
 import { useResolveAssistantStyleSheet } from '@/utils/stylesheet';
 
-import ChatWindow from '../ChatWindow';
+import { ChatWindow } from '../ChatWindow';
 
 interface ChatEmbedProps extends React.PropsWithChildren {
   shadowRoot: ShadowRoot;
@@ -34,6 +34,7 @@ const ChatEmbed: React.FC<ChatEmbedProps> = ({ shadowRoot, chatAPI, ready }) => 
   }, []);
 
   if (!isStyleSheetResolved) return null;
+  // TODO: We probably don't need the theme here anymore
   return <ChatWindow className={theme} />;
 };
 
