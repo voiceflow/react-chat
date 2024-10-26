@@ -8,11 +8,10 @@ import type { IMessageInput } from '../MessageInput';
 import { MessageInput } from '../MessageInput';
 import {
   buttonsContainer,
+  extraLinkStyles,
   footerContainer,
   footerLinksContainer,
-  inputContainer,
   messageContainer,
-  prviacyLinkStyles,
   separator,
 } from './NewFooter.css';
 
@@ -20,10 +19,29 @@ export interface INewFooter {
   buttons?: { label: string; onClick: () => void }[];
   showPoweredBy?: boolean;
   messageInputProps: IMessageInput;
-  privacyURL?: string;
+  extraLinkText?: string;
+  extraLinkUrl?: string;
+  hasEnded: boolean;
+
+  /**
+   * A callback to start a new conversation.
+   */
+  onStart?: (() => Promise<void>) | undefined;
+
+  /**
+   * A callback to submit a user response.
+   */
+  onSend?: ((message: string) => Promise<void>) | undefined;
 }
 
-export const NewFooter: React.FC<INewFooter> = ({ buttons, showPoweredBy, messageInputProps, privacyURL }) => {
+export const NewFooter: React.FC<INewFooter> = ({
+  buttons,
+  showPoweredBy,
+  messageInputProps,
+  extraLinkText,
+  extraLinkUrl,
+}) => {
+  const showExtraLink = extraLinkText && extraLinkUrl;
   return (
     <div className={clsx(ClassName.FOOTER, footerContainer)}>
       {(buttons?.length ?? 0) > 0 && (
@@ -36,19 +54,15 @@ export const NewFooter: React.FC<INewFooter> = ({ buttons, showPoweredBy, messag
         </div>
       )}
       <div className={messageContainer()}>
-        <div className={inputContainer}>
-          <MessageInput {...messageInputProps} />
-        </div>
+        <MessageInput {...messageInputProps} />
         <div className={footerLinksContainer}>
-          {showPoweredBy && (
-            <>
-              <div>Powered by Voiceflow</div>
-              <div className={separator} />
-            </>
+          {showPoweredBy && <div>Powered by Voiceflow</div>}
+          {showPoweredBy && showExtraLink && <div className={separator} />}
+          {showExtraLink && (
+            <a href={extraLinkUrl} target="_blank" className={extraLinkStyles}>
+              {extraLinkText}
+            </a>
           )}
-          <a href={privacyURL} target="_blank" className={prviacyLinkStyles}>
-            Privacy
-          </a>
         </div>
       </div>
     </div>

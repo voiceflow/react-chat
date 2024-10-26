@@ -2,20 +2,13 @@ import clsx from 'clsx';
 import { useRef, useState } from 'react';
 
 import { ClassName } from '@/constants';
-import { type TurnProps } from '@/types';
 
 import mockAvatar from '../../assets/blank-image.png';
-import { Header, type HeaderProps } from '../Header';
-import type { INewFooter } from '../NewFooter';
+import { Header } from '../Header';
 import { NewFooter } from '../NewFooter';
-import { type IWelcomeMessage, WelcomeMessage } from '../WelcomeMessage';
+import { WelcomeMessage } from '../WelcomeMessage';
+import type { INewChat } from './INewChat';
 import { chatContainer, dialogContainer } from './NewChat.css';
-
-interface INewChat extends HeaderProps, IWelcomeMessage, INewFooter {
-  turns: TurnProps[];
-  color?: string;
-  children?: React.ReactNode;
-}
 
 export const NewChat: React.FC<INewChat> = ({
   buttons,
@@ -24,7 +17,9 @@ export const NewChat: React.FC<INewChat> = ({
   title,
   description,
   avatar,
-  privacyURL,
+  hasEnded,
+  extraLinkText,
+  extraLinkUrl,
   children,
 }) => {
   // const [chatMessages, setChatMessages] = useState(messages ?? []);
@@ -100,7 +95,9 @@ export const NewChat: React.FC<INewChat> = ({
       <NewFooter
         buttons={buttons}
         showPoweredBy={showPoweredBy}
-        privacyURL={privacyURL}
+        hasEnded={hasEnded}
+        extraLinkText={extraLinkText}
+        extraLinkUrl={extraLinkUrl}
         messageInputProps={{ ...messageInputProps }}
       />
     </div>

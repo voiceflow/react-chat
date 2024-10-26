@@ -8,6 +8,7 @@ import * as R from 'remeda';
 import { match } from 'ts-pattern';
 
 import { Header, NewChat, NewFooter, SystemResponse, UserMessage, WelcomeMessage } from '@/components';
+import UserResponse from '@/components/UserResponse';
 import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts/RuntimeContext';
 import type { FeedbackName } from '@/contexts/RuntimeContext/useRuntimeAPI';
 import { createPalette } from '@/styles/colors';
@@ -52,14 +53,36 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
         title={assistant.title}
         description={assistant.description}
         image={assistant.image}
-        turns={state.session.turns}
         avatar={assistant.avatar}
+        showPoweredBy={assistant.watermark}
+        startTime={state.session.startTime}
+        hasEnded={runtime.isStatus(SessionStatus.ENDED)}
+        isLoading={runtime.isStatus(SessionStatus.IDLE) && state.session.turns.length === 0 && config.autostart}
+        onStart={runtime.launch}
+        onEnd={closeAndEnd}
+        onSend={runtime.reply}
+        onMinimize={runtime.close}
+        audioInterface={assistant.audioInterface}
         messageInputProps={{
           message: newMessage,
           onValueChange: setNewMessage,
           onSubmit: handleUserReply,
         }}
-      />
+      >
+        {state.session.turns.map((turn, turnIndex) =>
+          match(turn)
+            .with({ type: TurnType.USER }, ({ id, ...props }) => <UserResponse {...R.omit(props, ['type'])} key={id} />)
+            .with({ type: TurnType.SYSTEM }, ({ id, ...props }) => (
+              <SystemResponse
+                key={id}
+                {...R.omit(props, ['type'])}
+                avatar={assistant.avatar}
+                isLast={turnIndex === state.session.turns.length - 1}
+              />
+            ))
+            .exhaustive()
+        )}
+      </NewChat>
     </div>
   );
 };

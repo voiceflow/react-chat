@@ -28,8 +28,6 @@ interface IAgentMessage {
 }
 
 export const AgentMessage: React.FC<IAgentMessage> = ({ text, children, aiGenerated, generatedMessage }) => {
-  // eslint-disable-next-line no-console
-  console.log({ text });
   const content = typeof text === 'string' ? text : serializeToMarkdown(text);
 
   const isCodeBlock = content?.startsWith('```javascript');

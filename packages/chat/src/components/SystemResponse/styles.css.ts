@@ -4,7 +4,18 @@ import { recipe } from '@vanilla-extract/recipes';
 export const systemMessageContainer = recipe({
   base: {
     display: 'flex',
+    alignItems: 'center',
+    marginBottom: 16,
   },
+});
+
+export const messageContainer = style({
+  marginLeft: 12,
+});
+
+export const messageAvatar = style({
+  alignSelf: 'flex-end',
+  marginBottom: 4,
 });
 
 export const actionsContainer = style({
@@ -16,10 +27,8 @@ export const actionsContainer = style({
 
 export const actionButton = style({
   height: 'unset',
-  paddingTop: 7,
-  paddingBottom: 7,
-  marginTop: 8,
-  marginRight: 8,
+  padding: '7px 0',
+  margin: '8px 8px 0 0',
   whiteSpace: 'normal',
   textAlign: 'start',
 });

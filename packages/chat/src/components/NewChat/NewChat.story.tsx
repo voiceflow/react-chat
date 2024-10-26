@@ -1,13 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
-import { MOCK_CONVERSATION_1 } from '@/__fixtures__/conversations';
 import EMPTY_IMAGE from '@/__fixtures__/empty-image.png';
 import { DEFAULT_AVATAR, UserMessage } from '@/main';
 import { WithDefaultPalette } from '@/storybook/decorators';
 import { createPalette } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
-import type { TurnProps } from '@/types';
 
 import { SystemMessage } from '../SystemResponse/SystemMessage';
 import { NewChat } from '.';
@@ -32,9 +30,11 @@ export const Base = {
       image=""
       description="Hello, I am here to help with whatever you need."
       avatar={EMPTY_IMAGE}
-      turns={[...MOCK_CONVERSATION_1.turns, ...MOCK_CONVERSATION_1.turns] as TurnProps[]}
       showPoweredBy={true}
-      privacyURL="https://voiceflow.com"
+      extraLinkText="Privacy"
+      extraLinkUrl="https://voiceflow.com"
+      isLoading={false}
+      hasEnded={false}
       messageInputProps={{ message: '', onSubmit: () => null, placeholder: 'Message...', onValueChange: () => null }}
     >
       <SystemMessage avatar={DEFAULT_AVATAR} message={{ type: 'text', text: 'Good morning' }} withImage />
@@ -52,10 +52,11 @@ export const Themed: Story = {
           image=""
           description="Hello, I am here to help with whatever you need."
           avatar={EMPTY_IMAGE}
-          color="orange"
-          turns={[...MOCK_CONVERSATION_1.turns, ...MOCK_CONVERSATION_1.turns] as TurnProps[]}
           showPoweredBy={true}
-          privacyURL="https://voiceflow.com"
+          extraLinkText="Privacy"
+          extraLinkUrl="https://voiceflow.com"
+          isLoading={false}
+          hasEnded={false}
           messageInputProps={{
             message: '',
             onSubmit: () => null,
@@ -72,10 +73,11 @@ export const Themed: Story = {
           image=""
           description="Hello, I am here to help with whatever you need."
           avatar={EMPTY_IMAGE}
-          color="orange"
-          turns={MOCK_CONVERSATION_1.turns as TurnProps[]}
           showPoweredBy={true}
-          privacyURL="https://voiceflow.com"
+          extraLinkText="Privacy"
+          extraLinkUrl="https://voiceflow.com"
+          isLoading={false}
+          hasEnded={false}
           messageInputProps={{
             message: '',
             onSubmit: () => null,
@@ -91,10 +93,11 @@ export const Themed: Story = {
           image=""
           description=""
           avatar={EMPTY_IMAGE}
-          color="orange"
-          turns={MOCK_CONVERSATION_1.turns as TurnProps[]}
           showPoweredBy={true}
-          privacyURL="https://voiceflow.com"
+          extraLinkText="Privacy"
+          extraLinkUrl="https://voiceflow.com"
+          isLoading={false}
+          hasEnded={false}
           messageInputProps={{
             message: '',
             onSubmit: () => null,
@@ -114,10 +117,12 @@ export const NoPoweredBy = {
       image=""
       description="Let's get this party started already!"
       avatar={EMPTY_IMAGE}
-      turns={MOCK_CONVERSATION_1.turns as TurnProps[]}
       buttons={[]}
-      privacyURL="https://voiceflow.com"
+      extraLinkText="Privacy"
+      extraLinkUrl="https://voiceflow.com"
       showPoweredBy={false}
+      isLoading={false}
+      hasEnded={false}
       messageInputProps={{ message: '', onSubmit: () => null, placeholder: 'Message...', onValueChange: () => null }}
     />
   ),
