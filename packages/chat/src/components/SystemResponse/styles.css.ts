@@ -23,3 +23,8 @@ export const actionButton = style({
   whiteSpace: 'normal',
   textAlign: 'start',
 });
+
+export const indicatorContainer = style({
+  display: 'flex',
+  alignItems: 'center',
+});

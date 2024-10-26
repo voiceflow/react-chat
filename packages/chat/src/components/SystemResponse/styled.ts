@@ -46,8 +46,6 @@ export const Container = styled(tag('div'), {
 
 export const MessageContainer = styled(tag(Container, 'message'));
 
-export const IndicatorContainer = styled(tag(Container, 'indicator'));
-
 export const List = styled(tag('div', 'list'), {
   display: 'flex',
   flexDirection: 'column',
