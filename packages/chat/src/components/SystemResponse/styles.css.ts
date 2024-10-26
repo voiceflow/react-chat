@@ -1,6 +1,10 @@
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
+export const hide = style({
+  visibility: 'hidden',
+});
+
 export const systemMessageContainer = recipe({
   base: {
     display: 'flex',
@@ -11,11 +15,6 @@ export const systemMessageContainer = recipe({
 
 export const messageContainer = style({
   marginLeft: 12,
-});
-
-export const messageAvatar = style({
-  alignSelf: 'flex-end',
-  marginBottom: 4,
 });
 
 export const actionsContainer = style({

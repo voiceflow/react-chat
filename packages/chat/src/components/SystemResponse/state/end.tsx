@@ -7,6 +7,7 @@ const EndState: React.FC = () => {
   const runtime = useContext(RuntimeStateAPIContext);
 
   useEffect(() => {
+    // TODO: uncomment this
     // runtime.setStatus(SessionStatus.ENDED);
   }, []);
 

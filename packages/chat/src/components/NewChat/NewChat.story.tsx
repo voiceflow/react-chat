@@ -2,12 +2,11 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import EMPTY_IMAGE from '@/__fixtures__/empty-image.png';
-import { DEFAULT_AVATAR, UserMessage } from '@/main';
+import { DEFAULT_AVATAR, SystemResponse, UserMessage } from '@/main';
 import { WithDefaultPalette } from '@/storybook/decorators';
 import { createPalette } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
 
-import { SystemMessage } from '../SystemResponse/SystemMessage';
 import { NewChat } from '.';
 
 const meta: Meta = {
@@ -23,6 +22,15 @@ type Story = StoryObj<typeof NewChat>;
 
 export default meta;
 
+const AgentSays = (messages: string[]) => (
+  <SystemResponse
+    avatar={DEFAULT_AVATAR}
+    timestamp={Date.now()}
+    messages={messages.map((m) => ({ type: 'text', text: m }))}
+  />
+);
+const UserSays = (text: string) => <UserMessage message={text} />;
+
 export const Base = {
   render: () => (
     <NewChat
@@ -37,8 +45,9 @@ export const Base = {
       hasEnded={false}
       messageInputProps={{ message: '', onSubmit: () => null, placeholder: 'Message...', onValueChange: () => null }}
     >
-      <SystemMessage avatar={DEFAULT_AVATAR} message={{ type: 'text', text: 'Good morning' }} withImage />
-      <UserMessage message="Hey, how are you today?" />
+      {AgentSays(['👋🏻 Good morning!', 'How are you today?'])}
+      {UserSays('Cool, great weather ☀️')}
+      {UserSays('How bout you?')}
     </NewChat>
   ),
 };

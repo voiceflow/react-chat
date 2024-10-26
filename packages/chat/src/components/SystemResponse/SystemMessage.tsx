@@ -16,7 +16,7 @@ import { Image } from '../Image';
 import { MessageType } from './constants';
 import { ExtensionMessage } from './ExtensionMessage';
 import EndState from './state/end';
-import { messageAvatar, messageContainer, systemMessageContainer } from './styles.css';
+import { hide, messageContainer, systemMessageContainer } from './styles.css';
 import type { MessageProps } from './types';
 
 export interface SystemMessageProps extends React.PropsWithChildren {
@@ -50,7 +50,7 @@ export interface SystemMessageProps extends React.PropsWithChildren {
 /**
  * An individual message within a system response.
  */
-export const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, feedback, message, children }) => {
+export const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, feedback, message, withImage, children }) => {
   const { config } = useContext(RuntimeStateAPIContext);
 
   if (!children && message?.type === MessageType.END) {
@@ -59,7 +59,7 @@ export const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, feedback, 
 
   return (
     <div className={clsx(ClassName.SYSTEM_RESPONSE, systemMessageContainer())}>
-      <Avatar className={messageAvatar} avatar={avatar} />
+      <Avatar avatar={avatar} className={clsx(withImage ? '' : hide)} />
       <div className={messageContainer}>
         {children ??
           match(message)
@@ -71,9 +71,6 @@ export const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, feedback, 
               <ExtensionMessage extension={payload.extension} trace={payload.trace} />
             ))
             .otherwise(() => null)}
-        <AgentMessage text="Yo yo yo" />
-        <AgentMessage text="Yo yo yo" />
-        <AgentMessage text="Yo yo yo" />
         {feedback && <FeedbackButton {...feedback} />}
       </div>
     </div>
