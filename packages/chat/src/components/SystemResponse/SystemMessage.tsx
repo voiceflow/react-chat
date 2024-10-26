@@ -1,7 +1,9 @@
-import { useContext, useRef } from 'react';
+import clsx from 'clsx';
+import { useContext } from 'react';
 import * as R from 'remeda';
 import { match } from 'ts-pattern';
 
+import { ClassName } from '@/constants';
 import { RuntimeStateAPIContext } from '@/contexts';
 
 import { AgentMessage } from '../AgentMessage';
@@ -14,7 +16,7 @@ import { Image } from '../Image';
 import { MessageType } from './constants';
 import { ExtensionMessage } from './ExtensionMessage';
 import EndState from './state/end';
-import { MessageContainer } from './styled';
+import { systemMessageContainer } from './styles.css';
 import type { MessageProps } from './types';
 
 export interface SystemMessageProps extends React.PropsWithChildren {
@@ -45,9 +47,10 @@ export interface SystemMessageProps extends React.PropsWithChildren {
   feedback?: IFeedbackButton | undefined;
 }
 
-const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, feedback, message, withImage, children }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-
+/**
+ * An individual message within a system response.
+ */
+export const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, feedback, message, children }) => {
   const { config } = useContext(RuntimeStateAPIContext);
 
   if (!children && message?.type === MessageType.END) {
@@ -55,26 +58,19 @@ const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, feedback, message
   }
 
   return (
-    <>
-      <MessageContainer ref={containerRef} withImage={withImage} scrollable={message?.type === MessageType.CAROUSEL}>
-        <Avatar avatar={avatar} />
-        {children ??
-          match(message)
-            .with({ type: MessageType.TEXT }, ({ text, ai }) => <AgentMessage text={text} aiGenerated={ai} />)
-            .with({ type: MessageType.IMAGE }, ({ url }) => <Image image={url} mode={config.render?.mode} />)
-            .with({ type: MessageType.CARD }, (props) => <Card {...R.omit(props, ['type'])} />)
-            .with({ type: MessageType.CAROUSEL }, (props) => <Carousel {...R.omit(props, ['type'])} />)
-            .with({ type: MessageType.EXTENSION }, ({ payload }) => (
-              <ExtensionMessage extension={payload.extension} trace={payload.trace} />
-            ))
-            .otherwise(() => null)}
-        {feedback && <FeedbackButton {...feedback} />}
-      </MessageContainer>
-    </>
+    <div className={clsx(ClassName.SYSTEM_RESPONSE, systemMessageContainer)}>
+      <Avatar avatar={avatar} />
+      {children ??
+        match(message)
+          .with({ type: MessageType.TEXT }, ({ text, ai }) => <AgentMessage text={text} aiGenerated={ai} />)
+          .with({ type: MessageType.IMAGE }, ({ url }) => <Image image={url} mode={config.render?.mode} />)
+          .with({ type: MessageType.CARD }, (props) => <Card {...R.omit(props, ['type'])} />)
+          .with({ type: MessageType.CAROUSEL }, (props) => <Carousel {...R.omit(props, ['type'])} />)
+          .with({ type: MessageType.EXTENSION }, ({ payload }) => (
+            <ExtensionMessage extension={payload.extension} trace={payload.trace} />
+          ))
+          .otherwise(() => null)}
+      {feedback && <FeedbackButton {...feedback} />}
+    </div>
   );
 };
-
-/**
- * An individual message within a system response.
- */
-export default SystemMessage;

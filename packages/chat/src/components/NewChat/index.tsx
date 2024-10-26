@@ -91,28 +91,6 @@ export const NewChat: React.FC<INewChat> = ({
       <div ref={scrollableAreaRef} className={dialogContainer}>
         <WelcomeMessage title={title} description={description} avatar={avatar} />
         {children}
-        {/* turns.map((turn, turnIndex) =>
-          match(turn)
-            .with({ type: TurnType.USER }, ({ id, ...props }) => <UserMessage {...R.omit(props, ['type'])} key={id} />)
-            .with({ type: TurnType.SYSTEM }, ({ id, ...props }) => (
-              <SystemResponse
-                key={id}
-                {...R.omit(props, ['type'])}
-                // feedback={
-                //   assistant.feedback
-                //     ? {
-                //         onClick: (feedback: FeedbackName) => {
-                //           runtime.feedback(feedback, props.messages, getPreviousUserTurn(turnIndex));
-                //         },
-                //       }
-                //     : undefined
-                // }
-                avatar={avatar}
-                isLast={turnIndex === turns.length - 1}
-              />
-            ))
-            .exhaustive()
-        ) */}
       </div>
       {/* showScrollToBottom && (
         <div className={scrollToButton}>

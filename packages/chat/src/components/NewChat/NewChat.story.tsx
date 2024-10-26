@@ -9,7 +9,7 @@ import { createPalette } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
 import type { TurnProps } from '@/types';
 
-import SystemMessage from '../SystemResponse/SystemMessage';
+import { SystemMessage } from '../SystemResponse/SystemMessage';
 import { NewChat } from '.';
 
 const meta: Meta = {

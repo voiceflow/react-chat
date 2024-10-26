@@ -25,10 +25,6 @@ export const Actions = styled(tag('div', 'actions'), {
   },
 });
 
-export const Controls = styled(tag('span', 'controls'), {
-  position: 'relative',
-});
-
 export const Container = styled(tag('div'), {
   display: 'flex',
 

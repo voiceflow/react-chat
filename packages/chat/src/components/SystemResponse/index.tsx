@@ -11,9 +11,9 @@ import type { IFeedbackButton } from '../FeedbackButton/FeedbackButton.interface
 import { MessageType } from './constants';
 import { useAnimatedMessages } from './hooks';
 import Indicator from './Indicator';
-import { Actions, Container, Controls, List } from './styled';
+import { Actions, Container, List } from './styled';
 import type { SystemMessageProps } from './SystemMessage';
-import SystemMessage from './SystemMessage';
+import { SystemMessage } from './SystemMessage';
 import type { MessageProps } from './types';
 
 export * from './types';
@@ -119,7 +119,7 @@ export default Object.assign(SystemResponse, {
   Message: MessageType,
 
   Container,
-  Controls,
+  // Controls,
   List,
   Actions,
   Indicator,
