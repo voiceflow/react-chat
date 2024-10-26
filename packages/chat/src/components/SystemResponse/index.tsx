@@ -11,7 +11,8 @@ import type { IFeedbackButton } from '../FeedbackButton/FeedbackButton.interface
 import { MessageType } from './constants';
 import { useAnimatedMessages } from './hooks';
 import Indicator from './Indicator';
-import { Actions, Container, List } from './styled';
+import { Container, List } from './styled';
+import { actionButton, actionsContainer } from './styles.css';
 import type { SystemMessageProps } from './SystemMessage';
 import { SystemMessage } from './SystemMessage';
 import type { MessageProps } from './types';
@@ -96,13 +97,18 @@ const SystemResponse: React.FC<SystemResponseProps> = ({
       ))}
 
       {isLast && complete && !!actions.length && (
-        <Actions>
+        <div className={actionsContainer}>
           {actions.map(({ request, name }, index) => (
-            <Button variant={ButtonVariant.INLINE} onClick={() => runtime?.interact(request, name)} key={index}>
+            <Button
+              className={actionButton}
+              variant={ButtonVariant.INLINE}
+              onClick={() => runtime?.interact(request, name)}
+              key={index}
+            >
               {name}
             </Button>
           ))}
-        </Actions>
+        </div>
       )}
 
       {showIndicator && <Indicator avatar={avatar} />}
@@ -121,7 +127,7 @@ export default Object.assign(SystemResponse, {
   Container,
   // Controls,
   List,
-  Actions,
+  // Actions,
   Indicator,
   SystemMessage,
 });
