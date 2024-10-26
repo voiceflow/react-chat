@@ -7,7 +7,7 @@ import React, { useCallback, useContext } from 'react';
 import * as R from 'remeda';
 import { match } from 'ts-pattern';
 
-import { Header, NewChat, NewFooter, SystemResponse, UserMessage, UserResponse, WelcomeMessage } from '@/components';
+import { Header, NewChat, NewFooter, SystemResponse, UserMessage, WelcomeMessage } from '@/components';
 import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts/RuntimeContext';
 import type { FeedbackName } from '@/contexts/RuntimeContext/useRuntimeAPI';
 import { createPalette } from '@/styles/colors';
