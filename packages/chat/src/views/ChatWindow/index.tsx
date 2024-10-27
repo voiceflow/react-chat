@@ -8,7 +8,7 @@ import * as R from 'remeda';
 import { match } from 'ts-pattern';
 
 import { Header, NewChat, NewFooter, SystemResponse, UserMessage, WelcomeMessage } from '@/components';
-import UserResponse from '@/components/UserResponse';
+import { UserResponse } from '@/components/UserResponse';
 import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts/RuntimeContext';
 import type { FeedbackName } from '@/contexts/RuntimeContext/useRuntimeAPI';
 import { createPalette } from '@/styles/colors';
