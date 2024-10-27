@@ -6,6 +6,7 @@ import { ClassName } from '@/constants';
 import mockAvatar from '../../assets/blank-image.png';
 import { Header } from '../Header';
 import { NewFooter } from '../NewFooter';
+import { ScrollToBottom } from '../ScrollToBottom';
 import { WelcomeMessage } from '../WelcomeMessage';
 import type { INewChat } from './INewChat';
 import { chatContainer, dialogContainer } from './NewChat.css';
@@ -24,7 +25,6 @@ export const NewChat: React.FC<INewChat> = ({
 }) => {
   // const [chatMessages, setChatMessages] = useState(messages ?? []);
   const [newMessage, setNewMessage] = useState('');
-  // const [showScrollToBottom, setShowScrollToBottom] = useState(false);
 
   const scrollableAreaRef = useRef<HTMLDivElement>(null);
 
@@ -36,26 +36,6 @@ export const NewChat: React.FC<INewChat> = ({
   //     });
   //   }
   // }, [chatMessages]);
-
-  // const handleScroll = () => {
-  //   if (scrollableAreaRef.current) {
-  //     const { scrollTop, scrollHeight, clientHeight } = scrollableAreaRef.current;
-  //     const isAboveBottom = scrollTop + clientHeight < scrollHeight - 1;
-  //     setShowScrollToBottom(isAboveBottom);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   const currentRef = scrollableAreaRef.current;
-  //   if (currentRef) {
-  //     currentRef.addEventListener('scroll', handleScroll);
-  //   }
-  //   return () => {
-  //     if (currentRef) {
-  //       currentRef.removeEventListener('scroll', handleScroll);
-  //     }
-  //   };
-  // }, []);
 
   const handleSubmit = async () => {
     if (newMessage.trim()) {
@@ -70,16 +50,6 @@ export const NewChat: React.FC<INewChat> = ({
     }
   };
 
-  // Trigger scroll when manually clicking the scroll button
-  // const handleScrollToBottom = () => {
-  //   if (scrollableAreaRef.current) {
-  //     scrollableAreaRef.current.scrollTo({
-  //       top: scrollableAreaRef.current.scrollHeight,
-  //       behavior: 'smooth',
-  //     });
-  //   }
-  // };
-
   return (
     <div className={clsx(ClassName.CHAT, chatContainer)} onKeyDown={handleKeyDown}>
       <Header title={title} image={mockAvatar} />
@@ -87,11 +57,7 @@ export const NewChat: React.FC<INewChat> = ({
         <WelcomeMessage title={title} description={description} avatar={avatar} />
         {children}
       </div>
-      {/* showScrollToBottom && (
-        <div className={scrollToButton}>
-          <ScrollButton onClick={handleScrollToBottom} />
-        </div>
-      ) */}
+      <ScrollToBottom scrollableAreaRef={scrollableAreaRef} />
       <NewFooter
         buttons={buttons}
         showPoweredBy={showPoweredBy}
