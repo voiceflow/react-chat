@@ -2,14 +2,41 @@ import clsx from 'clsx';
 import { useRef, useState } from 'react';
 
 import { ClassName } from '@/constants';
+import type { Nullish } from '@/types';
 
 import mockAvatar from '../../assets/blank-image.png';
-import { Header } from '../Header';
-import { NewFooter } from '../NewFooter';
+import { Header, type HeaderProps } from '../Header';
+import { type INewFooter, NewFooter } from '../NewFooter';
 import { ScrollToBottom } from '../ScrollToBottom';
-import { WelcomeMessage } from '../WelcomeMessage';
-import type { INewChat } from './INewChat';
+import { type IWelcomeMessage, WelcomeMessage } from '../WelcomeMessage';
 import { chatContainer, dialogContainer } from './NewChat.css';
+
+export interface INewChat extends HeaderProps, IWelcomeMessage, INewFooter, React.PropsWithChildren<unknown> {
+  /**
+   * If true, shows a loading indicator.
+   */
+  isLoading: boolean;
+
+  /**
+   * If true, shows audio interface controls.
+   */
+  audioInterface?: boolean;
+
+  /**
+   * A unix timestamp indicating the start of the conversation.
+   */
+  startTime?: Nullish<number>;
+
+  /**
+   * A callback that is executed when the chat widget is minimized.
+   */
+  onMinimize?: React.MouseEventHandler<HTMLButtonElement>;
+
+  /**
+   * A callback that is executed when the conversation ends.
+   */
+  onEnd?: React.MouseEventHandler<HTMLButtonElement>;
+}
 
 export const NewChat: React.FC<INewChat> = ({
   buttons,
