@@ -1,10 +1,10 @@
-import { useContext, useEffect } from 'react';
+import { /* useContext, */ useEffect } from 'react';
 
-import { RuntimeStateAPIContext } from '@/contexts';
-import { SessionStatus } from '@/types';
+// import { RuntimeStateAPIContext } from '@/contexts';
+// import { SessionStatus } from '@/types';
 
 const EndState: React.FC = () => {
-  const runtime = useContext(RuntimeStateAPIContext);
+  // const runtime = useContext(RuntimeStateAPIContext);
 
   useEffect(() => {
     // TODO: uncomment this
