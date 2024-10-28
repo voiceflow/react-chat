@@ -10,9 +10,12 @@ export const messageContainer = style({
   color: COLORS.NEUTRAL_DARK[900],
   fontFamily: FAMILY,
   position: 'relative',
+  marginBottom: 4,
+
   fontSize: '14px',
   lineHeight: '20px',
   borderRadius: '10px',
+  width: 'fit-content',
 });
 
 export const contentStyle = recipe({
@@ -28,6 +31,13 @@ export const contentStyle = recipe({
   },
 });
 
+export const embeddedContent = style({
+  padding: '0 16px 12px',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '6px',
+});
+
 export const generatedChin = style({
   display: 'flex',
   alignItems: 'center',
@@ -36,7 +46,7 @@ export const generatedChin = style({
   left: 0,
   right: 0,
   bottom: 0,
-  width: 'fit-content',
+  // width: 'fit-content',
   color: COLORS.NEUTRAL_DARK[200],
   fontFamily: FAMILY,
   fontSize: '12px',
@@ -49,6 +59,7 @@ export const generatedChin = style({
 
 export const aiIconModifier = style({
   color: COLORS.NEUTRAL_DARK[100],
+  height: '16px',
 });
 
 export const codeBlockContainer = style({

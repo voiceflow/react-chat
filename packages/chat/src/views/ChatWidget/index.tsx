@@ -6,7 +6,7 @@ import Proactive from '@/components/Proactive';
 import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts';
 import { useChatAPI, useTheme } from '@/hooks';
 import { useResolveAssistantStyleSheet } from '@/utils/stylesheet';
-import ChatWindow from '@/views/ChatWindow';
+import { ChatWindow } from '@/views/ChatWindow';
 
 import { ChatContainer, Container, LauncherContainer } from './styled';
 

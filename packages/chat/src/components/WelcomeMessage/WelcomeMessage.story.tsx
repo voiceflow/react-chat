@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import EMPTY_IMAGE from '../../__fixtures__/empty-image.png';
+import EMPTY_IMAGE from '@/__fixtures__/empty-image.png';
+
 import { WelcomeMessage } from '.';
 
 type Story = StoryObj<typeof WelcomeMessage>;

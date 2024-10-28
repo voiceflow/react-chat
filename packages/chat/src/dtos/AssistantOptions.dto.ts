@@ -23,6 +23,8 @@ export const AssistantOptions = z
     description: z.string().default(''),
     position: z.nativeEnum(ChatPosition).default(ChatPosition.RIGHT),
     persistence: z.nativeEnum(ChatPersistence).default(ChatPersistence.LOCAL_STORAGE),
+    audioInterface: z.boolean().default(false),
+    defaultAudioOutput: z.boolean().optional(),
 
     spacing: z
       .object({

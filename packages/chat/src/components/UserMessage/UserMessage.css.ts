@@ -10,10 +10,12 @@ export const messageContainer = style({
   backgroundColor: PALETTE.colors[500],
   color: COLORS.ACCENT[50],
   padding: '11px 16px 10px',
+  marginBottom: 4,
   fontFamily: FAMILY,
   position: 'relative',
   fontSize: '14px',
   lineHeight: '20px',
+  justifySelf: 'flex-end',
   width: 'fit-content',
   borderRadius: '10px',
 });

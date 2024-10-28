@@ -1,12 +1,16 @@
+import type { DebugResponseProps } from '../UserResponse';
 import { messageContainer } from './UserMessage.css';
 
 interface IUserMessage {
-  children: React.ReactNode;
-  from: 'system' | 'user';
   generated?: boolean;
+  key?: string;
+  message?: string;
+  debug?: DebugResponseProps;
+  timestamp?: number;
   color?: string;
 }
 
-export const UserMessage: React.FC<IUserMessage> = ({ children }) => {
-  return <div className={messageContainer}>{children}</div>;
+// TODO: Add debug messages, and tooltips for it
+export const UserMessage: React.FC<IUserMessage> = ({ message }) => {
+  return <div className={messageContainer}>{message}</div>;
 };

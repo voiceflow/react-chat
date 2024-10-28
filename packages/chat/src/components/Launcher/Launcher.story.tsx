@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 
+import { WithDefaultPalette } from '@/storybook/decorators';
+
 import tiledBg from '../../__fixtures__/tiled-bg.png';
 import { Launcher } from '.';
 
@@ -12,6 +14,7 @@ const meta: Meta<typeof Launcher> = {
   parameters: {
     controls: { hideNoControlsWarning: true },
   },
+  decorators: [WithDefaultPalette],
 };
 
 export default meta;

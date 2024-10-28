@@ -1,11 +1,11 @@
 import type { RuntimeAction } from '@voiceflow/sdk-runtime';
 import { VoiceflowRuntime } from '@voiceflow/sdk-runtime';
 import { serializeToText } from '@voiceflow/slate-serializer/text';
-import Bowser from 'bowser';
 import { useMemo } from 'react';
 
 import type { MessageProps } from '@/components/SystemResponse';
 import { MessageType } from '@/components/SystemResponse/constants';
+import { DEVICE_INFO } from '@/constants';
 import type { ChatConfig } from '@/dtos/ChatConfig.dto';
 import type { SessionOptions, UserTurnProps } from '@/types';
 
@@ -39,10 +39,11 @@ export const useRuntimeAPI = ({
     []
   );
 
-  const interact = async (action: RuntimeAction) =>
+  const interact = async (action: RuntimeAction, config?: any) =>
     runtime.interact(createContext(), {
       sessionID: userID,
       action,
+      config,
       ...(versionID && { versionID }),
     });
 
@@ -71,7 +72,7 @@ export const useRuntimeAPI = ({
       browser: { name: browser },
       os: { name: os },
       platform: { type: device },
-    } = Bowser.parse(window.navigator.userAgent);
+    } = DEVICE_INFO;
 
     await runtime.createTranscript(userID, {
       ...(os && { os }),

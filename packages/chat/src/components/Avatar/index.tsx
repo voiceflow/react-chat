@@ -19,6 +19,11 @@ export interface AvatarProps {
    * @default 'small'
    */
   size?: AvatarVariants['size'];
+
+  /**
+   * Class name to pass into the Avatar component.
+   */
+  className?: string;
 }
 
 /**
@@ -26,9 +31,9 @@ export interface AvatarProps {
  *
  * @see {@link https://voiceflow.github.io/react-chat/?path=/story/core-avatar--small}
  */
-export const Avatar: React.FC<AvatarProps> = ({ avatar, ...props }) => (
+export const Avatar: React.FC<AvatarProps> = ({ avatar, size, className }) => (
   <div
-    className={clsx(ClassName.AVATAR, avatarStyles({ size: props.size }))}
+    className={clsx(ClassName.AVATAR, avatarStyles({ size }), className)}
     style={{ backgroundImage: `url(${avatar})` }}
   ></div>
 );
