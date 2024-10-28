@@ -31,6 +31,22 @@ export const buttonStyles = recipe({
 
   variants: {
     type: {
+      inline: {
+        borderRadius: SIZES.radius.xs,
+        color: PALETTE.colors[500],
+        backgroundColor: PALETTE.colors[50],
+        lineHeight: '20px',
+        padding: '7px 12px 6px 12px',
+
+        ':hover': {
+          color: PALETTE.colors[700],
+          backgroundColor: PALETTE.colors[100],
+        },
+        ':active': {
+          color: PALETTE.colors[800],
+          backgroundColor: PALETTE.colors[200],
+        },
+      },
       primary: {
         paddingTop: 2,
         color: COLORS.white,
@@ -72,22 +88,6 @@ export const buttonStyles = recipe({
             width: '100%',
             marginBottom: 4,
           },
-        },
-      },
-      inline: {
-        borderRadius: SIZES.radius.xs,
-        color: PALETTE.colors[500],
-        backgroundColor: PALETTE.colors[50],
-        lineHeight: '20px',
-        padding: '7px 12px 6px 12px',
-
-        ':hover': {
-          color: PALETTE.colors[700],
-          backgroundColor: PALETTE.colors[100],
-        },
-        ':active': {
-          color: PALETTE.colors[800],
-          backgroundColor: PALETTE.colors[200],
         },
       },
     },

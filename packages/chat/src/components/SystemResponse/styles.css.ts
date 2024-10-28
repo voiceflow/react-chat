@@ -31,7 +31,7 @@ export const actionsContainer = style({
   display: 'flex',
   flexWrap: 'wrap',
   marginBottom: 8,
-  padding: '',
+  paddingLeft: 44,
 });
 
 export const actionButton = style({
