@@ -12,7 +12,7 @@ import { MessageType } from './constants';
 import { useAnimatedMessages } from './hooks';
 import Indicator from './Indicator';
 import { Container, List } from './styled';
-import { actionButton, actionsContainer } from './styles.css';
+import { actionsContainer } from './styles.css';
 import type { SystemMessageProps } from './SystemMessage';
 import { SystemMessage } from './SystemMessage';
 import type { MessageProps } from './types';
