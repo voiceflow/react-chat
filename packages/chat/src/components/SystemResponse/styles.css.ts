@@ -36,6 +36,7 @@ export const actionsContainer = style({
 
 export const actionButton = style({
   height: 'unset',
+  padding: '7px 0',
   margin: '8px 8px 0 0',
   whiteSpace: 'normal',
   textAlign: 'start',

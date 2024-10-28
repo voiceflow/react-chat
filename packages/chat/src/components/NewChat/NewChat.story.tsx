@@ -58,9 +58,6 @@ export const Base = {
       {AgentSays(['👋🏻 Good morning!', 'How are you today?'])}
       {UserSays('Cool, great weather ☀️')}
       {UserSays('How bout you?')}
-      {AgentSays(['👋🏻 Good morning!', 'How are you today?'])}
-      {UserSays('Cool, great weather ☀️')}
-      {UserSays('How bout you?')}
     </NewChat>
   ),
 };
