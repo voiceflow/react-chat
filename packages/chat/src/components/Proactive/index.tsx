@@ -1,68 +1,37 @@
 import { Trace } from '@voiceflow/base-types';
-import React from 'react';
+import clsx from 'clsx';
+import { useEffect, useMemo, useState } from 'react';
 import { match } from 'ts-pattern';
 
 import { ClassName } from '@/constants';
-import { tagFactory } from '@/hocs';
-import { animationStyles, styled } from '@/old-styles';
-import { ChatPosition } from '@/types';
+import type { ChatPosition } from '@/types';
 
-import Close, { CloseContainer } from './Close';
-import Message, { MessageContainer } from './Message';
-
-export const tag = tagFactory(ClassName.PROACTIVE);
-
-export const ProactiveMessageContainer = styled('div', {
-  display: 'flex',
-  flexDirection: 'column',
-  gap: 8,
-  margin: '$4 0',
-  alignItems: 'inherit',
-
-  [`& ${MessageContainer}`]: {
-    ...animationStyles({ duration: 150, delay: 0 }),
-  },
-});
-
-export const ProactiveContainer = styled(tag('div'), {
-  position: 'absolute',
-  bottom: '100%',
-  width: 256,
-  display: 'flex',
-  flexDirection: 'column',
-
-  [`& ${CloseContainer}`]: {
-    opacity: 0,
-  },
-
-  '&:hover': {
-    [`& ${CloseContainer}`]: {
-      opacity: 1,
-    },
-  },
-});
+import { Icon } from '../Icon';
+import { closeButton, closeButtonIcon, messageContainer, proactiveContainer, singleMessage } from './styles.css';
 
 interface ProactiveQueueProps {
   side: ChatPosition;
   messages: Trace.AnyTrace[];
 }
 
-const ProactiveQueue: React.FC<ProactiveQueueProps> = ({ side, messages }) => {
-  const [isClosed, setIsClosed] = React.useState(false);
+export const Proactive: React.FC<ProactiveQueueProps> = ({ side, messages }) => {
+  const [isClosed, setIsClosed] = useState(false);
 
-  const queue = React.useMemo(
+  const queue = useMemo(
     () =>
       messages.map((message, index) =>
         match(message)
           .with({ type: Trace.TraceType.TEXT }, ({ payload }) => (
-            <Message key={index}>{String(payload.message)}</Message>
+            <div className={singleMessage} key={index}>
+              {String(payload.message)}
+            </div>
           ))
           .otherwise(() => null)
       ),
     [messages]
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!queue.length) return;
     setIsClosed(false);
   }, [queue]);
@@ -70,14 +39,11 @@ const ProactiveQueue: React.FC<ProactiveQueueProps> = ({ side, messages }) => {
   if (isClosed || !queue.length) return null;
 
   return (
-    <ProactiveContainer style={{ [side]: 0, alignItems: side === ChatPosition.LEFT ? 'start' : 'end' }}>
-      <Close onClick={() => setIsClosed(true)} />
-      <ProactiveMessageContainer>{queue}</ProactiveMessageContainer>
-    </ProactiveContainer>
+    <div className={clsx(ClassName.PROACTIVE, proactiveContainer({ side }))}>
+      <div className={closeButton} onClick={() => setIsClosed(true)}>
+        <Icon className={closeButtonIcon} svg="closeV2" />
+      </div>
+      <div className={messageContainer}>{queue}</div>
+    </div>
   );
 };
-
-export default Object.assign(ProactiveQueue, {
-  Message,
-  Close,
-});

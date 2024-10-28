@@ -14,7 +14,7 @@ export { default as Message } from './Message';
 export { MessageInput } from './MessageInput';
 export { NewChat } from './NewChat';
 export { NewFooter } from './NewFooter';
-export * as Proactive from './Proactive';
+export { Proactive } from './Proactive';
 export { Prompt } from './Prompt';
 export { SendButton } from './SendButton';
 export { default as SystemResponse } from './SystemResponse';
