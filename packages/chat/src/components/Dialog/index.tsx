@@ -8,7 +8,6 @@ import { agentMessage, avatarContainer, dialogContainer, messagesContainer, user
 interface IDialog {
   messages: TurnProps[];
   showPoweredBy?: boolean;
-  color?: string;
 }
 
 export const Dialog: React.FC<IDialog> = ({ messages, showPoweredBy }) => {
