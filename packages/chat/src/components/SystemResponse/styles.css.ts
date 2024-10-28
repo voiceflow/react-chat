@@ -31,12 +31,11 @@ export const actionsContainer = style({
   display: 'flex',
   flexWrap: 'wrap',
   marginBottom: 8,
-  padding: '',
+  paddingLeft: 44,
 });
 
 export const actionButton = style({
   height: 'unset',
-  padding: '7px 0',
   margin: '8px 8px 0 0',
   whiteSpace: 'normal',
   textAlign: 'start',

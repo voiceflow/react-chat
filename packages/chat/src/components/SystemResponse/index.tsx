@@ -1,10 +1,10 @@
 import type { RuntimeAction } from '@voiceflow/sdk-runtime';
 import { useContext } from 'react';
 
-import { Button } from '@/components/Button';
 import { RuntimeStateAPIContext } from '@/contexts';
 import { useAutoScroll } from '@/hooks';
 
+import { Button } from '../Button';
 import { ButtonVariant } from '../Button/constants';
 import { FeedbackButton } from '../FeedbackButton';
 import type { IFeedbackButton } from '../FeedbackButton/FeedbackButton.interface';

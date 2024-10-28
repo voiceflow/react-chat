@@ -20,12 +20,12 @@ export const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProp
   return (
     <button
       ref={ref}
+      {...props}
       className={clsx(
         ClassName.BUTTON,
         buttonStyles({ type: type ?? ButtonVariant.PRIMARY, large, round }),
         props.className
       )}
-      {...props}
     >
       {children}
     </button>
