@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.29.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.28.0...@voiceflow/chat@0.29.0) (2024-10-28)
+
+### Features
+
+* convert ChatWidget to vanilla-extract (COR-0000) ([#254](https://github.com/voiceflow/react-chat/issues/254)) ([277a914](https://github.com/voiceflow/react-chat/commit/277a914f92f90fbafa82d6b903b85eb02ac2d88f))
+
 # [0.28.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.27.0...@voiceflow/chat@0.28.0) (2024-10-28)
 
 ### Features
