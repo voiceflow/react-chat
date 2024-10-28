@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0](https://github.com/voiceflow/react-chat/compare/documentation@0.19.6...documentation@0.20.0) (2024-10-28)
+
+### Features
+
+* add Prompt to docs (COR-0000) ([#247](https://github.com/voiceflow/react-chat/issues/247)) ([9eaa655](https://github.com/voiceflow/react-chat/commit/9eaa6551d44f6328d7ba37a57a8ef3770c324a49))
+
 ## [0.19.6](https://github.com/voiceflow/react-chat/compare/documentation@0.19.5...documentation@0.19.6) (2024-10-28)
 
 **Note:** Version bump only for package documentation

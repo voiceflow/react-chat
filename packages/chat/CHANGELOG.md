@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.30.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.29.0...@voiceflow/chat@0.30.0) (2024-10-28)
+
+### Bug Fixes
+
+* fix inline buttons class and minor styling (COR-0000) ([#255](https://github.com/voiceflow/react-chat/issues/255)) ([38b1c1a](https://github.com/voiceflow/react-chat/commit/38b1c1a63af90bec1163491a5beeadd95ace4e9b))
+
+### Features
+
+* convert Proactive component (COR-3710) ([#249](https://github.com/voiceflow/react-chat/issues/249)) ([5616d10](https://github.com/voiceflow/react-chat/commit/5616d100885778604600f0a63b3b9356736055c9))
+
 # [0.29.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.28.0...@voiceflow/chat@0.29.0) (2024-10-28)
 
 ### Features
