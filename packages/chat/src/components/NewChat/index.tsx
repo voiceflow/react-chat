@@ -50,11 +50,11 @@ export const NewChat: React.FC<INewChat> = ({
   description,
   avatar,
   hasEnded,
-  onMinimize,
-  onEnd,
   extraLinkText,
   extraLinkUrl,
   children,
+  onEnd,
+  onMinimize,
   audioInterface,
 }) => {
   // const [chatMessages, setChatMessages] = useState(messages ?? []);
