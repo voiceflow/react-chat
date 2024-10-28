@@ -7,26 +7,26 @@ import { SendButton } from '../SendButton';
 import { buttonContainer, input, inputBlock, inputContainer, mockFocusRing } from './MessageInput.css';
 
 export interface IMessageInput {
-  message: string;
-  onValueChange: (value: string) => void;
   onDictationClick?: () => void;
   placeholder?: string;
-  onSubmit: () => void;
-  primaryColor?: string;
+  onSubmit?: (message: string) => Promise<void>;
+  disableSend?: boolean | undefined;
 }
 
-export const MessageInput: React.FC<IMessageInput> = ({
-  message,
-  onSubmit,
-  onValueChange,
-  placeholder = 'Message...',
-  primaryColor,
-}) => {
+export const MessageInput: React.FC<IMessageInput> = ({ onSubmit, disableSend, placeholder = 'Message...' }) => {
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const [message, setMessage] = useState('');
   const [isRecording, setIsRecording] = useState(false);
 
   const handleContainerClick = () => {
     inputRef.current?.focus();
+  };
+
+  const sendMessage = async () => {
+    if (!message || disableSend) return;
+
+    setMessage('');
+    await onSubmit?.(message);
   };
 
   return (
@@ -41,7 +41,7 @@ export const MessageInput: React.FC<IMessageInput> = ({
           ref={inputRef}
           value={message}
           className={input}
-          onChange={(event) => onValueChange(event.target.value)}
+          onChange={(event) => setMessage(event.target.value)}
         />
       </div>
       <div className={buttonContainer}>
@@ -49,7 +49,7 @@ export const MessageInput: React.FC<IMessageInput> = ({
           <SquareButton size="medium" iconName="microphone" onClick={() => setIsRecording(true)} />
         )}
         {isRecording && <StopButton onClick={() => setIsRecording(false)} />}
-        <SendButton color={primaryColor} onClick={() => onSubmit()} disabled={!message?.length} />
+        <SendButton onClick={sendMessage} disabled={!message?.length} />
       </div>
     </div>
   );

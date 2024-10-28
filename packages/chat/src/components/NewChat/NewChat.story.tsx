@@ -44,7 +44,10 @@ export const Base = {
       extraLinkUrl="https://voiceflow.com"
       isLoading={false}
       hasEnded={false}
-      messageInputProps={{ message: '', onSubmit: () => null, placeholder: 'Message...', onValueChange: () => null }}
+      messageInputProps={{
+        onSubmit: () => Promise.resolve(),
+        placeholder: 'Message...',
+      }}
     >
       {AgentSays(['👋🏻 Good morning!', 'How are you today?'])}
       {UserSays('Cool, great weather ☀️')}
@@ -80,11 +83,8 @@ export const Themed: Story = {
           isLoading={false}
           hasEnded={false}
           messageInputProps={{
-            message: '',
-            onSubmit: () => null,
-
+            onSubmit: () => Promise.resolve(),
             placeholder: 'Message...',
-            onValueChange: () => null,
           }}
         />
       </div>
@@ -101,10 +101,8 @@ export const Themed: Story = {
           isLoading={false}
           hasEnded={false}
           messageInputProps={{
-            message: '',
-            onSubmit: () => null,
+            onSubmit: () => Promise.resolve(),
             placeholder: 'Message...',
-            onValueChange: () => null,
           }}
         />
       </div>
@@ -121,10 +119,8 @@ export const Themed: Story = {
           isLoading={false}
           hasEnded={false}
           messageInputProps={{
-            message: '',
-            onSubmit: () => null,
+            onSubmit: () => Promise.resolve(),
             placeholder: 'Message...',
-            onValueChange: () => null,
           }}
         />
       </div>
@@ -145,7 +141,7 @@ export const NoPoweredBy = {
       showPoweredBy={false}
       isLoading={false}
       hasEnded={false}
-      messageInputProps={{ message: '', onSubmit: () => null, placeholder: 'Message...', onValueChange: () => null }}
+      messageInputProps={{ onSubmit: () => Promise.resolve(), placeholder: 'Message...' }}
     />
   ),
 };

@@ -8,7 +8,7 @@ interface ScrollToBottomProps {
 }
 
 export const ScrollToBottom: React.FC<ScrollToBottomProps> = ({ scrollableAreaRef }) => {
-  const [atBottom, setAtBottom] = useState(false);
+  const [atBottom, setAtBottom] = useState(true);
 
   useEffect(() => {
     const currentRef = scrollableAreaRef.current;
