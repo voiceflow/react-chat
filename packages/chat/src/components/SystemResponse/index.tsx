@@ -100,12 +100,7 @@ const SystemResponse: React.FC<SystemResponseProps> = ({
       {isLast && complete && !!actions.length && (
         <div className={actionsContainer}>
           {actions.map(({ request, name }, index) => (
-            <Button
-              className={actionButton}
-              variant={ButtonVariant.INLINE}
-              onClick={() => runtime?.interact(request, name)}
-              key={index}
-            >
+            <Button variant={ButtonVariant.INLINE} onClick={() => runtime?.interact(request, name)} key={index}>
               {name}
             </Button>
           ))}
