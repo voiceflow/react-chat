@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.28.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.27.0...@voiceflow/chat@0.28.0) (2024-10-28)
+
+### Features
+
+* working on UserResponse component (COR-0000) ([#253](https://github.com/voiceflow/react-chat/issues/253)) ([5026d2f](https://github.com/voiceflow/react-chat/commit/5026d2f7aff2325f4af59093f34df89662c475c8))
+
 # [0.27.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.26.1...@voiceflow/chat@0.27.0) (2024-10-28)
 
 ### Features
