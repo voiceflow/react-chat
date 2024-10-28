@@ -1,21 +1,18 @@
-import { ANIMATION_DURATION, Container, Dot } from './styled';
+import clsx from 'clsx';
 
-const ANIMATION_DELAY = Math.floor(ANIMATION_DURATION / 3);
+import { ClassName } from '@/constants';
 
-const TypingIndicator: React.FC = () => (
-  <Container>
-    {Array.from({ length: 3 }).map((_, index) => (
-      <Dot css={{ animationDelay: `${ANIMATION_DELAY * (index + 1)}ms` }} key={index} />
-    ))}
-  </Container>
-);
+import { dot, indicatorContainer } from './styles.css';
 
 /**
  * An animated indicator to show that the system is preparing a response.
  *
  * @see {@link https://voiceflow.github.io/react-chat/?path=/docs/components-typingindicator--default}
  */
-export default Object.assign(TypingIndicator, {
-  Container,
-  Dot,
-});
+export const TypingIndicator: React.FC = () => (
+  <span className={clsx(ClassName.TYPING_INDICATOR, indicatorContainer)}>
+    <span className={dot({ dot: 'first' })} />
+    <span className={dot({ dot: 'second' })} />
+    <span className={dot({ dot: 'third' })} />
+  </span>
+);

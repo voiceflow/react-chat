@@ -1,14 +1,17 @@
+import { assignInlineVars } from '@vanilla-extract/dynamic';
 import type { Trace } from '@voiceflow/base-types';
 import React, { useContext, useMemo, useState } from 'react';
 
 import { Launcher } from '@/components/Launcher';
 import { Proactive } from '@/components/Proactive';
 import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts';
-import { useChatAPI, useTheme } from '@/hooks';
+import { useChatAPI } from '@/hooks';
+import { usePalette } from '@/hooks/usePalette';
+import { PALETTE } from '@/styles/colors.css';
 import { useResolveAssistantStyleSheet } from '@/utils/stylesheet';
-import ChatWindow from '@/views/ChatWindow';
+import { ChatWindow } from '@/views/ChatWindow';
 
-import { ChatContainer, Container, LauncherContainer } from './styled';
+import { chatContainer, launcherContainer, widgetContainer } from './styles.css';
 
 interface ChatWidgetProps extends React.PropsWithChildren {
   shadowRoot?: ShadowRoot;
@@ -16,7 +19,7 @@ interface ChatWidgetProps extends React.PropsWithChildren {
   ready?: () => void;
 }
 
-const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, ready }) => {
+export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, ready }) => {
   const { assistant, open, close, interact } = useContext(RuntimeStateAPIContext);
   const { isOpen } = useContext(RuntimeStateContext);
 
@@ -25,7 +28,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, ready }) =
   const [proactiveMessages, setProactiveMessages] = useState<Trace.AnyTrace[]>([]);
   const isMobile = useMemo(() => window.matchMedia('(max-width: 768px)').matches, []);
 
-  const theme = useTheme(assistant);
+  const palette = usePalette(assistant);
 
   useChatAPI(
     chatAPI,
@@ -49,23 +52,20 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, ready }) =
   const isStyleSheetResolved = useResolveAssistantStyleSheet(assistant, shadowRoot);
 
   if (!isStyleSheetResolved) return null;
+  if (!palette) return null;
 
   return (
-    <Container withChat={isOpen} isHidden={isHidden} className={theme}>
-      <LauncherContainer style={position}>
+    <div
+      style={assignInlineVars(PALETTE, { colors: palette })}
+      className={widgetContainer({ hidden: isHidden, withChat: isOpen })}
+    >
+      <div className={launcherContainer} style={position}>
         <Proactive side={side} messages={proactiveMessages} />
         <Launcher onClick={open} isOpen={isOpen} image={assistant.launcher} />
-      </LauncherContainer>
-      <ChatContainer style={isMobile ? {} : position}>
+      </div>
+      <div className={chatContainer} style={isMobile ? {} : position}>
         <ChatWindow />
-      </ChatContainer>
-    </Container>
+      </div>
+    </div>
   );
 };
-
-export default Object.assign(ChatWidget, {
-  Launcher,
-  Container,
-  ChatContainer,
-  LauncherContainer,
-});

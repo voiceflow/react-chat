@@ -20,7 +20,6 @@ export { SendButton } from './SendButton';
 export { default as SystemResponse } from './SystemResponse';
 export { Markdown, Text } from './Text';
 export { default as Tooltip } from './Tooltip';
-export { default as TypingIndicator } from './TypingIndicator';
+export { TypingIndicator } from './TypingIndicator';
 export { UserMessage } from './UserMessage';
-export { default as UserResponse } from './UserResponse';
 export { WelcomeMessage } from './WelcomeMessage';

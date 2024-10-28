@@ -51,7 +51,7 @@ const meta: Meta<typeof NewFooter> = {
 
 export default meta;
 
-const MockComponent = (props: Partial<INewFooter>) => {
+const MockComponent = (props: Omit<INewFooter, 'messageInputProps'>) => {
   const [message, setMessage] = useState('');
 
   const handleValueChange = (value: string) => {
@@ -83,18 +83,22 @@ export const Everything: Story = {
   args: {
     buttons,
     showPoweredBy: true,
+    hasEnded: false,
   },
 };
 
 export const WithScrollButton: Story = {
   ...Default,
-  args: {},
+  args: {
+    hasEnded: false,
+  },
 };
 
 export const WithButtons: Story = {
   ...Default,
   args: {
     buttons,
+    hasEnded: false,
   },
 };
 
@@ -102,5 +106,6 @@ export const WithPoweredBy: Story = {
   ...Default,
   args: {
     showPoweredBy: true,
+    hasEnded: false,
   },
 };

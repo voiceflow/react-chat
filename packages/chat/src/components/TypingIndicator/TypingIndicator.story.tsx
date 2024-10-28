@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import TypingIndicator from '.';
+import { TypingIndicator } from '.';
 
 type Story = StoryObj<typeof TypingIndicator>;
 const meta: Meta<typeof TypingIndicator> = {

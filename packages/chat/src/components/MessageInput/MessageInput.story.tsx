@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 
+import { WithDefaultPalette } from '@/storybook/decorators';
+
 import { MessageInput } from '.';
 
 type Story = StoryObj<typeof MessageInput>;
@@ -9,6 +11,7 @@ const meta: Meta<typeof MessageInput> = {
   title: 'Core/MessageInput',
   component: MessageInput,
   decorators: [
+    WithDefaultPalette,
     (Story) => (
       <div style={{ width: '400px' }}>
         <Story />

@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.29.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.28.0...@voiceflow/chat@0.29.0) (2024-10-28)
+
+### Features
+
+* convert ChatWidget to vanilla-extract (COR-0000) ([#254](https://github.com/voiceflow/react-chat/issues/254)) ([277a914](https://github.com/voiceflow/react-chat/commit/277a914f92f90fbafa82d6b903b85eb02ac2d88f))
+
+# [0.28.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.27.0...@voiceflow/chat@0.28.0) (2024-10-28)
+
+### Features
+
+* working on UserResponse component (COR-0000) ([#253](https://github.com/voiceflow/react-chat/issues/253)) ([5026d2f](https://github.com/voiceflow/react-chat/commit/5026d2f7aff2325f4af59093f34df89662c475c8))
+
+# [0.27.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.26.1...@voiceflow/chat@0.27.0) (2024-10-28)
+
+### Features
+
+* extract ScrollToBottom component (COR-0000) ([#251](https://github.com/voiceflow/react-chat/issues/251)) ([06dacbc](https://github.com/voiceflow/react-chat/commit/06dacbcac246d066d14304f2a9641b3f2b45cfad))
+
+## [0.26.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.26.0...@voiceflow/chat@0.26.1) (2024-10-28)
+
+**Note:** Version bump only for package @voiceflow/chat
+
 # [0.26.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.25.1...@voiceflow/chat@0.26.0) (2024-10-25)
 
 ### Features

@@ -1,11 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
-import TEXT_TREATMENT_MARKDOWN from '@/__fixtures__/markdown/text-treatment.md?raw';
+import EMPTY_IMAGE from '@/__fixtures__/empty-image.png';
+import { DEFAULT_AVATAR, SystemResponse } from '@/main';
 import { WithDefaultPalette } from '@/storybook/decorators';
 import { createPalette } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
 
+import { UserResponse } from '../UserResponse';
 import { NewChat } from '.';
 
 const meta: Meta = {
@@ -21,32 +23,45 @@ type Story = StoryObj<typeof NewChat>;
 
 export default meta;
 
-const messages = [
-  {
-    from: 'system',
-    text: "Hey there! I'm a chatbot. I can help you with a lot of things. Try me out!",
-  },
-
-  { from: 'user', text: 'Howdy!' },
-  { from: 'user', text: 'What kinda sick stuff can you do?' },
-  { from: 'system', text: "You're in for a treat. We can do some pretty sick stuff." },
-  { from: 'user', text: 'What kinda sick stuff can you do?' },
-  { from: 'user', text: 'Rapid fire follow up' },
-  { from: 'system', text: "You're in for a treat. We can do some pretty sick stuff." },
-];
+const AgentSays = (messages: string[]) => (
+  <SystemResponse
+    avatar={DEFAULT_AVATAR}
+    timestamp={Date.now()}
+    messages={messages.map((m) => ({ type: 'text', text: m }))}
+  />
+);
+const UserSays = (text: string) => <UserResponse message={text} timestamp={Date.now()} />;
 
 export const Base = {
   render: () => (
     <NewChat
-      title=""
+      title="Your AI assistant"
       image=""
-      description=""
-      avatar=""
-      messages={messages}
+      description="Hello, I am here to help with whatever you need."
+      avatar={EMPTY_IMAGE}
       showPoweredBy={true}
-      privacyURL="https://voiceflow.com"
+      extraLinkText="Privacy"
+      extraLinkUrl="https://voiceflow.com"
+      isLoading={false}
+      hasEnded={false}
       messageInputProps={{ message: '', onSubmit: () => null, placeholder: 'Message...', onValueChange: () => null }}
-    />
+    >
+      {AgentSays(['👋🏻 Good morning!', 'How are you today?'])}
+      {UserSays('Cool, great weather ☀️')}
+      {UserSays('How bout you?')}
+      {AgentSays(['👋🏻 Good morning!', 'How are you today?'])}
+      {UserSays('Cool, great weather ☀️')}
+      {UserSays('How bout you?')}
+      {AgentSays(['👋🏻 Good morning!', 'How are you today?'])}
+      {UserSays('Cool, great weather ☀️')}
+      {UserSays('How bout you?')}
+      {AgentSays(['👋🏻 Good morning!', 'How are you today?'])}
+      {UserSays('Cool, great weather ☀️')}
+      {UserSays('How bout you?')}
+      {AgentSays(['👋🏻 Good morning!', 'How are you today?'])}
+      {UserSays('Cool, great weather ☀️')}
+      {UserSays('How bout you?')}
+    </NewChat>
   ),
 };
 
@@ -55,14 +70,15 @@ export const Themed: Story = {
     <div style={{ display: 'flex', gap: '32px' }}>
       <div style={{ width: '400px', ...assignInlineVars(PALETTE, { colors: createPalette('red') }) }}>
         <NewChat
-          title=""
+          title="Your AI assistant"
           image=""
-          description=""
-          avatar=""
-          color="orange"
-          messages={messages}
+          description="Hello, I am here to help with whatever you need."
+          avatar={EMPTY_IMAGE}
           showPoweredBy={true}
-          privacyURL="https://voiceflow.com"
+          extraLinkText="Privacy"
+          extraLinkUrl="https://voiceflow.com"
+          isLoading={false}
+          hasEnded={false}
           messageInputProps={{
             message: '',
             onSubmit: () => null,
@@ -75,14 +91,15 @@ export const Themed: Story = {
 
       <div style={{ width: '400px', ...assignInlineVars(PALETTE, { colors: createPalette('green') }) }}>
         <NewChat
-          title=""
+          title="Your AI assistant"
           image=""
-          description=""
-          avatar=""
-          color="orange"
-          messages={messages}
+          description="Hello, I am here to help with whatever you need."
+          avatar={EMPTY_IMAGE}
           showPoweredBy={true}
-          privacyURL="https://voiceflow.com"
+          extraLinkText="Privacy"
+          extraLinkUrl="https://voiceflow.com"
+          isLoading={false}
+          hasEnded={false}
           messageInputProps={{
             message: '',
             onSubmit: () => null,
@@ -97,11 +114,12 @@ export const Themed: Story = {
           title=""
           image=""
           description=""
-          avatar=""
-          color="orange"
-          messages={messages}
+          avatar={EMPTY_IMAGE}
           showPoweredBy={true}
-          privacyURL="https://voiceflow.com"
+          extraLinkText="Privacy"
+          extraLinkUrl="https://voiceflow.com"
+          isLoading={false}
+          hasEnded={false}
           messageInputProps={{
             message: '',
             onSubmit: () => null,
@@ -117,14 +135,16 @@ export const Themed: Story = {
 export const NoPoweredBy = {
   render: () => (
     <NewChat
-      title=""
+      title="Your AI assistant"
       image=""
-      description=""
-      avatar=""
-      messages={[{ from: 'system', text: TEXT_TREATMENT_MARKDOWN }, ...messages]}
+      description="Let's get this party started already!"
+      avatar={EMPTY_IMAGE}
       buttons={[]}
-      privacyURL="https://voiceflow.com"
+      extraLinkText="Privacy"
+      extraLinkUrl="https://voiceflow.com"
       showPoweredBy={false}
+      isLoading={false}
+      hasEnded={false}
       messageInputProps={{ message: '', onSubmit: () => null, placeholder: 'Message...', onValueChange: () => null }}
     />
   ),

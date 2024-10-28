@@ -1,10 +1,12 @@
-import { useContext, useRef } from 'react';
+import clsx from 'clsx';
+import { useContext } from 'react';
 import * as R from 'remeda';
 import { match } from 'ts-pattern';
 
-import { Text } from '@/components/Text';
+import { ClassName } from '@/constants';
 import { RuntimeStateAPIContext } from '@/contexts';
 
+import { AgentMessage } from '../AgentMessage';
 import { Avatar } from '../Avatar';
 import { Card } from '../Card';
 import { Carousel } from '../Carousel';
@@ -14,7 +16,7 @@ import { Image } from '../Image';
 import { MessageType } from './constants';
 import { ExtensionMessage } from './ExtensionMessage';
 import EndState from './state/end';
-import { List, MessageContainer } from './styled';
+import { hide, messageContainer, responseAvatar, systemMessageContainer } from './styles.css';
 import type { MessageProps } from './types';
 
 export interface SystemMessageProps extends React.PropsWithChildren {
@@ -26,7 +28,7 @@ export interface SystemMessageProps extends React.PropsWithChildren {
   /**
    * A unix timestamp indicating when this message was sent.
    */
-  timestamp: number;
+  timestamp?: number;
 
   /**
    * A single message to render.
@@ -43,11 +45,24 @@ export interface SystemMessageProps extends React.PropsWithChildren {
    * @default false
    */
   feedback?: IFeedbackButton | undefined;
+
+  /**
+   * If this is the first message in a group of messages
+   */
+  first?: boolean;
 }
 
-const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, feedback, message, withImage, children }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-
+/**
+ * An individual message within a system response.
+ */
+export const SystemMessage: React.FC<SystemMessageProps> = ({
+  avatar,
+  feedback,
+  message,
+  withImage,
+  first,
+  children,
+}) => {
   const { config } = useContext(RuntimeStateAPIContext);
 
   if (!children && message?.type === MessageType.END) {
@@ -55,28 +70,21 @@ const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, feedback, message
   }
 
   return (
-    <>
-      <MessageContainer ref={containerRef} withImage={withImage} scrollable={message?.type === MessageType.CAROUSEL}>
-        <Avatar avatar={avatar} />
-        <List>
-          {children ??
-            match(message)
-              .with({ type: MessageType.TEXT }, ({ text }) => <Text text={text} />)
-              .with({ type: MessageType.IMAGE }, ({ url }) => <Image image={url} mode={config.render?.mode} />)
-              .with({ type: MessageType.CARD }, (props) => <Card {...R.omit(props, ['type'])} />)
-              .with({ type: MessageType.CAROUSEL }, (props) => <Carousel {...R.omit(props, ['type'])} />)
-              .with({ type: MessageType.EXTENSION }, ({ payload }) => (
-                <ExtensionMessage extension={payload.extension} trace={payload.trace} />
-              ))
-              .otherwise(() => null)}
-          {feedback && <FeedbackButton {...feedback} />}
-        </List>
-      </MessageContainer>
-    </>
+    <div className={clsx(ClassName.SYSTEM_RESPONSE, systemMessageContainer({ first }))}>
+      <Avatar avatar={avatar} className={clsx(withImage ? '' : hide, responseAvatar)} />
+      <div className={messageContainer}>
+        {children ??
+          match(message)
+            .with({ type: MessageType.TEXT }, ({ text, ai }) => <AgentMessage text={text} aiGenerated={ai} />)
+            .with({ type: MessageType.IMAGE }, ({ url }) => <Image image={url} mode={config.render?.mode} />)
+            .with({ type: MessageType.CARD }, (props) => <Card {...R.omit(props, ['type'])} />)
+            .with({ type: MessageType.CAROUSEL }, (props) => <Carousel {...R.omit(props, ['type'])} />)
+            .with({ type: MessageType.EXTENSION }, ({ payload }) => (
+              <ExtensionMessage extension={payload.extension} trace={payload.trace} />
+            ))
+            .otherwise(() => null)}
+        {feedback && <FeedbackButton {...feedback} />}
+      </div>
+    </div>
   );
 };
-
-/**
- * An individual message within a system response.
- */
-export default SystemMessage;

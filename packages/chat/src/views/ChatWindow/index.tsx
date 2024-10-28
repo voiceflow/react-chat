@@ -1,24 +1,26 @@
-/* eslint-disable no-empty-function */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import '../../styles.css';
 
+import { assignInlineVars } from '@vanilla-extract/dynamic';
+import clsx from 'clsx';
 import React, { useCallback, useContext } from 'react';
 import * as R from 'remeda';
 import { match } from 'ts-pattern';
 
-import { NewChat, SystemResponse, UserResponse } from '@/components';
+import { Header, NewChat, NewFooter, SystemResponse, UserMessage, WelcomeMessage } from '@/components';
+import { UserResponse } from '@/components/UserResponse';
 import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts/RuntimeContext';
 import type { FeedbackName } from '@/contexts/RuntimeContext/useRuntimeAPI';
+import { createPalette } from '@/styles/colors';
+import { PALETTE } from '@/styles/colors.css';
 import type { UserTurnProps } from '@/types';
 import { SessionStatus, TurnType } from '@/types';
-
-import { ChatWindowContainer } from './styled';
 
 export interface ChatWindowProps {
   className?: string;
 }
 
-const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
+export const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
   const runtime = useContext(RuntimeStateAPIContext);
   const state = useContext(RuntimeStateContext);
   const { assistant, config } = runtime;
@@ -29,6 +31,8 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
     runtime.close();
   }, []);
 
+  const [newMessage, setNewMessage] = React.useState('');
+
   const getPreviousUserTurn = useCallback(
     (turnIndex: number): UserTurnProps | null => {
       const turn = state.session.turns[turnIndex - 1];
@@ -37,20 +41,18 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
     [state.session.turns]
   );
 
+  const handleUserReply = (): void => {
+    runtime.reply(newMessage);
+  };
+
   return (
-    <ChatWindowContainer className={className}>
+    <div style={assignInlineVars(PALETTE, { colors: createPalette(assistant.color) })} className={className}>
       <NewChat
         title={assistant.title}
-        image={assistant.image}
         description={assistant.description}
+        image={assistant.image}
         avatar={assistant.avatar}
         showPoweredBy={assistant.watermark}
-        messageInputProps={{
-          message: '',
-          onValueChange: () => {},
-          onSubmit: () => {},
-        }}
-        /*
         startTime={state.session.startTime}
         hasEnded={runtime.isStatus(SessionStatus.ENDED)}
         isLoading={runtime.isStatus(SessionStatus.IDLE) && state.session.turns.length === 0 && config.autostart}
@@ -58,9 +60,13 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
         onEnd={closeAndEnd}
         onSend={runtime.reply}
         onMinimize={runtime.close}
-        */
+        audioInterface={assistant.audioInterface}
+        messageInputProps={{
+          message: newMessage,
+          onValueChange: setNewMessage,
+          onSubmit: handleUserReply,
+        }}
       >
-        {/*
         {state.session.turns.map((turn, turnIndex) =>
           match(turn)
             .with({ type: TurnType.USER }, ({ id, ...props }) => <UserResponse {...R.omit(props, ['type'])} key={id} />)
@@ -68,26 +74,13 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
               <SystemResponse
                 key={id}
                 {...R.omit(props, ['type'])}
-                feedback={
-                  assistant.feedback
-                    ? {
-                        onClick: (feedback: FeedbackName) => {
-                          runtime.feedback(feedback, props.messages, getPreviousUserTurn(turnIndex));
-                        },
-                      }
-                    : undefined
-                }
                 avatar={assistant.avatar}
                 isLast={turnIndex === state.session.turns.length - 1}
               />
             ))
             .exhaustive()
         )}
-        */}
-        {/* state.indicator && <SystemResponse.Indicator avatar={assistant.avatar} /> */}
       </NewChat>
-    </ChatWindowContainer>
+    </div>
   );
 };
-
-export default Object.assign(ChatWindow, { Container: ChatWindowContainer });

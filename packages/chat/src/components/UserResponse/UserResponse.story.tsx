@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import UserResponse from '.';
+import { UserResponse } from '.';
 
 type Story = StoryObj<typeof UserResponse>;
 const meta: Meta<typeof UserResponse> = {

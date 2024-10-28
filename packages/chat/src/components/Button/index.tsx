@@ -11,6 +11,7 @@ interface ButtonProps extends ComponentPropsWithRef<'button'> {
   large?: boolean;
   round?: boolean;
   testID?: string;
+  className?: string;
 }
 
 export const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProps>>(({ children, ...props }, ref) => {
@@ -19,8 +20,12 @@ export const Button = forwardRef<HTMLButtonElement, PropsWithChildren<ButtonProp
   return (
     <button
       ref={ref}
-      className={clsx(ClassName.BUTTON, buttonStyles({ type: type ?? ButtonVariant.PRIMARY, large, round }))}
       {...props}
+      className={clsx(
+        ClassName.BUTTON,
+        buttonStyles({ type: type ?? ButtonVariant.PRIMARY, large, round }),
+        props.className
+      )}
     >
       {children}
     </button>

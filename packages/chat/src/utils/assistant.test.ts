@@ -40,6 +40,7 @@ describe('assistant utils', () => {
       persistence: ChatPersistence.MEMORY,
       launcher: 'remote',
       stylesheet: ['remote'],
+      audioInterface: false,
       spacing: {
         side: 100,
         bottom: 100,
@@ -61,6 +62,7 @@ describe('assistant utils', () => {
         feedback: false,
         description: '',
         position: ChatPosition.RIGHT,
+        audioInterface: false,
         persistence: ChatPersistence.LOCAL_STORAGE,
         spacing: {
           side: 30,
@@ -92,6 +94,7 @@ describe('assistant utils', () => {
         persistence: ChatPersistence.SESSION_STORAGE,
         launcher: 'local',
         stylesheet: ['local'],
+        audioInterface: false,
         spacing: {
           side: 150,
           bottom: 150,
@@ -136,6 +139,7 @@ describe('assistant utils', () => {
         feedback: false,
         description: '',
         position: ChatPosition.RIGHT,
+        audioInterface: false,
         persistence: ChatPersistence.LOCAL_STORAGE,
         spacing: {
           side: 100,

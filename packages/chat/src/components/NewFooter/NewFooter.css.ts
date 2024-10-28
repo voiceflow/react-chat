@@ -3,6 +3,7 @@ import { recipe } from '@vanilla-extract/recipes';
 
 import { COLORS } from '@/styles/colors';
 import { FAMILY } from '@/styles/font';
+import { SIZES } from '@/styles/sizes';
 import { transition } from '@/styles/transitions';
 
 const BUTTON_ROW_MARGIN = 10;
@@ -44,18 +45,10 @@ export const inputContainer = style({
 
 export const messageContainer = recipe({
   base: {
+    padding: '0 20px',
     position: 'relative',
-    borderBottomRightRadius: '16px',
-    borderBottomLeftRadius: '16px',
     background:
       'linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(255, 255, 255, 0.00) 29.49%, #FFF 29.5%, #F8F8F8 100%)',
-  },
-  variants: {
-    showPoweredBy: {
-      false: {
-        paddingBottom: '20px',
-      },
-    },
   },
 });
 
@@ -69,12 +62,13 @@ export const messageInputContainer = style({
   borderTopRightRadius: '20px',
 });
 
-export const poweredByStyles = style({
+export const footerLinksContainer = style({
   color: COLORS.NEUTRAL_DARK[100],
   fontFamily: FAMILY,
   fontSize: '12px',
   lineHeight: '17px',
   width: '100%',
+  minHeight: 20,
   padding: '10px 0',
   display: 'flex',
   alignItems: 'center',
@@ -85,11 +79,11 @@ export const poweredByStyles = style({
 export const separator = style({
   height: '2px',
   width: '2px',
-  borderRadius: '100px',
+  borderRadius: SIZES.radius.round,
   backgroundColor: COLORS.NEUTRAL_LIGHT[500],
 });
 
-export const prviacyLinkStyles = style({
+export const extraLinkStyles = style({
   color: COLORS.NEUTRAL_DARK[100],
   fontFamily: FAMILY,
   fontSize: '12px',

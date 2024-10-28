@@ -1,11 +1,10 @@
-import { useContext } from 'react';
+import clsx from 'clsx';
 
-import Message from '@/components/Message';
 import Tooltip from '@/components/Tooltip';
-import { RuntimeStateAPIContext } from '@/contexts';
+import { ClassName } from '@/constants';
 import { useAutoScroll } from '@/hooks';
 
-import { Container, Debug, Row } from './styled';
+import { debugMessage, messageContainer, messageRow, messageStyle } from './styles.css';
 
 export interface DebugActionProps {
   label: string;
@@ -35,19 +34,25 @@ export interface UserResponseProps {
   debug?: DebugResponseProps;
 }
 
-const UserResponse: React.FC<UserResponseProps> = ({ message, debug }) => {
+/**
+ * A user-sent text response.
+ *
+ * @see {@link https://voiceflow.github.io/react-chat/?path=/story/components-chat-userresponse--simple}
+ */
+export const UserResponse: React.FC<UserResponseProps> = ({ message, debug }) => {
   useAutoScroll();
 
-  const { config } = useContext(RuntimeStateAPIContext);
+  // TODO: Check this in different render modes
+  // const { config } = useContext(RuntimeStateAPIContext);
+
   return (
-    <Container mode={config.render.mode}>
-      <Row>
-        {/* <Timestamp value={timestamp} /> */}
-        <Message from="user">{message}</Message>
-      </Row>
+    <div className={clsx(ClassName.USER_RESPONSE, messageContainer)}>
+      <div className={messageRow}>
+        <div className={messageStyle}>{message}</div>
+      </div>
       {debug && (
         <>
-          <Debug>{debug.message}</Debug>
+          <aside className={debugMessage}>{debug.message}</aside>
           {debug.reason && (
             <Tooltip label={debug.action?.label} onClick={debug.action?.onClick} orientation="right">
               {debug.reason}
@@ -55,17 +60,6 @@ const UserResponse: React.FC<UserResponseProps> = ({ message, debug }) => {
           )}
         </>
       )}
-    </Container>
+    </div>
   );
 };
-
-/**
- * A user-sent text response.
- *
- * @see {@link https://voiceflow.github.io/react-chat/?path=/story/components-chat-userresponse--simple}
- */
-export default Object.assign(UserResponse, {
-  Container,
-  Debug,
-  Row,
-});

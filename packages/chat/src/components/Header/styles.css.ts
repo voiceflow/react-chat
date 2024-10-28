@@ -9,23 +9,12 @@ import { transition } from '@/styles/transitions';
 
 import { buttonReset } from '../Button/reset.css';
 
-export const headerContainer = recipe({
-  base: {
-    display: 'flex',
-    alignItems: 'center',
-    backgroundColor: PALETTE.colors[500],
-    padding: '12px 16px 12px 20px',
-    height: parseInt(SIZES.sm, 10) + 24, // Add the top and bottom padding
-  },
-  variants: {
-    rounded: {
-      true: {
-        borderTopLeftRadius: '16px',
-        borderTopRightRadius: '16px',
-        height: 'auto',
-      },
-    },
-  },
+export const headerContainer = style({
+  display: 'flex',
+  alignItems: 'center',
+  backgroundColor: PALETTE.colors[500],
+  padding: '12px 16px 12px 20px',
+  height: parseInt(SIZES.sm, 10) + 24, // Add the top and bottom padding
 });
 
 export const headerInnerContainer = style({

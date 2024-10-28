@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import CODE_RESPONSE_FIXTURE from '@/__fixtures__/markdown/code-response.md?raw';
 import { MOCK_IMAGE, VF_ICON } from '@/fixtures';
 
 import type { MessageProps } from '.';
@@ -48,6 +49,12 @@ export const SimpleText: Story = {
 export const WrappingText: Story = {
   args: {
     messages: [{ type: 'text', text: 'consecteturaconsecteturaconsecteturaconsecteturaconsecteturaconsectetura' }],
+  },
+};
+
+export const CodeResponse: Story = {
+  args: {
+    messages: [{ type: 'text', text: CODE_RESPONSE_FIXTURE }],
   },
 };
 
