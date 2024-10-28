@@ -12,6 +12,8 @@ export { default as microphone } from './microphone.svg?react';
 export { default as minus } from './minus.svg?react';
 export { default as reset } from './reset.svg?react';
 export { default as smallArrowUp } from './small-arrow-up.svg?react';
+export { default as sound } from './sound.svg?react';
+export { default as soundOff } from './sound-off.svg?react';
 export { default as stop } from './stop.svg?react';
 export { default as thumbsUp } from './thumbs-up.svg?react';
 export { default as topCaret } from './top-caret.svg?react';
