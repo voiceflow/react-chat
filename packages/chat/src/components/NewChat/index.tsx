@@ -50,6 +50,8 @@ export const NewChat: React.FC<INewChat> = ({
   description,
   avatar,
   hasEnded,
+  onSend,
+  onStart,
   onMinimize,
   onEnd,
   extraLinkText,
@@ -126,6 +128,8 @@ export const NewChat: React.FC<INewChat> = ({
       <NewFooter
         buttons={buttons}
         showPoweredBy={showPoweredBy}
+        onSend={onSend}
+        onStart={onStart}
         hasEnded={hasEnded}
         extraLinkText={extraLinkText}
         extraLinkUrl={extraLinkUrl}

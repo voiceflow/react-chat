@@ -4,7 +4,6 @@ import { COLORS } from '@/styles/colors';
 
 export const chatContainer = style({
   height: '700px',
-  width: '100%',
   display: 'flex',
   flexDirection: 'column',
   borderRadius: '16px',
