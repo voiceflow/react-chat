@@ -2,6 +2,7 @@ import { recipe } from '@vanilla-extract/recipes';
 
 import { COLORS } from '@/styles/colors';
 import { SIZES } from '@/styles/sizes';
+import { transition } from '@/styles/transitions';
 
 const PROMPT_OVERFLOW = 10;
 
@@ -37,6 +38,7 @@ export const promptContainer = recipe({
 
 export const chatOverlay = recipe({
   base: {
+    display: 'none',
     position: 'absolute',
     top: 0,
     bottom: 0,
@@ -44,11 +46,12 @@ export const chatOverlay = recipe({
     right: 0,
     backgroundColor: 'rgba(0,0,0,0.12)',
     opacity: 0,
-    transition: 'opacity',
+    transition: transition(['opacity']),
   },
   variants: {
     visible: {
       true: {
+        display: 'block',
         opacity: 1,
         zIndex: 2,
         pointerEvents: 'auto',

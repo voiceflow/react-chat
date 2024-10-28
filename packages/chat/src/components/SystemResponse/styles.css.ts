@@ -8,9 +8,19 @@ export const hide = style({
 export const systemMessageContainer = recipe({
   base: {
     display: 'flex',
-    alignItems: 'center',
-    marginBottom: 16,
+    alignItems: 'flex-end',
   },
+  variants: {
+    first: {
+      true: {
+        marginTop: 12,
+      },
+    },
+  },
+});
+
+export const responseAvatar = style({
+  marginBottom: 4,
 });
 
 export const messageContainer = style({

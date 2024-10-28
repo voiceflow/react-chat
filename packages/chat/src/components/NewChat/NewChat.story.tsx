@@ -2,11 +2,12 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import EMPTY_IMAGE from '@/__fixtures__/empty-image.png';
-import { DEFAULT_AVATAR, SystemResponse, UserMessage } from '@/main';
+import { DEFAULT_AVATAR, SystemResponse } from '@/main';
 import { WithDefaultPalette } from '@/storybook/decorators';
 import { createPalette } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
 
+import { UserResponse } from '../UserResponse';
 import { NewChat } from '.';
 
 const meta: Meta = {
@@ -29,7 +30,7 @@ const AgentSays = (messages: string[]) => (
     messages={messages.map((m) => ({ type: 'text', text: m }))}
   />
 );
-const UserSays = (text: string) => <UserMessage message={text} />;
+const UserSays = (text: string) => <UserResponse message={text} timestamp={Date.now()} />;
 
 export const Base = {
   render: () => (

@@ -92,6 +92,7 @@ const SystemResponse: React.FC<SystemResponseProps> = ({
           feedback={complete && !showIndicator && index === visibleMessages.length - 1 ? feedback : undefined}
           avatar={avatar}
           timestamp={timestamp}
+          first={index === 0}
           key={index}
         />
       ))}
