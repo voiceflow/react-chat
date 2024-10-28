@@ -60,6 +60,11 @@ export const Description = styled(tag('p', 'description'), {
   color: '$darkGrey',
   whiteSpace: 'normal',
   wordBreak: 'break-word',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  display: '-webkit-box',
+  WebkitLineClamp: 2,
+  WebkitBoxOrient: 'vertical',
 });
 
 export const Link = styled(tag('a', 'link'), {
