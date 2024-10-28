@@ -17,7 +17,7 @@ const CARD: MessageProps = {
   type: 'card',
   title: 'Card Message',
   description:
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem voluptas perspiciatis est quis dolores!',
+    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem voluptas perspiciatis est quis dolores! Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem voluptas perspiciatis est quis dolores!',
   image: CARD_IMAGE,
 };
 
