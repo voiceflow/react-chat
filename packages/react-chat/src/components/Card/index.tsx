@@ -27,7 +27,7 @@ const Card: React.FC<CardProps> = ({ title, description, image, actions = [] }) 
               {description}
             </Link>
           ) : (
-            <Description>{description}</Description>
+            <Description title={description}>{description}</Description>
           ))}
         {buttons.map(({ request, name }, index) => (
           <Button onClick={() => runtime.interact(request, name)} key={index}>
