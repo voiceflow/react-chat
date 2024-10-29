@@ -18,6 +18,8 @@ export const messageContainer = style({
   width: 'fit-content',
 });
 
+export const messageDebugStyles = style({});
+
 export const contentStyle = recipe({
   variants: {
     isCodeBlock: {

@@ -1,7 +1,8 @@
-import { topCaret as TopCaret } from '@/assets/svg';
-import type { VariantProp } from '@/types';
+import clsx from 'clsx';
 
-import { Container } from './styled';
+import { topCaret as TopCaret } from '@/assets/svg';
+
+import { debugContainerStyles } from './styled.css';
 
 export interface DebugMessageProps extends React.PropsWithChildren {
   /**
@@ -9,16 +10,18 @@ export interface DebugMessageProps extends React.PropsWithChildren {
    *
    * @default 'left'
    */
-  orientation?: VariantProp<typeof Container, 'orientation'>;
+  orientation?: 'left' | 'right';
 }
 
-const DebugMessage: React.FC<DebugMessageProps> = ({ children, ...props }) => (
-  <Container {...props}>
-    <TopCaret />
-    {children}
-  </Container>
-);
+const DebugMessage: React.FC<DebugMessageProps> = ({ children, orientation = 'left' }) => {
+  return (
+    <div className={clsx(debugContainerStyles())}>
+      <TopCaret />
+      {children}
+    </div>
+  );
+};
 
 export default Object.assign(DebugMessage, {
-  Container,
+  debugContainerStyles,
 });
