@@ -3,6 +3,7 @@ import type { Trace } from '@voiceflow/base-types';
 import React, { useContext, useMemo, useState } from 'react';
 
 import { Launcher } from '@/components/Launcher';
+import { LAUNCHER_SIZE } from '@/components/Launcher/styles.css';
 import { Proactive } from '@/components/Proactive';
 import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts';
 import { useChatAPI } from '@/hooks';
@@ -11,7 +12,7 @@ import { PALETTE } from '@/styles/colors.css';
 import { useResolveAssistantStyleSheet } from '@/utils/stylesheet';
 import { ChatWindow } from '@/views/ChatWindow';
 
-import { chatContainer, launcherContainer, widgetContainer } from './styles.css';
+import { chatContainer, LAUNCHER_MARGIN, launcherContainer, widgetContainer } from './styles.css';
 
 interface ChatWidgetProps extends React.PropsWithChildren {
   shadowRoot?: ShadowRoot;
@@ -29,6 +30,14 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
   const isMobile = useMemo(() => window.matchMedia('(max-width: 768px)').matches, []);
 
   const palette = usePalette(assistant);
+
+  const toggleChat = () => {
+    if (isOpen) {
+      close();
+    } else {
+      open();
+    }
+  };
 
   useChatAPI(
     chatAPI,
@@ -61,9 +70,12 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
     >
       <div className={launcherContainer} style={position}>
         <Proactive side={side} messages={proactiveMessages} />
-        <Launcher onClick={open} isOpen={isOpen} image={assistant.launcher} />
+        <Launcher onClick={toggleChat} isOpen={isOpen} image={assistant.launcher} />
       </div>
-      <div className={chatContainer} style={isMobile ? {} : position}>
+      <div
+        className={chatContainer}
+        style={isMobile ? {} : { [side]: position[side], bottom: position.bottom + LAUNCHER_SIZE + LAUNCHER_MARGIN }}
+      >
         <ChatWindow />
       </div>
     </div>

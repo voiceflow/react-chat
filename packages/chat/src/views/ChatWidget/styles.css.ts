@@ -4,6 +4,8 @@ import { recipe } from '@vanilla-extract/recipes';
 const CHAT_WIDTH = 380;
 const MAX_CHAT_HEIGHT = 800;
 
+export const LAUNCHER_MARGIN = 16;
+
 export const widgetContainer = recipe({
   base: {
     position: 'fixed',
@@ -60,19 +62,6 @@ export const launcherContainer = style({
   selectors: {
     [`${widgetContainer.classNames.base} &`]: {
       position: 'absolute',
-    },
-
-    [`.${widgetContainer.classNames.variants.withChat.true} > &`]: {
-      opacity: 0,
-      pointerEvents: 'none',
-      transform: 'translateY(100%)',
-      transition: 'transform 300ms cubic-bezier(0.85, 0, 0.6, 1), opacity 150ms linear',
-    },
-    [`.${widgetContainer.classNames.variants.withChat.false} > &`]: {
-      opacity: 1,
-      pointerEvents: 'auto',
-      transform: 'translateY(0%)',
-      transition: 'transform 300ms cubic-bezier(0, 0.95, 0.1, 1), opacity 150ms linear',
     },
   },
 });

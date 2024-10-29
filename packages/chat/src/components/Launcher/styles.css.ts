@@ -6,15 +6,15 @@ import { transition } from '@/styles/transitions';
 
 import { buttonStyles } from '../Button/styles.css';
 
-const buttonSize = 56;
+export const LAUNCHER_SIZE = 56;
 const buttonSizeWithLabel = 48;
 
 export const launcherStyles = recipe({
   base: [
     buttonStyles({ round: true }),
     {
-      width: buttonSize,
-      height: buttonSize,
+      width: LAUNCHER_SIZE,
+      height: LAUNCHER_SIZE,
       padding: 12,
       backgroundColor: PALETTE.colors[500],
       transition: transition(['color', 'background-color', 'transform']),
