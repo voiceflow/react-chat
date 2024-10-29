@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { useContext, useMemo, useRef, useState } from 'react';
 
 import { ClassName } from '@/constants';
-import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts';
+import { AutoScrollProvider, RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts';
 import { RenderMode } from '@/dtos/RenderOptions.dto';
 import type { Nullish } from '@/types';
 import { chain } from '@/utils/functional';
@@ -59,8 +59,6 @@ export const NewChat: React.FC<INewChat> = ({
   children,
   audioInterface,
 }) => {
-  // const [chatMessages, setChatMessages] = useState(messages ?? []);
-  const [newMessage, setNewMessage] = useState('');
   const [hasAlert, setAlert] = useState(false);
 
   const { config, toggleAudioOutput } = useContext(RuntimeStateAPIContext);
@@ -95,34 +93,14 @@ export const NewChat: React.FC<INewChat> = ({
 
   const scrollableAreaRef = useRef<HTMLDivElement>(null);
 
-  // useLayoutEffect(() => {
-  //   if (scrollableAreaRef.current) {
-  //     scrollableAreaRef.current.scrollTo({
-  //       top: scrollableAreaRef.current.scrollHeight,
-  //       behavior: 'smooth',
-  //     });
-  //   }
-  // }, [chatMessages]);
-
-  const handleSubmit = async () => {
-    if (newMessage.trim()) {
-      // setChatMessages((prevMessages) => [...prevMessages, { from: 'user', text: newMessage }]);
-      setNewMessage('');
-    }
-  };
-
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.key === 'Enter' && event.metaKey) {
-      handleSubmit();
-    }
-  };
-
   return (
-    <div className={clsx(ClassName.CHAT, chatContainer)} onKeyDown={handleKeyDown}>
+    <div className={clsx(ClassName.CHAT, chatContainer)}>
       <Header title={title} image={mockAvatar} actions={headerActions} />
       <div ref={scrollableAreaRef} className={dialogContainer}>
-        <WelcomeMessage title={title} description={description} avatar={avatar} />
-        {children}
+        <AutoScrollProvider target={scrollableAreaRef}>
+          <WelcomeMessage title={title} description={description} avatar={avatar} />
+          {children}
+        </AutoScrollProvider>
       </div>
       <ScrollToBottom scrollableAreaRef={scrollableAreaRef} />
       <NewFooter
@@ -133,7 +111,7 @@ export const NewChat: React.FC<INewChat> = ({
         hasEnded={hasEnded}
         extraLinkText={extraLinkText}
         extraLinkUrl={extraLinkUrl}
-        messageInputProps={{ ...messageInputProps }}
+        messageInputProps={{ ...messageInputProps, disableSend: state.indicator }}
       />
       <Prompt
         visible={hasAlert}
