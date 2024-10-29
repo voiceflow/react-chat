@@ -6,9 +6,18 @@ import { ClassName } from '@/constants';
 import { Card } from '../Card';
 import type { CardProps } from '../Card/types';
 import { CarouselButton } from './CarouselButton';
-import { CARD_WITH_GUTTER_WIDTH } from './constants';
 import { useScrollObserver, useScrollTo } from './hooks';
-import { cardsContainer, cardsInnerContainer, cardStyle, carouselContainer, lastCardSpacer } from './styles.css';
+import {
+  cardsContainer,
+  cardsInnerContainer,
+  cardStyle,
+  carouselContainer,
+  GUTTER_WIDTH,
+  lastCardSpacer,
+} from './styles.css';
+import { CARD_WIDTH } from '../Card/styles.css';
+
+const CARD_WITH_GUTTER = CARD_WIDTH + GUTTER_WIDTH;
 
 export interface CarouselProps {
   /**
@@ -26,11 +35,8 @@ export const Carousel: React.FC<CarouselProps> = ({ cards }) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const { showPreviousButton, showNextButton } = useScrollObserver(scrollContainerRef, cards);
 
-  const scrollToPrevious = useScrollTo(
-    scrollContainerRef,
-    (el) => Math.ceil(el.scrollLeft / CARD_WITH_GUTTER_WIDTH) - 1
-  );
-  const scrollToNext = useScrollTo(scrollContainerRef, (el) => Math.floor(el.scrollLeft / CARD_WITH_GUTTER_WIDTH) + 1);
+  const scrollToPrevious = useScrollTo(scrollContainerRef, (el) => Math.ceil(el.scrollLeft / CARD_WITH_GUTTER) - 1);
+  const scrollToNext = useScrollTo(scrollContainerRef, (el) => Math.floor(el.scrollLeft / CARD_WITH_GUTTER) + 1);
 
   return (
     <div className={clsx(ClassName.CAROUSEL, carouselContainer)}>

@@ -44,10 +44,12 @@ export const cardTitle = style({
   fontSize: '14px',
   fontWeight: 600,
   color: COLORS.NEUTRAL_DARK[900],
+  whiteSpace: 'normal',
 });
 
 export const cardDescription = style({
   fontSize: '14px',
   fontWeight: 400,
   color: COLORS.NEUTRAL_DARK[400],
+  whiteSpace: 'normal',
 });

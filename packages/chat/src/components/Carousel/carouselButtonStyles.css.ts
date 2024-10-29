@@ -4,6 +4,7 @@ import { COLORS } from '@/styles/colors';
 import { transition } from '@/styles/transitions';
 
 import { buttonStyles } from '../Button/styles.css';
+import { CARD_WIDTH } from '../Card/styles.css';
 import { BUTTON_SIZE, carouselContainer } from './styles.css';
 
 export const carouselButton = recipe({
@@ -54,7 +55,7 @@ export const carouselButton = recipe({
           transform: 'scale(0.8)',
         },
         [`.${carouselContainer} &`]: {
-          right: '23px',
+          left: `${CARD_WIDTH - BUTTON_SIZE / 2}px`,
         },
       },
       left: {
@@ -66,7 +67,7 @@ export const carouselButton = recipe({
           transform: 'rotate(180deg) scale(0.8)',
         },
         [`.${carouselContainer} &`]: {
-          left: '3px',
+          left: `-${BUTTON_SIZE / 2}px`,
         },
       },
     },

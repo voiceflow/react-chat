@@ -1,6 +1,10 @@
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
+import { SMALL_AVATAR_SIZE } from '../Avatar/styles.css';
+
+export const MESSAGE_PADDING = 12;
+
 export const hide = style({
   visibility: 'hidden',
 });
@@ -24,7 +28,8 @@ export const responseAvatar = style({
 });
 
 export const messageContainer = style({
-  marginLeft: 12,
+  width: `calc(100% - ${MESSAGE_PADDING + SMALL_AVATAR_SIZE}px)`,
+  marginLeft: MESSAGE_PADDING,
 });
 
 export const actionsContainer = style({
