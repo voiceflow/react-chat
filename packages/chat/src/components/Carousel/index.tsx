@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import { ClassName } from '@/constants';
 
 import { Card } from '../Card';
+import { CARD_WIDTH } from '../Card/styles.css';
 import type { CardProps } from '../Card/types';
 import { CarouselButton } from './CarouselButton';
 import { useScrollObserver, useScrollTo } from './hooks';
@@ -15,7 +16,6 @@ import {
   GUTTER_WIDTH,
   lastCardSpacer,
 } from './styles.css';
-import { CARD_WIDTH } from '../Card/styles.css';
 
 const CARD_WITH_GUTTER = CARD_WIDTH + GUTTER_WIDTH;
 
