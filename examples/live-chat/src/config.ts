@@ -11,5 +11,5 @@ export const ASSISTANT: AssistantOptions = AssistantOptions.parse({
 });
 
 export const CONFIG = ChatConfig.parse({
-  verify: { projectID: '67168209f602ebb662152fbb' },
+  verify: { projectID: import.meta.env.VF_PROJECT_ID },
 });
