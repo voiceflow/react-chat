@@ -59,7 +59,7 @@ export const NewFooter: React.FC<INewFooter> = ({
 
       <div className={messageContainer()}>
         {hasEnded ? (
-          <Button onClick={onStart} large={true}>
+          <Button onClick={onStart} large>
             Start New Chat
           </Button>
         ) : (
