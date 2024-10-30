@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.32.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.31.1...@voiceflow/chat@0.32.0) (2024-10-30)
+
+### Features
+
+* Removing a lot of react-stitches usages (DSN-000) ([#263](https://github.com/voiceflow/react-chat/issues/263)) ([265124e](https://github.com/voiceflow/react-chat/commit/265124eef53e59fd79ea7001400c3c75191dedaf))
+
 ## [0.31.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.31.0...@voiceflow/chat@0.31.1) (2024-10-30)
 
 ### Bug Fixes
