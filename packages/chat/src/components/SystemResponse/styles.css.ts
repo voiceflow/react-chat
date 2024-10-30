@@ -30,16 +30,9 @@ export const messageContainer = style({
 export const actionsContainer = style({
   display: 'flex',
   flexWrap: 'wrap',
-  marginBottom: 8,
+  gap: 8,
+  margin: '16px 0 8px 0',
   paddingLeft: 44,
-});
-
-export const actionButton = style({
-  height: 'unset',
-  padding: '7px 0',
-  margin: '8px 8px 0 0',
-  whiteSpace: 'normal',
-  textAlign: 'start',
 });
 
 export const indicatorContainer = style({

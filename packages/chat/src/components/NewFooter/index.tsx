@@ -22,6 +22,7 @@ export interface INewFooter {
   extraLinkText?: string;
   extraLinkUrl?: string;
   hasEnded: boolean;
+  disableSend?: boolean;
 
   /**
    * A callback to start a new conversation.
