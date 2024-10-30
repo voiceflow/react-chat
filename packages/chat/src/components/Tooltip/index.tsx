@@ -1,4 +1,4 @@
-import { DebugMessage, type DebugMessageProps } from '../Message/DebugMessage';
+import { DebugMessage, type DebugMessageProps } from '../DebugMessage';
 import { buttonStyle, containerStyle } from './styled.css';
 
 export interface ActionMessageProps extends DebugMessageProps {

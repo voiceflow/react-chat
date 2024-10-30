@@ -1,6 +1,8 @@
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
+import { SIZES } from '@/styles/sizes';
+
 import { SMALL_AVATAR_SIZE } from '../Avatar/styles.css';
 
 export const MESSAGE_PADDING = 12;
@@ -43,4 +45,14 @@ export const actionsContainer = style({
 export const indicatorContainer = style({
   display: 'flex',
   alignItems: 'center',
+});
+
+export const extensionMessageContainer = style({
+  display: 'inline-block',
+  boxSizing: 'border-box',
+  padding: '10px 14px',
+  borderRadius: SIZES.radius.sm,
+  overflowWrap: 'anywhere',
+  color: '#000',
+  backgroundColor: '#f4f4f4',
 });
