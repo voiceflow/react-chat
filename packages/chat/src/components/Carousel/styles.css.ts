@@ -1,34 +1,51 @@
 import { style } from '@vanilla-extract/css';
 
+import { CHAT_WIDTH } from '@/views/ChatWidget/styles.css';
+
+import { SMALL_AVATAR_SIZE } from '../Avatar/styles.css';
+import { CARD_WIDTH } from '../Card/styles.css';
+import { DIALOG_PADDING } from '../NewChat/NewChat.css';
+import { MESSAGE_PADDING } from '../SystemResponse/styles.css';
+
 export const BUTTON_SIZE = 42;
+export const GUTTER_WIDTH = 10;
+
+/**
+ * The white space between the carousel and the edge of the Chat widget.
+ */
+const LEFT_SPACE = DIALOG_PADDING + SMALL_AVATAR_SIZE + MESSAGE_PADDING;
 
 export const cardsContainer = style({
   position: 'relative',
   whiteSpace: 'nowrap',
   overflow: 'hidden',
+  marginLeft: `-${LEFT_SPACE}px`,
+  paddingLeft: `${LEFT_SPACE}px`,
+  marginRight: `-${DIALOG_PADDING}px`,
+  paddingRight: `${DIALOG_PADDING}px`,
 });
 
 export const cardsInnerContainer = style({
   display: 'flex',
   alignItems: 'start',
+  gap: `${GUTTER_WIDTH}px`,
 });
 
-export const cardStyle = style({
-  margin: '0 5px',
-});
+export const cardStyle = style({});
 
 export const carouselContainer = style({
   position: 'relative',
   width: '100%',
-  overflow: 'hidden',
   display: 'flex',
-  margin: '0 -20px',
-  paddingLeft: '20px',
+  marginBottom: 4,
 });
+
+const MESSAGE_WIDTH = CHAT_WIDTH - DIALOG_PADDING - SMALL_AVATAR_SIZE - MESSAGE_PADDING;
+const CAROUSEL_SPACER = MESSAGE_WIDTH - CARD_WIDTH;
 
 export const lastCardSpacer = style({
   display: 'inline-flex',
   height: 1,
-  width: BUTTON_SIZE,
+  width: CAROUSEL_SPACER,
   minWidth: BUTTON_SIZE,
 });

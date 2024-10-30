@@ -22,6 +22,7 @@ export interface INewFooter {
   extraLinkText?: string;
   extraLinkUrl?: string;
   hasEnded: boolean;
+  disableSend?: boolean;
 
   /**
    * A callback to start a new conversation.
@@ -40,6 +41,8 @@ export const NewFooter: React.FC<INewFooter> = ({
   messageInputProps,
   extraLinkText,
   extraLinkUrl,
+  hasEnded,
+  onStart,
 }) => {
   const showExtraLink = extraLinkText && extraLinkUrl;
   return (
@@ -53,8 +56,15 @@ export const NewFooter: React.FC<INewFooter> = ({
           ))}
         </div>
       )}
+
       <div className={messageContainer()}>
-        <MessageInput {...messageInputProps} />
+        {hasEnded ? (
+          <Button onClick={onStart} large>
+            Start New Chat
+          </Button>
+        ) : (
+          <MessageInput {...messageInputProps} />
+        )}
         <div className={footerLinksContainer}>
           {showPoweredBy && <div>Powered by Voiceflow</div>}
           {showPoweredBy && showExtraLink && <div className={separator} />}

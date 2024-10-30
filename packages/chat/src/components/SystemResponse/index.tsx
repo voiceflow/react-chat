@@ -12,7 +12,7 @@ import { MessageType } from './constants';
 import { useAnimatedMessages } from './hooks';
 import Indicator from './Indicator';
 import { Container, List } from './styled';
-import { actionButton, actionsContainer } from './styles.css';
+import { actionsContainer } from './styles.css';
 import type { SystemMessageProps } from './SystemMessage';
 import { SystemMessage } from './SystemMessage';
 import type { MessageProps } from './types';
@@ -100,12 +100,7 @@ const SystemResponse: React.FC<SystemResponseProps> = ({
       {isLast && complete && !!actions.length && (
         <div className={actionsContainer}>
           {actions.map(({ request, name }, index) => (
-            <Button
-              className={actionButton}
-              variant={ButtonVariant.INLINE}
-              onClick={() => runtime?.interact(request, name)}
-              key={index}
-            >
+            <Button variant={ButtonVariant.INLINE} onClick={() => runtime?.interact(request, name)} key={index}>
               {name}
             </Button>
           ))}

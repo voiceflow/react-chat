@@ -1,6 +1,10 @@
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
+import { SMALL_AVATAR_SIZE } from '../Avatar/styles.css';
+
+export const MESSAGE_PADDING = 12;
+
 export const hide = style({
   visibility: 'hidden',
 });
@@ -24,22 +28,16 @@ export const responseAvatar = style({
 });
 
 export const messageContainer = style({
-  marginLeft: 12,
+  width: `calc(100% - ${MESSAGE_PADDING + SMALL_AVATAR_SIZE}px)`,
+  marginLeft: MESSAGE_PADDING,
 });
 
 export const actionsContainer = style({
   display: 'flex',
   flexWrap: 'wrap',
-  marginBottom: 8,
+  gap: 8,
+  margin: '16px 0 8px 0',
   paddingLeft: 44,
-});
-
-export const actionButton = style({
-  height: 'unset',
-  padding: '7px 0',
-  margin: '8px 8px 0 0',
-  whiteSpace: 'normal',
-  textAlign: 'start',
 });
 
 export const indicatorContainer = style({

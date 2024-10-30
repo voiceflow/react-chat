@@ -1,6 +1,6 @@
 {
   "name": "documentation",
-  "version": "0.20.0",
+  "version": "0.20.2",
   "private": true,
   "scripts": {
     "build": "yarn g:turbo run build:cmd --filter=documentation...",

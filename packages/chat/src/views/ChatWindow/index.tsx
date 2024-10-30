@@ -31,8 +31,6 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
     runtime.close();
   }, []);
 
-  const [newMessage, setNewMessage] = React.useState('');
-
   const getPreviousUserTurn = useCallback(
     (turnIndex: number): UserTurnProps | null => {
       const turn = state.session.turns[turnIndex - 1];
@@ -40,10 +38,6 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
     },
     [state.session.turns]
   );
-
-  const handleUserReply = (): void => {
-    runtime.reply(newMessage);
-  };
 
   return (
     <div style={assignInlineVars(PALETTE, { colors: createPalette(assistant.color) })} className={className}>
@@ -62,9 +56,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
         onMinimize={runtime.close}
         audioInterface={assistant.audioInterface}
         messageInputProps={{
-          message: newMessage,
-          onValueChange: setNewMessage,
-          onSubmit: handleUserReply,
+          onSubmit: runtime.reply,
         }}
       >
         {state.session.turns.map((turn, turnIndex) =>

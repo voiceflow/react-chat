@@ -24,6 +24,7 @@ export const sendButtonStyle = recipe({
         backgroundColor: COLORS.NEUTRAL_LIGHT[50],
         ':hover': {
           cursor: 'not-allowed',
+          backgroundColor: COLORS.NEUTRAL_LIGHT[50],
         },
       },
       false: {

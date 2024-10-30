@@ -16,6 +16,7 @@ export const messageContainer = style({
   lineHeight: '20px',
   borderRadius: '10px',
   width: 'fit-content',
+  whiteSpace: 'pre-wrap',
 });
 
 export const messageDebugStyles = style({});
