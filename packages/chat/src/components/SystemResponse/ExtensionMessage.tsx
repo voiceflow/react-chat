@@ -1,9 +1,11 @@
 import type { Trace } from '@voiceflow/base-types';
+import clsx from 'clsx';
 import { useEffect, useRef } from 'react';
 
+import { ClassName } from '@/constants';
 import type { ResponseExtension } from '@/dtos/Extension.dto';
 
-import Message from '../Message';
+import { extensionMessageContainer } from './styles.css';
 
 export interface ExtensionMessageProps {
   extension: ResponseExtension;
@@ -32,8 +34,8 @@ export const ExtensionMessage: React.FC<ExtensionMessageProps> = ({ extension, t
   }, []);
 
   return (
-    <Message from="system" className={`vfrc-message--extension-${extension.name}`}>
+    <div className={clsx(ClassName.MESSAGE, `vfrc-message--extension-${extension.name}`, extensionMessageContainer)}>
       <span ref={ref} />
-    </Message>
+    </div>
   );
 };

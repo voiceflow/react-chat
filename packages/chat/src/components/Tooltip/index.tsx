@@ -1,7 +1,5 @@
-import Message from '@/components/Message';
-
-import type { DebugMessageProps } from '../Message/DebugMessage';
-import { Button, Container } from './styled';
+import { DebugMessage, type DebugMessageProps } from '../DebugMessage';
+import { buttonStyle, containerStyle } from './styled.css';
 
 export interface ActionMessageProps extends DebugMessageProps {
   /**
@@ -15,19 +13,18 @@ export interface ActionMessageProps extends DebugMessageProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
-const ActionMessage: React.FC<ActionMessageProps> = ({ label, onClick, children, ...props }) => (
-  <Container withAction={!!label}>
-    <Message.Debug {...props}>{children}</Message.Debug>
-    {label && <Button onClick={onClick}>{label}</Button>}
-  </Container>
-);
-
 /**
- * Renders a {@link Message.Debug} with an optional action.
+ * Renders a tooltip, optionally with an action button attached to it.
  *
  * @see {@link https://voiceflow.github.io/react-chat/?path=/story/components-tooltip--left-orientation}
  */
-export default Object.assign(ActionMessage, {
-  Button,
-  Container,
-});
+export const Tooltip: React.FC<ActionMessageProps> = ({ label, onClick, children, ...props }) => (
+  <div className={containerStyle({ withActionVariant: !!label })}>
+    <DebugMessage {...props}>{children}</DebugMessage>
+    {label && (
+      <button className={buttonStyle} onClick={onClick}>
+        {label}
+      </button>
+    )}
+  </div>
+);

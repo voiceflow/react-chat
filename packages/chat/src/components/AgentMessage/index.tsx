@@ -25,6 +25,7 @@ interface IAgentMessage {
   children?: React.ReactNode;
   aiGenerated?: boolean;
   generatedMessage?: string;
+  debug?: boolean;
 }
 
 export const AgentMessage: React.FC<IAgentMessage> = ({ text, children, aiGenerated, generatedMessage }) => {
@@ -33,7 +34,7 @@ export const AgentMessage: React.FC<IAgentMessage> = ({ text, children, aiGenera
   const isCodeBlock = content?.startsWith('```javascript');
 
   return (
-    <div className={messageContainer}>
+    <div className={clsx(messageContainer)}>
       <Markdown
         children={content}
         className={clsx('markdown', clsx(contentStyle({ isCodeBlock })))}
