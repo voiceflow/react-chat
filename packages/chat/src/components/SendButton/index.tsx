@@ -14,8 +14,8 @@ interface SendButtonProps extends ComponentPropsWithRef<'button'> {
 
 export const SendButton: React.FC<SendButtonProps> = forwardRef<HTMLButtonElement, SendButtonProps>(
   ({ disabled, testID, ...props }, ref) => (
-    <Button ref={ref} className={sendButtonStyle({ disabled: !!disabled })} data-testid={testID} {...props}>
-      <SendIcon className={clsx(ClassName.BUTTON, sendIconStyle({ disabled: !!disabled }))} />
+    <Button ref={ref} className={sendButtonStyle({ disabled })} data-testid={testID} {...props}>
+      <SendIcon className={clsx(ClassName.BUTTON, sendIconStyle({ disabled }))} />
     </Button>
   )
 );

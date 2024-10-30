@@ -2,6 +2,8 @@ import { globalStyle, style } from '@vanilla-extract/css';
 
 import { COLORS } from '@/styles/colors';
 
+export const DIALOG_PADDING = 20;
+
 export const chatContainer = style({
   height: '700px',
   display: 'flex',
@@ -21,8 +23,8 @@ globalStyle(`${chatContainer} *`, {
 
 export const dialogContainer = style({
   position: 'relative',
-  padding: '0 20px 20px 20px',
-  marginBottom: '-20px',
+  padding: `0 ${DIALOG_PADDING}px ${DIALOG_PADDING}px ${DIALOG_PADDING}px`,
+  marginBottom: `-${DIALOG_PADDING}px`,
   overflow: 'hidden',
   scrollbarWidth: 'none',
   flexGrow: 1,

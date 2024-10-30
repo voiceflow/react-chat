@@ -1,7 +1,7 @@
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
-const CHAT_WIDTH = 380;
+export const CHAT_WIDTH = 380;
 const MAX_CHAT_HEIGHT = 800;
 
 export const LAUNCHER_MARGIN = 16;
@@ -33,9 +33,6 @@ export const widgetContainer = recipe({
 
 export const chatContainer = style({
   width: CHAT_WIDTH,
-  overflow: 'hidden',
-  borderRadius: '$2',
-  boxShadow: '0 2px 48px rgba(19,33,68,0.16), 0 0 0 1px $shadow4',
   maxHeight: MAX_CHAT_HEIGHT,
 
   selectors: {

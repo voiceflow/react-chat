@@ -3,6 +3,8 @@ import { recipe } from '@vanilla-extract/recipes';
 import { COLORS } from '@/styles/colors';
 import { SIZES } from '@/styles/sizes';
 
+export const SMALL_AVATAR_SIZE = parseInt(SIZES.sm, 10);
+
 export const avatarStyles = recipe({
   base: {
     flexShrink: 0,
@@ -16,8 +18,8 @@ export const avatarStyles = recipe({
   variants: {
     size: {
       small: {
-        height: SIZES.sm,
-        width: SIZES.sm,
+        height: `${SMALL_AVATAR_SIZE}px`,
+        width: `${SMALL_AVATAR_SIZE}px`,
       },
 
       large: {
