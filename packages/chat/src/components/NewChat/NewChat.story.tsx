@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import EMPTY_IMAGE from '@/__fixtures__/empty-image.png';
-import { DEFAULT_AVATAR, SystemResponse } from '@/main';
+import { SystemResponse } from '@/components';
 import { WithDefaultPalette } from '@/storybook/decorators';
 import { createPalette } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
@@ -25,7 +25,7 @@ export default meta;
 
 const AgentSays = (messages: string[]) => (
   <SystemResponse
-    avatar={DEFAULT_AVATAR}
+    avatar={EMPTY_IMAGE}
     timestamp={Date.now()}
     messages={messages.map((m) => ({ type: 'text', text: m }))}
   />
