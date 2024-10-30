@@ -4,7 +4,7 @@ import CODE_RESPONSE_FIXTURE from '@/__fixtures__/markdown/code-response.md?raw'
 import { MOCK_IMAGE, VF_ICON } from '@/fixtures';
 
 import type { MessageProps } from '.';
-import SystemResponse from '.';
+import { SystemResponse } from '.';
 
 type Story = StoryObj<typeof SystemResponse>;
 

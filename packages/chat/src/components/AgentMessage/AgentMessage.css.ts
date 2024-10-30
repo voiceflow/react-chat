@@ -19,8 +19,6 @@ export const messageContainer = style({
   whiteSpace: 'pre-wrap',
 });
 
-export const messageDebugStyles = style({});
-
 export const contentStyle = recipe({
   variants: {
     isCodeBlock: {
@@ -49,7 +47,6 @@ export const generatedChin = style({
   left: 0,
   right: 0,
   bottom: 0,
-  // width: 'fit-content',
   color: COLORS.NEUTRAL_DARK[200],
   fontFamily: FAMILY,
   fontSize: '12px',

@@ -16,7 +16,6 @@ import {
   embeddedContent,
   generatedChin,
   messageContainer,
-  messageDebugStyles,
 } from './AgentMessage.css';
 import codeTheme from './code-theme';
 import { CopyButton } from './CopyButton';
@@ -29,13 +28,13 @@ interface IAgentMessage {
   debug?: boolean;
 }
 
-export const AgentMessage: React.FC<IAgentMessage> = ({ text, children, aiGenerated, generatedMessage, debug }) => {
+export const AgentMessage: React.FC<IAgentMessage> = ({ text, children, aiGenerated, generatedMessage }) => {
   const content = typeof text === 'string' ? text : serializeToMarkdown(text);
 
   const isCodeBlock = content?.startsWith('```javascript');
 
   return (
-    <div className={clsx(messageContainer, debug && messageDebugStyles)}>
+    <div className={clsx(messageContainer)}>
       <Markdown
         children={content}
         className={clsx('markdown', clsx(contentStyle({ isCodeBlock })))}

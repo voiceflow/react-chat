@@ -2,7 +2,7 @@ import clsx from 'clsx';
 
 import { topCaret as TopCaret } from '@/assets/svg';
 
-import { debugContainerStyles } from './styled.css';
+import { caretStyles, debugContainerStyles } from './styled.css';
 
 export interface DebugMessageProps extends React.PropsWithChildren {
   /**
@@ -13,15 +13,11 @@ export interface DebugMessageProps extends React.PropsWithChildren {
   orientation?: 'left' | 'right';
 }
 
-const DebugMessage: React.FC<DebugMessageProps> = ({ children, orientation = 'left' }) => {
+export const DebugMessage: React.FC<DebugMessageProps> = ({ children, orientation = 'left' }) => {
   return (
-    <div className={clsx(debugContainerStyles())}>
-      <TopCaret />
+    <div className={clsx(debugContainerStyles)}>
+      <TopCaret className={caretStyles({ orientation })} />
       {children}
     </div>
   );
 };
-
-export default Object.assign(DebugMessage, {
-  debugContainerStyles,
-});

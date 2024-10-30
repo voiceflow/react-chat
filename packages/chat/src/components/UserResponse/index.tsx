@@ -1,9 +1,9 @@
 import clsx from 'clsx';
 
-import Tooltip from '@/components/Tooltip';
 import { ClassName } from '@/constants';
 import { useAutoScroll } from '@/hooks';
 
+import { Tooltip } from '../Tooltip';
 import { debugMessage, messageContainer, messageRow, messageStyle } from './styles.css';
 
 export interface DebugActionProps {

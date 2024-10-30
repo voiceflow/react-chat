@@ -1,19 +1,16 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import '../../styles.css';
 
 import { assignInlineVars } from '@vanilla-extract/dynamic';
-import clsx from 'clsx';
 import React, { useCallback, useContext } from 'react';
 import * as R from 'remeda';
 import { match } from 'ts-pattern';
 
-import { Header, NewChat, NewFooter, SystemResponse, UserMessage, WelcomeMessage } from '@/components';
+import { NewChat, SystemResponse } from '@/components';
 import { UserResponse } from '@/components/UserResponse';
 import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts/RuntimeContext';
-import type { FeedbackName } from '@/contexts/RuntimeContext/useRuntimeAPI';
 import { createPalette } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
-import type { UserTurnProps } from '@/types';
+// import type { UserTurnProps } from '@/types';
 import { SessionStatus, TurnType } from '@/types';
 
 export interface ChatWindowProps {
@@ -31,13 +28,14 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
     runtime.close();
   }, []);
 
-  const getPreviousUserTurn = useCallback(
-    (turnIndex: number): UserTurnProps | null => {
-      const turn = state.session.turns[turnIndex - 1];
-      return turn?.type === TurnType.USER ? turn : null;
-    },
-    [state.session.turns]
-  );
+  // TODO: We'll need this for feedback probably
+  // const getPreviousUserTurn = useCallback(
+  //   (turnIndex: number): UserTurnProps | null => {
+  //     const turn = state.session.turns[turnIndex - 1];
+  //     return turn?.type === TurnType.USER ? turn : null;
+  //   },
+  //   [state.session.turns]
+  // );
 
   return (
     <div style={assignInlineVars(PALETTE, { colors: createPalette(assistant.color) })} className={className}>

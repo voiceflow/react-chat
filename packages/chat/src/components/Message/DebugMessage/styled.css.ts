@@ -1,3 +1,4 @@
+import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { COLORS } from '@/styles/colors';
@@ -5,34 +6,29 @@ import { COLORS } from '@/styles/colors';
 const CARET_HEIGHT = 6;
 const OFFSET = 32;
 
-export const debugContainerStyles = recipe({
+export const debugContainerStyles = style({
+  position: 'relative',
+  marginTop: CARET_HEIGHT,
+  border: '1px solid #dfdfdf',
+  padding: '10px 14px',
+  backgroundColor: COLORS.white,
+  boxShadow: '0 1px 2px rgba(0,0,0,0.02)',
+});
+
+export const caretStyles = recipe({
   base: {
-    position: 'relative',
-    marginTop: `${CARET_HEIGHT}px`,
-    border: '1px solid #dfdfdf',
-    padding: '10px 14px',
-    backgroundColor: 'red',
-    boxShadow: '0 1px 2px rgba(0,0,0,0.02)',
+    position: 'absolute',
+    top: -CARET_HEIGHT,
   },
   variants: {
     orientation: {
       left: {
-        selectors: {
-          '& svg': {
-            position: 'absolute',
-            top: `-${CARET_HEIGHT}px`,
-            left: `${OFFSET}px`,
-          },
-        },
+        left: OFFSET,
+        right: 'unset',
       },
       right: {
-        selectors: {
-          '& svg': {
-            position: 'absolute',
-            top: `-${CARET_HEIGHT}px`,
-            right: `${OFFSET}px`,
-          },
-        },
+        right: OFFSET,
+        left: 'unset',
       },
     },
   },

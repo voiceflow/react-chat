@@ -8,10 +8,8 @@ import { Button } from '../Button';
 import { ButtonVariant } from '../Button/constants';
 import { FeedbackButton } from '../FeedbackButton';
 import type { IFeedbackButton } from '../FeedbackButton/FeedbackButton.interface';
-import { MessageType } from './constants';
 import { useAnimatedMessages } from './hooks';
 import Indicator from './Indicator';
-import { Container, List } from './styled';
 import { actionsContainer } from './styles.css';
 import type { SystemMessageProps } from './SystemMessage';
 import { SystemMessage } from './SystemMessage';
@@ -63,7 +61,12 @@ export interface SystemResponseProps {
   Message?: React.ComponentType<SystemMessageProps>;
 }
 
-const SystemResponse: React.FC<SystemResponseProps> = ({
+/**
+ * A dynamic component capable of displaying all standard system responses.
+ *
+ * @see {@link https://voiceflow.github.io/react-chat/?path=/story/components-chat-systemresponse--simple-text}
+ */
+export const SystemResponse: React.FC<SystemResponseProps> = ({
   feedback,
   avatar,
   timestamp,
@@ -111,19 +114,3 @@ const SystemResponse: React.FC<SystemResponseProps> = ({
     </>
   );
 };
-
-/**
- * A dynamic component capable of displaying all standard system responses.
- *
- * @see {@link https://voiceflow.github.io/react-chat/?path=/story/components-chat-systemresponse--simple-text}
- */
-export default Object.assign(SystemResponse, {
-  Message: MessageType,
-
-  Container,
-  // Controls,
-  List,
-  // Actions,
-  Indicator,
-  SystemMessage,
-});
