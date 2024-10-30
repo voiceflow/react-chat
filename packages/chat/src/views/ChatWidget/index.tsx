@@ -6,6 +6,7 @@ import React, { useContext, useMemo, useState } from 'react';
 import { Launcher } from '@/components/Launcher';
 import { LAUNCHER_SIZE } from '@/components/Launcher/styles.css';
 import { Proactive } from '@/components/Proactive';
+import { ClassName } from '@/constants';
 import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts';
 import { useChatAPI } from '@/hooks';
 import { usePalette } from '@/hooks/usePalette';
@@ -14,7 +15,6 @@ import { useResolveAssistantStyleSheet } from '@/utils/stylesheet';
 import { ChatWindow } from '@/views/ChatWindow';
 
 import { chatContainer, LAUNCHER_MARGIN, launcherContainer, widgetContainer } from './styles.css';
-import { ClassName } from '@/constants';
 
 interface ChatWidgetProps extends React.PropsWithChildren {
   shadowRoot?: ShadowRoot;
