@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.31.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.31.0...@voiceflow/chat@0.31.1) (2024-10-30)
+
+### Bug Fixes
+
+* minor inline-buttons adjustment (COR-0000) ([#258](https://github.com/voiceflow/react-chat/issues/258)) ([ac3e92d](https://github.com/voiceflow/react-chat/commit/ac3e92d492743f91d582ac5bee95415f68608dfc))
+
 # [0.31.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.30.0...@voiceflow/chat@0.31.0) (2024-10-29)
 
 ### Features
