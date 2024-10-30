@@ -1,5 +1,6 @@
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 import type { Trace } from '@voiceflow/base-types';
+import clsx from 'clsx';
 import React, { useContext, useMemo, useState } from 'react';
 
 import { Launcher } from '@/components/Launcher';
@@ -13,6 +14,7 @@ import { useResolveAssistantStyleSheet } from '@/utils/stylesheet';
 import { ChatWindow } from '@/views/ChatWindow';
 
 import { chatContainer, LAUNCHER_MARGIN, launcherContainer, widgetContainer } from './styles.css';
+import { ClassName } from '@/constants';
 
 interface ChatWidgetProps extends React.PropsWithChildren {
   shadowRoot?: ShadowRoot;
@@ -66,7 +68,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
   return (
     <div
       style={assignInlineVars(PALETTE, { colors: palette })}
-      className={widgetContainer({ hidden: isHidden, withChat: isOpen })}
+      className={clsx(ClassName.WIDGET, widgetContainer({ hidden: isHidden, withChat: isOpen }))}
     >
       <div className={launcherContainer} style={position}>
         <Proactive side={side} messages={proactiveMessages} />

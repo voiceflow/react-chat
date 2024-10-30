@@ -12,7 +12,7 @@ interface ChatEmbedProps extends React.PropsWithChildren {
   ready?: () => void;
 }
 
-const ChatEmbed: React.FC<ChatEmbedProps> = ({ shadowRoot, chatAPI, ready }) => {
+export const ChatEmbed: React.FC<ChatEmbedProps> = ({ shadowRoot, chatAPI, ready }) => {
   const { assistant, interact, open } = useContext(RuntimeStateAPIContext);
   const theme = useTheme(assistant);
 
@@ -37,5 +37,3 @@ const ChatEmbed: React.FC<ChatEmbedProps> = ({ shadowRoot, chatAPI, ready }) => 
   // TODO: We probably don't need the theme here anymore
   return <ChatWindow className={theme} />;
 };
-
-export default ChatEmbed;
