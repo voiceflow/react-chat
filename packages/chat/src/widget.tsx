@@ -5,11 +5,12 @@ import { RuntimeProvider } from './contexts';
 import type { LoadConfig } from './dtos/ChatConfig.dto';
 import { ChatConfig } from './dtos/ChatConfig.dto';
 import { RenderMode } from './dtos/RenderOptions.dto';
-import { shadowRoot } from './old-styles/shadow';
+import { shadowRoot } from './styles/shadow';
 import { mergeAssistantOptions } from './utils/assistant';
 import { createPlaceholderMethods } from './utils/chat';
 import { addStyleSheetURL } from './utils/stylesheet';
-import { ChatEmbed, ChatWidget } from './views';
+import { ChatEmbed } from './views/ChatEmbed';
+import { ChatWidget } from './views/ChatWidget';
 
 let reactRoot: Root;
 

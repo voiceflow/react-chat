@@ -8,7 +8,7 @@ import { match } from 'ts-pattern';
 import { NewChat, SystemResponse } from '@/components';
 import { UserResponse } from '@/components/UserResponse';
 import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts/RuntimeContext';
-import { createPalette } from '@/styles/colors';
+import { usePalette } from '@/hooks/usePalette';
 import { PALETTE } from '@/styles/colors.css';
 // import type { UserTurnProps } from '@/types';
 import { SessionStatus, TurnType } from '@/types';
@@ -21,6 +21,9 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
   const runtime = useContext(RuntimeStateAPIContext);
   const state = useContext(RuntimeStateContext);
   const { assistant, config } = runtime;
+  const palette = usePalette(assistant);
+
+  if (!palette) return null;
 
   // emitters
   const closeAndEnd = useCallback((): void => {
@@ -38,7 +41,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
   // );
 
   return (
-    <div style={assignInlineVars(PALETTE, { colors: createPalette(assistant.color) })} className={className}>
+    <div style={assignInlineVars(PALETTE, { colors: palette })} className={className}>
       <NewChat
         title={assistant.title}
         description={assistant.description}

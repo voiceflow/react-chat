@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { PRIMARY } from '@/old-styles/color';
+import { DEFAULT_PRIMARY } from '@/styles/colors';
 import { ChatPersistence, ChatPosition } from '@/types';
 
 import { AnyExtension } from './Extension.dto';
@@ -13,7 +13,7 @@ export type RawAssistantOptions = z.input<typeof AssistantOptions>;
 export const AssistantOptions = z
   .object({
     title: z.string().default('Voiceflow Assistant'),
-    color: z.string().default(PRIMARY),
+    color: z.string().default(DEFAULT_PRIMARY),
     image: z.string().default(DEFAULT_AVATAR),
     avatar: z.string().default(DEFAULT_AVATAR),
     launcher: z.string().optional(),
