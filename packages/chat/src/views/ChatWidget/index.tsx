@@ -1,14 +1,14 @@
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 import type { Trace } from '@voiceflow/base-types';
 import clsx from 'clsx';
-import React, { useContext, useMemo, useState } from 'react';
+import { useContext, useMemo, useState } from 'react';
 
 import { Launcher } from '@/components/Launcher';
 import { LAUNCHER_SIZE } from '@/components/Launcher/styles.css';
 import { Proactive } from '@/components/Proactive';
 import { ClassName } from '@/constants';
 import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts';
-import { useChatAPI } from '@/hooks';
+import { useChatAPI } from '@/hooks/useChatAPI';
 import { usePalette } from '@/hooks/usePalette';
 import { PALETTE } from '@/styles/colors.css';
 import { useResolveAssistantStyleSheet } from '@/utils/stylesheet';

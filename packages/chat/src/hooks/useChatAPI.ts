@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
-import { isObject } from 'remeda';
 import type { PartialDeep } from 'type-fest';
 
 import { createPlaceholderMethods } from '@/utils/chat';
+import { isObject } from '@/utils/isObject';
 
 export const useChatAPI = (
   target: Record<string, any> | undefined,

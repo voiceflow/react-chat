@@ -2,7 +2,7 @@ import type { RuntimeAction } from '@voiceflow/sdk-runtime';
 import { useContext } from 'react';
 
 import { RuntimeStateAPIContext } from '@/contexts';
-import { useAutoScroll } from '@/hooks';
+import { useAutoScroll } from '@/hooks/useAutoScroll';
 
 import { Button } from '../Button';
 import { ButtonVariant } from '../Button/constants';

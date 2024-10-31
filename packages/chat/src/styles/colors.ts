@@ -1,8 +1,8 @@
 import chroma from 'chroma-js';
 
-const defaultPrimary = '#387dff';
+export const DEFAULT_PRIMARY = '#387dff';
 
-export const createPalette = (baseColor: string = defaultPrimary) => {
+export const createPalette = (baseColor: string = DEFAULT_PRIMARY) => {
   const [h, s] = chroma(baseColor).hsl();
 
   const shades = [];

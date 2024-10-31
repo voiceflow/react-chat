@@ -7,7 +7,7 @@ import type { RawAssistantOptions } from '@/dtos/AssistantOptions.dto';
 import { DEFAULT_AVATAR } from '@/dtos/AssistantOptions.dto';
 import type { ChatConfig } from '@/dtos/ChatConfig.dto';
 import { ExtensionType } from '@/dtos/Extension.dto';
-import { PRIMARY } from '@/old-styles';
+import { DEFAULT_PRIMARY } from '@/styles/colors';
 import { ChatPersistence, ChatPosition } from '@/types';
 
 import { mergeAssistantOptions } from './assistant';
@@ -55,7 +55,7 @@ describe('assistant utils', () => {
 
       expect(merged).toEqual({
         title: 'Voiceflow Assistant',
-        color: PRIMARY,
+        color: DEFAULT_PRIMARY,
         image: DEFAULT_AVATAR,
         avatar: DEFAULT_AVATAR,
         watermark: true,
@@ -132,7 +132,7 @@ describe('assistant utils', () => {
 
       expect(merged).toEqual({
         title: 'Voiceflow Assistant',
-        color: PRIMARY,
+        color: DEFAULT_PRIMARY,
         image: DEFAULT_AVATAR,
         avatar: DEFAULT_AVATAR,
         watermark: true,

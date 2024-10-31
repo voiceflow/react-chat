@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 
 import { ClassName } from '@/constants';
-import { useAutoScroll } from '@/hooks';
+import { useAutoScroll } from '@/hooks/useAutoScroll';
 
 import { Tooltip } from '../Tooltip';
 import { debugMessage, messageContainer, messageRow, messageStyle } from './styles.css';
