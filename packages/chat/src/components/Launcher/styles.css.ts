@@ -13,6 +13,7 @@ export const launcherStyles = recipe({
   base: [
     buttonStyles({ round: true }),
     {
+      display: 'flex',
       width: LAUNCHER_SIZE,
       height: LAUNCHER_SIZE,
       padding: 12,

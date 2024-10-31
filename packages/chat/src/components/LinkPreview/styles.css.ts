@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { COLORS } from '@/styles/colors';
-import { FAMILY, lineClamp } from '@/styles/font';
+import { FAMILY, hideTextOverflow, lineClamp } from '@/styles/font';
 import { SIZES } from '@/styles/sizes';
 import { transition } from '@/styles/transitions';
 
@@ -123,10 +123,8 @@ export const linkPreviewTitle = recipe({
     inline: {
       true: {
         display: 'block',
-        overflow: 'hidden',
         maxHeight: '17px',
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
+        ...hideTextOverflow(),
       },
     },
   },

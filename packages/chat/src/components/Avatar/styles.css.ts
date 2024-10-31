@@ -18,8 +18,8 @@ export const avatarStyles = recipe({
   variants: {
     size: {
       small: {
-        height: `${SMALL_AVATAR_SIZE}px`,
-        width: `${SMALL_AVATAR_SIZE}px`,
+        height: SMALL_AVATAR_SIZE,
+        width: SMALL_AVATAR_SIZE,
       },
 
       large: {

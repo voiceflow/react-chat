@@ -1,12 +1,12 @@
 import { style } from '@vanilla-extract/css';
 
 import { COLORS } from '@/styles/colors';
+import { SIZES } from '@/styles/sizes';
 
 export const copyButton = style({
-  position: 'absolute',
-  width: '36px',
-  height: '36px',
-  borderRadius: '8px',
+  width: 36,
+  height: 36,
+  borderRadius: SIZES.radius.xs,
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',

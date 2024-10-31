@@ -3,7 +3,7 @@ import { recipe } from '@vanilla-extract/recipes';
 
 import { COLORS } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
-import { FAMILY } from '@/styles/font';
+import { FAMILY, hideTextOverflow } from '@/styles/font';
 import { SIZES } from '@/styles/sizes';
 import { transition } from '@/styles/transitions';
 
@@ -33,9 +33,7 @@ export const headerTitle = style({
   lineHeight: '23px',
   margin: '0 12px',
   minWidth: 0,
-  whiteSpace: 'nowrap',
-  textOverflow: 'ellipsis',
-  overflow: 'hidden',
+  ...hideTextOverflow(),
 });
 
 export const headerActions = style({

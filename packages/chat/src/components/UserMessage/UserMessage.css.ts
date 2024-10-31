@@ -3,6 +3,7 @@ import { createVar, style } from '@vanilla-extract/css';
 import { COLORS } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
 import { FAMILY } from '@/styles/font';
+import { SIZES } from '@/styles/sizes';
 
 export const background = createVar();
 
@@ -18,5 +19,5 @@ export const messageContainer = style({
   lineHeight: '20px',
   justifySelf: 'flex-end',
   width: 'fit-content',
-  borderRadius: '10px',
+  borderRadius: SIZES.radius.sm,
 });

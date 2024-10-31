@@ -12,6 +12,8 @@ export const GUTTER_WIDTH = 10;
 
 /**
  * The white space between the carousel and the edge of the Chat widget.
+ * This is required because the last card takes up less space than the width
+ * of the chat widget.
  */
 const LEFT_SPACE = DIALOG_PADDING + SMALL_AVATAR_SIZE + MESSAGE_PADDING;
 

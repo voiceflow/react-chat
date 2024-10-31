@@ -11,6 +11,7 @@ const fadeIn = keyframes({
 
 export const scrollToButton = style({
   position: 'absolute',
+  // TODO: Make sure this still looks good with and without a footer
   bottom: '97px ',
   left: '50%',
   transform: 'translateX(-50%)',

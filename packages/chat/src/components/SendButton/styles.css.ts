@@ -10,6 +10,7 @@ export const sendButtonStyle = recipe({
   base: [
     buttonStyles({ round: true }),
     {
+      display: 'flex',
       height: 32,
       width: 32,
       padding: 0,

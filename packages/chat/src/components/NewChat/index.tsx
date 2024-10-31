@@ -13,7 +13,7 @@ import { type INewFooter, NewFooter } from '../NewFooter';
 import { Prompt } from '../Prompt';
 import { ScrollToBottom } from '../ScrollToBottom';
 import { type IWelcomeMessage, WelcomeMessage } from '../WelcomeMessage';
-import { chatContainer, dialogContainer } from './NewChat.css';
+import { bottomSpacer, chatContainer, dialogContainer } from './NewChat.css';
 
 export interface INewChat extends HeaderProps, IWelcomeMessage, INewFooter, React.PropsWithChildren<unknown> {
   /**
@@ -100,6 +100,7 @@ export const NewChat: React.FC<INewChat> = ({
         <AutoScrollProvider target={scrollableAreaRef}>
           <WelcomeMessage title={title} description={description} avatar={avatar} />
           {children}
+          <div className={bottomSpacer} />
         </AutoScrollProvider>
       </div>
       <ScrollToBottom scrollableAreaRef={scrollableAreaRef} />
