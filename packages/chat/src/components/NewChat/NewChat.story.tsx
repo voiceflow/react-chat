@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
+import { useState } from 'react';
 
 import EMPTY_IMAGE from '@/__fixtures__/empty-image.png';
 import { SystemResponse } from '@/components';
@@ -72,8 +73,43 @@ const AgentSays = (messages: string[]) => (
 );
 const UserSays = (text: string) => <UserResponse message={text} timestamp={Date.now()} />;
 
-export const Base = {
-  render: () => (
+export const MockBaseComponent = () => {
+  const [messages, setMessages] = useState([
+    { type: 'Agent', text: '👋🏻 Good morning!' },
+    { type: 'User', text: 'Cool, great weather ☀️' },
+    { type: 'User', text: 'How bout you?' },
+    { type: 'Agent', text: 'Howdy, great to meet you!' },
+    { type: 'Agent', text: 'What up' },
+    { type: 'User', text: 'How bout you?' },
+    { type: 'Agent', text: 'Howdy, great to meet you!' },
+    { type: 'Agent', text: 'What up' },
+    { type: 'User', text: 'How bout you?' },
+    { type: 'Agent', text: 'Howdy, great to meet you!' },
+    { type: 'Agent', text: 'What up' },
+  ]);
+
+  const agentResponses = [
+    'How are you today?',
+    'Nice to hear from you!',
+    'I’m here to help!',
+    'What can I do for you?',
+    'Good to see you!',
+  ];
+
+  const handleSubmit = async (userText: string): Promise<void> => {
+    if (!userText) return;
+
+    // Add the new User message
+    const newMessages = [...messages];
+
+    // Add a random Agent response
+    const randomResponse = agentResponses[Math.floor(Math.random() * agentResponses.length)];
+    newMessages.push({ type: 'Agent', text: randomResponse });
+
+    setMessages(newMessages);
+  };
+
+  return (
     <NewChat
       title="Your AI assistant"
       image=""
@@ -85,21 +121,17 @@ export const Base = {
       isLoading={false}
       hasEnded={false}
       messageInputProps={{
-        onSubmit: () => Promise.resolve(),
+        onSubmit: async (text) => handleSubmit(text),
         placeholder: 'Message...',
       }}
     >
-      {AgentSays(['👋🏻 Good morning!', 'How are you today?', 'How can I help you ?'])}
-      {UserSays('How bout you?')}
-      {AgentSays(['Thanks for asking', 'here are some cool emojis:', '😝 ✌️ ☎️  🤦🏼‍♀️  🤯'])}
-      {UserSays('Cool, I *LOVE* emojis!')}
-      {AgentSays(["I know.\nThat's why I sent you some."])}
-      {UserSays('🤯')}
-      {AgentSays(['Anything else I can do to help you today?'])}
-      {UserSays('Dont think so. Everything else is amazing!')}
-      {AgentSays(['ok, so bye for now'])}
+      {messages.map((msg) => (msg.type === 'Agent' ? AgentSays([msg.text]) : UserSays(msg.text)))}
     </NewChat>
-  ),
+  );
+};
+
+export const Base = {
+  render: () => <MockBaseComponent />,
 };
 
 export const Themed: Story = {
