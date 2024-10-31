@@ -17,7 +17,6 @@ export const launcherStyles = recipe({
       width: LAUNCHER_SIZE,
       height: LAUNCHER_SIZE,
       padding: 12,
-      display: 'flex',
       backgroundColor: PALETTE.colors[500],
       transition: transition(['color', 'background-color', 'transform']),
       boxShadow:

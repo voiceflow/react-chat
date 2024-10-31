@@ -55,11 +55,6 @@ export const actionsContainer = style({
   paddingLeft: 44,
 });
 
-export const indicatorContainer = style({
-  display: 'flex',
-  alignItems: 'center',
-});
-
 export const extensionMessageContainer = style({
   display: 'inline-block',
   boxSizing: 'border-box',
