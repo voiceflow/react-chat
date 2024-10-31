@@ -41,6 +41,10 @@ export const MessageInput: React.FC<IMessageInput> = ({ onSubmit, disableSend, p
       event.preventDefault();
       sendMessage();
     }
+    if (event.key === 'Enter' && event.shiftKey) {
+      event.preventDefault();
+      setMessage((prevMessage) => `${prevMessage}\n`);
+    }
   };
 
   return (
