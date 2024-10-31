@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.33.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.32.0...@voiceflow/chat@0.33.0) (2024-10-31)
+
+### Features
+
+* goodbye stitches, we'll always have react-chat (COR-0000) ([#264](https://github.com/voiceflow/react-chat/issues/264)) ([f866cb3](https://github.com/voiceflow/react-chat/commit/f866cb3a2da470d8a025458237664a5e9b528bf8))
+
 # [0.32.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.31.1...@voiceflow/chat@0.32.0) (2024-10-30)
 
 ### Features
