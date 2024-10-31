@@ -1,4 +1,4 @@
-import { style } from '@vanilla-extract/css';
+import { keyframes, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { PALETTE } from '@/styles/colors.css';
@@ -17,6 +17,7 @@ export const launcherStyles = recipe({
       width: LAUNCHER_SIZE,
       height: LAUNCHER_SIZE,
       padding: 12,
+      display: 'flex',
       backgroundColor: PALETTE.colors[500],
       transition: transition(['color', 'background-color', 'transform']),
       boxShadow:
@@ -64,6 +65,51 @@ export const launcherIconStyles = recipe({
       true: {
         width: 24,
         height: 24,
+      },
+    },
+  },
+});
+const fadeOutAnimation = keyframes({
+  '0%': {
+    opacity: 1,
+  },
+  '100%': {
+    opacity: 0,
+    transform: 'rotate(180deg)',
+  },
+});
+
+export const twistInAnimation = keyframes({
+  '0%': {
+    opacity: 0,
+  },
+  '25%': {
+    transform: 'rotate(-45deg)',
+    opacity: 1,
+  },
+  '100%': {
+    transform: 'rotate(0deg)',
+    opacity: 1,
+  },
+});
+
+export const closeChevron = style({
+  transform: 'rotate(0deg)',
+  animation: `${twistInAnimation} 0.05s ease-in-out`,
+});
+
+export const imageStyles = recipe({
+  base: {},
+  variants: {
+    isOpen: {
+      true: {
+        animation: `${fadeOutAnimation} 0.3s ease-in-out`,
+        opacity: 0,
+        width: 0,
+      },
+      false: {
+        transform: 'rotate(0deg)',
+        opacity: 1,
       },
     },
   },
