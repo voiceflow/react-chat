@@ -40,12 +40,8 @@ export const ScrollToBottom: React.FC<ScrollToBottomProps> = ({ scrollableAreaRe
     setAtBottom(true);
   };
 
-  if (atBottom) {
-    return null;
-  }
-
   return (
-    <div className={scrollToButton}>
+    <div className={scrollToButton({ hidden: !!atBottom })}>
       <ScrollButton onClick={scrollToBottom} />
     </div>
   );
