@@ -19,7 +19,7 @@ export const ChatScript = ({ projectID }: { projectID: string }) => {
                     }
                    });
                 };
-                v.src = '../../dist/bundle.mjs';
+                v.src = '../../bundle/bundle.mjs';
                 v.type = 'text/javascript';
                 s.parentNode.insertBefore(v, s);
               })(document, 'script');
