@@ -4,7 +4,14 @@ import TextareaAutosize from 'react-textarea-autosize';
 import { SquareButton } from '../Buttons/SquareButton';
 import { StopButton } from '../Buttons/StopButton';
 import { SendButton } from '../SendButton';
-import { buttonContainer, input, inputBlock, inputContainer, mockFocusRing } from './MessageInput.css';
+import {
+  buttonContainer,
+  input,
+  inputBlock,
+  inputContainer,
+  mockFocusRing,
+  recordButtonModifier,
+} from './MessageInput.css';
 
 export interface IMessageInput {
   onDictationClick?: () => void;
@@ -29,8 +36,19 @@ export const MessageInput: React.FC<IMessageInput> = ({ onSubmit, disableSend, p
     await onSubmit?.(message);
   };
 
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      sendMessage();
+    }
+    if (event.key === 'Enter' && event.shiftKey) {
+      event.preventDefault();
+      setMessage((prevMessage) => `${prevMessage}\n`);
+    }
+  };
+
   return (
-    <div className={inputContainer} onClick={handleContainerClick}>
+    <div className={inputContainer} onKeyDown={handleKeyPress} onClick={handleContainerClick}>
       <div className={mockFocusRing} />
       <div className={inputBlock}>
         <TextareaAutosize
@@ -46,7 +64,12 @@ export const MessageInput: React.FC<IMessageInput> = ({ onSubmit, disableSend, p
       </div>
       <div className={buttonContainer}>
         {!message?.length && !isRecording && (
-          <SquareButton size="medium" iconName="microphone" onClick={() => setIsRecording(true)} />
+          <SquareButton
+            className={recordButtonModifier}
+            size="medium"
+            iconName="microphone"
+            onClick={() => setIsRecording(true)}
+          />
         )}
         {isRecording && <StopButton onClick={() => setIsRecording(false)} />}
         <SendButton onClick={sendMessage} disabled={!message?.length} />

@@ -23,13 +23,13 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
   const { assistant, config } = runtime;
   const palette = usePalette(assistant);
 
-  if (!palette) return null;
-
   // emitters
   const closeAndEnd = useCallback((): void => {
     runtime.setStatus(SessionStatus.ENDED);
     runtime.close();
   }, []);
+
+  if (!palette) return null;
 
   // TODO: We'll need this for feedback probably
   // const getPreviousUserTurn = useCallback(

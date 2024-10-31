@@ -1,4 +1,4 @@
-import { style } from '@vanilla-extract/css';
+import { keyframes, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { SIZES } from '@/styles/sizes';
@@ -11,11 +11,23 @@ export const hide = style({
   visibility: 'hidden',
 });
 
+const fadeInSlideUp = keyframes({
+  from: {
+    opacity: 0,
+    transform: 'translateY(5px)',
+  },
+  to: {
+    opacity: 1,
+    transform: 'translateY(0)',
+  },
+});
+
 export const systemMessageContainer = recipe({
   base: {
     display: 'flex',
     alignItems: 'flex-end',
     marginBottom: 4,
+    animation: `${fadeInSlideUp} .05s ease-in`,
   },
   variants: {
     first: {
@@ -41,11 +53,6 @@ export const actionsContainer = style({
   gap: 8,
   margin: '16px 0 8px 0',
   paddingLeft: 44,
-});
-
-export const indicatorContainer = style({
-  display: 'flex',
-  alignItems: 'center',
 });
 
 export const extensionMessageContainer = style({
