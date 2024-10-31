@@ -14,6 +14,7 @@ export const sendButtonStyle = recipe({
       height: 32,
       width: 32,
       padding: 0,
+      display: 'flex',
       boxShadow: '0px -1px 0px 0px rgba(0, 0, 0, 0.16) inset',
       transition: transition(['color', 'background-color', 'transform']),
     },
