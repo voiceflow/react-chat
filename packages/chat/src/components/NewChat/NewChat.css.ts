@@ -25,6 +25,7 @@ export const dialogContainer = style({
   position: 'relative',
   padding: `0 ${DIALOG_PADDING}px ${DIALOG_PADDING}px ${DIALOG_PADDING}px`,
   marginBottom: `-${DIALOG_PADDING}px`,
+  paddingBottom: '40px',
   overflow: 'hidden',
   scrollbarWidth: 'none',
   flexGrow: 1,
