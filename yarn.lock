@@ -7468,7 +7468,6 @@ __metadata:
     "@voiceflow/dtos-interact": 1.1.0
     "@voiceflow/sdk-runtime": "workspace:*"
     "@voiceflow/slate-serializer": 1.5.5
-    "@voiceflow/stitches-react": 2.3.1
     "@voiceflow/test-common": 1.10.3
     "@voiceflow/voiceflow-types": 3.32.1
     bowser: 2.11.0
