@@ -6,7 +6,6 @@ import type { LoadConfig } from './dtos/ChatConfig.dto';
 import { ChatConfig } from './dtos/ChatConfig.dto';
 import { RenderMode } from './dtos/RenderOptions.dto';
 import { shadowRoot } from './old-styles/shadow';
-import { stitches } from './old-styles/theme';
 import { mergeAssistantOptions } from './utils/assistant';
 import { createPlaceholderMethods } from './utils/chat';
 import { addStyleSheetURL } from './utils/stylesheet';
@@ -24,9 +23,6 @@ const initEmbeddedMode = (rootEl: HTMLElement) => {
   try {
     const shadowRoot = rootEl.attachShadow({ mode: 'open' });
     reactRoot = createRoot(shadowRoot);
-
-    // TODO(COR-3360): Remove this once all components are written with `vanilla-extract`
-    stitches.transplant(shadowRoot);
 
     return { shadowRoot, reactRoot };
   } catch (e) {

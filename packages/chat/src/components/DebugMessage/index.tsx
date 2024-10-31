@@ -2,7 +2,7 @@ import clsx from 'clsx';
 
 import { topCaret as TopCaret } from '@/assets/svg';
 
-import { caretStyles, debugContainerStyles } from './styled.css';
+import { caretStyles, debugContainerStyles } from './styles.css';
 
 export interface DebugMessageProps extends React.PropsWithChildren {
   /**
