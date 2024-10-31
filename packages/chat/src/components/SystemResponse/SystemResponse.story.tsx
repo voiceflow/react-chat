@@ -48,6 +48,20 @@ export const SimpleText: Story = {
   },
 };
 
+export const SimpleTextWithoutAvatar: Story = {
+  args: {
+    messages: [{ type: 'text', text: 'Lorem ipsum dolor' }],
+  },
+};
+
+export const TypingState: Story = {
+  args: {
+    avatar: EMPTY_IMAGE,
+    messages: [{ type: 'text', text: 'Lorem ipsum dolor', delay: 10000 }],
+    isLast: true,
+  },
+};
+
 export const WrappingText: Story = {
   args: {
     messages: [{ type: 'text', text: 'consecteturaconsecteturaconsecteturaconsecteturaconsecteturaconsectetura' }],
