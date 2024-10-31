@@ -24,3 +24,7 @@ sonar
 
 # Playwright
 test-results
+
+
+# Artifacts
+apps/documentation/public/bundle
