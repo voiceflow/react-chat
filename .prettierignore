@@ -7,7 +7,6 @@ node_modules
 build
 dist
 storybook-static
-apps/documentation/public/bundle
 
 # Yarn
 .pnp.*
@@ -25,3 +24,7 @@ sonar
 
 # Playwright
 test-results
+
+
+# Artifacts
+apps/documentation/public/bundle
