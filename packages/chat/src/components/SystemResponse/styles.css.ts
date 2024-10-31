@@ -15,6 +15,7 @@ export const systemMessageContainer = recipe({
   base: {
     display: 'flex',
     alignItems: 'flex-end',
+    marginBottom: 4,
   },
   variants: {
     first: {

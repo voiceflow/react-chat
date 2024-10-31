@@ -2,7 +2,7 @@ import { recipe } from '@vanilla-extract/recipes';
 
 import { COLORS } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
-import { FAMILY } from '@/styles/font';
+import { FAMILY, hideTextOverflow } from '@/styles/font';
 import { SIZES } from '@/styles/sizes';
 import { transition } from '@/styles/transitions';
 
@@ -22,10 +22,8 @@ export const buttonStyles = recipe({
       transition: transition(['background-color', 'color']),
       borderRadius: SIZES.radius.sm,
       fontWeight: '400',
-      whiteSpace: 'nowrap',
       overflowWrap: 'anywhere',
-      overflow: 'hidden',
-      textOverflow: 'ellipsis',
+      ...hideTextOverflow(),
     },
   ],
 

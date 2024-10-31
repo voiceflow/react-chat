@@ -3,6 +3,7 @@ import { recipe } from '@vanilla-extract/recipes';
 
 import { COLORS } from '@/styles/colors';
 import { FAMILY } from '@/styles/font';
+import { SIZES } from '@/styles/sizes';
 import { transition } from '@/styles/transitions';
 
 export const messageContainer = style({
@@ -10,11 +11,10 @@ export const messageContainer = style({
   color: COLORS.NEUTRAL_DARK[900],
   fontFamily: FAMILY,
   position: 'relative',
-  marginBottom: 4,
 
   fontSize: '14px',
   lineHeight: '20px',
-  borderRadius: '10px',
+  borderRadius: SIZES.radius.sm,
   width: 'fit-content',
   whiteSpace: 'pre-wrap',
 });
@@ -68,19 +68,11 @@ export const codeBlockContainer = style({
 
 export const copyButton = style({
   position: 'absolute',
-  width: '36px',
   right: '12px',
   top: '12px',
-  height: '36px',
-  borderRadius: '8px',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  color: COLORS.NEUTRAL_LIGHT[300],
-  backgroundColor: COLORS.NEUTRAL_DARK[400],
-  outline: 'none',
-  border: 'none',
-  cursor: 'pointer',
   transition: transition(['opacity', 'background-color', 'color']),
   zIndex: 2,
   opacity: 0,

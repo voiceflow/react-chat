@@ -1,6 +1,9 @@
+import clsx from 'clsx';
 import { useState } from 'react';
 
 import { Icon } from '@/components/Icon';
+
+import { copyButton } from './CopyButton.css';
 
 export const CopyButton = ({ value = '', className }: { value: React.ReactNode; className: string }) => {
   const [isCopied, setIsCopied] = useState(false);
@@ -19,7 +22,7 @@ export const CopyButton = ({ value = '', className }: { value: React.ReactNode; 
   return (
     <button
       onClick={handleClick}
-      className={className}
+      className={clsx(copyButton, className)}
       onMouseDown={handleMouseDown}
       onMouseLeave={() => setIsCopied(false)}
     >

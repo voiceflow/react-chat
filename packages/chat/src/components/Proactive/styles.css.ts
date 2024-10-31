@@ -28,12 +28,12 @@ export const proactiveContainer = recipe({
 });
 
 export const singleMessage = style({
-  // TODO: Get correct var names from global styles
   padding: '11px 16px 10px 16px',
   maxWidth: 256,
   color: '#1A1E23',
-  boxShadow: '$surfaceZ1Light',
-  borderRadius: '$2',
+  boxShadow:
+    '0px 1px 3px 1px rgba(22, 26, 30, 0.01), 0px 4px 8px -6px rgba(22, 26, 30, 0.08), 0px 1px 5px -4px rgba(22, 26, 30, 0.08), 0px 0px 0px 1px rgba(22, 26, 30, 0.04), 0px 1px 0px 0px rgba(22, 26, 30, 0.02)',
+  borderRadius: SIZES.radius.xxs,
   backgroundColor: COLORS.white,
   fontSize: 14,
 });
@@ -47,14 +47,13 @@ export const messageContainer = style({
 });
 
 export const closeButton = style({
-  // TODO: Missing styles - check previous vars
   width: SIZES.sm,
   height: SIZES.sm,
   borderRadius: SIZES.radius.round,
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  color: '',
+  color: '#656D75',
   cursor: 'pointer',
   backgroundColor: COLORS.white,
   boxShadow: '',

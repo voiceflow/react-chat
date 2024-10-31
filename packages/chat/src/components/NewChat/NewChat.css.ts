@@ -30,3 +30,9 @@ export const dialogContainer = style({
   flexGrow: 1,
   overflowY: 'auto',
 });
+
+export const bottomSpacer = style({
+  display: 'block',
+  width: '100%',
+  height: 12,
+});

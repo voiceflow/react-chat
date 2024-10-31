@@ -89,21 +89,15 @@ export const Base = {
         placeholder: 'Message...',
       }}
     >
-      {AgentSays(['👋🏻 Good morning!', 'How are you today?'])}
-      {UserSays('Cool, great weather ☀️')}
+      {AgentSays(['👋🏻 Good morning!', 'How are you today?', 'How can I help you ?'])}
       {UserSays('How bout you?')}
-      {AgentSays(['👋🏻 Good morning!', 'How are you today?'])}
-      {UserSays('Cool, great weather ☀️')}
-      {UserSays('How bout you?')}
-      {AgentSays(['👋🏻 Good morning!', 'How are you today?'])}
-      {UserSays('Cool, great weather ☀️')}
-      {UserSays('How bout you?')}
-      {AgentSays(['👋🏻 Good morning!', 'How are you today?'])}
-      {UserSays('Cool, great weather ☀️')}
-      {UserSays('How bout you?')}
-      {AgentSays(['👋🏻 Good morning!', 'How are you today?'])}
-      {UserSays('Cool, great weather ☀️')}
-      {UserSays('How bout you?')}
+      {AgentSays(['Thanks for asking', 'here are some cool emojis:', '😝 ✌️ ☎️  🤦🏼‍♀️  🤯'])}
+      {UserSays('Cool, I *LOVE* emojis!')}
+      {AgentSays(["I know.\nThat's why I sent you some."])}
+      {UserSays('🤯')}
+      {AgentSays(['Anything else I can do to help you today?'])}
+      {UserSays('Dont think so. Everything else is amazing!')}
+      {AgentSays(['ok, so bye for now'])}
     </NewChat>
   ),
 };

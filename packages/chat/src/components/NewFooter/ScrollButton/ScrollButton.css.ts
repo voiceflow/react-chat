@@ -4,8 +4,8 @@ import { COLORS } from '@/styles/colors';
 import { transition } from '@/styles/transitions';
 
 export const scrollButton = style({
-  width: '32px',
-  height: '32px',
+  width: 32,
+  height: 32,
   borderRadius: '50%',
   display: 'flex',
   flex: 'none',
@@ -29,6 +29,6 @@ export const scrollButton = style({
 });
 
 export const scrollIcon = style({
-  width: '32px',
-  height: '32px',
+  width: 32,
+  height: 32,
 });
