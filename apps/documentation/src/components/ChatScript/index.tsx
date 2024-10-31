@@ -15,7 +15,7 @@ export const ChatScript = ({ projectID }: { projectID: string }) => {
                   window.voiceflow.chat.load({
                     verify: { projectID: "${projectID}"  },
                      assistant: {
-                      stylesheet: '../../dist/style.css',
+                      stylesheet: '../../bundle/style.css',
                     }
                    });
                 };
