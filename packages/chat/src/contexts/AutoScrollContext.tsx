@@ -24,7 +24,7 @@ export const AutoScrollProvider = <T extends HTMLElement>({ target, children }: 
       const hiddenHeight = scrollHeight - clientHeight;
       if (hiddenHeight === scrollTop) return;
 
-      el.scrollTo({ top: hiddenHeight });
+      el.scrollTo({ top: hiddenHeight, behavior: 'smooth' });
     });
   }, []);
 
