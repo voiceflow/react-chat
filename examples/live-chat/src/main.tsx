@@ -1,6 +1,6 @@
 import '@voiceflow/chat/dist/style.css';
 
-import { ChatWidget } from '@voiceflow/react-chat';
+import { ChatWidget } from '@voiceflow/chat';
 import { createRoot } from 'react-dom/client';
 
 import { RuntimeProvider } from './context';
