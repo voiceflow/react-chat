@@ -29,8 +29,15 @@ export const MessageInput: React.FC<IMessageInput> = ({ onSubmit, disableSend, p
     await onSubmit?.(message);
   };
 
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      sendMessage();
+    }
+  };
+
   return (
-    <div className={inputContainer} onClick={handleContainerClick}>
+    <div className={inputContainer} onKeyDown={handleKeyPress} onClick={handleContainerClick}>
       <div className={mockFocusRing} />
       <div className={inputBlock}>
         <TextareaAutosize
