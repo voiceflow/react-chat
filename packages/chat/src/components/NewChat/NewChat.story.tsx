@@ -179,3 +179,52 @@ export const NoPoweredBy = {
     />
   ),
 };
+
+export const NoFooterLinks = {
+  render: () => (
+    <NewChat
+      title="Your AI assistant"
+      image=""
+      description="Let's get this party started already!"
+      avatar={EMPTY_IMAGE}
+      buttons={[]}
+      showPoweredBy={false}
+      isLoading={false}
+      hasEnded={false}
+      messageInputProps={{ onSubmit: () => Promise.resolve(), placeholder: 'Message...' }}
+    >
+      {AgentSays(['👋🏻 Good morning!', 'How are you today?', 'How can I help you ?'])}
+      {UserSays('How bout you?')}
+      {AgentSays(['Thanks for asking', 'here are some cool emojis:', '😝 ✌️ ☎️  🤦🏼‍♀️  🤯'])}
+      {AgentSays(['Anything else I can do to help you today?'])}
+      {UserSays('Dont think so. Everything else is amazing!')}
+      {AgentSays(['ok, so bye for now'])}
+    </NewChat>
+  ),
+};
+
+export const ChatEnded = {
+  render: () => (
+    <NewChat
+      title="Your amazing assistant"
+      image={EMPTY_IMAGE}
+      description="Let's get this party started already!"
+      avatar={EMPTY_IMAGE}
+      buttons={[]}
+      showPoweredBy={true}
+      isLoading={false}
+      hasEnded={true}
+      messageInputProps={{ onSubmit: () => Promise.resolve(), placeholder: 'Message...' }}
+    >
+      {AgentSays(['👋🏻 Good morning!', 'How are you today?', 'How can I help you ?'])}
+      {UserSays('How bout you?')}
+      {AgentSays(['Thanks for asking', 'here are some cool emojis:', '😝 ✌️ ☎️  🤦🏼‍♀️  🤯'])}
+      {UserSays('Cool, I *LOVE* emojis!')}
+      {AgentSays(["I know.\nThat's why I sent you some."])}
+      {UserSays('🤯')}
+      {AgentSays(['Anything else I can do to help you today?'])}
+      {UserSays('Dont think so. Everything else is amazing!')}
+      {AgentSays(['ok, so bye for now'])}
+    </NewChat>
+  ),
+};
