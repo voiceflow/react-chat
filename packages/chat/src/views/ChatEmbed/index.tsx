@@ -33,6 +33,5 @@ export const ChatEmbed: React.FC<ChatEmbedProps> = ({ shadowRoot, chatAPI, ready
   }, []);
 
   if (!isStyleSheetResolved) return null;
-
   return <ChatWindow />;
 };
