@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import CODE_RESPONSE_FIXTURE from '@/__fixtures__/markdown/code-response.md?raw';
 import { MOCK_IMAGE, VF_ICON } from '@/fixtures';
 
+import EMPTY_IMAGE from '../../__fixtures__/empty-image.png';
 import type { MessageProps } from '.';
 import { SystemResponse } from '.';
 
@@ -42,6 +43,7 @@ export default meta;
 
 export const SimpleText: Story = {
   args: {
+    avatar: EMPTY_IMAGE,
     messages: [{ type: 'text', text: 'Lorem ipsum dolor' }],
   },
 };
@@ -54,6 +56,7 @@ export const WrappingText: Story = {
 
 export const CodeResponse: Story = {
   args: {
+    avatar: EMPTY_IMAGE,
     messages: [{ type: 'text', text: CODE_RESPONSE_FIXTURE }],
   },
 };
