@@ -37,7 +37,6 @@ export const ScrollToBottom: React.FC<ScrollToBottomProps> = ({ scrollableAreaRe
       top: scrollableAreaRef.current.scrollHeight,
       behavior: 'smooth',
     });
-    setAtBottom(true);
   };
 
   return (
