@@ -10,6 +10,7 @@ export const widgetContainer = recipe({
   base: {
     position: 'fixed',
     inset: 0,
+    top: 'auto !important',
     // TODO: Check that these vendor specific properties are correct
     fontSmooth: 'always',
     MozOsxFontSmoothing: 'always',
