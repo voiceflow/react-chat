@@ -83,3 +83,7 @@ export const buttonContainer = style({
   gap: '8px',
   height: '100%',
 });
+
+export const recordButtonModifier = style({
+  borderRadius: '100px',
+});
