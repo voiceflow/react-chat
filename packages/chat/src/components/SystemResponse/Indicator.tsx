@@ -1,7 +1,7 @@
 import { Avatar } from '@/components/Avatar';
 import { TypingIndicator } from '@/components/TypingIndicator';
 
-import { indicatorContainer } from './styles.css';
+import { indicatorContainer } from './Indicator.css';
 
 export interface IndicatorProps {
   avatar: string;
