@@ -30,7 +30,7 @@ export const AudioInputButton: React.FC<AudioInputButtonProps> = ({
       onClick={listening ? onStop : onStart}
       disabled={processing || initializing}
     >
-      {listening ? <Icon svg="microphone" /> : <Icon svg="stop" />}
+      {listening ? <Icon svg="stop" /> : <Icon svg="microphone" />}
     </button>
   );
 };
