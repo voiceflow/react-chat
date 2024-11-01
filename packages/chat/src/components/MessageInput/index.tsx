@@ -37,13 +37,14 @@ export const MessageInput: React.FC<IMessageInput> = ({ onSubmit, disableSend, p
   };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.key === 'Enter' && !event.shiftKey) {
+    event.stopPropagation();
+
+    const { shiftKey } = event;
+
+    if (event.key !== 'Enter') return;
+    if (event.key === 'Enter' && !shiftKey) {
       event.preventDefault();
       sendMessage();
-    }
-    if (event.key === 'Enter' && event.shiftKey) {
-      event.preventDefault();
-      setMessage((prevMessage) => `${prevMessage}\n`);
     }
   };
 
