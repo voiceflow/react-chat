@@ -1,31 +1,44 @@
-export const ChatScript = ({ projectID }: { projectID: string }) => {
+import Head from 'next/head';
+import { useEffect, useState } from 'react';
+export const ChatScript = () => {
+  const [projectID, setProjectID] = useState<string>('');
+  // eslint-disable-next-line no-console
+  console.log('firing!');
+  useEffect(() => {
+    const storedProjectID = localStorage.getItem('projectID') || '';
+    setProjectID(storedProjectID);
+  }, []);
+
   if (!projectID) {
     return null;
   }
+
+  const script = `
+    (function (d, t) {
+      const v = d.createElement(t);
+      const s = d.getElementsByTagName(t)[0];
+      v.onload = function () {
+        window.voiceflow.chat.load({
+          verify: { projectID: "${projectID}"  },
+            assistant: {
+            stylesheet: '../../bundle/style.css',
+          }
+        });
+      };
+      v.src = '../../bundle/bundle.mjs';
+      v.type = 'text/javascript';
+      s.parentNode.insertBefore(v, s);
+    })(document, 'script');
+  `;
+
   return (
-    <div>
+    <Head>
       <script
         type="text/javascript"
         dangerouslySetInnerHTML={{
-          __html: `
-              (function (d, t) {
-                const v = d.createElement(t);
-                const s = d.getElementsByTagName(t)[0];
-                v.onload = function () {
-                  window.voiceflow.chat.load({
-                    verify: { projectID: "${projectID}"  },
-                     assistant: {
-                      stylesheet: '../../bundle/style.css',
-                    }
-                   });
-                };
-                v.src = '../../bundle/bundle.mjs';
-                v.type = 'text/javascript';
-                s.parentNode.insertBefore(v, s);
-              })(document, 'script');
-            `,
+          __html: script,
         }}
       />
-    </div>
+    </Head>
   );
 };
