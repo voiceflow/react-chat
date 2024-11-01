@@ -13,5 +13,6 @@ export * as MessageInput from './components/MessageInput/MessageInput.story';
 export * as NewChat from './components/NewChat/NewChat.story';
 export * as Prompt from './components/Prompt/Prompt.story';
 export * as SendButton from './components/SendButton/SendButton.story';
+export * as TypingIndicator from './components/TypingIndicator/TypingIndicator.story';
 export * as UserMessage from './components/UserMessage/UserMessage.story';
 export * as WelcomeMessage from './components/WelcomeMessage/WelcomeMessage.story';
