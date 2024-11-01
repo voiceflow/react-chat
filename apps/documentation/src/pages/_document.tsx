@@ -1,3 +1,5 @@
+import 'regenerator-runtime/runtime';
+
 import { Head, Html, Main, NextScript } from 'next/document';
 
 import { ChatScript } from '@/components/ChatScript';

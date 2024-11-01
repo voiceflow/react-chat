@@ -49,6 +49,43 @@ export interface LoadConfig extends Omit<ChatConfig, 'url'> {
   assistant?: RawAssistantOptions;
 }
 
+export const ChatSpeechRecognitionState = z.object({
+  listening: z.boolean(),
+  transcript: z.string(),
+  processing: z.boolean(),
+  initializing: z.boolean(),
+  microphoneAvailable: z.boolean().describe('If false, the user has not given permission for their microphone.'),
+});
+
+export type ChatSpeechRecognitionState = z.infer<typeof ChatSpeechRecognitionState>;
+
+export const ChatSpeechRecognitionConfig = z.object({
+  overrideNative: z
+    .boolean()
+    .optional()
+    .default(false)
+    .describe(
+      'If true, uses the custom speech recognition implementation even if the native (browsers) one is available.'
+    ),
+  initialState: ChatSpeechRecognitionState,
+  onStateChange: z
+    .function()
+    .args(z.function().args(ChatSpeechRecognitionState).returns(z.void()))
+    .returns(z.function().returns(z.void())),
+  stopListening: z.function().returns(z.void()),
+  startListening: z
+    .function()
+    .returns(z.void())
+    .describe(
+      `Starts listening for speech input.
+      User has to give permission for their microphone to be used before listening can begin.
+      If the user has not given permission, needs to update microphoneAvailable: false state.`
+    ),
+  resetTranscript: z.function().returns(z.void()),
+});
+
+export type ChatSpeechRecognitionConfig = z.infer<typeof ChatSpeechRecognitionConfig>;
+
 export const ChatConfig = z
   .object({
     autostart: z.boolean().optional(),

@@ -1,3 +1,4 @@
+import 'regenerator-runtime/runtime';
 import './assets/fonts/fonts.css';
 
 import type { Preview } from '@storybook/react';
