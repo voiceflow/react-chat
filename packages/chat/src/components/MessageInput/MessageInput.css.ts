@@ -1,4 +1,5 @@
 import { createVar, style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
 import { COLORS } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
@@ -84,6 +85,16 @@ export const buttonContainer = style({
   height: '100%',
 });
 
-export const recordButtonModifier = style({
-  borderRadius: '100px',
+export const audioInputButton = recipe({
+  base: {
+    display: 'flex',
+    borderRadius: 100,
+  },
+  variants: {
+    disabled: {
+      true: {
+        cursor: 'not-allowed',
+      },
+    },
+  },
 });
