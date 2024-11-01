@@ -39,10 +39,10 @@ export const Prompt: React.FC<PromptProps> = ({ visible, accept, cancel }) => (
   <>
     <div className={clsx('overlay', chatOverlay({ visible }))}></div>
     <div className={clsx(ClassName.PROMPT, promptContainer({ visible }))}>
-      <Button variant={ButtonVariant.PRIMARY} large tabIndex={-1} {...accept}>
+      <Button variant={accept.variant ?? ButtonVariant.PRIMARY} large tabIndex={-1} {...accept}>
         {accept.label}
       </Button>
-      <Button variant={ButtonVariant.SECONDARY} large tabIndex={-1} {...cancel}>
+      <Button variant={cancel.variant ?? ButtonVariant.SECONDARY} large tabIndex={-1} {...cancel}>
         {cancel.label}
       </Button>
     </div>

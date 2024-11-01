@@ -88,6 +88,19 @@ export const buttonStyles = recipe({
           },
         },
       },
+      warn: {
+        color: COLORS.white,
+        backgroundColor: '#db1b42',
+        paddingTop: 2,
+        borderRadius: SIZES.radius.xxs,
+        height: SIZES.sm,
+        fontWeight: 600,
+        display: 'block',
+        width: '100%',
+        ':hover': {
+          backgroundColor: '#cd0038',
+        },
+      },
     },
 
     large: {

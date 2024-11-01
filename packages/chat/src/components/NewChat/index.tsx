@@ -8,6 +8,7 @@ import type { Nullish } from '@/types';
 import { chain } from '@/utils/functional';
 
 import mockAvatar from '../../assets/blank-image.png';
+import { ButtonVariant } from '../Button/constants';
 import { Header, type HeaderActionProps, type HeaderProps } from '../Header';
 import { type INewFooter, NewFooter } from '../NewFooter';
 import { Prompt } from '../Prompt';
@@ -116,7 +117,7 @@ export const NewChat: React.FC<INewChat> = ({
       />
       <Prompt
         visible={hasAlert}
-        accept={{ label: 'End Chat', /* type: 'warn', */ onClick: chain(onEnd, handleResume) }}
+        accept={{ label: 'End Chat', variant: ButtonVariant.WARN, onClick: chain(onEnd, handleResume) }}
         cancel={{ label: 'Cancel', onClick: handleResume }}
       />
     </div>
