@@ -35,3 +35,11 @@ export const Themed: Story = {
   },
   decorators: [WithDefaultPalette],
 };
+
+export const NoImage: Story = {
+  args: {
+    actions: [{ svg: 'volume' }, { svg: 'reset' }, { svg: 'close' }],
+    image: undefined,
+  },
+  decorators: [WithDefaultPalette],
+};
