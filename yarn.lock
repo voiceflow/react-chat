@@ -7458,6 +7458,7 @@ __metadata:
     "@types/node": 20.12.7
     "@types/react": 18.2.8
     "@types/react-dom": 18.2.4
+    "@types/react-speech-recognition": ^3.9.5
     "@types/react-syntax-highlighter": 15.5.13
     "@vanilla-extract/css": 1.15.5
     "@vanilla-extract/dynamic": 2.1.2
@@ -7482,8 +7483,10 @@ __metadata:
     react: 18.2.0
     react-dom: 18.2.0
     react-markdown: 9.0.0
+    react-speech-recognition: 3.10.0
     react-syntax-highlighter: 15.5.0
     react-textarea-autosize: 8.5.3
+    regenerator-runtime: 0.13.11
     remark-gfm: 4.0.0
     slate: 0.94.1
     storybook: 8.0.2
