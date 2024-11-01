@@ -212,6 +212,22 @@ export const NoPoweredBy = {
   ),
 };
 
+export const OnlyPoweredBy = {
+  render: () => (
+    <NewChat
+      title="Your AI assistant"
+      image=""
+      description="Let's get this party started already!"
+      avatar={EMPTY_IMAGE}
+      buttons={[]}
+      showPoweredBy={true}
+      isLoading={false}
+      hasEnded={false}
+      messageInputProps={{ onSubmit: () => Promise.resolve(), placeholder: 'Message...' }}
+    />
+  ),
+};
+
 export const NoFooterLinks = {
   render: () => (
     <NewChat
