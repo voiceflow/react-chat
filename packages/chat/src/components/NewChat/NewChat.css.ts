@@ -5,7 +5,7 @@ import { COLORS } from '@/styles/colors';
 export const DIALOG_PADDING = 20;
 
 export const chatContainer = style({
-  height: '700px',
+  height: '100%',
   display: 'flex',
   flexDirection: 'column',
   borderRadius: '16px',
