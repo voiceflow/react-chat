@@ -20,6 +20,9 @@ export const messageContainer = style({
 });
 
 export const contentStyle = recipe({
+  base: {
+    whiteSpace: 'normal',
+  },
   variants: {
     isCodeBlock: {
       true: {
