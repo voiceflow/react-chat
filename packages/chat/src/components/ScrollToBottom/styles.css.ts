@@ -26,8 +26,6 @@ const fadeOut = keyframes({
 export const scrollToButton = recipe({
   base: {
     position: 'absolute',
-    // TODO: Make sure this still looks good with and without a footer
-    bottom: '97px',
     left: '50%',
     transform: 'translateX(-50%)',
     zIndex: 12,
@@ -41,5 +39,16 @@ export const scrollToButton = recipe({
         animation: `${fadeOut} .15s ease-out`,
       },
     },
+    hasFooterLinks: {
+      true: {
+        bottom: '97px',
+      },
+      false: {
+        bottom: '80px',
+      },
+    },
+  },
+  defaultVariants: {
+    hasFooterLinks: true,
   },
 });
