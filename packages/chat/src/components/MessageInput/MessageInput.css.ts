@@ -14,7 +14,7 @@ export const inputContainer = style({
   display: 'flex',
   zIndex: 1,
   justifyContent: 'space-between',
-  padding: '8px 8px 8px 20px',
+  padding: '7px 7px 7px 20px',
   fontSize: '14px',
 
   boxSizing: 'border-box',
@@ -24,6 +24,7 @@ export const inputContainer = style({
   transition: transition(['border', 'box-shadow']),
   selectors: {
     '&:hover': {
+      cursor: 'text',
       border: `1px solid ${COLORS.NEUTRAL_LIGHT[200]}`,
     },
   },
