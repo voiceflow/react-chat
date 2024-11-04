@@ -1,3 +1,4 @@
+import 'regenerator-runtime/runtime';
 import '@/styles/globals.css';
 import '@voiceflow/chat/dist/style.css';
 
