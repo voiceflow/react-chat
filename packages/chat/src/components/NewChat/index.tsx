@@ -92,6 +92,7 @@ export const NewChat: React.FC<INewChat> = ({
   }, [config.render, handleClose, onMinimize, state.audioOutput, audioInterface]);
 
   const scrollableAreaRef = useRef<HTMLDivElement>(null);
+  const hasFooterLinks = !!(extraLinkText && extraLinkUrl && showPoweredBy);
 
   return (
     <div className={clsx(ClassName.CHAT, chatContainer)}>
@@ -103,7 +104,7 @@ export const NewChat: React.FC<INewChat> = ({
           <div className={bottomSpacer} />
         </AutoScrollProvider>
       </div>
-      <ScrollToBottom scrollableAreaRef={scrollableAreaRef} />
+      <ScrollToBottom scrollableAreaRef={scrollableAreaRef} hasFooterLinks={hasFooterLinks} />
       <NewFooter
         buttons={buttons}
         showPoweredBy={showPoweredBy}

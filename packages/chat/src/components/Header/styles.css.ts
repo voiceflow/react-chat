@@ -25,15 +25,25 @@ export const headerInnerContainer = style({
   minWidth: 0,
 });
 
-export const headerTitle = style({
-  fontFamily: FAMILY,
-  fontSize: 16,
-  color: COLORS.white,
-  fontWeight: 700,
-  lineHeight: '23px',
-  margin: '0 12px',
-  minWidth: 0,
-  ...hideTextOverflow(),
+export const headerTitle = recipe({
+  base: {
+    fontFamily: FAMILY,
+    fontSize: 16,
+    color: COLORS.white,
+    fontWeight: 700,
+    lineHeight: '23px',
+    margin: '0 12px',
+    minWidth: 0,
+    ...hideTextOverflow(),
+  },
+
+  variants: {
+    hasAvatar: {
+      false: {
+        marginLeft: 0,
+      },
+    },
+  },
 });
 
 export const headerActions = style({

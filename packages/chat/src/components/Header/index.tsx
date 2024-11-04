@@ -43,18 +43,21 @@ export interface HeaderProps {
  *
  * @see {@link https://voiceflow.github.io/react-chat/?path=/docs/components-chat-header--simple}
  */
-export const Header: React.FC<HeaderProps> = ({ title, image, actions = [] }) => (
-  <div className={clsx(ClassName.HEADER, headerContainer)}>
-    {!!image?.length && <Avatar size="small" avatar={image} />}
-    <div className={headerInnerContainer}>
-      <div className={headerTitle}>{title}</div>
-      <div className={headerActions}>
-        {actions.map(({ svg, onClick }, index) => (
-          <Button className={headerActionButton()} onClick={onClick} key={index}>
-            <Icon svg={svg} />
-          </Button>
-        ))}
+export const Header: React.FC<HeaderProps> = ({ title, image, actions = [] }) => {
+  const hasAvatar = !!image?.length;
+  return (
+    <div className={clsx(ClassName.HEADER, headerContainer)}>
+      {hasAvatar && <Avatar size="small" avatar={image} />}
+      <div className={headerInnerContainer}>
+        <div className={headerTitle({ hasAvatar })}>{title}</div>
+        <div className={headerActions}>
+          {actions.map(({ svg, onClick }, index) => (
+            <Button className={headerActionButton()} onClick={onClick} key={index}>
+              <Icon svg={svg} />
+            </Button>
+          ))}
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.24.0](https://github.com/voiceflow/react-chat/compare/documentation@0.23.1...documentation@0.24.0) (2024-11-04)
+
+### Features
+
+* ui review for carousel component (COR-0000) ([#275](https://github.com/voiceflow/react-chat/issues/275)) ([b310606](https://github.com/voiceflow/react-chat/commit/b3106063f4ede9ff57f3fe2398ad4ae5b89edc7e))
+
+## [0.23.1](https://github.com/voiceflow/react-chat/compare/documentation@0.23.0...documentation@0.23.1) (2024-11-01)
+
+### Bug Fixes
+
+* ProjectID configurable Chat on Docs (DSN-000) ([#274](https://github.com/voiceflow/react-chat/issues/274)) ([d566fc4](https://github.com/voiceflow/react-chat/commit/d566fc449f9d8fca1bb08419c40f5729cea4378d))
+
 # [0.23.0](https://github.com/voiceflow/react-chat/compare/documentation@0.22.0...documentation@0.23.0) (2024-11-01)
 
 ### Features

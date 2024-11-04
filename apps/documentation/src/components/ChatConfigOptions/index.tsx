@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
 
-import { ChatScript } from '../ChatScript';
-
 export const ChatConfigOptions = () => {
   const [projectID, setProjectID] = useState<string>('');
 
@@ -19,7 +17,6 @@ export const ChatConfigOptions = () => {
       <label>ProjectID</label>
       <input type="text" value={projectID} placeholder="ProjectID" onChange={(e) => setProjectID(e.target.value)} />
       <button onClick={handleSave}>Save</button>
-      <ChatScript projectID={projectID} />
     </div>
   );
 };

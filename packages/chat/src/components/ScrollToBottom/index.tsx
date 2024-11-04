@@ -5,9 +5,10 @@ import { scrollToButton } from './styles.css';
 
 interface ScrollToBottomProps {
   scrollableAreaRef: RefObject<HTMLDivElement>;
+  hasFooterLinks: boolean;
 }
 
-export const ScrollToBottom: React.FC<ScrollToBottomProps> = ({ scrollableAreaRef }) => {
+export const ScrollToBottom: React.FC<ScrollToBottomProps> = ({ scrollableAreaRef, hasFooterLinks }) => {
   const [atBottom, setAtBottom] = useState(true);
 
   useEffect(() => {
@@ -40,7 +41,7 @@ export const ScrollToBottom: React.FC<ScrollToBottomProps> = ({ scrollableAreaRe
   };
 
   return (
-    <div className={scrollToButton({ hidden: !!atBottom })}>
+    <div className={scrollToButton({ hidden: !!atBottom, hasFooterLinks })}>
       <ScrollButton onClick={scrollToBottom} />
     </div>
   );

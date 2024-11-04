@@ -33,6 +33,8 @@ export const cardContent = style({
 });
 
 export const cardActions = style({
+  display: 'flex',
+  flexDirection: 'column',
   padding: '0 16px 15px 16px',
   gap: 4,
   ':only-child': {
