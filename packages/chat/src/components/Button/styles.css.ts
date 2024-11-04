@@ -84,7 +84,6 @@ export const buttonStyles = recipe({
           [`.${cardContainer} &`]: {
             display: 'block',
             width: '100%',
-            marginBottom: 4,
           },
         },
       },

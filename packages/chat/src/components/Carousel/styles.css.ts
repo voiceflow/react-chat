@@ -49,5 +49,5 @@ export const lastCardSpacer = style({
   display: 'inline-flex',
   height: 1,
   width: CAROUSEL_SPACER,
-  minWidth: BUTTON_SIZE,
+  minWidth: CAROUSEL_SPACER,
 });
