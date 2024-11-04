@@ -92,6 +92,7 @@ export const buttonStyles = recipe({
     large: {
       true: {
         height: 40,
+        borderRadius: SIZES.radius.xs,
       },
     },
 
