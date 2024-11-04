@@ -14,6 +14,8 @@ export interface IconProps extends React.ComponentPropsWithoutRef<'div'> {
    * @see {@link https://github.com/voiceflow/react-chat/tree/master/packages/react-chat/src/assets/svg the available icons}
    */
   svg: SVG | React.ComponentType;
+
+  className?: string;
 }
 
 /**
@@ -21,11 +23,11 @@ export interface IconProps extends React.ComponentPropsWithoutRef<'div'> {
  *
  * @see {@link https://voiceflow.github.io/react-chat/?path=/story/core-icon--default}
  */
-export const Icon: React.FC<IconProps> = ({ svg, ...props }) => {
+export const Icon: React.FC<IconProps> = ({ svg, className, ...props }) => {
   const SVG = typeof svg === 'string' ? SVGs[svg] : svg;
 
   return (
-    <div className={clsx(ClassName.ICON, iconClassName)} {...props}>
+    <div className={clsx(ClassName.ICON, iconClassName, className)} {...props}>
       <SVG />
     </div>
   );

@@ -1,3 +1,4 @@
+import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { COLORS } from '@/styles/colors';
@@ -20,9 +21,11 @@ export const carouselButton = recipe({
       transition: transition(['color', 'transform']),
       ':hover': {
         color: COLORS.NEUTRAL_DARK[600],
+        transform: 'scale(1.15)',
       },
       ':active': {
         color: COLORS.NEUTRAL_DARK[800],
+        transform: 'scale(0.8)',
       },
 
       // When the buttons are inside a carousel
@@ -47,29 +50,19 @@ export const carouselButton = recipe({
 
     direction: {
       right: {
-        transform: 'none',
-        ':hover': {
-          transform: 'scale(1.15)',
-        },
-        ':active': {
-          transform: 'scale(0.8)',
-        },
         [`.${carouselContainer} &`]: {
           left: `${CARD_WIDTH - BUTTON_SIZE / 2}px`,
         },
       },
       left: {
-        transform: 'rotate(180deg)',
-        ':hover': {
-          transform: 'rotate(180deg) scale(1.15)',
-        },
-        ':active': {
-          transform: 'rotate(180deg) scale(0.8)',
-        },
         [`.${carouselContainer} &`]: {
           left: `-${BUTTON_SIZE / 2}px`,
         },
       },
     },
   },
+});
+
+export const rotate180 = style({
+  transform: 'rotate(180deg)',
 });
