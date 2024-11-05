@@ -2,8 +2,7 @@ import Head from 'next/head';
 import { useEffect, useState } from 'react';
 export const ChatScript = () => {
   const [projectID, setProjectID] = useState<string>('');
-  // eslint-disable-next-line no-console
-  console.log('firing!');
+
   useEffect(() => {
     const storedProjectID = localStorage.getItem('projectID') || '';
     setProjectID(storedProjectID);
