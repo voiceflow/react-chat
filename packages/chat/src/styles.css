@@ -115,48 +115,237 @@
 /* .vfrc-chat-input--button {} */
 
 /* .vfrc-footer--watermark {} */
+/* use this file to override default styles when forking this repository */
 
+/*
+  PAGE CONTENTS
+
+  Customize the page that the chat bubble lives on
+*/
+
+/* .voiceflow-chat {} */
+
+/* .vfrc-launcher {} */
+
+/* .vfrc-chat--overlay {} */
+
+/* .vfrc-prompt {} */
+
+/*
+  CHAT WIDGET HEADER
+
+  Customize the content, controls and styling included in your chat widget header, including the Assistant Information.
+  Note that changes to the assistant information here will be shared across other elements that consume this styling.
+*/
+
+/* .vfrc-header {} */
+
+/* .vfrc-assistant-info {} */
+
+/* .vfrc-assistant-info--title {} */
+
+/* .vfrc-assistant-info--description {} */
+
+/* .vfrc-avatar {} */
+
+/* .vfrc-icon {} */
+
+/*
+  CHAT MESSAGE BODY
+
+  Customize the layout and display of the chat body, and the conversation's metadata
+*/
+
+/* .vfrc-chat {} */
+
+/* .vfrc-chat--dialog {} */
+
+/* .vfrc-chat--spacer {} */
+
+/* .vfrc-chat--session-time {} */
+
+/* .vfrc-chat--status {} */
+
+/* .vfrc-message {} */
+
+/* .vfrc-timestamp {} */
+
+/*
+  ASSISTANT RESPONSES
+
+  Customize the style and layout of assistant response messages.
+*/
+
+/* .vfrc-system-response--indicator {} */
+
+/* .vfrc-system-response {} */
+
+/* .vfrc-system-response--controls {} */
+
+/* .vfrc-system-response--list {} */
+
+/* .vfrc-system-response--actions {} */
+
+/* .vfrc-button {} */
+
+/* .vfrc-image {} */
+
+/* .vfrc-image--background {} */
+
+/* .vfrc-card--content {} */
+
+/* .vfrc-card--header {} */
+
+/* .vfrc-card--description {} */
+
+/* .vfrc-carousel {} */
+
+/* .vfrc-carousel--button {} */
+
+/* Targeted styling for just the Assistant messages. */
+/* .vfrc-system-response .vfrc-message {} */
+
+/* Targeted styling for just the Assistant buttons. */
+/* .vfrc-system-response .vfrc-button {} */
+
+/*
+  USER RESPONSES
+
+  Customize the style and layout of users response messages.
+*/
+
+/* .vfrc-user-response {} */
+
+/* Targeted styling for just the User messages */
+/* .vfrc-user-response .vfrc-message {} */
+
+/*
+  FOOTER
+
+  Customize the layout and appearance of the message input field and the VF Branding
+*/
+
+/* .vf-footer {} */
+
+/* .vfrc-input {} */
+
+/* .vfrc-chat-input--button {} */
+
+/* .vfrc-footer--watermark {} */
+/* Heading styles */
 .markdown h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
   margin-bottom: 8px;
-  margin-top: 0;
+  margin-top: 8px;
   font-size: 16px;
   font-weight: bold;
 }
 
-.markdown p {
-  margin-top: 0;
-  margin-bottom: 0;
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+  font-size: 14px;
 }
 
+/* Paragraph style */
+.markdown p {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+/* Horizontal rule style */
 .markdown hr {
   margin-top: 8px;
   margin-bottom: 8px;
 }
 
+/* Ordered list styles */
 .markdown ol {
   display: block;
   list-style-type: decimal;
-  margin-block-start: 0em;
-  margin-block-end: 0em;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   padding-inline-start: 20px;
   unicode-bidi: isolate;
 }
 
+/* Unordered list styles */
 .markdown ul {
-  display: block;
   list-style-type: disc;
-  margin-block-start: 0em;
-  margin-block-end: 0em;
+  padding-inline-start: 27px;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
-  padding: 0px;
-  padding-inline-start: 20px;
   unicode-bidi: isolate;
+  position: relative;
+}
+
+/* Custom list marker styles */
+.markdown ul li::marker {
+  content: '';
+}
+
+.markdown ul li::before {
+  content: '';
+  height: 4px;
+  width: 4px;
+  background-color: #1a1e23; /* colors.neutralDark.neutralsDark900 */
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-14px, 7px);
+}
+
+/* Task list item */
+.markdown .task-list-item {
+  display: flex;
+  align-items: flex-start;
+}
+
+/* Checkbox styling */
+.markdown input[type='checkbox'] {
+  transform: translateY(3px);
+  margin-right: 8px;
+}
+
+/* List item styles */
+.markdown li {
+  margin: 8px 0;
+  position: relative;
+}
+
+.markdown ol {
+  margin-left: 8px;
+}
+
+/* Paragraphs within list items */
+.markdown li p {
+  line-height: 1.5;
+}
+
+/* Anchor link styles */
+.markdown a {
+  transition:
+    color 0.3s ease,
+    text-decoration-color 0.3s ease;
+  color: #397dff;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+}
+
+.markdown a:hover {
+  text-decoration-color: #397dff;
+}
+
+.markdown a:active {
+  color: #2f68db; /* colors.accent.accent600 */
+  text-decoration-color: transparent;
 }
