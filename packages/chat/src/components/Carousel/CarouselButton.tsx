@@ -3,7 +3,7 @@ import { forwardRef } from 'react';
 
 import { Icon } from '@/components/Icon';
 
-import { carouselButton } from './carouselButtonStyles.css';
+import { carouselButton, rotate180 } from './carouselButtonStyles.css';
 
 export interface CarouselButtonProps {
   /**
@@ -28,7 +28,7 @@ export interface CarouselButtonProps {
 export const CarouselButton = forwardRef<HTMLButtonElement, CarouselButtonProps>(
   ({ onClick, visible, direction }, ref) => (
     <button ref={ref} className={carouselButton({ visible, direction })} onClick={onClick}>
-      <Icon svg="arrowRight" />
+      <Icon svg="arrowRight" className={direction === 'left' ? rotate180 : ''} />
     </button>
   )
 );

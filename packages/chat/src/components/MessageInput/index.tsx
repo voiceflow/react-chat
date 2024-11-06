@@ -1,32 +1,42 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 
-import { SquareButton } from '../Buttons/SquareButton';
-import { StopButton } from '../Buttons/StopButton';
+import type { ChatSpeechRecognitionConfig } from '@/main';
+
 import { SendButton } from '../SendButton';
-import {
-  buttonContainer,
-  input,
-  inputBlock,
-  inputContainer,
-  mockFocusRing,
-  recordButtonModifier,
-} from './MessageInput.css';
+import { AudioInputButton } from './AudioInputButton';
+import { useSpeechRecognition } from './hooks';
+import { buttonContainer, input, inputBlock, inputContainer, mockFocusRing } from './MessageInput.css';
 
 export interface IMessageInput {
   onDictationClick?: () => void;
   placeholder?: string;
   onSubmit?: (message: string) => Promise<void>;
   disableSend?: boolean | undefined;
+  audioInterface?: boolean | undefined;
+  speechRecognition?: ChatSpeechRecognitionConfig;
 }
 
-export const MessageInput: React.FC<IMessageInput> = ({ onSubmit, disableSend, placeholder = 'Message...' }) => {
-  const inputRef = useRef<HTMLTextAreaElement>(null);
+export const MessageInput: React.FC<IMessageInput> = ({
+  onSubmit,
+  disableSend,
+  audioInterface,
+  placeholder = 'Message...',
+  speechRecognition: customSpeechRecognition,
+}) => {
   const [message, setMessage] = useState('');
-  const [isRecording, setIsRecording] = useState(false);
+
+  const speechRecognition = useSpeechRecognition({
+    onSend: () => onSubmit?.(''),
+    onValueChange: setMessage,
+    customSpeechRecognition,
+  });
+  const withSendButton = !!message?.length && !disableSend && !speechRecognition.listening;
+  const withAudioInput =
+    audioInterface && speechRecognition.available && speechRecognition.microphoneAvailable && !withSendButton;
 
   const handleContainerClick = () => {
-    inputRef.current?.focus();
+    speechRecognition.textareaRef.current?.focus();
   };
 
   const sendMessage = async () => {
@@ -37,13 +47,14 @@ export const MessageInput: React.FC<IMessageInput> = ({ onSubmit, disableSend, p
   };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.key === 'Enter' && !event.shiftKey) {
+    event.stopPropagation();
+
+    const { shiftKey } = event;
+
+    if (event.key !== 'Enter') return;
+    if (event.key === 'Enter' && !shiftKey) {
       event.preventDefault();
       sendMessage();
-    }
-    if (event.key === 'Enter' && event.shiftKey) {
-      event.preventDefault();
-      setMessage((prevMessage) => `${prevMessage}\n`);
     }
   };
 
@@ -52,26 +63,26 @@ export const MessageInput: React.FC<IMessageInput> = ({ onSubmit, disableSend, p
       <div className={mockFocusRing} />
       <div className={inputBlock}>
         <TextareaAutosize
+          ref={speechRecognition.textareaRef}
           placeholder={placeholder}
           minRows={1}
           autoFocus
           maxRows={5}
-          ref={inputRef}
           value={message}
           className={input}
           onChange={(event) => setMessage(event.target.value)}
         />
       </div>
       <div className={buttonContainer}>
-        {!message?.length && !isRecording && (
-          <SquareButton
-            className={recordButtonModifier}
-            size="medium"
-            iconName="microphone"
-            onClick={() => setIsRecording(true)}
+        {withAudioInput && (
+          <AudioInputButton
+            onStop={speechRecognition.stopListening}
+            onStart={speechRecognition.startListening}
+            listening={speechRecognition.listening}
+            processing={speechRecognition.processing}
+            initializing={speechRecognition.initializing}
           />
         )}
-        {isRecording && <StopButton onClick={() => setIsRecording(false)} />}
         <SendButton onClick={sendMessage} disabled={!message?.length} />
       </div>
     </div>

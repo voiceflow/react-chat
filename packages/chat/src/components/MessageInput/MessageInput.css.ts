@@ -1,4 +1,5 @@
 import { createVar, style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
 import { COLORS } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
@@ -13,7 +14,7 @@ export const inputContainer = style({
   display: 'flex',
   zIndex: 1,
   justifyContent: 'space-between',
-  padding: '8px 8px 8px 20px',
+  padding: '7px 7px 7px 20px',
   fontSize: '14px',
 
   boxSizing: 'border-box',
@@ -23,6 +24,7 @@ export const inputContainer = style({
   transition: transition(['border', 'box-shadow']),
   selectors: {
     '&:hover': {
+      cursor: 'text',
       border: `1px solid ${COLORS.NEUTRAL_LIGHT[200]}`,
     },
   },
@@ -84,6 +86,16 @@ export const buttonContainer = style({
   height: '100%',
 });
 
-export const recordButtonModifier = style({
-  borderRadius: '100px',
+export const audioInputButton = recipe({
+  base: {
+    display: 'flex',
+    borderRadius: 100,
+  },
+  variants: {
+    disabled: {
+      true: {
+        cursor: 'not-allowed',
+      },
+    },
+  },
 });

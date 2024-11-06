@@ -14,7 +14,7 @@ import { PALETTE } from '@/styles/colors.css';
 import { useResolveAssistantStyleSheet } from '@/utils/stylesheet';
 import { ChatWindow } from '@/views/ChatWindow';
 
-import { chatContainer, LAUNCHER_MARGIN, launcherContainer, widgetContainer } from './styles.css';
+import { chatContainer, chatWindow, LAUNCHER_MARGIN, launcherContainer, widgetContainer } from './styles.css';
 
 interface ChatWidgetProps extends React.PropsWithChildren {
   shadowRoot?: ShadowRoot;
@@ -59,6 +59,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
 
   const side = assistant.position;
   const position = { bottom: assistant.spacing.bottom, [side]: assistant.spacing.side };
+  const chatHeight = `calc(100% - ${LAUNCHER_SIZE + LAUNCHER_MARGIN + assistant.spacing.bottom + 20}px)`;
 
   const isStyleSheetResolved = useResolveAssistantStyleSheet(assistant, shadowRoot);
 
@@ -76,9 +77,13 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
       </div>
       <div
         className={chatContainer}
-        style={isMobile ? {} : { [side]: position[side], bottom: position.bottom + LAUNCHER_SIZE + LAUNCHER_MARGIN }}
+        style={
+          isMobile
+            ? {}
+            : { [side]: position[side], bottom: position.bottom + LAUNCHER_SIZE + LAUNCHER_MARGIN, height: chatHeight }
+        }
       >
-        <ChatWindow />
+        <ChatWindow className={chatWindow} />
       </div>
     </div>
   );

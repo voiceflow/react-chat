@@ -10,13 +10,7 @@ export const widgetContainer = recipe({
   base: {
     position: 'fixed',
     inset: 0,
-    top: 'auto !important',
-    // TODO: Check that these vendor specific properties are correct
-    fontSmooth: 'always',
-    MozOsxFontSmoothing: 'always',
-    /* '-webkit-font-smoothing': 'antialiased',
-    '-moz-osx-font-smoothing': 'grayscale', */
-    pointerEvents: 'auto',
+    pointerEvents: 'none',
     zIndex: 10000,
   },
   variants: {
@@ -35,6 +29,7 @@ export const widgetContainer = recipe({
 export const chatContainer = style({
   width: CHAT_WIDTH,
   maxHeight: MAX_CHAT_HEIGHT,
+  pointerEvents: 'auto',
 
   selectors: {
     [`${widgetContainer.classNames.base} &`]: {
@@ -56,7 +51,12 @@ export const chatContainer = style({
   },
 });
 
+export const chatWindow = style({
+  height: '100%',
+});
+
 export const launcherContainer = style({
+  pointerEvents: 'auto',
   selectors: {
     [`${widgetContainer.classNames.base} &`]: {
       position: 'absolute',

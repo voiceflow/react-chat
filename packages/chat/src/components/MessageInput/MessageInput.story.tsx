@@ -23,7 +23,7 @@ export default meta;
 
 const MockComponent = () => {
   return (
-    <div style={{ width: '400px' }}>
+    <div style={{ width: '380px' }}>
       <MessageInput placeholder="Message..." onSubmit={() => Promise.resolve()} />
     </div>
   );
@@ -31,4 +31,17 @@ const MockComponent = () => {
 
 export const Base: Story = {
   render: () => <MockComponent />,
+};
+
+export const WithAudioInput: Story = {
+  render: () => (
+    <div style={{ width: '380px' }}>
+      <MessageInput
+        placeholder="Message..."
+        disableSend={false}
+        audioInterface={true}
+        onSubmit={() => Promise.resolve()}
+      />
+    </div>
+  ),
 };
