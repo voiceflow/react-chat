@@ -37,6 +37,9 @@ const VariantRenderer = ({ active }: { active?: boolean }) => {
 };
 
 export const Base: Story = {
+  render: () => <FeedbackButton onClick={() => null} />,
+};
+export const Variants: Story = {
   render: () => <VariantRenderer />,
 };
 

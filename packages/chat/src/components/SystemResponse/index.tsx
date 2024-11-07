@@ -9,7 +9,7 @@ import { ButtonVariant } from '../Button/constants';
 import { FeedbackButton } from '../FeedbackButton';
 import type { IFeedbackButton } from '../FeedbackButton/FeedbackButton.interface';
 import { useAnimatedMessages } from './hooks';
-import Indicator from './Indicator';
+import Indicator from './Indicator/Indicator';
 import { actionsContainer } from './styles.css';
 import type { SystemMessageProps } from './SystemMessage';
 import { SystemMessage } from './SystemMessage';
@@ -85,7 +85,6 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
   useAutoScroll([showIndicator, complete, visibleMessages.length]);
 
   if (!messages.length && !actions.length) return null;
-
   return (
     <>
       {visibleMessages.map((message, index) => (
@@ -99,7 +98,6 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
           key={index}
         />
       ))}
-
       {isLast && complete && !!actions.length && (
         <div className={actionsContainer}>
           {actions.map(({ request, name }, index) => (

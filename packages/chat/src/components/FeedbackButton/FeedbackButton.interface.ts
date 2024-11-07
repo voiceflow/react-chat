@@ -1,6 +1,8 @@
 export interface IFeedbackButton {
-  onClick: () => void;
+  onPositiveClick: () => void;
+  onNegativeClick: () => void;
   variant?: 'up' | 'down';
   active?: boolean;
+  textContent?: string;
   testID?: string;
 }

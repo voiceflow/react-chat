@@ -8,9 +8,11 @@ import { match } from 'ts-pattern';
 import { NewChat, SystemResponse } from '@/components';
 import { UserResponse } from '@/components/UserResponse';
 import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts/RuntimeContext';
+import { FeedbackName } from '@/contexts/RuntimeContext/useRuntimeAPI';
 import { usePalette } from '@/hooks/usePalette';
 import { PALETTE } from '@/styles/colors.css';
 // import type { UserTurnProps } from '@/types';
+import type { UserTurnProps } from '@/types';
 import { SessionStatus, TurnType } from '@/types';
 
 export interface ChatWindowProps {
@@ -33,13 +35,13 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile, className }) =
   if (!palette) return null;
 
   // TODO: We'll need this for feedback probably
-  // const getPreviousUserTurn = useCallback(
-  //   (turnIndex: number): UserTurnProps | null => {
-  //     const turn = state.session.turns[turnIndex - 1];
-  //     return turn?.type === TurnType.USER ? turn : null;
-  //   },
-  //   [state.session.turns]
-  // );
+  const getPreviousUserTurn = useCallback(
+    (turnIndex: number): UserTurnProps | null => {
+      const turn = state.session.turns[turnIndex - 1];
+      return turn?.type === TurnType.USER ? turn : null;
+    },
+    [state.session.turns]
+  );
 
   return (
     <div style={assignInlineVars(PALETTE, { colors: palette })} className={className}>
@@ -70,6 +72,10 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile, className }) =
                 key={id}
                 {...R.omit(props, ['type'])}
                 avatar={assistant.avatar}
+                feedback={{
+                  onPositiveClick: () => runtime.feedback(FeedbackName.POSITIVE, turns, getPreviousUserTurn(turnIndex)),
+                  onNegativeClick: () => runtime.feedback(FeedbackName.NEGATIVE, turns, getPreviousUserTurn(turnIndex)),
+                }}
                 isLast={turnIndex === state.session.turns.length - 1}
               />
             ))

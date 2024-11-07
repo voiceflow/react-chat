@@ -64,3 +64,27 @@ export const extensionMessageContainer = style({
   color: '#000',
   backgroundColor: '#f4f4f4',
 });
+
+export const feedbackContainer = recipe({
+  base: {
+    marginTop: 8,
+  },
+  variants: {
+    hasAvatar: {
+      true: {
+        marginLeft: SMALL_AVATAR_SIZE + MESSAGE_PADDING,
+      },
+      false: {
+        marginLeft: MESSAGE_PADDING,
+      },
+    },
+  },
+});
+
+//  feedback={
+//           <FeedbackButton
+//             onPositiveClick={() => console.log('positive')}
+//             onNegativeClick={() => console.log('negative')}
+//             textContent={textContentOfMessage}
+//           />
+//         }
