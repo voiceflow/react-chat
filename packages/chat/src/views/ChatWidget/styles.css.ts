@@ -1,7 +1,7 @@
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
-export const CHAT_WIDTH = 380;
+export const CHAT_WIDTH = 400;
 const MAX_CHAT_HEIGHT = 800;
 
 export const LAUNCHER_MARGIN = 16;
