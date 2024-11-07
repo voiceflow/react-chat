@@ -10,7 +10,7 @@ export default function ChatPage(props: any) {
   return (
     <div style={{ position: 'relative' }}>
       You can switch projects by changing the URL `projectID=...`
-      <ChatScript projectID={props.projectID} />
+      {props.projectID && <ChatScript projectID={props.projectID} />}
     </div>
   );
 }
