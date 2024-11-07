@@ -3,11 +3,9 @@ import { useContext, useMemo, useRef, useState } from 'react';
 
 import { ClassName } from '@/constants';
 import { AutoScrollProvider, RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts';
-import { RenderMode } from '@/dtos/RenderOptions.dto';
 import type { Nullish } from '@/types';
 import { chain } from '@/utils/functional';
 
-import mockAvatar from '../../assets/blank-image.png';
 import { Header, type HeaderActionProps, type HeaderProps } from '../Header';
 import { type INewFooter, NewFooter } from '../NewFooter';
 import { Prompt } from '../Prompt';
@@ -25,6 +23,11 @@ export interface INewChat extends HeaderProps, IWelcomeMessage, INewFooter, Reac
    * If true, shows audio interface controls.
    */
   audioInterface?: boolean;
+
+  /**
+   * If true, the user is using a mobile device.
+   */
+  isMobile?: boolean;
 
   /**
    * A unix timestamp indicating the start of the conversation.
@@ -58,6 +61,7 @@ export const NewChat: React.FC<INewChat> = ({
   extraLinkUrl,
   children,
   audioInterface,
+  isMobile,
 }) => {
   const [hasAlert, setAlert] = useState(false);
 
@@ -75,15 +79,14 @@ export const NewChat: React.FC<INewChat> = ({
   const handleResume = (): void => setAlert(false);
 
   const headerActions = useMemo<HeaderActionProps[]>(() => {
-    const items: HeaderActionProps[] = [{ svg: 'close', onClick: handleClose }];
-
-    if (config.render?.mode === RenderMode.OVERLAY) {
-      items.unshift({ svg: 'minus', onClick: onMinimize });
+    const items: HeaderActionProps[] = [{ svg: 'reset', onClick: handleClose }];
+    if (isMobile) {
+      items.push({ svg: 'close', onClick: onMinimize });
     }
 
     if (audioInterface) {
       items.unshift({
-        svg: state.audioOutput ? 'sound' : 'soundOff',
+        svg: state.audioOutput ? 'volume' : 'mute',
         onClick: toggleAudioOutput,
       });
     }
@@ -96,7 +99,7 @@ export const NewChat: React.FC<INewChat> = ({
 
   return (
     <div className={clsx(ClassName.CHAT, chatContainer)}>
-      <Header title={title} image={mockAvatar} actions={headerActions} />
+      <Header title={title} image={avatar} actions={headerActions} />
       <div ref={scrollableAreaRef} className={dialogContainer}>
         <AutoScrollProvider target={scrollableAreaRef}>
           <WelcomeMessage title={title} description={description} avatar={avatar} />
@@ -117,7 +120,7 @@ export const NewChat: React.FC<INewChat> = ({
       />
       <Prompt
         visible={hasAlert}
-        accept={{ label: 'End Chat', /* type: 'warn', */ onClick: chain(onEnd, handleResume) }}
+        accept={{ label: 'Start new chat', onClick: chain(onEnd, handleResume) }}
         cancel={{ label: 'Cancel', onClick: handleResume }}
       />
     </div>

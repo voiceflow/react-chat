@@ -3,7 +3,17 @@ import { z } from 'zod';
 export const EMBEDDED_TARGET = 'voiceflow-chat-frame';
 
 export enum RenderMode {
+  /**
+   * Embed the chat window into a specific container in the screen.
+   * This won't show the Launcher button because the chat will be
+   * opened by default.
+   */
   EMBEDDED = 'embedded',
+
+  /**
+   * Shows the launcher button in the bottom corder of the screen,
+   * and the user needs to push it to open/minimize the chat window.
+   */
   OVERLAY = 'overlay',
 }
 
