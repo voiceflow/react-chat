@@ -25,21 +25,34 @@ export const Base: Story = {};
 
 export const Actionable: Story = {
   args: {
-    actions: [{ svg: 'volume' }, { svg: 'reset' }, { svg: 'close' }],
+    actions: [{ svg: 'volume' }, { svg: 'reset' }],
+  },
+};
+
+export const Muted: Story = {
+  args: {
+    actions: [{ svg: 'mute' }, { svg: 'reset' }],
   },
 };
 
 export const Themed: Story = {
   args: {
-    actions: [{ svg: 'volume' }, { svg: 'reset' }, { svg: 'close' }],
+    actions: [{ svg: 'volume' }, { svg: 'reset' }],
   },
   decorators: [WithDefaultPalette],
 };
 
 export const NoImage: Story = {
   args: {
-    actions: [{ svg: 'volume' }, { svg: 'reset' }, { svg: 'close' }],
+    actions: [{ svg: 'volume' }, { svg: 'reset' }],
     image: undefined,
+  },
+  decorators: [WithDefaultPalette],
+};
+
+export const Mobile: Story = {
+  args: {
+    actions: [{ svg: 'volume' }, { svg: 'reset' }, { svg: 'close' }],
   },
   decorators: [WithDefaultPalette],
 };

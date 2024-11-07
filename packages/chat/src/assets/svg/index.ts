@@ -10,6 +10,7 @@ export { default as documentUrl } from './document-url.svg?react';
 export { default as largeArrowLeft } from './large-arrow-left.svg?react';
 export { default as microphone } from './microphone.svg?react';
 export { default as minus } from './minus.svg?react';
+export { default as mute } from './mute.svg?react';
 export { default as reset } from './reset.svg?react';
 export { default as smallArrowUp } from './small-arrow-up.svg?react';
 export { default as sound } from './sound.svg?react';

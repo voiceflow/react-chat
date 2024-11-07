@@ -15,9 +15,10 @@ import { SessionStatus, TurnType } from '@/types';
 
 export interface ChatWindowProps {
   className?: string;
+  isMobile?: boolean;
 }
 
-export const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
+export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile, className }) => {
   const runtime = useContext(RuntimeStateAPIContext);
   const state = useContext(RuntimeStateContext);
   const { assistant, config } = runtime;
@@ -59,6 +60,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ className }) => {
         messageInputProps={{
           onSubmit: runtime.reply,
         }}
+        isMobile={isMobile}
       >
         {state.session.turns.map((turn, turnIndex) =>
           match(turn)
