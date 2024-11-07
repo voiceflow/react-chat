@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.37.3](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.37.2...@voiceflow/chat@0.37.3) (2024-11-07)
+
+### Bug Fixes
+
+* add top margin to the loading state (DSN-2511) ([#284](https://github.com/voiceflow/react-chat/issues/284)) ([da6c2ce](https://github.com/voiceflow/react-chat/commit/da6c2ce19859a504b1825aaf8799a3e90c90a0bb))
+* default message for AI generated message (DSN-2504) ([#282](https://github.com/voiceflow/react-chat/issues/282)) ([fea80ca](https://github.com/voiceflow/react-chat/commit/fea80caefd6635e63153ba6389997612fca8992f))
+* font weight of headers should be 600 (DSN-2507) ([#283](https://github.com/voiceflow/react-chat/issues/283)) ([366b859](https://github.com/voiceflow/react-chat/commit/366b8598f52cd881054bf2d0f17300f13e24012c))
+* widget width (DSN-2509) ([#281](https://github.com/voiceflow/react-chat/issues/281)) ([431b81c](https://github.com/voiceflow/react-chat/commit/431b81c654db39bc15d95942b1da5f0645f4d390))
+
 ## [0.37.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.37.1...@voiceflow/chat@0.37.2) (2024-11-07)
 
 ### Bug Fixes
