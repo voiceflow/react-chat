@@ -6,7 +6,6 @@ import { AutoScrollProvider, RuntimeStateAPIContext, RuntimeStateContext } from 
 import type { Nullish } from '@/types';
 import { chain } from '@/utils/functional';
 
-import mockAvatar from '../../assets/blank-image.png';
 import { Header, type HeaderActionProps, type HeaderProps } from '../Header';
 import { type INewFooter, NewFooter } from '../NewFooter';
 import { Prompt } from '../Prompt';
@@ -100,7 +99,7 @@ export const NewChat: React.FC<INewChat> = ({
 
   return (
     <div className={clsx(ClassName.CHAT, chatContainer)}>
-      <Header title={title} image={mockAvatar} actions={headerActions} />
+      <Header title={title} image={avatar} actions={headerActions} />
       <div ref={scrollableAreaRef} className={dialogContainer}>
         <AutoScrollProvider target={scrollableAreaRef}>
           <WelcomeMessage title={title} description={description} avatar={avatar} />

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { VF_ICON } from '@/fixtures';
+import EMPTY_IMAGE from '@/__fixtures__/empty-image.png';
 import { WithDefaultPalette } from '@/storybook/decorators';
 
 import { Header } from '.';
@@ -10,7 +10,7 @@ const meta: Meta<typeof Header> = {
   component: Header,
   args: {
     title: 'Agent name',
-    image: VF_ICON,
+    image: EMPTY_IMAGE,
     actions: [],
   },
   render: (args) => <Header {...args} />,
