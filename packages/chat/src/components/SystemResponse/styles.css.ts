@@ -33,7 +33,7 @@ export const systemMessageContainer = recipe({
   variants: {
     first: {
       true: {
-        marginTop: 12,
+        marginTop: 0,
       },
     },
   },

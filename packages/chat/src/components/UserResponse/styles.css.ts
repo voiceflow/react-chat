@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
 import { COLORS } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
@@ -9,18 +10,25 @@ export const messageContainer = style({
   fontFamily: FAMILY,
   fontSize: '14px',
   lineHeight: '20px',
-  display: 'flex',
-  flexDirection: 'column',
-  flexShrink: 0,
-  alignItems: 'flex-end',
-  marginTop: 12,
 });
 
-export const messageRow = style({
-  display: 'flex',
-  width: '100%',
-  alignItems: 'center',
-  justifyContent: 'flex-end',
+export const messageRow = recipe({
+  base: {
+    display: 'flex',
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+  },
+  variants: {
+    isFirst: {
+      true: {
+        marginTop: '0px',
+      },
+      false: {
+        marginTop: '16px',
+      },
+    },
+  },
 });
 
 export const messageStyle = style({
