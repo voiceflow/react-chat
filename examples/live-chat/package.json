@@ -19,6 +19,7 @@
     "react": "18.2.0",
     "react-calendar": "4.3.0",
     "react-dom": "18.2.0",
+    "regenerator-runtime": "0.13.11",
     "styled-components": "6.0.3",
     "ts-pattern": "4.3.0"
   },

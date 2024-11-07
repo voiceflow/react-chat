@@ -1,3 +1,4 @@
+import 'regenerator-runtime/runtime';
 import '@voiceflow/chat/dist/style.css';
 
 import { ChatWidget } from '@voiceflow/chat';
