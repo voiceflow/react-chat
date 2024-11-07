@@ -71,9 +71,8 @@ export const NewFooter: React.FC<INewFooter> = ({
         <div className={footerLinksContainer}>
           {showPoweredBy && (
             <div>
-              Powered by{' '}
               <a href={VOICEFLOW_URL} className={voiceflowLink}>
-                Voiceflow
+                Powered by Voiceflow
               </a>
             </div>
           )}
