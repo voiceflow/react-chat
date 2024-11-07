@@ -62,3 +62,19 @@ export const Inline: Story = {
     variant: ButtonVariant.INLINE,
   },
 };
+
+export const InlineWrapped: Story = {
+  args: {
+    variant: ButtonVariant.INLINE,
+    children: 'Button label that is very long and should wrap. Button label that is very long and should wrap.',
+  },
+  render: () => {
+    return (
+      <div style={{ width: '200px' }}>
+        <Button variant={ButtonVariant.INLINE} large>
+          Button label that is very long and should wrap. Button label that is very long and should wrap.
+        </Button>
+      </div>
+    );
+  },
+};
