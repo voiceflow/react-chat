@@ -73,7 +73,7 @@ const AgentSays = (messages: string[]) => (
 );
 const UserSays = (text: string) => <UserResponse message={text} timestamp={Date.now()} />;
 
-export const MockBaseComponent = () => {
+const MockBaseComponent = () => {
   const [messages, setMessages] = useState([
     { type: 'Agent', text: '👋🏻 Good morning!' },
     { type: 'User', text: 'Cool, great weather ☀️' },
@@ -132,6 +132,14 @@ export const MockBaseComponent = () => {
 
 export const Base = {
   render: () => <MockBaseComponent />,
+};
+
+export const BaseThemed = {
+  render: () => (
+    <div style={assignInlineVars(PALETTE, { colors: createPalette('red') })}>
+      <MockBaseComponent />
+    </div>
+  ),
 };
 
 export const Themed: Story = {

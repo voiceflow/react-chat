@@ -28,7 +28,7 @@ export const messageStyle = style({
   padding: '10px 14px',
   borderRadius: SIZES.radius.sm,
   overflowWrap: 'anywhere',
-  color: COLORS.white,
+  color: PALETTE.colors[50],
   backgroundColor: PALETTE.colors[500],
   whiteSpace: 'break-spaces',
 });
