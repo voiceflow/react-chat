@@ -11,6 +11,7 @@ import { COLORS, createPalette } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
 import { ChatPersistence, ChatPosition } from '@/types';
 
+import Indicator from '../SystemResponse/Indicator';
 import { UserResponse } from '../UserResponse';
 import { NewChat } from '.';
 
@@ -73,7 +74,7 @@ const AgentSays = (messages: string[]) => (
 );
 const UserSays = (text: string) => <UserResponse message={text} timestamp={Date.now()} />;
 
-export const MockBaseComponent = () => {
+const MockBaseComponent = ({ isLoading }: { isLoading?: boolean }) => {
   const [messages, setMessages] = useState([
     { type: 'Agent', text: '👋🏻 Good morning!' },
     { type: 'User', text: 'Cool, great weather ☀️' },
@@ -86,6 +87,7 @@ export const MockBaseComponent = () => {
     { type: 'User', text: 'How bout you?' },
     { type: 'Agent', text: 'Howdy, great to meet you!' },
     { type: 'Agent', text: 'What up' },
+    { type: 'User', text: 'How bout you? Hows it going does this hit the loading state at the bottom of the chat?' },
   ]);
 
   const agentResponses = [
@@ -126,12 +128,24 @@ export const MockBaseComponent = () => {
       }}
     >
       {messages.map((msg) => (msg.type === 'Agent' ? AgentSays([msg.text]) : UserSays(msg.text)))}
+      {isLoading && <Indicator avatar={EMPTY_IMAGE} />}
     </NewChat>
   );
 };
 
 export const Base = {
   render: () => <MockBaseComponent />,
+};
+
+export const BaseThemed = {
+  render: () => (
+    <div style={assignInlineVars(PALETTE, { colors: createPalette('red') })}>
+      <MockBaseComponent />
+    </div>
+  ),
+};
+export const LoadingState = {
+  render: () => <MockBaseComponent isLoading={true} />,
 };
 
 export const Themed: Story = {

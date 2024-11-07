@@ -4,4 +4,5 @@ export const indicatorContainer = style({
   display: 'flex',
   alignItems: 'center',
   gap: '12px',
+  marginTop: '12px',
 });
