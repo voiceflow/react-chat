@@ -35,7 +35,10 @@ export const buttonStyles = recipe({
         backgroundColor: PALETTE.colors[50],
         lineHeight: '20px',
         padding: '7px 12px 6px 12px',
-
+        whiteSpace: 'normal',
+        wordBreak: 'break-word',
+        textAlign: 'left',
+        height: 'fit-content',
         ':hover': {
           color: PALETTE.colors[700],
           backgroundColor: PALETTE.colors[100],
@@ -91,8 +94,13 @@ export const buttonStyles = recipe({
 
     large: {
       true: {
-        height: 40,
         borderRadius: SIZES.radius.xs,
+        padding: '11px 16px 9px 16px',
+        height: 'auto',
+        display: 'flex',
+        alignItems: 'center',
+        lineHeight: '20px',
+        justifyContent: 'center',
       },
     },
 
