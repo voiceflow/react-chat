@@ -13,7 +13,10 @@ import {
   footerLinksContainer,
   messageContainer,
   separator,
+  voiceflowLink,
 } from './NewFooter.css';
+
+const VOICEFLOW_URL = 'https://www.voiceflow.com/';
 
 export interface INewFooter {
   buttons?: { label: string; onClick: () => void }[];
@@ -66,7 +69,13 @@ export const NewFooter: React.FC<INewFooter> = ({
           <MessageInput {...messageInputProps} />
         )}
         <div className={footerLinksContainer}>
-          {showPoweredBy && <div>Powered by Voiceflow</div>}
+          {showPoweredBy && (
+            <div>
+              <a href={VOICEFLOW_URL} target="_blank" rel="noreferrer" className={voiceflowLink}>
+                Powered by Voiceflow
+              </a>
+            </div>
+          )}
           {showPoweredBy && showExtraLink && <div className={separator} />}
           {showExtraLink && (
             <a href={extraLinkUrl} target="_blank" className={extraLinkStyles}>

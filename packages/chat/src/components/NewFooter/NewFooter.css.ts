@@ -102,3 +102,20 @@ export const extraLinkStyles = style({
     },
   },
 });
+
+export const voiceflowLink = style({
+  color: COLORS.NEUTRAL_DARK[100],
+  textDecoration: 'underline',
+  textDecorationColor: 'transparent',
+  transition: transition(['color', 'text-decoration-color']),
+  selectors: {
+    '&:hover': {
+      color: COLORS.ACCENT[500],
+      textDecorationColor: COLORS.ACCENT[500],
+    },
+    '&:active': {
+      color: COLORS.ACCENT[600],
+      textDecorationColor: 'transparent',
+    },
+  },
+});
