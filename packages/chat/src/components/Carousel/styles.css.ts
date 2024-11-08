@@ -39,7 +39,6 @@ export const carouselContainer = style({
   position: 'relative',
   width: '100%',
   display: 'flex',
-  marginBottom: 4,
 });
 
 const MESSAGE_WIDTH = CHAT_WIDTH - DIALOG_PADDING - SMALL_AVATAR_SIZE - MESSAGE_PADDING;

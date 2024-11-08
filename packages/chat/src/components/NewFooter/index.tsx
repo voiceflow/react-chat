@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import type { RefObject } from 'react';
 
 import { ClassName } from '@/constants';
 
@@ -6,6 +7,7 @@ import { Button } from '../Button';
 import { ButtonVariant } from '../Button/constants';
 import type { IMessageInput } from '../MessageInput';
 import { MessageInput } from '../MessageInput';
+import { ScrollToBottom } from '../ScrollToBottom';
 import {
   buttonsContainer,
   extraLinkStyles,
@@ -26,6 +28,7 @@ export interface INewFooter {
   extraLinkUrl?: string;
   hasEnded: boolean;
   disableSend?: boolean;
+  scrollableAreaRef: RefObject<HTMLDivElement>;
 
   /**
    * A callback to start a new conversation.
@@ -46,6 +49,7 @@ export const NewFooter: React.FC<INewFooter> = ({
   extraLinkUrl,
   hasEnded,
   onStart,
+  scrollableAreaRef,
 }) => {
   const showExtraLink = extraLinkText && extraLinkUrl;
   return (
@@ -66,7 +70,10 @@ export const NewFooter: React.FC<INewFooter> = ({
             Start New Chat
           </Button>
         ) : (
-          <MessageInput {...messageInputProps} />
+          <>
+            <ScrollToBottom scrollableAreaRef={scrollableAreaRef} />
+            <MessageInput {...messageInputProps} />
+          </>
         )}
         <div className={footerLinksContainer}>
           {showPoweredBy && (

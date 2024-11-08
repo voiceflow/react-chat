@@ -20,7 +20,6 @@ export const cardContainer = style({
 export const cardImage = style({
   display: 'inline-block',
   width: '100%',
-  height: 160,
 });
 
 export const cardContent = style({

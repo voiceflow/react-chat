@@ -9,11 +9,14 @@ import { chain } from '@/utils/functional';
 import { Header, type HeaderActionProps, type HeaderProps } from '../Header';
 import { type INewFooter, NewFooter } from '../NewFooter';
 import { Prompt } from '../Prompt';
-import { ScrollToBottom } from '../ScrollToBottom';
 import { type IWelcomeMessage, WelcomeMessage } from '../WelcomeMessage';
 import { bottomSpacer, chatContainer, dialogContainer } from './NewChat.css';
 
-export interface INewChat extends HeaderProps, IWelcomeMessage, INewFooter, React.PropsWithChildren<unknown> {
+export interface INewChat
+  extends HeaderProps,
+    IWelcomeMessage,
+    Omit<INewFooter, 'scrollableAreaRef'>,
+    React.PropsWithChildren<unknown> {
   /**
    * If true, shows a loading indicator.
    */
@@ -95,7 +98,6 @@ export const NewChat: React.FC<INewChat> = ({
   }, [config.render, handleClose, onMinimize, state.audioOutput, audioInterface]);
 
   const scrollableAreaRef = useRef<HTMLDivElement>(null);
-  const hasFooterLinks = !!(extraLinkText && extraLinkUrl && showPoweredBy);
 
   return (
     <div className={clsx(ClassName.CHAT, chatContainer)}>
@@ -107,7 +109,6 @@ export const NewChat: React.FC<INewChat> = ({
           <div className={bottomSpacer} />
         </AutoScrollProvider>
       </div>
-      <ScrollToBottom scrollableAreaRef={scrollableAreaRef} hasFooterLinks={hasFooterLinks} />
       <NewFooter
         buttons={buttons}
         showPoweredBy={showPoweredBy}
@@ -117,6 +118,7 @@ export const NewChat: React.FC<INewChat> = ({
         extraLinkText={extraLinkText}
         extraLinkUrl={extraLinkUrl}
         messageInputProps={{ ...messageInputProps, disableSend: state.indicator }}
+        scrollableAreaRef={scrollableAreaRef}
       />
       <Prompt
         visible={hasAlert}
