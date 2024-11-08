@@ -1,6 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import { WithDefaultPalette } from '@/storybook/decorators';
+import { createPalette } from '@/styles/colors';
+import { PALETTE } from '@/styles/colors.css';
 
 import { UserMessage } from './index';
 
@@ -29,6 +32,12 @@ export const Long: Story = {
 export const Green: Story = {
   args: {
     message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget diam neque.',
-    color: 'green',
   },
+  decorators: [
+    (Story: any) => (
+      <div style={assignInlineVars(PALETTE, { colors: createPalette('green') })}>
+        <Story />
+      </div>
+    ),
+  ],
 };

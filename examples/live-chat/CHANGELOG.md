@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.3](https://github.com/voiceflow/react-chat/compare/@voiceflow-example/live-chat@0.2.2...@voiceflow-example/live-chat@0.2.3) (2024-11-07)
+
+### Bug Fixes
+
+* add regenerator-runtime to the live-chat example (COR-0000) ([#286](https://github.com/voiceflow/react-chat/issues/286)) ([7a97a6d](https://github.com/voiceflow/react-chat/commit/7a97a6d1cf979bb79bce4f273696178a18d6aa8a))
+
 ## [0.2.2](https://github.com/voiceflow/react-chat/compare/@voiceflow-example/live-chat@0.2.1...@voiceflow-example/live-chat@0.2.2) (2024-10-24)
 
 **Note:** Version bump only for package @voiceflow-example/live-chat
