@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { useRef } from 'react';
 
 import { RuntimeProvider } from '@/contexts';
 import { MOCK_IMAGE } from '@/fixtures';
