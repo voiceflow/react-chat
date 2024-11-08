@@ -33,5 +33,5 @@ export const dialogContainer = style({
 export const bottomSpacer = style({
   display: 'block',
   width: '100%',
-  height: 12,
+  height: '24px',
 });
