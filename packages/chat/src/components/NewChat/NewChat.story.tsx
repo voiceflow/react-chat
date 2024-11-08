@@ -144,6 +144,7 @@ export const BaseThemed = {
     </div>
   ),
 };
+
 export const LoadingState = {
   render: () => <MockBaseComponent isLoading={true} />,
 };
