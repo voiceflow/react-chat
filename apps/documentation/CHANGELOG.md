@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.1](https://github.com/voiceflow/react-chat/compare/documentation@0.25.0...documentation@0.25.1) (2024-11-08)
+
+### Bug Fixes
+
+* button wrapping behaviour (DSN-2510) ([#280](https://github.com/voiceflow/react-chat/issues/280)) ([9a74dc7](https://github.com/voiceflow/react-chat/commit/9a74dc79eebf3bdd2521b5922807eda9202c8bc5))
+
 # [0.25.0](https://github.com/voiceflow/react-chat/compare/documentation@0.24.4...documentation@0.25.0) (2024-11-08)
 
 ### Features

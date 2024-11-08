@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.38.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.38.0...@voiceflow/chat@0.38.1) (2024-11-08)
+
+### Bug Fixes
+
+* button wrapping behaviour (DSN-2510) ([#280](https://github.com/voiceflow/react-chat/issues/280)) ([9a74dc7](https://github.com/voiceflow/react-chat/commit/9a74dc79eebf3bdd2521b5922807eda9202c8bc5))
+* place Scroll to bottom button in footer component (COR-3827) ([#288](https://github.com/voiceflow/react-chat/issues/288)) ([f583dac](https://github.com/voiceflow/react-chat/commit/f583dac07cecfcfb9b0200f1958967807dfe4d6b))
+
 # [0.38.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.37.4...@voiceflow/chat@0.38.0) (2024-11-08)
 
 ### Features
