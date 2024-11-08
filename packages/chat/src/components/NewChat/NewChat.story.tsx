@@ -36,9 +36,12 @@ const UserSays = (text: string) => <UserResponse message={text} timestamp={Date.
 
 const MockBaseComponent = ({ isLoading }: { isLoading?: boolean }) => {
   const [messages, setMessages] = useState([
-    { type: 'User', text: 'Cool, great weather ☀️' },
     { type: 'Agent', text: '👋🏻 Good morning!' },
-    { type: 'User', text: 'How bout you?' },
+    { type: 'User', text: 'Cool, great weather ☀️' },
+    {
+      type: 'User',
+      text: 'How bout you? What about Bob? How has he been. Is he ok. Should I separate these messages?',
+    },
     { type: 'Agent', text: 'Howdy, great to meet you!' },
     { type: 'Agent', text: 'What up' },
     { type: 'User', text: 'How bout you?' },

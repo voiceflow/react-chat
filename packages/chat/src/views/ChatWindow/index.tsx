@@ -69,18 +69,12 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile }) => {
         }}
         isMobile={isMobile}
       >
-        {state.session.turns.map((turn, turnIndex) =>
-          match(turn)
+        {state.session.turns.map((turn, turnIndex) => {
+          // eslint-disable-next-line no-console
+          console.log({ turn, turnIndex });
+          return match(turn)
             .with({ type: TurnType.USER }, ({ id, ...props }) => {
-              // eslint-disable-next-line no-console
-              console.log({ id, props });
-              return (
-                <UserResponse
-                  {...R.omit(props, ['type'])}
-                  isFirst={turnIndex === state.session.turns.length - 1}
-                  key={id}
-                />
-              );
+              return <UserResponse {...R.omit(props, ['type'])} isFirst={turnIndex === 0} key={id} />;
             })
             .with({ type: TurnType.SYSTEM }, ({ id, ...props }) => (
               <SystemResponse
@@ -99,8 +93,8 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile }) => {
                 isLast={turnIndex === state.session.turns.length - 1}
               />
             ))
-            .exhaustive()
-        )}
+            .exhaustive();
+        })}
       </NewChat>
     </div>
   );

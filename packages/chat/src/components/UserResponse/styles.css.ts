@@ -18,6 +18,7 @@ export const messageRow = recipe({
     width: '100%',
     alignItems: 'center',
     justifyContent: 'flex-end',
+    marginBottom: '16px',
   },
   variants: {
     isFirst: {
