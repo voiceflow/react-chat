@@ -95,6 +95,12 @@ export const buttonStyles = recipe({
     large: {
       true: {
         borderRadius: SIZES.radius.xs,
+        padding: '11px 16px 9px 16px',
+        height: 'auto',
+        display: 'flex',
+        alignItems: 'center',
+        lineHeight: '20px',
+        justifyContent: 'center',
       },
     },
 
