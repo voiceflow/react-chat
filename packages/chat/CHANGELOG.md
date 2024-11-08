@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.37.4](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.37.3...@voiceflow/chat@0.37.4) (2024-11-08)
+
+### Bug Fixes
+
+* user message text colour should be themed (DSN-2512) ([#279](https://github.com/voiceflow/react-chat/issues/279)) ([fbfbb41](https://github.com/voiceflow/react-chat/commit/fbfbb4125a113e6eb455150ab88b2d0dc13aea06))
+
 ## [0.37.3](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.37.2...@voiceflow/chat@0.37.3) (2024-11-07)
 
 ### Bug Fixes
