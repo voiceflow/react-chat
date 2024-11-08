@@ -50,9 +50,6 @@ export const UserResponse: React.FC<UserResponseProps> = ({ message, debug, isFi
   // TODO: Check this in different render modes
   // const { config } = useContext(RuntimeStateAPIContext);
 
-  // eslint-disable-next-line no-console
-  console.log({ message, debug, isFirst });
-
   return (
     <div className={clsx(ClassName.USER_RESPONSE, messageContainer)}>
       <div className={messageRow({ isFirst })}>
