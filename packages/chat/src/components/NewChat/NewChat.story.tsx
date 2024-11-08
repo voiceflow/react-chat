@@ -4,12 +4,9 @@ import { useState } from 'react';
 
 import EMPTY_IMAGE from '@/__fixtures__/empty-image.png';
 import { SystemResponse } from '@/components';
-import { RuntimeProvider } from '@/contexts';
-import { RenderMode } from '@/main';
-import { WithDefaultPalette } from '@/storybook/decorators';
-import { COLORS, createPalette } from '@/styles/colors';
+import { WithDefaultPalette, WithRuntimeProvider } from '@/storybook/decorators';
+import { createPalette } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
-import { ChatPersistence, ChatPosition } from '@/types';
 
 import Indicator from '../SystemResponse/Indicator';
 import { UserResponse } from '../UserResponse';
@@ -21,44 +18,7 @@ const meta: Meta = {
   parameters: {
     layout: 'centered',
   },
-  decorators: [
-    (Story) => (
-      <RuntimeProvider
-        config={{
-          verify: { projectID: 'project-id' },
-          url: '',
-          versionID: 'version-id',
-          autostart: true,
-          allowDangerousHTML: true,
-          user: { name: 'User' },
-          render: { mode: RenderMode.OVERLAY },
-        }}
-        assistant={{
-          title: 'Voiceflow Assistant',
-          color: COLORS.ACCENT[500],
-          image: EMPTY_IMAGE,
-          avatar: EMPTY_IMAGE,
-          launcher: undefined,
-          watermark: true,
-          feedback: false,
-          stylesheet: undefined,
-          description: '',
-          position: ChatPosition.RIGHT,
-          persistence: ChatPersistence.LOCAL_STORAGE,
-          audioInterface: false,
-          defaultAudioOutput: undefined,
-          spacing: {
-            side: 30,
-            bottom: 30,
-          },
-          extensions: [],
-        }}
-      >
-        {Story()}
-      </RuntimeProvider>
-    ),
-    WithDefaultPalette,
-  ],
+  decorators: [WithRuntimeProvider, WithDefaultPalette],
 };
 
 type Story = StoryObj<typeof NewChat>;
