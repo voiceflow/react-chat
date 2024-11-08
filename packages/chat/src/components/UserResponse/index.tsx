@@ -37,6 +37,12 @@ export interface UserResponseProps {
    * If true, this is the first message in the chat.
    */
   isFirst?: boolean;
+
+  /**
+   * If true, the chat is using an avatar.
+   */
+
+  hasAvatar?: boolean;
 }
 
 /**
@@ -44,7 +50,7 @@ export interface UserResponseProps {
  *
  * @see {@link https://voiceflow.github.io/react-chat/?path=/story/components-chat-userresponse--simple}
  */
-export const UserResponse: React.FC<UserResponseProps> = ({ message, debug, isFirst }) => {
+export const UserResponse: React.FC<UserResponseProps> = ({ message, debug, isFirst, hasAvatar }) => {
   useAutoScroll();
 
   // TODO: Check this in different render modes
@@ -52,7 +58,7 @@ export const UserResponse: React.FC<UserResponseProps> = ({ message, debug, isFi
 
   return (
     <div className={clsx(ClassName.USER_RESPONSE, messageContainer)}>
-      <div className={messageRow({ isFirst })}>
+      <div className={messageRow({ isFirst, hasAvatar })}>
         <div className={messageStyle}>{message}</div>
       </div>
       {debug && (

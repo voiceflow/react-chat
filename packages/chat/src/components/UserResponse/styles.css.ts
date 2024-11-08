@@ -6,6 +6,9 @@ import { PALETTE } from '@/styles/colors.css';
 import { FAMILY } from '@/styles/font';
 import { SIZES } from '@/styles/sizes';
 
+import { SMALL_AVATAR_SIZE } from '../Avatar/styles.css';
+import { MESSAGE_PADDING } from '../SystemResponse/styles.css';
+
 export const messageContainer = style({
   fontFamily: FAMILY,
   fontSize: '14px',
@@ -27,6 +30,11 @@ export const messageRow = recipe({
       },
       false: {
         marginTop: '16px',
+      },
+    },
+    hasAvatar: {
+      true: {
+        paddingLeft: `${SMALL_AVATAR_SIZE + MESSAGE_PADDING}px`,
       },
     },
   },
