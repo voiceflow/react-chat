@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.25.0](https://github.com/voiceflow/react-chat/compare/documentation@0.24.4...documentation@0.25.0) (2024-11-08)
+
+### Features
+
+* add TypingIndicator to the docs (COR-0000) ([#276](https://github.com/voiceflow/react-chat/issues/276)) ([205e910](https://github.com/voiceflow/react-chat/commit/205e910f3b5672a7598ffb2e0682e2178d059b16))
+* powered by Voiceflow is a link now (DSN-2505) ([#285](https://github.com/voiceflow/react-chat/issues/285)) ([7d4ea15](https://github.com/voiceflow/react-chat/commit/7d4ea15eefc9c5ce5c4c11c3aea8f3985df72ebc))
+* ui review for footer (COR-3751) ([#273](https://github.com/voiceflow/react-chat/issues/273)) ([235debb](https://github.com/voiceflow/react-chat/commit/235debb51219f196867b146adf1395603fa7128b))
+
 ## [0.24.4](https://github.com/voiceflow/react-chat/compare/documentation@0.24.3...documentation@0.24.4) (2024-11-08)
 
 **Note:** Version bump only for package documentation
