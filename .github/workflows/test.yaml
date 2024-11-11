@@ -1,0 +1,14 @@
+name: Vercel Preview Comments
+on:
+  pull_request:
+    types: [opened, synchronize]
+    branches:
+      - 'greg/**'
+      - 'gtmq_*'
+
+jobs:
+  gtest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Just a Test
+        run: echo "Skipping Vercel Preview Comments for greg/"
