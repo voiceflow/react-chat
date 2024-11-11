@@ -2,6 +2,7 @@ import { keyframes, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { SIZES } from '@/styles/sizes';
+import { transition } from '@/styles/transitions';
 
 import { SMALL_AVATAR_SIZE } from '../Avatar/styles.css';
 
@@ -63,4 +64,27 @@ export const extensionMessageContainer = style({
   overflowWrap: 'anywhere',
   color: '#000',
   backgroundColor: '#f4f4f4',
+});
+
+export const feedbackContainer = recipe({
+  base: {
+    marginTop: 6,
+    position: 'absolute',
+    transition: transition(['opacity']),
+  },
+  variants: {
+    isLast: {
+      true: {
+        opacity: 1,
+      },
+      false: {
+        opacity: 0,
+        selectors: {
+          [`${systemMessageContainer()}:hover &`]: {
+            opacity: 1,
+          },
+        },
+      },
+    },
+  },
 });

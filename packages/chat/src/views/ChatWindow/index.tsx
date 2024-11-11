@@ -8,9 +8,11 @@ import { match } from 'ts-pattern';
 import { NewChat, SystemResponse } from '@/components';
 import { UserResponse } from '@/components/UserResponse';
 import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts/RuntimeContext';
+import type { FeedbackName } from '@/contexts/RuntimeContext/useRuntimeAPI';
 import { usePalette } from '@/hooks/usePalette';
 import { PALETTE } from '@/styles/colors.css';
 // import type { UserTurnProps } from '@/types';
+import type { UserTurnProps } from '@/types';
 import { SessionStatus, TurnType } from '@/types';
 
 import { chatWindow } from './styles.css';
@@ -35,13 +37,13 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile }) => {
   if (!palette) return null;
 
   // TODO: We'll need this for feedback probably
-  // const getPreviousUserTurn = useCallback(
-  //   (turnIndex: number): UserTurnProps | null => {
-  //     const turn = state.session.turns[turnIndex - 1];
-  //     return turn?.type === TurnType.USER ? turn : null;
-  //   },
-  //   [state.session.turns]
-  // );
+  const getPreviousUserTurn = useCallback(
+    (turnIndex: number): UserTurnProps | null => {
+      const turn = state.session.turns[turnIndex - 1];
+      return turn?.type === TurnType.USER ? turn : null;
+    },
+    [state.session.turns]
+  );
 
   return (
     <div style={assignInlineVars(PALETTE, { colors: palette })} className={chatWindow}>
@@ -72,6 +74,15 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile }) => {
                 key={id}
                 {...R.omit(props, ['type'])}
                 avatar={assistant.avatar}
+                feedback={
+                  assistant.feedback
+                    ? {
+                        onClick: (feedback: FeedbackName) => {
+                          runtime.feedback(feedback, props.messages, getPreviousUserTurn(turnIndex));
+                        },
+                      }
+                    : undefined
+                }
                 isLast={turnIndex === state.session.turns.length - 1}
               />
             ))

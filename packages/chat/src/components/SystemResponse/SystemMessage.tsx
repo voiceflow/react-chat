@@ -16,7 +16,7 @@ import { Image } from '../Image';
 import { MessageType } from './constants';
 import { ExtensionMessage } from './ExtensionMessage';
 import EndState from './state/end';
-import { hide, messageContainer, responseAvatar, systemMessageContainer } from './styles.css';
+import { feedbackContainer, hide, messageContainer, responseAvatar, systemMessageContainer } from './styles.css';
 import type { MessageProps } from './types';
 
 export interface SystemMessageProps extends React.PropsWithChildren {
@@ -50,6 +50,11 @@ export interface SystemMessageProps extends React.PropsWithChildren {
    * If this is the first message in a group of messages
    */
   first?: boolean;
+
+  /**
+   * If this is the last message recieved
+   */
+  isLast?: boolean;
 }
 
 /**
@@ -62,6 +67,7 @@ export const SystemMessage: React.FC<SystemMessageProps> = ({
   withImage,
   first,
   children,
+  isLast,
 }) => {
   const { config } = useContext(RuntimeStateAPIContext);
 
@@ -83,7 +89,11 @@ export const SystemMessage: React.FC<SystemMessageProps> = ({
               <ExtensionMessage extension={payload.extension} trace={payload.trace} />
             ))
             .otherwise(() => null)}
-        {feedback && <FeedbackButton {...feedback} />}
+        {feedback && (
+          <div className={feedbackContainer({ isLast })}>
+            <FeedbackButton {...feedback} />
+          </div>
+        )}
       </div>
     </div>
   );
