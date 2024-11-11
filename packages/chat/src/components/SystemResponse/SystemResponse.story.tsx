@@ -169,6 +169,7 @@ export const MultipleWithFeedback: Story = {
     feedback: {
       onClick: () => null,
     },
+    isLast: true,
     messages: [CARD, TEXT_MESSAGE],
   },
 };
@@ -179,6 +180,7 @@ export const PreviousMultipleWithFeedback: Story = {
       onClick: () => null,
       variant: FeedbackButtonVariant.PREVIOUS_RESPONSE,
     },
+    isLast: false,
     messages: [CARD, TEXT_MESSAGE],
   },
 };

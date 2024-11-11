@@ -98,6 +98,7 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
           avatar={avatar}
           timestamp={timestamp}
           first={index === 0}
+          isLast={isLast}
           key={index}
         />
       ))}

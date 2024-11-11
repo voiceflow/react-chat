@@ -50,6 +50,11 @@ export interface SystemMessageProps extends React.PropsWithChildren {
    * If this is the first message in a group of messages
    */
   first?: boolean;
+
+  /**
+   * If this is the last message recieved
+   */
+  isLast?: boolean;
 }
 
 /**
@@ -62,6 +67,7 @@ export const SystemMessage: React.FC<SystemMessageProps> = ({
   withImage,
   first,
   children,
+  isLast,
 }) => {
   const { config } = useContext(RuntimeStateAPIContext);
 
@@ -84,7 +90,7 @@ export const SystemMessage: React.FC<SystemMessageProps> = ({
             ))
             .otherwise(() => null)}
         {feedback && (
-          <div className={feedbackContainer}>
+          <div className={feedbackContainer({ isLast })}>
             <FeedbackButton {...feedback} />
           </div>
         )}
