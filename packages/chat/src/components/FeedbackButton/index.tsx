@@ -1,6 +1,6 @@
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 import clsx from 'clsx';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { ClassName } from '@/constants';
 import { FeedbackName } from '@/contexts/RuntimeContext/useRuntimeAPI';
@@ -35,6 +35,16 @@ export const FeedbackButton: React.FC<IFeedbackButton> = ({ variant, onClick, te
     onClick(type);
     setIsPositiveOrNegativeSelected(type);
   };
+
+  // eslint-disable-next-line consistent-return
+  useEffect(() => {
+    if (hasCopied) {
+      const timeout = setTimeout(() => {
+        setHasCopied(false);
+      }, 1000);
+      return () => clearTimeout(timeout);
+    }
+  }, [hasCopied]);
 
   return (
     <div
