@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.40.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.39.0...@voiceflow/chat@0.40.0) (2024-11-11)
+
+### Features
+
+* Feedback + Copy Button (DSN-2499) ([#290](https://github.com/voiceflow/react-chat/issues/290)) ([a0c4649](https://github.com/voiceflow/react-chat/commit/a0c4649eb0e8b53ef3321cb5f10b31ef593d31c3))
+
 # [0.39.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.38.1...@voiceflow/chat@0.39.0) (2024-11-11)
 
 ### Features
