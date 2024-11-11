@@ -24,6 +24,7 @@ interface ChatWidgetProps extends React.PropsWithChildren {
 
 export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, ready }) => {
   const { assistant, open, close, interact } = useContext(RuntimeStateAPIContext);
+
   const { isOpen } = useContext(RuntimeStateContext);
 
   /** initialization */

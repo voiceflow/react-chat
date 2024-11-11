@@ -6,9 +6,9 @@ import { FeedbackButton } from '.';
 describe('Button', () => {
   it('onClick callback fires properly', async () => {
     const onClick = vi.fn();
-
-    render(<FeedbackButton onClick={onClick} />);
-    screen.getByRole('button').click();
+    const testID = 'button';
+    render(<FeedbackButton onClick={onClick} testID={testID} />);
+    screen.getByTestId(`${testID}--positive`).click();
 
     expect(onClick).toHaveBeenCalledTimes(1);
   });

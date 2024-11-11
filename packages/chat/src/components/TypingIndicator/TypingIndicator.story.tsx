@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { DEFAULT_AVATAR, NewChat } from '@/main';
 import { WithDefaultPalette, WithRuntimeProvider } from '@/storybook/decorators';
 
-import Indicator from '../SystemResponse/Indicator';
+import Indicator from '../SystemResponse/Indicator/Indicator';
 import { SystemMessage } from '../SystemResponse/SystemMessage';
 import { TypingIndicator } from '.';
 

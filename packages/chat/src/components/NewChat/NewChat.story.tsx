@@ -8,7 +8,7 @@ import { WithDefaultPalette, WithRuntimeProvider } from '@/storybook/decorators'
 import { createPalette } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
 
-import Indicator from '../SystemResponse/Indicator';
+import Indicator from '../SystemResponse/Indicator/Indicator';
 import { UserResponse } from '../UserResponse';
 import { NewChat } from '.';
 

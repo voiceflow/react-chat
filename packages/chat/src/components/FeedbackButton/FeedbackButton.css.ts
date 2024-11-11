@@ -1,41 +1,83 @@
-import { createVar } from '@vanilla-extract/css';
+import { createVar, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
+import { SHADOWS } from '@/styles/box-shadows';
 import { COLORS } from '@/styles/colors';
 import { transition } from '@/styles/transitions';
 
 export const activeBackground = createVar();
 export const activeIconColor = createVar();
 
-export const feedbackButtonStyles = recipe({
+export const feedbackContainer = recipe({
   base: {
-    borderRadius: '100%',
-    height: '32px',
-    width: '32px',
-    cursor: 'pointer',
     display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    border: 'none',
-    backgroundColor: 'transparent',
-    transition: transition(['background-color']),
+    flexDirection: 'row',
+    gap: '4px',
+    borderRadius: '7px',
+    padding: '2px',
+    boxShadow: SHADOWS.Z1_Light,
+    width: 'fit-content',
   },
   variants: {
-    isActive: {
+    previousResponse: {
       true: {
-        boxShadow: '0px -1px 0px 0px rgba(0, 0, 0, 0.16) inset',
-        backgroundColor: activeBackground,
+        backgroundColor: COLORS.white,
       },
       false: {
+        backgroundColor: 'transparent',
+        boxShadow: 'none',
+        gap: '6px',
+      },
+    },
+  },
+});
+
+export const feedbackButtonStyles = recipe({
+  base: {
+    borderRadius: '5px',
+    height: '24px',
+    width: '24px',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    border: 'none',
+    backgroundColor: 'transparent',
+    transition: transition(['background-color', 'color']),
+    color: COLORS.NEUTRAL_DARK[100],
+    selectors: {
+      '&:hover': {
+        backgroundColor: COLORS.NEUTRAL_DARK[9006],
+        color: COLORS.NEUTRAL_DARK[600],
+      },
+      '&:active': {
+        backgroundColor: COLORS.NEUTRAL_DARK[90012],
+        color: COLORS.NEUTRAL_DARK[800],
+      },
+    },
+  },
+  variants: {
+    isSelected: {
+      true: {
+        color: COLORS.ACCENT[500],
         selectors: {
           '&:hover': {
-            backgroundColor: COLORS.NEUTRAL_DARK[9006],
+            backgroundColor: 'transparent',
+            color: COLORS.ACCENT[500],
           },
           '&:active': {
-            backgroundColor: COLORS.NEUTRAL_DARK[90012],
+            backgroundColor: 'transparent',
+            color: COLORS.ACCENT[500],
           },
-          '&:focus-visible': {
-            outline: 'none',
+        },
+      },
+    },
+    isCopied: {
+      true: {
+        selectors: {
+          '&:hover': {
+            backgroundColor: 'transparent',
+            color: COLORS.NEUTRAL_DARK[100],
           },
         },
       },
@@ -43,29 +85,6 @@ export const feedbackButtonStyles = recipe({
   },
 });
 
-export const iconStyle = recipe({
-  base: {
-    color: COLORS.NEUTRAL_DARK[100],
-    transition: transition(['color']),
-  },
-  variants: {
-    isActive: {
-      true: {
-        color: activeIconColor,
-      },
-      false: {
-        selectors: {
-          [`${feedbackButtonStyles()}:hover &`]: {
-            color: COLORS.NEUTRAL_DARK[600],
-          },
-          [`${feedbackButtonStyles()}:active &`]: {
-            color: COLORS.NEUTRAL_DARK[900],
-          },
-          [`${feedbackButtonStyles({ isActive: true })}:focus &`]: {
-            color: activeIconColor,
-          },
-        },
-      },
-    },
-  },
+export const iconStyle = style({
+  flex: 'none',
 });

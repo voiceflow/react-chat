@@ -1,9 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import EMPTY_IMAGE from '@/__fixtures__/empty-image.png';
 import CODE_RESPONSE_FIXTURE from '@/__fixtures__/markdown/code-response.md?raw';
 import { MOCK_IMAGE, VF_ICON } from '@/fixtures';
 
-import EMPTY_IMAGE from '../../__fixtures__/empty-image.png';
+import { FeedbackButtonVariant } from '../FeedbackButton/FeedbackButton.interface';
 import type { MessageProps } from '.';
 import { SystemResponse } from '.';
 
@@ -28,7 +29,7 @@ const meta: Meta<typeof SystemResponse> = {
   args: {
     timestamp: Date.now(),
     avatar: VF_ICON,
-    isLast: false,
+    isLast: true,
   },
   argTypes: {
     timestamp: {
@@ -168,6 +169,18 @@ export const MultipleWithFeedback: Story = {
     feedback: {
       onClick: () => null,
     },
+    isLast: true,
+    messages: [CARD, TEXT_MESSAGE],
+  },
+};
+
+export const PreviousMultipleWithFeedback: Story = {
+  args: {
+    feedback: {
+      onClick: () => null,
+      variant: FeedbackButtonVariant.PREVIOUS_RESPONSE,
+    },
+    isLast: false,
     messages: [CARD, TEXT_MESSAGE],
   },
 };
