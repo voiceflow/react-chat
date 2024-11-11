@@ -1,0 +1,20 @@
+name: 'Skip Vercel Checks'
+on:
+  pull_request:
+    types: [opened, synchronize]
+    branches: 'gtmq_*'
+
+jobs:
+  vercel:
+    name: Vercel
+    runs-on: ubuntu-latest
+    steps:
+      - name: Skip Vercel
+        run: echo "Skipping Vercel for gtmq_"
+
+  vercel_checks:
+    name: Vercel Preview Comments
+    runs-on: ubuntu-latest
+    steps:
+      - name: Skip Vercel Preview Comments
+        run: echo "Skipping Vercel Preview Comments for gtmq_"
