@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.39.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.38.1...@voiceflow/chat@0.39.0) (2024-11-11)
+
+### Features
+
+* adjust chat to work in embedded mode as well (COR-3851) ([#293](https://github.com/voiceflow/react-chat/issues/293)) ([cdcaaf9](https://github.com/voiceflow/react-chat/commit/cdcaaf97b98851068af74672f3d38ab98f0c72c2))
+
 ## [0.38.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.38.0...@voiceflow/chat@0.38.1) (2024-11-08)
 
 ### Bug Fixes
