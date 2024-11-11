@@ -1,9 +1,8 @@
 name: 'Skip Vercel Checks'
 on:
   pull_request:
-    types: [opened, synchronize]
     branches:
-      - 'gtmq_**'
+      - 'gtmq_*'
 
 jobs:
   vercel_checks:
