@@ -12,13 +12,13 @@ import {
   feedbackContainer,
   iconStyle,
 } from './FeedbackButton.css';
-import type { IFeedbackButton } from './FeedbackButton.interface';
+import { FeedbackButtonVariant, type IFeedbackButton } from './FeedbackButton.interface';
 import { ThumbsDownIcon } from './ThumbsDownIcon.component';
 import { ThumbsUpIcon } from './ThumbsUpIcon.component';
 
 export const FeedbackButton: React.FC<IFeedbackButton> = ({
   active,
-  // variant,
+  variant,
   onPositiveClick,
   onNegativeClick,
   testID,
@@ -33,7 +33,7 @@ export const FeedbackButton: React.FC<IFeedbackButton> = ({
   };
 
   return (
-    <div className={feedbackContainer}>
+    <div className={feedbackContainer({ previousResponse: variant === FeedbackButtonVariant.PREVIOUS_RESPONSE })}>
       <button
         className={clsx(ClassName.FEEDBACK, feedbackButtonStyles({ isActive: !!active }))}
         onClick={onCopyClick}

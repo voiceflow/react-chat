@@ -84,6 +84,9 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
 
   useAutoScroll([showIndicator, complete, visibleMessages.length]);
 
+  // eslint-disable-next-line no-console
+  console.log({ complete, showIndicator, feedback });
+
   if (!messages.length && !actions.length) return null;
   return (
     <>
