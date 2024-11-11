@@ -69,11 +69,3 @@ export const feedbackContainer = style({
   marginTop: 6,
   position: 'absolute',
 });
-
-//  feedback={
-//           <FeedbackButton
-//             onPositiveClick={() => console.log('positive')}
-//             onNegativeClick={() => console.log('negative')}
-//             textContent={textContentOfMessage}
-//           />
-//         }
