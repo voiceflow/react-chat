@@ -67,22 +67,18 @@ export const Everything: Story = {
   args: {
     buttons,
     showPoweredBy: true,
-    hasEnded: false,
   },
 };
 
 export const WithScrollButton: Story = {
   ...Default,
-  args: {
-    hasEnded: false,
-  },
+  args: {},
 };
 
 export const WithButtons: Story = {
   ...Default,
   args: {
     buttons,
-    hasEnded: false,
   },
 };
 
@@ -90,6 +86,5 @@ export const WithPoweredBy: Story = {
   ...Default,
   args: {
     showPoweredBy: true,
-    hasEnded: false,
   },
 };
