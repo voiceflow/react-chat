@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.26.0](https://github.com/voiceflow/react-chat/compare/documentation@0.25.1...documentation@0.26.0) (2024-11-11)
+
+### Features
+
+* import built chat instead of building ourselves (COR-0000) ([#291](https://github.com/voiceflow/react-chat/issues/291)) ([1fd9e37](https://github.com/voiceflow/react-chat/commit/1fd9e371a12fe02207660d3907b3a27dc5ca6b95))
+
 ## [0.25.1](https://github.com/voiceflow/react-chat/compare/documentation@0.25.0...documentation@0.25.1) (2024-11-08)
 
 ### Bug Fixes
