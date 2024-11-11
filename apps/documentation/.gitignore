@@ -8,3 +8,6 @@
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Bundled chat package
+public/bundle
