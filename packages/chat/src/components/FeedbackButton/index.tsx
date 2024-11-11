@@ -2,6 +2,7 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 import clsx from 'clsx';
 
 import { ClassName } from '@/constants';
+import { FeedbackName } from '@/contexts/RuntimeContext/useRuntimeAPI';
 import { PALETTE } from '@/styles/colors.css';
 
 import { CopyButtonIcon } from './CopyButtonIcon.component';
@@ -16,14 +17,7 @@ import { FeedbackButtonVariant, type IFeedbackButton } from './FeedbackButton.in
 import { ThumbsDownIcon } from './ThumbsDownIcon.component';
 import { ThumbsUpIcon } from './ThumbsUpIcon.component';
 
-export const FeedbackButton: React.FC<IFeedbackButton> = ({
-  active,
-  variant,
-  onPositiveClick,
-  onNegativeClick,
-  testID,
-  textContent,
-}) => {
+export const FeedbackButton: React.FC<IFeedbackButton> = ({ active, variant, onClick, testID, textContent }) => {
   const buttonActiveColor = PALETTE.colors[500];
   const iconActiveColor = PALETTE.colors[50];
 
@@ -44,7 +38,7 @@ export const FeedbackButton: React.FC<IFeedbackButton> = ({
       </button>
       <button
         className={clsx(ClassName.FEEDBACK, feedbackButtonStyles({ isActive: !!active }))}
-        onClick={onPositiveClick}
+        onClick={() => onClick(FeedbackName.POSITIVE)}
         data-testid={testID}
         style={assignInlineVars({ [activeBackground]: buttonActiveColor, [activeIconColor]: iconActiveColor })}
       >
@@ -52,7 +46,7 @@ export const FeedbackButton: React.FC<IFeedbackButton> = ({
       </button>
       <button
         className={clsx(ClassName.FEEDBACK, feedbackButtonStyles({ isActive: !!active }))}
-        onClick={onNegativeClick}
+        onClick={() => onClick(FeedbackName.NEGATIVE)}
         data-testid={testID}
         style={assignInlineVars({ [activeBackground]: buttonActiveColor, [activeIconColor]: iconActiveColor })}
       >

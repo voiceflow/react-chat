@@ -8,7 +8,7 @@ import { match } from 'ts-pattern';
 import { NewChat, SystemResponse } from '@/components';
 import { UserResponse } from '@/components/UserResponse';
 import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts/RuntimeContext';
-import { FeedbackName } from '@/contexts/RuntimeContext/useRuntimeAPI';
+import type { FeedbackName } from '@/contexts/RuntimeContext/useRuntimeAPI';
 import { usePalette } from '@/hooks/usePalette';
 import { PALETTE } from '@/styles/colors.css';
 // import type { UserTurnProps } from '@/types';
@@ -72,10 +72,17 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile, className }) =
                 key={id}
                 {...R.omit(props, ['type'])}
                 avatar={assistant.avatar}
-                feedback={{
-                  onPositiveClick: () => runtime.feedback(FeedbackName.POSITIVE, turns, getPreviousUserTurn(turnIndex)),
-                  onNegativeClick: () => runtime.feedback(FeedbackName.NEGATIVE, turns, getPreviousUserTurn(turnIndex)),
-                }}
+                feedback={
+                  assistant.feedback
+                    ? {
+                        onClick: (feedback: FeedbackName) => {
+                          // eslint-disable-next-line no-console
+                          console.log({ feedback });
+                          runtime.feedback(feedback, props.messages, getPreviousUserTurn(turnIndex));
+                        },
+                      }
+                    : undefined
+                }
                 isLast={turnIndex === state.session.turns.length - 1}
               />
             ))

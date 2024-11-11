@@ -13,21 +13,9 @@ export default meta;
 type Story = StoryObj<typeof FeedbackButton>;
 
 export const PreviousResponse: Story = {
-  render: () => (
-    <FeedbackButton
-      onNegativeClick={() => null}
-      onPositiveClick={() => null}
-      variant={FeedbackButtonVariant.PREVIOUS_RESPONSE}
-    />
-  ),
+  render: () => <FeedbackButton onClick={() => null} variant={FeedbackButtonVariant.PREVIOUS_RESPONSE} />,
 };
 
 export const LastResponse: Story = {
-  render: () => (
-    <FeedbackButton
-      onNegativeClick={() => null}
-      onPositiveClick={() => null}
-      variant={FeedbackButtonVariant.LAST_RESPONSE}
-    />
-  ),
+  render: () => <FeedbackButton onClick={() => null} variant={FeedbackButtonVariant.LAST_RESPONSE} />,
 };
