@@ -53,10 +53,11 @@ export const input = style({
   width: '100%',
   scrollbarWidth: 'none',
   borderColor: 'transparent',
-  outlineColor: 'transparent',
   resize: 'none',
   fontFamily: FAMILY,
+  fontSize: '14px',
   boxSizing: 'border-box',
+  outline: 'transparent 0px',
 
   padding: '0',
   lineHeight: '20px',

@@ -124,9 +124,10 @@ export const NewChat: React.FC<INewChat> = ({
         scrollableAreaRef={scrollableAreaRef}
       />
       <Prompt
-        visible={hasAlert}
+        visible={hasAlert || hasEnded}
+        showOverlay={hasAlert && !hasEnded}
         accept={{ label: 'Start new chat', onClick: chain(onEnd, handleResume, onStart) }}
-        cancel={{ label: 'Cancel', onClick: handleResume }}
+        cancel={hasEnded ? undefined : { label: 'Cancel', onClick: handleResume }}
       />
     </div>
   );

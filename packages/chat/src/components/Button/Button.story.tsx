@@ -40,7 +40,7 @@ export const Primary: Story = {
 export const PrimaryLarge: Story = {
   args: {
     variant: ButtonVariant.PRIMARY,
-    large: true,
+    large: 'true',
   },
 };
 
@@ -53,7 +53,7 @@ export const Secondary: Story = {
 export const SecondaryLarge: Story = {
   args: {
     variant: ButtonVariant.SECONDARY,
-    large: true,
+    large: 'true',
   },
 };
 
@@ -71,7 +71,7 @@ export const InlineWrapped: Story = {
   render: () => {
     return (
       <div style={{ width: '200px' }}>
-        <Button variant={ButtonVariant.INLINE} large>
+        <Button variant={ButtonVariant.INLINE} large="true">
           Button label that is very long and should wrap. Button label that is very long and should wrap.
         </Button>
       </div>
