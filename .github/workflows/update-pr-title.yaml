@@ -1,0 +1,78 @@
+name: 'Update Pull Request Title'
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled]
+
+jobs:
+  update_pr_title:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get branch name
+        if: ${{ github.actor != 'github-actions' }}
+        id: branch-name
+        uses: tj-actions/branch-names@v6
+
+      - name: Check for hotfix label
+        uses: Dreamcodeio/pr-has-label-action@v1.2
+        id: hotfixLabel
+        with:
+          label: hotfix
+
+      - name: Check for breakglass label
+        uses: Dreamcodeio/pr-has-label-action@v1.2
+        id: breakglassLabel
+        with:
+          label: breakglass
+
+      - uses: tzkhan/pr-update-action@v2
+        if: |
+          github.actor != 'github-actions'
+          && !contains(github.event.pull_request.title, '[breakglass]')
+          && (
+            contains(steps.branch-name.outputs.head_ref_branch, 'break-glass')
+            || contains(steps.branch-name.outputs.head_ref_branch, 'breakglass')
+            || steps.breakglassLabel.outputs.hasLabel == 'true'
+          )
+        with:
+          repo-token: '${{ secrets.GITHUB_TOKEN }}'
+          head-branch-regex: '.+'
+          title-template: ' [breakglass]'
+          title-update-action: suffix
+
+      - uses: tzkhan/pr-update-action@v2
+        if: |
+          github.actor != 'github-actions'
+          && !contains(github.event.pull_request.title, '[bugfix]')
+          && (
+            contains(steps.branch-name.outputs.head_ref_branch, 'bug-fix')
+            || contains(steps.branch-name.outputs.head_ref_branch, 'bugfix')
+            || steps.hotfixLabel.outputs.hasLabel == 'true'
+          )
+        with:
+          repo-token: '${{ secrets.GITHUB_TOKEN }}'
+          head-branch-regex: '.+'
+          title-template: ' [bugfix]'
+          title-update-action: suffix
+
+  breakglass:
+    needs: update_pr_title
+    name: Breakglass
+    runs-on: ubuntu-latest
+    if: ${{ github.actor != 'dependabot[bot]' }}
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - id: automerge
+        name: automerge
+        uses: 'pascalgn/automerge-action@v0.16.4'
+        env:
+          GITHUB_TOKEN: '${{ secrets.GH_SA_TOKEN }}'
+          MERGE_LABELS: 'breakglass'
+          MERGE_METHOD: 'squash'
+          MERGE_DELETE_BRANCH: 'true'
+          MERGE_REQUIRED_APPROVALS: '0'
+          MERGE_RETRY_SLEEP: '60000' # ms
+          MERGE_RETRIES: '15'
+          MERGE_READY_STATE: 'clean,unstable'
+          MERGE_COMMIT_MESSAGE_REGEX: '(.*)### Implementation details. How do you make this change'
