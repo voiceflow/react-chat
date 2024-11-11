@@ -3,6 +3,7 @@
   "version": "0.25.1",
   "private": true,
   "scripts": {
+    "build:chat": "./src/scripts/import-chat.sh",
     "build": "yarn g:turbo run build:cmd --filter=documentation...",
     "build:cmd": "next build",
     "dev": "next dev",
