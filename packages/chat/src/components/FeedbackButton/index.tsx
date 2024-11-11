@@ -55,7 +55,6 @@ export const FeedbackButton: React.FC<IFeedbackButton> = ({ variant, onClick, te
         className={clsx(ClassName.FEEDBACK, feedbackButtonStyles({ isCopied: hasCopied }))}
         onClick={onCopyClick}
         data-testid={`${testID}--copy`}
-        onMouseLeave={() => setHasCopied(false)}
       >
         {hasCopied ? <Icon svg="checkmark" className={iconStyle} /> : <CopyButtonIcon className={iconStyle} />}
       </button>
