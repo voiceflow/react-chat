@@ -55,11 +55,18 @@ export const feedbackButtonStyles = recipe({
           '&:hover': {
             backgroundColor: COLORS.NEUTRAL_DARK[9006],
           },
-          '&:active': {
-            backgroundColor: COLORS.NEUTRAL_DARK[90012],
-          },
+
           '&:focus-visible': {
             outline: 'none',
+          },
+        },
+      },
+    },
+    isSelected: {
+      true: {
+        selectors: {
+          '&:hover': {
+            backgroundColor: 'transparent',
           },
         },
       },
@@ -82,13 +89,29 @@ export const iconStyle = recipe({
       false: {
         selectors: {
           [`${feedbackButtonStyles()}:hover &`]: {
-            color: COLORS.NEUTRAL_DARK[600],
+            color: COLORS.NEUTRAL_DARK[500],
           },
           [`${feedbackButtonStyles()}:active &`]: {
             color: COLORS.NEUTRAL_DARK[900],
           },
           [`${feedbackButtonStyles({ isActive: true })}:focus &`]: {
             color: activeIconColor,
+          },
+        },
+      },
+    },
+    isSelected: {
+      true: {
+        color: COLORS.ACCENT[500],
+        selectors: {
+          [`${feedbackButtonStyles()}:hover &`]: {
+            color: COLORS.ACCENT[500],
+          },
+          [`${feedbackButtonStyles()}:active &`]: {
+            color: COLORS.ACCENT[500],
+          },
+          [`${feedbackButtonStyles({ isActive: true })}:focus &`]: {
+            color: COLORS.ACCENT[500],
           },
         },
       },
