@@ -25,9 +25,8 @@ export const feedbackButtonStyles = recipe({
     width: '24px',
     cursor: 'pointer',
     display: 'flex',
-    flex: 'none',
-    justifyContent: 'center',
     alignItems: 'center',
+    justifyContent: 'center',
     border: 'none',
     backgroundColor: 'transparent',
     transition: transition(['background-color']),
@@ -59,6 +58,8 @@ export const iconStyle = recipe({
   base: {
     color: COLORS.NEUTRAL_DARK[100],
     transition: transition(['color']),
+    flex: 'none',
+    alignItems: 'center',
   },
   variants: {
     isActive: {

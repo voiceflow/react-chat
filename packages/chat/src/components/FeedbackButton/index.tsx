@@ -18,6 +18,7 @@ import { ThumbsUpIcon } from './ThumbsUpIcon.component';
 
 export const FeedbackButton: React.FC<IFeedbackButton> = ({
   active,
+  // variant,
   onPositiveClick,
   onNegativeClick,
   testID,
@@ -39,7 +40,7 @@ export const FeedbackButton: React.FC<IFeedbackButton> = ({
         data-testid={testID}
         style={assignInlineVars({ [activeBackground]: buttonActiveColor, [activeIconColor]: iconActiveColor })}
       >
-        <CopyButtonIcon viewBox="4 4 16 16" className={iconStyle({ isActive: !!active })} />
+        <CopyButtonIcon className={iconStyle({ isActive: !!active })} />
       </button>
       <button
         className={clsx(ClassName.FEEDBACK, feedbackButtonStyles({ isActive: !!active }))}
@@ -47,7 +48,7 @@ export const FeedbackButton: React.FC<IFeedbackButton> = ({
         data-testid={testID}
         style={assignInlineVars({ [activeBackground]: buttonActiveColor, [activeIconColor]: iconActiveColor })}
       >
-        <ThumbsUpIcon viewBox="4 4 16 16" className={iconStyle({ isActive: !!active })} />
+        <ThumbsUpIcon className={iconStyle({ isActive: !!active })} />
       </button>
       <button
         className={clsx(ClassName.FEEDBACK, feedbackButtonStyles({ isActive: !!active }))}
@@ -55,7 +56,7 @@ export const FeedbackButton: React.FC<IFeedbackButton> = ({
         data-testid={testID}
         style={assignInlineVars({ [activeBackground]: buttonActiveColor, [activeIconColor]: iconActiveColor })}
       >
-        <ThumbsDownIcon viewBox="4 4 16 16" className={iconStyle({ isActive: !!active })} />
+        <ThumbsDownIcon className={iconStyle({ isActive: !!active })} />
       </button>
     </div>
   );

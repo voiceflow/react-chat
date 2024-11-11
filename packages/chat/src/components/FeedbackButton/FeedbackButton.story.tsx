@@ -26,7 +26,8 @@ const VariantRenderer = ({ active }: { active?: boolean }) => {
               variant={index % 2 === 0 ? 'up' : 'down'}
               active={active}
               key={index}
-              onClick={() => null}
+              onNegativeClick={() => null}
+              onPositiveClick={() => null}
               testID={`feedback-button--${index}`}
             />
           </div>
@@ -37,7 +38,7 @@ const VariantRenderer = ({ active }: { active?: boolean }) => {
 };
 
 export const Base: Story = {
-  render: () => <FeedbackButton onClick={() => null} />,
+  render: () => <FeedbackButton onNegativeClick={() => null} onPositiveClick={() => null} />,
 };
 export const Variants: Story = {
   render: () => <VariantRenderer />,
