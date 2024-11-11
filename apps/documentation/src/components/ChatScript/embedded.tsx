@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-export const ChatScript = ({ projectID, embedded = false }: { projectID: string; embedded?: boolean }) => {
+export const ChatEmbedded = ({ projectID }: { projectID: string }) => {
   if (!projectID) {
     return null;
   }
@@ -15,7 +15,6 @@ export const ChatScript = ({ projectID, embedded = false }: { projectID: string;
             assistant: {
             stylesheet: '../../bundle/style.css',
           }
-          ${embedded ? ', render: { mode: "embedded", target: document.getElementById("chat_embed") }' : ''}
         });
       };
       v.src = '../../bundle/bundle.mjs';

@@ -173,11 +173,15 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
     }
   };
 
-  const close = () => {
+  const stopChat = () => {
     stopAudios();
 
     broadcast({ type: BroadcastType.CLOSE });
     saveSession(assistant.persistence, config.verify.projectID, sessionRef.current);
+  };
+
+  const close = () => {
+    stopChat();
     setOpen(false);
   };
 
@@ -222,6 +226,7 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
       open,
       interact,
       close,
+      stopChat,
       addTurn,
       feedback: runtime.saveFeedback,
       setStatus,

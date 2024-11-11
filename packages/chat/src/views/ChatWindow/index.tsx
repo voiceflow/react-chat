@@ -13,21 +13,23 @@ import { PALETTE } from '@/styles/colors.css';
 // import type { UserTurnProps } from '@/types';
 import { SessionStatus, TurnType } from '@/types';
 
+import { chatWindow } from './styles.css';
+
 export interface ChatWindowProps {
   className?: string;
   isMobile?: boolean;
 }
 
-export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile, className }) => {
+export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile }) => {
   const runtime = useContext(RuntimeStateAPIContext);
   const state = useContext(RuntimeStateContext);
   const { assistant, config } = runtime;
   const palette = usePalette(assistant);
 
   // emitters
-  const closeAndEnd = useCallback((): void => {
+  const restartChat = useCallback((): void => {
     runtime.setStatus(SessionStatus.ENDED);
-    runtime.close();
+    runtime.stopChat();
   }, []);
 
   if (!palette) return null;
@@ -42,7 +44,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile, className }) =
   // );
 
   return (
-    <div style={assignInlineVars(PALETTE, { colors: palette })} className={className}>
+    <div style={assignInlineVars(PALETTE, { colors: palette })} className={chatWindow}>
       <NewChat
         title={assistant.title}
         description={assistant.description}
@@ -53,7 +55,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile, className }) =
         hasEnded={runtime.isStatus(SessionStatus.ENDED)}
         isLoading={runtime.isStatus(SessionStatus.IDLE) && state.session.turns.length === 0 && config.autostart}
         onStart={runtime.launch}
-        onEnd={closeAndEnd}
+        onEnd={restartChat}
         onSend={runtime.reply}
         onMinimize={runtime.close}
         audioInterface={assistant.audioInterface}

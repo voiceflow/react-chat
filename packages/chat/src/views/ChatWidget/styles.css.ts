@@ -51,10 +51,6 @@ export const chatContainer = style({
   },
 });
 
-export const chatWindow = style({
-  height: '100%',
-});
-
 export const launcherContainer = style({
   pointerEvents: 'auto',
   selectors: {
