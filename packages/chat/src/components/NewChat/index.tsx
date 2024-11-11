@@ -46,6 +46,13 @@ export interface INewChat
    * A callback that is executed when the conversation ends.
    */
   onEnd?: React.MouseEventHandler<HTMLButtonElement>;
+
+  hasEnded: boolean;
+
+  /**
+   * A callback to start a new conversation.
+   */
+  onStart?: (() => Promise<void>) | undefined;
 }
 
 export const NewChat: React.FC<INewChat> = ({
@@ -56,7 +63,6 @@ export const NewChat: React.FC<INewChat> = ({
   description,
   avatar,
   hasEnded,
-  onSend,
   onStart,
   onMinimize,
   onEnd,
@@ -112,9 +118,6 @@ export const NewChat: React.FC<INewChat> = ({
       <NewFooter
         buttons={buttons}
         showPoweredBy={showPoweredBy}
-        onSend={onSend}
-        onStart={onStart}
-        hasEnded={hasEnded}
         extraLinkText={extraLinkText}
         extraLinkUrl={extraLinkUrl}
         messageInputProps={{ ...messageInputProps, disableSend: state.indicator }}
@@ -122,7 +125,7 @@ export const NewChat: React.FC<INewChat> = ({
       />
       <Prompt
         visible={hasAlert}
-        accept={{ label: 'Start new chat', onClick: chain(onEnd, handleResume) }}
+        accept={{ label: 'Start new chat', onClick: chain(onEnd, handleResume, onStart) }}
         cancel={{ label: 'Cancel', onClick: handleResume }}
       />
     </div>

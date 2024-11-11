@@ -26,14 +26,8 @@ export interface INewFooter {
   messageInputProps: IMessageInput;
   extraLinkText?: string;
   extraLinkUrl?: string;
-  hasEnded: boolean;
   disableSend?: boolean;
   scrollableAreaRef: RefObject<HTMLDivElement>;
-
-  /**
-   * A callback to start a new conversation.
-   */
-  onStart?: (() => Promise<void>) | undefined;
 
   /**
    * A callback to submit a user response.
@@ -47,8 +41,6 @@ export const NewFooter: React.FC<INewFooter> = ({
   messageInputProps,
   extraLinkText,
   extraLinkUrl,
-  hasEnded,
-  onStart,
   scrollableAreaRef,
 }) => {
   const showExtraLink = extraLinkText && extraLinkUrl;
@@ -65,16 +57,8 @@ export const NewFooter: React.FC<INewFooter> = ({
       )}
 
       <div className={messageContainer()}>
-        {hasEnded ? (
-          <Button onClick={onStart} large>
-            Start New Chat
-          </Button>
-        ) : (
-          <>
-            <ScrollToBottom scrollableAreaRef={scrollableAreaRef} />
-            <MessageInput {...messageInputProps} />
-          </>
-        )}
+        <ScrollToBottom scrollableAreaRef={scrollableAreaRef} />
+        <MessageInput {...messageInputProps} />
         <div className={footerLinksContainer}>
           {showPoweredBy && (
             <div>

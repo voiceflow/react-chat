@@ -14,7 +14,7 @@ import { PALETTE } from '@/styles/colors.css';
 import { useResolveAssistantStyleSheet } from '@/utils/stylesheet';
 import { ChatWindow } from '@/views/ChatWindow';
 
-import { chatContainer, chatWindow, LAUNCHER_MARGIN, launcherContainer, widgetContainer } from './styles.css';
+import { chatContainer, LAUNCHER_MARGIN, launcherContainer, widgetContainer } from './styles.css';
 
 interface ChatWidgetProps extends React.PropsWithChildren {
   shadowRoot?: ShadowRoot;
@@ -83,7 +83,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
             : { [side]: position[side], bottom: position.bottom + LAUNCHER_SIZE + LAUNCHER_MARGIN, height: chatHeight }
         }
       >
-        <ChatWindow className={chatWindow} />
+        <ChatWindow />
       </div>
     </div>
   );
