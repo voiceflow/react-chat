@@ -3,8 +3,8 @@
   "version": "0.25.1",
   "private": true,
   "scripts": {
-    "build:chat": "./src/scripts/import-chat.sh",
     "build": "yarn g:turbo run build:cmd --filter=documentation...",
+    "build:chat": "./src/scripts/import-chat.sh",
     "build:cmd": "next build",
     "dev": "next dev",
     "lint": "yarn g:run-p -c lint:eslint lint:prettier",
