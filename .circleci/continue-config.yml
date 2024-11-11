@@ -12,7 +12,7 @@ parameters:
     default: false
 
 orbs:
-  vfcommon: voiceflow/common@0.82.0
+  vfcommon: voiceflow/common@0.87.2
   sonarcloud: sonarsource/sonarcloud@2.0.0
 
 defaults:
@@ -121,6 +121,13 @@ workflows:
           force_execute: true
           run_in_container: false
           container_folder_to_copy: '' # Copy all
+          pre-steps:
+            - run: |
+                if [ "$CIRCLE_BRANCH" == "staging" ]; then
+                  echo "Detected 'staging' branch"
+                  echo "bors is deprecated. Use Graphite Merge Queue"
+                  exit 1
+                fi
           post_build_steps:
             - persist_to_workspace:
                 root: '.'
