@@ -1,0 +1,14 @@
+name: 'Testing'
+on:
+  pull_request:
+    types: [opened]
+    branches:
+      - 'greg/**'
+      - 'gtmq_*'
+
+jobs:
+  gtest:
+    name: I am a test
+    steps:
+      - name: Just a Test
+        run: echo "Skipping Vercel Preview Comments for greg/"
