@@ -1,4 +1,4 @@
-import { createVar } from '@vanilla-extract/css';
+import { createVar, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { SHADOWS } from '@/styles/box-shadows';
@@ -26,6 +26,7 @@ export const feedbackContainer = recipe({
       false: {
         backgroundColor: 'transparent',
         boxShadow: 'none',
+        gap: '6px',
       },
     },
   },
@@ -42,31 +43,41 @@ export const feedbackButtonStyles = recipe({
     justifyContent: 'center',
     border: 'none',
     backgroundColor: 'transparent',
-    transition: transition(['background-color']),
+    transition: transition(['background-color', 'color']),
+    color: COLORS.NEUTRAL_DARK[100],
+    selectors: {
+      '&:hover': {
+        backgroundColor: COLORS.NEUTRAL_DARK[9006],
+        color: COLORS.NEUTRAL_DARK[600],
+      },
+      '&:active': {
+        backgroundColor: COLORS.NEUTRAL_DARK[90012],
+        color: COLORS.NEUTRAL_DARK[800],
+      },
+    },
   },
   variants: {
-    isActive: {
+    isSelected: {
       true: {
-        boxShadow: '0px -1px 0px 0px rgba(0, 0, 0, 0.16) inset',
-        backgroundColor: activeBackground,
-      },
-      false: {
+        color: COLORS.ACCENT[500],
         selectors: {
           '&:hover': {
-            backgroundColor: COLORS.NEUTRAL_DARK[9006],
+            backgroundColor: 'transparent',
+            color: COLORS.ACCENT[500],
           },
-
-          '&:focus-visible': {
-            outline: 'none',
+          '&:active': {
+            backgroundColor: 'transparent',
+            color: COLORS.ACCENT[500],
           },
         },
       },
     },
-    isSelected: {
+    isCopied: {
       true: {
         selectors: {
           '&:hover': {
             backgroundColor: 'transparent',
+            color: COLORS.NEUTRAL_DARK[100],
           },
         },
       },
@@ -74,47 +85,6 @@ export const feedbackButtonStyles = recipe({
   },
 });
 
-export const iconStyle = recipe({
-  base: {
-    color: COLORS.NEUTRAL_DARK[100],
-    transition: transition(['color']),
-    flex: 'none',
-    alignItems: 'center',
-  },
-  variants: {
-    isActive: {
-      true: {
-        color: activeIconColor,
-      },
-      false: {
-        selectors: {
-          [`${feedbackButtonStyles()}:hover &`]: {
-            color: COLORS.NEUTRAL_DARK[500],
-          },
-          [`${feedbackButtonStyles()}:active &`]: {
-            color: COLORS.NEUTRAL_DARK[900],
-          },
-          [`${feedbackButtonStyles({ isActive: true })}:focus &`]: {
-            color: activeIconColor,
-          },
-        },
-      },
-    },
-    isSelected: {
-      true: {
-        color: COLORS.ACCENT[500],
-        selectors: {
-          [`${feedbackButtonStyles()}:hover &`]: {
-            color: COLORS.ACCENT[500],
-          },
-          [`${feedbackButtonStyles()}:active &`]: {
-            color: COLORS.ACCENT[500],
-          },
-          [`${feedbackButtonStyles({ isActive: true })}:focus &`]: {
-            color: COLORS.ACCENT[500],
-          },
-        },
-      },
-    },
-  },
+export const iconStyle = style({
+  flex: 'none',
 });

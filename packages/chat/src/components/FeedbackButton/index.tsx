@@ -37,57 +37,37 @@ export const FeedbackButton: React.FC<IFeedbackButton> = ({ active, variant, onC
   };
 
   return (
-    <div className={feedbackContainer({ previousResponse: variant === FeedbackButtonVariant.PREVIOUS_RESPONSE })}>
+    <div
+      className={feedbackContainer({ previousResponse: variant === FeedbackButtonVariant.PREVIOUS_RESPONSE })}
+      style={assignInlineVars({ [activeBackground]: buttonActiveColor, [activeIconColor]: iconActiveColor })}
+    >
       <button
-        className={clsx(ClassName.FEEDBACK, feedbackButtonStyles({ isActive: !!active }))}
+        className={clsx(ClassName.FEEDBACK, feedbackButtonStyles({ isCopied: hasCopied }))}
         onClick={onCopyClick}
         data-testid={`${testID}--copy`}
         onMouseLeave={() => setHasCopied(false)}
-        style={assignInlineVars({ [activeBackground]: buttonActiveColor, [activeIconColor]: iconActiveColor })}
       >
-        {hasCopied ? (
-          <Icon svg="checkmark" className={iconStyle({ isActive: !!active })} />
-        ) : (
-          <CopyButtonIcon className={iconStyle({ isActive: !!active })} />
-        )}
+        {hasCopied ? <Icon svg="checkmark" className={iconStyle} /> : <CopyButtonIcon className={iconStyle} />}
       </button>
       <button
         className={clsx(
           ClassName.FEEDBACK,
-          feedbackButtonStyles({
-            isActive: !!active,
-            isSelected: isPositiveOrNegativeSelected === FeedbackName.POSITIVE,
-          })
+          feedbackButtonStyles({ isSelected: isPositiveOrNegativeSelected === FeedbackName.POSITIVE })
         )}
         onClick={() => handleOnClick(FeedbackName.POSITIVE)}
         data-testid={`${testID}--positive`}
-        style={assignInlineVars({ [activeBackground]: buttonActiveColor, [activeIconColor]: iconActiveColor })}
       >
-        <ThumbsUpIcon
-          className={iconStyle({
-            isActive: !!active,
-            isSelected: isPositiveOrNegativeSelected === FeedbackName.POSITIVE,
-          })}
-        />
+        <ThumbsUpIcon className={iconStyle} />
       </button>
       <button
         className={clsx(
           ClassName.FEEDBACK,
-          feedbackButtonStyles({
-            isActive: !!active,
-            isSelected: isPositiveOrNegativeSelected === FeedbackName.POSITIVE,
-          })
+          feedbackButtonStyles({ isSelected: isPositiveOrNegativeSelected === FeedbackName.NEGATIVE })
         )}
         onClick={() => handleOnClick(FeedbackName.NEGATIVE)}
         data-testid={`${testID}--negative`}
-        style={assignInlineVars({ [activeBackground]: buttonActiveColor, [activeIconColor]: iconActiveColor })}
       >
-        <ThumbsDownIcon
-          className={iconStyle({
-            isActive: !!active,
-            isSelected: isPositiveOrNegativeSelected === FeedbackName.NEGATIVE,
-          })}
-        />
+        <ThumbsDownIcon className={iconStyle} />
       </button>
     </div>
   );
