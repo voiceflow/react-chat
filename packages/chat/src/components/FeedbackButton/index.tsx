@@ -19,7 +19,7 @@ import { FeedbackButtonVariant, type IFeedbackButton } from './FeedbackButton.in
 import { ThumbsDownIcon } from './ThumbsDownIcon.component';
 import { ThumbsUpIcon } from './ThumbsUpIcon.component';
 
-export const FeedbackButton: React.FC<IFeedbackButton> = ({ active, variant, onClick, testID, textContent }) => {
+export const FeedbackButton: React.FC<IFeedbackButton> = ({ variant, onClick, testID, textContent }) => {
   const buttonActiveColor = PALETTE.colors[500];
   const iconActiveColor = PALETTE.colors[50];
   const [hasCopied, setHasCopied] = useState(false);
