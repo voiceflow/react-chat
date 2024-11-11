@@ -65,20 +65,9 @@ export const extensionMessageContainer = style({
   backgroundColor: '#f4f4f4',
 });
 
-export const feedbackContainer = recipe({
-  base: {
-    marginTop: 8,
-  },
-  variants: {
-    hasAvatar: {
-      true: {
-        marginLeft: SMALL_AVATAR_SIZE + MESSAGE_PADDING,
-      },
-      false: {
-        marginLeft: MESSAGE_PADDING,
-      },
-    },
-  },
+export const feedbackContainer = style({
+  marginTop: 6,
+  position: 'absolute',
 });
 
 //  feedback={

@@ -76,8 +76,6 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile, className }) =
                   assistant.feedback
                     ? {
                         onClick: (feedback: FeedbackName) => {
-                          // eslint-disable-next-line no-console
-                          console.log({ feedback });
                           runtime.feedback(feedback, props.messages, getPreviousUserTurn(turnIndex));
                         },
                       }

@@ -16,7 +16,7 @@ import { Image } from '../Image';
 import { MessageType } from './constants';
 import { ExtensionMessage } from './ExtensionMessage';
 import EndState from './state/end';
-import { hide, messageContainer, responseAvatar, systemMessageContainer } from './styles.css';
+import { feedbackContainer, hide, messageContainer, responseAvatar, systemMessageContainer } from './styles.css';
 import type { MessageProps } from './types';
 
 export interface SystemMessageProps extends React.PropsWithChildren {
@@ -83,7 +83,11 @@ export const SystemMessage: React.FC<SystemMessageProps> = ({
               <ExtensionMessage extension={payload.extension} trace={payload.trace} />
             ))
             .otherwise(() => null)}
-        {feedback && <FeedbackButton {...feedback} />}
+        {feedback && (
+          <div className={feedbackContainer}>
+            <FeedbackButton {...feedback} />
+          </div>
+        )}
       </div>
     </div>
   );
