@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "build": "yarn g:turbo run build:cmd --filter=documentation...",
+    "build:chat": "./src/scripts/import-chat.sh",
     "build:cmd": "next build",
     "dev": "next dev",
     "lint": "yarn g:run-p -c lint:eslint lint:prettier",
