@@ -9,10 +9,26 @@ import { SIZES } from '@/styles/sizes';
 import { SMALL_AVATAR_SIZE } from '../Avatar/styles.css';
 import { MESSAGE_PADDING } from '../SystemResponse/styles.css';
 
-export const messageContainer = style({
-  fontFamily: FAMILY,
-  fontSize: '14px',
-  lineHeight: '20px',
+export const messageContainer = recipe({
+  base: {
+    fontFamily: FAMILY,
+    fontSize: '14px',
+    lineHeight: '20px',
+    display: 'flex',
+    flexDirection: 'column',
+    flexShrink: 0,
+    alignItems: 'flex-end',
+  },
+  variants: {
+    isFirst: {
+      true: {
+        marginTop: '0px',
+      },
+      false: {
+        marginTop: '16px',
+      },
+    },
+  },
 });
 
 export const messageRow = recipe({

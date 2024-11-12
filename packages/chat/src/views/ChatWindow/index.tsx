@@ -83,6 +83,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile }) => {
                 key={id}
                 {...R.omit(props, ['type'])}
                 avatar={assistant.avatar}
+                isFirst={turnIndex === 0}
                 feedback={
                   assistant.feedback
                     ? {

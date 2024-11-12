@@ -38,7 +38,6 @@ const UserSays = (text: string, hasAvatar?: boolean) => (
 
 const MockBaseComponent = ({ isLoading }: { isLoading?: boolean }) => {
   const [messages, setMessages] = useState([
-    { type: 'Agent', text: '👋🏻 Good morning!' },
     { type: 'User', text: 'Cool, great weather ☀️' },
     {
       type: 'User',
