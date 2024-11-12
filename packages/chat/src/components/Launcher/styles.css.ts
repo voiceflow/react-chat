@@ -18,7 +18,7 @@ export const launcherStyles = recipe({
       // alignItems: 'center',
       padding: '8px 16px',
       backgroundColor: PALETTE.colors[500],
-      transition: transition(['color', 'background-color', 'transform']),
+      transition: transition(['color', 'background-color', 'transform', 'width', 'height']),
       boxShadow:
         '0px 1px 0px 0px rgba(22, 26, 30, 0.02), 0px 0px 0px 1px rgba(22, 26, 30, 0.04), 0px 1px 5px -4px rgba(22, 26, 30, 0.08), 0px 4px 8px -6px rgba(22, 26, 30, 0.08), 0px 1px 3px 1px rgba(22, 26, 30, 0.01)',
       ':hover': {
@@ -39,16 +39,31 @@ export const launcherStyles = recipe({
         width: 'auto', // height: buttonSizeWithLabel,
       },
     },
+    isOpen: {
+      true: {
+        height: '48px',
+        width: '48px',
+      },
+    },
   },
 });
 
-export const launcherLabelStyles = style({
-  fontSize: '14px',
-  fontWeight: 600,
-  color: PALETTE.colors[50],
-  lineHeight: '20px',
-  marginLeft: 8,
-  paddingTop: 1,
+export const launcherLabelStyles = recipe({
+  base: {
+    fontSize: '14px',
+    fontWeight: 600,
+    color: PALETTE.colors[50],
+    lineHeight: '20px',
+    marginLeft: 8,
+    paddingTop: 1,
+  },
+  variants: {
+    isOpen: {
+      true: {
+        display: 'none',
+      },
+    },
+  },
 });
 
 export const launcherIconStyles = recipe({

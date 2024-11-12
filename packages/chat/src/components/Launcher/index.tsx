@@ -42,12 +42,12 @@ export interface LauncherProps {
 export const Launcher: React.FC<LauncherProps> = ({ image, isOpen, label, onClick }) => {
   const withLabel = !!label?.length;
   return (
-    <Button className={clsx(ClassName.LAUNCHER, launcherStyles({ withLabel }))} onClick={onClick}>
+    <Button className={clsx(ClassName.LAUNCHER, launcherStyles({ withLabel, isOpen }))} onClick={onClick}>
       {isOpen && <ChevronIcon className={clsx(closeChevron, launcherIconStyles())} />}
       {image && (
         <img src={image} className={clsx(imageStyles({ isOpen }), launcherIconStyles({ withLabel }))} alt="launch" />
       )}
-      {withLabel && <div className={launcherLabelStyles}>{label} </div>}
+      {withLabel && <div className={launcherLabelStyles({ isOpen })}>{label} </div>}
       {!image && !isOpen && <PlayIcon className={launcherIconStyles({ withLabel })} />}
     </Button>
   );
