@@ -60,11 +60,7 @@ export const MessageInput: React.FC<IMessageInput> = ({
   };
 
   const onHeightChange = (height: number) => {
-    if (height > 24) {
-      setIsMultiLine(true);
-    } else {
-      setIsMultiLine(false);
-    }
+    setIsMultiLine(height > 24);
   };
 
   return (

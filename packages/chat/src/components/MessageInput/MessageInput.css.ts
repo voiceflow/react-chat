@@ -50,7 +50,7 @@ export const mockFocusRing = recipe({
     pointerEvents: 'none',
     opacity: 0,
     boxShadow: `inset 0 0 0 0px ${PALETTE.colors[500]}`,
-    transition: transition(['opacity', 'box-shadow']),
+    transition: transition(['opacity', 'box-shadow', 'border-radius']),
     selectors: {
       [`${inputContainer()}:focus-within &`]: {
         opacity: 1,
