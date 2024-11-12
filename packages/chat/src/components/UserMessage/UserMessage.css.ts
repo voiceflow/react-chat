@@ -10,8 +10,6 @@ export const messageContainer = style({
   backgroundColor: PALETTE.colors[500],
   color: PALETTE.colors[50],
   padding: '11px 16px 10px',
-  marginBottom: 4,
-  marginTop: 12,
   fontFamily: FAMILY,
   position: 'relative',
   fontSize: '14px',

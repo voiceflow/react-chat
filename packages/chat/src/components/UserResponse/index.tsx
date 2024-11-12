@@ -4,7 +4,8 @@ import { ClassName } from '@/constants';
 import { useAutoScroll } from '@/hooks/useAutoScroll';
 
 import { Tooltip } from '../Tooltip';
-import { debugMessage, messageContainer, messageRow, messageStyle } from './styles.css';
+import { UserMessage } from '../UserMessage';
+import { debugMessage, messageContainer, messageRow } from './styles.css';
 
 export interface DebugActionProps {
   label: string;
@@ -59,7 +60,7 @@ export const UserResponse: React.FC<UserResponseProps> = ({ message, debug, isFi
   return (
     <div className={clsx(ClassName.USER_RESPONSE, messageContainer)}>
       <div className={messageRow({ isFirst, hasAvatar })}>
-        <div className={messageStyle}>{message}</div>
+        <UserMessage message={message} />
       </div>
       {debug && (
         <>
