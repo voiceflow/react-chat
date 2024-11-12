@@ -1,6 +1,6 @@
 {
   "name": "@voiceflow/chat",
-  "version": "0.40.1",
+  "version": "0.40.2",
   "private": true,
   "description": "voiceflow chat ui",
   "keywords": [
