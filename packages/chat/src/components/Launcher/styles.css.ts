@@ -6,8 +6,7 @@ import { transition } from '@/styles/transitions';
 
 import { buttonStyles } from '../Button/styles.css';
 
-export const LAUNCHER_SIZE = 56;
-const buttonSizeWithLabel = 48;
+export const LAUNCHER_SIZE = 48;
 
 export const launcherStyles = recipe({
   base: [
@@ -16,7 +15,8 @@ export const launcherStyles = recipe({
       display: 'flex',
       width: LAUNCHER_SIZE,
       height: LAUNCHER_SIZE,
-      padding: 12,
+      // alignItems: 'center',
+      padding: '8px 16px',
       backgroundColor: PALETTE.colors[500],
       transition: transition(['color', 'background-color', 'transform']),
       boxShadow:
@@ -35,20 +35,19 @@ export const launcherStyles = recipe({
   variants: {
     withLabel: {
       true: {
-        width: 'auto',
-        height: buttonSizeWithLabel,
-        padding: 18,
+        height: 'auto',
+        width: 'auto', // height: buttonSizeWithLabel,
       },
     },
   },
 });
 
 export const launcherLabelStyles = style({
-  fontSize: 16,
+  fontSize: '14px',
   fontWeight: 600,
   color: PALETTE.colors[50],
   lineHeight: '20px',
-  marginRight: 8,
+  marginLeft: 8,
   paddingTop: 1,
 });
 
@@ -58,6 +57,7 @@ export const launcherIconStyles = recipe({
     width: 32,
     height: 32,
     borderRadius: 2,
+    flexShrink: 0,
   },
   variants: {
     withLabel: {

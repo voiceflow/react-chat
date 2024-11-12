@@ -24,7 +24,11 @@ const CollapsableLauncher = (props: any) => {
   return <Launcher isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} {...props} />;
 };
 
-export const Default: Story = { render: () => <CollapsableLauncher image={tiledBg} /> };
+export const Base: Story = {
+  render: () => <CollapsableLauncher />,
+};
+
+export const WithCustomIcon: Story = { render: () => <CollapsableLauncher image={tiledBg} /> };
 
 export const WithLabel: Story = {
   render: () => <CollapsableLauncher image={tiledBg} label="Label" />,
