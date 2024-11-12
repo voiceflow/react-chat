@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.41.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.40.2...@voiceflow/chat@0.41.0) (2024-11-12)
+
+### Features
+
+* cross browser stuff (COR-3860) ([#301](https://github.com/voiceflow/react-chat/issues/301)) ([10587c3](https://github.com/voiceflow/react-chat/commit/10587c31a6c5e97687f0b0d0282bdf7c369bd785))
+
 ## [0.40.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.40.1...@voiceflow/chat@0.40.2) (2024-11-12)
 
 ### Bug Fixes
