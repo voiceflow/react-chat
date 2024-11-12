@@ -33,8 +33,12 @@ export const WelcomeMessage: React.FC<IWelcomeMessage> = ({ title, description, 
       <div className={avatarContainer}>
         <Avatar size="large" avatar={avatar} />
       </div>
-      <div className={welcomeMessageTitle}>{title}</div>
-      <div className={welcomeMessageDescription}>{description}</div>
+      <div className={welcomeMessageTitle} title={title}>
+        {title}
+      </div>
+      <div className={welcomeMessageDescription} title={description}>
+        {description}
+      </div>
     </div>
   );
 };

@@ -21,6 +21,10 @@ export const welcomeMessageTitle = style({
   fontSize: '22px',
   fontWeight: 700,
   color: COLORS.NEUTRAL_DARK[900],
+  display: '-webkit-box',
+  WebkitLineClamp: 2,
+  WebkitBoxOrient: 'vertical',
+  overflow: 'hidden',
 });
 
 export const welcomeMessageDescription = style({
@@ -28,4 +32,8 @@ export const welcomeMessageDescription = style({
   fontSize: '14px',
   fontWeight: 400,
   color: COLORS.NEUTRAL_DARK[100],
+  display: '-webkit-box',
+  WebkitLineClamp: 3,
+  WebkitBoxOrient: 'vertical',
+  overflow: 'hidden',
 });
