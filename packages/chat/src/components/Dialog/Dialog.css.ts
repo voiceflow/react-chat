@@ -51,11 +51,6 @@ export const agentMessage = recipe({
     },
   ],
   variants: {
-    tight: {
-      true: {
-        marginTop: '4px',
-      },
-    },
     isFirst: {
       true: {
         marginTop: '0px',
@@ -66,11 +61,6 @@ export const agentMessage = recipe({
 export const userMessage = recipe({
   base: [baseMessage, { alignSelf: 'flex-end' }],
   variants: {
-    tight: {
-      true: {
-        marginTop: '4px',
-      },
-    },
     isFirst: {
       true: {
         marginTop: '0px',

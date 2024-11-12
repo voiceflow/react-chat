@@ -32,6 +32,11 @@ export interface UserResponseProps {
    * If provided, adds a caption and optional "debug" message with an action.
    */
   debug?: DebugResponseProps;
+
+  /**
+   * If true, the response is the first in a chat.
+   */
+  isFirst?: boolean;
 }
 
 /**
@@ -39,14 +44,14 @@ export interface UserResponseProps {
  *
  * @see {@link https://voiceflow.github.io/react-chat/?path=/story/components-chat-userresponse--simple}
  */
-export const UserResponse: React.FC<UserResponseProps> = ({ message, debug }) => {
+export const UserResponse: React.FC<UserResponseProps> = ({ message, isFirst, debug }) => {
   useAutoScroll();
 
   // TODO: Check this in different render modes
   // const { config } = useContext(RuntimeStateAPIContext);
 
   return (
-    <div className={clsx(ClassName.USER_RESPONSE, messageContainer)}>
+    <div className={clsx(ClassName.USER_RESPONSE, messageContainer({ isFirst }))}>
       <div className={messageRow}>
         <div className={messageStyle}>{message}</div>
       </div>

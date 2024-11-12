@@ -68,12 +68,15 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile }) => {
       >
         {state.session.turns.map((turn, turnIndex) =>
           match(turn)
-            .with({ type: TurnType.USER }, ({ id, ...props }) => <UserResponse {...R.omit(props, ['type'])} key={id} />)
+            .with({ type: TurnType.USER }, ({ id, ...props }) => (
+              <UserResponse {...R.omit(props, ['type'])} isFirst={turnIndex === 0} key={id} />
+            ))
             .with({ type: TurnType.SYSTEM }, ({ id, ...props }) => (
               <SystemResponse
                 key={id}
                 {...R.omit(props, ['type'])}
                 avatar={assistant.avatar}
+                isFirst={turnIndex === 0}
                 feedback={
                   assistant.feedback
                     ? {

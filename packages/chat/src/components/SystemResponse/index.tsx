@@ -10,7 +10,7 @@ import { FeedbackButton } from '../FeedbackButton';
 import type { IFeedbackButton } from '../FeedbackButton/FeedbackButton.interface';
 import { useAnimatedMessages } from './hooks';
 import Indicator from './Indicator/Indicator';
-import { actionsContainer } from './styles.css';
+import { actionsContainer, responseContainer } from './styles.css';
 import type { SystemMessageProps } from './SystemMessage';
 import { SystemMessage } from './SystemMessage';
 import type { MessageProps } from './types';
@@ -50,6 +50,11 @@ export interface SystemResponseProps {
   isLast?: boolean;
 
   /**
+   * If true, the system message is the first in a chat.
+   */
+  isFirst?: boolean;
+
+  /**
    * If provided, will display {@link FeedbackButton} component under the last message.
    * @default false
    */
@@ -73,6 +78,7 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
   messages,
   actions = [],
   isLast,
+  isFirst,
   Message = SystemMessage,
 }) => {
   const runtime = useContext(RuntimeStateAPIContext);
@@ -84,12 +90,9 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
 
   useAutoScroll([showIndicator, complete, visibleMessages.length]);
 
-  // eslint-disable-next-line no-console
-  console.log({ complete, showIndicator, feedback });
-
   if (!messages.length && !actions.length) return null;
   return (
-    <>
+    <div className={responseContainer({ first: isFirst })}>
       {visibleMessages.map((message, index) => (
         <Message
           message={message}
@@ -113,6 +116,6 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
       )}
 
       {showIndicator && <Indicator avatar={avatar} />}
-    </>
+    </div>
   );
 };

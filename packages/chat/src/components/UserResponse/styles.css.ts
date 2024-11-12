@@ -1,19 +1,31 @@
 import { style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
 import { COLORS } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
 import { FAMILY } from '@/styles/font';
 import { SIZES } from '@/styles/sizes';
 
-export const messageContainer = style({
-  fontFamily: FAMILY,
-  fontSize: '14px',
-  lineHeight: '20px',
-  display: 'flex',
-  flexDirection: 'column',
-  flexShrink: 0,
-  alignItems: 'flex-end',
-  marginTop: 12,
+export const messageContainer = recipe({
+  base: {
+    fontFamily: FAMILY,
+    fontSize: '14px',
+    lineHeight: '20px',
+    display: 'flex',
+    flexDirection: 'column',
+    flexShrink: 0,
+    alignItems: 'flex-end',
+  },
+  variants: {
+    isFirst: {
+      true: {
+        marginTop: '0px',
+      },
+      false: {
+        marginTop: '16px',
+      },
+    },
+  },
 });
 
 export const messageRow = style({

@@ -8,7 +8,7 @@ export const welcomeMessageContainer = style({
   flexDirection: 'column',
   alignItems: 'center',
   fontFamily: FAMILY,
-  padding: '48px 20px 24px 20px',
+  padding: '48px 20px 44px 20px',
   textAlign: 'center',
 });
 
