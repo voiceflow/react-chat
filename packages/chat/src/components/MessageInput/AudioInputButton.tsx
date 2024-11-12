@@ -23,7 +23,7 @@ export const AudioInputButton: React.FC<AudioInputButtonProps> = ({
   return (
     <button
       className={clsx(
-        squareButtonStyles({ size: 'medium', isActive: false }),
+        squareButtonStyles({ size: 'medium', isActive: listening }),
         SquareButtonTheme.light,
         audioInputButton()
       )}
