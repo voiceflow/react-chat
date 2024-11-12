@@ -34,9 +34,6 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile }) => {
     runtime.stopChat();
   }, []);
 
-  if (!palette) return null;
-
-  // TODO: We'll need this for feedback probably
   const getPreviousUserTurn = useCallback(
     (turnIndex: number): UserTurnProps | null => {
       const turn = state.session.turns[turnIndex - 1];
@@ -45,8 +42,10 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile }) => {
     [state.session.turns]
   );
 
+  if (!palette) return null;
+
   return (
-    <div style={assignInlineVars(PALETTE, { colors: palette })} className={chatWindow}>
+    <div style={assignInlineVars(PALETTE, { colors: palette })} className={chatWindow({ mobile: isMobile })}>
       <NewChat
         title={assistant.title}
         description={assistant.description}

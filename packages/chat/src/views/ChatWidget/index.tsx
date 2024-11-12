@@ -84,7 +84,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
             : { [side]: position[side], bottom: position.bottom + LAUNCHER_SIZE + LAUNCHER_MARGIN, height: chatHeight }
         }
       >
-        <ChatWindow />
+        <ChatWindow isMobile={isMobile} />
       </div>
     </div>
   );
