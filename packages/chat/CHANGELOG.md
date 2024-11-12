@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.41.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.41.0...@voiceflow/chat@0.41.1) (2024-11-12)
+
+### Bug Fixes
+
+* Mic button active state + dynamic border radius (DSN-2518) ([#302](https://github.com/voiceflow/react-chat/issues/302)) ([f902868](https://github.com/voiceflow/react-chat/commit/f9028689b6bb83b6658b1f9c489ff06c97a6fd64))
+
 # [0.41.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.40.2...@voiceflow/chat@0.41.0) (2024-11-12)
 
 ### Features
