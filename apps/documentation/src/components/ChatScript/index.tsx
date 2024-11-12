@@ -1,11 +1,11 @@
-import Head from 'next/head';
+import { useEffect } from 'react';
 
 export const ChatScript = ({ projectID, embedded = false }: { projectID: string; embedded?: boolean }) => {
   if (!projectID) {
     return null;
   }
 
-  const script = `
+  const loadScript = `
     (function (d, t) {
       const v = d.createElement(t);
       const s = d.getElementsByTagName(t)[0];
@@ -24,14 +24,11 @@ export const ChatScript = ({ projectID, embedded = false }: { projectID: string;
     })(document, 'script');
   `;
 
-  return (
-    <Head>
-      <script
-        type="text/javascript"
-        dangerouslySetInnerHTML={{
-          __html: script,
-        }}
-      />
-    </Head>
-  );
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.text = loadScript;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }, []);
+
+  return null;
 };

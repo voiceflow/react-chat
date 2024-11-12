@@ -11,7 +11,6 @@ import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts/RuntimeC
 import type { FeedbackName } from '@/contexts/RuntimeContext/useRuntimeAPI';
 import { usePalette } from '@/hooks/usePalette';
 import { PALETTE } from '@/styles/colors.css';
-// import type { UserTurnProps } from '@/types';
 import type { UserTurnProps } from '@/types';
 import { SessionStatus, TurnType } from '@/types';
 
@@ -34,7 +33,6 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile }) => {
     runtime.stopChat();
   }, []);
 
-  // TODO: We'll need this for feedback probably
   const getPreviousUserTurn = useCallback(
     (turnIndex: number): UserTurnProps | null => {
       const turn = state.session.turns[turnIndex - 1];
@@ -46,7 +44,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile }) => {
   if (!palette) return null;
 
   return (
-    <div style={assignInlineVars(PALETTE, { colors: palette })} className={chatWindow}>
+    <div style={assignInlineVars(PALETTE, { colors: palette })} className={chatWindow({ mobile: isMobile })}>
       <NewChat
         title={assistant.title}
         description={assistant.description}

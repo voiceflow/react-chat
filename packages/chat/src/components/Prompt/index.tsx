@@ -20,6 +20,11 @@ export interface PromptProps {
   visible: boolean;
 
   /**
+   * Should we show an overlay over the dialog area.
+   */
+  showOverlay: boolean;
+
+  /**
    * Configuration for the "accept" action.
    */
   accept: PromptOptionProps;
@@ -27,7 +32,7 @@ export interface PromptProps {
   /**
    * Configuration for the "cancel" action.
    */
-  cancel: PromptOptionProps;
+  cancel?: PromptOptionProps;
 }
 
 /**
@@ -35,16 +40,18 @@ export interface PromptProps {
  *
  * @see {@link https://voiceflow.github.io/react-chat/?path=/story/components-chat-prompt--default}
  */
-export const Prompt: React.FC<PromptProps> = ({ visible, accept, cancel }) => (
+export const Prompt: React.FC<PromptProps> = ({ visible, showOverlay, accept, cancel }) => (
   <>
-    <div className={clsx('overlay', chatOverlay({ visible }))}></div>
+    <div className={clsx('overlay', chatOverlay({ visible: showOverlay }))}></div>
     <div className={clsx(ClassName.PROMPT, promptContainer({ visible }))}>
-      <Button variant={ButtonVariant.PRIMARY} large tabIndex={-1} {...accept}>
+      <Button variant={ButtonVariant.PRIMARY} large="true" tabIndex={-1} {...accept}>
         {accept.label}
       </Button>
-      <Button variant={ButtonVariant.SECONDARY} large tabIndex={-1} {...cancel}>
-        {cancel.label}
-      </Button>
+      {cancel && (
+        <Button variant={ButtonVariant.SECONDARY} large="true" tabIndex={-1} {...cancel}>
+          {cancel.label}
+        </Button>
+      )}
     </div>
   </>
 );

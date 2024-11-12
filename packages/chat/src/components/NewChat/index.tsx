@@ -106,7 +106,7 @@ export const NewChat: React.FC<INewChat> = ({
   const scrollableAreaRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className={clsx(ClassName.CHAT, chatContainer)}>
+    <div className={clsx(ClassName.CHAT, chatContainer({ mobile: isMobile }))}>
       <Header title={title} image={avatar} actions={headerActions} />
       <div ref={scrollableAreaRef} className={dialogContainer}>
         <AutoScrollProvider target={scrollableAreaRef}>
@@ -124,9 +124,10 @@ export const NewChat: React.FC<INewChat> = ({
         scrollableAreaRef={scrollableAreaRef}
       />
       <Prompt
-        visible={hasAlert}
+        visible={hasAlert || hasEnded}
+        showOverlay={hasAlert && !hasEnded}
         accept={{ label: 'Start new chat', onClick: chain(onEnd, handleResume, onStart) }}
-        cancel={{ label: 'Cancel', onClick: handleResume }}
+        cancel={hasEnded ? undefined : { label: 'Cancel', onClick: handleResume }}
       />
     </div>
   );
