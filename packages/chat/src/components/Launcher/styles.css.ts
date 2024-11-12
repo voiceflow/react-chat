@@ -18,7 +18,6 @@ export const launcherStyles = recipe({
     {
       display: 'flex',
       height: LAUNCHER_SIZE,
-      // alignItems: 'center',
       minWidth: '48px',
       padding: '8px 16px',
       backgroundColor: PALETTE.colors[500],
@@ -40,6 +39,8 @@ export const launcherStyles = recipe({
     withLabel: {
       true: {},
       false: {
+        height: '48px',
+        width: '48px',
         padding: '8px',
       },
     },
@@ -52,6 +53,14 @@ export const launcherStyles = recipe({
   },
 });
 
+export const iconContainer = style({
+  display: 'flex',
+  alignItems: 'center',
+  position: 'relative',
+  width: '32px',
+  height: '32px',
+});
+
 export const launcherLabelStyles = recipe({
   base: {
     fontSize: '14px',
@@ -60,11 +69,22 @@ export const launcherLabelStyles = recipe({
     lineHeight: '20px',
     marginLeft: 8,
     paddingTop: 1,
+    opacity: 1,
+    width: 'fit-content',
+    transition: 'opacity 50ms,  max-width 100ms, margin-left 300ms',
   },
   variants: {
     isOpen: {
       true: {
-        display: 'none',
+        opacity: 0,
+        maxWidth: 0,
+        width: 0,
+        marginLeft: 0,
+      },
+      false: {
+        opacity: 1,
+        maxWidth: 'fit-content',
+        width: 'fit-content',
       },
     },
   },
@@ -88,29 +108,6 @@ export const launcherIconStyles = recipe({
   },
 });
 
-export const playIconStyles = recipe({
-  base: {
-    width: 32,
-    height: 32,
-    borderRadius: 2,
-    flexShrink: 0,
-    transition: transition(['width']),
-  },
-  variants: {
-    isOpen: {
-      true: {
-        width: 0,
-        height: 0,
-      },
-      false: {},
-    },
-    withLabel: {
-      true: {},
-      false: {},
-    },
-  },
-});
-
 const fadeOutAnimation = keyframes({
   '0%': {
     opacity: 1,
@@ -120,6 +117,33 @@ const fadeOutAnimation = keyframes({
     transform: 'rotate(180deg)',
   },
 });
+
+export const playIconStyles = recipe({
+  base: {
+    width: 32,
+    height: 32,
+    borderRadius: 2,
+    position: 'absolute',
+    flexShrink: 0,
+    transition: transition(['opacity']),
+    animationDelay: '0.1s',
+  },
+  variants: {
+    isOpen: {
+      true: {
+        opacity: 0,
+      },
+      false: {
+        opacity: 1,
+      },
+    },
+    withLabel: {
+      true: {},
+      false: {},
+    },
+  },
+});
+
 export const twistInAnimation = keyframes({
   '0%': {
     opacity: 0,
@@ -133,13 +157,11 @@ export const twistInAnimation = keyframes({
 
 export const twistOutAnimation = keyframes({
   '0%': {
-    opacity: 1,
     transform: 'rotate(0deg)',
   },
   '100%': {
     opacity: 0,
     transform: 'rotate(-45deg)',
-    width: 0,
   },
 });
 
@@ -147,7 +169,9 @@ export const closeChevron = recipe({
   base: {
     transform: 'rotate(0deg)',
     transition: transition(['width']),
+    position: 'absolute',
     width: '32px',
+    opacity: 0,
   },
   variants: {
     isOpen: {
@@ -158,8 +182,12 @@ export const closeChevron = recipe({
       false: {
         animation: `${twistOutAnimation} 0.2s ease-in-out`,
         opacity: 0,
-        width: 0,
         pointerEvents: 'none',
+      },
+    },
+    withLabel: {
+      true: {
+        position: 'relative',
       },
     },
   },

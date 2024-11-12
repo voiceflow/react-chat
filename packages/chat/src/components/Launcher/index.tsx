@@ -9,6 +9,7 @@ import { ChevronIcon } from './ChevronIcon';
 import { PlayIcon } from './PlayIcon';
 import {
   closeChevron,
+  iconContainer,
   imageStyles,
   launchContainer,
   launcherIconStyles,
@@ -52,12 +53,14 @@ export const Launcher: React.FC<LauncherProps> = ({ image, isOpen, label, onClic
   return (
     <div className={launchContainer}>
       <Button className={clsx(ClassName.LAUNCHER, launcherStyles({ withLabel, isOpen }))} onClick={onClick}>
-        <ChevronIcon className={clsx(closeChevron({ isOpen }), launcherIconStyles())} />
-        {image && (
-          <img src={image} className={clsx(imageStyles({ isOpen }), launcherIconStyles({ withLabel }))} alt="launch" />
-        )}
+        <div className={iconContainer}>
+          <ChevronIcon className={clsx(closeChevron({ isOpen, withLabel }), launcherIconStyles())} />
+          {image && (
+            <img src={image} className={clsx(imageStyles({ isOpen }), playIconStyles({ withLabel }))} alt="launch" />
+          )}
+          {!image && <PlayIcon className={playIconStyles({ withLabel, isOpen })} />}
+        </div>
         {withLabel && <div className={launcherLabelStyles({ isOpen })}>{label} </div>}
-        {!image && <PlayIcon className={playIconStyles({ withLabel, isOpen })} />}
       </Button>
     </div>
   );
