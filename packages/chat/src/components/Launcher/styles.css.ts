@@ -203,7 +203,6 @@ export const playIconStyles = recipe({
     },
   },
 });
-
 export const twistInAnimation = keyframes({
   '0%': {
     opacity: 0,
