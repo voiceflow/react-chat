@@ -8,43 +8,61 @@ import { transition } from '@/styles/transitions';
 
 export const themedFocusRing = createVar();
 
-export const inputContainer = style({
-  position: 'relative',
-  borderRadius: '25px',
-  display: 'flex',
-  zIndex: 1,
-  justifyContent: 'space-between',
-  padding: '7px 7px 7px 20px',
-  fontSize: '14px',
+export const inputContainer = recipe({
+  base: {
+    position: 'relative',
+    borderRadius: '25px',
+    display: 'flex',
+    zIndex: 1,
+    justifyContent: 'space-between',
+    padding: '7px 7px 7px 20px',
+    fontSize: '14px',
 
-  boxSizing: 'border-box',
-  border: `1px solid ${COLORS.NEUTRAL_LIGHT[100]}`,
-  backgroundColor: COLORS.white,
-  boxShadow: '0px 3px 4px 0px rgba(0, 0, 0, 0.02), 0px 8px 42px -16px rgba(0, 0, 0, 0.08)',
-  transition: transition(['border', 'box-shadow']),
-  selectors: {
-    '&:hover': {
-      cursor: 'text',
-      border: `1px solid ${COLORS.NEUTRAL_LIGHT[200]}`,
+    boxSizing: 'border-box',
+    border: `1px solid ${COLORS.NEUTRAL_LIGHT[100]}`,
+    backgroundColor: COLORS.white,
+    boxShadow: '0px 3px 4px 0px rgba(0, 0, 0, 0.02), 0px 8px 42px -16px rgba(0, 0, 0, 0.08)',
+    transition: transition(['border', 'box-shadow', 'border-radius']),
+    selectors: {
+      '&:hover': {
+        cursor: 'text',
+        border: `1px solid ${COLORS.NEUTRAL_LIGHT[200]}`,
+      },
+    },
+  },
+  variants: {
+    multiline: {
+      true: {
+        borderRadius: '20px',
+      },
     },
   },
 });
 
-export const mockFocusRing = style({
-  position: 'absolute',
-  top: '-1px',
-  left: '-1px',
-  right: '-1px',
-  bottom: '-1px',
-  borderRadius: '25px',
-  pointerEvents: 'none',
-  opacity: 0,
-  boxShadow: `inset 0 0 0 0px ${PALETTE.colors[500]}`,
-  transition: transition(['opacity', 'box-shadow']),
-  selectors: {
-    [`${inputContainer}:focus-within &`]: {
-      opacity: 1,
-      boxShadow: `inset 0 0 0 2px ${PALETTE.colors[500]}`,
+export const mockFocusRing = recipe({
+  base: {
+    position: 'absolute',
+    top: '-1px',
+    left: '-1px',
+    right: '-1px',
+    bottom: '-1px',
+    borderRadius: '25px',
+    pointerEvents: 'none',
+    opacity: 0,
+    boxShadow: `inset 0 0 0 0px ${PALETTE.colors[500]}`,
+    transition: transition(['opacity', 'box-shadow']),
+    selectors: {
+      [`${inputContainer()}:focus-within &`]: {
+        opacity: 1,
+        boxShadow: `inset 0 0 0 2px ${PALETTE.colors[500]}`,
+      },
+    },
+  },
+  variants: {
+    multiline: {
+      true: {
+        borderRadius: '20px',
+      },
     },
   },
 });
@@ -67,6 +85,10 @@ export const input = style({
       color: COLORS.NEUTRAL_DARK[100],
     },
   },
+});
+
+export const multilineInput = style({
+  borderRadius: '25px',
 });
 
 export const inputBlock = style({
