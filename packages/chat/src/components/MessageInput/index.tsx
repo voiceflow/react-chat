@@ -25,6 +25,7 @@ export const MessageInput: React.FC<IMessageInput> = ({
   speechRecognition: customSpeechRecognition,
 }) => {
   const [message, setMessage] = useState('');
+  const [isMultiLine, setIsMultiLine] = useState(false);
 
   const speechRecognition = useSpeechRecognition({
     onSend: () => onSubmit?.(''),
@@ -58,9 +59,17 @@ export const MessageInput: React.FC<IMessageInput> = ({
     }
   };
 
+  const onHeightChange = (height: number) => {
+    setIsMultiLine(height > 24);
+  };
+
   return (
-    <div className={inputContainer} onKeyDown={handleKeyPress} onClick={handleContainerClick}>
-      <div className={mockFocusRing} />
+    <div
+      className={inputContainer({ multiline: isMultiLine })}
+      onKeyDown={handleKeyPress}
+      onClick={handleContainerClick}
+    >
+      <div className={mockFocusRing({ multiline: isMultiLine })} />
       <div className={inputBlock}>
         <TextareaAutosize
           ref={speechRecognition.textareaRef}
@@ -70,6 +79,7 @@ export const MessageInput: React.FC<IMessageInput> = ({
           maxRows={5}
           value={message}
           className={input}
+          onHeightChange={onHeightChange}
           onChange={(event) => setMessage(event.target.value)}
         />
       </div>
