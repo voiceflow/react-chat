@@ -65,7 +65,6 @@ export const SystemMessage: React.FC<SystemMessageProps> = ({
   feedback,
   message,
   withImage,
-  first,
   children,
   isLast,
 }) => {
