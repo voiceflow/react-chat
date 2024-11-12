@@ -63,6 +63,12 @@ export const launcherStyles = recipe({
         width: '48px',
       },
     },
+    isOpen: {
+      true: {
+        height: '48px',
+        width: '48px',
+      },
+    },
   },
   compoundVariants: [
     {
