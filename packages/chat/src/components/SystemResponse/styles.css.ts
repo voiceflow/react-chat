@@ -30,10 +30,19 @@ export const systemMessageContainer = recipe({
     marginBottom: 4,
     animation: `${fadeInSlideUp} .05s ease-in`,
   },
+});
+
+export const responseContainer = recipe({
+  base: {
+    display: 'block',
+  },
   variants: {
     first: {
       true: {
-        marginTop: 12,
+        marginTop: '0px',
+      },
+      false: {
+        marginTop: '16px',
       },
     },
   },

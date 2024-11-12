@@ -65,7 +65,6 @@ export const SystemMessage: React.FC<SystemMessageProps> = ({
   feedback,
   message,
   withImage,
-  first,
   children,
   isLast,
 }) => {
@@ -76,7 +75,7 @@ export const SystemMessage: React.FC<SystemMessageProps> = ({
   }
 
   return (
-    <div className={clsx(ClassName.SYSTEM_RESPONSE, systemMessageContainer({ first }))}>
+    <div className={clsx(ClassName.SYSTEM_RESPONSE, systemMessageContainer())}>
       <Avatar avatar={avatar} className={clsx(withImage ? '' : hide, responseAvatar)} />
       <div className={messageContainer}>
         {children ??

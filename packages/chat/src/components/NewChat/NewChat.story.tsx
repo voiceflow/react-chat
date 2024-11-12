@@ -32,13 +32,17 @@ const AgentSays = (messages: string[]) => (
     messages={messages.map((m) => ({ type: 'text', text: m }))}
   />
 );
-const UserSays = (text: string) => <UserResponse message={text} timestamp={Date.now()} />;
+const UserSays = (text: string, hasAvatar?: boolean) => (
+  <UserResponse message={text} timestamp={Date.now()} hasAvatar={hasAvatar} />
+);
 
 const MockBaseComponent = ({ isLoading }: { isLoading?: boolean }) => {
   const [messages, setMessages] = useState([
-    { type: 'Agent', text: '👋🏻 Good morning!' },
     { type: 'User', text: 'Cool, great weather ☀️' },
-    { type: 'User', text: 'How bout you?' },
+    {
+      type: 'User',
+      text: 'How bout you? What about Bob? How has he been. Is he ok. Should I separate these messages?',
+    },
     { type: 'Agent', text: 'Howdy, great to meet you!' },
     { type: 'Agent', text: 'What up' },
     { type: 'User', text: 'How bout you?' },
@@ -87,7 +91,7 @@ const MockBaseComponent = ({ isLoading }: { isLoading?: boolean }) => {
         placeholder: 'Message...',
       }}
     >
-      {messages.map((msg) => (msg.type === 'Agent' ? AgentSays([msg.text]) : UserSays(msg.text)))}
+      {messages.map((msg) => (msg.type === 'Agent' ? AgentSays([msg.text]) : UserSays(msg.text, true)))}
       {isLoading && <Indicator avatar={EMPTY_IMAGE} />}
     </NewChat>
   );
