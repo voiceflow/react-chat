@@ -8,14 +8,18 @@ import { buttonStyles } from '../Button/styles.css';
 
 export const LAUNCHER_SIZE = 48;
 
+export const launchContainer = style({
+  width: 'fit-content',
+});
+
 export const launcherStyles = recipe({
   base: [
     buttonStyles({ round: true }),
     {
       display: 'flex',
-      width: LAUNCHER_SIZE,
       height: LAUNCHER_SIZE,
       // alignItems: 'center',
+      minWidth: '48px',
       padding: '8px 16px',
       backgroundColor: PALETTE.colors[500],
       transition: transition(['color', 'background-color', 'transform', 'width', 'height']),
@@ -34,9 +38,9 @@ export const launcherStyles = recipe({
 
   variants: {
     withLabel: {
-      true: {
-        height: 'auto',
-        width: 'auto', // height: buttonSizeWithLabel,
+      true: {},
+      false: {
+        padding: '8px',
       },
     },
     isOpen: {
@@ -83,6 +87,30 @@ export const launcherIconStyles = recipe({
     },
   },
 });
+
+export const playIconStyles = recipe({
+  base: {
+    width: 32,
+    height: 32,
+    borderRadius: 2,
+    flexShrink: 0,
+    transition: transition(['width']),
+  },
+  variants: {
+    isOpen: {
+      true: {
+        width: 0,
+        height: 0,
+      },
+      false: {},
+    },
+    withLabel: {
+      true: {},
+      false: {},
+    },
+  },
+});
+
 const fadeOutAnimation = keyframes({
   '0%': {
     opacity: 1,
@@ -92,24 +120,49 @@ const fadeOutAnimation = keyframes({
     transform: 'rotate(180deg)',
   },
 });
-
 export const twistInAnimation = keyframes({
   '0%': {
     opacity: 0,
-  },
-  '25%': {
     transform: 'rotate(-45deg)',
-    opacity: 1,
   },
   '100%': {
-    transform: 'rotate(0deg)',
     opacity: 1,
+    transform: 'rotate(0deg)',
   },
 });
 
-export const closeChevron = style({
-  transform: 'rotate(0deg)',
-  animation: `${twistInAnimation} 0.05s ease-in-out`,
+export const twistOutAnimation = keyframes({
+  '0%': {
+    opacity: 1,
+    transform: 'rotate(0deg)',
+  },
+  '100%': {
+    opacity: 0,
+    transform: 'rotate(-45deg)',
+    width: 0,
+  },
+});
+
+export const closeChevron = recipe({
+  base: {
+    transform: 'rotate(0deg)',
+    transition: transition(['width']),
+    width: '32px',
+  },
+  variants: {
+    isOpen: {
+      true: {
+        animation: `${twistInAnimation} 0.2s ease-in-out`,
+        opacity: 1,
+      },
+      false: {
+        animation: `${twistOutAnimation} 0.2s ease-in-out`,
+        opacity: 0,
+        width: 0,
+        pointerEvents: 'none',
+      },
+    },
+  },
 });
 
 export const imageStyles = recipe({
