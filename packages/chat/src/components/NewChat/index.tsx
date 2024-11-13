@@ -9,9 +9,9 @@ import { chain } from '@/utils/functional';
 import { Header, type HeaderActionProps, type HeaderProps } from '../Header';
 import { type INewFooter, NewFooter } from '../NewFooter';
 import { Prompt } from '../Prompt';
+import { Separator } from '../Separator';
 import { type IWelcomeMessage, WelcomeMessage } from '../WelcomeMessage';
 import { bottomSpacer, chatContainer, dialogContainer } from './NewChat.css';
-import { Separator } from '../Separator';
 
 export interface INewChat
   extends HeaderProps,
