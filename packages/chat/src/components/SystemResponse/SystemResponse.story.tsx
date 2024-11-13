@@ -123,6 +123,7 @@ export const ActionableCard: Story = {
 
 export const Carousel: Story = {
   args: {
+    avatar: EMPTY_IMAGE,
     messages: [
       {
         type: 'carousel',
