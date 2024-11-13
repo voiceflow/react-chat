@@ -74,6 +74,9 @@ export const SystemMessage: React.FC<SystemMessageProps> = ({
     return <EndState />;
   }
 
+  // eslint-disable-next-line no-console
+  console.log({ feedback });
+
   return (
     <div className={clsx(ClassName.SYSTEM_RESPONSE, systemMessageContainer())}>
       <Avatar avatar={avatar} className={clsx(withImage ? '' : hide, responseAvatar)} />
