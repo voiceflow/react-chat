@@ -6,6 +6,7 @@ import * as R from 'remeda';
 import { match } from 'ts-pattern';
 
 import { NewChat, SystemResponse } from '@/components';
+import Indicator from '@/components/SystemResponse/Indicator/Indicator';
 import { UserResponse } from '@/components/UserResponse';
 import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts/RuntimeContext';
 import type { FeedbackName } from '@/contexts/RuntimeContext/useRuntimeAPI';
@@ -96,6 +97,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile }) => {
             ))
             .exhaustive();
         })}
+        {state.indicator && <Indicator avatar={assistant.avatar} />}
       </NewChat>
     </div>
   );

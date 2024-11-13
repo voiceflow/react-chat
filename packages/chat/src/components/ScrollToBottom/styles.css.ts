@@ -39,6 +39,7 @@ export const scrollToBottomButton = recipe({
     left: `calc(50% - ${BUTTON_SIZE / 2}px)`,
     top: `-${BUTTON_SIZE + 12}px`,
     animation: `${fadeIn} .15s ease-in`,
+    outline: 'none',
   },
   variants: {
     hidden: {

@@ -15,6 +15,7 @@ export interface IMessageInput {
   disableSend?: boolean | undefined;
   audioInterface?: boolean | undefined;
   speechRecognition?: ChatSpeechRecognitionConfig;
+  hasEnded?: boolean;
 }
 
 export const MessageInput: React.FC<IMessageInput> = ({
@@ -23,6 +24,7 @@ export const MessageInput: React.FC<IMessageInput> = ({
   audioInterface,
   placeholder = 'Message...',
   speechRecognition: customSpeechRecognition,
+  hasEnded,
 }) => {
   const [message, setMessage] = useState('');
   const [isMultiLine, setIsMultiLine] = useState(false);
@@ -65,7 +67,7 @@ export const MessageInput: React.FC<IMessageInput> = ({
 
   return (
     <div
-      className={inputContainer({ multiline: isMultiLine })}
+      className={inputContainer({ multiline: isMultiLine, hasEnded })}
       onKeyDown={handleKeyPress}
       onClick={handleContainerClick}
     >

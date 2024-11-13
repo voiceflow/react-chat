@@ -33,8 +33,6 @@ export const cardsInnerContainer = style({
   gap: `${GUTTER_WIDTH}px`,
 });
 
-export const cardStyle = style({});
-
 export const carouselContainer = style({
   position: 'relative',
   width: '100%',

@@ -8,14 +8,7 @@ import { CARD_WIDTH } from '../Card/styles.css';
 import type { CardProps } from '../Card/types';
 import { CarouselButton } from './CarouselButton';
 import { useScrollObserver, useScrollTo } from './hooks';
-import {
-  cardsContainer,
-  cardsInnerContainer,
-  cardStyle,
-  carouselContainer,
-  GUTTER_WIDTH,
-  lastCardSpacer,
-} from './styles.css';
+import { cardsContainer, cardsInnerContainer, carouselContainer, GUTTER_WIDTH, lastCardSpacer } from './styles.css';
 
 const CARD_WITH_GUTTER = CARD_WIDTH + GUTTER_WIDTH;
 
@@ -43,7 +36,7 @@ export const Carousel: React.FC<CarouselProps> = ({ cards }) => {
       <div ref={scrollContainerRef} className={cardsContainer}>
         <div className={cardsInnerContainer}>
           {cards.map((card, i) => (
-            <Card className={cardStyle} {...card} key={i} />
+            <Card {...card} key={i} />
           ))}
           <div className={lastCardSpacer}> </div>
         </div>

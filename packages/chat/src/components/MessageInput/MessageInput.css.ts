@@ -22,7 +22,7 @@ export const inputContainer = recipe({
     border: `1px solid ${COLORS.NEUTRAL_LIGHT[100]}`,
     backgroundColor: COLORS.white,
     boxShadow: '0px 3px 4px 0px rgba(0, 0, 0, 0.02), 0px 8px 42px -16px rgba(0, 0, 0, 0.08)',
-    transition: transition(['border', 'box-shadow', 'border-radius']),
+    transition: transition(['border', 'box-shadow', 'border-radius', 'transform']),
     selectors: {
       '&:hover': {
         cursor: 'text',
@@ -34,6 +34,11 @@ export const inputContainer = recipe({
     multiline: {
       true: {
         borderRadius: '20px',
+      },
+    },
+    hasEnded: {
+      true: {
+        transform: 'translateY(calc(100% + 40px))',
       },
     },
   },

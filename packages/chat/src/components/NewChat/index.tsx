@@ -9,6 +9,7 @@ import { chain } from '@/utils/functional';
 import { Header, type HeaderActionProps, type HeaderProps } from '../Header';
 import { type INewFooter, NewFooter } from '../NewFooter';
 import { Prompt } from '../Prompt';
+import { Separator } from '../Separator';
 import { type IWelcomeMessage, WelcomeMessage } from '../WelcomeMessage';
 import { bottomSpacer, chatContainer, dialogContainer } from './NewChat.css';
 
@@ -112,6 +113,7 @@ export const NewChat: React.FC<INewChat> = ({
         <AutoScrollProvider target={scrollableAreaRef}>
           <WelcomeMessage title={title} description={description} avatar={avatar} />
           {children}
+          {hasEnded && !!state.session.turns.length && <Separator text="Chat has ended" />}
           <div className={bottomSpacer} />
         </AutoScrollProvider>
       </div>
@@ -120,7 +122,7 @@ export const NewChat: React.FC<INewChat> = ({
         showPoweredBy={showPoweredBy}
         extraLinkText={extraLinkText}
         extraLinkUrl={extraLinkUrl}
-        messageInputProps={{ ...messageInputProps, disableSend: state.indicator }}
+        messageInputProps={{ ...messageInputProps, disableSend: state.indicator, hasEnded }}
         scrollableAreaRef={scrollableAreaRef}
       />
       <Prompt
