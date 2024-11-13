@@ -11,6 +11,7 @@ import { CopyButtonIcon } from './CopyButtonIcon.component';
 import {
   activeBackground,
   activeIconColor,
+  checkedIcon,
   feedbackButtonStyles,
   feedbackContainer,
   iconStyle,
@@ -56,7 +57,11 @@ export const FeedbackButton: React.FC<IFeedbackButton> = ({ variant, onClick, te
         onClick={onCopyClick}
         data-testid={`${testID}--copy`}
       >
-        {hasCopied ? <Icon svg="checkmark" className={iconStyle} /> : <CopyButtonIcon className={iconStyle} />}
+        {hasCopied ? (
+          <Icon svg="checkmark" className={clsx(iconStyle, checkedIcon)} />
+        ) : (
+          <CopyButtonIcon className={iconStyle} />
+        )}
       </button>
       <button
         className={clsx(

@@ -89,3 +89,7 @@ export const feedbackButtonStyles = recipe({
 export const iconStyle = style({
   flex: 'none',
 });
+
+export const checkedIcon = style({
+  color: PALETTE.colors[600],
+});
