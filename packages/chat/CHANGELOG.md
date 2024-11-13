@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.41.3](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.41.2...@voiceflow/chat@0.41.3) (2024-11-13)
+
+### Bug Fixes
+
+* add white background to carousel (DSN-2538) ([#308](https://github.com/voiceflow/react-chat/issues/308)) ([be4aa7c](https://github.com/voiceflow/react-chat/commit/be4aa7c30aa25a88abf05f4cae84f57c18ef737c))
+* Feedback fixes (DSN-2527) ([#306](https://github.com/voiceflow/react-chat/issues/306)) ([8626fa1](https://github.com/voiceflow/react-chat/commit/8626fa1316954486d7a24fa04bae9c3535873367))
+* themed link on footer (DSN-2536) ([#307](https://github.com/voiceflow/react-chat/issues/307)) ([4aaa0b8](https://github.com/voiceflow/react-chat/commit/4aaa0b83c2ccb17356c01fab1d3a0752c01dd55c))
+
 ## [0.41.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.41.1...@voiceflow/chat@0.41.2) (2024-11-13)
 
 ### Bug Fixes
