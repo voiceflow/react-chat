@@ -35,6 +35,7 @@ export const systemMessageContainer = recipe({
 export const responseContainer = recipe({
   base: {
     display: 'block',
+    position: 'relative',
   },
   variants: {
     first: {
@@ -78,19 +79,23 @@ export const extensionMessageContainer = style({
 export const feedbackContainer = recipe({
   base: {
     marginTop: 6,
-    position: 'absolute',
     zIndex: 1,
     transition: transition(['opacity']),
+    animation: `${fadeInSlideUp} .2s ease-in`,
   },
   variants: {
     isLast: {
       true: {
         opacity: 1,
+        marginLeft: MESSAGE_PADDING + SMALL_AVATAR_SIZE,
       },
       false: {
         opacity: 0,
+        position: 'absolute',
+        right: '-24px',
+        bottom: '-14px',
         selectors: {
-          [`${systemMessageContainer()}:hover &`]: {
+          [`${responseContainer()}:hover &`]: {
             opacity: 1,
           },
         },
