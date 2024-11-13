@@ -2,6 +2,7 @@ import { keyframes, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { COLORS } from '@/styles/colors';
+import { PALETTE } from '@/styles/colors.css';
 import { FAMILY } from '@/styles/font';
 import { SIZES } from '@/styles/sizes';
 import { transition } from '@/styles/transitions';
@@ -93,12 +94,12 @@ export const extraLinkStyles = style({
   selectors: {
     '&:hover': {
       textDecoration: 'underline',
-      color: COLORS.ACCENT[500],
-      textDecorationColor: COLORS.ACCENT[500],
+      color: PALETTE.colors[500],
+      textDecorationColor: PALETTE.colors[500],
     },
     '&:active': {
-      color: COLORS.ACCENT[600],
-      textDecorationColor: COLORS.ACCENT[600],
+      color: PALETTE.colors[600],
+      textDecorationColor: PALETTE.colors[600],
     },
   },
 });
@@ -110,11 +111,11 @@ export const voiceflowLink = style({
   transition: transition(['color', 'text-decoration-color']),
   selectors: {
     '&:hover': {
-      color: COLORS.ACCENT[500],
-      textDecorationColor: COLORS.ACCENT[500],
+      color: PALETTE.colors[500],
+      textDecorationColor: PALETTE.colors[500],
     },
     '&:active': {
-      color: COLORS.ACCENT[600],
+      color: PALETTE.colors[600],
       textDecorationColor: 'transparent',
     },
   },
