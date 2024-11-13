@@ -1,4 +1,4 @@
-import { style } from '@vanilla-extract/css';
+import { keyframes, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { COLORS } from '@/styles/colors';
@@ -7,6 +7,51 @@ import { transition } from '@/styles/transitions';
 import { buttonStyles } from '../Button/styles.css';
 import { CARD_WIDTH } from '../Card/styles.css';
 import { BUTTON_SIZE, carouselContainer } from './styles.css';
+
+const xOrigin = 'translateX(0)';
+const fadeInFromLeft = keyframes({
+  from: {
+    opacity: 0,
+    transform: 'translateX(-10px)',
+  },
+  to: {
+    opacity: 1,
+    transform: xOrigin,
+  },
+});
+
+const fadeOutToLeft = keyframes({
+  from: {
+    opacity: 1,
+    transform: xOrigin,
+  },
+  to: {
+    opacity: 0,
+    transform: 'translateX(-10px)',
+  },
+});
+
+const fadeInFromRight = keyframes({
+  from: {
+    opacity: 0,
+    transform: 'translateX(10px)',
+  },
+  to: {
+    opacity: 1,
+    transform: xOrigin,
+  },
+});
+
+const fadeOutToRight = keyframes({
+  from: {
+    opacity: 1,
+    transform: xOrigin,
+  },
+  to: {
+    opacity: 0,
+    transform: 'translateX(10px)',
+  },
+});
 
 export const carouselButton = recipe({
   base: [
@@ -18,7 +63,7 @@ export const carouselButton = recipe({
       border: `solid 1px ${COLORS.NEUTRAL_LIGHT[100]}`,
       backgroundColor: COLORS.white,
       boxShadow: '0px 3px 4px 0px rgba(0, 0, 0, 0.02), 0px 8px 42px -16px rgba(0, 0, 0, 0.06)',
-      transition: transition(['color', 'transform']),
+      transition: transition(['opacity', 'color', 'transform']),
       ':hover': {
         color: COLORS.NEUTRAL_DARK[600],
         transform: 'scale(1.15)',
@@ -61,6 +106,50 @@ export const carouselButton = recipe({
       },
     },
   },
+
+  compoundVariants: [
+    {
+      variants: {
+        visible: true,
+        direction: 'left',
+      },
+      style: {
+        opacity: 1,
+        animation: `${fadeInFromLeft} .15s ease-in`,
+      },
+    },
+    {
+      variants: {
+        visible: false,
+        direction: 'left',
+      },
+      style: {
+        opacity: 0,
+        animation: `${fadeOutToLeft} .15s ease-in`,
+      },
+    },
+
+    {
+      variants: {
+        visible: true,
+        direction: 'right',
+      },
+      style: {
+        opacity: 1,
+        animation: `${fadeInFromRight} .15s ease-in`,
+      },
+    },
+    {
+      variants: {
+        visible: false,
+        direction: 'right',
+      },
+      style: {
+        opacity: 0,
+        animation: `${fadeOutToRight} .15s ease-in`,
+      },
+    },
+  ],
 });
 
 export const rotate180 = style({
