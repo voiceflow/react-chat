@@ -19,9 +19,19 @@ export const launcherStyles = recipe({
       display: 'flex',
       height: LAUNCHER_SIZE,
       minWidth: '48px',
-      padding: '8px 16px',
       backgroundColor: PALETTE.colors[500],
-      transition: transition(['color', 'background-color', 'transform', 'width', 'height']),
+      transition: transition([
+        'color',
+        'background-color',
+        'transform',
+        'width',
+        'height',
+        'max-width',
+        'max-height',
+        'min-width',
+        'min-height',
+        'padding',
+      ]),
       boxShadow:
         '0px 1px 0px 0px rgba(22, 26, 30, 0.02), 0px 0px 0px 1px rgba(22, 26, 30, 0.04), 0px 1px 5px -4px rgba(22, 26, 30, 0.08), 0px 4px 8px -6px rgba(22, 26, 30, 0.08), 0px 1px 3px 1px rgba(22, 26, 30, 0.01)',
       ':hover': {
@@ -37,7 +47,10 @@ export const launcherStyles = recipe({
 
   variants: {
     withLabel: {
-      true: {},
+      true: {
+        padding: '8px 16px 8px 12px',
+        height: '40px',
+      },
       false: {
         height: '48px',
         width: '48px',
@@ -51,14 +64,65 @@ export const launcherStyles = recipe({
       },
     },
   },
+  compoundVariants: [
+    {
+      variants: {
+        withLabel: true,
+        isOpen: true,
+      },
+      style: {
+        height: '40px',
+        width: '40px',
+        maxWidth: '40px',
+        maxHeight: '40px',
+        minWidth: '40px',
+        padding: '8px',
+      },
+    },
+  ],
 });
 
-export const iconContainer = style({
-  display: 'flex',
-  alignItems: 'center',
-  position: 'relative',
-  width: '32px',
-  height: '32px',
+export const iconContainer = recipe({
+  base: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
+    width: '32px',
+    height: '32px',
+  },
+  variants: {
+    isOpen: {
+      true: {},
+      false: {
+        width: '24px',
+        height: '24px',
+      },
+    },
+    withLabel: { true: {}, false: {} },
+  },
+  compoundVariants: [
+    {
+      variants: {
+        withLabel: false,
+        isOpen: false,
+      },
+      style: {
+        width: '24px',
+        height: '24px',
+      },
+    },
+    {
+      variants: {
+        withLabel: true,
+        isOpen: true,
+      },
+      style: {
+        width: '24px',
+        height: '24px',
+      },
+    },
+  ],
 });
 
 export const launcherLabelStyles = recipe({
@@ -67,7 +131,7 @@ export const launcherLabelStyles = recipe({
     fontWeight: 600,
     color: PALETTE.colors[50],
     lineHeight: '20px',
-    marginLeft: 8,
+    marginLeft: '6px',
     paddingTop: 1,
     opacity: 1,
     width: 'fit-content',
@@ -105,16 +169,6 @@ export const launcherIconStyles = recipe({
         height: 24,
       },
     },
-  },
-});
-
-const fadeOutAnimation = keyframes({
-  '0%': {
-    opacity: 1,
-  },
-  '100%': {
-    opacity: 0,
-    transform: 'rotate(180deg)',
   },
 });
 
@@ -194,18 +248,39 @@ export const closeChevron = recipe({
 });
 
 export const imageStyles = recipe({
-  base: {},
+  base: {
+    transition: transition(['opacity', 'width']),
+    width: '24px',
+    height: '24px',
+  },
   variants: {
     isOpen: {
       true: {
-        animation: `${fadeOutAnimation} 0.3s ease-in-out`,
         opacity: 0,
         width: 0,
       },
       false: {
-        transform: 'rotate(0deg)',
         opacity: 1,
       },
     },
+    withLabel: {
+      true: {
+        // position: 'relative',
+        height: '24px',
+        width: '24px',
+      },
+    },
   },
+  compoundVariants: [
+    {
+      variants: {
+        withLabel: true,
+        isOpen: true,
+      },
+      style: {
+        height: '0px',
+        width: '0px',
+      },
+    },
+  ],
 });
