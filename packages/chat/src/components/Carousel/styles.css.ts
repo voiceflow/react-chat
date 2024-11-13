@@ -1,5 +1,6 @@
 import { style } from '@vanilla-extract/css';
 
+import { COLORS } from '@/styles/colors';
 import { CHAT_WIDTH } from '@/views/ChatWidget/styles.css';
 
 import { SMALL_AVATAR_SIZE } from '../Avatar/styles.css';
@@ -31,6 +32,7 @@ export const cardsInnerContainer = style({
   display: 'flex',
   alignItems: 'start',
   gap: `${GUTTER_WIDTH}px`,
+  backgroundColor: COLORS.white,
 });
 
 export const carouselContainer = style({
