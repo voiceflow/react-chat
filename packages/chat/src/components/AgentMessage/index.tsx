@@ -92,12 +92,9 @@ export const AgentMessage: React.FC<IAgentMessage> = ({
           <span>{generatedMessage}</span>
         </div>
       )}
-      {feedback && (
-        <div className={feedbackContainer({ isLast })}>
-          <FeedbackButton
-            {...feedback}
-            variant={isLast ? FeedbackButtonVariant.LAST_RESPONSE : FeedbackButtonVariant.PREVIOUS_RESPONSE}
-          />
+      {feedback && !isLast && (
+        <div className={feedbackContainer({ isLast: false })}>
+          <FeedbackButton {...feedback} variant={FeedbackButtonVariant.PREVIOUS_RESPONSE} />
         </div>
       )}
     </div>
