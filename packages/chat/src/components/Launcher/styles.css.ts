@@ -269,6 +269,10 @@ export const imageStyles = recipe({
         height: '24px',
         width: '24px',
       },
+      false: {
+        height: '32px',
+        width: '32px',
+      },
     },
   },
   compoundVariants: [
