@@ -174,6 +174,16 @@ export const MultipleWithFeedback: Story = {
   },
 };
 
+export const MultipleWithFeedbackAI: Story = {
+  args: {
+    feedback: {
+      onClick: () => null,
+    },
+    isLast: true,
+    messages: [CARD, { ...TEXT_MESSAGE, ai: true }],
+  },
+};
+
 export const PreviousMultipleWithFeedback: Story = {
   args: {
     feedback: {

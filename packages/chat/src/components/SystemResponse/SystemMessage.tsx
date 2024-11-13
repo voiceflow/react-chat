@@ -11,12 +11,12 @@ import { Avatar } from '../Avatar';
 import { Card } from '../Card';
 import { Carousel } from '../Carousel';
 import { FeedbackButton } from '../FeedbackButton';
-import type { IFeedbackButton } from '../FeedbackButton/FeedbackButton.interface';
+import { type IFeedbackButton } from '../FeedbackButton/FeedbackButton.interface';
 import { Image } from '../Image';
 import { MessageType } from './constants';
 import { ExtensionMessage } from './ExtensionMessage';
 import EndState from './state/end';
-import { feedbackContainer, hide, messageContainer, responseAvatar, systemMessageContainer } from './styles.css';
+import { hide, messageContainer, responseAvatar, systemMessageContainer } from './styles.css';
 import type { MessageProps } from './types';
 
 export interface SystemMessageProps extends React.PropsWithChildren {
@@ -62,11 +62,11 @@ export interface SystemMessageProps extends React.PropsWithChildren {
  */
 export const SystemMessage: React.FC<SystemMessageProps> = ({
   avatar,
-  feedback,
   message,
+  feedback,
+  isLast,
   withImage,
   children,
-  isLast,
 }) => {
   const { config } = useContext(RuntimeStateAPIContext);
 
@@ -80,7 +80,9 @@ export const SystemMessage: React.FC<SystemMessageProps> = ({
       <div className={messageContainer}>
         {children ??
           match(message)
-            .with({ type: MessageType.TEXT }, ({ text, ai }) => <AgentMessage text={text} aiGenerated={ai} />)
+            .with({ type: MessageType.TEXT }, ({ text, ai }) => (
+              <AgentMessage text={text} ai={ai} feedback={feedback} isLast={isLast} />
+            ))
             .with({ type: MessageType.IMAGE }, ({ url }) => <Image image={url} mode={config.render?.mode} />)
             .with({ type: MessageType.CARD }, (props) => <Card {...R.omit(props, ['type'])} />)
             .with({ type: MessageType.CAROUSEL }, (props) => <Carousel {...R.omit(props, ['type'])} />)
@@ -88,11 +90,6 @@ export const SystemMessage: React.FC<SystemMessageProps> = ({
               <ExtensionMessage extension={payload.extension} trace={payload.trace} />
             ))
             .otherwise(() => null)}
-        {feedback && (
-          <div className={feedbackContainer({ isLast })}>
-            <FeedbackButton {...feedback} />
-          </div>
-        )}
       </div>
     </div>
   );

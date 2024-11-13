@@ -7,10 +7,10 @@ import { useAutoScroll } from '@/hooks/useAutoScroll';
 import { Button } from '../Button';
 import { ButtonVariant } from '../Button/constants';
 import { FeedbackButton } from '../FeedbackButton';
-import type { IFeedbackButton } from '../FeedbackButton/FeedbackButton.interface';
+import { FeedbackButtonVariant, type IFeedbackButton } from '../FeedbackButton/FeedbackButton.interface';
 import { useAnimatedMessages } from './hooks';
 import Indicator from './Indicator/Indicator';
-import { actionsContainer, responseContainer } from './styles.css';
+import { actionsContainer, feedbackContainer, responseContainer } from './styles.css';
 import type { SystemMessageProps } from './SystemMessage';
 import { SystemMessage } from './SystemMessage';
 import type { MessageProps } from './types';
@@ -105,6 +105,14 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
           key={index}
         />
       ))}
+      {feedback && complete && isLast && (
+        <div className={feedbackContainer({ isLast })}>
+          <FeedbackButton
+            {...feedback}
+            variant={isLast ? FeedbackButtonVariant.LAST_RESPONSE : FeedbackButtonVariant.PREVIOUS_RESPONSE}
+          />
+        </div>
+      )}
       {isLast && complete && !!actions.length && (
         <div className={actionsContainer}>
           {actions.map(({ request, name }, index) => (
@@ -114,7 +122,6 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
           ))}
         </div>
       )}
-
       {showIndicator && <Indicator avatar={avatar} />}
     </div>
   );
