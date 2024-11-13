@@ -11,7 +11,7 @@ import { Avatar } from '../Avatar';
 import { Card } from '../Card';
 import { Carousel } from '../Carousel';
 import { FeedbackButton } from '../FeedbackButton';
-import type { IFeedbackButton } from '../FeedbackButton/FeedbackButton.interface';
+import { FeedbackButtonVariant, type IFeedbackButton } from '../FeedbackButton/FeedbackButton.interface';
 import { Image } from '../Image';
 import { MessageType } from './constants';
 import { ExtensionMessage } from './ExtensionMessage';
@@ -74,9 +74,6 @@ export const SystemMessage: React.FC<SystemMessageProps> = ({
     return <EndState />;
   }
 
-  // eslint-disable-next-line no-console
-  console.log({ feedback });
-
   return (
     <div className={clsx(ClassName.SYSTEM_RESPONSE, systemMessageContainer())}>
       <Avatar avatar={avatar} className={clsx(withImage ? '' : hide, responseAvatar)} />
@@ -93,7 +90,10 @@ export const SystemMessage: React.FC<SystemMessageProps> = ({
             .otherwise(() => null)}
         {feedback && (
           <div className={feedbackContainer({ isLast })}>
-            <FeedbackButton {...feedback} />
+            <FeedbackButton
+              {...feedback}
+              variant={isLast ? FeedbackButtonVariant.LAST_RESPONSE : FeedbackButtonVariant.PREVIOUS_RESPONSE}
+            />
           </div>
         )}
       </div>

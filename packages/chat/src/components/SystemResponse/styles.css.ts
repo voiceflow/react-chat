@@ -79,6 +79,7 @@ export const feedbackContainer = recipe({
   base: {
     marginTop: 6,
     position: 'absolute',
+    zIndex: 1,
     transition: transition(['opacity']),
   },
   variants: {

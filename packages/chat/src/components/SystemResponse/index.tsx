@@ -90,8 +90,6 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
 
   useAutoScroll([showIndicator, complete, visibleMessages.length]);
 
-  // eslint-disable-next-line no-console
-  console.log({ feedback });
   if (!messages.length && !actions.length) return null;
   return (
     <div className={responseContainer({ first: isFirst })}>
