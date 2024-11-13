@@ -12,11 +12,26 @@ export const useScrollTo =
     if (!el) return;
 
     const index = getNextIndex(el);
+    const targetLeft = index * (CARD_WIDTH + GUTTER_WIDTH);
+    const duration = 200;
+    const start = el.scrollLeft;
+    const distance = targetLeft - start;
+    const startTime = performance.now();
 
-    el.scrollTo({
-      left: index && index * (CARD_WIDTH + GUTTER_WIDTH),
-      behavior: 'smooth',
-    });
+    const easeInOutCubic = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2);
+
+    const scroll = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easedProgress = easeInOutCubic(progress);
+      el.scrollLeft = start + distance * easedProgress;
+
+      if (progress < 1) {
+        requestAnimationFrame(scroll);
+      }
+    };
+
+    requestAnimationFrame(scroll);
   };
 
 export const useScrollObserver = (containerRef: RefObject<HTMLDivElement> | undefined, cards: CardProps[]) => {
