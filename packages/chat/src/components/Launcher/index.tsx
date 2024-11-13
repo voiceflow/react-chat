@@ -52,7 +52,7 @@ export const Launcher: React.FC<LauncherProps> = ({ image, isOpen, label, onClic
   const withLabel = !!label?.length;
   return (
     <div className={launchContainer}>
-      <Button className={clsx(ClassName.LAUNCHER, launcherStyles({ withLabel, isOpen }))} onClick={onClick}>
+      <Button className={clsx(ClassName.LAUNCHER, launcherStyles({ withLabel, isOpen }))} onMouseDown={onClick}>
         <div className={iconContainer({ isOpen, withLabel })}>
           <ChevronIcon className={clsx(closeChevron({ isOpen, withLabel }), launcherIconStyles())} />
           {image && (

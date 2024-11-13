@@ -272,6 +272,7 @@ export const imageStyles = recipe({
       false: {
         height: '32px',
         width: '32px',
+        minWidth: '32px',
       },
     },
   },
