@@ -107,11 +107,8 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
         />
       ))}
       {feedback && complete && isLast && (
-        <div className={feedbackContainer({ isLast })}>
-          <FeedbackButton
-            {...feedback}
-            variant={isLast ? FeedbackButtonVariant.LAST_RESPONSE : FeedbackButtonVariant.PREVIOUS_RESPONSE}
-          />
+        <div className={feedbackContainer({ isLast: true })}>
+          <FeedbackButton {...feedback} variant={FeedbackButtonVariant.LAST_RESPONSE} />
         </div>
       )}
       {isLast && complete && !!actions.length && (

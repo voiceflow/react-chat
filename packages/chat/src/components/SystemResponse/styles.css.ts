@@ -70,7 +70,7 @@ export const feedbackContainer = recipe({
     isLast: {
       true: {
         opacity: 1,
-        marginLeft: MESSAGE_PADDING + SMALL_AVATAR_SIZE,
+        marginLeft: MESSAGE_PADDING + SMALL_AVATAR_SIZE - 6,
       },
       false: {
         opacity: 0,
