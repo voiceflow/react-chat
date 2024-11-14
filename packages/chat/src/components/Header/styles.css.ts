@@ -1,4 +1,4 @@
-import { style } from '@vanilla-extract/css';
+import { keyframes, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { COLORS } from '@/styles/colors';
@@ -9,12 +9,24 @@ import { transition } from '@/styles/transitions';
 
 import { buttonReset } from '../Button/reset.css';
 
+export const fadeIn = keyframes({
+  from: {
+    opacity: 0,
+    transform: 'translateY(-10px)',
+  },
+  to: {
+    opacity: 1,
+    transform: 'translateY(0)',
+  },
+});
+
 export const headerContainer = style({
   display: 'flex',
   alignItems: 'center',
   backgroundColor: PALETTE.colors[500],
   padding: '12px 16px 12px 20px',
   height: parseInt(SIZES.sm, 10) + 24, // Add the top and bottom padding
+  animation: `${fadeIn} .3s ease-in`,
 });
 
 export const headerInnerContainer = style({
