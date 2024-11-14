@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useMemo } from 'react';
+import React, { createContext, useCallback, useMemo, useState } from 'react';
 
 export interface AutoScrollContext {
   scrollToBottom: () => void;
@@ -8,6 +8,8 @@ export const AutoScrollContext = createContext<AutoScrollContext>({
   scrollToBottom: () => undefined,
 });
 
+export const IsAutoScrollingContext = createContext<boolean>(false);
+
 export const { Consumer: AutoScrollConsumer } = AutoScrollContext;
 
 export interface AutoScrollProviderProps<T> extends React.PropsWithChildren {
@@ -15,7 +17,14 @@ export interface AutoScrollProviderProps<T> extends React.PropsWithChildren {
 }
 
 export const AutoScrollProvider = <T extends HTMLElement>({ target, children }: AutoScrollProviderProps<T>) => {
+  const [autoScrolling, setAutoScrolling] = useState(false);
+
   const scrollToBottom = useCallback(() => {
+    setAutoScrolling(true);
+    setTimeout(() => {
+      setAutoScrolling(false);
+    }, 700);
+
     requestAnimationFrame(() => {
       const el = target.current;
       if (!el) return;
@@ -30,5 +39,9 @@ export const AutoScrollProvider = <T extends HTMLElement>({ target, children }: 
 
   const context = useMemo(() => ({ scrollToBottom }), [scrollToBottom]);
 
-  return <AutoScrollContext.Provider value={context}>{children}</AutoScrollContext.Provider>;
+  return (
+    <AutoScrollContext.Provider value={context}>
+      <IsAutoScrollingContext.Provider value={autoScrolling}>{children} </IsAutoScrollingContext.Provider>
+    </AutoScrollContext.Provider>
+  );
 };

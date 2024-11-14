@@ -109,22 +109,22 @@ export const NewChat: React.FC<INewChat> = ({
   return (
     <div className={clsx(ClassName.CHAT, chatContainer({ mobile: isMobile }))}>
       <Header title={title} image={avatar} actions={headerActions} />
-      <div ref={scrollableAreaRef} className={dialogContainer}>
-        <AutoScrollProvider target={scrollableAreaRef}>
+      <AutoScrollProvider target={scrollableAreaRef}>
+        <div ref={scrollableAreaRef} className={dialogContainer}>
           <WelcomeMessage title={title} description={description} avatar={avatar} />
           {children}
           {hasEnded && !!state.session.turns.length && <Separator text="Chat has ended" />}
           <div className={bottomSpacer} />
-        </AutoScrollProvider>
-      </div>
-      <NewFooter
-        buttons={buttons}
-        showPoweredBy={showPoweredBy}
-        extraLinkText={extraLinkText}
-        extraLinkUrl={extraLinkUrl}
-        messageInputProps={{ ...messageInputProps, disableSend: state.indicator, hasEnded }}
-        scrollableAreaRef={scrollableAreaRef}
-      />
+        </div>
+        <NewFooter
+          buttons={buttons}
+          showPoweredBy={showPoweredBy}
+          extraLinkText={extraLinkText}
+          extraLinkUrl={extraLinkUrl}
+          messageInputProps={{ ...messageInputProps, disableSend: state.indicator, hasEnded }}
+          scrollableAreaRef={scrollableAreaRef}
+        />
+      </AutoScrollProvider>
       <Prompt
         visible={hasAlert || hasEnded}
         showOverlay={hasAlert && !hasEnded}

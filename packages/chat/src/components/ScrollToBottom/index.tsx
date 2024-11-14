@@ -1,4 +1,6 @@
-import { type RefObject, useEffect, useRef, useState } from 'react';
+import { type RefObject, useContext, useEffect, useRef, useState } from 'react';
+
+import { IsAutoScrollingContext } from '@/contexts';
 
 import { ScrollButton } from '../NewFooter/ScrollButton';
 import { scrollToBottomButton, scrollToButtonContainer } from './styles.css';
@@ -8,6 +10,7 @@ interface ScrollToBottomProps {
 }
 
 export const ScrollToBottom: React.FC<ScrollToBottomProps> = ({ scrollableAreaRef }) => {
+  const autoScrolling = useContext(IsAutoScrollingContext);
   const [atBottom, setAtBottom] = useState(true);
   const prevScrollPosition = useRef<number>();
   const pauseCheck = useRef(false);
@@ -24,28 +27,22 @@ export const ScrollToBottom: React.FC<ScrollToBottomProps> = ({ scrollableAreaRe
     };
   }, []);
 
+  useEffect(() => {
+    // If it's auto scrolling, then immediately hide the button and pause checking
+    // for a bit.
+    pauseCheck.current = autoScrolling;
+    if (autoScrolling) setAtBottom(true);
+  }, [autoScrolling]);
+
   const handleScroll = () => {
     if (!scrollableAreaRef?.current || !prevScrollPosition) return;
-    if (pauseCheck.current) return;
-
-    const { scrollTop, scrollHeight, clientHeight } = scrollableAreaRef.current;
-
-    if (scrollTop > (prevScrollPosition?.current || 0)) {
-      // This means the scrollableArea is being scrolled down, which can be caused by
-      // the AutoScrollProvider - and in this case, we should wait a little bit (0.5s)
-      // before checking the scroll position so we don't flash the button while messages
-      // are coming in.
-      pauseCheck.current = true;
-      setTimeout(() => {
-        prevScrollPosition.current = scrollableAreaRef.current?.scrollTop;
-        pauseCheck.current = false;
-        handleScroll();
-      }, 500);
-
+    if (pauseCheck.current) {
       return;
     }
 
-    const buffer = 30;
+    const { scrollTop, scrollHeight, clientHeight } = scrollableAreaRef.current;
+
+    const buffer = 10;
     const isAboveBottom = scrollTop + clientHeight < scrollHeight - buffer;
 
     setAtBottom(!isAboveBottom);
@@ -54,6 +51,16 @@ export const ScrollToBottom: React.FC<ScrollToBottomProps> = ({ scrollableAreaRe
 
   const scrollToBottom = () => {
     if (!scrollableAreaRef?.current) return;
+
+    // We know that it will reach the bottom, so we call `setAtBottom(true)` cause we want
+    // to immediately hide the button while it scrolls down.
+    // ...and there's no reliable way of knowing when the scroll action finished, so we
+    // just use a timer.
+    setAtBottom(true);
+    pauseCheck.current = true;
+    setTimeout(() => {
+      pauseCheck.current = false;
+    }, 700);
 
     scrollableAreaRef.current.scrollTo({
       top: scrollableAreaRef.current.scrollHeight,
