@@ -8,9 +8,10 @@ import { Button } from '../Button';
 import { ButtonVariant } from '../Button/constants';
 import { FeedbackButton } from '../FeedbackButton';
 import { FeedbackButtonVariant, type IFeedbackButton } from '../FeedbackButton/FeedbackButton.interface';
+import { MessageContainer } from '../MessageContainer';
 import { useAnimatedMessages } from './hooks';
 import Indicator from './Indicator/Indicator';
-import { actionsContainer, feedbackContainer, responseContainer } from './styles.css';
+import { actionsContainer, feedbackContainer } from './styles.css';
 import type { SystemMessageProps } from './SystemMessage';
 import { SystemMessage } from './SystemMessage';
 import type { MessageProps } from './types';
@@ -92,7 +93,7 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
 
   if (!messages.length && !actions.length) return null;
   return (
-    <div className={responseContainer({ first: isFirst })}>
+    <MessageContainer>
       {visibleMessages.map((message, index) => (
         <Message
           message={message}
@@ -123,6 +124,6 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
         </div>
       )}
       {showIndicator && <Indicator avatar={avatar} />}
-    </div>
+    </MessageContainer>
   );
 };

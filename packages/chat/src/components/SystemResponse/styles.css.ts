@@ -32,23 +32,6 @@ export const systemMessageContainer = recipe({
   },
 });
 
-export const responseContainer = recipe({
-  base: {
-    display: 'block',
-    position: 'relative',
-  },
-  variants: {
-    first: {
-      true: {
-        marginTop: '0px',
-      },
-      false: {
-        marginTop: '16px',
-      },
-    },
-  },
-});
-
 export const responseAvatar = style({
   marginBottom: 4,
 });
@@ -94,11 +77,11 @@ export const feedbackContainer = recipe({
         position: 'absolute',
         right: '-24px',
         bottom: '-14px',
-        selectors: {
-          [`${responseContainer()}:hover &`]: {
+        // selectors: {
+        /* [`${responseContainer()}:hover &`]: {
             opacity: 1,
-          },
-        },
+          }, */
+        // },
       },
     },
   },
