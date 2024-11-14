@@ -27,7 +27,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
 
   const { isOpen } = useContext(RuntimeStateContext);
 
-  /** initialization */
+  /** initialization  */
   const [isHidden, setHidden] = useState(false);
   const [proactiveMessages, setProactiveMessages] = useState<Trace.AnyTrace[]>([]);
   const isMobile = useMemo(() => window.matchMedia('(max-width: 768px)').matches, []);
