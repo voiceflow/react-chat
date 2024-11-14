@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.42.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.42.0...@voiceflow/chat@0.42.1) (2024-11-14)
+
+### Bug Fixes
+
+* Random fixes (DSN-000) ([#309](https://github.com/voiceflow/react-chat/issues/309)) ([e8cdd6e](https://github.com/voiceflow/react-chat/commit/e8cdd6eeaba2075f28d8bd2443b85b3c98d0963e))
+
 # [0.42.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.41.4...@voiceflow/chat@0.42.0) (2024-11-14)
 
 ### Bug Fixes
