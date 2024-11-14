@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.42.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.41.4...@voiceflow/chat@0.42.0) (2024-11-14)
+
+### Bug Fixes
+
+* scroll to bottom button (COR-3903) ([#310](https://github.com/voiceflow/react-chat/issues/310)) ([67c14e4](https://github.com/voiceflow/react-chat/commit/67c14e46bcbc8c4c2783702139370b08ebe95396))
+
+### Features
+
+* Animate in widget components (DSN-2530) ([#312](https://github.com/voiceflow/react-chat/issues/312)) ([d06153e](https://github.com/voiceflow/react-chat/commit/d06153eeb2588596a5479baa5743c09e87c761fb))
+
 ## [0.41.4](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.41.3...@voiceflow/chat@0.41.4) (2024-11-14)
 
 ### Bug Fixes
