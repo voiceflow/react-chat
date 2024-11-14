@@ -28,7 +28,7 @@ export const systemMessageContainer = recipe({
     display: 'flex',
     alignItems: 'flex-end',
     marginBottom: 4,
-    animation: `${fadeInSlideUp} .05s ease-in`,
+    animation: `${fadeInSlideUp} .3s ease-in`,
   },
 });
 
