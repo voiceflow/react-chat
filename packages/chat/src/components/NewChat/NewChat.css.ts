@@ -45,3 +45,7 @@ export const bottomSpacer = style({
   width: '100%',
   height: '24px',
 });
+
+export const chatEndedContainer = style({
+  padding: '4px 0',
+});

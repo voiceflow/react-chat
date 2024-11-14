@@ -7,7 +7,16 @@ import { ClassName } from '@/constants';
 import { Button } from '../Button';
 import { ChevronIcon } from './ChevronIcon';
 import { PlayIcon } from './PlayIcon';
-import { closeChevron, imageStyles, launcherIconStyles, launcherLabelStyles, launcherStyles } from './styles.css';
+import {
+  closeChevron,
+  iconContainer,
+  imageStyles,
+  launchContainer,
+  launcherIconStyles,
+  launcherLabelStyles,
+  launcherStyles,
+  playIconStyles,
+} from './styles.css';
 
 export interface LauncherProps {
   /**
@@ -42,13 +51,21 @@ export interface LauncherProps {
 export const Launcher: React.FC<LauncherProps> = ({ image, isOpen, label, onClick }) => {
   const withLabel = !!label?.length;
   return (
-    <Button className={clsx(ClassName.LAUNCHER, launcherStyles({ withLabel }))} onClick={onClick}>
-      {withLabel && <div className={launcherLabelStyles}>{label} </div>}
-      {image && (
-        <img src={image} className={clsx(imageStyles({ isOpen }), launcherIconStyles({ withLabel }))} alt="launch" />
-      )}
-      {!image && !isOpen && <PlayIcon className={launcherIconStyles({ withLabel })} />}
-      {isOpen && <ChevronIcon className={clsx(closeChevron, launcherIconStyles({ withLabel }))} />}
-    </Button>
+    <div className={launchContainer}>
+      <Button className={clsx(ClassName.LAUNCHER, launcherStyles({ withLabel, isOpen }))} onMouseUp={onClick}>
+        <div className={iconContainer({ isOpen, withLabel })}>
+          <ChevronIcon className={clsx(closeChevron({ isOpen, withLabel }), launcherIconStyles())} />
+          {image && (
+            <img
+              src={image}
+              className={clsx(imageStyles({ isOpen, withLabel }), playIconStyles({ withLabel }))}
+              alt="launch"
+            />
+          )}
+          {!image && <PlayIcon className={playIconStyles({ withLabel, isOpen })} />}
+        </div>
+        {withLabel && <div className={launcherLabelStyles({ isOpen })}>{label} </div>}
+      </Button>
+    </div>
   );
 };

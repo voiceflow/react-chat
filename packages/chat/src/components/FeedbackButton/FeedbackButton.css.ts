@@ -3,6 +3,7 @@ import { recipe } from '@vanilla-extract/recipes';
 
 import { SHADOWS } from '@/styles/box-shadows';
 import { COLORS } from '@/styles/colors';
+import { PALETTE } from '@/styles/colors.css';
 import { transition } from '@/styles/transitions';
 
 export const activeBackground = createVar();
@@ -59,15 +60,15 @@ export const feedbackButtonStyles = recipe({
   variants: {
     isSelected: {
       true: {
-        color: COLORS.ACCENT[500],
+        color: PALETTE.colors[500],
         selectors: {
           '&:hover': {
             backgroundColor: 'transparent',
-            color: COLORS.ACCENT[500],
+            color: PALETTE.colors[500],
           },
           '&:active': {
             backgroundColor: 'transparent',
-            color: COLORS.ACCENT[500],
+            color: PALETTE.colors[500],
           },
         },
       },
@@ -87,4 +88,8 @@ export const feedbackButtonStyles = recipe({
 
 export const iconStyle = style({
   flex: 'none',
+});
+
+export const checkedIcon = style({
+  color: PALETTE.colors[600],
 });
