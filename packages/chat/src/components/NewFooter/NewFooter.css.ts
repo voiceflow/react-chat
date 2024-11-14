@@ -9,8 +9,29 @@ import { transition } from '@/styles/transitions';
 
 const BUTTON_ROW_MARGIN = 10;
 
+const fadeInAndSlideUp = keyframes({
+  from: {
+    opacity: 0,
+    transform: 'translateY(10px)',
+  },
+  to: {
+    opacity: 1,
+    transform: 'translateY(0)',
+  },
+});
+
+const fadeIn = keyframes({
+  from: {
+    opacity: 0,
+  },
+  to: {
+    opacity: 1,
+  },
+});
+
 export const footerContainer = style({
   width: '100%',
+  animation: `${fadeInAndSlideUp} 0.5s ease-in-out`,
 });
 
 export const buttonsContainer = style({
@@ -22,15 +43,6 @@ export const buttonsContainer = style({
   overflowX: 'scroll',
   scrollbarWidth: 'none',
   padding: '0 20px',
-});
-
-const fadeIn = keyframes({
-  from: {
-    opacity: 0,
-  },
-  to: {
-    opacity: 1,
-  },
 });
 
 export const scrollButtonContainer = style({

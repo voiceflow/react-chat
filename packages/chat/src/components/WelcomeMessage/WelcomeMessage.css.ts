@@ -1,7 +1,18 @@
-import { style } from '@vanilla-extract/css';
+import { keyframes, style } from '@vanilla-extract/css';
 
 import { COLORS } from '@/styles/colors';
 import { FAMILY } from '@/styles/font';
+
+export const fadeIn = keyframes({
+  from: {
+    opacity: 0,
+    transform: 'translateY(-10px)',
+  },
+  to: {
+    opacity: 1,
+    transform: 'translateY(0)',
+  },
+});
 
 export const welcomeMessageContainer = style({
   display: 'flex',
@@ -10,6 +21,7 @@ export const welcomeMessageContainer = style({
   fontFamily: FAMILY,
   padding: '48px 20px 44px 20px',
   textAlign: 'center',
+  animation: `${fadeIn} 0.5s ease-in-out`,
 });
 
 export const avatarContainer = style({
