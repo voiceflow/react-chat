@@ -86,7 +86,7 @@ export const NewChat: React.FC<INewChat> = ({
     }
   };
 
-  const handleResume = (): void => setAlert(false);
+  const handleResume = (_: any): void => setAlert(false);
 
   const headerActions = useMemo<HeaderActionProps[]>(() => {
     const items: HeaderActionProps[] = [{ svg: 'reset', onClick: handleClose }];
@@ -128,7 +128,7 @@ export const NewChat: React.FC<INewChat> = ({
       <Prompt
         visible={hasAlert || hasEnded}
         showOverlay={hasAlert && !hasEnded}
-        accept={{ label: 'Start new chat', onClick: chain(onEnd, handleResume, onStart) }}
+        accept={{ label: 'Start new chat', onClick: chain(handleResume, onEnd, onStart) }}
         cancel={hasEnded ? undefined : { label: 'Cancel', onClick: handleResume }}
       />
     </div>
