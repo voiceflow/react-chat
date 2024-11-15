@@ -8,9 +8,12 @@ import { Button } from '../Button';
 import { ButtonVariant } from '../Button/constants';
 import { FeedbackButton } from '../FeedbackButton';
 import { FeedbackButtonVariant, type IFeedbackButton } from '../FeedbackButton/FeedbackButton.interface';
+import { MessageContainer } from '../MessageContainer';
+import { MessageType } from './constants';
 import { useAnimatedMessages } from './hooks';
 import Indicator from './Indicator/Indicator';
-import { actionsContainer, feedbackContainer, responseContainer } from './styles.css';
+import EndState from './state/end';
+import { actionsContainer, feedbackContainer } from './styles.css';
 import type { SystemMessageProps } from './SystemMessage';
 import { SystemMessage } from './SystemMessage';
 import type { MessageProps } from './types';
@@ -78,7 +81,6 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
   messages,
   actions = [],
   isLast,
-  isFirst,
   Message = SystemMessage,
 }) => {
   const runtime = useContext(RuntimeStateAPIContext);
@@ -91,25 +93,37 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
   useAutoScroll([showIndicator, complete, visibleMessages.length]);
 
   if (!messages.length && !actions.length) return null;
+
   return (
-    <div className={responseContainer({ first: isFirst })}>
-      {visibleMessages.map((message, index) => (
-        <Message
-          message={message}
-          withImage={!showIndicator && index === visibleMessages.length - 1}
-          feedback={complete && !showIndicator && index === visibleMessages.length - 1 ? feedback : undefined}
-          avatar={avatar}
-          timestamp={timestamp}
-          first={index === 0}
-          isLast={isLast}
-          key={index}
-        />
-      ))}
-      {feedback && complete && isLast && (
-        <div className={feedbackContainer({ isLast: true })}>
-          <FeedbackButton {...feedback} variant={FeedbackButtonVariant.LAST_RESPONSE} />
-        </div>
-      )}
+    <MessageContainer>
+      {visibleMessages.map((message, index) => {
+        const endConversation = message?.type === MessageType.END;
+        if (endConversation) {
+          return <EndState />;
+        }
+
+        const lastMessageInGroup = index === visibleMessages.length - 1;
+        const showFeedback = lastMessageInGroup && message.type === MessageType.TEXT;
+
+        return (
+          <>
+            <Message
+              message={message}
+              withImage={!showIndicator && lastMessageInGroup}
+              avatar={avatar}
+              timestamp={timestamp}
+              isLast={isLast}
+              feedback={showFeedback ? feedback : undefined}
+              key={index}
+            />
+            {feedback && isLast && complete && lastMessageInGroup && (
+              <div className={feedbackContainer}>
+                <FeedbackButton {...feedback} variant={FeedbackButtonVariant.LAST_RESPONSE} />
+              </div>
+            )}
+          </>
+        );
+      })}
       {isLast && complete && !!actions.length && (
         <div className={actionsContainer}>
           {actions.map(({ request, name }, index) => (
@@ -120,6 +134,6 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
         </div>
       )}
       {showIndicator && <Indicator avatar={avatar} />}
-    </div>
+    </MessageContainer>
   );
 };

@@ -1,5 +1,4 @@
 import { keyframes, style } from '@vanilla-extract/css';
-import { recipe } from '@vanilla-extract/recipes';
 
 import { SIZES } from '@/styles/sizes';
 import { transition } from '@/styles/transitions';
@@ -23,30 +22,11 @@ const fadeInSlideUp = keyframes({
   },
 });
 
-export const systemMessageContainer = recipe({
-  base: {
-    display: 'flex',
-    alignItems: 'flex-end',
-    marginBottom: 4,
-    animation: `${fadeInSlideUp} .3s ease-in`,
-  },
-});
-
-export const responseContainer = recipe({
-  base: {
-    display: 'block',
-    position: 'relative',
-  },
-  variants: {
-    first: {
-      true: {
-        marginTop: '0px',
-      },
-      false: {
-        marginTop: '16px',
-      },
-    },
-  },
+export const systemMessageContainer = style({
+  display: 'flex',
+  alignItems: 'flex-end',
+  marginBottom: 4,
+  animation: `${fadeInSlideUp} .3s ease-in`,
 });
 
 export const responseAvatar = style({
@@ -76,30 +56,10 @@ export const extensionMessageContainer = style({
   backgroundColor: '#f4f4f4',
 });
 
-export const feedbackContainer = recipe({
-  base: {
-    marginTop: 6,
-    zIndex: 1,
-    transition: transition(['opacity']),
-    animation: `${fadeInSlideUp} .2s ease-in`,
-  },
-  variants: {
-    isLast: {
-      true: {
-        opacity: 1,
-        marginLeft: MESSAGE_PADDING + SMALL_AVATAR_SIZE - 6,
-      },
-      false: {
-        opacity: 0,
-        position: 'absolute',
-        right: '-24px',
-        bottom: '-14px',
-        selectors: {
-          [`${responseContainer()}:hover &`]: {
-            opacity: 1,
-          },
-        },
-      },
-    },
-  },
+export const feedbackContainer = style({
+  marginTop: 6,
+  zIndex: 1,
+  transition: transition(['opacity']),
+  animation: `${fadeInSlideUp} .2s ease-in`,
+  marginLeft: MESSAGE_PADDING + SMALL_AVATAR_SIZE - 6,
 });

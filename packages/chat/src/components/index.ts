@@ -20,5 +20,4 @@ export { SendButton } from './SendButton';
 export { SystemResponse } from './SystemResponse';
 export { Tooltip } from './Tooltip';
 export { TypingIndicator } from './TypingIndicator';
-export { UserMessage } from './UserMessage';
 export { WelcomeMessage } from './WelcomeMessage';

@@ -1,11 +1,9 @@
-import clsx from 'clsx';
-
 import { ClassName } from '@/constants';
 import { useAutoScroll } from '@/hooks/useAutoScroll';
 
+import { MessageContainer } from '../MessageContainer';
 import { Tooltip } from '../Tooltip';
-import { UserMessage } from '../UserMessage';
-import { debugMessage, messageContainer, messageRow } from './styles.css';
+import { debugMessage, messageContainer } from './styles.css';
 
 export interface DebugActionProps {
   label: string;
@@ -33,17 +31,6 @@ export interface UserResponseProps {
    * If provided, adds a caption and optional "debug" message with an action.
    */
   debug?: DebugResponseProps;
-
-  /**
-   * If true, this is the first message in the chat.
-   */
-  isFirst?: boolean;
-
-  /**
-   * If true, the chat is using an avatar.
-   */
-
-  hasAvatar?: boolean;
 }
 
 /**
@@ -51,17 +38,17 @@ export interface UserResponseProps {
  *
  * @see {@link https://voiceflow.github.io/react-chat/?path=/story/components-chat-userresponse--simple}
  */
-export const UserResponse: React.FC<UserResponseProps> = ({ message, debug, isFirst, hasAvatar }) => {
+export const UserResponse: React.FC<UserResponseProps> = ({ message, debug }) => {
   useAutoScroll();
 
   // TODO: Check this in different render modes
+  //       In the 'old' chat app - Messages have a maximum width in different screen modes.
+  //       Should we preserve this ?
   // const { config } = useContext(RuntimeStateAPIContext);
 
   return (
-    <div className={clsx(ClassName.USER_RESPONSE, messageContainer)}>
-      <div className={messageRow({ isFirst, hasAvatar })}>
-        <UserMessage message={message} />
-      </div>
+    <MessageContainer className={ClassName.USER_RESPONSE}>
+      <div className={messageContainer}>{message}</div>
       {debug && (
         <>
           <aside className={debugMessage}>{debug.message}</aside>
@@ -72,6 +59,6 @@ export const UserResponse: React.FC<UserResponseProps> = ({ message, debug, isFi
           )}
         </>
       )}
-    </div>
+    </MessageContainer>
   );
 };

@@ -44,9 +44,6 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile }) => {
 
   if (!palette) return null;
 
-  // eslint-disable-next-line no-console
-  console.log({ assistant });
-
   return (
     <div style={assignInlineVars(PALETTE, { colors: palette })} className={chatWindow({ mobile: isMobile })}>
       <NewChat
@@ -71,14 +68,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile }) => {
         {state.session.turns.map((turn, turnIndex) => {
           return match(turn)
             .with({ type: TurnType.USER }, ({ id, ...props }) => {
-              return (
-                <UserResponse
-                  {...R.omit(props, ['type'])}
-                  isFirst={turnIndex === 0}
-                  hasAvatar={!!assistant.avatar}
-                  key={id}
-                />
-              );
+              return <UserResponse {...R.omit(props, ['type'])} key={id} />;
             })
             .with({ type: TurnType.SYSTEM }, ({ id, ...props }) => (
               <SystemResponse
