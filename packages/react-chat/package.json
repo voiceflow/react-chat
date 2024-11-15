@@ -21,7 +21,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "yarn g:turbo run build:cmd --filter=@voiceflow/react-chat...",
+    "build": "yarn g:turbo run build:cmd --filter=@voiceflow/react-chat-legacy...",
     "build:bundle": "NODE_ENV=production vite build",
     "build:cmd": "yarn g:run-p build:package build:bundle",
     "build:package": "NODE_ENV=production vite --config vite.package.config.ts build && yarn g:tsc-alias -p tsconfig.build.json",

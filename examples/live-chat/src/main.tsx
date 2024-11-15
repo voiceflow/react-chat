@@ -1,5 +1,5 @@
 import 'regenerator-runtime/runtime';
-import '@voiceflow/chat/dist/style.css';
+import '@voiceflow/react-chat/dist/style.css';
 
 import { ChatWidget } from '@voiceflow/react-chat';
 import { createRoot } from 'react-dom/client';

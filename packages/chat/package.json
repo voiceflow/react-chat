@@ -52,7 +52,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "yarn g:turbo run build:cmd --filter=@voiceflow/chat...",
+    "build": "yarn g:turbo run build:cmd --filter=@voiceflow/react-chat...",
     "build:cmd": "yarn g:run-p build:package build:widget",
     "build:package": "NODE_ENV=production vite --config vite.package.config.ts build && yarn g:tsc-alias -p tsconfig.build.json",
     "build:storybook": "storybook build -o docs",
