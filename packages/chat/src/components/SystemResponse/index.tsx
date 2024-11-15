@@ -3,6 +3,7 @@ import { useContext } from 'react';
 
 import { RuntimeStateAPIContext } from '@/contexts';
 import { useAutoScroll } from '@/hooks/useAutoScroll';
+import { fadeInAndUp } from '@/styles/animation-utils.css';
 
 import { Button } from '../Button';
 import { ButtonVariant } from '../Button/constants';
@@ -127,9 +128,16 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
       {isLast && complete && !!actions.length && (
         <div className={actionsContainer}>
           {actions.map(({ request, name }, index) => (
-            <Button variant={ButtonVariant.INLINE} onClick={() => runtime?.interact(request, name)} key={index}>
-              {name}
-            </Button>
+            <div
+              className={fadeInAndUp}
+              style={{
+                animationDelay: `${index * 0.1}s`,
+              }}
+            >
+              <Button variant={ButtonVariant.INLINE} onClick={() => runtime?.interact(request, name)} key={index}>
+                {name}
+              </Button>
+            </div>
           ))}
         </div>
       )}

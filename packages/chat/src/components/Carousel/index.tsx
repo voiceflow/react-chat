@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { useRef } from 'react';
 
 import { ClassName } from '@/constants';
+import { fadeInAndUp } from '@/styles/animation-utils.css';
 
 import { Card } from '../Card';
 import { CARD_WIDTH } from '../Card/styles.css';
@@ -36,7 +37,14 @@ export const Carousel: React.FC<CarouselProps> = ({ cards }) => {
       <div ref={scrollContainerRef} className={cardsContainer}>
         <div className={cardsInnerContainer}>
           {cards.map((card, i) => (
-            <Card {...card} key={i} />
+            <div
+              className={fadeInAndUp}
+              style={{
+                animationDelay: `${i * 0.1}s`,
+              }}
+            >
+              <Card {...card} key={i} />
+            </div>
           ))}
           <div className={lastCardSpacer}> </div>
         </div>
