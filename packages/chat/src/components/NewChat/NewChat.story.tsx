@@ -32,9 +32,7 @@ const AgentSays = (messages: string[]) => (
     messages={messages.map((m) => ({ type: 'text', text: m }))}
   />
 );
-const UserSays = (text: string, hasAvatar?: boolean) => (
-  <UserResponse message={text} timestamp={Date.now()} hasAvatar={hasAvatar} />
-);
+const UserSays = (text: string) => <UserResponse message={text} timestamp={Date.now()} />;
 
 const MockBaseComponent = ({ isLoading }: { isLoading?: boolean }) => {
   const [messages, setMessages] = useState([
@@ -91,7 +89,7 @@ const MockBaseComponent = ({ isLoading }: { isLoading?: boolean }) => {
         placeholder: 'Message...',
       }}
     >
-      {messages.map((msg) => (msg.type === 'Agent' ? AgentSays([msg.text]) : UserSays(msg.text, true)))}
+      {messages.map((msg) => (msg.type === 'Agent' ? AgentSays([msg.text]) : UserSays(msg.text)))}
       {isLoading && <Indicator avatar={EMPTY_IMAGE} />}
     </NewChat>
   );

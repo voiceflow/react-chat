@@ -1,4 +1,4 @@
-import { style } from '@vanilla-extract/css';
+import { keyframes, style } from '@vanilla-extract/css';
 
 import { COLORS } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
@@ -6,6 +6,17 @@ import { FAMILY } from '@/styles/font';
 import { SIZES } from '@/styles/sizes';
 
 import { SMALL_AVATAR_SIZE } from '../Avatar/styles.css';
+
+const fadeInSlideUp = keyframes({
+  from: {
+    opacity: 0,
+    transform: 'translateY(10px)',
+  },
+  to: {
+    opacity: 1,
+    transform: 'translateY(0)',
+  },
+});
 
 export const messageContainer = style({
   backgroundColor: PALETTE.colors[500],
@@ -19,6 +30,7 @@ export const messageContainer = style({
   width: 'fit-content',
   borderRadius: SIZES.radius.sm,
   marginLeft: SMALL_AVATAR_SIZE + 12,
+  animation: `${fadeInSlideUp} 0.3s ease-out`,
 });
 
 export const debugMessage = style({
