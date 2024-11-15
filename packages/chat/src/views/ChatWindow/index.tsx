@@ -44,9 +44,6 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile }) => {
 
   if (!palette) return null;
 
-  // eslint-disable-next-line no-console
-  console.log({ assistant });
-
   return (
     <div style={assignInlineVars(PALETTE, { colors: palette })} className={chatWindow({ mobile: isMobile })}>
       <NewChat

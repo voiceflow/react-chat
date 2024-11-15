@@ -5,6 +5,8 @@ import { PALETTE } from '@/styles/colors.css';
 import { FAMILY } from '@/styles/font';
 import { SIZES } from '@/styles/sizes';
 
+import { SMALL_AVATAR_SIZE } from '../Avatar/styles.css';
+
 export const messageContainer = style({
   backgroundColor: PALETTE.colors[500],
   color: PALETTE.colors[50],
@@ -16,6 +18,7 @@ export const messageContainer = style({
   justifySelf: 'flex-end',
   width: 'fit-content',
   borderRadius: SIZES.radius.sm,
+  marginLeft: SMALL_AVATAR_SIZE + 12,
 });
 
 export const debugMessage = style({

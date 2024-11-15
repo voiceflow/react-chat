@@ -15,11 +15,10 @@ import { type IFeedbackButton } from '../FeedbackButton/FeedbackButton.interface
 import { Image } from '../Image';
 import { MessageType } from './constants';
 import { ExtensionMessage } from './ExtensionMessage';
-import EndState from './state/end';
 import { hide, messageContainer, responseAvatar, systemMessageContainer } from './styles.css';
 import type { MessageProps } from './types';
 
-export interface SystemMessageProps extends React.PropsWithChildren {
+export interface SystemMessageProps {
   /**
    * An image URL for an avatar to associate this message with.
    */
@@ -47,11 +46,6 @@ export interface SystemMessageProps extends React.PropsWithChildren {
   feedback?: IFeedbackButton | undefined;
 
   /**
-   * If this is the first message in a group of messages
-   */
-  first?: boolean;
-
-  /**
    * If this is the last message recieved
    */
   isLast?: boolean;
@@ -60,36 +54,24 @@ export interface SystemMessageProps extends React.PropsWithChildren {
 /**
  * An individual message within a system response.
  */
-export const SystemMessage: React.FC<SystemMessageProps> = ({
-  avatar,
-  message,
-  feedback,
-  isLast,
-  withImage,
-  children,
-}) => {
+export const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, message, feedback, isLast, withImage }) => {
   const { config } = useContext(RuntimeStateAPIContext);
 
-  if (!children && message?.type === MessageType.END) {
-    return <EndState />;
-  }
-
   return (
-    <div className={clsx(ClassName.SYSTEM_RESPONSE, systemMessageContainer())}>
+    <div className={clsx(ClassName.SYSTEM_RESPONSE, systemMessageContainer)}>
       <Avatar avatar={avatar} className={clsx(withImage ? '' : hide, responseAvatar)} />
       <div className={messageContainer}>
-        {children ??
-          match(message)
-            .with({ type: MessageType.TEXT }, ({ text, ai }) => (
-              <AgentMessage text={text} ai={ai} feedback={feedback} isLast={isLast} />
-            ))
-            .with({ type: MessageType.IMAGE }, ({ url }) => <Image image={url} mode={config.render?.mode} />)
-            .with({ type: MessageType.CARD }, (props) => <Card {...R.omit(props, ['type'])} />)
-            .with({ type: MessageType.CAROUSEL }, (props) => <Carousel {...R.omit(props, ['type'])} />)
-            .with({ type: MessageType.EXTENSION }, ({ payload }) => (
-              <ExtensionMessage extension={payload.extension} trace={payload.trace} />
-            ))
-            .otherwise(() => null)}
+        {match(message)
+          .with({ type: MessageType.TEXT }, ({ text, ai }) => (
+            <AgentMessage text={text} ai={ai} isLast={isLast} feedback={feedback} />
+          ))
+          .with({ type: MessageType.IMAGE }, ({ url }) => <Image image={url} mode={config.render?.mode} />)
+          .with({ type: MessageType.CARD }, (props) => <Card {...R.omit(props, ['type'])} />)
+          .with({ type: MessageType.CAROUSEL }, (props) => <Carousel {...R.omit(props, ['type'])} />)
+          .with({ type: MessageType.EXTENSION }, ({ payload }) => (
+            <ExtensionMessage extension={payload.extension} trace={payload.trace} />
+          ))
+          .otherwise(() => null)}
       </div>
     </div>
   );

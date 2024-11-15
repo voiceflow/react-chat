@@ -6,6 +6,8 @@ import { FAMILY } from '@/styles/font';
 import { SIZES } from '@/styles/sizes';
 import { transition } from '@/styles/transitions';
 
+import { systemMessageContainer } from '../SystemResponse/styles.css';
+
 export const messageContainer = style({
   backgroundColor: COLORS.NEUTRAL_LIGHT[50],
   color: COLORS.NEUTRAL_DARK[900],
@@ -88,5 +90,18 @@ export const copyButton = style({
       color: COLORS.NEUTRAL_LIGHT[50],
     },
     '&:active': {},
+  },
+});
+
+export const feedbackButtonContainer = style({
+  opacity: 0,
+  position: 'absolute',
+  right: '-24px',
+  bottom: '-14px',
+  transition: transition(['opacity']),
+  selectors: {
+    [`${systemMessageContainer}:hover &`]: {
+      opacity: 1,
+    },
   },
 });
