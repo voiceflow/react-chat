@@ -3,6 +3,7 @@ import { useContext } from 'react';
 
 import { RuntimeStateAPIContext } from '@/contexts';
 import { useAutoScroll } from '@/hooks/useAutoScroll';
+import { fadeInAndUp } from '@/styles/animation-utils.css';
 
 import { Button } from '../Button';
 import { ButtonVariant } from '../Button/constants';
@@ -13,7 +14,7 @@ import { MessageType } from './constants';
 import { useAnimatedMessages } from './hooks';
 import Indicator from './Indicator/Indicator';
 import EndState from './state/end';
-import { actionsContainer, buttonAnimation, feedbackContainer } from './styles.css';
+import { actionsContainer, feedbackContainer } from './styles.css';
 import type { SystemMessageProps } from './SystemMessage';
 import { SystemMessage } from './SystemMessage';
 import type { MessageProps } from './types';
@@ -128,7 +129,7 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
         <div className={actionsContainer}>
           {actions.map(({ request, name }, index) => (
             <div
-              className={buttonAnimation}
+              className={fadeInAndUp}
               style={{
                 animationDelay: `${index * 0.1}s`,
               }}

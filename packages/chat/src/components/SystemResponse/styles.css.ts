@@ -63,14 +63,3 @@ export const feedbackContainer = style({
   animation: `${fadeInSlideUp} .2s ease-in`,
   marginLeft: MESSAGE_PADDING + SMALL_AVATAR_SIZE - 6,
 });
-
-const fadeIn = keyframes({
-  '0%': { opacity: 0, transform: 'translateY(20px)' },
-  '100%': { opacity: 1, transform: 'translateY(0)' },
-});
-
-// Style for the button, applying the animation with a dynamic delay
-export const buttonAnimation = style({
-  opacity: 0, // start hidden
-  animation: `${fadeIn} 0.5s ease-out forwards`,
-});
