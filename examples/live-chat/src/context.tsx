@@ -1,4 +1,4 @@
-import { RuntimeProvider as BaseProvider } from '@voiceflow/chat';
+import { RuntimeProvider as BaseProvider } from '@voiceflow/react-chat';
 import { createNanoEvents } from 'nanoevents';
 import { useMemo } from 'react';
 

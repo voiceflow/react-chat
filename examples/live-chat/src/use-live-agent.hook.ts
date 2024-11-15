@@ -1,6 +1,6 @@
-import type { RuntimeState } from '@voiceflow/chat';
-import { TurnType } from '@voiceflow/chat';
 import { FetchClient } from '@voiceflow/fetch';
+import type { RuntimeState } from '@voiceflow/react-chat';
+import { TurnType } from '@voiceflow/react-chat';
 import { serializeToText } from '@voiceflow/slate-serializer/text';
 import type { Emitter } from 'nanoevents';
 import { useMemo } from 'react';
