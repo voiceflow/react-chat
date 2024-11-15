@@ -3,6 +3,7 @@ import { useContext, useMemo } from 'react';
 
 import { ClassName } from '@/constants';
 import { RuntimeStateAPIContext } from '@/contexts';
+import { fadeInAndUp } from '@/styles/animation-utils.css';
 
 import { Button } from '../Button';
 import { ButtonVariant } from '../Button/constants';
@@ -20,7 +21,7 @@ export const Card: React.FC<CardProps> = ({ title, description, image, actions =
   const buttons = useMemo(() => actions.filter(({ name }) => !!name), [actions]);
 
   return (
-    <div className={clsx(ClassName.CARD, cardContainer, className)}>
+    <div className={clsx(ClassName.CARD, cardContainer, className, fadeInAndUp)}>
       {!!image && <img className={cardImage} src={image} />}
       {(title || description) && (
         <div className={cardContent}>
