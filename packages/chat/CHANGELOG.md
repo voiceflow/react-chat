@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.42.3](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.42.2...@voiceflow/chat@0.42.3) (2024-11-15)
+
+### Bug Fixes
+
+* button reveal animation (DSN-2529) ([#315](https://github.com/voiceflow/react-chat/issues/315)) ([035d9c8](https://github.com/voiceflow/react-chat/commit/035d9c8face3f4ec716b8504c1d5c27dcccdb3f8))
+
 ## [0.42.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.42.1...@voiceflow/chat@0.42.2) (2024-11-15)
 
 ### Bug Fixes
