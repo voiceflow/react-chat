@@ -1,7 +1,6 @@
 {
-  "name": "@voiceflow/chat",
-  "version": "0.42.3",
-  "private": true,
+  "name": "@voiceflow/react-chat",
+  "version": "2.0.0",
   "description": "voiceflow chat ui",
   "keywords": [
     "chat",
@@ -150,5 +149,8 @@
   },
   "volta": {
     "extends": "../../package.json"
+  },
+  "publishConfig": {
+    "tag": "next"
   }
 }

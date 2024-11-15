@@ -1,6 +1,6 @@
 import 'regenerator-runtime/runtime';
 import '@/styles/globals.css';
-import '@voiceflow/chat/dist/style.css';
+import '@voiceflow/react-chat/dist/style.css';
 
 import type { AppProps } from 'next/app';
 

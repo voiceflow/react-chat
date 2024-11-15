@@ -1,6 +1,7 @@
 {
-  "name": "@voiceflow/react-chat",
+  "name": "@voiceflow/react-chat-legacy",
   "version": "1.65.2",
+  "private": true,
   "description": "voiceflow chat ui kit",
   "keywords": [
     "chat widget",
