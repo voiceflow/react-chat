@@ -8,6 +8,7 @@ export const separatorContainer = style({
   display: 'flex',
   gap: 12,
   alignItems: 'center',
+  padding: '4px 0',
 });
 
 export const line = style({
