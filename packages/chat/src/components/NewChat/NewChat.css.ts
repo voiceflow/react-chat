@@ -2,6 +2,7 @@ import { globalStyle, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { COLORS } from '@/styles/colors';
+import { transition } from '@/styles/transitions';
 
 export const DIALOG_PADDING = 20;
 
@@ -40,10 +41,22 @@ export const dialogContainer = style({
   overflowY: 'auto',
 });
 
-export const bottomSpacer = style({
-  display: 'block',
-  width: '100%',
-  height: '24px',
+export const bottomSpacer = recipe({
+  base: {
+    display: 'block',
+    width: '100%',
+    transition: transition(['height']),
+  },
+  variants: {
+    hasEnded: {
+      true: {
+        height: '0px',
+      },
+      false: {
+        height: '24px',
+      },
+    },
+  },
 });
 
 export const chatEndedContainer = style({
