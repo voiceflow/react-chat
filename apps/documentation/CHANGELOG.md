@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.30.0](https://github.com/voiceflow/react-chat/compare/documentation@0.29.9...documentation@0.30.0) (2024-11-18)
+
+### Features
+
+* release next react-chat library (DSN-2545) ([#316](https://github.com/voiceflow/react-chat/issues/316)) ([65722df](https://github.com/voiceflow/react-chat/commit/65722dfb438bc918bfb4fbb33aa0fc7c730eac38))
+
 ## [0.29.9](https://github.com/voiceflow/react-chat/compare/documentation@0.29.8...documentation@0.29.9) (2024-11-15)
 
 **Note:** Version bump only for package documentation

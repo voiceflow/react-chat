@@ -3,6 +3,60 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.65.2...@voiceflow/react-chat@2.1.0) (2024-11-18)
+
+### Bug Fixes
+
+* add top margin to the loading state (DSN-2511) ([#284](https://github.com/voiceflow/react-chat/issues/284)) ([da6c2ce](https://github.com/voiceflow/react-chat/commit/da6c2ce19859a504b1825aaf8799a3e90c90a0bb))
+* add white background to carousel (DSN-2538) ([#308](https://github.com/voiceflow/react-chat/issues/308)) ([be4aa7c](https://github.com/voiceflow/react-chat/commit/be4aa7c30aa25a88abf05f4cae84f57c18ef737c))
+* Agent Message and Chat Docs (DSN-000) ([#277](https://github.com/voiceflow/react-chat/issues/277)) ([4293ddf](https://github.com/voiceflow/react-chat/commit/4293ddfc0878beeeadbaf1fdb0283eafa487fe42))
+* button reveal animation (DSN-2529) ([#315](https://github.com/voiceflow/react-chat/issues/315)) ([035d9c8](https://github.com/voiceflow/react-chat/commit/035d9c8face3f4ec716b8504c1d5c27dcccdb3f8))
+* button wrapping behaviour (DSN-2510) ([#280](https://github.com/voiceflow/react-chat/issues/280)) ([9a74dc7](https://github.com/voiceflow/react-chat/commit/9a74dc79eebf3bdd2521b5922807eda9202c8bc5))
+* conditionally executed hook (DSN-000) ([#298](https://github.com/voiceflow/react-chat/issues/298)) ([fc60962](https://github.com/voiceflow/react-chat/commit/fc609626ed167c937323040291c2d5cbc0a7c664))
+* default message for AI generated message (DSN-2504) ([#282](https://github.com/voiceflow/react-chat/issues/282)) ([fea80ca](https://github.com/voiceflow/react-chat/commit/fea80caefd6635e63153ba6389997612fca8992f))
+* Feedback fixes (DSN-2527) ([#306](https://github.com/voiceflow/react-chat/issues/306)) ([8626fa1](https://github.com/voiceflow/react-chat/commit/8626fa1316954486d7a24fa04bae9c3535873367))
+* fix inline buttons class and minor styling (COR-0000) ([#255](https://github.com/voiceflow/react-chat/issues/255)) ([38b1c1a](https://github.com/voiceflow/react-chat/commit/38b1c1a63af90bec1163491a5beeadd95ace4e9b))
+* font weight of headers should be 600 (DSN-2507) ([#283](https://github.com/voiceflow/react-chat/issues/283)) ([366b859](https://github.com/voiceflow/react-chat/commit/366b8598f52cd881054bf2d0f17300f13e24012c))
+* header actions (COR-3811) ([#278](https://github.com/voiceflow/react-chat/issues/278)) ([95cc945](https://github.com/voiceflow/react-chat/commit/95cc945f1f79c81da3932bbb0c1f8f2ad094b008))
+* lots of ui fixes ([#305](https://github.com/voiceflow/react-chat/issues/305)) ([ca192d2](https://github.com/voiceflow/react-chat/commit/ca192d2bb2c337641ac1a9d8ea7c3e405b662f0e))
+* message container and feedback button fixes (COR-0000) ([#317](https://github.com/voiceflow/react-chat/issues/317)) ([bac51a5](https://github.com/voiceflow/react-chat/commit/bac51a550357092a5d2e40a1cda37b09d0fc2394))
+* Mic button active state + dynamic border radius (DSN-2518) ([#302](https://github.com/voiceflow/react-chat/issues/302)) ([f902868](https://github.com/voiceflow/react-chat/commit/f9028689b6bb83b6658b1f9c489ff06c97a6fd64))
+* minor inline-buttons adjustment (COR-0000) ([#258](https://github.com/voiceflow/react-chat/issues/258)) ([ac3e92d](https://github.com/voiceflow/react-chat/commit/ac3e92d492743f91d582ac5bee95415f68608dfc))
+* place Scroll to bottom button in footer component (COR-3827) ([#288](https://github.com/voiceflow/react-chat/issues/288)) ([f583dac](https://github.com/voiceflow/react-chat/commit/f583dac07cecfcfb9b0200f1958967807dfe4d6b))
+* Random fixes (DSN-000) ([#309](https://github.com/voiceflow/react-chat/issues/309)) ([e8cdd6e](https://github.com/voiceflow/react-chat/commit/e8cdd6eeaba2075f28d8bd2443b85b3c98d0963e))
+* scroll to bottom button (COR-3903) ([#310](https://github.com/voiceflow/react-chat/issues/310)) ([67c14e4](https://github.com/voiceflow/react-chat/commit/67c14e46bcbc8c4c2783702139370b08ebe95396))
+* themed link on footer (DSN-2536) ([#307](https://github.com/voiceflow/react-chat/issues/307)) ([4aaa0b8](https://github.com/voiceflow/react-chat/commit/4aaa0b83c2ccb17356c01fab1d3a0752c01dd55c))
+* ui glitch (COR-0000) ([#311](https://github.com/voiceflow/react-chat/issues/311)) ([6d69cb9](https://github.com/voiceflow/react-chat/commit/6d69cb91ca925e624ee1b6aa555012ca72046d9d))
+* User Message Gap + Bottom Padding (DSN-2502) ([#289](https://github.com/voiceflow/react-chat/issues/289)) ([48d9906](https://github.com/voiceflow/react-chat/commit/48d990699e5a420ae163d95397107ce39f5229be))
+* user message text colour should be themed (DSN-2512) ([#279](https://github.com/voiceflow/react-chat/issues/279)) ([fbfbb41](https://github.com/voiceflow/react-chat/commit/fbfbb4125a113e6eb455150ab88b2d0dc13aea06))
+* widget width (DSN-2509) ([#281](https://github.com/voiceflow/react-chat/issues/281)) ([431b81c](https://github.com/voiceflow/react-chat/commit/431b81c654db39bc15d95942b1da5f0645f4d390))
+
+### Features
+
+* a few more examples to look at (COR-0000) ([#270](https://github.com/voiceflow/react-chat/issues/270)) ([ee4c6d9](https://github.com/voiceflow/react-chat/commit/ee4c6d9d361fddb7dd0c0b74906c5ea5eda747b1))
+* add 'Start new chat' button (COR-0000) ([#257](https://github.com/voiceflow/react-chat/issues/257)) ([d5e8c0e](https://github.com/voiceflow/react-chat/commit/d5e8c0e0b02c76592250528ba2c9f9c81c986cef))
+* add CarouselButton component (COR-3656) ([#228](https://github.com/voiceflow/react-chat/issues/228)) ([7d3a65e](https://github.com/voiceflow/react-chat/commit/7d3a65ea41a0ca5318ea6eccec5b3afe3abd8785))
+* add TypingIndicator to the docs (COR-0000) ([#276](https://github.com/voiceflow/react-chat/issues/276)) ([205e910](https://github.com/voiceflow/react-chat/commit/205e910f3b5672a7598ffb2e0682e2178d059b16))
+* adjust chat to work in embedded mode as well (COR-3851) ([#293](https://github.com/voiceflow/react-chat/issues/293)) ([cdcaaf9](https://github.com/voiceflow/react-chat/commit/cdcaaf97b98851068af74672f3d38ab98f0c72c2))
+* Animate in widget components (DSN-2530) ([#312](https://github.com/voiceflow/react-chat/issues/312)) ([d06153e](https://github.com/voiceflow/react-chat/commit/d06153eeb2588596a5479baa5743c09e87c761fb))
+* Chat for review on documentation (DSN-000) ([#265](https://github.com/voiceflow/react-chat/issues/265)) ([bbc3d4f](https://github.com/voiceflow/react-chat/commit/bbc3d4f225f0d9edc18f4214f01d49f52be713ab))
+* convert ChatWidget to vanilla-extract (COR-0000) ([#254](https://github.com/voiceflow/react-chat/issues/254)) ([277a914](https://github.com/voiceflow/react-chat/commit/277a914f92f90fbafa82d6b903b85eb02ac2d88f))
+* convert Image component to vanilla-extract (COR-0000) ([#245](https://github.com/voiceflow/react-chat/issues/245)) ([e8836c6](https://github.com/voiceflow/react-chat/commit/e8836c6f76b50eb117345abac6a2f95e0e83b661))
+* convert Proactive component (COR-3710) ([#249](https://github.com/voiceflow/react-chat/issues/249)) ([5616d10](https://github.com/voiceflow/react-chat/commit/5616d100885778604600f0a63b3b9356736055c9))
+* convert Prompt component (COR-0000) ([#246](https://github.com/voiceflow/react-chat/issues/246)) ([5d70e21](https://github.com/voiceflow/react-chat/commit/5d70e21b3d04e65090dc43caa91b845a48e4a448))
+* cross browser stuff (COR-3860) ([#301](https://github.com/voiceflow/react-chat/issues/301)) ([10587c3](https://github.com/voiceflow/react-chat/commit/10587c31a6c5e97687f0b0d0282bdf7c369bd785))
+* extract ScrollToBottom component (COR-0000) ([#251](https://github.com/voiceflow/react-chat/issues/251)) ([06dacbc](https://github.com/voiceflow/react-chat/commit/06dacbcac246d066d14304f2a9641b3f2b45cfad))
+* Feedback + Copy Button (DSN-2499) ([#290](https://github.com/voiceflow/react-chat/issues/290)) ([a0c4649](https://github.com/voiceflow/react-chat/commit/a0c4649eb0e8b53ef3321cb5f10b31ef593d31c3))
+* goodbye stitches, we'll always have react-chat (COR-0000) ([#264](https://github.com/voiceflow/react-chat/issues/264)) ([f866cb3](https://github.com/voiceflow/react-chat/commit/f866cb3a2da470d8a025458237664a5e9b528bf8))
+* Misc 💅 polish + fixes (DSN-000) ([#269](https://github.com/voiceflow/react-chat/issues/269)) ([0622974](https://github.com/voiceflow/react-chat/commit/0622974b43294fc477fd2899e5b2a861a406bc5b))
+* powered by Voiceflow is a link now (DSN-2505) ([#285](https://github.com/voiceflow/react-chat/issues/285)) ([7d4ea15](https://github.com/voiceflow/react-chat/commit/7d4ea15eefc9c5ce5c4c11c3aea8f3985df72ebc))
+* release next react-chat library (DSN-2545) ([#316](https://github.com/voiceflow/react-chat/issues/316)) ([65722df](https://github.com/voiceflow/react-chat/commit/65722dfb438bc918bfb4fbb33aa0fc7c730eac38))
+* Removing a lot of react-stitches usages (DSN-000) ([#263](https://github.com/voiceflow/react-chat/issues/263)) ([265124e](https://github.com/voiceflow/react-chat/commit/265124eef53e59fd79ea7001400c3c75191dedaf))
+* ui review for carousel component (COR-0000) ([#275](https://github.com/voiceflow/react-chat/issues/275)) ([b310606](https://github.com/voiceflow/react-chat/commit/b3106063f4ede9ff57f3fe2398ad4ae5b89edc7e))
+* ui review for footer (COR-3751) ([#273](https://github.com/voiceflow/react-chat/issues/273)) ([235debb](https://github.com/voiceflow/react-chat/commit/235debb51219f196867b146adf1395603fa7128b))
+* Widget Composition (DSN-000) ([#231](https://github.com/voiceflow/react-chat/issues/231)) ([2966da3](https://github.com/voiceflow/react-chat/commit/2966da31b6105e221729bc84f11e10a39ddc648c))
+* working on UserResponse component (COR-0000) ([#253](https://github.com/voiceflow/react-chat/issues/253)) ([5026d2f](https://github.com/voiceflow/react-chat/commit/5026d2f7aff2325f4af59093f34df89662c475c8))
+
 ## [0.42.3](https://github.com/voiceflow/react-chat/compare/@voiceflow/chat@0.42.2...@voiceflow/chat@0.42.3) (2024-11-15)
 
 ### Bug Fixes
