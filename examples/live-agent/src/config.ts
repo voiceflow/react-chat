@@ -1,4 +1,4 @@
-import { AssistantOptions, ChatConfig } from '@voiceflow/react-chat';
+import { AssistantOptions, ChatConfig } from '@voiceflow/react-chat-legacy';
 
 const IMAGE = 'https://picsum.photos/seed/1/200/300';
 const AVATAR = 'https://picsum.photos/seed/1/80/80';

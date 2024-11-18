@@ -13,7 +13,7 @@
   "dependencies": {
     "@voiceflow/exception": "1.4.0",
     "@voiceflow/fetch": "1.5.2",
-    "@voiceflow/react-chat": "workspace:*",
+    "@voiceflow/react-chat-legacy": "workspace:*",
     "@voiceflow/slate-serializer": "1.4.2",
     "nanoevents": "8.0.0",
     "react": "18.2.0",

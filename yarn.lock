@@ -7380,7 +7380,7 @@ __metadata:
     "@types/react-dom": 18.2.4
     "@voiceflow/exception": 1.4.0
     "@voiceflow/fetch": 1.5.2
-    "@voiceflow/react-chat": "workspace:*"
+    "@voiceflow/react-chat-legacy": "workspace:*"
     "@voiceflow/slate-serializer": 1.4.2
     nanoevents: 8.0.0
     react: 18.2.0
@@ -7433,80 +7433,6 @@ __metadata:
   checksum: e67a678d8a58b9c7663fb90384b8cb975fcf962ca35d734904bb5f8ea59318782295641bcc6a14a9e88b8aa1deb0982e3b250bbc84347572ca602c820effc6ac
   languageName: node
   linkType: hard
-
-"@voiceflow/chat@workspace:*, @voiceflow/chat@workspace:packages/chat":
-  version: 0.0.0-use.local
-  resolution: "@voiceflow/chat@workspace:packages/chat"
-  dependencies:
-    "@babel/core": 7.18.10
-    "@babel/preset-env": 7.24.1
-    "@babel/preset-react": 7.24.1
-    "@babel/preset-typescript": 7.24.1
-    "@emotion/core": 10.1.1
-    "@playwright/test": 1.43.1
-    "@storybook/addon-actions": 8.0.2
-    "@storybook/addon-essentials": 8.0.2
-    "@storybook/addon-interactions": 8.0.2
-    "@storybook/addon-links": 8.0.2
-    "@storybook/builder-vite": 8.0.2
-    "@storybook/eslint-config-storybook": 3.1.2
-    "@storybook/react": 8.0.2
-    "@storybook/react-vite": 8.0.2
-    "@storybook/testing-library": 0.0.13
-    "@testing-library/jest-dom": 6.4.2
-    "@testing-library/react": 15.0.2
-    "@types/chroma-js": 2.1.4
-    "@types/node": 20.12.7
-    "@types/react": 18.2.8
-    "@types/react-dom": 18.2.4
-    "@types/react-speech-recognition": ^3.9.5
-    "@types/react-syntax-highlighter": 15.5.13
-    "@vanilla-extract/css": 1.15.5
-    "@vanilla-extract/dynamic": 2.1.2
-    "@vanilla-extract/recipes": 0.5.5
-    "@vanilla-extract/vite-plugin": 4.0.15
-    "@vitejs/plugin-react": 4.2.1
-    "@voiceflow/base-types": 2.113.1
-    "@voiceflow/dtos-interact": 1.1.0
-    "@voiceflow/sdk-runtime": "workspace:*"
-    "@voiceflow/slate-serializer": 1.5.5
-    "@voiceflow/test-common": 1.10.3
-    "@voiceflow/voiceflow-types": 3.32.1
-    bowser: 2.11.0
-    chroma-js: 2.4.2
-    chromatic: 11.2.0
-    clsx: 1.2.1
-    cuid: 2.1.8
-    eslint-plugin-mdx: 3.1.5
-    eslint-plugin-storybook: 0.8.0
-    happy-dom: 14.7.1
-    http-server: 14.1.1
-    react: 18.2.0
-    react-dom: 18.2.0
-    react-markdown: 9.0.0
-    react-speech-recognition: 3.10.0
-    react-syntax-highlighter: 15.5.0
-    react-textarea-autosize: 8.5.3
-    regenerator-runtime: 0.13.11
-    remark-gfm: 4.0.0
-    slate: 0.94.1
-    storybook: 8.0.2
-    storybook-dark-mode: 1.1.0
-    ts-pattern: 4.3.0
-    tsc-alias: 1.8.8
-    type-fest: 2.18.1
-    vite: 5.2.9
-    vite-plugin-dts: 3.8.3
-    vite-plugin-fonts: 0.7.0
-    vite-plugin-html: 3.2.2
-    vite-plugin-svgr: 4.2.0
-    vite-tsconfig-paths: 4.3.2
-    zod: 3.22.4
-  peerDependencies:
-    react: ^18
-    react-dom: ^18
-  languageName: unknown
-  linkType: soft
 
 "@voiceflow/commitlint-config@npm:2.3.1":
   version: 2.3.1
@@ -7618,9 +7544,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@voiceflow/react-chat@workspace:*, @voiceflow/react-chat@workspace:packages/react-chat":
+"@voiceflow/react-chat-legacy@workspace:*, @voiceflow/react-chat-legacy@workspace:packages/react-chat":
   version: 0.0.0-use.local
-  resolution: "@voiceflow/react-chat@workspace:packages/react-chat"
+  resolution: "@voiceflow/react-chat-legacy@workspace:packages/react-chat"
   dependencies:
     "@babel/core": 7.18.10
     "@babel/preset-env": 7.24.1
@@ -7673,6 +7599,80 @@ __metadata:
     rehype-sanitize: 6.0.0
     remark-gfm: 4.0.0
     remeda: 1.0.1
+    slate: 0.94.1
+    storybook: 8.0.2
+    storybook-dark-mode: 1.1.0
+    ts-pattern: 4.3.0
+    tsc-alias: 1.8.8
+    type-fest: 2.18.1
+    vite: 5.2.9
+    vite-plugin-dts: 3.8.3
+    vite-plugin-fonts: 0.7.0
+    vite-plugin-html: 3.2.2
+    vite-plugin-svgr: 4.2.0
+    vite-tsconfig-paths: 4.3.2
+    zod: 3.22.4
+  peerDependencies:
+    react: ^18
+    react-dom: ^18
+  languageName: unknown
+  linkType: soft
+
+"@voiceflow/react-chat@workspace:*, @voiceflow/react-chat@workspace:packages/chat":
+  version: 0.0.0-use.local
+  resolution: "@voiceflow/react-chat@workspace:packages/chat"
+  dependencies:
+    "@babel/core": 7.18.10
+    "@babel/preset-env": 7.24.1
+    "@babel/preset-react": 7.24.1
+    "@babel/preset-typescript": 7.24.1
+    "@emotion/core": 10.1.1
+    "@playwright/test": 1.43.1
+    "@storybook/addon-actions": 8.0.2
+    "@storybook/addon-essentials": 8.0.2
+    "@storybook/addon-interactions": 8.0.2
+    "@storybook/addon-links": 8.0.2
+    "@storybook/builder-vite": 8.0.2
+    "@storybook/eslint-config-storybook": 3.1.2
+    "@storybook/react": 8.0.2
+    "@storybook/react-vite": 8.0.2
+    "@storybook/testing-library": 0.0.13
+    "@testing-library/jest-dom": 6.4.2
+    "@testing-library/react": 15.0.2
+    "@types/chroma-js": 2.1.4
+    "@types/node": 20.12.7
+    "@types/react": 18.2.8
+    "@types/react-dom": 18.2.4
+    "@types/react-speech-recognition": ^3.9.5
+    "@types/react-syntax-highlighter": 15.5.13
+    "@vanilla-extract/css": 1.15.5
+    "@vanilla-extract/dynamic": 2.1.2
+    "@vanilla-extract/recipes": 0.5.5
+    "@vanilla-extract/vite-plugin": 4.0.15
+    "@vitejs/plugin-react": 4.2.1
+    "@voiceflow/base-types": 2.113.1
+    "@voiceflow/dtos-interact": 1.1.0
+    "@voiceflow/sdk-runtime": "workspace:*"
+    "@voiceflow/slate-serializer": 1.5.5
+    "@voiceflow/test-common": 1.10.3
+    "@voiceflow/voiceflow-types": 3.32.1
+    bowser: 2.11.0
+    chroma-js: 2.4.2
+    chromatic: 11.2.0
+    clsx: 1.2.1
+    cuid: 2.1.8
+    eslint-plugin-mdx: 3.1.5
+    eslint-plugin-storybook: 0.8.0
+    happy-dom: 14.7.1
+    http-server: 14.1.1
+    react: 18.2.0
+    react-dom: 18.2.0
+    react-markdown: 9.0.0
+    react-speech-recognition: 3.10.0
+    react-syntax-highlighter: 15.5.0
+    react-textarea-autosize: 8.5.3
+    regenerator-runtime: 0.13.11
+    remark-gfm: 4.0.0
     slate: 0.94.1
     storybook: 8.0.2
     storybook-dark-mode: 1.1.0
@@ -10932,7 +10932,7 @@ __metadata:
     "@types/react": 18.2.8
     "@types/react-dom": 18.2.4
     "@vanilla-extract/next-plugin": ^2.4.6
-    "@voiceflow/chat": "workspace:*"
+    "@voiceflow/react-chat": "workspace:*"
     next: 14.2.13
     nextra: ^3.0.2
     nextra-theme-docs: ^3.0.2

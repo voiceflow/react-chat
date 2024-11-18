@@ -1,4 +1,4 @@
-import type { TraceHandler } from '@voiceflow/chat';
+import type { TraceHandler } from '@voiceflow/react-chat';
 
 import type { LiveAgentPlatform } from '../../shared/live-agent-platform.enum';
 

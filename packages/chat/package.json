@@ -1,7 +1,6 @@
 {
-  "name": "@voiceflow/chat",
-  "version": "0.42.3",
-  "private": true,
+  "name": "@voiceflow/react-chat",
+  "version": "2.0.0",
   "description": "voiceflow chat ui",
   "keywords": [
     "chat",
@@ -53,7 +52,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "yarn g:turbo run build:cmd --filter=@voiceflow/chat...",
+    "build": "yarn g:turbo run build:cmd --filter=@voiceflow/react-chat...",
     "build:cmd": "yarn g:run-p build:package build:widget",
     "build:package": "NODE_ENV=production vite --config vite.package.config.ts build && yarn g:tsc-alias -p tsconfig.build.json",
     "build:storybook": "storybook build -o docs",
@@ -150,5 +149,8 @@
   },
   "volta": {
     "extends": "../../package.json"
+  },
+  "publishConfig": {
+    "tag": "next"
   }
 }

@@ -1,4 +1,4 @@
-import { ChatWidget } from '@voiceflow/react-chat';
+import { ChatWidget } from '@voiceflow/react-chat-legacy';
 import { createRoot } from 'react-dom/client';
 
 import { RuntimeProvider } from './context';
