@@ -17,7 +17,7 @@ export const inputContainer = recipe({
     justifyContent: 'space-between',
     padding: '7px 7px 7px 20px',
     fontSize: '14px',
-
+    // height: '40px',
     boxSizing: 'border-box',
     border: `1px solid ${COLORS.NEUTRAL_LIGHT[100]}`,
     backgroundColor: COLORS.white,

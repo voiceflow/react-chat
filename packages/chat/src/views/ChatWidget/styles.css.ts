@@ -29,8 +29,10 @@ export const widgetContainer = recipe({
 export const chatContainer = style({
   maxHeight: MAX_CHAT_HEIGHT,
   pointerEvents: 'auto',
-  transition: 'all 300ms cubic-bezier(0.85, 0, 0.6, 1)',
+  opacity: 0,
   width: 0,
+  transition: 'opacity 300ms cubic-bezier(0.85, 0, 0.6, 1), width 300ms cubic-bezier(0.85, 0, 0.6, 1)',
+  transformOrigin: 'right center', // Set transform origin to right
   selectors: {
     [`${widgetContainer.classNames.base} &`]: {
       position: 'absolute',
@@ -39,13 +41,11 @@ export const chatContainer = style({
     [`.${widgetContainer.classNames.variants.withChat.true} &`]: {
       opacity: 1,
       pointerEvents: 'auto',
-      width: CHAT_WIDTH,
-      transform: 'translateY(0%)',
+      width: CHAT_WIDTH, // Grow width without affecting inner content
     },
     [`.${widgetContainer.classNames.variants.withChat.false} &`]: {
       opacity: 0,
       pointerEvents: 'none',
-      transform: 'translateY(100%)',
       width: 0,
     },
   },
