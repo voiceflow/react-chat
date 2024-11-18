@@ -25,14 +25,15 @@ export const widgetContainer = recipe({
     },
   },
 });
-
 export const chatContainer = style({
-  maxHeight: MAX_CHAT_HEIGHT,
-  pointerEvents: 'auto',
+  maxHeight: 0,
+  pointerEvents: 'none',
   opacity: 0,
   width: 0,
-  transition: 'opacity 300ms cubic-bezier(0.85, 0, 0.6, 1), width 300ms cubic-bezier(0.85, 0, 0.6, 1)',
-  transformOrigin: 'right center', // Set transform origin to right
+  transition:
+    'opacity 300ms ease-in-out, width 300ms ease-in-out, max-height 300ms ease-in-out, transform 300ms ease-in-out',
+  transformOrigin: 'bottom right',
+  transform: 'scaleY(0)',
   selectors: {
     [`${widgetContainer.classNames.base} &`]: {
       position: 'absolute',
@@ -41,12 +42,16 @@ export const chatContainer = style({
     [`.${widgetContainer.classNames.variants.withChat.true} &`]: {
       opacity: 1,
       pointerEvents: 'auto',
-      width: CHAT_WIDTH, // Grow width without affecting inner content
+      width: CHAT_WIDTH,
+      maxHeight: MAX_CHAT_HEIGHT,
+      transform: 'scaleY(1)',
     },
     [`.${widgetContainer.classNames.variants.withChat.false} &`]: {
       opacity: 0,
       pointerEvents: 'none',
       width: 0,
+      maxHeight: 0,
+      transform: 'scaleY(0)',
     },
   },
 });
@@ -58,4 +63,12 @@ export const launcherContainer = style({
       position: 'absolute',
     },
   },
+});
+
+export const fauxWidgetBackground = style({
+  width: '100%',
+  height: '100%',
+  borderRadius: '16px',
+  boxShadow:
+    '0px 0px 0px 1px rgba(22, 26, 30, 0.06), 0px 1px 1px 0px rgba(22, 26, 30, 0.04), 0px 4px 8px -32px rgba(22, 26, 30, 0.04), 0px 10px 16px -32px rgba(22, 26, 30, 0.06), 0px 16px 20px -32px rgba(22, 26, 30, 0.08), 0px 24px 32px -32px rgba(22, 26, 30, 0.08), 0px 32px 40px -32px rgba(22, 26, 30, 0.10), 0px 40px 64px -32px rgba(22, 26, 30, 0.12)',
 });

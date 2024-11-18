@@ -14,7 +14,7 @@ import { PALETTE } from '@/styles/colors.css';
 import { useResolveAssistantStyleSheet } from '@/utils/stylesheet';
 import { ChatWindow } from '@/views/ChatWindow';
 
-import { chatContainer, LAUNCHER_MARGIN, launcherContainer, widgetContainer } from './styles.css';
+import { chatContainer, fauxWidgetBackground, LAUNCHER_MARGIN, launcherContainer, widgetContainer } from './styles.css';
 
 interface ChatWidgetProps extends React.PropsWithChildren {
   shadowRoot?: ShadowRoot;
@@ -24,21 +24,23 @@ interface ChatWidgetProps extends React.PropsWithChildren {
 
 export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, ready }) => {
   const { assistant, open, close, interact } = useContext(RuntimeStateAPIContext);
-
   const { isOpen } = useContext(RuntimeStateContext);
 
   /** initialization  */
   const [isHidden, setHidden] = useState(false);
   const [proactiveMessages, setProactiveMessages] = useState<Trace.AnyTrace[]>([]);
   const isMobile = useMemo(() => window.matchMedia('(max-width: 768px)').matches, []);
+  const [showChatWindow, setShowChatWindow] = useState(false); // Control ChatWindow rendering
 
   const palette = usePalette(assistant);
 
   const toggleChat = () => {
     if (isOpen) {
       close();
+      setShowChatWindow(false);
     } else {
       open();
+      setTimeout(() => setShowChatWindow(true), 300);
     }
   };
 
@@ -84,7 +86,8 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
             : { [side]: position[side], bottom: position.bottom + LAUNCHER_SIZE + LAUNCHER_MARGIN, height: chatHeight }
         }
       >
-        <ChatWindow isMobile={isMobile} />
+        {!showChatWindow && <div className={fauxWidgetBackground} />}
+        {showChatWindow && <ChatWindow isMobile={isMobile} />}
       </div>
     </div>
   );
