@@ -118,7 +118,7 @@ export const NewChat: React.FC<INewChat> = ({
               <Separator text="Chat has ended" />
             </div>
           )}
-          <div className={bottomSpacer} />
+          <div className={bottomSpacer({ hasEnded })} />
         </div>
         <NewFooter
           buttons={buttons}
