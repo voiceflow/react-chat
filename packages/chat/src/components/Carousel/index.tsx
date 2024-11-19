@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 
 import { ClassName } from '@/constants';
 import { fadeInAndUp } from '@/styles/animation-utils.css';
@@ -35,23 +35,12 @@ export interface CarouselProps {
 export const Carousel: React.FC<CarouselProps> = ({ cards }) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const { showPreviousButton, showNextButton } = useScrollObserver(scrollContainerRef, cards);
-  const [cardIndex, setCardIndex] = useState(0);
   const scrollToPrevious = useScrollTo(scrollContainerRef, (el) => Math.ceil(el.scrollLeft / CARD_WITH_GUTTER) - 1);
   const scrollToNext = useScrollTo(scrollContainerRef, (el) => Math.floor(el.scrollLeft / CARD_WITH_GUTTER) + 1);
 
-  const handleScrollToNext = () => {
-    scrollToNext();
-    setCardIndex((prev) => prev + 1);
-  };
-
-  const handleScrollToPrevious = () => {
-    scrollToPrevious();
-    setCardIndex((prev) => prev - 1);
-  };
-
   return (
     <div className={clsx(ClassName.CAROUSEL, carouselContainer)}>
-      <div className={fauxBackground({ afterFirstCard: cardIndex > 0 })} />
+      <div className={fauxBackground({ afterFirstCard: showPreviousButton })} />
       <div ref={scrollContainerRef} className={cardsContainer}>
         <div className={cardsInnerContainer}>
           {cards.map((card, i) => (
@@ -68,8 +57,8 @@ export const Carousel: React.FC<CarouselProps> = ({ cards }) => {
           <div className={lastCardSpacer}> </div>
         </div>
       </div>
-      <CarouselButton direction="left" visible={showPreviousButton} onClick={handleScrollToPrevious} />
-      <CarouselButton direction="right" visible={showNextButton} onClick={handleScrollToNext} />
+      <CarouselButton direction="left" visible={showPreviousButton} onClick={scrollToPrevious} />
+      <CarouselButton direction="right" visible={showNextButton} onClick={scrollToNext} />
     </div>
   );
 };
