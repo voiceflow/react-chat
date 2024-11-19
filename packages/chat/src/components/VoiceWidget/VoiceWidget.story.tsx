@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { WithDefaultPalette } from '@/storybook/decorators';
 
 import { VoiceWidget } from '.';
+import { CircularVisualizer } from './AltVisualizer.component';
 
 type Story = StoryObj<typeof VoiceWidget>;
 const meta: Meta<typeof VoiceWidget> = {
@@ -17,8 +18,12 @@ const meta: Meta<typeof VoiceWidget> = {
 
 export default meta;
 
-export const PlainText: Story = {
+export const Base: Story = {
   args: {
     message: 'Lorem ipsum dolor',
   },
+};
+
+export const Alt: Story = {
+  render: () => <CircularVisualizer />,
 };
