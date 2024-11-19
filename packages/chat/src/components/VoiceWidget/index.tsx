@@ -16,13 +16,15 @@ export const VoiceWidget = () => {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       const source = audioContextRef.current.createMediaStreamSource(stream);
       analyserRef.current = audioContextRef.current.createAnalyser();
-      analyserRef.current.fftSize = 512; // Adjusted for smoother circular waveform
+      analyserRef.current.fftSize = 1024;
 
       const bufferLength = analyserRef.current.frequencyBinCount;
       dataArrayRef.current = new Uint8Array(bufferLength);
 
       source.connect(analyserRef.current);
-      let lastTime = 0;
+
+      let previousTimestamp = 0;
+      const smoothingFactor = 0.1; // Adjust this value for more or less smoothing
 
       const draw = (timestamp: number) => {
         if (!canvasRef.current || !analyserRef.current || !dataArrayRef.current) return;
@@ -32,16 +34,14 @@ export const VoiceWidget = () => {
         const { width, height } = canvas;
         const centerX = width / 2;
         const centerY = height / 2;
-        const radius = Math.min(width, height) / 2; // Radius of the circle
+        const radius = Math.min(width, height) / 2;
 
         analyserRef.current.getByteTimeDomainData(dataArrayRef.current);
 
-        // Calculate time difference for smoother animations
-        const deltaTime = timestamp - lastTime;
-        lastTime = timestamp;
-
-        // Apply smoothing factor to the animation
-        const smoothFactor = Math.min(deltaTime / 36, 1); // Ensures that we don't slow down too much on slow frames
+        // Time-based smoothing
+        const deltaTime = timestamp - previousTimestamp;
+        previousTimestamp = timestamp;
+        const smoothing = Math.min(1, deltaTime * smoothingFactor);
 
         if (canvasCtx) {
           canvasCtx.clearRect(0, 0, width, height);
@@ -49,35 +49,33 @@ export const VoiceWidget = () => {
           // Draw the circle
           canvasCtx.beginPath();
           canvasCtx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
-          canvasCtx.fillStyle = 'white'; // Light grey fill
+          canvasCtx.fillStyle = 'white';
           canvasCtx.fill();
-          canvasCtx.lineWidth = 2;
+          canvasCtx.lineWidth = 6;
           canvasCtx.strokeStyle = '#0099cc';
           canvasCtx.stroke();
 
-          // Draw the waveform and fill the area between the waveform and the circle
+          // Draw the smoothed waveform
           canvasCtx.beginPath();
-          if (dataArrayRef.current) {
-            dataArrayRef.current.forEach((value, i) => {
-              const angle = (i / dataArrayRef.current.length) * 2 * Math.PI;
-              const amplitude = (value / 128.0 - 1) * 40;
-              const smoothedAmplitude = amplitude * smoothFactor;
-              const x = centerX + (radius + smoothedAmplitude) * Math.cos(angle);
-              const y = centerY + (radius + smoothedAmplitude) * Math.sin(angle);
+          dataArrayRef.current.forEach((value, i) => {
+            const angle = (i / dataArrayRef.current.length) * 2 * Math.PI;
+            const amplitude = (value / 128.0 - 1) * 30;
 
-              if (i === 0) {
-                canvasCtx.moveTo(x, y);
-              } else {
-                canvasCtx.lineTo(x, y);
-              }
-            });
-          }
+            // Apply smoothing to amplitude
+            const smoothedAmplitude = amplitude * smoothing;
 
-          // Close the path and fill the area
+            const x = centerX + (radius + smoothedAmplitude) * Math.cos(angle);
+            const y = centerY + (radius + smoothedAmplitude) * Math.sin(angle);
+
+            if (i === 0) {
+              canvasCtx.moveTo(x, y);
+            } else {
+              canvasCtx.lineTo(x, y);
+            }
+          });
+
+          // Close the path and stroke the waveform
           canvasCtx.closePath();
-          canvasCtx.fill();
-
-          // Stroke the path for the waveform
           canvasCtx.stroke();
         }
 
