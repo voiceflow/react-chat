@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.2.1...@voiceflow/react-chat@2.2.2) (2024-11-19)
+
+### Bug Fixes
+
+* carousel background against avatar (DSN-2538) ([#328](https://github.com/voiceflow/react-chat/issues/328)) ([9e601bc](https://github.com/voiceflow/react-chat/commit/9e601bc1647eea2ed39376b9f77a418ca53b757a))
+
 ## [2.2.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.2.0...@voiceflow/react-chat@2.2.1) (2024-11-19)
 
 ### Bug Fixes
