@@ -44,6 +44,7 @@ export const MessageInput: React.FC<IMessageInput> = ({
   const sendMessage = async () => {
     if (!message || disableSend) return;
 
+    speechRecognition.stopListening();
     setMessage('');
     await onSubmit?.(message);
   };
