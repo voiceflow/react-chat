@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
 import { COLORS } from '@/styles/colors';
 import { CHAT_WIDTH } from '@/views/ChatWidget/styles.css';
@@ -32,7 +33,6 @@ export const cardsInnerContainer = style({
   display: 'flex',
   alignItems: 'start',
   gap: `${GUTTER_WIDTH}px`,
-  backgroundColor: COLORS.white,
 });
 
 export const carouselContainer = style({
@@ -49,4 +49,26 @@ export const lastCardSpacer = style({
   height: 1,
   width: CAROUSEL_SPACER,
   minWidth: CAROUSEL_SPACER,
+});
+
+export const fauxBackground = recipe({
+  base: {
+    position: 'absolute',
+    backgroundColor: COLORS.white,
+    width: '100%',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    transition: 'left 0.3s',
+  },
+  variants: {
+    afterFirstCard: {
+      true: {
+        left: '-44px',
+      },
+      false: {
+        left: 0,
+      },
+    },
+  },
 });
