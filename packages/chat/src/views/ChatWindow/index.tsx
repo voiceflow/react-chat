@@ -62,6 +62,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile }) => {
         audioInterface={assistant.audioInterface}
         messageInputProps={{
           onSubmit: runtime.reply,
+          audioInterface: assistant.audioInterface,
         }}
         isMobile={isMobile}
       >
