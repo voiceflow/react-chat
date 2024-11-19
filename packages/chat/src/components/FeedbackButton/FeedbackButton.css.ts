@@ -91,5 +91,5 @@ export const iconStyle = style({
 });
 
 export const checkedIcon = style({
-  color: PALETTE.colors[600],
+  color: PALETTE.colors[500],
 });
