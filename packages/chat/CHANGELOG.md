@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.2.0...@voiceflow/react-chat@2.2.1) (2024-11-19)
+
+### Bug Fixes
+
+* wrap typing indicator with MessageContainer (COR-3952) ([#327](https://github.com/voiceflow/react-chat/issues/327)) ([d371598](https://github.com/voiceflow/react-chat/commit/d3715981abdc94dcefd203f2ce2862a51e350590))
+
 # [2.2.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.1.1...@voiceflow/react-chat@2.2.0) (2024-11-19)
 
 ### Features
