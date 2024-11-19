@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.3](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.2.2...@voiceflow/react-chat@2.2.3) (2024-11-19)
+
+### Bug Fixes
+
+* Audio Input appearing and submission (DSN-2553) ([#332](https://github.com/voiceflow/react-chat/issues/332)) ([af233c8](https://github.com/voiceflow/react-chat/commit/af233c8274bdb773a9549d3030c0bbdc17916a20))
+* Message animation speed + checkmark colour (DSN-2555) ([#325](https://github.com/voiceflow/react-chat/issues/325)) ([eba9f80](https://github.com/voiceflow/react-chat/commit/eba9f809ac1afad2de9f013fc4899cc65d505ce5))
+* minor UI issues ([#326](https://github.com/voiceflow/react-chat/issues/326)) ([5be3f51](https://github.com/voiceflow/react-chat/commit/5be3f51e85fb16e4107690509a4dc90e3f993860))
+
 ## [2.2.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.2.1...@voiceflow/react-chat@2.2.2) (2024-11-19)
 
 ### Bug Fixes
