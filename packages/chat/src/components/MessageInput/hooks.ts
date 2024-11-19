@@ -24,8 +24,6 @@ export const useSpeechRecognition = ({
   const prevProcessing = useRef(
     customSpeechRecognitionEnabled ? customSpeechRecognition.initialState.processing : false
   );
-  // const onSendPersisted = useRef(onSend);
-  // onSendPersisted.current = onSend;
 
   const [customSpeechRecognitionState, setCustomSpeechRecognitionState] = useState<ChatSpeechRecognitionState>(
     customSpeechRecognitionEnabled
@@ -66,7 +64,6 @@ export const useSpeechRecognition = ({
   useEffect(() => {
     if (customSpeechRecognitionEnabled) {
       if (prevProcessing.current && !customSpeechRecognitionState.processing) {
-        // onSendPersisted.current?.();
         customSpeechRecognition.resetTranscript();
         textareaRef.current?.focus();
       }
@@ -74,7 +71,6 @@ export const useSpeechRecognition = ({
       prevProcessing.current = customSpeechRecognitionState.processing;
     } else {
       if (prevListening.current && !reactSpeechRecognition.listening) {
-        // onSendPersisted.current?.();
         reactSpeechRecognition.resetTranscript();
         textareaRef.current?.focus();
       }
