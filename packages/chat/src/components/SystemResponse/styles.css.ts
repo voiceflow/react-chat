@@ -1,5 +1,6 @@
 import { keyframes, style } from '@vanilla-extract/css';
 
+import { duration } from '@/styles/animations';
 import { SIZES } from '@/styles/sizes';
 import { transition } from '@/styles/transitions';
 
@@ -26,7 +27,7 @@ export const systemMessageContainer = style({
   display: 'flex',
   alignItems: 'flex-end',
   marginBottom: 4,
-  animation: `${fadeInSlideUp} .3s ease-in`,
+  animation: `${fadeInSlideUp} ${duration.default} ease-in`,
 });
 
 export const responseAvatar = style({

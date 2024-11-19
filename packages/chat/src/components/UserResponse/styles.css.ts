@@ -1,5 +1,6 @@
 import { keyframes, style } from '@vanilla-extract/css';
 
+import { duration } from '@/styles/animations';
 import { COLORS } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
 import { FAMILY } from '@/styles/font';
@@ -30,7 +31,7 @@ export const messageContainer = style({
   width: 'fit-content',
   borderRadius: SIZES.radius.sm,
   marginLeft: SMALL_AVATAR_SIZE + 12,
-  animation: `${fadeInSlideUp} 0.3s ease-out`,
+  animation: `${fadeInSlideUp} ${duration.default} ease-out`,
 });
 
 export const debugMessage = style({
