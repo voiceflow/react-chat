@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.1.1...@voiceflow/react-chat@2.2.0) (2024-11-19)
+
+### Features
+
+* expose user response component (DX-000) ([#329](https://github.com/voiceflow/react-chat/issues/329)) ([9ec5685](https://github.com/voiceflow/react-chat/commit/9ec56853ff27efc592b3fef9b7acfe8922b4a203))
+
 ## [2.1.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.1.0...@voiceflow/react-chat@2.1.1) (2024-11-18)
 
 ### Bug Fixes
