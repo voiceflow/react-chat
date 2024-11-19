@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.4](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.2.3...@voiceflow/react-chat@2.2.4) (2024-11-19)
+
+### Bug Fixes
+
+* adjust bottom spacer of chat messages (COR-3977) ([#338](https://github.com/voiceflow/react-chat/issues/338)) ([356f0e7](https://github.com/voiceflow/react-chat/commit/356f0e76cfb4d183d9085a97a0625b9a3f3bf83e))
+
 ## [2.2.3](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.2.2...@voiceflow/react-chat@2.2.3) (2024-11-19)
 
 ### Bug Fixes
