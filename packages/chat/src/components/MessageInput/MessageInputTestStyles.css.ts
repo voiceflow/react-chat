@@ -7,7 +7,7 @@ export const chatContainer = recipe({
     opacity: 0,
     width: 0,
     transition: 'opacity 300ms cubic-bezier(0.85, 0, 0.6, 1), width 300ms cubic-bezier(0.85, 0, 0.6, 1)',
-    transformOrigin: 'right center', // Set transform origin to right
+    transformOrigin: 'right center',
     position: 'absolute',
   },
   variants: {
@@ -15,7 +15,7 @@ export const chatContainer = recipe({
       true: {
         opacity: 1,
         pointerEvents: 'auto',
-        width: 400, // Grow width without affecting inner content
+        width: 400,
       },
       false: {
         opacity: 0,
