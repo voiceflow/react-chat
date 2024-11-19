@@ -46,6 +46,7 @@ export const feedbackButtonStyles = recipe({
     backgroundColor: 'transparent',
     transition: transition(['background-color', 'color']),
     color: COLORS.NEUTRAL_DARK[100],
+    outline: 'transparent 0px',
     selectors: {
       '&:hover': {
         backgroundColor: COLORS.NEUTRAL_DARK[9006],

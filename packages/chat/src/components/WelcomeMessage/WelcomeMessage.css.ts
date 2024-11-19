@@ -19,7 +19,7 @@ export const welcomeMessageContainer = style({
   flexDirection: 'column',
   alignItems: 'center',
   fontFamily: FAMILY,
-  padding: '48px 20px 44px 20px',
+  padding: '48px 20px 28px 20px',
   textAlign: 'center',
   animation: `${fadeIn} 0.5s ease-in-out`,
 });
