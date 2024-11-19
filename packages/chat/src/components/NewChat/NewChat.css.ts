@@ -53,7 +53,7 @@ export const bottomSpacer = recipe({
         height: '0px',
       },
       false: {
-        height: '24px',
+        height: '8px',
       },
     },
   },
