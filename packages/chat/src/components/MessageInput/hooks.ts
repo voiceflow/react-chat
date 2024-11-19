@@ -5,11 +5,9 @@ import { isChrome } from '@/device';
 import type { ChatSpeechRecognitionConfig, ChatSpeechRecognitionState } from '@/dtos/ChatConfig.dto';
 
 export const useSpeechRecognition = ({
-  onSend,
   onValueChange,
   customSpeechRecognition,
 }: {
-  onSend?: () => void;
   onValueChange: (value: string) => void;
   customSpeechRecognition?: ChatSpeechRecognitionConfig;
 }) => {
@@ -26,8 +24,8 @@ export const useSpeechRecognition = ({
   const prevProcessing = useRef(
     customSpeechRecognitionEnabled ? customSpeechRecognition.initialState.processing : false
   );
-  const onSendPersisted = useRef(onSend);
-  onSendPersisted.current = onSend;
+  // const onSendPersisted = useRef(onSend);
+  // onSendPersisted.current = onSend;
 
   const [customSpeechRecognitionState, setCustomSpeechRecognitionState] = useState<ChatSpeechRecognitionState>(
     customSpeechRecognitionEnabled
@@ -68,7 +66,7 @@ export const useSpeechRecognition = ({
   useEffect(() => {
     if (customSpeechRecognitionEnabled) {
       if (prevProcessing.current && !customSpeechRecognitionState.processing) {
-        onSendPersisted.current?.();
+        // onSendPersisted.current?.();
         customSpeechRecognition.resetTranscript();
         textareaRef.current?.focus();
       }
@@ -76,7 +74,7 @@ export const useSpeechRecognition = ({
       prevProcessing.current = customSpeechRecognitionState.processing;
     } else {
       if (prevListening.current && !reactSpeechRecognition.listening) {
-        onSendPersisted.current?.();
+        // onSendPersisted.current?.();
         reactSpeechRecognition.resetTranscript();
         textareaRef.current?.focus();
       }

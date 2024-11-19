@@ -30,7 +30,6 @@ export const MessageInput: React.FC<IMessageInput> = ({
   const [isMultiLine, setIsMultiLine] = useState(false);
 
   const speechRecognition = useSpeechRecognition({
-    onSend: () => onSubmit?.(''),
     onValueChange: setMessage,
     customSpeechRecognition,
   });
