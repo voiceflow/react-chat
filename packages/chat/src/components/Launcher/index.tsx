@@ -11,7 +11,7 @@ import {
   closeChevron,
   iconContainer,
   imageStyles,
-  launchContainer,
+  launcherContainer,
   launcherIconStyles,
   launcherLabelStyles,
   launcherStyles,
@@ -51,15 +51,15 @@ export interface LauncherProps {
 export const Launcher: React.FC<LauncherProps> = ({ image, isOpen, label, onClick }) => {
   const withLabel = !!label?.length;
   return (
-    <div className={launchContainer}>
-      <Button className={clsx(ClassName.LAUNCHER, launcherStyles({ withLabel, isOpen }))} onMouseUp={onClick}>
+    <div className={launcherContainer}>
+      <Button className={clsx(ClassName.LAUNCHER, launcherStyles({ withLabel, isOpen }))} onClick={onClick}>
         <div className={iconContainer({ isOpen, withLabel })}>
           <ChevronIcon className={clsx(closeChevron({ isOpen, withLabel }), launcherIconStyles())} />
           {image && (
             <img
               src={image}
               className={clsx(imageStyles({ isOpen, withLabel }), playIconStyles({ withLabel }))}
-              alt="launch"
+              alt="open chat"
             />
           )}
           {!image && <PlayIcon className={playIconStyles({ withLabel, isOpen })} />}
