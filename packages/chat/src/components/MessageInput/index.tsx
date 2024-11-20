@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import type { Key } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 
 import type { ChatSpeechRecognitionConfig } from '@/main';
@@ -28,6 +29,8 @@ export const MessageInput: React.FC<IMessageInput> = ({
 }) => {
   const [message, setMessage] = useState('');
   const [isMultiLine, setIsMultiLine] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [resizeTrigger, setResizeTrigger] = useState(false);
 
   const speechRecognition = useSpeechRecognition({
     onValueChange: setMessage,
@@ -65,8 +68,24 @@ export const MessageInput: React.FC<IMessageInput> = ({
     setIsMultiLine(height > 24);
   };
 
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const resizeObserver = new ResizeObserver(() => {
+      // Toggle the resize trigger state
+      setResizeTrigger((prev) => !prev);
+    });
+
+    resizeObserver.observe(container);
+
+    // eslint-disable-next-line consistent-return
+    return () => resizeObserver.disconnect();
+  }, []);
+
   return (
     <div
+      ref={containerRef}
       className={inputContainer({ multiline: isMultiLine, hasEnded })}
       onKeyDown={handleKeyPress}
       onClick={handleContainerClick}
@@ -75,9 +94,10 @@ export const MessageInput: React.FC<IMessageInput> = ({
       <div className={inputBlock}>
         <TextareaAutosize
           ref={speechRecognition.textareaRef}
+          key={resizeTrigger as unknown as Key}
           placeholder={placeholder}
-          minRows={1}
           autoFocus
+          minRows={1}
           maxRows={5}
           value={message}
           className={input}
