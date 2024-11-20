@@ -28,10 +28,10 @@ export const ShrinkingCircle = () => {
 
         analyserRef.current.getByteFrequencyData(dataArray);
         const avgVolume = dataArray.reduce((sum, value) => sum + value, 0) / bufferLength;
-
-        const newRadius = Math.max(10, 54 - avgVolume / 10); // Minimum fill radius of 10
+        console.log({ avgVolume });
+        const newRadius = Math.min(avgVolume, 54);
         setRadius(newRadius);
-
+        console.log({ newRadius });
         requestAnimationFrame(animate);
       };
 
@@ -45,5 +45,9 @@ export const ShrinkingCircle = () => {
     };
   }, []);
 
-  return <div className={shrinkingCircle}></div>;
+  return (
+    <div className={shrinkingCircle}>
+      <div className={shrinkingCircle} style={{ transform: `scale(${radius})` }} />
+    </div>
+  );
 };
