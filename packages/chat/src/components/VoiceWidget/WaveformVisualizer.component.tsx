@@ -20,7 +20,7 @@ export const WaveFormVisualizer = () => {
       source.connect(analyserRef.current);
 
       let previousTimestamp = 0;
-      const smoothingFactor = 0.1; // Adjust this value for more or less smoothing
+      const smoothingFactor = 0.1;
 
       const draw = (timestamp: number) => {
         if (!canvasRef.current || !analyserRef.current || !dataArrayRef.current) return;
@@ -55,7 +55,7 @@ export const WaveFormVisualizer = () => {
           canvasCtx.beginPath();
           dataArrayRef.current.forEach((value, i) => {
             const angle = (i / (dataArrayRef?.current?.length || 1)) * 2 * Math.PI;
-            const amplitude = (value / 128.0 - 1) * 30;
+            const amplitude = (value / 128.0 - 1) * 40;
 
             // Apply smoothing to amplitude
             const smoothedAmplitude = amplitude * smoothing;
