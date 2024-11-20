@@ -19,7 +19,7 @@ export const promptContainer = recipe({
     display: 'flex',
     flexDirection: 'column',
     gap: 8,
-    zIndex: 3,
+    zIndex: 300,
   },
 
   variants: {
@@ -51,7 +51,7 @@ export const chatOverlay = recipe({
       true: {
         display: 'block',
         opacity: 1,
-        zIndex: 2,
+        zIndex: 200,
         pointerEvents: 'auto',
       },
     },
