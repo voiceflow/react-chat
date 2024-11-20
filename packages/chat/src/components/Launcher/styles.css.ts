@@ -8,7 +8,7 @@ import { buttonStyles } from '../Button/styles.css';
 
 export const LAUNCHER_SIZE = 48;
 
-export const launchContainer = style({
+export const launcherContainer = style({
   width: 'fit-content',
 });
 
