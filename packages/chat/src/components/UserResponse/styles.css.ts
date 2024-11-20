@@ -31,7 +31,7 @@ export const messageContainer = style({
   width: 'fit-content',
   borderRadius: SIZES.radius.sm,
   marginLeft: SMALL_AVATAR_SIZE + 12,
-  animation: `${fadeInSlideUp} ${duration.default} ease-out`,
+  animation: `${fadeInSlideUp} ${duration.fast} ease-out`,
 });
 
 export const debugMessage = style({
