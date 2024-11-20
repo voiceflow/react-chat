@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.2.5...@voiceflow/react-chat@2.3.0) (2024-11-20)
+
+### Features
+
+* Launcher revisions (DSN-2520) ([#303](https://github.com/voiceflow/react-chat/issues/303)) ([6f19cb5](https://github.com/voiceflow/react-chat/commit/6f19cb5e2d35b76768adc7f0f89cad76148e3684))
+* New Widget launch animation (DSN-2521) ([#322](https://github.com/voiceflow/react-chat/issues/322)) ([03fb0d9](https://github.com/voiceflow/react-chat/commit/03fb0d98a7a5b653f2af3100ae002192eea0a202))
+
 ## [2.2.5](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.2.4...@voiceflow/react-chat@2.2.5) (2024-11-20)
 
 ### Bug Fixes
