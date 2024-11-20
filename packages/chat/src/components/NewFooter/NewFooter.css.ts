@@ -1,6 +1,7 @@
 import { keyframes, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
+import { duration } from '@/styles/animations';
 import { COLORS } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
 import { FAMILY } from '@/styles/font';
@@ -31,7 +32,7 @@ const fadeIn = keyframes({
 
 export const footerContainer = style({
   width: '100%',
-  animation: `${fadeInAndSlideUp} 0.5s ease-in-out`,
+  animation: `${fadeInAndSlideUp} ${duration.default} ease-in-out`,
 });
 
 export const buttonsContainer = style({

@@ -1,6 +1,7 @@
 import { keyframes, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
+import { duration } from '@/styles/animations';
 import { COLORS } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
 import { FAMILY, hideTextOverflow } from '@/styles/font';
@@ -26,7 +27,7 @@ export const headerContainer = style({
   backgroundColor: PALETTE.colors[500],
   padding: '12px 16px 12px 20px',
   height: parseInt(SIZES.sm, 10) + 24, // Add the top and bottom padding
-  animation: `${fadeIn} .3s ease-in`,
+  animation: `${fadeIn} ${duration.default} ease-in`,
 });
 
 export const headerInnerContainer = style({
