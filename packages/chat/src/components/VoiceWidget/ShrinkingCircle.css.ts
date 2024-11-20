@@ -7,4 +7,5 @@ export const shrinkingCircle = style({
   minHeight: '54px',
   background: 'blue',
   borderRadius: '50%',
+  transition: 'transform 0.2s',
 });
