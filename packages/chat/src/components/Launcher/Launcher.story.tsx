@@ -23,8 +23,6 @@ const CollapsableLauncher = (props: any) => {
   const [isOpen, setIsOpen] = useState(false);
   const handleToggle = () => {
     setIsOpen((prev) => !prev);
-    // eslint-disable-next-line no-console
-    console.log('toggle');
   };
   return <Launcher isOpen={isOpen} onClick={handleToggle} {...props} />;
 };

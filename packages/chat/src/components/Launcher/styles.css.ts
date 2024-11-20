@@ -8,7 +8,7 @@ import { buttonStyles } from '../Button/styles.css';
 
 export const LAUNCHER_SIZE = 48;
 
-export const launchContainer = style({
+export const launcherContainer = style({
   width: 'fit-content',
 });
 
@@ -34,6 +34,8 @@ export const launcherStyles = recipe({
       ]),
       boxShadow:
         '0px 1px 0px 0px rgba(22, 26, 30, 0.02), 0px 0px 0px 1px rgba(22, 26, 30, 0.04), 0px 1px 5px -4px rgba(22, 26, 30, 0.08), 0px 4px 8px -6px rgba(22, 26, 30, 0.08), 0px 1px 3px 1px rgba(22, 26, 30, 0.01)',
+      willChange: 'transform',
+
       ':hover': {
         transform: 'scale(1.1)',
         backgroundColor: PALETTE.colors[600],
@@ -41,6 +43,15 @@ export const launcherStyles = recipe({
       ':active': {
         transform: 'scale(0.8)',
         backgroundColor: PALETTE.colors[700],
+      },
+      '::after': {
+        content: '""',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        zIndex: -1,
       },
     },
   ],
@@ -197,7 +208,6 @@ export const playIconStyles = recipe({
     },
   },
 });
-
 export const twistInAnimation = keyframes({
   '0%': {
     opacity: 0,
