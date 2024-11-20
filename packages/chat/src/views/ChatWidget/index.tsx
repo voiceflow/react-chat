@@ -30,7 +30,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
   const [isHidden, setHidden] = useState(false);
   const [proactiveMessages, setProactiveMessages] = useState<Trace.AnyTrace[]>([]);
   const isMobile = useMemo(() => window.matchMedia('(max-width: 768px)').matches, []);
-  const [showChatWindow, setShowChatWindow] = useState(false); // Control ChatWindow rendering
+  const [showChatWindow, setShowChatWindow] = useState(false);
 
   const palette = usePalette(assistant);
 

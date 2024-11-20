@@ -30,8 +30,7 @@ export const chatContainer = style({
   pointerEvents: 'none',
   opacity: 0,
   width: 0,
-  transition:
-    'opacity 300ms ease-in-out, width 300ms ease-in-out, max-height 300ms ease-in-out, transform 300ms ease-in-out',
+  transition: transition(['opacity', 'width', 'max-height', 'transform'], { duration: '300ms', timingFunction: 'ease-in-out' })
   transformOrigin: 'bottom right',
   transform: 'scaleY(0)',
   selectors: {
