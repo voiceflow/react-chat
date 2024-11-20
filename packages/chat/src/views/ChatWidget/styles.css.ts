@@ -1,6 +1,8 @@
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
+import { transition } from '@/styles/transitions';
+
 export const CHAT_WIDTH = 400;
 const MAX_CHAT_HEIGHT = 800;
 
@@ -30,7 +32,10 @@ export const chatContainer = style({
   pointerEvents: 'none',
   opacity: 0,
   width: 0,
-  transition: transition(['opacity', 'width', 'max-height', 'transform'], { duration: '300ms', timingFunction: 'ease-in-out' })
+  transition: transition(['opacity', 'width', 'max-height', 'transform'], {
+    duration: '300ms',
+    timingFunction: 'ease-in-out',
+  }),
   transformOrigin: 'bottom right',
   transform: 'scaleY(0)',
   selectors: {
