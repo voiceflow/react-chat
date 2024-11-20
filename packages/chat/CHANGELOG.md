@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.5](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.2.4...@voiceflow/react-chat@2.2.5) (2024-11-20)
+
+### Bug Fixes
+
+* show Prompt over scroll down button (COR-3947) ([#337](https://github.com/voiceflow/react-chat/issues/337)) ([87d829d](https://github.com/voiceflow/react-chat/commit/87d829dc4462028c670721e71179be5c942843f0))
+
 ## [2.2.4](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.2.3...@voiceflow/react-chat@2.2.4) (2024-11-19)
 
 ### Bug Fixes
