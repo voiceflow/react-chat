@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
+import { shrinkingCircle } from './ShrinkingCircle.css';
+
 export const ShrinkingCircle = () => {
   const [radius, setRadius] = useState(54);
   const audioContextRef = useRef<AudioContext | null>(null);
@@ -43,10 +45,5 @@ export const ShrinkingCircle = () => {
     };
   }, []);
 
-  return (
-    <svg height={54} width={54}>
-      <circle r="54" stroke="black" strokeWidth="2" fill="none" />
-      <circle r={radius} fill="blue" style={{ transition: 'r 0.1s' }} />
-    </svg>
-  );
+  return <div className={shrinkingCircle}></div>;
 };
