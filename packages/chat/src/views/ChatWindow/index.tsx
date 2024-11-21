@@ -69,14 +69,19 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile }) => {
         {state.session.turns.map((turn, turnIndex) => {
           return match(turn)
             .with({ type: TurnType.USER }, ({ id, ...props }) => {
-              return <UserResponse {...R.omit(props, ['type'])} key={id} />;
+              return (
+                <UserResponse
+                  {...R.omit(props, ['type'])}
+                  key={id}
+                  isLast={turnIndex === state.session.turns.length - 1}
+                />
+              );
             })
             .with({ type: TurnType.SYSTEM }, ({ id, ...props }) => (
               <SystemResponse
                 key={id}
                 {...R.omit(props, ['type'])}
                 avatar={assistant.avatar}
-                isFirst={turnIndex === 0}
                 feedback={{
                   onClick: (feedback: FeedbackName) => {
                     runtime.feedback(feedback, props.messages, getPreviousUserTurn(turnIndex));
@@ -87,7 +92,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile }) => {
             ))
             .exhaustive();
         })}
-        {state.indicator && <Indicator avatar={assistant.avatar} />}
+        {state.indicator && <Indicator avatar={assistant.avatar} isLast={true} />}
       </NewChat>
     </div>
   );

@@ -96,7 +96,7 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
   if (!messages.length && !actions.length) return null;
 
   return (
-    <MessageContainer>
+    <MessageContainer isLast={isLast}>
       {visibleMessages.map((message, index) => {
         const endConversation = message?.type === MessageType.END;
         if (endConversation) {
@@ -141,7 +141,7 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
           ))}
         </div>
       )}
-      {showIndicator && <Indicator avatar={avatar} />}
+      {showIndicator && <Indicator avatar={avatar} isLast={isLast} />}
     </MessageContainer>
   );
 };

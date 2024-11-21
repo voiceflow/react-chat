@@ -1,6 +1,15 @@
-import { style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
-export const messageContainer = style({
-  position: 'relative',
-  margin: '16px 0',
+export const messageContainer = recipe({
+  base: {
+    position: 'relative',
+    margin: '16px 0',
+  },
+  variants: {
+    isLast: {
+      true: {
+        marginBottom: 0,
+      },
+    },
+  },
 });
