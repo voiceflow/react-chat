@@ -1,8 +1,6 @@
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
-import { transition } from '@/styles/transitions';
-
 export const CHAT_WIDTH = 400;
 const MAX_CHAT_HEIGHT = 800;
 
@@ -27,17 +25,12 @@ export const widgetContainer = recipe({
     },
   },
 });
+
 export const chatContainer = style({
-  maxHeight: 0,
-  pointerEvents: 'none',
-  opacity: 0,
-  width: 0,
-  transition: transition(['opacity', 'width', 'max-height', 'transform'], {
-    duration: '300ms',
-    timingFunction: 'ease-in-out',
-  }),
-  transformOrigin: 'bottom right',
-  transform: 'scaleY(0)',
+  width: CHAT_WIDTH,
+  maxHeight: MAX_CHAT_HEIGHT,
+  pointerEvents: 'auto',
+
   selectors: {
     [`${widgetContainer.classNames.base} &`]: {
       position: 'absolute',
@@ -46,16 +39,14 @@ export const chatContainer = style({
     [`.${widgetContainer.classNames.variants.withChat.true} &`]: {
       opacity: 1,
       pointerEvents: 'auto',
-      width: CHAT_WIDTH,
-      maxHeight: MAX_CHAT_HEIGHT,
-      transform: 'scaleY(1)',
+      transform: 'translateY(0%)',
+      transition: 'transform 300ms cubic-bezier(0, 0.95, 0.1, 1), opacity 150ms linear',
     },
     [`.${widgetContainer.classNames.variants.withChat.false} &`]: {
       opacity: 0,
       pointerEvents: 'none',
-      width: 0,
-      maxHeight: 0,
-      transform: 'scaleY(0)',
+      transform: 'translateY(100%)',
+      transition: 'transform 300ms cubic-bezier(0.85, 0, 0.6, 1), opacity 150ms linear',
     },
   },
 });

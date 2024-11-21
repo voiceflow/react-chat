@@ -2,7 +2,6 @@ import { keyframes, style } from '@vanilla-extract/css';
 
 import { duration } from '@/styles/animations';
 import { SIZES } from '@/styles/sizes';
-import { transition } from '@/styles/transitions';
 
 import { SMALL_AVATAR_SIZE } from '../Avatar/styles.css';
 
@@ -27,7 +26,7 @@ export const systemMessageContainer = style({
   display: 'flex',
   alignItems: 'flex-end',
   marginBottom: 4,
-  animation: `${fadeInSlideUp} ${duration.default} ease-in`,
+  animation: `${fadeInSlideUp} ${duration.fast} ease-in`,
 });
 
 export const responseAvatar = style({
@@ -60,7 +59,5 @@ export const extensionMessageContainer = style({
 export const feedbackContainer = style({
   marginTop: 6,
   zIndex: 1,
-  transition: transition(['opacity']),
-  animation: `${fadeInSlideUp} .2s ease-in`,
   marginLeft: MESSAGE_PADDING + SMALL_AVATAR_SIZE - 6,
 });

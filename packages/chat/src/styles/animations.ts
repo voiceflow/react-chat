@@ -1,4 +1,5 @@
 export const duration = {
+  slow: '0.5s',
   default: '0.15s',
   fast: '0.08s',
   fastest: '0.05s',

@@ -31,6 +31,11 @@ export interface UserResponseProps {
    * If provided, adds a caption and optional "debug" message with an action.
    */
   debug?: DebugResponseProps;
+
+  /**
+   * If true, this is the last message in the chat.
+   */
+  isLast?: boolean;
 }
 
 /**
@@ -38,7 +43,8 @@ export interface UserResponseProps {
  *
  * @see {@link https://voiceflow.github.io/react-chat/?path=/story/components-chat-userresponse--simple}
  */
-export const UserResponse: React.FC<UserResponseProps> = ({ message, debug }) => {
+
+export const UserResponse: React.FC<UserResponseProps> = ({ message, debug, isLast }) => {
   useAutoScroll();
 
   // TODO: Check this in different render modes
@@ -47,7 +53,7 @@ export const UserResponse: React.FC<UserResponseProps> = ({ message, debug }) =>
   // const { config } = useContext(RuntimeStateAPIContext);
 
   return (
-    <MessageContainer className={ClassName.USER_RESPONSE}>
+    <MessageContainer className={ClassName.USER_RESPONSE} isLast={isLast}>
       <div className={messageContainer}>{message}</div>
       {debug && (
         <>

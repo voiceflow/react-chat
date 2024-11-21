@@ -37,7 +37,6 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
   const toggleChat = () => {
     if (isOpen) {
       close();
-      setShowChatWindow(false);
     } else {
       open();
       setTimeout(() => setShowChatWindow(true), 300);
