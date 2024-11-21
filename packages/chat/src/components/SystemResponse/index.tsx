@@ -98,9 +98,10 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
 
   const allTextContentForMessage = visibleMessages.reduce<string>((acc, message) => {
     if (message.type === MessageType.TEXT) {
-      return acc + (typeof message.text !== 'string' ? serializeToText(message.text) : message.text);
+      return (
+        acc + (acc ? '\n' : '') + (typeof message.text !== 'string' ? serializeToText(message.text) : message.text)
+      );
     }
-
     return acc;
   }, '');
 
