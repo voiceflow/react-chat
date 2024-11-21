@@ -52,17 +52,19 @@ export const FeedbackButton: React.FC<IFeedbackButton> = ({ variant, onClick, te
       className={feedbackContainer({ previousResponse: variant === FeedbackButtonVariant.PREVIOUS_RESPONSE })}
       style={assignInlineVars({ [activeBackground]: buttonActiveColor, [activeIconColor]: iconActiveColor })}
     >
-      <button
-        className={clsx(ClassName.FEEDBACK, feedbackButtonStyles({ isCopied: hasCopied }))}
-        onClick={onCopyClick}
-        data-testid={`${testID}--copy`}
-      >
-        {hasCopied ? (
-          <Icon svg="checkmark" className={clsx(iconStyle, checkedIcon)} />
-        ) : (
-          <CopyButtonIcon className={iconStyle} />
-        )}
-      </button>
+      {textContent && (
+        <button
+          className={clsx(ClassName.FEEDBACK, feedbackButtonStyles({ isCopied: hasCopied }))}
+          onClick={onCopyClick}
+          data-testid={`${testID}--copy`}
+        >
+          {hasCopied ? (
+            <Icon svg="checkmark" className={clsx(iconStyle, checkedIcon)} />
+          ) : (
+            <CopyButtonIcon className={iconStyle} />
+          )}
+        </button>
+      )}
       <button
         className={clsx(
           ClassName.FEEDBACK,
