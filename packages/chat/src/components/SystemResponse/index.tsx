@@ -96,6 +96,14 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
 
   if (!messages.length && !actions.length) return null;
 
+  const allTextContentForMessage = visibleMessages.reduce<string>((acc, message) => {
+    if (message.type === MessageType.TEXT) {
+      return acc + (typeof message.text !== 'string' ? serializeToText(message.text) : message.text);
+    }
+
+    return acc;
+  }, '');
+
   return (
     <MessageContainer isLast={isLast}>
       {visibleMessages.map((message, index) => {
@@ -116,17 +124,14 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
               timestamp={timestamp}
               isLast={isLast}
               feedback={showFeedback ? feedback : undefined}
+              textContent={allTextContentForMessage}
               key={index}
             />
             {feedback && isLast && complete && lastMessageInGroup && (
               <div className={feedbackContainer}>
                 <FeedbackButton
                   {...feedback}
-                  textContent={
-                    message.type === 'text' && typeof message.text !== 'string'
-                      ? serializeToText(message.text)
-                      : undefined
-                  }
+                  textContent={allTextContentForMessage}
                   variant={FeedbackButtonVariant.LAST_RESPONSE}
                 />
               </div>
