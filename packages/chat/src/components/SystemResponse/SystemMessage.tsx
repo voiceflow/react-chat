@@ -57,7 +57,7 @@ export interface SystemMessageProps {
 }
 
 /**
- * An individual message within a system response.
+ * An individual message within a system response
  */
 export const SystemMessage: React.FC<SystemMessageProps> = ({
   avatar,
