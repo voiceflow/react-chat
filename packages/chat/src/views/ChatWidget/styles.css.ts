@@ -1,8 +1,6 @@
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
-import { transition } from '@/styles/transitions';
-
 export const CHAT_WIDTH = 400;
 const MAX_CHAT_HEIGHT = 800;
 
