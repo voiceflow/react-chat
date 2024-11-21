@@ -1,4 +1,5 @@
 import type { RuntimeAction } from '@voiceflow/sdk-runtime';
+import { serializeToText } from '@voiceflow/slate-serializer/text';
 import { useContext } from 'react';
 
 import { RuntimeStateAPIContext } from '@/contexts';
@@ -119,7 +120,15 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
             />
             {feedback && isLast && complete && lastMessageInGroup && (
               <div className={feedbackContainer}>
-                <FeedbackButton {...feedback} variant={FeedbackButtonVariant.LAST_RESPONSE} />
+                <FeedbackButton
+                  {...feedback}
+                  textContent={
+                    message.type === 'text' && typeof message.text !== 'string'
+                      ? serializeToText(message.text)
+                      : undefined
+                  }
+                  variant={FeedbackButtonVariant.LAST_RESPONSE}
+                />
               </div>
             )}
           </>

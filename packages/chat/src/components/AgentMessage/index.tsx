@@ -2,6 +2,7 @@ import '../../styles.css';
 
 import type { Text } from '@voiceflow/base-types';
 import { serializeToMarkdown } from '@voiceflow/slate-serializer/markdown';
+import { serializeToText } from '@voiceflow/slate-serializer/text';
 import clsx from 'clsx';
 import Markdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -89,7 +90,11 @@ export const AgentMessage: React.FC<IAgentMessage> = ({
       )}
       {feedback && !isLast && (
         <div className={feedbackButtonContainer}>
-          <FeedbackButton {...feedback} variant={FeedbackButtonVariant.PREVIOUS_RESPONSE} />
+          <FeedbackButton
+            {...feedback}
+            textContent={typeof text !== 'string' ? serializeToText(text) : undefined}
+            variant={FeedbackButtonVariant.PREVIOUS_RESPONSE}
+          />
         </div>
       )}
     </div>
