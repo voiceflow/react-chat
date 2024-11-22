@@ -20,9 +20,10 @@ interface ChatWidgetProps extends React.PropsWithChildren {
   shadowRoot?: ShadowRoot;
   chatAPI: VoiceflowChat | undefined;
   ready?: () => void;
+  chatWindow?: React.ReactNode;
 }
 
-export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, ready }) => {
+export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, ready, chatWindow }) => {
   const { assistant, open, close, interact } = useContext(RuntimeStateAPIContext);
   const { isOpen } = useContext(RuntimeStateContext);
 
@@ -86,7 +87,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
         }
       >
         {!showChatWindow && <div className={fauxWidgetBackground} />}
-        {showChatWindow && <ChatWindow isMobile={isMobile} />}
+        {showChatWindow && (chatWindow ?? <ChatWindow isMobile={isMobile} />)}
       </div>
     </div>
   );
