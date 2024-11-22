@@ -4,12 +4,11 @@ import { recipe } from '@vanilla-extract/recipes';
 import { COLORS } from '@/styles/colors';
 import { transition } from '@/styles/transitions';
 
+import { SMALL_AVATAR_SIZE } from '../Avatar/styles.css';
 import { buttonStyles } from '../Button/styles.css';
 import { CARD_WIDTH } from '../Card/styles.css';
-import { BUTTON_SIZE, carouselContainer } from './styles.css';
-import { SMALL_AVATAR_SIZE } from '../Avatar/styles.css';
-import { DIALOG_PADDING } from '../NewChat/NewChat.css';
 import { MESSAGE_PADDING } from '../SystemResponse/styles.css';
+import { BUTTON_SIZE, carouselContainer } from './styles.css';
 
 const xOrigin = 'translateX(0)';
 const fadeInFromLeft = keyframes({
