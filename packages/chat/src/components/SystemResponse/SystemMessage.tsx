@@ -59,20 +59,29 @@ export const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, message, f
 
   return (
     <div className={clsx(ClassName.SYSTEM_RESPONSE, systemMessageContainer)}>
-      <Avatar avatar={avatar} className={clsx(withImage ? '' : hide, responseAvatar)} />
-      <div className={messageContainer}>
-        {match(message)
-          .with({ type: MessageType.TEXT }, ({ text, ai }) => (
-            <AgentMessage text={text} ai={ai} isLast={isLast} feedback={feedback} />
-          ))
-          .with({ type: MessageType.IMAGE }, ({ url }) => <Image image={url} mode={config.render?.mode} />)
-          .with({ type: MessageType.CARD }, (props) => <Card {...R.omit(props, ['type'])} />)
-          .with({ type: MessageType.CAROUSEL }, (props) => <Carousel {...R.omit(props, ['type'])} />)
-          .with({ type: MessageType.EXTENSION }, ({ payload }) => (
-            <ExtensionMessage extension={payload.extension} trace={payload.trace} />
-          ))
-          .otherwise(() => null)}
-      </div>
+      {match(message)
+        // We check for `MessageType.CAROUSEL` before all the others, because a Carousel will take care
+        // of rendering the Avatar itself
+        .with({ type: MessageType.CAROUSEL }, (props) => (
+          <Carousel {...{ avatar, withImage, ...R.omit(props, ['type']) }} />
+        ))
+        .otherwise((message) => (
+          <>
+            <Avatar avatar={avatar} className={clsx(withImage ? '' : hide, responseAvatar)} />
+            <div className={messageContainer}>
+              {match(message)
+                .with({ type: MessageType.TEXT }, ({ text, ai }) => (
+                  <AgentMessage text={text} ai={ai} isLast={isLast} feedback={feedback} />
+                ))
+                .with({ type: MessageType.IMAGE }, ({ url }) => <Image image={url} mode={config.render?.mode} />)
+                .with({ type: MessageType.CARD }, (props) => <Card {...R.omit(props, ['type'])} />)
+                .with({ type: MessageType.EXTENSION }, ({ payload }) => (
+                  <ExtensionMessage extension={payload.extension} trace={payload.trace} />
+                ))
+                .otherwise(() => null)}
+            </div>
+          </>
+        ))}
     </div>
   );
 };

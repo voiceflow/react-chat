@@ -7,6 +7,9 @@ import { transition } from '@/styles/transitions';
 import { buttonStyles } from '../Button/styles.css';
 import { CARD_WIDTH } from '../Card/styles.css';
 import { BUTTON_SIZE, carouselContainer } from './styles.css';
+import { SMALL_AVATAR_SIZE } from '../Avatar/styles.css';
+import { DIALOG_PADDING } from '../NewChat/NewChat.css';
+import { MESSAGE_PADDING } from '../SystemResponse/styles.css';
 
 const xOrigin = 'translateX(0)';
 const fadeInFromLeft = keyframes({
@@ -96,12 +99,12 @@ export const carouselButton = recipe({
     direction: {
       right: {
         [`.${carouselContainer} &`]: {
-          left: `${CARD_WIDTH - BUTTON_SIZE / 2}px`,
+          left: `${SMALL_AVATAR_SIZE + MESSAGE_PADDING + (CARD_WIDTH - BUTTON_SIZE / 2) - 2}px`,
         },
       },
       left: {
         [`.${carouselContainer} &`]: {
-          left: `-${BUTTON_SIZE / 2}px`,
+          left: `${-(BUTTON_SIZE / 2) + SMALL_AVATAR_SIZE + MESSAGE_PADDING - 2}px`,
         },
       },
     },
