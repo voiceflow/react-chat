@@ -1,6 +1,6 @@
 import { recipe } from '@vanilla-extract/recipes';
 
-export const chatWindow = recipe({
+export const chatWindowStyle = recipe({
   base: {
     height: '100%',
     maxHeight: '800px',
