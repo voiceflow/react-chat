@@ -6,9 +6,10 @@ import { FAMILY } from '@/styles/font';
 import { SIZES } from '@/styles/sizes';
 import { transition } from '@/styles/transitions';
 
+import { messageContainer } from '../MessageContainer/styles.css';
 import { systemMessageContainer } from '../SystemResponse/styles.css';
 
-export const messageContainer = style({
+export const agentMessageContainer = style({
   backgroundColor: COLORS.NEUTRAL_LIGHT[50],
   color: COLORS.NEUTRAL_DARK[900],
   fontFamily: FAMILY,
@@ -101,6 +102,9 @@ export const feedbackButtonContainer = style({
   transition: transition(['opacity']),
   selectors: {
     [`${systemMessageContainer}:hover &`]: {
+      opacity: 1,
+    },
+    [`${messageContainer()}:hover &`]: {
       opacity: 1,
     },
   },
