@@ -82,6 +82,7 @@ export const AgentMessage: React.FC<IAgentMessage> = ({
             );
           },
           li: ({ children, ...props }) => {
+            // NOTE: this accounts for when the last item in a response is a li and we remove the bottom margin from that.
             const position = props.node?.position;
             if (position && position.end.offset === text.length - 1) {
               return (
