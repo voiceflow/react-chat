@@ -7,7 +7,7 @@ import { SIZES } from '@/styles/sizes';
 import { transition } from '@/styles/transitions';
 
 import { messageContainer } from '../MessageContainer/styles.css';
-import { mesageContainerTargetElement, systemMessageContainer } from '../SystemResponse/styles.css';
+import { systemMessageContainer } from '../SystemResponse/styles.css';
 
 export const agentMessageContainer = style({
   backgroundColor: COLORS.NEUTRAL_LIGHT[50],
