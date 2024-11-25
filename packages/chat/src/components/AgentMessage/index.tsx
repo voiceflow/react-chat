@@ -11,6 +11,7 @@ import { FeedbackButton } from '../FeedbackButton';
 import { FeedbackButtonVariant, type IFeedbackButton } from '../FeedbackButton/FeedbackButton.interface';
 import { Icon } from '../Icon';
 import {
+  agentMessageContainer,
   aiIconModifier,
   codeBlockContainer,
   contentStyle,
@@ -18,7 +19,6 @@ import {
   embeddedContent,
   feedbackButtonContainer,
   generatedChin,
-  messageContainer,
 } from './AgentMessage.css';
 import codeTheme from './code-theme';
 import { CopyButton } from './CopyButton';
@@ -48,7 +48,7 @@ export const AgentMessage: React.FC<IAgentMessage> = ({
   const isCodeBlock = content?.startsWith('```javascript');
 
   return (
-    <div className={clsx(messageContainer)}>
+    <div className={clsx(agentMessageContainer)}>
       <Markdown
         children={content}
         className={clsx('markdown', clsx(contentStyle({ isCodeBlock })))}
