@@ -10,7 +10,7 @@ export const promptContainer = recipe({
     bottom: 0,
     width: '100%',
     boxSizing: 'border-box',
-    transition: 'transform 320ms cubic-bezier(0.45, 1.29, 0.64, 1), box-shadow 300ms ease',
+    transition: 'transform 320ms cubic-bezier(0.45, 1.29, 0.64, 1), box-shadow 300ms ease, opacity 300ms ease',
     transform: 'translateY(100%)',
     padding: '12px 12px 30px 12px',
     borderRadius: SIZES.radius.lg,
@@ -20,12 +20,14 @@ export const promptContainer = recipe({
     flexDirection: 'column',
     gap: 8,
     zIndex: 300,
+    opacity: 0,
   },
 
   variants: {
     visible: {
       true: {
         transform: 'translateY(18px)',
+        opacity: 1,
       },
       false: {
         boxShadow: 'none',

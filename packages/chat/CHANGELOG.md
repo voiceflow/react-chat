@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.5.2...@voiceflow/react-chat@2.6.0) (2024-11-25)
+
+### Features
+
+* no bottom margin if list element is last in message (DSN-2562) ([#360](https://github.com/voiceflow/react-chat/issues/360)) ([625f7bf](https://github.com/voiceflow/react-chat/commit/625f7bf2c950b75b99c98df8be68ff71782aac48))
+
+## [2.5.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.5.1...@voiceflow/react-chat@2.5.2) (2024-11-25)
+
+### Bug Fixes
+
+* review updates (COR-0000) ([#350](https://github.com/voiceflow/react-chat/issues/350)) ([4856dd4](https://github.com/voiceflow/react-chat/commit/4856dd471d39cdb7391989be66788f803bf3281d))
+
+## [2.5.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.5.0...@voiceflow/react-chat@2.5.1) (2024-11-25)
+
+### Bug Fixes
+
+* appearence behaviour of feedback (DSN-2527) ([#354](https://github.com/voiceflow/react-chat/issues/354)) ([4efbbcb](https://github.com/voiceflow/react-chat/commit/4efbbcbecf4656ce0f3af591faf4d535a168f9e1))
+
 # [2.5.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.4.1...@voiceflow/react-chat@2.5.0) (2024-11-25)
 
 ### Features
