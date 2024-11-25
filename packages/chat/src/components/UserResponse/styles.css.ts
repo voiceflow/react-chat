@@ -8,7 +8,7 @@ import { SIZES } from '@/styles/sizes';
 
 import { SMALL_AVATAR_SIZE } from '../Avatar/styles.css';
 
-const fadeInSlideUp = keyframes({
+export const fadeInSlideUp = keyframes({
   from: {
     opacity: 0,
     transform: 'translateY(10px)',
