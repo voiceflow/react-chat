@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.4.0...@voiceflow/react-chat@2.4.1) (2024-11-25)
+
+### Bug Fixes
+
+* avatar moves with Carousel cards (COR-0000) ([#349](https://github.com/voiceflow/react-chat/issues/349)) ([bb82258](https://github.com/voiceflow/react-chat/commit/bb822589699dbd0627be66c96581b1fc18782b3e))
+
 # [2.4.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.3.1...@voiceflow/react-chat@2.4.0) (2024-11-25)
 
 ### Features
