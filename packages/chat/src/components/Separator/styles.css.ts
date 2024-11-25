@@ -23,5 +23,6 @@ export const separatorText = style({
   fontFamily: FAMILY,
   fontSize: '12px',
   lineHeight: '17px',
+  fontWeight: 600,
   flexShrink: 0,
 });
