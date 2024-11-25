@@ -32,7 +32,7 @@ export interface PromptProps {
   /**
    * Configuration for the "cancel" action.
    */
-  cancel?: PromptOptionProps;
+  cancel: PromptOptionProps;
 }
 
 /**
@@ -51,11 +51,9 @@ export const Prompt: React.FC<PromptProps> = ({ visible, showOverlay, accept, ca
         <Button variant={ButtonVariant.PRIMARY} large="true" tabIndex={-1} {...accept}>
           {accept.label}
         </Button>
-        {cancel && (
-          <Button variant={ButtonVariant.SECONDARY} large="true" tabIndex={-1} {...cancel}>
-            {cancel.label}
-          </Button>
-        )}
+        <Button variant={ButtonVariant.SECONDARY} large="true" tabIndex={-1} {...cancel}>
+          {cancel.label}
+        </Button>
       </div>
     </>
   );

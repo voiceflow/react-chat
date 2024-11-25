@@ -127,13 +127,14 @@ export const NewChat: React.FC<INewChat> = ({
           extraLinkUrl={extraLinkUrl}
           messageInputProps={{ ...messageInputProps, disableSend: state.indicator, hasEnded }}
           scrollableAreaRef={scrollableAreaRef}
+          onStart={onStart}
         />
       </AutoScrollProvider>
       <Prompt
-        visible={hasAlert || hasEnded}
-        showOverlay={hasAlert && !hasEnded}
+        visible={hasAlert}
+        showOverlay={hasAlert}
         accept={{ label: 'Start new chat', onClick: chain(handleResume, onEnd, onStart) }}
-        cancel={hasEnded ? undefined : { label: 'Cancel', onClick: handleResume }}
+        cancel={{ label: 'Cancel', onClick: handleResume }}
       />
     </div>
   );
