@@ -19,6 +19,7 @@ import {
   embeddedContent,
   feedbackButtonContainer,
   generatedChin,
+  lastListItem,
 } from './AgentMessage.css';
 import codeTheme from './code-theme';
 import { CopyButton } from './CopyButton';
@@ -79,6 +80,18 @@ export const AgentMessage: React.FC<IAgentMessage> = ({
                 {children}
               </div>
             );
+          },
+          li: ({ children, ...props }) => {
+            // NOTE: this accounts for when the last item in a response is a li and we remove the bottom margin from that.
+            const position = props.node?.position;
+            if (position && position.end.offset === text.length - 1) {
+              return (
+                <li className={lastListItem} {...props}>
+                  {children}
+                </li>
+              );
+            }
+            return <li {...props}> {children}</li>;
           },
         }}
       />

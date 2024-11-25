@@ -14,12 +14,10 @@ export const agentMessageContainer = style({
   color: COLORS.NEUTRAL_DARK[900],
   fontFamily: FAMILY,
   position: 'relative',
-
   fontSize: '14px',
   lineHeight: '20px',
   borderRadius: SIZES.radius.sm,
   width: 'fit-content',
-  whiteSpace: 'pre-wrap',
 });
 
 export const contentStyle = recipe({
@@ -108,4 +106,8 @@ export const feedbackButtonContainer = style({
       opacity: 1,
     },
   },
+});
+
+export const lastListItem = style({
+  marginBottom: 0,
 });
