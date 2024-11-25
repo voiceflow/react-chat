@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.6.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.6.1...@voiceflow/react-chat@2.6.2) (2024-11-25)
+
+### Bug Fixes
+
+* dont jank when user starts new chat (COR-4010) ([#362](https://github.com/voiceflow/react-chat/issues/362)) ([dfab0ce](https://github.com/voiceflow/react-chat/commit/dfab0cea6baf283e9a52595fe1d816aad17b89bc))
+
 ## [2.6.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.6.0...@voiceflow/react-chat@2.6.1) (2024-11-25)
 
 ### Bug Fixes
