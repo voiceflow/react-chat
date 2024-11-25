@@ -97,7 +97,7 @@ export const copyButton = style({
 export const feedbackButtonContainer = style({
   opacity: 0,
   position: 'absolute',
-  right: '-24px',
+  right: '-6px',
   bottom: '-14px',
   transition: transition(['opacity']),
   selectors: {
