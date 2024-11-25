@@ -1,7 +1,5 @@
 import { style } from '@vanilla-extract/css';
-import { recipe } from '@vanilla-extract/recipes';
 
-import { COLORS } from '@/styles/colors';
 import { CHAT_WIDTH } from '@/views/ChatWidget/styles.css';
 
 import { SMALL_AVATAR_SIZE } from '../Avatar/styles.css';
@@ -12,19 +10,16 @@ import { MESSAGE_PADDING } from '../SystemResponse/styles.css';
 export const BUTTON_SIZE = 42;
 export const GUTTER_WIDTH = 10;
 
-/**
- * The white space between the carousel and the edge of the Chat widget.
- * This is required because the last card takes up less space than the width
- * of the chat widget.
- */
-const LEFT_SPACE = DIALOG_PADDING + SMALL_AVATAR_SIZE + MESSAGE_PADDING;
+export const avatarStyle = style({
+  alignSelf: 'flex-end',
+});
 
 export const cardsContainer = style({
   position: 'relative',
   whiteSpace: 'nowrap',
   overflow: 'hidden',
-  marginLeft: `-${LEFT_SPACE}px`,
-  paddingLeft: `${LEFT_SPACE}px`,
+  marginLeft: `-${DIALOG_PADDING}px`,
+  paddingLeft: `${DIALOG_PADDING}px`,
   marginRight: `-${DIALOG_PADDING}px`,
   paddingRight: `${DIALOG_PADDING}px`,
 });
@@ -49,26 +44,4 @@ export const lastCardSpacer = style({
   height: 1,
   width: CAROUSEL_SPACER,
   minWidth: CAROUSEL_SPACER,
-});
-
-export const fauxBackground = recipe({
-  base: {
-    position: 'absolute',
-    backgroundColor: COLORS.white,
-    width: '100%',
-    top: 0,
-    right: 0,
-    bottom: 0,
-    transition: 'left 0.3s',
-  },
-  variants: {
-    afterFirstCard: {
-      true: {
-        left: '-44px',
-      },
-      false: {
-        left: 0,
-      },
-    },
-  },
 });
