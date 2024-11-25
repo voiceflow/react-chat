@@ -1,4 +1,5 @@
 import type { RuntimeAction } from '@voiceflow/sdk-runtime';
+import { serializeToText } from '@voiceflow/slate-serializer/text';
 import { useContext } from 'react';
 
 import { RuntimeStateAPIContext } from '@/contexts';
@@ -95,6 +96,15 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
 
   if (!messages.length && !actions.length) return null;
 
+  const allTextContentForMessage = visibleMessages.reduce<string>((acc, message) => {
+    if (message.type === MessageType.TEXT) {
+      return (
+        acc + (acc ? '\n' : '') + (typeof message.text !== 'string' ? serializeToText(message.text) : message.text)
+      );
+    }
+    return acc;
+  }, '');
+
   return (
     <MessageContainer isLast={isLast}>
       {visibleMessages.map((message, index) => {
@@ -115,11 +125,16 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
               timestamp={timestamp}
               isLast={isLast}
               feedback={showFeedback ? feedback : undefined}
+              textContent={allTextContentForMessage}
               key={index}
             />
             {feedback && isLast && complete && lastMessageInGroup && (
               <div className={feedbackContainer}>
-                <FeedbackButton {...feedback} variant={FeedbackButtonVariant.LAST_RESPONSE} />
+                <FeedbackButton
+                  {...feedback}
+                  textContent={allTextContentForMessage}
+                  variant={FeedbackButtonVariant.LAST_RESPONSE}
+                />
               </div>
             )}
           </>

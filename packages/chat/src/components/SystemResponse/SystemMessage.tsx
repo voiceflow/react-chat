@@ -49,12 +49,24 @@ export interface SystemMessageProps {
    * If this is the last message recieved
    */
   isLast?: boolean;
+
+  /**
+   * The entire text content of a response over a number of responses
+   */
+  textContent?: string;
 }
 
 /**
- * An individual message within a system response.
+ * An individual message within a system response
  */
-export const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, message, feedback, isLast, withImage }) => {
+export const SystemMessage: React.FC<SystemMessageProps> = ({
+  avatar,
+  message,
+  feedback,
+  isLast,
+  withImage,
+  textContent,
+}) => {
   const { config } = useContext(RuntimeStateAPIContext);
 
   return (
@@ -71,7 +83,7 @@ export const SystemMessage: React.FC<SystemMessageProps> = ({ avatar, message, f
             <div className={messageContainer}>
               {match(message)
                 .with({ type: MessageType.TEXT }, ({ text, ai }) => (
-                  <AgentMessage text={text} ai={ai} isLast={isLast} feedback={feedback} />
+                  <AgentMessage text={text} ai={ai} isLast={isLast} feedback={feedback} textContent={textContent} />
                 ))
                 .with({ type: MessageType.IMAGE }, ({ url }) => <Image image={url} mode={config.render?.mode} />)
                 .with({ type: MessageType.CARD }, (props) => <Card {...R.omit(props, ['type'])} />)
