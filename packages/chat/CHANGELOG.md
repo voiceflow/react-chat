@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.3.1...@voiceflow/react-chat@2.4.0) (2024-11-25)
+
+### Features
+
+* pass chat window prop to chat widget component to render custom chat window ([#348](https://github.com/voiceflow/react-chat/issues/348)) ([41f00ed](https://github.com/voiceflow/react-chat/commit/41f00ed7c0ce17d896d89edcd3c33a9e94fa1a6e))
+
 ## [2.3.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.3.0...@voiceflow/react-chat@2.3.1) (2024-11-21)
 
 ### Bug Fixes
