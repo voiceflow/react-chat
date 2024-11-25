@@ -61,5 +61,3 @@ export const feedbackContainer = style({
   zIndex: 1,
   marginLeft: MESSAGE_PADDING + SMALL_AVATAR_SIZE - 6,
 });
-
-export const mesageContainerTargetElement = style({});
