@@ -7,6 +7,7 @@ import { Button } from '../Button';
 import { ButtonVariant } from '../Button/constants';
 import type { IMessageInput } from '../MessageInput';
 import { MessageInput } from '../MessageInput';
+import { promptContainer } from '../Prompt/styles.css';
 import { ScrollToBottom } from '../ScrollToBottom';
 import {
   buttonsContainer,
@@ -33,6 +34,11 @@ export interface INewFooter {
    * A callback to submit a user response.
    */
   onSend?: ((message: string) => Promise<void>) | undefined;
+
+  /**
+   * A callback to start a new conversation.
+   */
+  onStart?: (() => Promise<void>) | undefined;
 }
 
 export const NewFooter: React.FC<INewFooter> = ({
@@ -42,10 +48,17 @@ export const NewFooter: React.FC<INewFooter> = ({
   extraLinkText,
   extraLinkUrl,
   scrollableAreaRef,
+  onStart,
 }) => {
   const showExtraLink = extraLinkText && extraLinkUrl;
   return (
     <div className={clsx(ClassName.FOOTER, footerContainer)}>
+      <div className={promptContainer({ visible: messageInputProps.hasEnded })}>
+        <Button variant={ButtonVariant.PRIMARY} large="true" onClick={onStart}>
+          Start new chat
+        </Button>
+      </div>
+
       {(buttons?.length ?? 0) > 0 && (
         <div className={buttonsContainer}>
           {buttons?.map((button) => (
