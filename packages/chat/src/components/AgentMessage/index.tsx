@@ -80,6 +80,21 @@ export const AgentMessage: React.FC<IAgentMessage> = ({
               </div>
             );
           },
+<<<<<<< Updated upstream
+=======
+          li: ({ children, ...props }) => {
+            // NOTE: this accounts for when the last item in a response is a li and we remove the bottom margin from that.
+            const position = props.node?.position;
+            if (position && position.end.offset === text.length - 1) {
+              return (
+                <li className={lastListItem} {...props}>
+                  {children}
+                </li>
+              );
+            }
+            return <li {...props}>{children}</li>;
+          },
+>>>>>>> Stashed changes
         }}
       />
       {children && <div className={embeddedContent}>{children}</div>}

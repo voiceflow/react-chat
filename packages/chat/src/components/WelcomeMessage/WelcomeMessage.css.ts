@@ -1,8 +1,8 @@
 import { keyframes, style } from '@vanilla-extract/css';
 
-import { duration } from '@/styles/animations';
 import { COLORS } from '@/styles/colors';
 import { FAMILY } from '@/styles/font';
+import { widgetContainer } from '@/views/ChatWidget/styles.css';
 
 export const fadeIn = keyframes({
   '0%': {
@@ -15,6 +15,17 @@ export const fadeIn = keyframes({
   },
 });
 
+export const fadeOut = keyframes({
+  '0%': {
+    opacity: 1,
+    transform: 'translateY(0)',
+  },
+  '100%': {
+    opacity: 0,
+    transform: 'translateY(-10px)',
+  },
+});
+
 export const welcomeMessageContainer = style({
   display: 'flex',
   flexDirection: 'column',
@@ -23,7 +34,15 @@ export const welcomeMessageContainer = style({
   padding: '48px 20px 28px 20px',
   textAlign: 'center',
   opacity: 0,
-  animation: `${fadeIn} ${duration.default} ease-in-out ${duration.default} forwards`,
+  selectors: {
+    [`.${widgetContainer.classNames.variants.withChat.true} &`]: {
+      animation: `${fadeIn} 300ms ease-in forwards`,
+      animationDelay: '300ms',
+    },
+    [`.${widgetContainer.classNames.variants.withChat.false} &`]: {
+      animation: `${fadeOut} 300ms ease-out forwards`,
+    },
+  },
 });
 
 export const avatarContainer = style({

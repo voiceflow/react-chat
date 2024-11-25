@@ -1,12 +1,12 @@
 import { keyframes, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
-import { duration } from '@/styles/animations';
 import { COLORS } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
 import { FAMILY } from '@/styles/font';
 import { SIZES } from '@/styles/sizes';
 import { transition } from '@/styles/transitions';
+import { widgetContainer } from '@/views/ChatWidget/styles.css';
 
 const BUTTON_ROW_MARGIN = 10;
 
@@ -21,6 +21,17 @@ const fadeInAndSlideUp = keyframes({
   },
 });
 
+const fadeOutSlideDown = keyframes({
+  from: {
+    opacity: 1,
+    transform: 'translateY(0)',
+  },
+  to: {
+    opacity: 0,
+    transform: 'translateY(10px)',
+  },
+});
+
 const fadeIn = keyframes({
   from: {
     opacity: 0,
@@ -32,7 +43,21 @@ const fadeIn = keyframes({
 
 export const footerContainer = style({
   width: '100%',
-  animation: `${fadeInAndSlideUp} ${duration.default} ease-in-out`,
+
+  selectors: {
+    [`.${widgetContainer.classNames.variants.withChat.true} &`]: {
+      animation: `${fadeInAndSlideUp} 300ms ease-in`,
+      opacity: 1,
+      pointerEvents: 'auto',
+      transform: 'translateY(0)',
+    },
+    [`.${widgetContainer.classNames.variants.withChat.false} &`]: {
+      animation: `${fadeOutSlideDown} 300ms ease-out`,
+      opacity: 0,
+      pointerEvents: 'none',
+      transform: 'translateY(100%)',
+    },
+  },
 });
 
 export const buttonsContainer = style({
