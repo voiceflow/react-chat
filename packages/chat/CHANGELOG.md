@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.6.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.6.0...@voiceflow/react-chat@2.6.1) (2024-11-25)
+
+### Bug Fixes
+
+* glitches with MessageInput behavior (COR-4014) ([#359](https://github.com/voiceflow/react-chat/issues/359)) ([a66e842](https://github.com/voiceflow/react-chat/commit/a66e8426d12990a5bf156af28a40e10ffb08cf27))
+
 # [2.6.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.5.2...@voiceflow/react-chat@2.6.0) (2024-11-25)
 
 ### Features
