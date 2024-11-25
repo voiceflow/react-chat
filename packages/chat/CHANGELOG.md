@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.5.2...@voiceflow/react-chat@2.6.0) (2024-11-25)
+
+### Features
+
+* no bottom margin if list element is last in message (DSN-2562) ([#360](https://github.com/voiceflow/react-chat/issues/360)) ([625f7bf](https://github.com/voiceflow/react-chat/commit/625f7bf2c950b75b99c98df8be68ff71782aac48))
+
 ## [2.5.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.5.1...@voiceflow/react-chat@2.5.2) (2024-11-25)
 
 ### Bug Fixes
