@@ -108,6 +108,7 @@ export const circle = recipe({
     width: '54px',
     minWidth: '54px',
     minHeight: '54px',
+    background: 'rgba(0, 0, 0, 0.06)',
   },
   variants: {
     type: {
@@ -140,6 +141,7 @@ export const imageStyles = style({
   height: '100%',
   width: '100%',
   objectFit: 'cover',
+  transition: 'transform 1s',
 });
 
 export const buttonContent = recipe({
