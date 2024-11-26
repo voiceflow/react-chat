@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.6.3](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.6.2...@voiceflow/react-chat@2.6.3) (2024-11-26)
+
+### Bug Fixes
+
+* animation synced up (DSN-2567) ([#363](https://github.com/voiceflow/react-chat/issues/363)) ([4c40948](https://github.com/voiceflow/react-chat/commit/4c409481d2372af8e11f3859cf8a5f635fa2cf95))
+
 ## [2.6.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.6.1...@voiceflow/react-chat@2.6.2) (2024-11-25)
 
 ### Bug Fixes
