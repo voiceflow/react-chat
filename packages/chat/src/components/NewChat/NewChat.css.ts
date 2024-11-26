@@ -1,6 +1,7 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
+import { duration } from '@/styles/animations';
 import { COLORS } from '@/styles/colors';
 import { transition } from '@/styles/transitions';
 import { widgetContainer } from '@/views/ChatWidget/styles.css';
@@ -70,12 +71,12 @@ export const chatContentWrapper = style({
   opacity: 0,
   selectors: {
     [`.${widgetContainer.classNames.variants.withChat.true} &`]: {
-      animation: `${fadeIn} .3s ease-in forwards`,
-      animationDelay: '.6s;',
+      animation: `${fadeIn} ${duration.fast} ease-in forwards`,
+      animationDelay: '.6s',
       pointerEvents: 'auto',
     },
     [`.${widgetContainer.classNames.variants.withChat.false} &`]: {
-      animation: `${fadeOut} .3s ease-out`,
+      animation: `${fadeOut} ${duration.fast} ease-out`,
       pointerEvents: 'none',
     },
   },

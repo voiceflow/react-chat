@@ -1,5 +1,6 @@
 import { keyframes, style } from '@vanilla-extract/css';
 
+import { duration } from '@/styles/animations';
 import { COLORS } from '@/styles/colors';
 import { FAMILY } from '@/styles/font';
 import { widgetContainer } from '@/views/ChatWidget/styles.css';
@@ -36,11 +37,11 @@ export const welcomeMessageContainer = style({
   opacity: 0,
   selectors: {
     [`.${widgetContainer.classNames.variants.withChat.true} &`]: {
-      animation: `${fadeIn} 300ms ease-in forwards`,
-      animationDelay: '300ms',
+      animation: `${fadeIn} ${duration.fast} ease-in forwards`,
+      animationDelay: duration.slow,
     },
     [`.${widgetContainer.classNames.variants.withChat.false} &`]: {
-      animation: `${fadeOut} 300ms ease-out forwards`,
+      animation: `${fadeOut} ${duration.fast} ease-out forwards`,
     },
   },
 });
