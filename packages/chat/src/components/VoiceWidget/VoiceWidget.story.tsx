@@ -17,8 +17,6 @@ export default meta;
 
 export const Base: Story = {
   args: {
-    // from our live agent, public
-
     imageSrc: logo,
     footer: {
       extraLinkText: 'Privacy',
