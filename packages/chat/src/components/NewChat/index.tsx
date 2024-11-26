@@ -11,7 +11,7 @@ import { type INewFooter, NewFooter } from '../NewFooter';
 import { Prompt } from '../Prompt';
 import { Separator } from '../Separator';
 import { type IWelcomeMessage, WelcomeMessage } from '../WelcomeMessage';
-import { bottomSpacer, chatContainer, chatEndedContainer, dialogContainer } from './NewChat.css';
+import { bottomSpacer, chatContainer, chatContentWrapper, chatEndedContainer, dialogContainer } from './NewChat.css';
 
 export interface INewChat
   extends HeaderProps,
@@ -112,13 +112,16 @@ export const NewChat: React.FC<INewChat> = ({
       <AutoScrollProvider target={scrollableAreaRef}>
         <div ref={scrollableAreaRef} className={dialogContainer}>
           <WelcomeMessage title={title} description={description} avatar={avatar} />
-          {children}
-          {hasEnded && !!state.session.turns.length && (
-            <div className={chatEndedContainer}>
-              <Separator text="Chat has ended" />
-            </div>
-          )}
-          <div className={bottomSpacer({ hasEnded })} />
+          <div className={chatContentWrapper}>
+            {children}
+
+            {hasEnded && !!state.session.turns.length && (
+              <div className={chatEndedContainer}>
+                <Separator text="Chat has ended" />
+              </div>
+            )}
+            <div className={bottomSpacer({ hasEnded })} />
+          </div>
         </div>
         <NewFooter
           buttons={buttons}

@@ -1,8 +1,12 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
+import { duration } from '@/styles/animations';
 import { COLORS } from '@/styles/colors';
 import { transition } from '@/styles/transitions';
+import { widgetContainer } from '@/views/ChatWidget/styles.css';
+
+import { fadeIn, fadeOut } from '../Header/styles.css';
 
 export const DIALOG_PADDING = 20;
 
@@ -61,4 +65,19 @@ export const bottomSpacer = recipe({
 
 export const chatEndedContainer = style({
   padding: '4px 0',
+});
+
+export const chatContentWrapper = style({
+  opacity: 0,
+  selectors: {
+    [`.${widgetContainer.classNames.variants.withChat.true} &`]: {
+      animation: `${fadeIn} ${duration.fast} ease-in forwards`,
+      animationDelay: '.6s',
+      pointerEvents: 'auto',
+    },
+    [`.${widgetContainer.classNames.variants.withChat.false} &`]: {
+      animation: `${fadeOut} ${duration.fast} ease-out`,
+      pointerEvents: 'none',
+    },
+  },
 });

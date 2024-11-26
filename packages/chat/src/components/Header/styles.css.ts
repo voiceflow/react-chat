@@ -1,15 +1,14 @@
 import { keyframes, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
-import { duration } from '@/styles/animations';
 import { COLORS } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
 import { FAMILY, hideTextOverflow } from '@/styles/font';
 import { SIZES } from '@/styles/sizes';
 import { transition } from '@/styles/transitions';
+import { widgetContainer } from '@/views/ChatWidget/styles.css';
 
 import { buttonReset } from '../Button/reset.css';
-
 export const fadeIn = keyframes({
   from: {
     opacity: 0,
@@ -21,13 +20,39 @@ export const fadeIn = keyframes({
   },
 });
 
+export const fadeOut = keyframes({
+  from: {
+    opacity: 1,
+    transform: 'translateY(0)',
+  },
+  to: {
+    opacity: 0,
+    transform: 'translateY(-10px)',
+  },
+});
+
 export const headerContainer = style({
   display: 'flex',
   alignItems: 'center',
   backgroundColor: PALETTE.colors[500],
   padding: '12px 16px 12px 20px',
   height: parseInt(SIZES.sm, 10) + 24, // Add the top and bottom padding
-  animation: `${fadeIn} ${duration.default} ease-in`,
+  animation: `${fadeIn} 300ms ease-in`,
+
+  selectors: {
+    [`.${widgetContainer.classNames.variants.withChat.true} &`]: {
+      animation: `${fadeIn} 300ms ease-in`,
+      opacity: 1,
+      pointerEvents: 'auto',
+      transform: 'translateY(0)',
+    },
+    [`.${widgetContainer.classNames.variants.withChat.false} &`]: {
+      animation: `${fadeOut} 300ms ease-out`,
+      opacity: 0,
+      pointerEvents: 'none',
+      transform: 'translateY(100%)',
+    },
+  },
 });
 
 export const headerInnerContainer = style({

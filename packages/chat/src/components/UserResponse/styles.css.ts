@@ -10,7 +10,7 @@ import { SMALL_AVATAR_SIZE } from '../Avatar/styles.css';
 
 const LEFT_MARGIN = SMALL_AVATAR_SIZE + 12;
 
-const fadeInSlideUp = keyframes({
+export const fadeInSlideUp = keyframes({
   from: {
     opacity: 0,
     transform: 'translateY(10px)',
