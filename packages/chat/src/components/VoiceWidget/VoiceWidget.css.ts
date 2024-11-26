@@ -6,6 +6,14 @@ import { COLORS } from '@/styles/colors';
 import { FAMILY } from '@/styles/font';
 import { transition } from '@/styles/transitions';
 
+export const voiceWrapper = style({
+  display: 'flex',
+  // justifyContent: 'center',
+  alignItems: 'center',
+  flexDirection: 'column',
+  width: 'fit-content',
+});
+
 export const voiceWidgetContainer = style({
   display: 'flex',
   justifyContent: 'center',

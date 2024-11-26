@@ -18,17 +18,24 @@ export default meta;
 export const Base: Story = {
   args: {
     children: <MockImage />,
+    footer: {
+      extraLinkText: 'Privacy',
+      extraLinkUrl: 'https://www.google.com',
+      showPoweredBy: true,
+    },
   },
 };
 
-// export const InnerCircle: Story = {
-//   args: {
-//     children: <ShrinkingCircle />,
-//   },
-// };
+export const Listening: Story = {
+  args: {
+    ...Base.args,
+    isListening: true,
+  },
+};
 
-// export const Gradient: Story = {
-//   args: {
-//     children: <MovingGradient />,
-//   },
-// };
+export const Talking: Story = {
+  args: {
+    ...Base.args,
+    isTalking: true,
+  },
+};
