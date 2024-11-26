@@ -68,19 +68,15 @@ export const chatEndedContainer = style({
 
 export const chatContentWrapper = style({
   opacity: 0,
-  animationDelay: '900ms',
   selectors: {
     [`.${widgetContainer.classNames.variants.withChat.true} &`]: {
-      animation: `${fadeIn} 300ms ease-in`,
-      opacity: 1,
+      animation: `${fadeIn} .3s ease-in forwards`,
+      animationDelay: '.6s;',
       pointerEvents: 'auto',
-      transform: 'translateY(0)',
     },
     [`.${widgetContainer.classNames.variants.withChat.false} &`]: {
-      animation: `${fadeOut} 300ms ease-out`,
-      opacity: 0,
+      animation: `${fadeOut} .3s ease-out`,
       pointerEvents: 'none',
-      transform: 'translateY(100%)',
     },
   },
 });
