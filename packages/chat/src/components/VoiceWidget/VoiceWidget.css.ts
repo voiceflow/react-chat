@@ -56,7 +56,7 @@ export const controlSection = recipe({
   variants: {
     type: {
       full: {
-        gap: '8px',
+        gap: '6px',
       },
       expanded: {
         alignItems: 'center',
@@ -113,10 +113,10 @@ export const circle = recipe({
   variants: {
     type: {
       full: {
-        height: '54px',
-        width: '54px',
-        minWidth: '54px',
-        minHeight: '54px',
+        height: '58px',
+        width: '58px',
+        minWidth: '58px',
+        minHeight: '58px',
         marginRight: '16px',
       },
       expanded: {
@@ -141,7 +141,7 @@ export const imageStyles = style({
   height: '100%',
   width: '100%',
   objectFit: 'cover',
-  transition: 'transform 1s',
+  transition: 'transform .5s',
 });
 
 export const buttonContent = recipe({

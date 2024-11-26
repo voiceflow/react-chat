@@ -63,16 +63,13 @@ export const VoiceWidget: React.FC<IVoiceWidget> = ({ imageSrc, variant = 'full'
   } else if (isTalking) {
     title = 'Talk to interupt';
   }
-  const baseScale = 1; // when silent
-  const scaleFactor = 0.05; // Controls how much it shrinks with loudness
-  const scale = amplitude > 2 ? Math.max(0.3, baseScale - amplitude * scaleFactor) : baseScale;
 
   return (
     <div className={voiceWrapper}>
       <div className={voiceWidgetContainer({ type: variant })}>
         <div className={circle({ type: variant })}>
           <img
-            style={{ transform: `scale(${scale})` }}
+            style={{ transform: `scale(${amplitude})` }}
             src={imageSrc}
             alt="agent brand image"
             className={imageStyles}
