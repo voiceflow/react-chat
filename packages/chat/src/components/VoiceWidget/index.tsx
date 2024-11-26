@@ -10,15 +10,18 @@ import {
   buttonText,
   circle,
   controlSection,
+  imageStyles,
+  linkSectionModifier,
   titleStyle,
   voiceWidgetContainer,
   voiceWrapper,
 } from './VoiceWidget.css';
 
 interface IVoiceWidget {
-  children: React.ReactNode;
+  imageSrc: string;
   isListening?: boolean;
   isTalking?: boolean;
+  variant: 'full' | 'expanded' | 'compact';
   footer: {
     extraLinkText: string;
     extraLinkUrl: string;
@@ -26,7 +29,7 @@ interface IVoiceWidget {
   };
 }
 
-export const VoiceWidget: React.FC<IVoiceWidget> = ({ children, isListening, isTalking, footer }) => {
+export const VoiceWidget: React.FC<IVoiceWidget> = ({ imageSrc, variant = 'full', isListening, isTalking, footer }) => {
   const [isCalling, setIsCalling] = useState(false);
   const { showPoweredBy, extraLinkText, extraLinkUrl } = footer;
   const handleButtonClick = () => {
@@ -56,17 +59,18 @@ export const VoiceWidget: React.FC<IVoiceWidget> = ({ children, isListening, isT
   } else if (isTalking) {
     title = 'Talk to interupt';
   }
-
   return (
     <div className={voiceWrapper}>
-      <div className={voiceWidgetContainer}>
-        <div className={circle}>{children}</div>
-        <div className={controlSection}>
-          <div className={titleStyle}>{title}</div>
+      <div className={voiceWidgetContainer({ type: variant })}>
+        <div className={circle({ type: variant })}>
+          <img src={imageSrc} alt="agent brand image" className={imageStyles} />
+        </div>
+        <div className={controlSection({ type: variant })}>
+          {variant !== 'compact' && <div className={titleStyle}>{title}</div>}
           <Button
             onClick={handleButtonClick}
             variant={isCalling ? ButtonVariant.SECONDARY : ButtonVariant.PRIMARY}
-            className={buttonModifier}
+            className={buttonModifier({ type: variant })}
           >
             <span className={buttonContent({ isVisible: isCalling })}>
               <ButtonIcon svg="endCall" />
@@ -78,8 +82,18 @@ export const VoiceWidget: React.FC<IVoiceWidget> = ({ children, isListening, isT
             </span>
           </Button>
         </div>
+        {variant === 'expanded' && (
+          <BottomLinks
+            extraLinkText={extraLinkText}
+            extraLinkUrl={extraLinkUrl}
+            showPoweredBy={showPoweredBy}
+            className={linkSectionModifier}
+          />
+        )}
       </div>
-      <BottomLinks extraLinkText={extraLinkText} extraLinkUrl={extraLinkUrl} showPoweredBy={showPoweredBy} />
+      {variant !== 'expanded' && (
+        <BottomLinks extraLinkText={extraLinkText} extraLinkUrl={extraLinkUrl} showPoweredBy={showPoweredBy} />
+      )}
     </div>
   );
 };
