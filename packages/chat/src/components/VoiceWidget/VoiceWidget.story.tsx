@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { WithDefaultPalette } from '@/storybook/decorators';
 
 import { VoiceWidget } from '.';
-import { MockImage } from './MockVoiceWidgetImage';
 
 type Story = StoryObj<typeof VoiceWidget>;
 const meta: Meta<typeof VoiceWidget> = {
@@ -17,7 +16,8 @@ export default meta;
 
 export const Base: Story = {
   args: {
-    children: <MockImage />,
+    imageSrc:
+      'https://thumbs.dreamstime.com/b/light-abstract-empty-square-transparent-background-pattern-vector-231364928.jpg',
     footer: {
       extraLinkText: 'Privacy',
       extraLinkUrl: 'https://www.google.com',
@@ -37,5 +37,21 @@ export const Talking: Story = {
   args: {
     ...Base.args,
     isTalking: true,
+  },
+};
+
+export const Compact: Story = {
+  args: {
+    ...Base.args,
+    variant: 'compact',
+    isListening: true,
+  },
+};
+
+export const Expand: Story = {
+  args: {
+    ...Base.args,
+    variant: 'expanded',
+    isListening: true,
   },
 };
