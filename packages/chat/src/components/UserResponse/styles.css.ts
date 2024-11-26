@@ -8,6 +8,8 @@ import { SIZES } from '@/styles/sizes';
 
 import { SMALL_AVATAR_SIZE } from '../Avatar/styles.css';
 
+const LEFT_MARGIN = SMALL_AVATAR_SIZE + 12;
+
 const fadeInSlideUp = keyframes({
   from: {
     opacity: 0,
@@ -29,8 +31,10 @@ export const messageContainer = style({
   lineHeight: '20px',
   justifySelf: 'flex-end',
   width: 'fit-content',
+  maxWidth: `calc(100% - ${LEFT_MARGIN}px)`,
+  wordWrap: 'break-word',
   borderRadius: SIZES.radius.sm,
-  marginLeft: SMALL_AVATAR_SIZE + 12,
+  marginLeft: LEFT_MARGIN,
   animation: `${fadeInSlideUp} ${duration.fast} ease-out`,
 });
 
