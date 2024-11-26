@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 
 const useMicrophoneAmplitude = (): number => {
   const [amplitude, setAmplitude] = useState<number>(0);
-  const [dampenedAmplitude, setDampenedAmplitude] = useState<number>(0); // New state for smoothed amplitude
   const [_, setAudioContext] = useState<AudioContext | null>(null);
 
   useEffect(() => {
@@ -49,18 +48,10 @@ const useMicrophoneAmplitude = (): number => {
     };
   }, []);
 
-  // Smooth out amplitude changes with a damping effect
-  useEffect(() => {
-    const smoothingFactor = 0.7; // Lower for smoother transitions, higher for faster response
-    const dampen = () => {
-      setDampenedAmplitude((prev) => prev + (amplitude - prev) * smoothingFactor);
-      requestAnimationFrame(dampen);
-    };
-
-    dampen();
-  }, [amplitude]);
-
-  return dampenedAmplitude; // Return the smoothed amplitude
+  // Calculate scale based on instantaneous amplitude
+  const baseScale = 1; // when silent
+  const scaleFactor = 0.1; // Controls how much it shrinks with loudness
+  return amplitude > 2 ? Math.max(0.66, baseScale - amplitude * scaleFactor) : baseScale;
 };
 
 export default useMicrophoneAmplitude;
