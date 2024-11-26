@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { WithDefaultPalette } from '@/storybook/decorators';
 
+import logo from '../../assets/vf_logo.png';
 import { VoiceWidget } from '.';
 
 type Story = StoryObj<typeof VoiceWidget>;
@@ -16,8 +17,9 @@ export default meta;
 
 export const Base: Story = {
   args: {
-    imageSrc:
-      'https://thumbs.dreamstime.com/b/light-abstract-empty-square-transparent-background-pattern-vector-231364928.jpg',
+    // from our live agent, public
+
+    imageSrc: logo,
     footer: {
       extraLinkText: 'Privacy',
       extraLinkUrl: 'https://www.google.com',
