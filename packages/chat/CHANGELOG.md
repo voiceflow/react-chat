@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.6.4](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.6.3...@voiceflow/react-chat@2.6.4) (2024-11-26)
+
+### Bug Fixes
+
+* limit the width of user messages (COR-0000) ([#367](https://github.com/voiceflow/react-chat/issues/367)) ([461ea70](https://github.com/voiceflow/react-chat/commit/461ea7028af9537fdd56e7219e60b0b35cd86e6a))
+
 ## [2.6.3](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.6.2...@voiceflow/react-chat@2.6.3) (2024-11-26)
 
 ### Bug Fixes
