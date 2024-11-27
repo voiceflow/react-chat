@@ -107,6 +107,14 @@ jobs:
           to: s3://cdn.voiceflow.com/widget
           clean_destination: false
 
+  dummy-job:
+    docker:
+      - image: cimg/base:current-22.04
+    steps:
+      - run:
+          name: 'Skipping since branch is not gtmq_ or trying and not forcing execution'
+          command: circleci-agent step halt
+
 workflows:
   test-and-release:
     jobs:
@@ -142,6 +150,12 @@ workflows:
                   else
                     echo "Skipping Chromatic on non-PR or master branch."
                   fi
+
+      - dummy-job:
+          name: UI Tests
+          filters:
+            branches:
+              only: /^(master|trying|gtmq_.+)$/
 
       - test:
           <<: *slack-fail-post-step
