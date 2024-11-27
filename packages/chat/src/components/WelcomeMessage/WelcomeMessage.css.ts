@@ -53,7 +53,7 @@ export const avatarContainer = style({
 });
 
 export const welcomeMessageTitle = style({
-  marginBottom: '4px',
+  marginBottom: '2px',
   fontSize: '22px',
   fontWeight: 700,
   color: COLORS.NEUTRAL_DARK[900],
