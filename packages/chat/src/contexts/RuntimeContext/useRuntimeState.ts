@@ -1,4 +1,4 @@
-import type { BaseRequest } from '@voiceflow/dtos-interact';
+import type { BaseRequest, WidgetSettings } from '@voiceflow/dtos-interact';
 import { isTextRequest, RequestType } from '@voiceflow/dtos-interact';
 import type { TraceDeclaration } from '@voiceflow/sdk-runtime';
 import cuid from 'cuid';
@@ -6,7 +6,6 @@ import { useEffect, useRef, useState } from 'react';
 
 import { DEFAULT_MESSAGE_DELAY, MessageType } from '@/components/SystemResponse/constants';
 import { isIOS } from '@/device';
-import type { AssistantOptions } from '@/dtos/AssistantOptions.dto';
 import type { ChatConfig } from '@/dtos/ChatConfig.dto';
 import { useStateRef } from '@/hooks/useStateRef';
 import { useLocalStorageState } from '@/hooks/useStorage';
@@ -27,7 +26,7 @@ import { useNoReply } from './useNoReply';
 import { createContext, useRuntimeAPI } from './useRuntimeAPI';
 
 export interface Settings {
-  assistant: AssistantOptions;
+  assistant: WidgetSettings;
   config: ChatConfig;
   traceHandlers?: TraceDeclaration<RuntimeMessage, any>[];
 }
@@ -43,7 +42,7 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
   const [isOpen, setOpen] = useState(false);
   const [audioOutput, setAudioOutput, audioOutputRef] = useLocalStorageState(
     'audio-output',
-    assistant.defaultAudioOutput ?? false
+    assistant.chat.voiceOutput ?? false
   );
 
   const [session, setSession, sessionRef] = useStateRef<Required<SessionOptions>>(() => ({

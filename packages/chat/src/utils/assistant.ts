@@ -1,28 +1,44 @@
+import { type WidgetSettings, WidgetSettingsChatSettingsDTO, WidgetSettingsDTO } from '@voiceflow/dtos-interact';
 import { VoiceflowRuntime } from '@voiceflow/sdk-runtime';
 import type { PartialDeep } from 'type-fest';
+import type { z } from 'zod';
 
-import type { RawAssistantOptions } from '@/dtos/AssistantOptions.dto';
-import { AssistantOptions } from '@/dtos/AssistantOptions.dto';
 import type { ChatConfig } from '@/dtos/ChatConfig.dto';
+
+type RawWidgetSettings = z.input<typeof WidgetSettingsDTO>;
 
 export const mergeAssistantOptions = async (
   config: ChatConfig,
-  overrides: RawAssistantOptions
-): Promise<AssistantOptions> => {
+  overrides: RawWidgetSettings
+): Promise<WidgetSettings> => {
   const { versionID } = config;
 
   // fetch remote publishing config
   const runtime = new VoiceflowRuntime(config);
 
   const publishing = await runtime
-    .getPublishing({ ...(versionID && { versionID }) })
-    .then((x) => x as PartialDeep<AssistantOptions>)
+    .getPublishing({ ...(versionID && { versionID }), chatVersion: 2 })
+    .then((x) => x as PartialDeep<WidgetSettings>)
     .catch((error) => {
       console.error(error);
       return null;
     });
 
-  return AssistantOptions.parse({
+  const commonSettings = WidgetSettingsChatSettingsDTO.parse({
+    ...publishing?.common,
+    ...overrides.common,
+    // watermark can not be overridden with local config
+    poweredBy: publishing?.common?.poweredBy,
+  });
+
+  return WidgetSettingsDTO.parse({
+    ...publishing,
+    ...overrides,
+    common: commonSettings,
+    // TODO: Make sure 'extensions' are added
+  });
+
+  /* return AssistantOptions.parse({
     ...publishing,
     ...overrides,
     // watermark can not be overridden with local config
@@ -33,5 +49,5 @@ export const mergeAssistantOptions = async (
       ...overrides?.spacing,
     },
     extensions: [...(publishing?.extensions ?? []), ...(overrides?.extensions ?? [])],
-  });
+  }); */
 };

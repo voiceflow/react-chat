@@ -24,7 +24,7 @@ const setStorageSession = (storage: Storage, projectID: string, options: Session
 };
 
 //  we can't use function default param `userID = cuid()`, cause it'll break sessions for anonymous users (when the userID is not provided by app)
-const resolveSession = (storage: Storage, projectID: string, userID?: string) => {
+export const resolveSession = (storage: Storage, projectID: string, userID?: string) => {
   const session = getStorageSession(storage, projectID);
 
   if (!session || (userID && session.userID !== userID)) {

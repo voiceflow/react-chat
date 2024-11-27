@@ -7480,6 +7480,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@voiceflow/dtos-interact@npm:1.9.0":
+  version: 1.9.0
+  resolution: "@voiceflow/dtos-interact@npm:1.9.0"
+  peerDependencies:
+    zod: ^3
+  checksum: 676a4d808f5f1191703fdc4b27f0d059774141bf9a4c2294bac16c25786fd2efd0e5a15c9637ae807ee2764db3be6a14c259e686b03beac04df341aee2795694
+  languageName: node
+  linkType: hard
+
 "@voiceflow/eslint-config@npm:7.5.0":
   version: 7.5.0
   resolution: "@voiceflow/eslint-config@npm:7.5.0"
@@ -7651,7 +7660,7 @@ __metadata:
     "@vanilla-extract/vite-plugin": 4.0.15
     "@vitejs/plugin-react": 4.2.1
     "@voiceflow/base-types": 2.113.1
-    "@voiceflow/dtos-interact": 1.1.0
+    "@voiceflow/dtos-interact": 1.9.0
     "@voiceflow/sdk-runtime": "workspace:*"
     "@voiceflow/slate-serializer": 1.5.5
     "@voiceflow/test-common": 1.10.3
