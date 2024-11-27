@@ -16,7 +16,7 @@ export const ScrollToBottom: React.FC<ScrollToBottomProps> = ({ scrollableAreaRe
   const pauseCheck = useRef(false);
 
   useEffect(() => {
-    const currentRef = scrollableAreaRef.current;
+    const currentRef = scrollableAreaRef?.current;
     if (currentRef) {
       currentRef.addEventListener('scroll', handleScroll);
     }

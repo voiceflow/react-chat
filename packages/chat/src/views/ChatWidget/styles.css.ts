@@ -26,6 +26,9 @@ export const widgetContainer = recipe({
   },
 });
 
+export const chatIsOpen = widgetContainer.classNames.variants.withChat.true;
+export const chatIsClosed = widgetContainer.classNames.variants.withChat.false;
+
 export const chatContainer = style({
   width: CHAT_WIDTH,
   maxHeight: MAX_CHAT_HEIGHT,

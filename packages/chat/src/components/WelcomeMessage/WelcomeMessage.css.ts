@@ -1,5 +1,6 @@
 import { keyframes, style } from '@vanilla-extract/css';
 
+import { timingFunction } from '@/styles/animations';
 import { COLORS } from '@/styles/colors';
 import { FAMILY } from '@/styles/font';
 import { widgetContainer } from '@/views/ChatWidget/styles.css';
@@ -42,11 +43,11 @@ export const avatarContainer = style({
   opacity: 0,
   selectors: {
     [`.${widgetContainer.classNames.variants.withChat.true} &`]: {
-      animation: `${fadeIn} 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards`,
+      animation: `${fadeIn} 0.6s ${timingFunction.gentle} forwards`,
       animationDelay: delays.avatar,
     },
     [`.${widgetContainer.classNames.variants.withChat.false} &`]: {
-      animation: `${fadeOut} 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards`,
+      animation: `${fadeOut} 0.4s ${timingFunction.gentle} forwards`,
     },
   },
 });
@@ -63,11 +64,11 @@ export const welcomeMessageTitle = style({
   opacity: 0,
   selectors: {
     [`.${widgetContainer.classNames.variants.withChat.true} &`]: {
-      animation: `${fadeIn} 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards`,
+      animation: `${fadeIn} 0.6s ${timingFunction.gentle} forwards`,
       animationDelay: delays.title,
     },
     [`.${widgetContainer.classNames.variants.withChat.false} &`]: {
-      animation: `${fadeOut} 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards`,
+      animation: `${fadeOut} 0.6s ${timingFunction.gentle} forwards`,
     },
   },
 });
@@ -84,11 +85,11 @@ export const welcomeMessageDescription = style({
   opacity: 0,
   selectors: {
     [`.${widgetContainer.classNames.variants.withChat.true} &`]: {
-      animation: `${fadeIn} 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards`,
+      animation: `${fadeIn} 0.6s ${timingFunction.gentle} forwards`,
       animationDelay: delays.description,
     },
     [`.${widgetContainer.classNames.variants.withChat.false} &`]: {
-      animation: `${fadeOut} 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards`,
+      animation: `${fadeOut} 0.4s ${timingFunction.gentle} forwards`,
     },
   },
 });

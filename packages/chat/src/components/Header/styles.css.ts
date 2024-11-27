@@ -7,7 +7,7 @@ import { PALETTE } from '@/styles/colors.css';
 import { FAMILY, hideTextOverflow } from '@/styles/font';
 import { SIZES } from '@/styles/sizes';
 import { transition } from '@/styles/transitions';
-import { widgetContainer } from '@/views/ChatWidget/styles.css';
+import { chatIsClosed, chatIsOpen } from '@/views/ChatWidget/styles.css';
 
 import { buttonReset } from '../Button/reset.css';
 export const fadeIn = keyframes({
@@ -38,21 +38,14 @@ export const headerContainer = style({
   backgroundColor: PALETTE.colors[500],
   padding: '12px 16px 12px 20px',
   height: parseInt(SIZES.sm, 10) + 24, // Add the top and bottom padding
-  animation: `${fadeIn} 300ms ${timingFunction.gentle}`,
-  animationDelay: '100ms',
-
+  opacity: 0,
   selectors: {
-    [`.${widgetContainer.classNames.variants.withChat.true} &`]: {
-      animation: `${fadeIn} 500ms ${timingFunction.gentle}`,
-      opacity: 1,
-      pointerEvents: 'auto',
-      transform: 'translateY(0)',
+    [`.${chatIsOpen} &`]: {
+      animation: `${fadeIn} .4s ${timingFunction.gentle} forwards`,
+      animationDelay: '.2s',
     },
-    [`.${widgetContainer.classNames.variants.withChat.false} &`]: {
-      animation: `${fadeOut} 500ms ${timingFunction.gentle}`,
-      opacity: 0,
-      pointerEvents: 'none',
-      transform: 'translateY(100%)',
+    [`.${chatIsClosed} &`]: {
+      animation: `${fadeOut} .3s ${timingFunction.gentle} forwards`,
     },
   },
 });

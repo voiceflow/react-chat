@@ -10,7 +10,7 @@ export const timingFunction = {
   easeOut: 'ease-out',
   easeIn: 'ease-in',
   linear: 'linear',
-  gentle: 'cubic-bezier(0.47, 0, 0.23, 1.38)',
+  gentle: 'cubic-bezier(0.25, 1, 0.5, 1)',
 };
 
 export const delay = {
