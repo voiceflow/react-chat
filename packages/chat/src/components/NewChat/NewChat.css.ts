@@ -4,7 +4,7 @@ import { recipe } from '@vanilla-extract/recipes';
 import { duration, timingFunction } from '@/styles/animations';
 import { COLORS } from '@/styles/colors';
 import { transition } from '@/styles/transitions';
-import { chatIsClosed, chatIsOpen, widgetContainer } from '@/views/ChatWidget/styles.css';
+import { chatIsClosed, chatIsOpen } from '@/views/ChatWidget/styles.css';
 
 import { fadeIn, fadeOut } from '../Header/styles.css';
 
