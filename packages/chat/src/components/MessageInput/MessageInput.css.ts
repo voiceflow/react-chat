@@ -117,11 +117,24 @@ export const audioInputButton = recipe({
   base: {
     display: 'flex',
     borderRadius: 100,
+    overflow: 'hidden', // Ensures smooth shrinking
+    transition: transition(['opacity', 'width']), // Common transitions
   },
   variants: {
     disabled: {
       true: {
         cursor: 'not-allowed',
+      },
+    },
+    hidden: {
+      true: {
+        opacity: 0,
+        transition: 'opacity 0.15s, width 0.15s 0.15s', // Delay width transition to occur after opacity
+        width: 0,
+      },
+      false: {
+        opacity: 1,
+        transition: 'opacity 0.15s 0.15s, width 0s', // Delay opacity to occur after width expands
       },
     },
   },

@@ -88,15 +88,15 @@ export const MessageInput: React.FC<IMessageInput> = ({
         />
       </div>
       <div className={buttonContainer}>
-        {withAudioInput && (
-          <AudioInputButton
-            onStop={speechRecognition.stopListening}
-            onStart={speechRecognition.startListening}
-            listening={speechRecognition.listening}
-            processing={speechRecognition.processing}
-            initializing={speechRecognition.initializing}
-          />
-        )}
+        <AudioInputButton
+          onStop={speechRecognition.stopListening}
+          onStart={speechRecognition.startListening}
+          listening={speechRecognition.listening}
+          processing={speechRecognition.processing}
+          initializing={speechRecognition.initializing}
+          showButton={withAudioInput}
+        />
+
         <SendButton onClick={sendMessage} disabled={!message?.length} />
       </div>
     </div>
