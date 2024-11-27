@@ -1,9 +1,10 @@
 import { keyframes, style } from '@vanilla-extract/css';
 
-import { duration } from '@/styles/animations';
 import { COLORS } from '@/styles/colors';
 import { FAMILY } from '@/styles/font';
 import { widgetContainer } from '@/views/ChatWidget/styles.css';
+
+const delays = { avatar: '0.25s', title: '0.35s', description: '0.45s' };
 
 export const fadeIn = keyframes({
   '0%': {
@@ -34,20 +35,20 @@ export const welcomeMessageContainer = style({
   fontFamily: FAMILY,
   padding: '48px 20px 28px 20px',
   textAlign: 'center',
-  opacity: 0,
-  selectors: {
-    [`.${widgetContainer.classNames.variants.withChat.true} &`]: {
-      animation: `${fadeIn} ${duration.fast} ease-in forwards`,
-      animationDelay: duration.slow,
-    },
-    [`.${widgetContainer.classNames.variants.withChat.false} &`]: {
-      animation: `${fadeOut} ${duration.fast} ease-out forwards`,
-    },
-  },
 });
 
 export const avatarContainer = style({
   marginBottom: '16px',
+  opacity: 0,
+  selectors: {
+    [`.${widgetContainer.classNames.variants.withChat.true} &`]: {
+      animation: `${fadeIn} 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards`,
+      animationDelay: delays.avatar,
+    },
+    [`.${widgetContainer.classNames.variants.withChat.false} &`]: {
+      animation: `${fadeOut} 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards`,
+    },
+  },
 });
 
 export const welcomeMessageTitle = style({
@@ -59,6 +60,16 @@ export const welcomeMessageTitle = style({
   WebkitLineClamp: 2,
   WebkitBoxOrient: 'vertical',
   overflow: 'hidden',
+  opacity: 0,
+  selectors: {
+    [`.${widgetContainer.classNames.variants.withChat.true} &`]: {
+      animation: `${fadeIn} 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards`,
+      animationDelay: delays.title,
+    },
+    [`.${widgetContainer.classNames.variants.withChat.false} &`]: {
+      animation: `${fadeOut} 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards`,
+    },
+  },
 });
 
 export const welcomeMessageDescription = style({
@@ -70,4 +81,14 @@ export const welcomeMessageDescription = style({
   WebkitLineClamp: 3,
   WebkitBoxOrient: 'vertical',
   overflow: 'hidden',
+  opacity: 0,
+  selectors: {
+    [`.${widgetContainer.classNames.variants.withChat.true} &`]: {
+      animation: `${fadeIn} 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards`,
+      animationDelay: delays.description,
+    },
+    [`.${widgetContainer.classNames.variants.withChat.false} &`]: {
+      animation: `${fadeOut} 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards`,
+    },
+  },
 });

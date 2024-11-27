@@ -1,6 +1,7 @@
 import { keyframes, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
+import { timingFunction } from '@/styles/animations';
 import { COLORS } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
 import { FAMILY, hideTextOverflow } from '@/styles/font';
@@ -37,17 +38,18 @@ export const headerContainer = style({
   backgroundColor: PALETTE.colors[500],
   padding: '12px 16px 12px 20px',
   height: parseInt(SIZES.sm, 10) + 24, // Add the top and bottom padding
-  animation: `${fadeIn} 300ms ease-in`,
+  animation: `${fadeIn} 300ms ${timingFunction.gentle}`,
+  animationDelay: '100ms',
 
   selectors: {
     [`.${widgetContainer.classNames.variants.withChat.true} &`]: {
-      animation: `${fadeIn} 300ms ease-in`,
+      animation: `${fadeIn} 500ms ${timingFunction.gentle}`,
       opacity: 1,
       pointerEvents: 'auto',
       transform: 'translateY(0)',
     },
     [`.${widgetContainer.classNames.variants.withChat.false} &`]: {
-      animation: `${fadeOut} 300ms ease-out`,
+      animation: `${fadeOut} 500ms ${timingFunction.gentle}`,
       opacity: 0,
       pointerEvents: 'none',
       transform: 'translateY(100%)',
