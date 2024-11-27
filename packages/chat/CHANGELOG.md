@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.6.4...@voiceflow/react-chat@2.7.0) (2024-11-27)
+
+### Features
+
+* expose chat container (DX-000) ([#352](https://github.com/voiceflow/react-chat/issues/352)) ([8863615](https://github.com/voiceflow/react-chat/commit/88636157292c4cf28b8047a9da68c31a82d65b30))
+
 ## [2.6.4](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.6.3...@voiceflow/react-chat@2.6.4) (2024-11-26)
 
 ### Bug Fixes
