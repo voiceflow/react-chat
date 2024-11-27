@@ -1,13 +1,15 @@
 import type {
   WidgetSettings,
   WidgetSettingsChatSettings,
-  WidgetSettingsChatSettingsDTO,
   WidgetSettingsCommonSettings,
-  WidgetSettingsCommonSettingsDTO,
   WidgetSettingsVoiceSettings,
+} from '@voiceflow/dtos-interact';
+import {
+  WidgetSettingsChatSettingsDTO,
+  WidgetSettingsCommonSettingsDTO,
+  WidgetSettingsDTO,
   WidgetSettingsVoiceSettingsDTO,
 } from '@voiceflow/dtos-interact';
-import { WidgetSettingsDTO } from '@voiceflow/dtos-interact';
 import { VoiceflowRuntime } from '@voiceflow/sdk-runtime';
 import type { PartialDeep } from 'type-fest';
 import type { z } from 'zod';
@@ -19,10 +21,15 @@ type RawWidgetSettingsChatSettings = z.input<typeof WidgetSettingsChatSettingsDT
 type RawWidgetSettingsVoiceSettings = z.input<typeof WidgetSettingsVoiceSettingsDTO>;
 type RawWidgetSettingsCommonSettings = z.input<typeof WidgetSettingsCommonSettingsDTO>;
 
+interface WidgetLocalSettings {
+  stylesheet: string;
+  extensions: string[];
+}
+
 export const mergeAssistantOptions = async (
   config: ChatConfig,
-  overrides?: RawWidgetSettings
-): Promise<WidgetSettings> => {
+  overrides?: RawWidgetSettings & Partial<WidgetLocalSettings>
+): Promise<WidgetSettings & Partial<WidgetLocalSettings>> => {
   const { versionID } = config;
 
   // fetch remote publishing config
@@ -35,16 +42,18 @@ export const mergeAssistantOptions = async (
       return null;
     });
 
+  // TODO: make sure we get some default object, or define it here
   if (!publishing) return WidgetSettingsDTO.parse({});
 
-  return WidgetSettingsDTO.parse({
+  return {
     type: overrides?.type ?? publishing.type,
     chat: mergeChatSettings(publishing.chat, overrides?.chat),
     voice: mergeVoiceSettings(publishing.voice, overrides?.voice),
     common: mergeCommonSettings(publishing.common, overrides?.common),
 
-    // TODO: Make sure 'extensions' are added
-  });
+    stylesheet: overrides?.stylesheet,
+    extensions: overrides?.extensions,
+  };
 };
 
 const mergeChatSettings = (
@@ -53,7 +62,8 @@ const mergeChatSettings = (
 ) => {
   // TODO: Define default agent image
   const DEFAULT_AGENT_IMAGE = '...';
-  return {
+
+  return WidgetSettingsChatSettingsDTO.parse({
     ...publishedSettings,
     ...overrides,
     headerImage: { ...publishedSettings.headerImage, ...overrides?.headerImage },
@@ -63,32 +73,33 @@ const mergeChatSettings = (
     },
     banner: { ...publishedSettings.banner, ...overrides?.banner },
     aiDisclaimer: { ...publishedSettings.aiDisclaimer, ...overrides?.aiDisclaimer },
-  };
+  });
 };
 
 const mergeVoiceSettings = (
   publishedSettings: PartialDeep<WidgetSettingsVoiceSettings>,
   overrides?: RawWidgetSettingsVoiceSettings
 ) => {
-  return {
+  return WidgetSettingsVoiceSettingsDTO.parse({
     renderMode: overrides?.renderMode ?? publishedSettings.renderMode,
     content: {
       ...publishedSettings.content,
       ...overrides?.content,
     },
-  };
+  });
 };
 
 const mergeCommonSettings = (
   publishedSettings: PartialDeep<WidgetSettingsCommonSettings>,
   overrides?: RawWidgetSettingsCommonSettings
 ) => {
-  return {
+  return WidgetSettingsCommonSettingsDTO.parse({
     ...publishedSettings,
     ...overrides,
     launcher: { ...publishedSettings.launcher, ...overrides?.launcher },
     footerLink: { ...publishedSettings.footerLink, ...overrides?.footerLink },
+
     // This can't be overridden by local configuration
     poweredBy: publishedSettings.poweredBy,
-  };
+  });
 };
