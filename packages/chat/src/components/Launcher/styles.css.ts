@@ -40,6 +40,7 @@ export const launcherStyles = recipe({
         'height',
         'max-width',
         'max-height',
+        'filter',
         'min-width',
         'min-height',
         'padding',
@@ -87,6 +88,7 @@ export const launcherStyles = recipe({
     },
     isOpen: {
       true: {
+        filter: 'drop-shadow(rgba(0, 0, 0, 0.06) 0px 1px 6px) drop-shadow(rgba(0, 0, 0, 0.16) 0px 2px 32px)',
         height: '48px',
         width: '48px',
       },
