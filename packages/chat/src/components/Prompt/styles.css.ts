@@ -10,7 +10,7 @@ export const promptContainer = recipe({
     bottom: 0,
     width: '100%',
     boxSizing: 'border-box',
-    transition: 'transform 320ms cubic-bezier(0.45, 1.29, 0.64, 1), box-shadow 300ms ease, opacity 300ms ease',
+    transition: 'transform .5s cubic-bezier(0.45, 1.29, 0.64, 1), box-shadow 1s ease, opacity .3s ease',
     transform: 'translateY(100%)',
     padding: '12px 12px 30px 12px',
     borderRadius: SIZES.radius.lg,
@@ -21,6 +21,7 @@ export const promptContainer = recipe({
     gap: 8,
     zIndex: 300,
     opacity: 0,
+    pointerEvents: 'none', // Prevent interaction when invisible
   },
 
   variants: {
@@ -28,9 +29,11 @@ export const promptContainer = recipe({
       true: {
         transform: 'translateY(18px)',
         opacity: 1,
+        pointerEvents: 'auto', // Allow interaction when visible
       },
       false: {
-        boxShadow: 'none',
+        transform: 'translateY(100%)', // Slide it down out of view
+        opacity: 0, // Fade it out
       },
     },
   },
