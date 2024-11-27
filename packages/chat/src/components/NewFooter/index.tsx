@@ -9,17 +9,8 @@ import type { IMessageInput } from '../MessageInput';
 import { MessageInput } from '../MessageInput';
 import { promptContainer } from '../Prompt/styles.css';
 import { ScrollToBottom } from '../ScrollToBottom';
-import {
-  buttonsContainer,
-  extraLinkStyles,
-  footerContainer,
-  footerLinksContainer,
-  messageContainer,
-  separator,
-  voiceflowLink,
-} from './NewFooter.css';
-
-const VOICEFLOW_URL = 'https://www.voiceflow.com/';
+import { BottomLinks } from './BottomLinks';
+import { buttonsContainer, footerContainer, messageContainer } from './NewFooter.css';
 
 export interface INewFooter {
   buttons?: { label: string; onClick: () => void }[];
@@ -50,7 +41,6 @@ export const NewFooter: React.FC<INewFooter> = ({
   scrollableAreaRef,
   onStart,
 }) => {
-  const showExtraLink = extraLinkText && extraLinkUrl;
   return (
     <div className={clsx(ClassName.FOOTER, footerContainer)}>
       <div className={promptContainer({ visible: messageInputProps.hasEnded })}>
@@ -72,21 +62,7 @@ export const NewFooter: React.FC<INewFooter> = ({
       <div className={messageContainer()}>
         <ScrollToBottom scrollableAreaRef={scrollableAreaRef} />
         <MessageInput {...messageInputProps} />
-        <div className={footerLinksContainer}>
-          {showPoweredBy && (
-            <div>
-              <a href={VOICEFLOW_URL} target="_blank" rel="noreferrer" className={voiceflowLink}>
-                Powered by Voiceflow
-              </a>
-            </div>
-          )}
-          {showPoweredBy && showExtraLink && <div className={separator} />}
-          {showExtraLink && (
-            <a href={extraLinkUrl} target="_blank" className={extraLinkStyles}>
-              {extraLinkText}
-            </a>
-          )}
-        </div>
+        <BottomLinks extraLinkText={extraLinkText} extraLinkUrl={extraLinkUrl} showPoweredBy={showPoweredBy} />
       </div>
     </div>
   );
