@@ -30,7 +30,7 @@ export interface HeaderProps {
   /**
    * An image URL that will be rendered as a small {@link Avatar}.
    */
-  image: string;
+  image?: string;
 
   /**
    * A list of actions that will appear as icon buttons.

@@ -24,15 +24,13 @@ export interface IWelcomeMessage {
   /**
    * An image URL that identifies the assistant, such as a brand icon.
    */
-  avatar: string;
+  avatar?: string;
 }
 
 export const WelcomeMessage: React.FC<IWelcomeMessage> = ({ title, description, avatar }) => {
   return (
     <div className={clsx(ClassName.ASSISTANT_INFO, welcomeMessageContainer)}>
-      <div className={avatarContainer}>
-        <Avatar size="large" avatar={avatar} />
-      </div>
+      <div className={avatarContainer}>{avatar && <Avatar size="large" avatar={avatar} />}</div>
       <div className={welcomeMessageTitle} title={title}>
         {title}
       </div>

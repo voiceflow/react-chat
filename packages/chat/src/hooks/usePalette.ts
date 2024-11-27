@@ -1,16 +1,15 @@
+import type { WidgetSettings } from '@voiceflow/dtos-interact';
 import { useEffect, useState } from 'react';
 
-import type { AssistantOptions } from '@/dtos/AssistantOptions.dto';
 import type { Palette } from '@/dtos/Palette.dto';
-import { createPalette } from '@/styles/colors';
 
-export const usePalette = (assistant?: AssistantOptions) => {
+export const usePalette = (assistant?: WidgetSettings) => {
   const [palette, setPalette] = useState<Palette>();
   useEffect(() => {
-    if (assistant?.color) {
-      setPalette(createPalette(assistant.color));
+    if (assistant?.common.primaryColor) {
+      setPalette(assistant.common.primaryColor);
     }
-  }, [assistant?.color]);
+  }, [assistant?.common.primaryColor]);
 
   return palette;
 };

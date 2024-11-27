@@ -48,11 +48,11 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile }) => {
   return (
     <div style={assignInlineVars(PALETTE, { colors: palette })} className={chatWindow({ mobile: isMobile })}>
       <NewChat
-        title={assistant.title}
-        description={assistant.description}
-        image={assistant.image}
-        avatar={assistant.avatar}
-        showPoweredBy={assistant.watermark}
+        title={assistant.chat.banner.title}
+        description={assistant.chat.banner.description}
+        image={assistant.chat.headerImage.url}
+        avatar={assistant.chat.headerImage.url!}
+        showPoweredBy={assistant.common.poweredBy}
         startTime={state.session.startTime}
         hasEnded={runtime.isStatus(SessionStatus.ENDED)}
         isLoading={runtime.isStatus(SessionStatus.IDLE) && state.session.turns.length === 0 && config.autostart}
@@ -60,10 +60,10 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile }) => {
         onEnd={restartChat}
         onSend={runtime.reply}
         onMinimize={runtime.close}
-        audioInterface={assistant.audioInterface}
+        audioInterface={assistant.chat.voiceInput}
         messageInputProps={{
           onSubmit: runtime.reply,
-          audioInterface: assistant.audioInterface,
+          audioInterface: assistant.chat.voiceInput,
         }}
         isMobile={isMobile}
       >
@@ -82,7 +82,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile }) => {
               <SystemResponse
                 key={id}
                 {...R.omit(props, ['type'])}
-                avatar={assistant.avatar}
+                avatar={assistant.chat.agentImage.url!}
                 feedback={{
                   onClick: (feedback: FeedbackName) => {
                     runtime.feedback(feedback, props.messages, getPreviousUserTurn(turnIndex));
@@ -95,7 +95,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile }) => {
         })}
         {state.indicator && (
           <div className={chatContentWrapper}>
-            <Indicator avatar={assistant.avatar} isLast={true} />
+            <Indicator avatar={assistant.chat.agentImage.url!} isLast={true} />
           </div>
         )}
       </NewChat>

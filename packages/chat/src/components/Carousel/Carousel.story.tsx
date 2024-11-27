@@ -1,11 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { WIDGET_SETTINGS_DEFAULT_SETTINGS } from '@/__fixtures__/mock-assistant';
 import { RuntimeProvider } from '@/contexts';
 import { MOCK_IMAGE } from '@/fixtures';
 import { DEFAULT_AVATAR, RenderMode } from '@/main';
 import { WithDefaultPalette } from '@/storybook/decorators';
-import { COLORS } from '@/styles/colors';
-import { ChatPersistence, ChatPosition } from '@/types';
 
 import { NewChat } from '../NewChat';
 import { MessageType } from '../SystemResponse/constants';
@@ -28,24 +27,7 @@ const meta: Meta<typeof Carousel> = {
           render: { mode: RenderMode.OVERLAY },
         }}
         assistant={{
-          title: 'Voiceflow Assistant',
-          color: COLORS.ACCENT[500],
-          image: DEFAULT_AVATAR,
-          avatar: DEFAULT_AVATAR,
-          launcher: undefined,
-          watermark: true,
-          feedback: false,
-          stylesheet: undefined,
-          description: '',
-          position: ChatPosition.RIGHT,
-          persistence: ChatPersistence.LOCAL_STORAGE,
-          audioInterface: false,
-          defaultAudioOutput: undefined,
-          spacing: {
-            side: 30,
-            bottom: 30,
-          },
-          extensions: [],
+          ...WIDGET_SETTINGS_DEFAULT_SETTINGS,
         }}
       >
         {Story()}

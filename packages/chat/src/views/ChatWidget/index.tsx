@@ -23,7 +23,7 @@ interface ChatWidgetProps extends React.PropsWithChildren {
   chatWindow?: React.ReactNode;
 }
 
-export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, ready }) => {
+export const ChatWidget: React.FC<ChatWidgetProps> = ({ /* shadowRoot, */ chatAPI, ready }) => {
   const { assistant, open, close, interact } = useContext(RuntimeStateAPIContext);
   const { isOpen } = useContext(RuntimeStateContext);
 
@@ -58,11 +58,11 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
     ready
   );
 
-  const side = assistant.position;
-  const position = { bottom: assistant.spacing.bottom, [side]: assistant.spacing.side };
-  const chatHeight = `calc(100% - ${LAUNCHER_SIZE + LAUNCHER_MARGIN + assistant.spacing.bottom + 20}px)`;
+  const side = assistant.common.position;
+  const position = { bottom: assistant.common.bottomSpacing, [side]: assistant.common.sideSpacing };
+  const chatHeight = `calc(100% - ${LAUNCHER_SIZE + LAUNCHER_MARGIN + assistant.common.bottomSpacing + 20}px)`;
 
-  const isStyleSheetResolved = useResolveAssistantStyleSheet(assistant, shadowRoot);
+  const isStyleSheetResolved = useResolveAssistantStyleSheet(assistant /* , shadowRoot */);
 
   if (!isStyleSheetResolved) return null;
   if (!palette) return null;
@@ -74,7 +74,12 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
     >
       <div className={launcherContainer} style={position}>
         <Proactive side={side} messages={proactiveMessages} />
-        <Launcher onClick={toggleChat} isOpen={isOpen} image={assistant.launcher} />
+        <Launcher
+          onClick={toggleChat}
+          isOpen={isOpen}
+          image={assistant.common.launcher.imageURL}
+          label={assistant.common.launcher.text}
+        />
       </div>
       <div
         className={chatContainer}

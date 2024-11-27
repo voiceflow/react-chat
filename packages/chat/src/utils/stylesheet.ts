@@ -1,6 +1,5 @@
+import type { WidgetSettings } from '@voiceflow/dtos-interact';
 import { useEffect, useState } from 'react';
-
-import type { AssistantOptions } from '@/dtos/AssistantOptions.dto';
 
 // used to add stylesheets dynamically, resolves when loaded
 export const addStyleSheetURL = async (url: string, root: Node) => {
@@ -18,18 +17,19 @@ export const addStyleSheetURL = async (url: string, root: Node) => {
 };
 
 // do not load until stylesheet is resolved
-export const useResolveAssistantStyleSheet = (assistant?: AssistantOptions, shadowRoot?: ShadowRoot): boolean => {
+export const useResolveAssistantStyleSheet = (assistant?: WidgetSettings /* , shadowRoot?: ShadowRoot */): boolean => {
   const [isStyleSheetResolved, setStyleSheetResolved] = useState(false);
 
   useEffect(() => {
     if (!assistant || isStyleSheetResolved) return;
 
-    if (!assistant.stylesheet) {
-      setStyleSheetResolved(true);
-      return;
-    }
+    // if (!assistant.stylesheet) {
+    setStyleSheetResolved(true);
+    // return;
+    // }
 
-    const stylesheet = Array.isArray(assistant.stylesheet) ? assistant.stylesheet[0] : assistant.stylesheet;
+    // TODO: Add `stylesheet` to WidgetSettings object
+    /* const stylesheet = Array.isArray(assistant.stylesheet) ? assistant.stylesheet[0] : assistant.stylesheet;
 
     // inject stylesheet url
     (async () => {
@@ -38,7 +38,7 @@ export const useResolveAssistantStyleSheet = (assistant?: AssistantOptions, shad
         console.error(error);
       });
       setStyleSheetResolved(true);
-    })();
+    })(); */
   }, [assistant]);
 
   return isStyleSheetResolved;
