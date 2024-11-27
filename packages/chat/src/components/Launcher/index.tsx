@@ -40,7 +40,7 @@ export interface LauncherProps {
   /**
    * A callback that will be executed when the button is clicked.
    */
-  onClick: MouseEventHandler<HTMLButtonElement>;
+  onClick: MouseEventHandler<HTMLDivElement>;
 }
 
 /**
@@ -51,8 +51,8 @@ export interface LauncherProps {
 export const Launcher: React.FC<LauncherProps> = ({ image, isOpen, label, onClick }) => {
   const withLabel = !!label?.length;
   return (
-    <div className={launcherContainer}>
-      <Button className={clsx(ClassName.LAUNCHER, launcherStyles({ withLabel, isOpen }))} onClick={onClick}>
+    <div className={launcherContainer} onClick={onClick}>
+      <Button className={clsx(ClassName.LAUNCHER, launcherStyles({ withLabel, isOpen }))}>
         <div className={iconContainer({ isOpen, withLabel })}>
           <ChevronIcon className={clsx(closeChevron({ isOpen, withLabel }), launcherIconStyles())} />
           {image && (

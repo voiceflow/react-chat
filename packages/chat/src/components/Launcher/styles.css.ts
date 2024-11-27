@@ -11,7 +11,6 @@ export const LAUNCHER_SIZE = 48;
 export const launcherContainer = style({
   width: 'fit-content',
 });
-
 export const launcherStyles = recipe({
   base: [
     buttonStyles({ round: true }),
@@ -20,6 +19,7 @@ export const launcherStyles = recipe({
       height: LAUNCHER_SIZE,
       minWidth: '48px',
       backgroundColor: PALETTE.colors[500],
+      position: 'relative', // Establish positioning context
       transition: transition([
         'color',
         'background-color',
@@ -44,13 +44,16 @@ export const launcherStyles = recipe({
         transform: 'scale(0.8)',
         backgroundColor: PALETTE.colors[700],
       },
-      '::after': {
+
+      '::before': {
         content: '""',
+        top: '-4px',
         position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
+        bottom: '-4px',
+        left: '-4px',
+        right: '-4px',
+        borderRadius: 'inherit',
+        backgroundColor: 'transparent',
         zIndex: -1,
       },
     },
