@@ -1,12 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import EMPTY_IMAGE from '@/__fixtures__/empty-image.png';
 import { SystemResponse } from '@/components';
 import { WithDefaultPalette, WithRuntimeProvider } from '@/storybook/decorators';
 import { createPalette } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
+import { widgetContainer } from '@/views/ChatWidget/styles.css';
 
 import Indicator from '../SystemResponse/Indicator/Indicator';
 import { UserResponse } from '../UserResponse';
@@ -18,7 +19,11 @@ const meta: Meta = {
   parameters: {
     layout: 'centered',
   },
-  decorators: [WithRuntimeProvider, WithDefaultPalette],
+  decorators: [
+    WithRuntimeProvider,
+    WithDefaultPalette,
+    (Story) => <div className={widgetContainer.classNames.variants.withChat.true}>{Story()}</div>,
+  ],
 };
 
 type Story = StoryObj<typeof NewChat>;
@@ -107,8 +112,22 @@ export const BaseThemed = {
   ),
 };
 
+const MockLoading = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  return <MockBaseComponent isLoading={isLoading} />;
+};
+
 export const LoadingState = {
-  render: () => <MockBaseComponent isLoading={true} />,
+  render: () => <MockLoading />,
 };
 
 export const Themed: Story = {
