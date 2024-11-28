@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.7.1...@voiceflow/react-chat@2.7.2) (2024-11-28)
+
+### Bug Fixes
+
+* Launcher hitbox and entry animation (DSN-2523) ([#373](https://github.com/voiceflow/react-chat/issues/373)) ([a873882](https://github.com/voiceflow/react-chat/commit/a873882e22867bb6bdfb79d298ab309838d6e004))
+
 ## [2.7.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.7.0...@voiceflow/react-chat@2.7.1) (2024-11-28)
 
 ### Bug Fixes
