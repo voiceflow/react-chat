@@ -74,13 +74,25 @@ export const Default: Story = {
   render: () => (
     <div style={{ width: '380px' }}>
       <NewChat
-        title="Your awesome assistant"
-        description="Im hot, youre not, deal with it"
-        avatar={DEFAULT_AVATAR}
+        welcomeMessageProps={{
+          enabled: true,
+          title: 'Your awesome assistant',
+          description: 'Im hot, youre not, deal with it',
+        }}
+        headerProps={{
+          title: 'Your awesome assistant',
+        }}
+        footerProps={{
+          showPoweredBy: true,
+          extraLinkText: 'Privacy',
+          extraLinkUrl: 'https://voiceflow.com',
+          messageInputProps: {
+            onSubmit: async (_) => Promise.resolve(),
+            placeholder: 'Message...',
+          },
+        }}
         isLoading={false}
-        image={MOCK_IMAGE}
         hasEnded={false}
-        messageInputProps={{}}
       >
         <SystemMessage
           avatar={DEFAULT_AVATAR}
@@ -114,21 +126,6 @@ export const MultipleCards: Story = {
     cards: MULTIPLE_CARDS,
   },
 };
-
-// export const ControlsTemplate: Story = {
-//   args: {
-//     cards: MULTIPLE_CARDS,
-//   },
-
-//   render: (args) => {
-//     return (
-//       <>
-//         <Avatar avatar={VF_ICON} />
-//         <Carousel {...args} />
-//       </>
-//     );
-//   },
-// };
 
 export const WithControls: Story = {
   args: {

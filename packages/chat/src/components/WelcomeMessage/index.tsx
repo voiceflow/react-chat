@@ -12,6 +12,11 @@ import {
 
 export interface IWelcomeMessage {
   /**
+   * Should we show the welcome message
+   */
+  enabled: boolean;
+
+  /**
    * The title of the assistant.
    */
   title: string;
@@ -27,7 +32,9 @@ export interface IWelcomeMessage {
   avatar?: string;
 }
 
-export const WelcomeMessage: React.FC<IWelcomeMessage> = ({ title, description, avatar }) => {
+export const WelcomeMessage: React.FC<IWelcomeMessage> = ({ enabled, title, description, avatar }) => {
+  if (!enabled) return null;
+
   return (
     <div className={clsx(ClassName.ASSISTANT_INFO, welcomeMessageContainer)}>
       <div className={avatarContainer}>{avatar && <Avatar size="large" avatar={avatar} />}</div>

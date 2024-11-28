@@ -13,11 +13,11 @@ import { Separator } from '../Separator';
 import { type IWelcomeMessage, WelcomeMessage } from '../WelcomeMessage';
 import { bottomSpacer, chatContainer, chatContentWrapper, chatEndedContainer, dialogContainer } from './NewChat.css';
 
-export interface INewChat
-  extends HeaderProps,
-    IWelcomeMessage,
-    Omit<INewFooter, 'scrollableAreaRef'>,
-    React.PropsWithChildren<unknown> {
+export interface INewChat extends React.PropsWithChildren {
+  welcomeMessageProps: IWelcomeMessage;
+  headerProps: HeaderProps;
+  footerProps: Omit<INewFooter, 'scrollableAreaRef'>;
+
   /**
    * If true, shows a loading indicator.
    */
@@ -48,6 +48,9 @@ export interface INewChat
    */
   onEnd?: React.MouseEventHandler<HTMLButtonElement>;
 
+  /**
+   * If true, the conversation was ended by the agent.
+   */
   hasEnded: boolean;
 
   /**
@@ -57,18 +60,13 @@ export interface INewChat
 }
 
 export const NewChat: React.FC<INewChat> = ({
-  buttons,
-  showPoweredBy,
-  messageInputProps,
-  title,
-  description,
-  avatar,
+  headerProps,
+  welcomeMessageProps,
+  footerProps,
   hasEnded,
   onStart,
   onMinimize,
   onEnd,
-  extraLinkText,
-  extraLinkUrl,
   children,
   audioInterface,
   isMobile,
@@ -108,10 +106,10 @@ export const NewChat: React.FC<INewChat> = ({
 
   return (
     <div className={clsx(ClassName.CHAT, chatContainer({ mobile: isMobile }))}>
-      <Header title={title} image={avatar} actions={headerActions} />
+      <Header {...headerProps} actions={headerActions} />
       <AutoScrollProvider target={scrollableAreaRef}>
         <div ref={scrollableAreaRef} className={dialogContainer}>
-          <WelcomeMessage title={title} description={description} avatar={avatar} />
+          <WelcomeMessage {...welcomeMessageProps} />
           <div className={chatContentWrapper}>
             {children}
 
@@ -123,15 +121,7 @@ export const NewChat: React.FC<INewChat> = ({
             <div className={bottomSpacer({ hasEnded })} />
           </div>
         </div>
-        <NewFooter
-          buttons={buttons}
-          showPoweredBy={showPoweredBy}
-          extraLinkText={extraLinkText}
-          extraLinkUrl={extraLinkUrl}
-          messageInputProps={{ ...messageInputProps, disableSend: state.indicator, hasEnded }}
-          scrollableAreaRef={scrollableAreaRef}
-          onStart={onStart}
-        />
+        <NewFooter {...footerProps} scrollableAreaRef={scrollableAreaRef} />
       </AutoScrollProvider>
       <Prompt
         visible={hasAlert}

@@ -48,23 +48,33 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile }) => {
   return (
     <div style={assignInlineVars(PALETTE, { colors: palette })} className={chatWindow({ mobile: isMobile })}>
       <NewChat
-        title={assistant.chat.banner.title}
-        description={assistant.chat.banner.description}
-        image={assistant.chat.headerImage.url}
-        avatar={assistant.chat.headerImage.url!}
-        showPoweredBy={assistant.common.poweredBy}
+        headerProps={{
+          title: assistant.chat.banner.title,
+          image: assistant.chat.headerImage.enabled ? assistant.chat.headerImage.url : undefined,
+        }}
+        welcomeMessageProps={{
+          enabled: assistant.chat.banner.enabled,
+          title: assistant.chat.banner.title,
+          description: assistant.chat.banner.description,
+          avatar: assistant.chat.banner.imageURL,
+        }}
+        footerProps={{
+          showPoweredBy: assistant.common.poweredBy,
+          messageInputProps: {
+            onSubmit: runtime.reply,
+            audioInterface: assistant.chat.voiceInput,
+          },
+          extraLinkText: assistant.common.footerLink.enabled ? assistant.common.footerLink.text : undefined,
+          extraLinkUrl: assistant.common.footerLink.enabled ? assistant.common.footerLink.url : undefined,
+          onSend: runtime.reply,
+        }}
         startTime={state.session.startTime}
         hasEnded={runtime.isStatus(SessionStatus.ENDED)}
         isLoading={runtime.isStatus(SessionStatus.IDLE) && state.session.turns.length === 0 && config.autostart}
         onStart={runtime.launch}
         onEnd={restartChat}
-        onSend={runtime.reply}
         onMinimize={runtime.close}
         audioInterface={assistant.chat.voiceInput}
-        messageInputProps={{
-          onSubmit: runtime.reply,
-          audioInterface: assistant.chat.voiceInput,
-        }}
         isMobile={isMobile}
       >
         {state.session.turns.map((turn, turnIndex) => {

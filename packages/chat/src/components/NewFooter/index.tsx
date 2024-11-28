@@ -27,7 +27,6 @@ export interface INewFooter {
   messageInputProps: IMessageInput;
   extraLinkText?: string;
   extraLinkUrl?: string;
-  disableSend?: boolean;
   scrollableAreaRef: RefObject<HTMLDivElement>;
 
   /**

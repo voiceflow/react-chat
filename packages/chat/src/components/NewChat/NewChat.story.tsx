@@ -75,19 +75,25 @@ const MockBaseComponent = ({ isLoading }: { isLoading?: boolean }) => {
 
   return (
     <NewChat
-      title="Your AI assistant"
-      image=""
-      description="Hello, I am here to help with whatever you need."
-      avatar={EMPTY_IMAGE}
-      showPoweredBy={true}
-      extraLinkText="Privacy"
-      extraLinkUrl="https://voiceflow.com"
+      welcomeMessageProps={{
+        enabled: true,
+        title: 'Your AI assistant',
+        description: 'Hello, I am here to help with whatever you need.',
+      }}
+      headerProps={{
+        title: 'Your AI assistant',
+      }}
+      footerProps={{
+        showPoweredBy: true,
+        extraLinkText: 'Privacy',
+        extraLinkUrl: 'https://voiceflow.com',
+        messageInputProps: {
+          onSubmit: async (text) => handleSubmit(text),
+          placeholder: 'Message...',
+        },
+      }}
       isLoading={false}
       hasEnded={false}
-      messageInputProps={{
-        onSubmit: async (text) => handleSubmit(text),
-        placeholder: 'Message...',
-      }}
     >
       {messages.map((msg) => (msg.type === 'Agent' ? AgentSays([msg.text]) : UserSays(msg.text)))}
       {isLoading && <Indicator avatar={EMPTY_IMAGE} />}
@@ -116,55 +122,73 @@ export const Themed: Story = {
     <div style={{ display: 'flex', gap: '32px' }}>
       <div style={{ width: '400px', ...assignInlineVars(PALETTE, { colors: createPalette('red') }) }}>
         <NewChat
-          title="Your AI assistant"
-          image=""
-          description="Hello, I am here to help with whatever you need."
-          avatar={EMPTY_IMAGE}
-          showPoweredBy={true}
-          extraLinkText="Privacy"
-          extraLinkUrl="https://voiceflow.com"
+          welcomeMessageProps={{
+            enabled: true,
+            title: 'Your AI assistant',
+            description: 'Hello, I am here to help with whatever you need.',
+          }}
+          headerProps={{
+            title: 'Your AI assistant',
+          }}
+          footerProps={{
+            showPoweredBy: true,
+            extraLinkText: 'Privacy',
+            extraLinkUrl: 'https://voiceflow.com',
+            messageInputProps: {
+              onSubmit: async (_) => Promise.resolve(),
+              placeholder: 'Message...',
+            },
+          }}
           isLoading={false}
           hasEnded={false}
-          messageInputProps={{
-            onSubmit: () => Promise.resolve(),
-            placeholder: 'Message...',
-          }}
         />
       </div>
 
       <div style={{ width: '400px', ...assignInlineVars(PALETTE, { colors: createPalette('green') }) }}>
         <NewChat
-          title="Your AI assistant"
-          image=""
-          description="Hello, I am here to help with whatever you need."
-          avatar={EMPTY_IMAGE}
-          showPoweredBy={true}
-          extraLinkText="Privacy"
-          extraLinkUrl="https://voiceflow.com"
+          welcomeMessageProps={{
+            enabled: true,
+            title: 'Your AI assistant',
+            description: 'Hello, I am here to help with whatever you need.',
+          }}
+          headerProps={{
+            title: 'Your AI assistant',
+          }}
+          footerProps={{
+            showPoweredBy: true,
+            extraLinkText: 'Privacy',
+            extraLinkUrl: 'https://voiceflow.com',
+            messageInputProps: {
+              onSubmit: async (_) => Promise.resolve(),
+              placeholder: 'Message...',
+            },
+          }}
           isLoading={false}
           hasEnded={false}
-          messageInputProps={{
-            onSubmit: () => Promise.resolve(),
-            placeholder: 'Message...',
-          }}
         />
       </div>
 
       <div style={{ width: '400px', ...assignInlineVars(PALETTE, { colors: createPalette('purple') }) }}>
         <NewChat
-          title=""
-          image=""
-          description=""
-          avatar={EMPTY_IMAGE}
-          showPoweredBy={true}
-          extraLinkText="Privacy"
-          extraLinkUrl="https://voiceflow.com"
+          welcomeMessageProps={{
+            enabled: true,
+            title: '',
+            description: '',
+          }}
+          headerProps={{
+            title: 'Your AI assistant',
+          }}
+          footerProps={{
+            showPoweredBy: true,
+            extraLinkText: 'Privacy',
+            extraLinkUrl: 'https://voiceflow.com',
+            messageInputProps: {
+              onSubmit: async (_) => Promise.resolve(),
+              placeholder: 'Message...',
+            },
+          }}
           isLoading={false}
           hasEnded={false}
-          messageInputProps={{
-            onSubmit: () => Promise.resolve(),
-            placeholder: 'Message...',
-          }}
         />
       </div>
     </div>
@@ -174,17 +198,25 @@ export const Themed: Story = {
 export const NoPoweredBy = {
   render: () => (
     <NewChat
-      title="Your AI assistant"
-      image=""
-      description="Let's get this party started already!"
-      avatar={EMPTY_IMAGE}
-      buttons={[]}
-      extraLinkText="Privacy"
-      extraLinkUrl="https://voiceflow.com"
-      showPoweredBy={false}
+      welcomeMessageProps={{
+        enabled: true,
+        title: 'Your AI assistant',
+        description: "Let's get this party started already!",
+      }}
+      headerProps={{
+        title: 'Your AI assistant',
+      }}
+      footerProps={{
+        showPoweredBy: false,
+        extraLinkText: 'Privacy',
+        extraLinkUrl: 'https://voiceflow.com',
+        messageInputProps: {
+          onSubmit: async (_) => Promise.resolve(),
+          placeholder: 'Message...',
+        },
+      }}
       isLoading={false}
       hasEnded={false}
-      messageInputProps={{ onSubmit: () => Promise.resolve(), placeholder: 'Message...' }}
     />
   ),
 };
@@ -192,15 +224,25 @@ export const NoPoweredBy = {
 export const OnlyPoweredBy = {
   render: () => (
     <NewChat
-      title="Your AI assistant"
-      image=""
-      description="Let's get this party started already!"
-      avatar={EMPTY_IMAGE}
-      buttons={[]}
-      showPoweredBy={true}
+      welcomeMessageProps={{
+        enabled: true,
+        title: 'Your AI assistant',
+        description: 'Hello, I am here to help with whatever you need.',
+      }}
+      headerProps={{
+        title: 'Your AI assistant',
+      }}
+      footerProps={{
+        showPoweredBy: true,
+        extraLinkText: '',
+        extraLinkUrl: '',
+        messageInputProps: {
+          onSubmit: async (_) => Promise.resolve(),
+          placeholder: 'Message...',
+        },
+      }}
       isLoading={false}
       hasEnded={false}
-      messageInputProps={{ onSubmit: () => Promise.resolve(), placeholder: 'Message...' }}
     />
   ),
 };
@@ -208,15 +250,25 @@ export const OnlyPoweredBy = {
 export const NoFooterLinks = {
   render: () => (
     <NewChat
-      title="Your AI assistant"
-      image=""
-      description="Let's get this party started already!"
-      avatar={EMPTY_IMAGE}
-      buttons={[]}
-      showPoweredBy={false}
+      welcomeMessageProps={{
+        enabled: true,
+        title: 'Your AI assistant',
+        description: 'Hello, I am here to help with whatever you need.',
+      }}
+      headerProps={{
+        title: 'Your AI assistant',
+      }}
+      footerProps={{
+        showPoweredBy: false,
+        extraLinkText: '',
+        extraLinkUrl: '',
+        messageInputProps: {
+          onSubmit: async (_) => Promise.resolve(),
+          placeholder: 'Message...',
+        },
+      }}
       isLoading={false}
       hasEnded={false}
-      messageInputProps={{ onSubmit: () => Promise.resolve(), placeholder: 'Message...' }}
     >
       {AgentSays(['👋🏻 Good morning!', 'How are you today?', 'How can I help you ?'])}
       {UserSays('How bout you?')}
@@ -231,15 +283,25 @@ export const NoFooterLinks = {
 export const ChatEnded = {
   render: () => (
     <NewChat
-      title="Your amazing assistant"
-      image={EMPTY_IMAGE}
-      description="Let's get this party started already!"
-      avatar={EMPTY_IMAGE}
-      buttons={[]}
-      showPoweredBy={true}
+      welcomeMessageProps={{
+        enabled: true,
+        title: 'Your amazing assistant',
+        description: "Let's get this party started already!",
+      }}
+      headerProps={{
+        title: 'Your AI assistant',
+      }}
+      footerProps={{
+        showPoweredBy: true,
+        extraLinkText: 'Privacy',
+        extraLinkUrl: 'https://voiceflow.com',
+        messageInputProps: {
+          onSubmit: async (_) => Promise.resolve(),
+          placeholder: 'Message...',
+        },
+      }}
       isLoading={false}
       hasEnded={true}
-      messageInputProps={{ onSubmit: () => Promise.resolve(), placeholder: 'Message...' }}
     >
       {AgentSays(['👋🏻 Good morning!', 'How are you today?', 'How can I help you ?'])}
       {UserSays('How bout you?')}
