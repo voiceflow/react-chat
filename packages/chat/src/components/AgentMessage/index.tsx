@@ -20,6 +20,7 @@ import {
   feedbackButtonContainer,
   generatedChin,
   lastListItem,
+  markdownParagraph,
 } from './AgentMessage.css';
 import codeTheme from './code-theme';
 import { CopyButton } from './CopyButton';
@@ -92,6 +93,15 @@ export const AgentMessage: React.FC<IAgentMessage> = ({
               );
             }
             return <li {...props}> {children}</li>;
+          },
+          p: ({ children, ...props }) => {
+            const position = props.node?.position;
+            const isLast = position && position.end.offset === text.length - 1;
+            return (
+              <p {...props} className={clsx(markdownParagraph, isLast && lastListItem)}>
+                {children}
+              </p>
+            );
           },
         }}
       />

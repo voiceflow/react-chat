@@ -253,12 +253,6 @@
   font-size: 14px;
 }
 
-/* Paragraph style */
-.markdown p {
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-
 /* Horizontal rule style */
 .markdown hr {
   margin-top: 8px;

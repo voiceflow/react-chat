@@ -111,3 +111,8 @@ export const feedbackButtonContainer = style({
 export const lastListItem = style({
   marginBottom: 0,
 });
+
+export const markdownParagraph = style({
+  marginBottom: '8px',
+  marginTop: '8px',
+});
