@@ -1,6 +1,5 @@
 import '../../styles.css';
 
-import { assignInlineVars } from '@vanilla-extract/dynamic';
 import React, { useCallback, useContext } from 'react';
 import * as R from 'remeda';
 import { match } from 'ts-pattern';
@@ -16,8 +15,6 @@ import { DEFAULT_CHAT_AVATAR } from '@/main';
 import { PALETTE } from '@/styles/colors.css';
 import type { UserTurnProps } from '@/types';
 import { SessionStatus, TurnType } from '@/types';
-
-import { chatWindow } from './styles.css';
 
 export interface ChatWindowProps {
   className?: string;
@@ -51,7 +48,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile }) => {
     : undefined;
 
   return (
-    <div style={assignInlineVars(PALETTE, { colors: palette })} className={chatWindow({ mobile: isMobile })}>
+    <NewChat.Container isMobile={isMobile} palette={palette}>
       <NewChat
         headerProps={{
           title: assistant.chat.banner.title,
@@ -115,6 +112,6 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile }) => {
           </div>
         )}
       </NewChat>
-    </div>
+    </NewChat.Container>
   );
 };

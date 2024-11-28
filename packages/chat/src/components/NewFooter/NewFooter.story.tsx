@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { widgetContainer } from '@/views/ChatWidget/styles.css';
+
 import type { INewFooter } from '.';
 import { NewFooter } from '.';
 
@@ -41,7 +43,7 @@ const meta: Meta<typeof NewFooter> = {
   component: NewFooter,
   decorators: [
     (Story) => (
-      <div style={{ width: '400px', marginTop: '100px' }}>
+      <div className={widgetContainer.classNames.variants.withChat.true} style={{ width: '400px', marginTop: '100px' }}>
         <Story />
       </div>
     ),

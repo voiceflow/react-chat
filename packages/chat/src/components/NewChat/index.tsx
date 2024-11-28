@@ -11,6 +11,7 @@ import { type INewFooter, NewFooter } from '../NewFooter';
 import { Prompt } from '../Prompt';
 import { Separator } from '../Separator';
 import { type IWelcomeMessage, WelcomeMessage } from '../WelcomeMessage';
+import { ChatContainer } from './ChatContainer/ChatContainer.component';
 import { bottomSpacer, chatContainer, chatContentWrapper, chatEndedContainer, dialogContainer } from './NewChat.css';
 
 export interface INewChat extends React.PropsWithChildren {
@@ -59,7 +60,7 @@ export interface INewChat extends React.PropsWithChildren {
   onStart?: (() => Promise<void>) | undefined;
 }
 
-export const NewChat: React.FC<INewChat> = ({
+const Chat: React.FC<INewChat> = ({
   headerProps,
   welcomeMessageProps,
   footerProps,
@@ -132,3 +133,7 @@ export const NewChat: React.FC<INewChat> = ({
     </div>
   );
 };
+
+export const NewChat = Object.assign(Chat, {
+  Container: ChatContainer,
+});

@@ -146,7 +146,7 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
             <div
               className={fadeInAndUp}
               style={{
-                animationDelay: `${index * 0.1}s`,
+                animationDelay: `${index * 0.03}s`,
               }}
             >
               <Button variant={ButtonVariant.INLINE} onClick={() => runtime?.interact(request, name)} key={index}>

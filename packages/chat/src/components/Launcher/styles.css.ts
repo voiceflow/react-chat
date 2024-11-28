@@ -12,6 +12,17 @@ export const launcherContainer = style({
   width: 'fit-content',
 });
 
+const scaleIn = keyframes({
+  '0%': {
+    transform: 'scale(0)',
+    opacity: 0,
+  },
+  '100%': {
+    transform: 'scale(1)',
+    opacity: 1,
+  },
+});
+
 export const launcherStyles = recipe({
   base: [
     buttonStyles({ round: true }),
@@ -20,6 +31,7 @@ export const launcherStyles = recipe({
       height: LAUNCHER_SIZE,
       minWidth: '48px',
       backgroundColor: PALETTE.colors[500],
+      position: 'relative', // Establish positioning context
       transition: transition([
         'color',
         'background-color',
@@ -28,6 +40,7 @@ export const launcherStyles = recipe({
         'height',
         'max-width',
         'max-height',
+        'filter',
         'min-width',
         'min-height',
         'padding',
@@ -35,6 +48,8 @@ export const launcherStyles = recipe({
       boxShadow:
         '0px 1px 0px 0px rgba(22, 26, 30, 0.02), 0px 0px 0px 1px rgba(22, 26, 30, 0.04), 0px 1px 5px -4px rgba(22, 26, 30, 0.08), 0px 4px 8px -6px rgba(22, 26, 30, 0.08), 0px 1px 3px 1px rgba(22, 26, 30, 0.01)',
       willChange: 'transform',
+
+      animation: `${scaleIn} 0.3s ease-in-out`,
 
       ':hover': {
         transform: 'scale(1.1)',
@@ -44,13 +59,16 @@ export const launcherStyles = recipe({
         transform: 'scale(0.8)',
         backgroundColor: PALETTE.colors[700],
       },
-      '::after': {
+
+      '::before': {
         content: '""',
+        top: '-4px',
         position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
+        bottom: '-4px',
+        left: '-4px',
+        right: '-4px',
+        borderRadius: 'inherit',
+        backgroundColor: 'transparent',
         zIndex: -1,
       },
     },
@@ -70,6 +88,7 @@ export const launcherStyles = recipe({
     },
     isOpen: {
       true: {
+        filter: 'drop-shadow(rgba(0, 0, 0, 0.06) 0px 1px 6px) drop-shadow(rgba(0, 0, 0, 0.16) 0px 2px 32px)',
         height: '48px',
         width: '48px',
       },
