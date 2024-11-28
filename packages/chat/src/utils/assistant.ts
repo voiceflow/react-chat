@@ -20,6 +20,8 @@ import type {
   RawWidgetSettingsCommonSettings,
   RawWidgetSettingsVoiceSettings,
 } from '@/types/settings';
+import { ChatPersistence } from '@voiceflow/voiceflow-types/build/cjs/version';
+import { createPalette } from '@/styles/colors';
 
 export const mergeAssistantOptions = async (
   config: ChatConfig,
@@ -90,6 +92,13 @@ const mergeCommonSettings = (
     ...overrides,
     launcher: { ...publishedSettings.launcher, ...overrides?.launcher },
     footerLink: { ...publishedSettings.footerLink, ...overrides?.footerLink },
+
+    // HACK: just for testing now
+    persistence: ChatPersistence.LOCAL_STORAGE,
+    primaryColor: {
+      color: '#397dff',
+      palette: createPalette('#397dff'),
+    },
 
     // This can't be overridden by local configuration
     poweredBy: publishedSettings.poweredBy,
