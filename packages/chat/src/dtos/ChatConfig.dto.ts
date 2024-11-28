@@ -2,7 +2,7 @@ import type { BaseRequest } from '@voiceflow/dtos-interact';
 import type { PrototypeVerify, PublicVerify, RuntimeOptions as SDKRuntimeOptions } from '@voiceflow/sdk-runtime';
 import { z } from 'zod';
 
-import type { RawWidgetSettings } from '@/utils/assistant';
+import type { ChatWidgetSettings } from '@/types';
 
 import { RenderMode, RenderOptions } from './RenderOptions.dto';
 
@@ -47,7 +47,7 @@ export interface ChatConfig extends Config<z.infer<typeof ChatConfig>> {}
 
 export interface LoadConfig extends Omit<ChatConfig, 'url'> {
   url?: ChatConfig['url'];
-  assistant?: RawWidgetSettings;
+  assistant?: ChatWidgetSettings;
 }
 
 export const ChatSpeechRecognitionState = z.object({

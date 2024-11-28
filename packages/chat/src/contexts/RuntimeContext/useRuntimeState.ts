@@ -1,4 +1,4 @@
-import type { BaseRequest, WidgetSettings } from '@voiceflow/dtos-interact';
+import type { BaseRequest } from '@voiceflow/dtos-interact';
 import { isTextRequest, RequestType } from '@voiceflow/dtos-interact';
 import type { TraceDeclaration } from '@voiceflow/sdk-runtime';
 import cuid from 'cuid';
@@ -9,24 +9,24 @@ import { isIOS } from '@/device';
 import type { ChatConfig } from '@/dtos/ChatConfig.dto';
 import { useStateRef } from '@/hooks/useStateRef';
 import { useLocalStorageState } from '@/hooks/useStorage';
-import type { SendMessage, SessionOptions, TurnProps } from '@/types';
+import type { ChatPersistence, ChatWidgetSettings, SendMessage, SessionOptions, TurnProps } from '@/types';
 import { SessionStatus, TurnType } from '@/types';
 import { handleActions } from '@/utils/actions';
 import { broadcast, BroadcastType } from '@/utils/broadcast';
+import { getSession, saveSession } from '@/utils/session';
 
-// import { getSession, saveSession } from '@/utils/session';
 import { AudioController } from './audio-controller';
 import type { RuntimeMessage } from './messages';
 import { resolveAction } from './runtime.utils';
 import { silentAudio } from './silent-audio';
-// import { EffectExtensions } from './traces/EffectExtensions.trace';
+import { EffectExtensions } from './traces/EffectExtensions.trace';
 import { NoReply } from './traces/NoReply.trace';
-// import { ResponseExtensions } from './traces/ResponseExtensions.trace';
+import { ResponseExtensions } from './traces/ResponseExtensions.trace';
 import { useNoReply } from './useNoReply';
 import { createContext, useRuntimeAPI } from './useRuntimeAPI';
 
 export interface Settings {
-  assistant: WidgetSettings;
+  assistant: ChatWidgetSettings;
   config: ChatConfig;
   traceHandlers?: TraceDeclaration<RuntimeMessage, any>[];
 }
@@ -49,8 +49,7 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
     ...DEFAULT_SESSION_PARAMS,
     status: config.autostart ? SessionStatus.IDLE : SessionStatus.ENDED,
     // retrieve stored session
-    // TODO: Uncomment after adding `persistence` to the WidgetSettings object
-    // ...getSession(assistant.persistence, config.verify.projectID, config.userID),
+    ...getSession(assistant.common.persistence as ChatPersistence, config.verify.projectID, config.userID),
     ...{ userID: config.userID || cuid() },
   }));
 
@@ -62,9 +61,8 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
     ...session,
     traceHandlers: [
       NoReply(setNoReplyTimeout),
-      // TODO: Uncomment after adding `extensions` to the WidgetSettings object
-      /* ...EffectExtensions(assistant.extensions),
-      ...ResponseExtensions(assistant.extensions), */
+      ...EffectExtensions(assistant.extensions),
+      ...ResponseExtensions(assistant.extensions),
       ...(traceHandlers ?? []),
     ],
   });
@@ -143,8 +141,7 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
     }
 
     broadcast({ type: BroadcastType.INTERACT, payload: { session: sessionRef.current, action: userAction } });
-    // TODO: Uncomment after we add `persistence` to the WidgetSettings
-    // saveSession(assistant.persistence, config.verify.projectID, sessionRef.current);
+    saveSession(assistant.common.persistence as ChatPersistence, config.verify.projectID, sessionRef.current);
   };
 
   const launch = async (): Promise<void> => {
@@ -180,8 +177,7 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
     stopAudios();
 
     broadcast({ type: BroadcastType.CLOSE });
-    // TODO: Uncomment after we add `persistence` to the WidgetSettings
-    // saveSession(assistant.persistence, config.verify.projectID, sessionRef.current);
+    saveSession(assistant.common.persistence as ChatPersistence, config.verify.projectID, sessionRef.current);
   };
 
   const close = () => {

@@ -1,14 +1,17 @@
 import {
+  WIDGET_SETTINGS_DEFAULT_MAIN_COLOR,
   WIDGET_SETTINGS_DEFAULT_PALETTE,
-  type WidgetSettings,
   WidgetSettingsChatRenderMode,
   WidgetSettingsLauncherType,
   WidgetSettingsVoiceRenderMode,
   WidgetSettingsWidgetPosition,
   WidgetSettingsWidgetType,
 } from '@voiceflow/dtos-interact';
+import { ChatPersistence } from '@voiceflow/voiceflow-types/build/cjs/version';
 
-export const WIDGET_SETTINGS_DEFAULT_SETTINGS: WidgetSettings = {
+import type { ChatWidgetSettings } from '@/types/settings';
+
+export const WIDGET_SETTINGS_DEFAULT_SETTINGS: ChatWidgetSettings = {
   type: WidgetSettingsWidgetType.CHAT,
 
   chat: {
@@ -59,6 +62,12 @@ export const WIDGET_SETTINGS_DEFAULT_SETTINGS: WidgetSettings = {
     position: WidgetSettingsWidgetPosition.RIGHT,
     sideSpacing: '20',
     bottomSpacing: '20',
-    primaryColor: WIDGET_SETTINGS_DEFAULT_PALETTE,
+    primaryColor: {
+      color: WIDGET_SETTINGS_DEFAULT_MAIN_COLOR,
+      palette: WIDGET_SETTINGS_DEFAULT_PALETTE,
+    },
+    persistence: ChatPersistence.LOCAL_STORAGE,
   },
+  stylesheet: '',
+  extensions: [],
 };

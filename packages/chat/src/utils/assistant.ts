@@ -12,24 +12,19 @@ import {
 } from '@voiceflow/dtos-interact';
 import { VoiceflowRuntime } from '@voiceflow/sdk-runtime';
 import type { PartialDeep } from 'type-fest';
-import type { z } from 'zod';
 
 import type { ChatConfig } from '@/dtos/ChatConfig.dto';
-
-export type RawWidgetSettings = z.input<typeof WidgetSettingsDTO>;
-type RawWidgetSettingsChatSettings = z.input<typeof WidgetSettingsChatSettingsDTO>;
-type RawWidgetSettingsVoiceSettings = z.input<typeof WidgetSettingsVoiceSettingsDTO>;
-type RawWidgetSettingsCommonSettings = z.input<typeof WidgetSettingsCommonSettingsDTO>;
-
-interface WidgetLocalSettings {
-  stylesheet: string;
-  extensions: string[];
-}
+import type {
+  ChatWidgetSettings,
+  RawWidgetSettingsChatSettings,
+  RawWidgetSettingsCommonSettings,
+  RawWidgetSettingsVoiceSettings,
+} from '@/types/settings';
 
 export const mergeAssistantOptions = async (
   config: ChatConfig,
-  overrides?: RawWidgetSettings & Partial<WidgetLocalSettings>
-): Promise<WidgetSettings & Partial<WidgetLocalSettings>> => {
+  overrides?: ChatWidgetSettings
+): Promise<ChatWidgetSettings> => {
   const { versionID } = config;
 
   // fetch remote publishing config
@@ -43,7 +38,7 @@ export const mergeAssistantOptions = async (
     });
 
   // TODO: make sure we get some default object, or define it here
-  if (!publishing) return WidgetSettingsDTO.parse({});
+  if (!publishing) return { ...WidgetSettingsDTO.parse({}), stylesheet: '', extensions: [] };
 
   return {
     type: overrides?.type ?? publishing.type,
@@ -51,8 +46,8 @@ export const mergeAssistantOptions = async (
     voice: mergeVoiceSettings(publishing.voice, overrides?.voice),
     common: mergeCommonSettings(publishing.common, overrides?.common),
 
-    stylesheet: overrides?.stylesheet,
-    extensions: overrides?.extensions,
+    stylesheet: overrides?.stylesheet ?? '',
+    extensions: overrides?.extensions ?? [],
   };
 };
 
