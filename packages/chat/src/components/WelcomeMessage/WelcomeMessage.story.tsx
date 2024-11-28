@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import EMPTY_IMAGE from '@/__fixtures__/empty-image.png';
+import { widgetContainer } from '@/views/ChatWidget/styles.css';
 
 import { WelcomeMessage } from '.';
 
@@ -15,6 +16,13 @@ const meta: Meta<typeof WelcomeMessage> = {
   parameters: {
     layout: 'centered',
   },
+  decorators: [
+    (Story) => (
+      <div className={widgetContainer.classNames.variants.withChat.true}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 export default meta;
 
