@@ -23,7 +23,7 @@ interface ChatWidgetProps extends React.PropsWithChildren {
   chatWindow?: React.ReactNode;
 }
 
-export const ChatWidget: React.FC<ChatWidgetProps> = ({ /* shadowRoot, */ chatAPI, ready }) => {
+export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, ready }) => {
   const { assistant, open, close, interact } = useContext(RuntimeStateAPIContext);
   const { isOpen } = useContext(RuntimeStateContext);
 
@@ -62,7 +62,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ /* shadowRoot, */ chatAP
   const position = { bottom: assistant.common.bottomSpacing, [side]: assistant.common.sideSpacing };
   const chatHeight = `calc(100% - ${LAUNCHER_SIZE + LAUNCHER_MARGIN + assistant.common.bottomSpacing + 20}px)`;
 
-  const isStyleSheetResolved = useResolveAssistantStyleSheet(assistant /* , shadowRoot */);
+  const isStyleSheetResolved = useResolveAssistantStyleSheet(assistant, shadowRoot);
 
   if (!isStyleSheetResolved) return null;
   if (!palette) return null;

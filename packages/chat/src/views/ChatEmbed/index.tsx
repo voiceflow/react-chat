@@ -12,11 +12,10 @@ interface ChatEmbedProps extends React.PropsWithChildren {
   ready?: () => void;
 }
 
-// TODO: Uncomment when we fix issue in `useResolveAssistantStyleSheet`
-export const ChatEmbed: React.FC<ChatEmbedProps> = ({ /* shadowRoot, */ chatAPI, ready }) => {
+export const ChatEmbed: React.FC<ChatEmbedProps> = ({ shadowRoot, chatAPI, ready }) => {
   const { assistant, interact, open } = useContext(RuntimeStateAPIContext);
 
-  const isStyleSheetResolved = useResolveAssistantStyleSheet(assistant /* , shadowRoot */);
+  const isStyleSheetResolved = useResolveAssistantStyleSheet(assistant, shadowRoot);
 
   useChatAPI(
     chatAPI,
