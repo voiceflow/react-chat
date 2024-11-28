@@ -26,7 +26,6 @@ export const systemMessageContainer = style({
   display: 'flex',
   alignItems: 'flex-end',
   marginBottom: 4,
-  animation: `${fadeInSlideUp} ${duration.fast} ease-in`,
 });
 
 export const responseAvatar = style({
@@ -35,6 +34,8 @@ export const responseAvatar = style({
 
 export const messageContainer = style({
   width: `calc(100% - ${MESSAGE_PADDING + SMALL_AVATAR_SIZE}px)`,
+  animation: `${fadeInSlideUp} ${duration.fast} ease-in`,
+
   marginLeft: MESSAGE_PADDING,
 });
 
