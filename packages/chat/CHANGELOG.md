@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.7.2...@voiceflow/react-chat@2.8.0) (2024-11-28)
+
+### Bug Fixes
+
+* copy icon transitions when clicked (DSN-2583) ([#374](https://github.com/voiceflow/react-chat/issues/374)) ([761f7b3](https://github.com/voiceflow/react-chat/commit/761f7b37b71df1550639ffadfb108b83a4217a27))
+* paragraph spacing (DSN-2582) ([#377](https://github.com/voiceflow/react-chat/issues/377)) ([1ed7cfb](https://github.com/voiceflow/react-chat/commit/1ed7cfb0a7d999a86ebb262b88b37abd0b4058ae))
+
+### Features
+
+* Audio input button transition (DSN-2581) ([#375](https://github.com/voiceflow/react-chat/issues/375)) ([19c6207](https://github.com/voiceflow/react-chat/commit/19c6207801822c146320c335a938a60f143b4ad8))
+
 ## [2.7.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.7.1...@voiceflow/react-chat@2.7.2) (2024-11-28)
 
 ### Bug Fixes
