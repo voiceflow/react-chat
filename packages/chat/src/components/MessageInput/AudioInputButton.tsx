@@ -11,6 +11,7 @@ interface AudioInputButtonProps {
   listening?: boolean;
   processing?: boolean;
   initializing?: boolean;
+  showButton?: boolean;
 }
 
 export const AudioInputButton: React.FC<AudioInputButtonProps> = ({
@@ -19,13 +20,14 @@ export const AudioInputButton: React.FC<AudioInputButtonProps> = ({
   listening,
   processing,
   initializing,
+  showButton,
 }) => {
   return (
     <button
       className={clsx(
         squareButtonStyles({ size: 'medium', isActive: listening }),
         SquareButtonTheme.light,
-        audioInputButton()
+        audioInputButton({ hidden: !showButton })
       )}
       onClick={listening ? onStop : onStart}
       disabled={processing || initializing}
