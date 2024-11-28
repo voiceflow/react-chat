@@ -12,6 +12,7 @@ import {
   activeBackground,
   activeIconColor,
   checkedIcon,
+  copyButtonStyles,
   feedbackButtonStyles,
   feedbackContainer,
   iconStyle,
@@ -58,11 +59,8 @@ export const FeedbackButton: React.FC<IFeedbackButton> = ({ variant, onClick, te
           onClick={onCopyClick}
           data-testid={`${testID}--copy`}
         >
-          {hasCopied ? (
-            <Icon svg="checkmark" className={clsx(iconStyle, checkedIcon)} />
-          ) : (
-            <CopyButtonIcon className={iconStyle} />
-          )}
+          <Icon svg="checkmark" className={clsx(iconStyle, checkedIcon, copyButtonStyles({ isVisible: hasCopied }))} />
+          <CopyButtonIcon className={clsx(iconStyle, copyButtonStyles({ isVisible: !hasCopied }))} />
         </button>
       )}
       <button

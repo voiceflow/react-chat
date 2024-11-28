@@ -43,6 +43,7 @@ export const feedbackButtonStyles = recipe({
     alignItems: 'center',
     justifyContent: 'center',
     border: 'none',
+    position: 'relative',
     backgroundColor: 'transparent',
     transition: transition(['background-color', 'color']),
     color: COLORS.NEUTRAL_DARK[100],
@@ -93,4 +94,23 @@ export const iconStyle = style({
 
 export const checkedIcon = style({
   color: PALETTE.colors[500],
+});
+
+export const copyButtonStyles = recipe({
+  base: {
+    position: 'absolute',
+    top: '0',
+    right: '0',
+    transition: transition(['opacity']),
+  },
+  variants: {
+    isVisible: {
+      true: {
+        opacity: 1,
+      },
+      false: {
+        opacity: 0,
+      },
+    },
+  },
 });

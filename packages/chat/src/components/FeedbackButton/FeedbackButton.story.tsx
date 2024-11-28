@@ -19,7 +19,7 @@ type Story = StoryObj<typeof FeedbackButton>;
 export const PreviousResponse: Story = {
   render: () => (
     <div style={{ width: '400px', ...assignInlineVars(PALETTE, { colors: createPalette('green') }) }}>
-      <FeedbackButton onClick={() => null} variant={FeedbackButtonVariant.PREVIOUS_RESPONSE} />
+      <FeedbackButton textContent="Howdy" onClick={() => null} variant={FeedbackButtonVariant.PREVIOUS_RESPONSE} />
     </div>
   ),
 };
@@ -27,7 +27,7 @@ export const PreviousResponse: Story = {
 export const LastResponse: Story = {
   render: () => (
     <div style={{ width: '400px', ...assignInlineVars(PALETTE, { colors: createPalette('red') }) }}>
-      <FeedbackButton onClick={() => null} variant={FeedbackButtonVariant.LAST_RESPONSE} />
+      <FeedbackButton textContent="Howdy" onClick={() => null} variant={FeedbackButtonVariant.LAST_RESPONSE} />
     </div>
   ),
 };
