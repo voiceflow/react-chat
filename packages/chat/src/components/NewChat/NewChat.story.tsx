@@ -81,6 +81,7 @@ const MockBaseComponent = ({ isLoading }: { isLoading?: boolean }) => {
         description: 'Hello, I am here to help with whatever you need.',
       }}
       headerProps={{
+        showImage: true,
         title: 'Your AI assistant',
       }}
       footerProps={{
@@ -128,6 +129,7 @@ export const Themed: Story = {
             description: 'Hello, I am here to help with whatever you need.',
           }}
           headerProps={{
+            showImage: true,
             title: 'Your AI assistant',
           }}
           footerProps={{
@@ -152,6 +154,7 @@ export const Themed: Story = {
             description: 'Hello, I am here to help with whatever you need.',
           }}
           headerProps={{
+            showImage: true,
             title: 'Your AI assistant',
           }}
           footerProps={{
@@ -176,6 +179,7 @@ export const Themed: Story = {
             description: '',
           }}
           headerProps={{
+            showImage: true,
             title: 'Your AI assistant',
           }}
           footerProps={{
@@ -204,6 +208,7 @@ export const NoPoweredBy = {
         description: "Let's get this party started already!",
       }}
       headerProps={{
+        showImage: true,
         title: 'Your AI assistant',
       }}
       footerProps={{
@@ -230,6 +235,7 @@ export const OnlyPoweredBy = {
         description: 'Hello, I am here to help with whatever you need.',
       }}
       headerProps={{
+        showImage: true,
         title: 'Your AI assistant',
       }}
       footerProps={{
@@ -256,6 +262,7 @@ export const NoFooterLinks = {
         description: 'Hello, I am here to help with whatever you need.',
       }}
       headerProps={{
+        showImage: true,
         title: 'Your AI assistant',
       }}
       footerProps={{
@@ -289,6 +296,7 @@ export const ChatEnded = {
         description: "Let's get this party started already!",
       }}
       headerProps={{
+        showImage: true,
         title: 'Your AI assistant',
       }}
       footerProps={{

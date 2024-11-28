@@ -34,10 +34,10 @@ export const mergeAssistantOptions = async (
 
   // fetch remote publishing config
   const runtime = new VoiceflowRuntime(config);
-
   const publishing = await runtime
+    // chatVersion: 2 - will return the new WidgetSettings object
     .getPublishing<WidgetSettings>({ ...(versionID && { versionID }), chatVersion: 2 })
-    .catch((error) => {
+    .catch((error: any) => {
       console.error(error);
       return null;
     });
@@ -60,16 +60,13 @@ const mergeChatSettings = (
   publishedSettings: PartialDeep<WidgetSettingsChatSettings>,
   overrides?: RawWidgetSettingsChatSettings
 ) => {
-  // TODO: Define default agent image
-  const DEFAULT_AGENT_IMAGE = '...';
-
   return WidgetSettingsChatSettingsDTO.parse({
     ...publishedSettings,
     ...overrides,
     headerImage: { ...publishedSettings.headerImage, ...overrides?.headerImage },
     agentImage: {
       enabled: overrides?.agentImage?.enabled ?? publishedSettings.agentImage?.enabled,
-      url: overrides?.agentImage?.url ?? publishedSettings.agentImage?.url ?? DEFAULT_AGENT_IMAGE,
+      url: overrides?.agentImage?.url ?? publishedSettings.agentImage?.url,
     },
     banner: { ...publishedSettings.banner, ...overrides?.banner },
     aiDisclaimer: { ...publishedSettings.aiDisclaimer, ...overrides?.aiDisclaimer },

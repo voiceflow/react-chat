@@ -31,7 +31,7 @@ export interface SystemResponseProps {
   /**
    * An image URL for an avatar to associate the messages with.
    */
-  avatar: string;
+  avatar?: string;
 
   /**
    * A unix timestamp indicating when the messages were sent.

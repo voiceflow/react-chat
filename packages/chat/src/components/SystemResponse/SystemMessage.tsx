@@ -22,7 +22,7 @@ export interface SystemMessageProps {
   /**
    * An image URL for an avatar to associate this message with.
    */
-  avatar: string;
+  avatar?: string;
 
   /**
    * A unix timestamp indicating when this message was sent.
@@ -79,7 +79,7 @@ export const SystemMessage: React.FC<SystemMessageProps> = ({
         ))
         .otherwise((message) => (
           <>
-            <Avatar avatar={avatar} className={clsx(withImage ? '' : hide, responseAvatar)} />
+            {avatar && <Avatar avatar={avatar} className={clsx(withImage ? '' : hide, responseAvatar)} />}
             <div className={messageContainer}>
               {match(message)
                 .with({ type: MessageType.TEXT }, ({ text, ai }) => (

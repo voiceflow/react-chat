@@ -80,6 +80,7 @@ export const Default: Story = {
           description: 'Im hot, youre not, deal with it',
         }}
         headerProps={{
+          showImage: true,
           title: 'Your awesome assistant',
         }}
         footerProps={{

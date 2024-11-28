@@ -30,6 +30,7 @@ export const InsideChat: Story = {
           description: "It's tricky to rock a rhyme, to rock a rhyme thats right on time, it's tricky",
         }}
         headerProps={{
+          showImage: true,
           title: 'Your AI assistant',
         }}
         footerProps={{

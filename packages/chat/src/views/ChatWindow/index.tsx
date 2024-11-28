@@ -12,6 +12,7 @@ import { UserResponse } from '@/components/UserResponse';
 import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts/RuntimeContext';
 import type { FeedbackName } from '@/contexts/RuntimeContext/useRuntimeAPI';
 import { usePalette } from '@/hooks/usePalette';
+import { DEFAULT_CHAT_AVATAR } from '@/main';
 import { PALETTE } from '@/styles/colors.css';
 import type { UserTurnProps } from '@/types';
 import { SessionStatus, TurnType } from '@/types';
@@ -45,12 +46,17 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile }) => {
 
   if (!palette) return null;
 
+  const AGENT_AVATAR = assistant.chat.agentImage.enabled
+    ? (assistant.chat.agentImage.url ?? DEFAULT_CHAT_AVATAR)
+    : undefined;
+
   return (
     <div style={assignInlineVars(PALETTE, { colors: palette })} className={chatWindow({ mobile: isMobile })}>
       <NewChat
         headerProps={{
           title: assistant.chat.banner.title,
-          image: assistant.chat.headerImage.enabled ? assistant.chat.headerImage.url : undefined,
+          showImage: assistant.chat.headerImage.enabled,
+          image: assistant.chat.headerImage.url,
         }}
         welcomeMessageProps={{
           enabled: assistant.chat.banner.enabled,
@@ -92,7 +98,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile }) => {
               <SystemResponse
                 key={id}
                 {...R.omit(props, ['type'])}
-                avatar={assistant.chat.agentImage.url!}
+                avatar={AGENT_AVATAR}
                 feedback={{
                   onClick: (feedback: FeedbackName) => {
                     runtime.feedback(feedback, props.messages, getPreviousUserTurn(turnIndex));
@@ -105,7 +111,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile }) => {
         })}
         {state.indicator && (
           <div className={chatContentWrapper}>
-            <Indicator avatar={assistant.chat.agentImage.url!} isLast={true} />
+            <Indicator avatar={AGENT_AVATAR} isLast={true} />
           </div>
         )}
       </NewChat>

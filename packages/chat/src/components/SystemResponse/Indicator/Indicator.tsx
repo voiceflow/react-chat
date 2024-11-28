@@ -7,14 +7,14 @@ import { TypingIndicator } from '@/components/TypingIndicator';
 import { indicatorContainer } from './Indicator.css';
 
 export interface IndicatorProps {
-  avatar: string;
+  avatar?: string;
   isLast?: boolean;
   className?: string;
 }
 
 const Indicator: React.FC<IndicatorProps> = ({ avatar, isLast, className }) => (
   <MessageContainer className={clsx(indicatorContainer, className)} isLast={isLast}>
-    <Avatar avatar={avatar} />
+    {avatar && <Avatar avatar={avatar} />}
     <TypingIndicator />
   </MessageContainer>
 );
