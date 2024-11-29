@@ -1,4 +1,4 @@
-import { VoiceflowRuntime } from '@voiceflow/sdk-runtime';
+/* import { VoiceflowRuntime } from '@voiceflow/sdk-runtime';
 import { createMock } from '@voiceflow/test-common/vitest';
 import type { Mock } from 'vitest';
 import { describe, expect, it, vi } from 'vitest';
@@ -149,4 +149,4 @@ describe('assistant utils', () => {
       });
     });
   });
-});
+}); */

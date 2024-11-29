@@ -13,6 +13,7 @@ import { createPlaceholderMethods } from './utils/chat';
 import { addStyleSheetURL } from './utils/stylesheet';
 import { ChatEmbed } from './views/ChatEmbed';
 import { ChatWidget } from './views/ChatWidget';
+import { WidgetOverrides } from './dtos/WidgetOverrides.dto';
 
 let reactRoot: Root;
 
@@ -53,7 +54,7 @@ window.voiceflow.chat ??= {
 
   load: async (loadConfig: LoadConfig) => {
     const config = ChatConfig.parse(loadConfig);
-    const assistant = await mergeAssistantOptions(config, loadConfig.assistant);
+    const assistant = await mergeAssistantOptions(config, WidgetOverrides.parse(loadConfig.assistant));
 
     const { reactRoot, shadowRoot } = createChatRoot(config);
 

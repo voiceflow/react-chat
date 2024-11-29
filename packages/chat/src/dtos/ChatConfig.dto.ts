@@ -2,9 +2,8 @@ import type { BaseRequest } from '@voiceflow/dtos-interact';
 import type { PrototypeVerify, PublicVerify, RuntimeOptions as SDKRuntimeOptions } from '@voiceflow/sdk-runtime';
 import { z } from 'zod';
 
-import type { ChatWidgetSettings } from '@/types';
-
 import { RenderMode, RenderOptions } from './RenderOptions.dto';
+import type { WidgetOverrides } from './WidgetOverrides.dto';
 
 export const RUNTIME_URL = 'https://general-runtime.voiceflow.com';
 
@@ -47,7 +46,7 @@ export interface ChatConfig extends Config<z.infer<typeof ChatConfig>> {}
 
 export interface LoadConfig extends Omit<ChatConfig, 'url'> {
   url?: ChatConfig['url'];
-  assistant?: ChatWidgetSettings;
+  assistant?: WidgetOverrides;
 }
 
 export const ChatSpeechRecognitionState = z.object({
