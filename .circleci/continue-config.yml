@@ -12,7 +12,7 @@ parameters:
     default: false
 
 orbs:
-  vfcommon: voiceflow/common@0.87.2
+  vfcommon: voiceflow/common@0.89.0
   sonarcloud: sonarsource/sonarcloud@2.0.0
 
 defaults:
