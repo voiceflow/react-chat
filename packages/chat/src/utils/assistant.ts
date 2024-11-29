@@ -11,17 +11,17 @@ import {
   WidgetSettingsVoiceSettingsDTO,
 } from '@voiceflow/dtos-interact';
 import { VoiceflowRuntime } from '@voiceflow/sdk-runtime';
+import { ChatPersistence } from '@voiceflow/voiceflow-types/build/cjs/version';
 import type { PartialDeep } from 'type-fest';
 
 import type { ChatConfig } from '@/dtos/ChatConfig.dto';
+import { createPalette } from '@/styles/colors';
 import type {
   ChatWidgetSettings,
   RawWidgetSettingsChatSettings,
   RawWidgetSettingsCommonSettings,
   RawWidgetSettingsVoiceSettings,
 } from '@/types/settings';
-import { ChatPersistence } from '@voiceflow/voiceflow-types/build/cjs/version';
-import { createPalette } from '@/styles/colors';
 
 export const mergeAssistantOptions = async (
   config: ChatConfig,

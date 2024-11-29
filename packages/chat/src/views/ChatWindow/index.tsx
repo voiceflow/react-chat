@@ -12,7 +12,6 @@ import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts/RuntimeC
 import type { FeedbackName } from '@/contexts/RuntimeContext/useRuntimeAPI';
 import { usePalette } from '@/hooks/usePalette';
 import { DEFAULT_CHAT_AVATAR } from '@/main';
-import { PALETTE } from '@/styles/colors.css';
 import type { UserTurnProps } from '@/types';
 import { SessionStatus, TurnType } from '@/types';
 
