@@ -6,6 +6,7 @@ import { DEFAULT_AVATAR, RenderMode } from '@/main';
 import { WithDefaultPalette } from '@/storybook/decorators';
 import { COLORS } from '@/styles/colors';
 import { ChatPersistence, ChatPosition } from '@/types';
+import { widgetContainer } from '@/views/ChatWidget/styles.css';
 
 import { NewChat } from '../NewChat';
 import { MessageType } from '../SystemResponse/constants';
@@ -48,7 +49,7 @@ const meta: Meta<typeof Carousel> = {
           extensions: [],
         }}
       >
-        {Story()}
+        <div className={widgetContainer.classNames.variants.withChat.true}>{Story()}</div>
       </RuntimeProvider>
     ),
     WithDefaultPalette,
