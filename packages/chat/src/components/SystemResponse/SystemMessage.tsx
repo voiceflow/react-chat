@@ -7,7 +7,7 @@ import { ClassName } from '@/constants';
 import { RuntimeStateAPIContext } from '@/contexts';
 
 import { AgentMessage } from '../AgentMessage';
-import { Avatar } from '../Avatar';
+// import { Avatar } from '../Avatar';
 import { Card } from '../Card';
 import { Carousel } from '../Carousel';
 import { FeedbackButton } from '../FeedbackButton';
@@ -15,7 +15,7 @@ import { type IFeedbackButton } from '../FeedbackButton/FeedbackButton.interface
 import { Image } from '../Image';
 import { MessageType } from './constants';
 import { ExtensionMessage } from './ExtensionMessage';
-import { hide, messageContainer, responseAvatar, systemMessageContainer } from './styles.css';
+import { messageContainer, systemMessageContainer } from './styles.css';
 import type { MessageProps } from './types';
 
 export interface SystemMessageProps {
@@ -60,11 +60,11 @@ export interface SystemMessageProps {
  * An individual message within a system response
  */
 export const SystemMessage: React.FC<SystemMessageProps> = ({
-  avatar,
+  // avatar,
   message,
   feedback,
   isLast,
-  withImage,
+  // withImage,
   textContent,
 }) => {
   const { config } = useContext(RuntimeStateAPIContext);
@@ -74,12 +74,10 @@ export const SystemMessage: React.FC<SystemMessageProps> = ({
       {match(message)
         // We check for `MessageType.CAROUSEL` before all the others, because a Carousel will take care
         // of rendering the Avatar itself
-        .with({ type: MessageType.CAROUSEL }, (props) => (
-          <Carousel {...{ avatar, withImage, ...R.omit(props, ['type']) }} />
-        ))
+        .with({ type: MessageType.CAROUSEL }, (props) => <Carousel {...{ ...R.omit(props, ['type']) }} />)
         .otherwise((message) => (
           <>
-            <Avatar avatar={avatar} className={clsx(withImage ? '' : hide, responseAvatar)} />
+            {/* <Avatar avatar={avatar} className={clsx(withImage ? '' : hide, responseAvatar)} /> */}
             <div className={messageContainer}>
               {match(message)
                 .with({ type: MessageType.TEXT }, ({ text, ai }) => (

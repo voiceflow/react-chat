@@ -1,11 +1,12 @@
 import type { RuntimeAction } from '@voiceflow/sdk-runtime';
 import { serializeToText } from '@voiceflow/slate-serializer/text';
-import { useContext } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 
 import { RuntimeStateAPIContext } from '@/contexts';
 import { useAutoScroll } from '@/hooks/useAutoScroll';
 import { fadeInAndUp } from '@/styles/animation-utils.css';
 
+import { Avatar } from '../Avatar';
 import { Button } from '../Button';
 import { ButtonVariant } from '../Button/constants';
 import { FeedbackButton } from '../FeedbackButton';
@@ -15,7 +16,13 @@ import { MessageType } from './constants';
 import { useAnimatedMessages } from './hooks';
 import Indicator from './Indicator/Indicator';
 import EndState from './state/end';
-import { actionsContainer, feedbackContainer } from './styles.css';
+import {
+  actionsContainer,
+  avatarColumn,
+  feedbackContainer,
+  systemResponseContainer,
+  systemResponseMessageContainer,
+} from './styles.css';
 import type { SystemMessageProps } from './SystemMessage';
 import { SystemMessage } from './SystemMessage';
 import type { MessageProps } from './types';
@@ -69,6 +76,7 @@ export interface SystemResponseProps {
    * Override the rendering of individual messages.
    */
   Message?: React.ComponentType<SystemMessageProps>;
+  showIndicator?: boolean;
 }
 
 /**
@@ -86,6 +94,20 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
   Message = SystemMessage,
 }) => {
   const runtime = useContext(RuntimeStateAPIContext);
+
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const avatarRef = useRef<HTMLDivElement | null>(null);
+  const [avatarOffset, setAvatarOffset] = useState(0);
+
+  useEffect(() => {
+    if (containerRef.current && avatarRef.current) {
+      const containerHeight = containerRef.current.scrollHeight;
+      const avatarHeight = avatarRef.current.offsetHeight;
+
+      // Calculate the relative offset for the avatar
+      setAvatarOffset(containerHeight - avatarHeight);
+    }
+  }, [messages]);
 
   const { showIndicator, visibleMessages, complete } = useAnimatedMessages({
     messages,
@@ -105,58 +127,84 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
     return acc;
   }, '');
 
+  const messageListRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (avatarRef.current && messageListRef.current) {
+      const lastMessage = messageListRef.current.lastElementChild as HTMLElement;
+      if (lastMessage) {
+        // Calculate offset to position the avatar at the bottom of the last message
+        const offset = lastMessage.offsetTop + lastMessage.offsetHeight - avatarRef.current.offsetHeight;
+        avatarRef.current.style.transform = `translateY(${offset}px)`;
+      }
+    }
+  }, [visibleMessages, showIndicator]);
+
   return (
     <MessageContainer isLast={isLast}>
-      {visibleMessages.map((message, index) => {
-        const endConversation = message?.type === MessageType.END;
-        if (endConversation) {
-          return <EndState />;
-        }
-
-        const lastMessageInGroup = index === visibleMessages.length - 1;
-        const showFeedback = lastMessageInGroup && message.type === MessageType.TEXT;
-
-        return (
-          <>
-            <Message
-              message={message}
-              withImage={!showIndicator && lastMessageInGroup}
-              avatar={avatar}
-              timestamp={timestamp}
-              isLast={isLast}
-              feedback={showFeedback ? feedback : undefined}
-              textContent={allTextContentForMessage}
-              key={index}
-            />
-            {feedback && isLast && complete && lastMessageInGroup && (
-              <div className={feedbackContainer}>
-                <FeedbackButton
-                  {...feedback}
-                  textContent={allTextContentForMessage}
-                  variant={FeedbackButtonVariant.LAST_RESPONSE}
-                />
-              </div>
-            )}
-          </>
-        );
-      })}
-      {isLast && complete && !!actions.length && (
-        <div className={actionsContainer}>
-          {actions.map(({ request, name }, index) => (
-            <div
-              className={fadeInAndUp}
-              style={{
-                animationDelay: `${index * 0.1}s`,
-              }}
-            >
-              <Button variant={ButtonVariant.INLINE} onClick={() => runtime?.interact(request, name)} key={index}>
-                {name}
-              </Button>
-            </div>
-          ))}
+      <div className={systemResponseContainer}>
+        <div
+          className={avatarColumn}
+          ref={avatarRef}
+          style={{
+            transform: `translateY(${avatarOffset}px)`, // Smoothly moves the avatar
+          }}
+        >
+          <Avatar avatar={avatar} />
         </div>
-      )}
-      {showIndicator && <Indicator avatar={avatar} isLast={isLast} />}
+        <div className={systemResponseMessageContainer} ref={messageListRef}>
+          {visibleMessages.map((message, index) => {
+            const endConversation = message?.type === MessageType.END;
+            if (endConversation) {
+              return <EndState />;
+            }
+
+            const lastMessageInGroup = index === visibleMessages.length - 1;
+            const showFeedback = lastMessageInGroup && message.type === MessageType.TEXT;
+
+            return (
+              <>
+                <Message
+                  message={message}
+                  withImage={!showIndicator && lastMessageInGroup}
+                  avatar={avatar}
+                  timestamp={timestamp}
+                  isLast={isLast}
+                  feedback={showFeedback ? feedback : undefined}
+                  textContent={allTextContentForMessage}
+                  key={index}
+                />
+                {feedback && isLast && complete && lastMessageInGroup && (
+                  <div className={feedbackContainer}>
+                    <FeedbackButton
+                      {...feedback}
+                      textContent={allTextContentForMessage}
+                      variant={FeedbackButtonVariant.LAST_RESPONSE}
+                    />
+                  </div>
+                )}
+              </>
+            );
+          })}
+          {showIndicator && <Indicator avatar={avatar} isLast={isLast} />}
+        </div>
+        {isLast && complete && !!actions.length && (
+          <div className={actionsContainer}>
+            {actions.map(({ request, name }, index) => (
+              <div
+                className={fadeInAndUp}
+                style={{
+                  animationDelay: `${index * 0.1}s`,
+                }}
+              >
+                <Button variant={ButtonVariant.INLINE} onClick={() => runtime?.interact(request, name)} key={index}>
+                  {name}
+                </Button>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </MessageContainer>
   );
 };

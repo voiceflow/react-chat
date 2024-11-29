@@ -36,7 +36,7 @@ export const messageContainer = style({
   width: `calc(100% - ${MESSAGE_PADDING + SMALL_AVATAR_SIZE}px)`,
   animation: `${fadeInSlideUp} ${duration.fast} ease-in`,
 
-  marginLeft: MESSAGE_PADDING,
+  // marginLeft: MESSAGE_PADDING,
 });
 
 export const actionsContainer = style({
@@ -61,4 +61,19 @@ export const feedbackContainer = style({
   marginTop: 6,
   zIndex: 1,
   marginLeft: MESSAGE_PADDING + SMALL_AVATAR_SIZE - 6,
+});
+
+export const systemResponseContainer = style({
+  display: 'flex',
+  flexDirection: 'column',
+});
+
+export const systemResponseMessageContainer = style({
+  display: 'flex',
+  paddingLeft: MESSAGE_PADDING + SMALL_AVATAR_SIZE,
+  marginBottom: 4,
+  flexDirection: 'column',
+});
+export const avatarColumn = style({
+  transition: 'transform 0.5s ease',
 });

@@ -27,7 +27,6 @@ const meta: Meta<typeof SystemResponse> = {
   title: 'Components/Chat/SystemResponse',
   component: SystemResponse,
   args: {
-    timestamp: Date.now(),
     avatar: VF_ICON,
     isLast: true,
   },
@@ -161,7 +160,8 @@ export const Carousel: Story = {
 
 export const Multiple: Story = {
   args: {
-    messages: [CARD, TEXT_MESSAGE],
+    avatar: EMPTY_IMAGE,
+    messages: [CARD, TEXT_MESSAGE, TEXT_MESSAGE, TEXT_MESSAGE, TEXT_MESSAGE],
   },
 };
 

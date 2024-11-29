@@ -15,7 +15,7 @@ export interface IndicatorProps {
 
 const Indicator: React.FC<IndicatorProps> = ({ avatar, isLast, className }) => (
   <MessageContainer className={clsx(indicatorContainer, className)} isLast={isLast}>
-    <Avatar avatar={avatar} className={responseAvatar} />
+    {/* <Avatar avatar={avatar} className={responseAvatar} /> */}
     <TypingIndicator />
   </MessageContainer>
 );
