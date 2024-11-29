@@ -15,7 +15,7 @@ const meta: Meta<typeof Footer> = {
   },
   args: {
     hasEnded: false,
-    withWatermark: false,
+    withWatermark: true,
   },
   render: (args) => (
     <Chat.Container>

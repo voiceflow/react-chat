@@ -18,6 +18,8 @@
     "apps/documentation"
   ],
   "scripts": {
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build",
     "build": "turbo run build:cmd",
     "build:all": "yarn build",
     "clean": "turbo run clean && rimraf node_modules",
@@ -85,5 +87,8 @@
   "volta": {
     "node": "20.12.1",
     "yarn": "3.2.1"
+  },
+  "dependencies": {
+    "gh-pages": "^6.2.0"
   }
 }
