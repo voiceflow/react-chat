@@ -4,14 +4,14 @@ import React, { useCallback, useContext } from 'react';
 import * as R from 'remeda';
 import { match } from 'ts-pattern';
 
-import { NewChat, SystemResponse } from '@/components';
+import { NewChat } from '@/components/NewChat';
 import { chatContentWrapper } from '@/components/NewChat/NewChat.css';
 import Indicator from '@/components/SystemResponse/Indicator/Indicator';
 import { UserResponse } from '@/components/UserResponse';
 import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts/RuntimeContext';
 import type { FeedbackName } from '@/contexts/RuntimeContext/useRuntimeAPI';
+import { DEFAULT_CHAT_AVATAR } from '@/dtos/AssistantOptions.dto';
 import { usePalette } from '@/hooks/usePalette';
-import { DEFAULT_CHAT_AVATAR } from '@/main';
 import type { UserTurnProps } from '@/types';
 import { SessionStatus, TurnType } from '@/types';
 

@@ -10,7 +10,7 @@ import { AnyExtension } from './Extension.dto';
 import { Palette } from './Palette.dto';
 
 export const WidgetOverrides = z.object({
-  type: z.nativeEnum(WidgetSettingsWidgetType).default(WidgetSettingsWidgetType.CHAT),
+  type: z.nativeEnum(WidgetSettingsWidgetType).optional(),
   renderMode: z.nativeEnum(WidgetSettingsChatRenderMode).optional(),
 
   // Widget header
@@ -20,7 +20,7 @@ export const WidgetOverrides = z.object({
       imageUrl: z.string().optional(),
       title: z.string().optional(),
     })
-    .default({}),
+    .optional(),
 
   // Welcome message
   banner: z
@@ -30,7 +30,7 @@ export const WidgetOverrides = z.object({
       description: z.string().optional(),
       imageUrl: z.string().optional(),
     })
-    .default({}),
+    .optional(),
 
   // Agent avatar
   avatar: z
@@ -38,10 +38,14 @@ export const WidgetOverrides = z.object({
       hide: z.boolean().optional(),
       imageUrl: z.string().optional(),
     })
-    .default({}),
+    .optional(),
 
   // input
   inputPlaceholder: z.string().optional(),
+
+  // voice within chat
+  enableVoiceInput: z.boolean().optional(),
+  enableVoiceOutput: z.boolean().optional(),
 
   // launcher
   launcher: z
@@ -50,7 +54,7 @@ export const WidgetOverrides = z.object({
       label: z.string().optional(),
       imageUrl: z.string().optional(),
     })
-    .default({}),
+    .optional(),
 
   // footer
   footer: z
@@ -59,7 +63,7 @@ export const WidgetOverrides = z.object({
       linkText: z.string().optional(),
       linkUrl: z.string().optional(),
     })
-    .default({}),
+    .optional(),
 
   // palette
   color: z.string().optional(),
@@ -75,7 +79,7 @@ export const WidgetOverrides = z.object({
       side: z.string().optional(),
       bottom: z.string().optional(),
     })
-    .default({}),
+    .optional(),
 
   // ai disclaimer
   aiDisclaimer: z
@@ -83,14 +87,14 @@ export const WidgetOverrides = z.object({
       hide: z.boolean().optional(),
       text: z.string().optional(),
     })
-    .default({}),
+    .optional(),
 
   // misc
   persistence: z.nativeEnum(ChatPersistence).optional(),
 
   // external additions
   stylesheet: z.string().optional(),
-  extensions: AnyExtension.array().default([]),
+  extensions: AnyExtension.array().optional(),
 });
 
 export type WidgetOverrides = z.infer<typeof WidgetOverrides>;

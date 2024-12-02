@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { WIDGET_SETTINGS_DEFAULT_SETTINGS } from '@/__fixtures__/mock-assistant';
+import { DEFAULT_WIDGET_SETTINGS } from '@/__fixtures__/mock-assistant';
 import { RuntimeProvider } from '@/contexts';
 import { MOCK_IMAGE } from '@/fixtures';
 import { DEFAULT_AVATAR, RenderMode } from '@/main';
@@ -27,7 +27,7 @@ const meta: Meta<typeof Carousel> = {
           render: { mode: RenderMode.OVERLAY },
         }}
         assistant={{
-          ...WIDGET_SETTINGS_DEFAULT_SETTINGS,
+          ...DEFAULT_WIDGET_SETTINGS,
         }}
       >
         {Story()}

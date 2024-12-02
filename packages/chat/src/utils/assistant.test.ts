@@ -1,16 +1,16 @@
-/* import { VoiceflowRuntime } from '@voiceflow/sdk-runtime';
+import type { WidgetSettings } from '@voiceflow/dtos-interact';
+import { VoiceflowRuntime } from '@voiceflow/sdk-runtime';
 import { createMock } from '@voiceflow/test-common/vitest';
 import type { Mock } from 'vitest';
 import { describe, expect, it, vi } from 'vitest';
 
-import type { RawAssistantOptions } from '@/dtos/AssistantOptions.dto';
-import { DEFAULT_AVATAR } from '@/dtos/AssistantOptions.dto';
 import type { ChatConfig } from '@/dtos/ChatConfig.dto';
 import { ExtensionType } from '@/dtos/Extension.dto';
-import { DEFAULT_PRIMARY } from '@/styles/colors';
-import { ChatPersistence, ChatPosition } from '@/types';
+import type { WidgetOverrides } from '@/dtos/WidgetOverrides.dto';
+import { createPalette } from '@/styles/colors';
 
 import { mergeAssistantOptions } from './assistant';
+import { ChatPersistence, ChatPosition } from '@voiceflow/voiceflow-types/build/cjs/version';
 
 vi.mock('@voiceflow/sdk-runtime', () => ({ VoiceflowRuntime: vi.fn() }));
 
@@ -28,49 +28,67 @@ describe('assistant utils', () => {
 
   describe('mergeAssistantOptions()', () => {
     const config = {} as ChatConfig;
-    const remoteOptions: RawAssistantOptions = {
-      title: 'remote',
-      color: 'remote',
-      image: 'remote',
-      avatar: 'remote',
-      watermark: false,
-      feedback: true,
-      description: 'remote',
-      position: ChatPosition.LEFT,
-      persistence: ChatPersistence.MEMORY,
-      launcher: 'remote',
-      stylesheet: ['remote'],
-      audioInterface: false,
-      spacing: {
-        side: 100,
-        bottom: 100,
-      },
-      extensions: [{ name: 'remote_extension', type: ExtensionType.EFFECT, match: () => false }],
-    };
-
-    it('should fallback to default options when not configured', async () => {
-      mockGetPublishing();
-
-      const merged = await mergeAssistantOptions(config, {});
-
-      expect(merged).toEqual({
-        title: 'Voiceflow Assistant',
-        color: DEFAULT_PRIMARY,
-        image: DEFAULT_AVATAR,
-        avatar: DEFAULT_AVATAR,
-        watermark: true,
-        feedback: false,
-        description: '',
-        position: ChatPosition.RIGHT,
-        audioInterface: false,
-        persistence: ChatPersistence.LOCAL_STORAGE,
-        spacing: {
-          side: 30,
-          bottom: 30,
+    const remoteOptions: WidgetSettings = {
+      type: 'chat',
+      chat: {
+        voiceInput: true,
+        voiceOutput: true,
+        renderMode: 'widget',
+        headerImage: {
+          enabled: true,
+          url: 'remote_header_image',
         },
-        extensions: [],
-      });
-    });
+        agentImage: {
+          enabled: true,
+          url: 'remote_agent_image',
+        },
+        banner: {
+          title: 'remote title',
+          description: 'remote_description',
+          enabled: true,
+          imageURL: 'remote_banner_image',
+        },
+        placeholderText: 'remote_placeholder_text',
+        aiDisclaimer: {
+          text: 'remote ai disclaimer',
+          enabled: true,
+        },
+        handoffToAgentImageURL: undefined,
+      },
+      voice: {
+        renderMode: 'full',
+        content: {
+          imageURL: 'remote_voice_image',
+          talkingText: 'remote_talking_text',
+          endButtonText: 'remote_end_button_text',
+          listeningText: 'remote_listening_text',
+          startButtonText: 'remote_start_button_text',
+          callToActionText: 'remote_call_to_action',
+        },
+      },
+      common: {
+        sideSpacing: '30px',
+        bottomSpacing: '30px',
+        position: 'right',
+        fontFamily: 'remote_font',
+        primaryColor: {
+          color: 'blue',
+          palette: createPalette('blue'),
+        },
+        poweredBy: true,
+        launcher: {
+          type: 'icon',
+          text: undefined,
+          imageURL: 'remote_launcher_image',
+        },
+        footerLink: {
+          enabled: true,
+          text: 'Remote Privacy',
+          url: 'remote_privacy_link',
+        },
+        persistence: 'LOCAL_STORAGE',
+      },
+    };
 
     it('should use remote values pulled from publishing configuration', async () => {
       mockGetPublishing().mockResolvedValue(remoteOptions);
@@ -79,74 +97,131 @@ describe('assistant utils', () => {
 
       expect(merged).toEqual({
         ...remoteOptions,
-        extensions: [expect.objectContaining({ name: 'remote_extension', type: ExtensionType.EFFECT })],
+        extensions: [],
+        stylesheet: '',
       });
     });
 
-    it('should prioritize local options over remote options (with some exceptions)', async () => {
-      const localOptions: RawAssistantOptions = {
-        title: 'local',
-        color: 'local',
-        image: 'local',
-        avatar: 'local',
-        description: 'local',
-        position: ChatPosition.RIGHT,
-        persistence: ChatPersistence.SESSION_STORAGE,
-        launcher: 'local',
-        stylesheet: ['local'],
-        audioInterface: false,
-        spacing: {
-          side: 150,
-          bottom: 150,
+    it('should prioritize local options over remote options', async () => {
+      const localOptions: WidgetOverrides = {
+        type: 'voice',
+        renderMode: 'popover',
+        header: {
+          hideImage: true,
         },
-        extensions: [{ name: 'local_extension', type: ExtensionType.EFFECT, match: () => false }],
-
-        // setting these locally should have no effect
-        watermark: !remoteOptions.watermark,
-        feedback: !remoteOptions.feedback,
+        banner: {
+          title: 'overridden',
+          description: 'overridden description',
+          imageUrl: 'overridden image',
+        },
+        inputPlaceholder: 'overridden placeholder',
+        enableVoiceInput: false,
+        enableVoiceOutput: false,
+        footer: {
+          hide: true,
+        },
+        color: 'green',
+        palette: {
+          50: '50',
+          100: '100',
+          200: '200',
+          300: '300',
+          400: '400',
+          500: '500',
+          600: '600',
+          700: '700',
+          800: '800',
+          900: '900',
+        },
+        fontFamily: 'Helvetica',
+        side: ChatPosition.LEFT,
+        spacing: {
+          side: '40px',
+          bottom: '50px',
+        },
+        aiDisclaimer: { hide: false, text: 'new disclaimer' },
+        persistence: ChatPersistence.MEMORY,
+        stylesheet: 'overridden_styles',
+        extensions: [{ type: ExtensionType.EFFECT, name: 'remote_extension', match: () => true }],
       };
       mockGetPublishing().mockResolvedValue(remoteOptions);
 
       const merged = await mergeAssistantOptions(config, localOptions);
 
       expect(merged).toEqual({
-        ...localOptions,
-        extensions: [
-          expect.objectContaining({ name: 'remote_extension', type: ExtensionType.EFFECT }),
-          expect.objectContaining({ name: 'local_extension', type: ExtensionType.EFFECT }),
-        ],
-
-        // verify these setting have not changed from what is remote
-        watermark: remoteOptions.watermark,
-        feedback: remoteOptions.feedback,
-      });
-    });
-
-    it('should merge spacing from multiple sources', async () => {
-      const localOptions: RawAssistantOptions = {
-        spacing: { side: 100 },
-      };
-      mockGetPublishing().mockResolvedValue({ spacing: { bottom: 100 } });
-
-      const merged = await mergeAssistantOptions(config, localOptions);
-
-      expect(merged).toEqual({
-        title: 'Voiceflow Assistant',
-        color: DEFAULT_PRIMARY,
-        image: DEFAULT_AVATAR,
-        avatar: DEFAULT_AVATAR,
-        watermark: true,
-        feedback: false,
-        description: '',
-        position: ChatPosition.RIGHT,
-        audioInterface: false,
-        persistence: ChatPersistence.LOCAL_STORAGE,
-        spacing: {
-          side: 100,
-          bottom: 100,
+        type: 'voice',
+        chat: {
+          voiceInput: false,
+          voiceOutput: false,
+          renderMode: 'popover',
+          headerImage: {
+            enabled: false,
+            url: 'remote_header_image',
+          },
+          agentImage: {
+            enabled: true,
+            url: 'remote_agent_image',
+          },
+          banner: {
+            title: 'overridden',
+            description: 'overridden description',
+            enabled: true,
+            imageURL: 'overridden image',
+          },
+          placeholderText: 'overridden placeholder',
+          aiDisclaimer: {
+            text: 'new disclaimer',
+            enabled: true,
+          },
+          handoffToAgentImageURL: undefined,
         },
-        extensions: [],
+        voice: {
+          renderMode: 'full',
+          content: {
+            imageURL: 'remote_voice_image',
+            talkingText: 'remote_talking_text',
+            endButtonText: 'remote_end_button_text',
+            listeningText: 'remote_listening_text',
+            startButtonText: 'remote_start_button_text',
+            callToActionText: 'remote_call_to_action',
+          },
+        },
+        common: {
+          sideSpacing: '40px',
+          bottomSpacing: '50px',
+          position: 'left',
+          fontFamily: 'Helvetica',
+          primaryColor: {
+            color: 'green',
+            palette: {
+              50: '50',
+              100: '100',
+              200: '200',
+              300: '300',
+              400: '400',
+              500: '500',
+              600: '600',
+              700: '700',
+              800: '800',
+              900: '900',
+            },
+          },
+          poweredBy: true,
+          launcher: {
+            type: 'icon',
+            text: undefined,
+            imageURL: 'remote_launcher_image',
+          },
+          footerLink: {
+            enabled: false,
+            text: 'Remote Privacy',
+            url: 'remote_privacy_link',
+          },
+          persistence: 'memory',
+        },
+        stylesheet: 'overridden_styles',
+        extensions: [expect.objectContaining({ name: 'remote_extension', type: ExtensionType.EFFECT })],
       });
     });
   });
-}); */
+});

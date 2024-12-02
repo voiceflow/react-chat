@@ -11,7 +11,7 @@ import { ChatPersistence } from '@voiceflow/voiceflow-types/build/cjs/version';
 
 import type { ChatWidgetSettings } from '@/types/settings';
 
-export const WIDGET_SETTINGS_DEFAULT_SETTINGS: ChatWidgetSettings = {
+export const DEFAULT_WIDGET_SETTINGS: ChatWidgetSettings = {
   type: WidgetSettingsWidgetType.CHAT,
 
   chat: {

@@ -44,38 +44,37 @@ export const mergeAssistantOptions = async (
 
 const mergeChatSettings = (publishedSettings: WidgetSettings, overrides?: WidgetOverrides) => {
   return {
-    // TODO: Not implemented yet
-    voiceInput: false,
-    voiceOutput: false,
+    voiceInput: overrides?.enableVoiceInput ?? publishedSettings.chat.voiceInput ?? false,
+    voiceOutput: overrides?.enableVoiceOutput ?? publishedSettings.chat.voiceOutput ?? false,
 
     renderMode: overrides?.renderMode ?? publishedSettings?.chat?.renderMode ?? WidgetSettingsChatRenderMode.WIDGET,
     headerImage: {
-      enabled: overrides?.header.hideImage ? false : (publishedSettings?.chat?.headerImage?.enabled ?? true),
-      url: overrides?.header.imageUrl ?? publishedSettings?.chat?.headerImage?.url,
+      enabled: overrides?.header?.hideImage ? false : (publishedSettings?.chat?.headerImage?.enabled ?? true),
+      url: overrides?.header?.imageUrl ?? publishedSettings?.chat?.headerImage?.url,
     },
     agentImage: {
-      enabled: overrides?.avatar.hide ?? publishedSettings?.chat?.agentImage?.enabled ?? true,
-      url: overrides?.avatar.imageUrl ?? publishedSettings?.chat?.agentImage?.url,
+      enabled: overrides?.avatar?.hide ?? publishedSettings?.chat?.agentImage?.enabled ?? true,
+      url: overrides?.avatar?.imageUrl ?? publishedSettings?.chat?.agentImage?.url,
     },
     banner: {
-      title: overrides?.banner.title ?? publishedSettings?.chat?.banner?.title ?? '',
-      description: overrides?.banner.description ?? publishedSettings?.chat?.banner?.description ?? '',
-      enabled: overrides?.banner.hide ? false : (publishedSettings?.chat?.banner?.enabled ?? true),
-      imageURL: overrides?.banner.imageUrl ?? publishedSettings?.chat?.banner?.imageURL,
+      title: overrides?.banner?.title ?? publishedSettings?.chat?.banner?.title ?? '',
+      description: overrides?.banner?.description ?? publishedSettings?.chat?.banner?.description ?? '',
+      enabled: overrides?.banner?.hide ? false : (publishedSettings?.chat?.banner?.enabled ?? true),
+      imageURL: overrides?.banner?.imageUrl ?? publishedSettings?.chat?.banner?.imageURL,
     },
     placeholderText: overrides?.inputPlaceholder ?? publishedSettings?.chat?.placeholderText ?? '',
     aiDisclaimer: {
-      text: overrides?.aiDisclaimer.text ?? publishedSettings?.chat?.aiDisclaimer?.text ?? '',
-      enabled: overrides?.aiDisclaimer.hide ? false : (publishedSettings?.chat?.aiDisclaimer?.enabled ?? true),
+      text: overrides?.aiDisclaimer?.text ?? publishedSettings?.chat?.aiDisclaimer?.text ?? '',
+      enabled: overrides?.aiDisclaimer?.hide ? false : (publishedSettings?.chat?.aiDisclaimer?.enabled ?? true),
     },
 
     // TODO: This isn't implemented yet in the chat
-    handoffToAgentImageURL: publishedSettings?.chat?.handoffToAgentImageURL,
+    handoffToAgentImageURL: undefined,
   };
 };
 
 const mergeVoiceSettings = (publishedSettings: WidgetSettings, overrides?: WidgetOverrides) => {
-  // TODO: fix this
+  // TODO: These settings aren't implemented yet..
   return {
     renderMode: publishedSettings?.voice?.renderMode ?? 'compact',
     content: {
@@ -89,21 +88,21 @@ const mergeCommonSettings = (publishedSettings: WidgetSettings, overrides?: Widg
   const palette = overrides?.palette ?? publishedSettings.common?.primaryColor?.palette ?? createPalette(color);
 
   return {
-    sideSpacing: overrides?.spacing.side ?? publishedSettings?.common?.sideSpacing ?? '30px',
-    bottomSpacing: overrides?.spacing.bottom ?? publishedSettings?.common?.bottomSpacing ?? '30px',
+    sideSpacing: overrides?.spacing?.side ?? publishedSettings?.common?.sideSpacing ?? '30px',
+    bottomSpacing: overrides?.spacing?.bottom ?? publishedSettings?.common?.bottomSpacing ?? '30px',
     position: overrides?.side ?? publishedSettings?.common?.position ?? 'right',
     fontFamily: overrides?.fontFamily ?? publishedSettings?.common?.fontFamily ?? '',
     primaryColor: { color, palette },
     poweredBy: publishedSettings?.common?.poweredBy, // This can't be overriden by user!
     launcher: {
-      type: overrides?.launcher.type ?? publishedSettings?.common?.launcher?.type ?? 'icon',
-      text: overrides?.launcher.label ?? publishedSettings?.common?.launcher?.text,
-      imageURL: overrides?.launcher.imageUrl ?? publishedSettings?.common?.launcher?.imageURL,
+      type: overrides?.launcher?.type ?? publishedSettings?.common?.launcher?.type ?? 'icon',
+      text: overrides?.launcher?.label ?? publishedSettings?.common?.launcher?.text,
+      imageURL: overrides?.launcher?.imageUrl ?? publishedSettings?.common?.launcher?.imageURL,
     },
     footerLink: {
-      enabled: overrides?.footer.hide ? false : (publishedSettings?.common?.footerLink?.enabled ?? false),
-      text: overrides?.footer.linkText && publishedSettings?.common?.footerLink?.text,
-      url: overrides?.footer.linkUrl && publishedSettings?.common?.footerLink?.url,
+      enabled: overrides?.footer?.hide ? false : (publishedSettings?.common?.footerLink?.enabled ?? false),
+      text: overrides?.footer?.linkText ?? publishedSettings?.common?.footerLink?.text,
+      url: overrides?.footer?.linkUrl ?? publishedSettings?.common?.footerLink?.url,
     },
     persistence: overrides?.persistence ?? publishedSettings?.common?.persistence ?? ChatPersistence.LOCAL_STORAGE,
   };

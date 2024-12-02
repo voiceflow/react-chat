@@ -1,6 +1,6 @@
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
-import { WIDGET_SETTINGS_DEFAULT_SETTINGS } from '@/__fixtures__/mock-assistant';
+import { DEFAULT_WIDGET_SETTINGS } from '@/__fixtures__/mock-assistant';
 import { RuntimeProvider } from '@/contexts';
 import { RenderMode } from '@/dtos/RenderOptions.dto';
 import { createPalette } from '@/styles/colors';
@@ -26,7 +26,7 @@ export const WithRuntimeProvider = (Story: any) => (
       render: { mode: RenderMode.OVERLAY },
     }}
     assistant={{
-      ...WIDGET_SETTINGS_DEFAULT_SETTINGS,
+      ...DEFAULT_WIDGET_SETTINGS,
     }}
   >
     {Story()}

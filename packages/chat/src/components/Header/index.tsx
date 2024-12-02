@@ -2,7 +2,7 @@ import clsx from 'clsx';
 
 import { Avatar } from '@/components/Avatar';
 import { ClassName } from '@/constants';
-import { DEFAULT_CHAT_AVATAR } from '@/main';
+import { DEFAULT_CHAT_AVATAR } from '@/dtos/AssistantOptions.dto';
 
 import { Button } from '../Button';
 import { Icon, type IconProps } from '../Icon';
