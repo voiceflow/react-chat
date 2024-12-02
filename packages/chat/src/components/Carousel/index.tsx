@@ -8,6 +8,8 @@ import { Avatar } from '../Avatar';
 import { Card } from '../Card';
 import { CARD_WIDTH } from '../Card/styles.css';
 import type { CardProps } from '../Card/types';
+import { FeedbackButton } from '../FeedbackButton';
+import { FeedbackButtonVariant, type IFeedbackButton } from '../FeedbackButton/FeedbackButton.interface';
 import { feedbackContainer, hide, responseAvatar } from '../SystemResponse/styles.css';
 import { CarouselButton } from './CarouselButton';
 import { useScrollObserver, useScrollTo } from './hooks';
@@ -19,8 +21,6 @@ import {
   GUTTER_WIDTH,
   lastCardSpacer,
 } from './styles.css';
-import { FeedbackButton } from '../FeedbackButton';
-import { FeedbackButtonVariant, IFeedbackButton } from '../FeedbackButton/FeedbackButton.interface';
 
 const CARD_WITH_GUTTER = CARD_WIDTH + GUTTER_WIDTH;
 
