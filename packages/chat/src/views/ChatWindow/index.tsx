@@ -6,6 +6,7 @@ import { match } from 'ts-pattern';
 
 import { NewChat } from '@/components/NewChat';
 import { chatContentWrapper } from '@/components/NewChat/NewChat.css';
+import { SystemResponse } from '@/components/SystemResponse';
 import Indicator from '@/components/SystemResponse/Indicator/Indicator';
 import { UserResponse } from '@/components/UserResponse';
 import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts/RuntimeContext';

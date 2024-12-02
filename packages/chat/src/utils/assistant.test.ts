@@ -1,6 +1,7 @@
 import type { WidgetSettings } from '@voiceflow/dtos-interact';
 import { VoiceflowRuntime } from '@voiceflow/sdk-runtime';
 import { createMock } from '@voiceflow/test-common/vitest';
+import { ChatPersistence, ChatPosition } from '@voiceflow/voiceflow-types/build/cjs/version';
 import type { Mock } from 'vitest';
 import { describe, expect, it, vi } from 'vitest';
 
@@ -10,7 +11,6 @@ import type { WidgetOverrides } from '@/dtos/WidgetOverrides.dto';
 import { createPalette } from '@/styles/colors';
 
 import { mergeAssistantOptions } from './assistant';
-import { ChatPersistence, ChatPosition } from '@voiceflow/voiceflow-types/build/cjs/version';
 
 vi.mock('@voiceflow/sdk-runtime', () => ({ VoiceflowRuntime: vi.fn() }));
 
