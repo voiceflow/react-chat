@@ -7,13 +7,13 @@ import { RuntimeProvider } from './contexts';
 import type { LoadConfig } from './dtos/ChatConfig.dto';
 import { ChatConfig } from './dtos/ChatConfig.dto';
 import { RenderMode } from './dtos/RenderOptions.dto';
+import { WidgetOverrides } from './dtos/WidgetOverrides.dto';
 import { shadowRoot } from './styles/shadow';
 import { mergeAssistantOptions } from './utils/assistant';
 import { createPlaceholderMethods } from './utils/chat';
 import { addStyleSheetURL } from './utils/stylesheet';
 import { ChatEmbed } from './views/ChatEmbed';
 import { ChatWidget } from './views/ChatWidget';
-import { WidgetOverrides } from './dtos/WidgetOverrides.dto';
 
 let reactRoot: Root;
 

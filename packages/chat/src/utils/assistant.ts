@@ -56,12 +56,7 @@ const mergeChatSettings = (publishedSettings: WidgetSettings, overrides?: Widget
       enabled: overrides?.avatar?.hide ?? publishedSettings?.chat?.agentImage?.enabled ?? true,
       url: overrides?.avatar?.imageUrl ?? publishedSettings?.chat?.agentImage?.url,
     },
-    banner: {
-      title: overrides?.banner?.title ?? publishedSettings?.chat?.banner?.title ?? '',
-      description: overrides?.banner?.description ?? publishedSettings?.chat?.banner?.description ?? '',
-      enabled: overrides?.banner?.hide ? false : (publishedSettings?.chat?.banner?.enabled ?? true),
-      imageURL: overrides?.banner?.imageUrl ?? publishedSettings?.chat?.banner?.imageURL,
-    },
+    banner: mergeBannerSettings(publishedSettings, overrides),
     placeholderText: overrides?.inputPlaceholder ?? publishedSettings?.chat?.placeholderText ?? '',
     aiDisclaimer: {
       text: overrides?.aiDisclaimer?.text ?? publishedSettings?.chat?.aiDisclaimer?.text ?? '',
@@ -73,7 +68,16 @@ const mergeChatSettings = (publishedSettings: WidgetSettings, overrides?: Widget
   };
 };
 
-const mergeVoiceSettings = (publishedSettings: WidgetSettings, overrides?: WidgetOverrides) => {
+const mergeBannerSettings = (publishedSettings: WidgetSettings, overrides?: WidgetOverrides) => {
+  return {
+    title: overrides?.banner?.title ?? publishedSettings?.chat?.banner?.title ?? '',
+    description: overrides?.banner?.description ?? publishedSettings?.chat?.banner?.description ?? '',
+    enabled: overrides?.banner?.hide ? false : (publishedSettings?.chat?.banner?.enabled ?? true),
+    imageURL: overrides?.banner?.imageUrl ?? publishedSettings?.chat?.banner?.imageURL,
+  };
+};
+
+const mergeVoiceSettings = (publishedSettings: WidgetSettings, _?: WidgetOverrides) => {
   // TODO: These settings aren't implemented yet..
   return {
     renderMode: publishedSettings?.voice?.renderMode ?? 'compact',
