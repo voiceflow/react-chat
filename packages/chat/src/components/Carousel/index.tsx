@@ -8,7 +8,7 @@ import { Avatar } from '../Avatar';
 import { Card } from '../Card';
 import { CARD_WIDTH } from '../Card/styles.css';
 import type { CardProps } from '../Card/types';
-import { hide, responseAvatar } from '../SystemResponse/styles.css';
+import { feedbackContainer, hide, responseAvatar } from '../SystemResponse/styles.css';
 import { CarouselButton } from './CarouselButton';
 import { useScrollObserver, useScrollTo } from './hooks';
 import {
@@ -19,6 +19,8 @@ import {
   GUTTER_WIDTH,
   lastCardSpacer,
 } from './styles.css';
+import { FeedbackButton } from '../FeedbackButton';
+import { FeedbackButtonVariant, IFeedbackButton } from '../FeedbackButton/FeedbackButton.interface';
 
 const CARD_WITH_GUTTER = CARD_WIDTH + GUTTER_WIDTH;
 
@@ -37,6 +39,12 @@ export interface CarouselProps {
    * If true, renders an avatar next to the message.
    */
   withImage: boolean;
+
+  /**
+   * If provided, will display {@link FeedbackButton} component.
+   * @default false
+   */
+  feedback?: IFeedbackButton | undefined;
 }
 
 /**
@@ -44,7 +52,7 @@ export interface CarouselProps {
  *
  * @see {@link https://voiceflow.github.io/react-chat/?path=/story/components-carousel--single-card}
  */
-export const Carousel: React.FC<CarouselProps> = ({ cards, avatar, withImage }) => {
+export const Carousel: React.FC<CarouselProps> = ({ cards, avatar, withImage, feedback }) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const { showPreviousButton, showNextButton } = useScrollObserver(scrollContainerRef, cards);
   const scrollToPrevious = useScrollTo(scrollContainerRef, (el) => Math.ceil(el.scrollLeft / CARD_WITH_GUTTER) - 1);
@@ -68,6 +76,11 @@ export const Carousel: React.FC<CarouselProps> = ({ cards, avatar, withImage }) 
           ))}
           <div className={lastCardSpacer}> </div>
         </div>
+        {feedback && (
+          <div className={feedbackContainer}>
+            <FeedbackButton {...feedback} variant={FeedbackButtonVariant.LAST_RESPONSE} />
+          </div>
+        )}
       </div>
       <CarouselButton direction="left" visible={showPreviousButton} onClick={scrollToPrevious} />
       <CarouselButton direction="right" visible={showNextButton} onClick={scrollToNext} />
