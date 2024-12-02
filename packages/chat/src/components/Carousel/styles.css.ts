@@ -17,7 +17,8 @@ export const avatarStyle = style({
 export const cardsContainer = style({
   position: 'relative',
   whiteSpace: 'nowrap',
-  overflow: 'hidden',
+  overflowX: 'auto', // Enable horizontal scrolling
+  overflowY: 'hidden', // Prevent vertical overflow
   marginLeft: `-${DIALOG_PADDING}px`,
   paddingLeft: `${DIALOG_PADDING}px`,
   marginRight: `-${DIALOG_PADDING}px`,
@@ -34,6 +35,7 @@ export const carouselContainer = style({
   position: 'relative',
   width: '100%',
   display: 'flex',
+  overflowX: 'visible', // Ensure the overflow content is visible
 });
 
 const MESSAGE_WIDTH = CHAT_WIDTH - DIALOG_PADDING - SMALL_AVATAR_SIZE - MESSAGE_PADDING;
