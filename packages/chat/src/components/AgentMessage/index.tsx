@@ -20,8 +20,8 @@ import {
   feedbackButtonContainer,
   generatedChin,
   lastListItem,
-  markdownParagraph,
   lastPElement,
+  markdownParagraph,
 } from './AgentMessage.css';
 import codeTheme from './code-theme';
 import { CopyButton } from './CopyButton';
