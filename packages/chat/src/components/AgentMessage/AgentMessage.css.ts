@@ -1,4 +1,4 @@
-import { style } from '@vanilla-extract/css';
+import { globalStyle, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { COLORS } from '@/styles/colors';
@@ -112,7 +112,22 @@ export const lastListItem = style({
   marginBottom: 0,
 });
 
-export const markdownParagraph = style({
-  marginBottom: '8px',
-  marginTop: '8px',
+export const lastPElement = style({
+  ':last-child': {
+    marginBottom: 0,
+  },
+});
+
+export const markdownParagraph = recipe({
+  base: {
+    marginBottom: '8px',
+    marginTop: '8px',
+  },
+  variants: {
+    first: {
+      true: {
+        marginTop: 0,
+      },
+    },
+  },
 });

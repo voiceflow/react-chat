@@ -21,6 +21,7 @@ import {
   generatedChin,
   lastListItem,
   markdownParagraph,
+  lastPElement,
 } from './AgentMessage.css';
 import codeTheme from './code-theme';
 import { CopyButton } from './CopyButton';
@@ -96,9 +97,13 @@ export const AgentMessage: React.FC<IAgentMessage> = ({
           },
           p: ({ children, ...props }) => {
             const position = props.node?.position;
+            const isFirst = position && position.start.offset === 0;
             const isLast = position && position.end.offset === text.length - 1;
             return (
-              <p {...props} className={clsx(markdownParagraph, isLast && lastListItem)}>
+              <p
+                {...props}
+                className={clsx(markdownParagraph({ first: isFirst }), isLast && lastListItem, lastPElement)}
+              >
                 {children}
               </p>
             );
