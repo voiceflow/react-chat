@@ -8,18 +8,8 @@ import { FAMILY } from '@/styles/font';
 import { SIZES } from '@/styles/sizes';
 import { transition } from '@/styles/transitions';
 import { chatIsClosed, chatIsOpen } from '@/views/ChatWidget/styles.css';
-import { BUTTON_SIZE } from './ScrollButton/ScrollButton.css';
 
 const BUTTON_ROW_MARGIN = 10;
-
-const fadeIn = keyframes({
-  from: {
-    opacity: 0,
-  },
-  to: {
-    opacity: 1,
-  },
-});
 
 const fadeInAndSlideUp = keyframes({
   from: {
