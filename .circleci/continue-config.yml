@@ -107,7 +107,7 @@ jobs:
           to: s3://cdn.voiceflow.com/widget
           clean_destination: false
       - vfcommon/clone_s3_assets:
-          step_name: Uploading React Chat to CDN
+          step_name: Uploading New React Chat to CDN
           from: packages/chat/dist
           to: s3://cdn.voiceflow.com/widget-next
           clean_destination: false
