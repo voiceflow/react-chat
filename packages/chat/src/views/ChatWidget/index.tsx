@@ -58,9 +58,9 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
     ready
   );
 
-  const side = assistant.position;
-  const position = { bottom: assistant.spacing.bottom, [side]: assistant.spacing.side };
-  const chatHeight = `calc(100% - ${LAUNCHER_SIZE + LAUNCHER_MARGIN + assistant.spacing.bottom + 20}px)`;
+  const side = assistant.common.position;
+  const position = { bottom: `${assistant.common.bottomSpacing}px`, [side]: `${assistant.common.sideSpacing}px` };
+  const chatHeight = `calc(100% - ${LAUNCHER_SIZE + LAUNCHER_MARGIN + parseInt(assistant.common.bottomSpacing, 10) + 20}px)`;
 
   const isStyleSheetResolved = useResolveAssistantStyleSheet(assistant, shadowRoot);
 
@@ -74,14 +74,23 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
     >
       <div className={launcherContainer} style={position}>
         <Proactive side={side} messages={proactiveMessages} />
-        <Launcher onClick={toggleChat} isOpen={isOpen} image={assistant.launcher} />
+        <Launcher
+          onClick={toggleChat}
+          isOpen={isOpen}
+          image={assistant.common.launcher.imageURL}
+          label={assistant.common.launcher.text}
+        />
       </div>
       <div
         className={chatContainer}
         style={
           isMobile
             ? {}
-            : { [side]: position[side], bottom: position.bottom + LAUNCHER_SIZE + LAUNCHER_MARGIN, height: chatHeight }
+            : {
+                [side]: position[side],
+                bottom: `${parseInt(position.bottom, 10) + LAUNCHER_SIZE + LAUNCHER_MARGIN}px`,
+                height: chatHeight,
+              }
         }
       >
         <ChatWindow isMobile={isMobile} />

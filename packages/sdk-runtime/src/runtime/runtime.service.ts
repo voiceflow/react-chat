@@ -19,7 +19,10 @@ export abstract class RuntimeService {
     }
   }
 
-  public abstract getPublishing<T extends Record<string, unknown>>(request: { versionID?: string }): Promise<T>;
+  public abstract getPublishing<T extends Record<string, unknown>>(request: {
+    versionID?: string;
+    chatVersion?: number;
+  }): Promise<T>;
 
   public abstract createTranscript(
     sessionID: string,

@@ -6,11 +6,10 @@ import { useEffect, useRef, useState } from 'react';
 
 import { DEFAULT_MESSAGE_DELAY, MessageType } from '@/components/SystemResponse/constants';
 import { isIOS } from '@/device';
-import type { AssistantOptions } from '@/dtos/AssistantOptions.dto';
 import type { ChatConfig } from '@/dtos/ChatConfig.dto';
 import { useStateRef } from '@/hooks/useStateRef';
 import { useLocalStorageState } from '@/hooks/useStorage';
-import type { SendMessage, SessionOptions, TurnProps } from '@/types';
+import type { ChatPersistence, ChatWidgetSettings, SendMessage, SessionOptions, TurnProps } from '@/types';
 import { SessionStatus, TurnType } from '@/types';
 import { handleActions } from '@/utils/actions';
 import { broadcast, BroadcastType } from '@/utils/broadcast';
@@ -27,7 +26,7 @@ import { useNoReply } from './useNoReply';
 import { createContext, useRuntimeAPI } from './useRuntimeAPI';
 
 export interface Settings {
-  assistant: AssistantOptions;
+  assistant: ChatWidgetSettings;
   config: ChatConfig;
   traceHandlers?: TraceDeclaration<RuntimeMessage, any>[];
 }
@@ -43,14 +42,15 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
   const [isOpen, setOpen] = useState(false);
   const [audioOutput, setAudioOutput, audioOutputRef] = useLocalStorageState(
     'audio-output',
-    assistant.defaultAudioOutput ?? false
+    assistant.chat.voiceOutput ?? false
   );
 
   const [session, setSession, sessionRef] = useStateRef<Required<SessionOptions>>(() => ({
     ...DEFAULT_SESSION_PARAMS,
     status: config.autostart ? SessionStatus.IDLE : SessionStatus.ENDED,
     // retrieve stored session
-    ...getSession(assistant.persistence, config.verify.projectID, config.userID),
+    ...getSession(assistant.common.persistence as ChatPersistence, config.verify.projectID, config.userID),
+    ...{ userID: config.userID || cuid() },
   }));
 
   const [indicator, setIndicator] = useState(false);
@@ -67,7 +67,7 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
     ],
   });
 
-  const isAudioOutputEnabled = () => assistant.audioInterface && audioOutputRef.current;
+  const isAudioOutputEnabled = () => assistant.chat.voiceOutput && audioOutputRef.current;
 
   // status management
   const setStatus = (status: SessionStatus) => {
@@ -141,7 +141,7 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
     }
 
     broadcast({ type: BroadcastType.INTERACT, payload: { session: sessionRef.current, action: userAction } });
-    saveSession(assistant.persistence, config.verify.projectID, sessionRef.current);
+    saveSession(assistant.common.persistence as ChatPersistence, config.verify.projectID, sessionRef.current);
   };
 
   const launch = async (): Promise<void> => {
@@ -177,7 +177,7 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
     stopAudios();
 
     broadcast({ type: BroadcastType.CLOSE });
-    saveSession(assistant.persistence, config.verify.projectID, sessionRef.current);
+    saveSession(assistant.common.persistence as ChatPersistence, config.verify.projectID, sessionRef.current);
   };
 
   const close = () => {

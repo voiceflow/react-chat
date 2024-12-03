@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import type { AssistantOptions } from '@/dtos/AssistantOptions.dto';
+import type { ChatWidgetSettings } from '@/types/settings';
 
 // used to add stylesheets dynamically, resolves when loaded
 export const addStyleSheetURL = async (url: string, root: Node) => {
@@ -18,7 +18,7 @@ export const addStyleSheetURL = async (url: string, root: Node) => {
 };
 
 // do not load until stylesheet is resolved
-export const useResolveAssistantStyleSheet = (assistant?: AssistantOptions, shadowRoot?: ShadowRoot): boolean => {
+export const useResolveAssistantStyleSheet = (assistant?: ChatWidgetSettings, shadowRoot?: ShadowRoot): boolean => {
   const [isStyleSheetResolved, setStyleSheetResolved] = useState(false);
 
   useEffect(() => {

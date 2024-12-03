@@ -1,16 +1,15 @@
 import { useEffect, useState } from 'react';
 
-import type { AssistantOptions } from '@/dtos/AssistantOptions.dto';
 import type { Palette } from '@/dtos/Palette.dto';
-import { createPalette } from '@/styles/colors';
+import type { ChatWidgetSettings } from '@/types';
 
-export const usePalette = (assistant?: AssistantOptions) => {
+export const usePalette = (assistant?: ChatWidgetSettings) => {
   const [palette, setPalette] = useState<Palette>();
   useEffect(() => {
-    if (assistant?.color) {
-      setPalette(createPalette(assistant.color));
+    if (assistant?.common.primaryColor?.palette) {
+      setPalette(assistant.common.primaryColor.palette);
     }
-  }, [assistant?.color]);
+  }, [assistant?.common.primaryColor]);
 
   return palette;
 };
