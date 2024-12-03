@@ -8,6 +8,7 @@ import { ClassName } from '@/constants';
 
 import { Icon } from '../Icon';
 import { closeButton, closeButtonIcon, messageContainer, proactiveContainer, singleMessage } from './styles.css';
+import { Button } from '../Button';
 
 interface ProactiveQueueProps {
   side: WidgetSettingsWidgetPosition;
@@ -40,9 +41,9 @@ export const Proactive: React.FC<ProactiveQueueProps> = ({ side, messages }) => 
 
   return (
     <div className={clsx(ClassName.PROACTIVE, proactiveContainer({ side }))}>
-      <div className={closeButton} onClick={() => setIsClosed(true)}>
+      <Button round className={closeButton} onClick={() => setIsClosed(true)}>
         <Icon className={closeButtonIcon} svg="closeV2" />
-      </div>
+      </Button>
       <div className={messageContainer}>{queue}</div>
     </div>
   );
