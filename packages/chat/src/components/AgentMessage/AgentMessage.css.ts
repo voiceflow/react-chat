@@ -112,7 +112,22 @@ export const lastListItem = style({
   marginBottom: 0,
 });
 
-export const markdownParagraph = style({
-  marginBottom: '8px',
-  marginTop: '8px',
+export const lastPElement = style({
+  ':last-child': {
+    marginBottom: 0,
+  },
+});
+
+export const markdownParagraph = recipe({
+  base: {
+    marginBottom: '8px',
+    marginTop: '8px',
+  },
+  variants: {
+    first: {
+      true: {
+        marginTop: 0,
+      },
+    },
+  },
 });
