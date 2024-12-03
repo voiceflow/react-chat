@@ -75,7 +75,7 @@ export const SystemMessage: React.FC<SystemMessageProps> = ({
         // We check for `MessageType.CAROUSEL` before all the others, because a Carousel will take care
         // of rendering the Avatar itself
         .with({ type: MessageType.CAROUSEL }, (props) => (
-          <Carousel {...{ avatar, withImage, ...R.omit(props, ['type']) }} />
+          <Carousel {...{ avatar, withImage, feedback, ...R.omit(props, ['type']) }} />
         ))
         .otherwise((message) => (
           <>

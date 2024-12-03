@@ -114,7 +114,12 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
         }
 
         const lastMessageInGroup = index === visibleMessages.length - 1;
+
+        // Showing feedback on previous messages that were in the chat
         const showFeedback = lastMessageInGroup && message.type === MessageType.TEXT;
+
+        // Showing feedback on the most recent system message of the chat
+        const addFeedback = feedback && isLast && complete && lastMessageInGroup;
 
         return (
           <>
@@ -124,11 +129,11 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
               avatar={avatar}
               timestamp={timestamp}
               isLast={isLast}
-              feedback={showFeedback ? feedback : undefined}
+              feedback={showFeedback || (addFeedback && message.type === MessageType.CAROUSEL) ? feedback : undefined}
               textContent={allTextContentForMessage}
               key={index}
             />
-            {feedback && isLast && complete && lastMessageInGroup && (
+            {addFeedback && message.type !== MessageType.CAROUSEL && (
               <div className={feedbackContainer}>
                 <FeedbackButton
                   {...feedback}
