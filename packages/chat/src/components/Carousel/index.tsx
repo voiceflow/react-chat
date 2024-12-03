@@ -33,7 +33,7 @@ export interface CarouselProps {
   /**
    * An image URL for an avatar to associate this message with.
    */
-  avatar: string;
+  avatar?: string;
 
   /**
    * If true, renders an avatar next to the message.
@@ -62,7 +62,7 @@ export const Carousel: React.FC<CarouselProps> = ({ cards, avatar, withImage, fe
     <div className={clsx(ClassName.CAROUSEL, carouselContainer)}>
       <div ref={scrollContainerRef} className={cardsContainer}>
         <div className={cardsInnerContainer}>
-          <Avatar avatar={avatar} className={clsx(withImage ? '' : hide, responseAvatar, avatarStyle)} />
+          {avatar && <Avatar avatar={avatar} className={clsx(withImage ? '' : hide, responseAvatar, avatarStyle)} />}
           {cards.map((card, i) => (
             <div
               className={fadeInAndUp}

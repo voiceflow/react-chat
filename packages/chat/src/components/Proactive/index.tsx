@@ -1,16 +1,16 @@
 import { Trace } from '@voiceflow/base-types';
+import type { WidgetSettingsWidgetPosition } from '@voiceflow/dtos-interact';
 import clsx from 'clsx';
 import { useEffect, useMemo, useState } from 'react';
 import { match } from 'ts-pattern';
 
 import { ClassName } from '@/constants';
-import type { ChatPosition } from '@/types';
 
 import { Icon } from '../Icon';
 import { closeButton, closeButtonIcon, messageContainer, proactiveContainer, singleMessage } from './styles.css';
 
 interface ProactiveQueueProps {
-  side: ChatPosition;
+  side: WidgetSettingsWidgetPosition;
   messages: Trace.AnyTrace[];
 }
 

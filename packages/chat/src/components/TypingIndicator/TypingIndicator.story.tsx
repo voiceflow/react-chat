@@ -24,19 +24,26 @@ export const InsideChat: Story = {
   render: () => (
     <div style={{ width: '380px' }}>
       <NewChat
-        title="Your AI assistant"
-        image=""
-        description="It's tricky to rock a rhyme, to rock a rhyme thats right on time, it's tricky"
-        avatar={DEFAULT_AVATAR}
-        showPoweredBy={true}
-        extraLinkText="Privacy"
-        extraLinkUrl="https://voiceflow.com"
+        welcomeMessageProps={{
+          enabled: true,
+          title: 'Your AI assistant',
+          description: "It's tricky to rock a rhyme, to rock a rhyme thats right on time, it's tricky",
+        }}
+        headerProps={{
+          showImage: true,
+          title: 'Your AI assistant',
+        }}
+        footerProps={{
+          showPoweredBy: true,
+          extraLinkText: 'Privacy',
+          extraLinkUrl: 'https://voiceflow.com',
+          messageInputProps: {
+            onSubmit: async (_) => Promise.resolve(),
+            placeholder: 'Message...',
+          },
+        }}
         isLoading={false}
         hasEnded={false}
-        messageInputProps={{
-          onSubmit: () => Promise.resolve(),
-          placeholder: 'Message...',
-        }}
       >
         <SystemMessage avatar={DEFAULT_AVATAR} withImage={false} message={{ type: 'text', text: 'Good morning' }} />
         <Indicator avatar={DEFAULT_AVATAR} />
