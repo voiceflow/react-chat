@@ -6,9 +6,9 @@ import { match } from 'ts-pattern';
 
 import { ClassName } from '@/constants';
 
+import { Button } from '../Button';
 import { Icon } from '../Icon';
 import { closeButton, closeButtonIcon, messageContainer, proactiveContainer, singleMessage } from './styles.css';
-import { Button } from '../Button';
 
 interface ProactiveQueueProps {
   side: WidgetSettingsWidgetPosition;
