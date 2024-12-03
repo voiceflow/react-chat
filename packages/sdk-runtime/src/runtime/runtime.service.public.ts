@@ -12,10 +12,13 @@ import { RuntimeService } from '@/runtime/runtime.service';
 export class PublicRuntimeService extends RuntimeService {
   private readonly projectID: string;
 
+  private readonly chatVersion: number | undefined;
+
   public constructor(options: RuntimeOptions<PublicVerify>) {
     super(options);
 
     this.projectID = options.verify.projectID;
+    this.chatVersion = options.verify.chatVersion;
   }
 
   public async interact(request: RuntimeInteractRequest): Promise<Pick<RuntimeInteractResponse, 'trace'>> {
@@ -45,10 +48,16 @@ export class PublicRuntimeService extends RuntimeService {
     });
   }
 
-  public async getPublishing<T extends Record<string, unknown>>(request: { versionID?: string }): Promise<T> {
-    const { versionID } = request;
+  public async getPublishing<T extends Record<string, unknown>>(request: {
+    versionID?: string;
+    chatVersion?: number;
+  }): Promise<T> {
+    const { versionID, chatVersion } = request;
 
-    return this.send<T>(`public/${this.projectID}/publishing`, {
+    const settingsUrl =
+      chatVersion === 2 ? `v2/public/${this.projectID}/settings/widget` : `public/${this.projectID}/publishing`;
+
+    return this.send<T>(settingsUrl, {
       method: 'GET',
       headers: {
         ...(versionID ? { versionID } : {}),

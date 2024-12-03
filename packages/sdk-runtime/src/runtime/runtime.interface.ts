@@ -22,6 +22,7 @@ export interface AuthVerify {
 
 export interface PublicVerify {
   projectID: string;
+  chatVersion?: number;
 }
 
 export interface PrototypeVerify {
