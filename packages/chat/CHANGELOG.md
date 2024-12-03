@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.9.0...@voiceflow/react-chat@2.9.1) (2024-12-03)
+
+### Bug Fixes
+
+* pass hasEnded prop to footer (COR-0000) ([#399](https://github.com/voiceflow/react-chat/issues/399)) ([41dbcc7](https://github.com/voiceflow/react-chat/commit/41dbcc71a5c6bfb00e8f5298955264769de479e6))
+
 # [2.9.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.8.1...@voiceflow/react-chat@2.9.0) (2024-12-03)
 
 ### Bug Fixes
