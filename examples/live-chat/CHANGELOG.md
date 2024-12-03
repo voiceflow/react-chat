@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/voiceflow/react-chat/compare/@voiceflow-example/live-chat@0.3.24...@voiceflow-example/live-chat@0.4.0) (2024-12-03)
+
+### Features
+
+* use new WidgetSettings object for chat configuration ([#376](https://github.com/voiceflow/react-chat/issues/376)) ([43ebd19](https://github.com/voiceflow/react-chat/commit/43ebd19bf4e8d31fbddd8c39a05335d25056ad31))
+
 ## [0.3.24](https://github.com/voiceflow/react-chat/compare/@voiceflow-example/live-chat@0.3.23...@voiceflow-example/live-chat@0.3.24) (2024-12-03)
 
 **Note:** Version bump only for package @voiceflow-example/live-chat

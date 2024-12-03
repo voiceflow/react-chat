@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.66.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat-legacy@1.66.0...@voiceflow/react-chat-legacy@1.66.1) (2024-12-03)
+
+**Note:** Version bump only for package @voiceflow/react-chat-legacy
+
 # 1.66.0 (2024-11-18)
 
 ### Bug Fixes

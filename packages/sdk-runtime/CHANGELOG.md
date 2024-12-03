@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/sdk-runtime@1.10.0...@voiceflow/sdk-runtime@1.11.0) (2024-12-03)
+
+### Features
+
+* use new WidgetSettings object for chat configuration ([#376](https://github.com/voiceflow/react-chat/issues/376)) ([43ebd19](https://github.com/voiceflow/react-chat/commit/43ebd19bf4e8d31fbddd8c39a05335d25056ad31))
+
 # [1.10.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/sdk-runtime@1.9.0...@voiceflow/sdk-runtime@1.10.0) (2024-09-24)
 
 ### Features

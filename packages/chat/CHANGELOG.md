@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.8.1...@voiceflow/react-chat@2.9.0) (2024-12-03)
+
+### Bug Fixes
+
+* remove margin from first/last p elements (COR-0000) ([#387](https://github.com/voiceflow/react-chat/issues/387)) ([d77433f](https://github.com/voiceflow/react-chat/commit/d77433f66ecb8cd88ae7b5cf89b501e6e78fb95a))
+
+### Features
+
+* use new WidgetSettings object for chat configuration ([#376](https://github.com/voiceflow/react-chat/issues/376)) ([43ebd19](https://github.com/voiceflow/react-chat/commit/43ebd19bf4e8d31fbddd8c39a05335d25056ad31))
+
 ## [2.8.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.8.0...@voiceflow/react-chat@2.8.1) (2024-12-03)
 
 ### Bug Fixes
