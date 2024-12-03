@@ -50,7 +50,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile }) => {
   const hasEnded = runtime.isStatus(SessionStatus.ENDED);
 
   return (
-    <NewChat.Container isMobile={isMobile} palette={palette}>
+    <NewChat.Container palette={palette}>
       <NewChat
         headerProps={{
           title: assistant.chat.banner.title,

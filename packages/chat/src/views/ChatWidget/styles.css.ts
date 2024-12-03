@@ -38,6 +38,13 @@ export const chatContainer = recipe({
     maxHeight: MAX_CHAT_HEIGHT,
     pointerEvents: 'auto',
 
+    '@media': {
+      '(max-width: 768px)': {
+        width: '100%',
+        borderRadius: 0,
+      },
+    },
+
     selectors: {
       [`${widgetContainer.classNames.base} &`]: {
         position: 'absolute',
