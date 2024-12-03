@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.8.0...@voiceflow/react-chat@2.8.1) (2024-12-03)
+
+### Bug Fixes
+
+* move feedback buttons with carousel (COR-4091) ([#386](https://github.com/voiceflow/react-chat/issues/386)) ([4fe7b4f](https://github.com/voiceflow/react-chat/commit/4fe7b4f4bafccb02c9ac348b4bad014da61218d6))
+* scroll down button position on chat end (COR-4092) ([#388](https://github.com/voiceflow/react-chat/issues/388)) ([b3c0154](https://github.com/voiceflow/react-chat/commit/b3c01542df29f2b5904ae96d098bdd3f5dfdc3bb))
+
 # [2.8.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.7.2...@voiceflow/react-chat@2.8.0) (2024-11-28)
 
 ### Bug Fixes
