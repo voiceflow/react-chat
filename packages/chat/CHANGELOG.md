@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.9.1...@voiceflow/react-chat@2.10.0) (2024-12-03)
+
+### Features
+
+* add popover modality (COR-0000) ([#398](https://github.com/voiceflow/react-chat/issues/398)) ([c2a225d](https://github.com/voiceflow/react-chat/commit/c2a225d7137620612fbe97f4a02ffe139ff56234))
+
 ## [2.9.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.9.0...@voiceflow/react-chat@2.9.1) (2024-12-03)
 
 ### Bug Fixes
