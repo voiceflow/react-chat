@@ -15,6 +15,11 @@ export enum RenderMode {
    * and the user needs to push it to open/minimize the chat window.
    */
   OVERLAY = 'overlay',
+
+  /**
+   * Shows the chat as popover dialog in the center of the screen.
+   */
+  POPOVER = 'popover',
 }
 
 export type RenderOptions = z.infer<typeof RenderOptions>;

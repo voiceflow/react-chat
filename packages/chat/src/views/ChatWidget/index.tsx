@@ -8,13 +8,14 @@ import { LAUNCHER_SIZE } from '@/components/Launcher/styles.css';
 import { Proactive } from '@/components/Proactive';
 import { ClassName } from '@/constants';
 import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts';
+import { RenderMode } from '@/dtos/RenderOptions.dto';
 import { useChatAPI } from '@/hooks/useChatAPI';
 import { usePalette } from '@/hooks/usePalette';
 import { PALETTE } from '@/styles/colors.css';
 import { useResolveAssistantStyleSheet } from '@/utils/stylesheet';
 import { ChatWindow } from '@/views/ChatWindow';
 
-import { chatContainer, LAUNCHER_MARGIN, launcherContainer, widgetContainer } from './styles.css';
+import { chatContainer, LAUNCHER_MARGIN, launcherContainer, popoverBackdrop, widgetContainer } from './styles.css';
 
 interface ChatWidgetProps extends React.PropsWithChildren {
   shadowRoot?: ShadowRoot;
@@ -67,6 +68,8 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
   if (!isStyleSheetResolved) return null;
   if (!palette) return null;
 
+  const isPopover = assistant.chat.renderMode === RenderMode.POPOVER;
+
   return (
     <div
       style={assignInlineVars(PALETTE, { colors: palette })}
@@ -81,10 +84,11 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
           label={assistant.common.launcher.text}
         />
       </div>
+      <div className={popoverBackdrop({ visible: isPopover && isOpen })} onClick={() => close()} />
       <div
-        className={chatContainer}
+        className={chatContainer({ popover: isPopover && !isMobile })}
         style={
-          isMobile
+          isMobile || isPopover
             ? {}
             : {
                 [side]: position[side],
