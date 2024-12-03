@@ -47,6 +47,8 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile }) => {
     ? (assistant.chat.agentImage.url ?? DEFAULT_CHAT_AVATAR)
     : undefined;
 
+  const hasEnded = runtime.isStatus(SessionStatus.ENDED);
+
   return (
     <NewChat.Container isMobile={isMobile} palette={palette}>
       <NewChat
@@ -66,13 +68,15 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile }) => {
           messageInputProps: {
             onSubmit: runtime.reply,
             audioInterface: assistant.chat.voiceInput,
+            hasEnded,
           },
           extraLinkText: assistant.common.footerLink.enabled ? assistant.common.footerLink.text : undefined,
           extraLinkUrl: assistant.common.footerLink.enabled ? assistant.common.footerLink.url : undefined,
           onSend: runtime.reply,
+          onStart: runtime.launch,
         }}
         startTime={state.session.startTime}
-        hasEnded={runtime.isStatus(SessionStatus.ENDED)}
+        hasEnded={hasEnded}
         isLoading={runtime.isStatus(SessionStatus.IDLE) && state.session.turns.length === 0 && config.autostart}
         onStart={runtime.launch}
         onEnd={restartChat}
