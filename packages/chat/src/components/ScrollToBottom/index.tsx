@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { type RefObject, useContext, useEffect, useRef, useState } from 'react';
 
 import { IsAutoScrollingContext } from '@/contexts';
@@ -7,9 +8,10 @@ import { scrollToBottomButton, scrollToButtonContainer } from './styles.css';
 
 interface ScrollToBottomProps {
   scrollableAreaRef: RefObject<HTMLDivElement>;
+  className?: string;
 }
 
-export const ScrollToBottom: React.FC<ScrollToBottomProps> = ({ scrollableAreaRef }) => {
+export const ScrollToBottom: React.FC<ScrollToBottomProps> = ({ scrollableAreaRef, className }) => {
   const autoScrolling = useContext(IsAutoScrollingContext);
   const [atBottom, setAtBottom] = useState(true);
   const prevScrollPosition = useRef<number>();
@@ -70,7 +72,10 @@ export const ScrollToBottom: React.FC<ScrollToBottomProps> = ({ scrollableAreaRe
 
   return (
     <div className={scrollToButtonContainer}>
-      <ScrollButton className={scrollToBottomButton({ hidden: !!atBottom })} onClick={scrollToBottom} />
+      <ScrollButton
+        className={clsx(scrollToBottomButton({ hidden: !!atBottom }), className)}
+        onClick={scrollToBottom}
+      />
     </div>
   );
 };

@@ -14,6 +14,7 @@ import {
   extraLinkStyles,
   footerContainer,
   footerLinksContainer,
+  hasEnded,
   messageContainer,
   separator,
   voiceflowLink,
@@ -70,7 +71,10 @@ export const NewFooter: React.FC<INewFooter> = ({
       )}
 
       <div className={messageContainer()}>
-        <ScrollToBottom scrollableAreaRef={scrollableAreaRef} />
+        <ScrollToBottom
+          scrollableAreaRef={scrollableAreaRef}
+          className={clsx(messageInputProps.hasEnded ? hasEnded : '')}
+        />
         <MessageInput {...messageInputProps} />
         <div className={footerLinksContainer}>
           {showPoweredBy && (

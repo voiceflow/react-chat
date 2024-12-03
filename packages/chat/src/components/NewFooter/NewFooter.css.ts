@@ -11,15 +11,6 @@ import { chatIsClosed, chatIsOpen } from '@/views/ChatWidget/styles.css';
 
 const BUTTON_ROW_MARGIN = 10;
 
-const fadeIn = keyframes({
-  from: {
-    opacity: 0,
-  },
-  to: {
-    opacity: 1,
-  },
-});
-
 const fadeInAndSlideUp = keyframes({
   from: {
     opacity: 0,
@@ -66,13 +57,6 @@ export const buttonsContainer = style({
   padding: '0 20px',
 });
 
-export const scrollButtonContainer = style({
-  display: 'flex',
-  justifyContent: 'center',
-  marginBottom: `${BUTTON_ROW_MARGIN}px`,
-  animation: `${fadeIn} .15s ease-in`, // Apply the fade-in animation
-});
-
 export const inputContainer = style({
   padding: '0 20px',
 });
@@ -84,6 +68,10 @@ export const messageContainer = recipe({
     background:
       'linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, rgba(255, 255, 255, 0.00) 29.49%, #FFF 29.5%, #F8F8F8 100%)',
   },
+});
+
+export const hasEnded = style({
+  top: '-24px',
 });
 
 export const messageInputContainer = style({
