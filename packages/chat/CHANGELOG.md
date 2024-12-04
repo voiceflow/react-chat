@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.11.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.10.0...@voiceflow/react-chat@2.11.0) (2024-12-04)
+
+### Features
+
+* styling proactive messages (COR-0000) ([#397](https://github.com/voiceflow/react-chat/issues/397)) ([c2ab9a0](https://github.com/voiceflow/react-chat/commit/c2ab9a09d92779082e9ca63f0800aa668ea54688))
+
 # [2.10.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.9.1...@voiceflow/react-chat@2.10.0) (2024-12-03)
 
 ### Features
