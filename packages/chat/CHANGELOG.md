@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.11.1...@voiceflow/react-chat@2.11.2) (2024-12-04)
+
+### Bug Fixes
+
+* embedded view is always open (COR-0000) ([#404](https://github.com/voiceflow/react-chat/issues/404)) ([6871dfb](https://github.com/voiceflow/react-chat/commit/6871dfbcd2451ec930c06dc47e27a186ab884061))
+
 ## [2.11.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.11.0...@voiceflow/react-chat@2.11.1) (2024-12-04)
 
 ### Bug Fixes
