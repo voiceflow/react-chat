@@ -19,6 +19,7 @@ import {
   embeddedContent,
   feedbackButtonContainer,
   generatedChin,
+  generatedChinContent,
   lastListItem,
   lastPElement,
   markdownParagraph,
@@ -114,7 +115,7 @@ export const AgentMessage: React.FC<IAgentMessage> = ({
       {ai && (
         <div className={generatedChin}>
           <Icon svg="ai" className={aiIconModifier} />
-          <span>{generatedMessage}</span>
+          <span className={generatedChinContent}>{generatedMessage}</span>
         </div>
       )}
       {feedback && !isLast && (

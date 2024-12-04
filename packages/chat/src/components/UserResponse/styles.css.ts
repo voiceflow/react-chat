@@ -38,6 +38,11 @@ export const messageContainer = style({
   animation: `${fadeInSlideUp} ${duration.fast} ease-out`,
 });
 
+export const userResponse = style({
+  display: 'flex',
+  justifyContent: 'flex-end',
+});
+
 export const debugMessage = style({
   fontSize: '12px',
   lineHeight: '17px',

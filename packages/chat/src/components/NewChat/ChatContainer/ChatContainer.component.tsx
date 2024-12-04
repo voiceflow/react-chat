@@ -8,12 +8,11 @@ import { chatWindowStyle } from './ChatContainer.css';
 export interface IChatContainer {
   palette: WidgetSettingsColorPalette;
   children?: React.ReactNode;
-  isMobile?: boolean;
 }
 
-export const ChatContainer: React.FC<IChatContainer> = ({ palette, children, isMobile = false }) => {
+export const ChatContainer: React.FC<IChatContainer> = ({ palette, children }) => {
   return (
-    <div style={assignInlineVars(PALETTE, { colors: palette })} className={chatWindowStyle({ mobile: isMobile })}>
+    <div style={assignInlineVars(PALETTE, { colors: palette })} className={chatWindowStyle}>
       {children}
     </div>
   );

@@ -1,16 +1,13 @@
-import { recipe } from '@vanilla-extract/recipes';
+import { style } from '@vanilla-extract/css';
 
-export const chatWindowStyle = recipe({
-  base: {
-    height: '100%',
-    maxHeight: '800px',
-  },
-  variants: {
-    mobile: {
-      true: {
-        height: '100vh',
-        maxHeight: '100vh',
-      },
+import { BREAKPOINTS } from '@/styles/sizes';
+
+export const chatWindowStyle = style({
+  height: '100%',
+  maxHeight: '800px',
+  '@media': {
+    [`(max-width: ${BREAKPOINTS.mobile})`]: {
+      maxHeight: '100vh',
     },
   },
 });

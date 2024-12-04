@@ -12,6 +12,7 @@ import { RenderMode } from '@/dtos/RenderOptions.dto';
 import { useChatAPI } from '@/hooks/useChatAPI';
 import { usePalette } from '@/hooks/usePalette';
 import { PALETTE } from '@/styles/colors.css';
+import { BREAKPOINTS } from '@/styles/sizes';
 import { useResolveAssistantStyleSheet } from '@/utils/stylesheet';
 import { ChatWindow } from '@/views/ChatWindow';
 
@@ -31,7 +32,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
   /** initialization  */
   const [isHidden, setHidden] = useState(false);
   const [proactiveMessages, setProactiveMessages] = useState<Trace.AnyTrace[]>([]);
-  const isMobile = useMemo(() => window.matchMedia('(max-width: 768px)').matches, []);
+  const isMobile = useMemo(() => window.matchMedia(`(max-width: ${BREAKPOINTS.mobile})`).matches, []);
 
   const palette = usePalette(assistant);
 
@@ -89,7 +90,10 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
         className={chatContainer({ popover: isPopover && !isMobile })}
         style={
           isMobile || isPopover
-            ? {}
+            ? {
+                top: 0,
+                bottom: 0,
+              }
             : {
                 [side]: position[side],
                 bottom: `${parseInt(position.bottom, 10) + LAUNCHER_SIZE + LAUNCHER_MARGIN}px`,

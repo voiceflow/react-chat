@@ -3,7 +3,7 @@ import { recipe } from '@vanilla-extract/recipes';
 
 import { COLORS } from '@/styles/colors';
 import { FAMILY } from '@/styles/font';
-import { SIZES } from '@/styles/sizes';
+import { BREAKPOINTS, SIZES } from '@/styles/sizes';
 import { transition } from '@/styles/transitions';
 
 import { messageContainer } from '../MessageContainer/styles.css';
@@ -59,6 +59,17 @@ export const generatedChin = style({
   gap: '10px',
   fontWeight: 600,
   borderRadius: '0 0 10px 10px',
+});
+
+export const generatedChinContent = style({
+  '@media': {
+    [`screen and (max-width: ${BREAKPOINTS.mobile})`]: {
+      maxWidth: '233px',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
+    },
+  },
 });
 
 export const aiIconModifier = style({

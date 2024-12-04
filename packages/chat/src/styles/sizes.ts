@@ -12,3 +12,7 @@ export const SIZES = {
     round: '50%',
   },
 };
+
+export const BREAKPOINTS = {
+  mobile: '768px',
+};
