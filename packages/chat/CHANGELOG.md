@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.11.0...@voiceflow/react-chat@2.11.1) (2024-12-04)
+
+### Bug Fixes
+
+* Mobile height/width issues (DSN-2417) ([#394](https://github.com/voiceflow/react-chat/issues/394)) ([1c81dd7](https://github.com/voiceflow/react-chat/commit/1c81dd7b035b99e468107a234cf5e2cf3012a07f))
+
 # [2.11.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.10.0...@voiceflow/react-chat@2.11.0) (2024-12-04)
 
 ### Features
