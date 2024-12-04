@@ -40,9 +40,9 @@ export const launcherStyles = recipe({
         'height',
         'max-width',
         'max-height',
-        'filter',
         'min-width',
         'min-height',
+        'filter',
         'padding',
       ]),
       boxShadow:
@@ -73,7 +73,6 @@ export const launcherStyles = recipe({
       },
     },
   ],
-
   variants: {
     withLabel: {
       true: {
@@ -101,12 +100,26 @@ export const launcherStyles = recipe({
         isOpen: true,
       },
       style: {
-        height: '40px',
         width: '40px',
+        height: '40px',
+
         maxWidth: '40px',
-        maxHeight: '40px',
         minWidth: '40px',
+        maxHeight: '40px',
         padding: '8px',
+      },
+    },
+    {
+      variants: {
+        withLabel: true,
+        isOpen: false,
+      },
+      style: {
+        height: '100%',
+        width: '100%',
+        minWidth: '100%',
+        maxWidth: '100%',
+        minHeight: '100%',
       },
     },
   ],
@@ -164,21 +177,22 @@ export const launcherLabelStyles = recipe({
     marginLeft: '6px',
     paddingTop: 1,
     opacity: 1,
-    width: 'fit-content',
-    transition: 'opacity 50ms,  max-width 100ms, margin-left 300ms',
+    width: '100%',
+    transition: 'opacity 50ms, width 100ms,  max-width 100ms, margin-left 300ms',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
   },
   variants: {
     isOpen: {
       true: {
         opacity: 0,
-        maxWidth: 0,
-        width: 0,
         marginLeft: 0,
+        width: 0,
       },
       false: {
         opacity: 1,
-        maxWidth: 'fit-content',
-        width: 'fit-content',
+        width: '100%',
       },
     },
   },

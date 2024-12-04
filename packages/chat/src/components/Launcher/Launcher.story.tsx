@@ -34,5 +34,5 @@ export const Base: Story = {
 export const WithCustomIcon: Story = { render: () => <CollapsableLauncher image={tiledBg} /> };
 
 export const WithLabel: Story = {
-  render: () => <CollapsableLauncher image={tiledBg} label="Label" />,
+  render: () => <CollapsableLauncher image={tiledBg} label="Chat with agent" />,
 };
