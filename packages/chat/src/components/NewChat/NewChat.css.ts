@@ -42,6 +42,7 @@ export const dialogContainer = style({
   scrollbarWidth: 'none',
   flexGrow: 1,
   overflowY: 'auto',
+  width: '100%',
 });
 
 export const bottomSpacer = recipe({
@@ -68,6 +69,7 @@ export const chatEndedContainer = style({
 
 export const chatContentWrapper = style({
   opacity: 0,
+  width: '100%',
   selectors: {
     [`.${chatIsOpen} &`]: {
       animation: `${fadeIn} ${duration.slow} ${timingFunction.gentle} forwards`,

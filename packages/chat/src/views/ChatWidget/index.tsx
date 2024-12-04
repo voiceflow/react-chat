@@ -82,7 +82,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
           onClick={toggleChat}
           isOpen={isOpen}
           image={assistant.common.launcher.imageURL}
-          label={`Is Mobile ${isMobile}`}
+          label={assistant.common.launcher.text}
         />
       </div>
       <div className={popoverBackdrop({ visible: isPopover && isOpen })} onClick={() => close()} />

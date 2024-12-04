@@ -1,9 +1,11 @@
+import clsx from 'clsx';
+
 import { ClassName } from '@/constants';
 import { useAutoScroll } from '@/hooks/useAutoScroll';
 
 import { MessageContainer } from '../MessageContainer';
 import { Tooltip } from '../Tooltip';
-import { debugMessage, messageContainer } from './styles.css';
+import { debugMessage, messageContainer, userResponse } from './styles.css';
 
 export interface DebugActionProps {
   label: string;
@@ -53,7 +55,7 @@ export const UserResponse: React.FC<UserResponseProps> = ({ message, debug, isLa
   // const { config } = useContext(RuntimeStateAPIContext);
 
   return (
-    <MessageContainer className={ClassName.USER_RESPONSE} isLast={isLast}>
+    <MessageContainer className={clsx(ClassName.USER_RESPONSE, userResponse)} isLast={isLast}>
       <div className={messageContainer}>{message}</div>
       {debug && (
         <>
