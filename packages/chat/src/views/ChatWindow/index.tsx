@@ -12,6 +12,7 @@ import { UserResponse } from '@/components/UserResponse';
 import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts/RuntimeContext';
 import type { FeedbackName } from '@/contexts/RuntimeContext/useRuntimeAPI';
 import { DEFAULT_CHAT_AVATAR } from '@/dtos/AssistantOptions.dto';
+import { RenderMode } from '@/dtos/RenderOptions.dto';
 import { usePalette } from '@/hooks/usePalette';
 import type { UserTurnProps } from '@/types';
 import { SessionStatus, TurnType } from '@/types';
@@ -50,7 +51,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile }) => {
   const hasEnded = runtime.isStatus(SessionStatus.ENDED);
 
   return (
-    <NewChat.Container palette={palette}>
+    <NewChat.Container embedded={config.render.mode === RenderMode.EMBEDDED} palette={palette}>
       <NewChat
         headerProps={{
           title: assistant.chat.banner.title,
