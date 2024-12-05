@@ -132,6 +132,7 @@
     "http-server": "14.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "rollup-plugin-copy-assets": "^2.0.3",
     "storybook": "8.0.2",
     "storybook-dark-mode": "1.1.0",
     "tsc-alias": "1.8.8",

@@ -7682,6 +7682,7 @@ __metadata:
     react-textarea-autosize: 8.5.3
     regenerator-runtime: 0.13.11
     remark-gfm: 4.0.0
+    rollup-plugin-copy-assets: ^2.0.3
     slate: 0.94.1
     storybook: 8.0.2
     storybook-dark-mode: 1.1.0
@@ -13283,7 +13284,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fs-extra@npm:~7.0.1":
+"fs-extra@npm:^7.0.1, fs-extra@npm:~7.0.1":
   version: 7.0.1
   resolution: "fs-extra@npm:7.0.1"
   dependencies:
@@ -20648,6 +20649,17 @@ __metadata:
   version: 3.0.2
   resolution: "robust-predicates@npm:3.0.2"
   checksum: 36854c1321548ceca96d36ad9d6e0a5a512986029ec6929ad6ed3ec1612c22cc8b46cc72d2c5674af42e8074a119d793f6f0ea3a5b51373e3ab926c64b172d7a
+  languageName: node
+  linkType: hard
+
+"rollup-plugin-copy-assets@npm:^2.0.3":
+  version: 2.0.3
+  resolution: "rollup-plugin-copy-assets@npm:2.0.3"
+  dependencies:
+    fs-extra: ^7.0.1
+  peerDependencies:
+    rollup: ">=1.1.2"
+  checksum: 923cd44f66c2204191985846bebe9c0f11287db4f20e6c6eaf984f5d9863427152e9ec871576d95cb8f2f57bfff234e2da85321cd606f4f9e915b80c5bfdc47a
   languageName: node
   linkType: hard
 
