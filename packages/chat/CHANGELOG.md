@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.12.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.12.0...@voiceflow/react-chat@2.12.1) (2024-12-05)
+
+### Bug Fixes
+
+* pass ai generated message to message component (DSN-000) ([#406](https://github.com/voiceflow/react-chat/issues/406)) ([499d3b2](https://github.com/voiceflow/react-chat/commit/499d3b29ae87148f6dcc016629aba4dc99d6b57a))
+
 # [2.12.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.11.2...@voiceflow/react-chat@2.12.0) (2024-12-05)
 
 ### Features
