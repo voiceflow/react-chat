@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.12.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.11.2...@voiceflow/react-chat@2.12.0) (2024-12-05)
+
+### Features
+
+* deploy image asset to cdn (COR-0000) ([#407](https://github.com/voiceflow/react-chat/issues/407)) ([1990586](https://github.com/voiceflow/react-chat/commit/1990586446f481e1ea9ee963caa31df897c93d05))
+
 ## [2.11.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.11.1...@voiceflow/react-chat@2.11.2) (2024-12-04)
 
 ### Bug Fixes
