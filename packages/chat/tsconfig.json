@@ -1,10 +1,5 @@
 {
   "extends": "@voiceflow/tsconfig",
-  "ts-node": {
-    "compilerOptions": {
-      "module": "commonjs"
-    }
-  },
   "compilerOptions": {
     "lib": ["dom", "es2019"],
     "jsx": "react-jsx",

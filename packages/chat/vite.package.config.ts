@@ -2,6 +2,7 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
 
 import { createPlugins } from './vite.widget.config';
 
@@ -32,5 +33,12 @@ export default defineConfig({
       },
     },
   },
-  plugins: [react(), dts({ tsconfigPath: 'tsconfig.build.json' }), ...createPlugins()],
+  plugins: [
+    react(),
+    dts({ tsconfigPath: 'tsconfig.build.json' }),
+    ...createPlugins(),
+    viteStaticCopy({
+      targets: [{ src: 'src/assets/vf_chat.png', dest: '' }],
+    }),
+  ],
 });

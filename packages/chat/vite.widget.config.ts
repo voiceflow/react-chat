@@ -1,10 +1,11 @@
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 import react from '@vitejs/plugin-react';
 import path from 'path';
+import Unfonts from 'unplugin-fonts/vite';
 import type { PluginOption } from 'vite';
 import { defineConfig, loadEnv } from 'vite';
-import fonts from 'vite-plugin-fonts';
 import { createHtmlPlugin } from 'vite-plugin-html';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
 import svgr from 'vite-plugin-svgr';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
@@ -12,7 +13,7 @@ export const createPlugins = (): PluginOption[] => [
   vanillaExtractPlugin(),
   tsconfigPaths(),
   svgr(),
-  fonts({
+  Unfonts({
     google: {
       families: [
         {
@@ -63,6 +64,9 @@ export default defineConfig(({ mode }) => {
           ]
         : []),
       ...createPlugins(),
+      viteStaticCopy({
+        targets: [{ src: 'src/assets/vf_chat.png', dest: '' }],
+      }),
     ],
   };
 });
