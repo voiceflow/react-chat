@@ -17,6 +17,12 @@ export interface CarouselButtonProps {
   direction: 'right' | 'left';
 
   /**
+   * If true, it means the user doesn't want to show the agent's avatar
+   * so we need to move the buttons accordingly.
+   */
+  noAvatar: boolean;
+
+  /**
    * A click handler for the button.
    */
   onClick?: MouseEventHandler<HTMLButtonElement>;
@@ -26,8 +32,8 @@ export interface CarouselButtonProps {
  * A button used to scroll to the previous or next Card in a Carousel.
  */
 export const CarouselButton = forwardRef<HTMLButtonElement, CarouselButtonProps>(
-  ({ onClick, visible, direction }, ref) => (
-    <button ref={ref} className={carouselButton({ visible, direction })} onClick={onClick}>
+  ({ onClick, visible, direction, noAvatar }, ref) => (
+    <button ref={ref} className={carouselButton({ visible, direction, withAvatar: !noAvatar })} onClick={onClick}>
       <Icon svg="arrowRight" className={direction === 'left' ? rotate180 : ''} />
     </button>
   )

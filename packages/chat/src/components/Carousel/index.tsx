@@ -77,13 +77,13 @@ export const Carousel: React.FC<CarouselProps> = ({ cards, avatar, withImage, fe
           <div className={lastCardSpacer}> </div>
         </div>
         {feedback && (
-          <div className={feedbackContainer}>
+          <div className={feedbackContainer({ withAvatar: !!avatar })}>
             <FeedbackButton {...feedback} variant={FeedbackButtonVariant.LAST_RESPONSE} />
           </div>
         )}
       </div>
-      <CarouselButton direction="left" visible={showPreviousButton} onClick={scrollToPrevious} />
-      <CarouselButton direction="right" visible={showNextButton} onClick={scrollToNext} />
+      <CarouselButton direction="left" noAvatar={!avatar} visible={showPreviousButton} onClick={scrollToPrevious} />
+      <CarouselButton direction="right" noAvatar={!avatar} visible={showNextButton} onClick={scrollToNext} />
     </div>
   );
 };

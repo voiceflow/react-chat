@@ -107,6 +107,9 @@ export const carouselButton = recipe({
         },
       },
     },
+    withAvatar: {
+      false: {},
+    },
   },
 
   compoundVariants: [
@@ -118,6 +121,17 @@ export const carouselButton = recipe({
       style: {
         opacity: 1,
         animation: `${fadeInFromLeft} .15s ease-in`,
+      },
+    },
+    {
+      variants: {
+        direction: 'left',
+        withAvatar: false,
+      },
+      style: {
+        [`.${carouselContainer} &`]: {
+          left: `${-(BUTTON_SIZE / 2) - 2}px`,
+        },
       },
     },
     {
@@ -139,6 +153,17 @@ export const carouselButton = recipe({
       style: {
         opacity: 1,
         animation: `${fadeInFromRight} .15s ease-in`,
+      },
+    },
+    {
+      variants: {
+        direction: 'right',
+        withAvatar: false,
+      },
+      style: {
+        [`.${carouselContainer} &`]: {
+          left: `${CARD_WIDTH - BUTTON_SIZE / 2 - 2}px`,
+        },
       },
     },
     {

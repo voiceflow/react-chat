@@ -1,11 +1,6 @@
 import { style } from '@vanilla-extract/css';
 
-import { CHAT_WIDTH } from '@/views/ChatWidget/styles.css';
-
-import { SMALL_AVATAR_SIZE } from '../Avatar/styles.css';
-import { CARD_WIDTH } from '../Card/styles.css';
 import { DIALOG_PADDING } from '../NewChat/NewChat.css';
-import { MESSAGE_PADDING } from '../SystemResponse/styles.css';
 
 export const BUTTON_SIZE = 42;
 export const GUTTER_WIDTH = 10;
@@ -36,12 +31,11 @@ export const carouselContainer = style({
   display: 'flex',
 });
 
-const MESSAGE_WIDTH = CHAT_WIDTH - DIALOG_PADDING - SMALL_AVATAR_SIZE - MESSAGE_PADDING;
-const CAROUSEL_SPACER = MESSAGE_WIDTH - CARD_WIDTH;
-
 export const lastCardSpacer = style({
   display: 'inline-flex',
   height: 1,
-  width: CAROUSEL_SPACER,
-  minWidth: CAROUSEL_SPACER,
+  // This is larger than the 'space' at the end, but is ok
+  // since we need it to be good for popover mode as well.
+  width: 600,
+  minWidth: 600,
 });

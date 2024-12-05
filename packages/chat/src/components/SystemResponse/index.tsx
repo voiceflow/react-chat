@@ -30,6 +30,9 @@ export interface ResponseActionProps {
 export interface SystemResponseProps {
   /**
    * An image URL for an avatar to associate the messages with.
+   * If we don't have an avatar here or got `undefined` it means that
+   * this setting is disabled. If it wasn't disabled we would have an
+   * avatar here given by the user, or the default avatar.
    */
   avatar?: string;
 
@@ -134,7 +137,7 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
               key={index}
             />
             {addFeedback && message.type !== MessageType.CAROUSEL && (
-              <div className={feedbackContainer}>
+              <div className={feedbackContainer({ withAvatar: !!avatar })}>
                 <FeedbackButton
                   {...feedback}
                   textContent={allTextContentForMessage}
@@ -146,7 +149,7 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
         );
       })}
       {isLast && complete && !!actions.length && (
-        <div className={actionsContainer}>
+        <div className={actionsContainer({ withAvatar: !!avatar })}>
           {actions.map(({ request, name }, index) => (
             <div
               className={fadeInAndUp}

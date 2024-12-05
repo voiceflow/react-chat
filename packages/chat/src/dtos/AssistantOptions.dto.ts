@@ -7,8 +7,7 @@ import { AnyExtension } from './Extension.dto';
 
 export const DEFAULT_AVATAR = 'https://cdn.voiceflow.com/assets/logo.png';
 
-// TODO: Update this with new default avatar image
-export const DEFAULT_CHAT_AVATAR = 'https://cdn.voiceflow.com/assets/logo.png';
+export const DEFAULT_CHAT_AVATAR = 'https://cdn.voiceflow.com/widget-next/vf_chat.png';
 
 export type AssistantOptions = z.infer<typeof AssistantOptions>;
 export type RawAssistantOptions = z.input<typeof AssistantOptions>;
