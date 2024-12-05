@@ -86,7 +86,7 @@ export const SystemMessage: React.FC<SystemMessageProps> = ({
                 .with({ type: MessageType.TEXT }, ({ text, ai }) => (
                   <AgentMessage
                     text={text}
-                    generatedMessage={aiMessage}
+                    disclaimerMessage={aiMessage}
                     ai={ai}
                     isLast={isLast}
                     feedback={feedback}
