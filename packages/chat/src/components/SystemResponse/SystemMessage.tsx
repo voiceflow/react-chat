@@ -67,7 +67,8 @@ export const SystemMessage: React.FC<SystemMessageProps> = ({
   withImage,
   textContent,
 }) => {
-  const { config } = useContext(RuntimeStateAPIContext);
+  const { config, assistant } = useContext(RuntimeStateAPIContext);
+  const aiMessage = assistant.chat.aiDisclaimer.text;
 
   return (
     <div className={clsx(ClassName.SYSTEM_RESPONSE, systemMessageContainer)}>
@@ -83,7 +84,14 @@ export const SystemMessage: React.FC<SystemMessageProps> = ({
             <div className={messageContainer}>
               {match(message)
                 .with({ type: MessageType.TEXT }, ({ text, ai }) => (
-                  <AgentMessage text={text} ai={ai} isLast={isLast} feedback={feedback} textContent={textContent} />
+                  <AgentMessage
+                    text={text}
+                    disclaimerMessage={aiMessage}
+                    ai={ai}
+                    isLast={isLast}
+                    feedback={feedback}
+                    textContent={textContent}
+                  />
                 ))
                 .with({ type: MessageType.IMAGE }, ({ url }) => <Image image={url} mode={config.render?.mode} />)
                 .with({ type: MessageType.CARD }, (props) => <Card {...R.omit(props, ['type'])} />)
