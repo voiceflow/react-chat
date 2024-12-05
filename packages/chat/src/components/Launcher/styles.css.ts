@@ -1,26 +1,17 @@
 import { keyframes, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
+import { duration } from '@/styles/animations';
 import { PALETTE } from '@/styles/colors.css';
 import { transition } from '@/styles/transitions';
 
 import { buttonStyles } from '../Button/styles.css';
+import { fadeInSlideUp } from '../UserResponse/styles.css';
 
 export const LAUNCHER_SIZE = 48;
 
 export const launcherContainer = style({
   width: 'fit-content',
-});
-
-const scaleIn = keyframes({
-  '0%': {
-    transform: 'scale(0)',
-    opacity: 0,
-  },
-  '100%': {
-    transform: 'scale(1)',
-    opacity: 1,
-  },
 });
 
 export const launcherStyles = recipe({
@@ -35,7 +26,6 @@ export const launcherStyles = recipe({
       transition: transition([
         'color',
         'background-color',
-        'transform',
         'width',
         'height',
         'max-width',
@@ -47,9 +37,8 @@ export const launcherStyles = recipe({
       ]),
       boxShadow:
         '0px 1px 0px 0px rgba(22, 26, 30, 0.02), 0px 0px 0px 1px rgba(22, 26, 30, 0.04), 0px 1px 5px -4px rgba(22, 26, 30, 0.08), 0px 4px 8px -6px rgba(22, 26, 30, 0.08), 0px 1px 3px 1px rgba(22, 26, 30, 0.01)',
-      willChange: 'transform',
 
-      animation: `${scaleIn} 0.3s ease-in-out`,
+      animation: `${fadeInSlideUp} ${duration.fast} ease-out`,
 
       ':hover': {
         transform: 'scale(1.1)',
