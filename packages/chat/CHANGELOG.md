@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.12.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.12.1...@voiceflow/react-chat@2.12.2) (2024-12-06)
+
+### Bug Fixes
+
+* spacing of widget depending on launcher style (DSN-2597) ([#415](https://github.com/voiceflow/react-chat/issues/415)) ([d909a5e](https://github.com/voiceflow/react-chat/commit/d909a5ef541aa085c7b00c5d469edd49a1e5cf83))
+
 ## [2.12.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.12.0...@voiceflow/react-chat@2.12.1) (2024-12-05)
 
 ### Bug Fixes
