@@ -4,7 +4,6 @@ import React from 'react';
 
 import { ClassName } from '@/constants';
 import { Button } from '@/main';
-import type { ChatWidgetSettings } from '@/types';
 
 import { ChevronIcon } from '../ChevronIcon';
 import { PlayIcon } from '../PlayIcon';
