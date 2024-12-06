@@ -61,7 +61,7 @@ export const LauncherWithLabel: React.FC<LauncherProps> = ({ image, isOpen, labe
         )}
         <ChevronIcon className={clsx(closeChevron({ isOpen }))} />
       </div>
-      <div className={launcherLabelStyles({ isOpen })}>{label}</div>
+      <div className={launcherLabelStyles}>{label}</div>
     </Button>
   );
 };
