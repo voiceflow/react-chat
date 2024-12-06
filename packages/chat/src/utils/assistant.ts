@@ -98,16 +98,20 @@ const mergeCommonSettings = (publishedSettings: WidgetSettings, overrides?: Widg
     fontFamily: overrides?.fontFamily ?? publishedSettings?.common?.fontFamily ?? '',
     primaryColor: { color, palette },
     poweredBy: publishedSettings?.common?.poweredBy, // This can't be overriden by user!
-    launcher: {
-      type: overrides?.launcher?.type ?? publishedSettings?.common?.launcher?.type ?? 'icon',
-      text: overrides?.launcher?.label ?? publishedSettings?.common?.launcher?.text,
-      imageURL: overrides?.launcher?.imageUrl ?? publishedSettings?.common?.launcher?.imageURL,
-    },
+    launcher: mergeLauncherSettings(publishedSettings, overrides),
     footerLink: {
       enabled: overrides?.footer?.hide ? false : (publishedSettings?.common?.footerLink?.enabled ?? false),
       text: overrides?.footer?.linkText ?? publishedSettings?.common?.footerLink?.text,
       url: overrides?.footer?.linkUrl ?? publishedSettings?.common?.footerLink?.url,
     },
     persistence: overrides?.persistence ?? publishedSettings?.common?.persistence ?? ChatPersistence.LOCAL_STORAGE,
+  };
+};
+
+const mergeLauncherSettings = (publishedSettings: WidgetSettings, overrides?: WidgetOverrides) => {
+  return {
+    type: overrides?.launcher?.type ?? publishedSettings?.common?.launcher?.type ?? 'icon',
+    text: overrides?.launcher?.label ?? publishedSettings?.common?.launcher?.text,
+    imageURL: overrides?.launcher?.imageUrl ?? publishedSettings?.common?.launcher?.imageURL,
   };
 };

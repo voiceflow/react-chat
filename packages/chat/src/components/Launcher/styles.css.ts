@@ -131,6 +131,7 @@ export const iconContainer = recipe({
       },
     },
     withLabel: { true: {}, false: {} },
+    withIcon: { false: {} },
   },
   compoundVariants: [
     {
@@ -151,6 +152,16 @@ export const iconContainer = recipe({
       style: {
         width: '24px',
         height: '24px',
+      },
+    },
+    {
+      variants: {
+        withIcon: false,
+        isOpen: false,
+      },
+      style: {
+        width: 0,
+        height: 0,
       },
     },
   ],

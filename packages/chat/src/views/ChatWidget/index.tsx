@@ -82,6 +82,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
         <Launcher
           onClick={toggleChat}
           isOpen={isOpen}
+          type={assistant.common.launcher.type}
           image={assistant.common.launcher.imageURL}
           label={assistant.common.launcher.text}
         />
