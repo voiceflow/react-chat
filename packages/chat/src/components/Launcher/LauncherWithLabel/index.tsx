@@ -10,10 +10,8 @@ import { ChevronIcon } from '../ChevronIcon';
 import { PlayIcon } from '../PlayIcon';
 import {
   closeChevron,
-  iconContainer,
+  iconAndLabelWrapper,
   imageStyles,
-  launcherContainer,
-  launcherIconStyles,
   launcherLabelStyles,
   launcherStyles,
   playIconStyles,
@@ -54,16 +52,22 @@ export interface LauncherProps {
 export const LauncherWithLabel: React.FC<LauncherProps> = ({ image, isOpen, label, onClick, side }) => {
   return (
     <Button className={clsx(launcherStyles({ isOpen }), ClassName.LAUNCHER)} onClick={onClick}>
-      <div className={launcherLabelStyles({ isOpen })}>{label} </div>
+      <div className={iconAndLabelWrapper}>
+        <div>
+          {image ? (
+            <img src={image} className={clsx(imageStyles, playIconStyles({ isOpen }))} alt="open chat" />
+          ) : (
+            <PlayIcon className={playIconStyles({ isOpen })} />
+          )}
+          <ChevronIcon className={clsx(closeChevron({ isOpen }))} />
+        </div>
+        <div className={launcherLabelStyles({ isOpen })}>{label}</div>
+      </div>
     </Button>
   );
 };
 
 //  {/* <div className={iconContainer()}>
 //           <ChevronIcon className={clsx(closeChevron({ isOpen }), launcherIconStyles())} />
-//           {image ? (
-//             <img src={image} className={clsx(imageStyles({ isOpen }), playIconStyles({ isOpen }))} alt="open chat" />
-//           ) : (
-//             <PlayIcon className={playIconStyles({ isOpen })} />
-//           )}
+
 //         </div> */}
