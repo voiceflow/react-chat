@@ -41,7 +41,7 @@ export interface LauncherProps {
   /**
    * A callback that will be executed when the button is clicked.
    */
-  onClick: MouseEventHandler<HTMLDivElement>;
+  onClick: MouseEventHandler<HTMLButtonElement>;
 
   side?: ChatWidgetSettings['common']['position'];
 }
@@ -53,18 +53,17 @@ export interface LauncherProps {
  */
 export const LauncherWithLabel: React.FC<LauncherProps> = ({ image, isOpen, label, onClick, side }) => {
   return (
-    <div className={ClassName.LAUNCHER} onClick={onClick}>
-      <Button className={clsx(launcherStyles({ isOpen }))}>
-        <div className={iconContainer()}>
-          <ChevronIcon className={clsx(closeChevron({ isOpen }), launcherIconStyles())} />
-          {image ? (
-            <img src={image} className={clsx(imageStyles({ isOpen }), playIconStyles({ isOpen }))} alt="open chat" />
-          ) : (
-            <PlayIcon className={playIconStyles({ isOpen })} />
-          )}
-        </div>
-        <div className={launcherLabelStyles({ isOpen })}>{label} </div>
-      </Button>
-    </div>
+    <Button className={clsx(launcherStyles({ isOpen }), ClassName.LAUNCHER)} onClick={onClick}>
+      <div className={launcherLabelStyles({ isOpen })}>{label} </div>
+    </Button>
   );
 };
+
+//  {/* <div className={iconContainer()}>
+//           <ChevronIcon className={clsx(closeChevron({ isOpen }), launcherIconStyles())} />
+//           {image ? (
+//             <img src={image} className={clsx(imageStyles({ isOpen }), playIconStyles({ isOpen }))} alt="open chat" />
+//           ) : (
+//             <PlayIcon className={playIconStyles({ isOpen })} />
+//           )}
+//         </div> */}

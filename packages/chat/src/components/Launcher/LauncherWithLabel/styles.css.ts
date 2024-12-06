@@ -1,7 +1,7 @@
 import { keyframes } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
-import { timingFunction } from '@/styles/animations';
+import { duration, timingFunction } from '@/styles/animations';
 import { PALETTE } from '@/styles/colors.css';
 import { FAMILY } from '@/styles/font';
 import { transition } from '@/styles/transitions';
@@ -12,62 +12,51 @@ const BEZIER = 'cubic-bezier(0.4, 0, 0.2, 1)';
 export const launcherStyles = recipe({
   base: {
     borderRadius: '9999px',
-    transition: `all 0.3s ${BEZIER}`,
+    transition: `all ${duration.default} ${BEZIER}`,
     transformOrigin: 'right',
     willChange: 'max-width, transform',
     height: LAUNCHER_WITH_LABEL_SIZE,
     overflow: 'hidden',
     display: 'flex',
-    fontFamily: FAMILY,
-    fontSize: '14px',
 
     boxShadow:
       '0px 1px 0px 0px rgba(22, 26, 30, 0.02), 0px 0px 0px 1px rgba(22, 26, 30, 0.04), 0px 1px 5px -4px rgba(22, 26, 30, 0.08), 0px 4px 8px -6px rgba(22, 26, 30, 0.08), 0px 1px 3px 1px rgba(22, 26, 30, 0.01)',
     justifyContent: 'center',
     alignItems: 'center',
-    overflowWrap: 'anywhere',
     backgroundColor: PALETTE.colors[500],
   },
   variants: {
     isOpen: {
       true: {
-        maxWidth: LAUNCHER_WITH_LABEL_SIZE,
+        maxWidth: LAUNCHER_WITH_LABEL_SIZE, // Collapsed state
         filter: 'drop-shadow(rgba(0, 0, 0, 0.06) 0px 1px 6px) drop-shadow(rgba(0, 0, 0, 0.16) 0px 2px 32px)',
       },
       false: {
-        maxWidth: '500px',
+        maxWidth: '500px', // Expanded state
       },
     },
   },
 });
 
-const closeAnimation = keyframes({
-  '0%': { minWidth: '0' },
-  '80%': { minWidth: '100%' },
-  '100%': { minWidth: '100%' },
-});
-
-const openAnimation = keyframes({
-  '0%': { minWidth: '100%' },
-  '20%': { minWidth: '100%' },
-  '80%': { minWidth: '0', opacity: 1 },
-  '100%': { minWidth: '0', opacity: 0 },
-});
-
 export const launcherLabelStyles = recipe({
   base: {
+    fontFamily: FAMILY,
+    fontSize: '14px',
     overflow: 'hidden',
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
     display: 'flex',
+    minWidth: 0, // Critical for ellipsis to work correctly
+    maxWidth: '100%',
+    alignItems: 'center',
   },
   variants: {
     isOpen: {
       true: {
-        animation: `${openAnimation} 0.3s ${timingFunction.gentle} forwards`,
+        // Optional: Add animations for opening
       },
       false: {
-        animation: `${closeAnimation} 0.3s ${timingFunction.gentle} forwards`,
+        // Optional: Add animations for closing
       },
     },
   },
@@ -190,7 +179,6 @@ export const playIconStyles = recipe({
     position: 'absolute',
     flexShrink: 0,
     transition: transition(['opacity', 'width']),
-    animationDelay: '0.1s',
   },
   variants: {
     isOpen: {

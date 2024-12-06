@@ -21,10 +21,8 @@ export default meta;
 
 const CollapsableLauncher = (props: any) => {
   const [isOpen, setIsOpen] = useState(false);
-  const handleToggle = () => {
-    setIsOpen((prev) => !prev);
-  };
-  return <Launcher isOpen={isOpen} onClick={handleToggle} {...props} />;
+
+  return <Launcher isOpen={isOpen} onClick={() => setIsOpen((prev) => !prev)} {...props} />;
 };
 
 export const Base: Story = {
