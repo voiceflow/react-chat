@@ -18,6 +18,7 @@ export const launcherStyles = recipe({
     overflow: 'hidden',
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
+
     willChange: 'max-width, transform',
     height: LAUNCHER_WITH_LABEL_SIZE,
     display: 'flex',
@@ -61,9 +62,11 @@ export const launcherStyles = recipe({
         maxWidth: LAUNCHER_WITH_LABEL_SIZE,
         filter: 'drop-shadow(rgba(0, 0, 0, 0.06) 0px 1px 6px) drop-shadow(rgba(0, 0, 0, 0.16) 0px 2px 32px)',
         gap: 0,
+        padding: '8px',
       },
       false: {
         maxWidth: '500px',
+        padding: '8px 16px 8px 12px',
       },
     },
   },
