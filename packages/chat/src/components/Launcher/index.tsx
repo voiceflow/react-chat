@@ -1,3 +1,4 @@
+import type { WidgetSettingsLauncherType } from '@voiceflow/dtos-interact';
 import clsx from 'clsx';
 import type { MouseEventHandler } from 'react';
 import React from 'react';
@@ -19,6 +20,11 @@ import {
 } from './styles.css';
 
 export interface LauncherProps {
+  /**
+   * The type of launcher we show.
+   */
+  type: WidgetSettingsLauncherType;
+
   /**
    * An image URL to be rendered as the icon.
    * Defaults to the "launch" SVG if not provided.
@@ -48,21 +54,22 @@ export interface LauncherProps {
  *
  * @see {@link https://voiceflow.github.io/react-chat/?path=/story/components-launcher--default}
  */
-export const Launcher: React.FC<LauncherProps> = ({ image, isOpen, label, onClick }) => {
-  const withLabel = !!label?.length;
+export const Launcher: React.FC<LauncherProps> = ({ type, image, isOpen, label, onClick }) => {
+  const withIcon = type !== 'label';
+  const withLabel = type !== 'icon' && !!label?.length;
   return (
     <div className={launcherContainer} onClick={onClick}>
       <Button className={clsx(ClassName.LAUNCHER, launcherStyles({ withLabel, isOpen }))}>
-        <div className={iconContainer({ isOpen, withLabel })}>
+        <div className={iconContainer({ isOpen, withLabel, withIcon })}>
           <ChevronIcon className={clsx(closeChevron({ isOpen, withLabel }), launcherIconStyles())} />
-          {image && (
+          {withIcon && image && (
             <img
               src={image}
               className={clsx(imageStyles({ isOpen, withLabel }), playIconStyles({ withLabel }))}
               alt="open chat"
             />
           )}
-          {!image && <PlayIcon className={playIconStyles({ withLabel, isOpen })} />}
+          {withIcon && !image && <PlayIcon className={playIconStyles({ withLabel, isOpen })} />}
         </div>
         {withLabel && <div className={launcherLabelStyles({ isOpen })}>{label} </div>}
       </Button>
