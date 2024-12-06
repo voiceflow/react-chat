@@ -4,7 +4,7 @@ import { recipe } from '@vanilla-extract/recipes';
 import { timingFunction } from '@/styles/animations';
 import { COLORS } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
-import { FAMILY } from '@/styles/font';
+import { FAMILY, hideTextOverflow } from '@/styles/font';
 import { SIZES } from '@/styles/sizes';
 import { transition } from '@/styles/transitions';
 import { chatIsClosed, chatIsOpen } from '@/views/ChatWidget/styles.css';
@@ -98,6 +98,10 @@ export const footerLinksContainer = style({
   gap: '8px',
 });
 
+export const poweredByLink = style({
+  flexShrink: 0,
+});
+
 export const separator = style({
   height: '2px',
   width: '2px',
@@ -112,6 +116,7 @@ export const extraLinkStyles = style({
   lineHeight: '17px',
   textDecorationColor: 'transparent',
   transition: transition(['color', 'text-decoration-color']),
+  ...hideTextOverflow(),
   selectors: {
     '&:hover': {
       textDecoration: 'underline',

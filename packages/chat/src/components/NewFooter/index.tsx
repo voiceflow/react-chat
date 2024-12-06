@@ -16,6 +16,7 @@ import {
   footerLinksContainer,
   hasEnded,
   messageContainer,
+  poweredByLink,
   separator,
   voiceflowLink,
 } from './NewFooter.css';
@@ -77,7 +78,7 @@ export const NewFooter: React.FC<INewFooter> = ({
         <MessageInput {...messageInputProps} />
         <div className={footerLinksContainer}>
           {showPoweredBy && (
-            <div>
+            <div className={poweredByLink}>
               <a href={VOICEFLOW_URL} target="_blank" rel="noreferrer" className={voiceflowLink}>
                 Powered by Voiceflow
               </a>
