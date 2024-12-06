@@ -2,7 +2,8 @@ import { keyframes, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { buttonStyles } from '@/components/Button/styles.css';
-import { timingFunction } from '@/styles/animations';
+import { fadeInSlideUp } from '@/components/UserResponse/styles.css';
+import { duration, timingFunction } from '@/styles/animations';
 import { PALETTE } from '@/styles/colors.css';
 import { FAMILY } from '@/styles/font';
 import { SIZES } from '@/styles/sizes';
@@ -18,7 +19,7 @@ export const launcherStyles = recipe({
     overflow: 'hidden',
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
-
+    color: PALETTE.colors[50],
     willChange: 'max-width, transform',
     height: LAUNCHER_WITH_LABEL_SIZE,
     display: 'flex',
@@ -28,6 +29,7 @@ export const launcherStyles = recipe({
     fontFamily: FAMILY,
     fontSize: '14px',
     lineHeight: '20px',
+    animation: `${fadeInSlideUp} ${duration.fast} ease-out`,
 
     boxShadow:
       '0px 1px 0px 0px rgba(22, 26, 30, 0.02), 0px 0px 0px 1px rgba(22, 26, 30, 0.04), 0px 1px 5px -4px rgba(22, 26, 30, 0.08), 0px 4px 8px -6px rgba(22, 26, 30, 0.08), 0px 1px 3px 1px rgba(22, 26, 30, 0.01)',
