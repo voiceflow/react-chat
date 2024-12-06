@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.13.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.13.0...@voiceflow/react-chat@2.13.1) (2024-12-06)
+
+### Bug Fixes
+
+* limit footer link space (COR-4140) ([#422](https://github.com/voiceflow/react-chat/issues/422)) ([926d9b3](https://github.com/voiceflow/react-chat/commit/926d9b3da3f65afdb7a748949059f60a1bb5319d))
+
 # [2.13.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.12.4...@voiceflow/react-chat@2.13.0) (2024-12-06)
 
 ### Features
