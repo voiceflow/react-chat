@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.13.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.12.4...@voiceflow/react-chat@2.13.0) (2024-12-06)
+
+### Features
+
+* show default avatar from cdn (COR-0000) ([#411](https://github.com/voiceflow/react-chat/issues/411)) ([ced7ce8](https://github.com/voiceflow/react-chat/commit/ced7ce8f41b05e691448edebbd69db8182f4d109))
+
 ## [2.12.4](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.12.3...@voiceflow/react-chat@2.12.4) (2024-12-06)
 
 ### Bug Fixes
