@@ -4,7 +4,6 @@ import type { MouseEventHandler } from 'react';
 import React from 'react';
 
 import { ClassName } from '@/constants';
-import type { ChatWidgetSettings } from '@/types';
 
 import { Button } from '../Button';
 import { ChevronIcon } from './ChevronIcon';
@@ -49,8 +48,6 @@ export interface LauncherProps {
    * A callback that will be executed when the button is clicked.
    */
   onClick: MouseEventHandler<HTMLDivElement | HTMLButtonElement>;
-
-  side?: ChatWidgetSettings['common']['position'];
 }
 
 /**
@@ -58,11 +55,11 @@ export interface LauncherProps {
  *
  * @see {@link https://voiceflow.github.io/react-chat/?path=/story/components-launcher--default}
  */
-export const Launcher: React.FC<LauncherProps> = ({ image, type, isOpen, label, onClick, side }) => {
+export const Launcher: React.FC<LauncherProps> = ({ image, type, isOpen, label, onClick }) => {
   const withIcon = type !== 'label';
   const withLabel = type !== 'icon' && !!label?.length;
   if (withLabel) {
-    return <LauncherWithLabel image={image} isOpen={isOpen} label={label} onClick={onClick} side={side} />;
+    return <LauncherWithLabel image={image} isOpen={isOpen} label={label} onClick={onClick} />;
   }
   return (
     <div className={launcherContainer} onClick={onClick}>
