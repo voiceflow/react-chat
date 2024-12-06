@@ -11,10 +11,11 @@ import { PlayIcon } from '../PlayIcon';
 import {
   closeChevron,
   iconAndLabelWrapper,
+  imageIconStyle,
+  imageIconWrapper,
   imageStyles,
   launcherLabelStyles,
   launcherStyles,
-  playIconStyles,
 } from './styles.css';
 
 export interface LauncherProps {
@@ -52,17 +53,15 @@ export interface LauncherProps {
 export const LauncherWithLabel: React.FC<LauncherProps> = ({ image, isOpen, label, onClick, side }) => {
   return (
     <Button className={clsx(launcherStyles({ isOpen }), ClassName.LAUNCHER)} onClick={onClick}>
-      {/* <div className={iconAndLabelWrapper}>
-         <div>
-           {image ? (
-             <img src={image} className={clsx(imageStyles, playIconStyles({ isOpen }))} alt="open chat" />
-           ) : (
-             <PlayIcon className={playIconStyles({ isOpen })} />
-           )}
-         </div>
-       </div> */}
+      <div className={imageIconWrapper}>
+        {image ? (
+          <img src={image} className={clsx(imageIconStyle({ isOpen, isImage: true }))} alt="open chat" />
+        ) : (
+          <PlayIcon className={imageIconStyle({ isOpen })} />
+        )}
+        <ChevronIcon className={clsx(closeChevron({ isOpen }))} />
+      </div>
       <div className={launcherLabelStyles({ isOpen })}>{label}</div>
-      <ChevronIcon className={clsx(closeChevron({ isOpen }))} />
     </Button>
   );
 };
