@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.12.3](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.12.2...@voiceflow/react-chat@2.12.3) (2024-12-06)
+
+### Bug Fixes
+
+* change entry animation (DSN-2521) ([#414](https://github.com/voiceflow/react-chat/issues/414)) ([0bf6f73](https://github.com/voiceflow/react-chat/commit/0bf6f73c6879fed18c569baef0e379758adc2393))
+
 ## [2.12.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.12.1...@voiceflow/react-chat@2.12.2) (2024-12-06)
 
 ### Bug Fixes
