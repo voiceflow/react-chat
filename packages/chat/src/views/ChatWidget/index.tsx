@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { useContext, useMemo, useState } from 'react';
 
 import { Launcher } from '@/components/Launcher';
-import { LAUNCHER_SIZE } from '@/components/Launcher/styles.css';
+import { LAUNCHER_SIZE, LAUNCHER_WIDTH_LABEL_SIZE } from '@/components/Launcher/styles.css';
 import { Proactive } from '@/components/Proactive';
 import { ClassName } from '@/constants';
 import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts';
@@ -62,7 +62,8 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
 
   const side = assistant.common.position;
   const position = { bottom: `${assistant.common.bottomSpacing}px`, [side]: `${assistant.common.sideSpacing}px` };
-  const chatHeight = `calc(100% - ${LAUNCHER_SIZE + LAUNCHER_MARGIN + parseInt(assistant.common.bottomSpacing, 10) + 20}px)`;
+  const launcherButtonSize = assistant.common.launcher.text ? LAUNCHER_WIDTH_LABEL_SIZE : LAUNCHER_SIZE;
+  const chatHeight = `calc(100% - ${launcherButtonSize + LAUNCHER_MARGIN + parseInt(assistant.common.bottomSpacing, 10) + 20}px)`;
 
   const isStyleSheetResolved = useResolveAssistantStyleSheet(assistant, shadowRoot);
 
@@ -96,7 +97,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
               }
             : {
                 [side]: position[side],
-                bottom: `${parseInt(position.bottom, 10) + LAUNCHER_SIZE + LAUNCHER_MARGIN}px`,
+                bottom: `${parseInt(position.bottom, 10) + launcherButtonSize + LAUNCHER_MARGIN}px`,
                 height: chatHeight,
               }
         }

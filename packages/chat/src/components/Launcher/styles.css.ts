@@ -7,6 +7,7 @@ import { transition } from '@/styles/transitions';
 import { buttonStyles } from '../Button/styles.css';
 
 export const LAUNCHER_SIZE = 48;
+export const LAUNCHER_WIDTH_LABEL_SIZE = 40;
 
 export const launcherContainer = style({
   width: 'fit-content',
@@ -78,7 +79,7 @@ export const launcherStyles = recipe({
     withLabel: {
       true: {
         padding: '8px 16px 8px 12px',
-        height: '40px',
+        height: LAUNCHER_WIDTH_LABEL_SIZE,
       },
       false: {
         height: '48px',
@@ -101,11 +102,11 @@ export const launcherStyles = recipe({
         isOpen: true,
       },
       style: {
-        height: '40px',
-        width: '40px',
-        maxWidth: '40px',
-        maxHeight: '40px',
-        minWidth: '40px',
+        height: LAUNCHER_WIDTH_LABEL_SIZE,
+        width: LAUNCHER_WIDTH_LABEL_SIZE,
+        maxWidth: LAUNCHER_WIDTH_LABEL_SIZE,
+        maxHeight: LAUNCHER_WIDTH_LABEL_SIZE,
+        minWidth: LAUNCHER_WIDTH_LABEL_SIZE,
         padding: '8px',
       },
     },
