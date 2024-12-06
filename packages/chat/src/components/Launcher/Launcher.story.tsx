@@ -21,10 +21,8 @@ export default meta;
 
 const CollapsableLauncher = (props: any) => {
   const [isOpen, setIsOpen] = useState(false);
-  const handleToggle = () => {
-    setIsOpen((prev) => !prev);
-  };
-  return <Launcher isOpen={isOpen} onClick={handleToggle} {...props} />;
+
+  return <Launcher isOpen={isOpen} onClick={() => setIsOpen((prev) => !prev)} {...props} />;
 };
 
 export const Base: Story = {
@@ -34,5 +32,17 @@ export const Base: Story = {
 export const WithCustomIcon: Story = { render: () => <CollapsableLauncher image={tiledBg} /> };
 
 export const WithLabel: Story = {
-  render: () => <CollapsableLauncher image={tiledBg} label="Label" />,
+  render: () => (
+    <div style={{ position: 'absolute', right: 10 }}>
+      <CollapsableLauncher image={tiledBg} label="Chat with Tico" />
+    </div>
+  ),
+};
+
+export const WithLabelOnRight: Story = {
+  render: () => (
+    <div style={{ position: 'absolute', left: 10 }}>
+      <CollapsableLauncher image={tiledBg} label="Chat with Tico" />
+    </div>
+  ),
 };
