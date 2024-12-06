@@ -23,7 +23,7 @@ export const launcherStyles = recipe({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-
+    gap: '6px',
     fontFamily: FAMILY,
     fontSize: '14px',
     lineHeight: '20px',
@@ -60,43 +60,22 @@ export const launcherStyles = recipe({
       true: {
         maxWidth: LAUNCHER_WITH_LABEL_SIZE,
         filter: 'drop-shadow(rgba(0, 0, 0, 0.06) 0px 1px 6px) drop-shadow(rgba(0, 0, 0, 0.16) 0px 2px 32px)',
-      },
-      false: {},
-    },
-  },
-});
-
-const openAnimation = keyframes({
-  '0%': { width: '0' },
-  '80%': { width: '100%' },
-  '100%': { width: '100%' },
-});
-
-const closeAnimation = keyframes({
-  '0%': { width: '100%' },
-  '20%': { width: '100%' },
-  '80%': { width: '0', opacity: 1 },
-  '100%': { width: '0', opacity: 0 },
-});
-
-export const launcherLabelStyles = recipe({
-  base: {
-    overflow: 'hidden',
-    whiteSpace: 'nowrap',
-    textOverflow: 'ellipsis',
-    textAlign: 'left',
-    padding: '3px 0 1px 0',
-  },
-  variants: {
-    isOpen: {
-      true: {
-        animation: `${closeAnimation} 0.3s ${timingFunction.gentle} forwards`,
+        gap: 0,
       },
       false: {
-        animation: `${openAnimation} 0.3s ${timingFunction.gentle} forwards`,
+        maxWidth: '500px',
       },
     },
   },
+});
+
+export const launcherLabelStyles = style({
+  overflow: 'hidden',
+  whiteSpace: 'nowrap',
+  textOverflow: 'ellipsis',
+  textAlign: 'left',
+  padding: '3px 0 1px 0',
+  transition: `all 0.3s ${BEZIER}`,
 });
 
 export const iconAndLabelWrapper = style({
@@ -164,10 +143,11 @@ export const imageIconStyle = recipe({
   variants: {
     isOpen: {
       true: {
-        // opacity: 0,
+        opacity: 0,
+        transitionDelay: '0.2s',
       },
       false: {
-        // opacity: 1,
+        opacity: 1,
       },
     },
     isImage: {
