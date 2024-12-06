@@ -2,8 +2,8 @@ import clsx from 'clsx';
 import type { MouseEventHandler } from 'react';
 import React from 'react';
 
+import { Button } from '@/components/Button';
 import { ClassName } from '@/constants';
-import { Button } from '@/main';
 
 import { ChevronIcon } from '../ChevronIcon';
 import { PlayIcon } from '../PlayIcon';
