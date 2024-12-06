@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.32.0](https://github.com/voiceflow/react-chat/compare/documentation@0.31.7...documentation@0.32.0) (2024-12-06)
+
+### Features
+
+* use test-env general-runtime url (COR-0000) ([#412](https://github.com/voiceflow/react-chat/issues/412)) ([ebd6d49](https://github.com/voiceflow/react-chat/commit/ebd6d4971cd6c020201fa255f7427f7c477f4314))
+
 ## [0.31.7](https://github.com/voiceflow/react-chat/compare/documentation@0.31.6...documentation@0.31.7) (2024-12-05)
 
 **Note:** Version bump only for package documentation
