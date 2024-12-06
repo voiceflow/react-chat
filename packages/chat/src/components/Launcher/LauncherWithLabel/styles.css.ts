@@ -1,12 +1,10 @@
 import { keyframes, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
-import { buttonStyles } from '@/components/Button/styles.css';
 import { fadeInSlideUp } from '@/components/UserResponse/styles.css';
-import { duration, timingFunction } from '@/styles/animations';
+import { duration } from '@/styles/animations';
 import { PALETTE } from '@/styles/colors.css';
 import { FAMILY } from '@/styles/font';
-import { SIZES } from '@/styles/sizes';
 import { transition } from '@/styles/transitions';
 
 const LAUNCHER_WITH_LABEL_SIZE = 40;
@@ -81,12 +79,6 @@ export const launcherLabelStyles = style({
   textAlign: 'left',
   padding: '3px 0 1px 0',
   transition: `all 0.3s ${BEZIER}`,
-});
-
-export const iconAndLabelWrapper = style({
-  display: 'flex',
-  alignItems: 'center',
-  gap: '7.1px',
 });
 
 export const twistInAnimation = keyframes({
