@@ -22,14 +22,16 @@ export const launcherStyles = recipe({
     willChange: 'max-width, transform',
     height: LAUNCHER_WITH_LABEL_SIZE,
     display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+
     fontFamily: FAMILY,
     fontSize: '14px',
+    lineHeight: '20px',
 
     boxShadow:
       '0px 1px 0px 0px rgba(22, 26, 30, 0.02), 0px 0px 0px 1px rgba(22, 26, 30, 0.04), 0px 1px 5px -4px rgba(22, 26, 30, 0.08), 0px 4px 8px -6px rgba(22, 26, 30, 0.08), 0px 1px 3px 1px rgba(22, 26, 30, 0.01)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    fontWeight: '400',
+    fontWeight: '600',
     overflowWrap: 'anywhere',
     backgroundColor: PALETTE.colors[500],
     maxWidth: '500px',
@@ -70,7 +72,7 @@ export const launcherLabelStyles = recipe({
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
     textAlign: 'left',
-    padding: '2.7px 0 0.9px 0',
+    padding: '3px 0 1px 0',
     display: 'block',
   },
   variants: {
@@ -80,6 +82,7 @@ export const launcherLabelStyles = recipe({
       },
       false: {
         animation: `${openAnimation} 0.3s ${timingFunction.gentle} forwards`,
+        animationDelay: '0.2s',
       },
     },
   },
@@ -143,12 +146,11 @@ export const closeChevron = recipe({
   variants: {
     isOpen: {
       true: {
-        animation: `${twistInAnimation} 0.2s ease-in-out`,
-        opacity: 1,
+        animation: `${twistInAnimation} 0.2s ease-in-out forwards`,
+        animationDelay: '0.2s',
       },
       false: {
-        animation: `${twistOutAnimation} 0.2s ease-in-out`,
-        opacity: 0,
+        animation: `${twistOutAnimation} 0.2s ease-in-out forwards`,
         pointerEvents: 'none',
       },
     },
