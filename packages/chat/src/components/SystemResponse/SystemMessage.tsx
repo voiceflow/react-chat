@@ -81,7 +81,7 @@ export const SystemMessage: React.FC<SystemMessageProps> = ({
         .otherwise((message) => (
           <>
             {avatar && <Avatar avatar={avatar} className={clsx(withImage ? '' : hide, responseAvatar)} />}
-            <div className={messageContainer}>
+            <div className={messageContainer({ withAvatar: !!avatar })}>
               {match(message)
                 .with({ type: MessageType.TEXT }, ({ text, ai }) => (
                   <AgentMessage
