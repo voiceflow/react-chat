@@ -48,7 +48,7 @@ export interface LauncherProps {
   /**
    * A callback that will be executed when the button is clicked.
    */
-  onClick: MouseEventHandler<HTMLDivElement>;
+  onClick: MouseEventHandler<HTMLDivElement | HTMLButtonElement>;
 
   side?: ChatWidgetSettings['common']['position'];
 }
