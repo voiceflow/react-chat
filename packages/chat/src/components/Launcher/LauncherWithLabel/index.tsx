@@ -55,20 +55,16 @@ export const LauncherWithLabel: React.FC<LauncherProps> = ({ image, isOpen, labe
   return (
     <div className={ClassName.LAUNCHER} onClick={onClick}>
       <Button className={clsx(launcherStyles({ isOpen }))}>
+        <div className={iconContainer()}>
+          <ChevronIcon className={clsx(closeChevron({ isOpen }), launcherIconStyles())} />
+          {image ? (
+            <img src={image} className={clsx(imageStyles({ isOpen }), playIconStyles({ isOpen }))} alt="open chat" />
+          ) : (
+            <PlayIcon className={playIconStyles({ isOpen })} />
+          )}
+        </div>
         <div className={launcherLabelStyles({ isOpen })}>{label} </div>
       </Button>
     </div>
   );
 };
-
-//  {/* <div className={iconContainer({ isOpen, withLabel })}> */}
-//       {/* <ChevronIcon className={clsx(closeChevron({ isOpen, withLabel }), launcherIconStyles())} />
-//         {image && (
-//           <img
-//             src={image}
-//             className={clsx(imageStyles({ isOpen, withLabel }), playIconStyles({ withLabel }))}
-//             alt="open chat"
-//           />
-//         )}
-//         {!image && <PlayIcon className={playIconStyles({ withLabel, isOpen })} />} */}
-//       {/* </div> */}
