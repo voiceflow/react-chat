@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.12.4](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.12.3...@voiceflow/react-chat@2.12.4) (2024-12-06)
+
+### Bug Fixes
+
+* apply launcher settings (COR-0000) ([#419](https://github.com/voiceflow/react-chat/issues/419)) ([ff55766](https://github.com/voiceflow/react-chat/commit/ff55766cd677673c8b4346432e1d1135dc9808e3))
+
 ## [2.12.3](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.12.2...@voiceflow/react-chat@2.12.3) (2024-12-06)
 
 ### Bug Fixes
