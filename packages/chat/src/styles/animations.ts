@@ -1,5 +1,6 @@
 export const duration = {
   slow: '0.5s',
+  mid: '0.3s',
   default: '0.15s',
   fast: '0.08s',
   fastest: '0.05s',
@@ -24,7 +25,7 @@ export const componentAnimations = {
     opacity: duration.default,
   },
   endChat: {
-    transform: '0.25s',
+    transform: '0.15s',
     opacity: duration.fast,
     boxShadow: duration.slow,
   },

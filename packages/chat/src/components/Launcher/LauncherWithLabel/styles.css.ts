@@ -13,7 +13,7 @@ const BEZIER = 'cubic-bezier(0.4, 0, 0.2, 1)';
 export const launcherStyles = recipe({
   base: {
     borderRadius: '9999px',
-    transition: `all 0.3s ${BEZIER}`,
+    transition: `all ${duration.mid} ${BEZIER}`,
     overflow: 'hidden',
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
@@ -78,7 +78,7 @@ export const launcherLabelStyles = style({
   textOverflow: 'ellipsis',
   textAlign: 'left',
   padding: '3px 0 1px 0',
-  transition: `all 0.3s ${BEZIER}`,
+  transition: `all ${duration.mid} ${BEZIER}`,
 });
 
 export const twistInAnimation = keyframes({

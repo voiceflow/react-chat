@@ -1,7 +1,7 @@
 import { keyframes, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
-import { timingFunction } from '@/styles/animations';
+import { duration, timingFunction } from '@/styles/animations';
 import { COLORS } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
 import { FAMILY, hideTextOverflow } from '@/styles/font';
@@ -40,7 +40,7 @@ export const footerContainer = style({
       animation: `${fadeInAndSlideUp} .6s ${timingFunction.gentle} forwards`,
     },
     [`.${chatIsClosed} &`]: {
-      animationDelay: '0.5s',
+      animationDelay: duration.slow,
       animation: `${fadeOutSlideDown} 300ms ${timingFunction.gentle} forwards`,
     },
   },
