@@ -99,6 +99,14 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
 
   if (!messages.length && !actions.length) return null;
 
+  const getLastTextMessageIndex = (messages: MessageProps[]) => {
+    for (let i = messages.length - 1; i >= 0; i--) {
+      if (messages[i].type === MessageType.TEXT) return i;
+    }
+    return -1;
+  };
+  const lastTextMessageIndex = getLastTextMessageIndex(visibleMessages);
+
   const allTextContentForMessage = visibleMessages.reduce<string>((acc, message) => {
     if (message.type === MessageType.TEXT) {
       return (
@@ -119,7 +127,7 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
         const lastMessageInGroup = index === visibleMessages.length - 1;
 
         // Showing feedback on previous messages that were in the chat
-        const showFeedback = lastMessageInGroup && message.type === MessageType.TEXT;
+        const showFeedback = index === lastTextMessageIndex; // lastMessageInGroup && message.type === MessageType.TEXT;
 
         // Showing feedback on the most recent system message of the chat
         const addFeedback = feedback && isLast && complete && lastMessageInGroup;
