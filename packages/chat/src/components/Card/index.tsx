@@ -37,7 +37,7 @@ export const Card: React.FC<CardProps> = ({ title, description, image, actions =
           {description && <div className={cardDescription}>{description}</div>}
         </div>
       )}
-      {!title && !description && <div className={buttonSpacer} />}
+      {!title && !description && !!buttons?.length && <div className={buttonSpacer} />}
       {!!buttons?.length && (
         <div className={cardActions}>
           {buttons.map(({ request, name }, index) => (
