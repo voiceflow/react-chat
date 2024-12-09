@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.16.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.15.1...@voiceflow/react-chat@2.16.0) (2024-12-09)
+
+### Features
+
+* remove audio output widget from header (DSN-000) ([#432](https://github.com/voiceflow/react-chat/issues/432)) ([5c31e5e](https://github.com/voiceflow/react-chat/commit/5c31e5e4c3b81d39a9d0c339021690ed55048222))
+
 ## [2.15.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.15.0...@voiceflow/react-chat@2.15.1) (2024-12-09)
 
 ### Bug Fixes
