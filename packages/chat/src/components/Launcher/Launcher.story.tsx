@@ -39,6 +39,14 @@ export const WithLabel: Story = {
   ),
 };
 
+export const WithLabelAndIcon: Story = {
+  render: () => (
+    <div style={{ position: 'absolute', right: 10 }}>
+      <CollapsableLauncher label="Chat with Tico" />
+    </div>
+  ),
+};
+
 export const WithLabelOnRight: Story = {
   render: () => (
     <div style={{ position: 'absolute', left: 10 }}>

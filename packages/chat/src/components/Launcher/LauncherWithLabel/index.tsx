@@ -44,7 +44,7 @@ export const LauncherWithLabel: React.FC<LauncherProps> = ({ image, isOpen, labe
     <Button className={clsx(launcherStyles({ isOpen }), ClassName.LAUNCHER)} onClick={onClick}>
       <div className={imageIconWrapper}>
         {image ? (
-          <img src={image} className={clsx(imageIconStyle({ isOpen, isImage: true }))} alt="open chat" />
+          <img src={image} className={clsx(imageIconStyle({ isOpen }))} alt="open chat" />
         ) : (
           <PlayIcon className={imageIconStyle({ isOpen })} />
         )}
