@@ -54,3 +54,8 @@ export const cardDescription = style({
   color: COLORS.NEUTRAL_DARK[400],
   whiteSpace: 'normal',
 });
+
+export const buttonSpacer = style({
+  height: 16,
+  width: '100%',
+});

@@ -7,7 +7,15 @@ import { fadeInAndUp } from '@/styles/animation-utils.css';
 
 import { Button } from '../Button';
 import { ButtonVariant } from '../Button/constants';
-import { cardActions, cardContainer, cardContent, cardDescription, cardImage, cardTitle } from './styles.css';
+import {
+  buttonSpacer,
+  cardActions,
+  cardContainer,
+  cardContent,
+  cardDescription,
+  cardImage,
+  cardTitle,
+} from './styles.css';
 import type { CardProps } from './types';
 
 /**
@@ -29,6 +37,7 @@ export const Card: React.FC<CardProps> = ({ title, description, image, actions =
           {description && <div className={cardDescription}>{description}</div>}
         </div>
       )}
+      {!title && !description && !!buttons?.length && <div className={buttonSpacer} />}
       {!!buttons?.length && (
         <div className={cardActions}>
           {buttons.map(({ request, name }, index) => (
