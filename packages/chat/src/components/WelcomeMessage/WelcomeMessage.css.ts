@@ -1,11 +1,9 @@
 import { keyframes, style } from '@vanilla-extract/css';
 
-import { timingFunction } from '@/styles/animations';
+import { componentAnimations, timingFunction } from '@/styles/animations';
 import { COLORS } from '@/styles/colors';
 import { FAMILY } from '@/styles/font';
 import { widgetContainer } from '@/views/ChatWidget/styles.css';
-
-const delays = { avatar: '0.25s', title: '0.35s', description: '0.45s' };
 
 export const fadeIn = keyframes({
   '0%': {
@@ -43,8 +41,8 @@ export const avatarContainer = style({
   opacity: 0,
   selectors: {
     [`.${widgetContainer.classNames.variants.withChat.true} &`]: {
-      animation: `${fadeIn} 0.6s ${timingFunction.gentle} forwards`,
-      animationDelay: delays.avatar,
+      animation: `${fadeIn} ${componentAnimations.welcomeMessage.duration} ${timingFunction.gentle} forwards`,
+      animationDelay: componentAnimations.welcomeMessage.delays.avatar,
     },
     [`.${widgetContainer.classNames.variants.withChat.false} &`]: {
       animation: `${fadeOut} 0.4s ${timingFunction.gentle} forwards`,
@@ -64,11 +62,11 @@ export const welcomeMessageTitle = style({
   opacity: 0,
   selectors: {
     [`.${widgetContainer.classNames.variants.withChat.true} &`]: {
-      animation: `${fadeIn} 0.6s ${timingFunction.gentle} forwards`,
-      animationDelay: delays.title,
+      animation: `${fadeIn} ${componentAnimations.welcomeMessage.duration} ${timingFunction.gentle} forwards`,
+      animationDelay: componentAnimations.welcomeMessage.delays.title,
     },
     [`.${widgetContainer.classNames.variants.withChat.false} &`]: {
-      animation: `${fadeOut} 0.6s ${timingFunction.gentle} forwards`,
+      animation: `${fadeOut} ${componentAnimations.welcomeMessage.duration} ${timingFunction.gentle} forwards`,
     },
   },
 });
@@ -85,8 +83,8 @@ export const welcomeMessageDescription = style({
   opacity: 0,
   selectors: {
     [`.${widgetContainer.classNames.variants.withChat.true} &`]: {
-      animation: `${fadeIn} 0.6s ${timingFunction.gentle} forwards`,
-      animationDelay: delays.description,
+      animation: `${fadeIn} ${componentAnimations.welcomeMessage.duration} ${timingFunction.gentle} forwards`,
+      animationDelay: componentAnimations.welcomeMessage.delays.description,
     },
     [`.${widgetContainer.classNames.variants.withChat.false} &`]: {
       animation: `${fadeOut} 0.4s ${timingFunction.gentle} forwards`,

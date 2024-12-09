@@ -1,5 +1,6 @@
 import { recipe } from '@vanilla-extract/recipes';
 
+import { componentAnimations } from '@/styles/animations';
 import { COLORS } from '@/styles/colors';
 import { SIZES } from '@/styles/sizes';
 import { transition } from '@/styles/transitions';
@@ -10,7 +11,7 @@ export const promptContainer = recipe({
     bottom: 0,
     width: '100%',
     boxSizing: 'border-box',
-    transition: 'transform .5s cubic-bezier(0.45, 1.29, 0.64, 1), box-shadow 1s ease, opacity .3s ease',
+    transition: `transform ${componentAnimations.endChat.transform} cubic-bezier(0.45, 1.29, 0.64, 1), box-shadow ${componentAnimations.endChat.boxShadow} ease, opacity ${componentAnimations.endChat.opacity} ease`,
     transform: 'translateY(100%)',
     padding: '12px 12px 30px 12px',
     borderRadius: SIZES.radius.lg,
