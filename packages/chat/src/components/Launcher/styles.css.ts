@@ -24,23 +24,13 @@ export const launcherStyles = recipe({
       minWidth: '48px',
       backgroundColor: PALETTE.colors[500],
       position: 'relative', // Establish positioning context
-      transition: transition([
-        'color',
-        'background-color',
-        'width',
-        'height',
-        'max-width',
-        'max-height',
-        'filter',
-        'min-width',
-        'min-height',
-        'padding',
-      ]),
+      transition: 'all 0.15s ease-in-out',
       boxShadow:
         '0px 1px 0px 0px rgba(22, 26, 30, 0.02), 0px 0px 0px 1px rgba(22, 26, 30, 0.04), 0px 1px 5px -4px rgba(22, 26, 30, 0.08), 0px 4px 8px -6px rgba(22, 26, 30, 0.08), 0px 1px 3px 1px rgba(22, 26, 30, 0.01)',
 
       animation: `${fadeInSlideUp} ${duration.fast} ease-out`,
-
+      width: LAUNCHER_SIZE,
+      padding: '8px',
       ':hover': {
         transform: 'scale(1.1)',
         backgroundColor: PALETTE.colors[600],
@@ -65,17 +55,6 @@ export const launcherStyles = recipe({
   ],
 
   variants: {
-    withLabel: {
-      true: {
-        padding: '8px 16px 8px 12px',
-        height: LAUNCHER_WIDTH_LABEL_SIZE,
-      },
-      false: {
-        height: '48px',
-        width: '48px',
-        padding: '8px',
-      },
-    },
     isOpen: {
       true: {
         filter: 'drop-shadow(rgba(0, 0, 0, 0.06) 0px 1px 6px) drop-shadow(rgba(0, 0, 0, 0.16) 0px 2px 32px)',
@@ -84,22 +63,6 @@ export const launcherStyles = recipe({
       },
     },
   },
-  compoundVariants: [
-    {
-      variants: {
-        withLabel: true,
-        isOpen: true,
-      },
-      style: {
-        height: LAUNCHER_WIDTH_LABEL_SIZE,
-        width: LAUNCHER_WIDTH_LABEL_SIZE,
-        maxWidth: LAUNCHER_WIDTH_LABEL_SIZE,
-        maxHeight: LAUNCHER_WIDTH_LABEL_SIZE,
-        minWidth: LAUNCHER_WIDTH_LABEL_SIZE,
-        padding: '8px',
-      },
-    },
-  ],
 });
 
 export const iconContainer = recipe({
@@ -119,30 +82,9 @@ export const iconContainer = recipe({
         height: '24px',
       },
     },
-    withLabel: { true: {}, false: {} },
     withIcon: { false: {} },
   },
   compoundVariants: [
-    {
-      variants: {
-        withLabel: false,
-        isOpen: false,
-      },
-      style: {
-        width: '24px',
-        height: '24px',
-      },
-    },
-    {
-      variants: {
-        withLabel: true,
-        isOpen: true,
-      },
-      style: {
-        width: '24px',
-        height: '24px',
-      },
-    },
     {
       variants: {
         withIcon: false,
@@ -222,10 +164,6 @@ export const playIconStyles = recipe({
         opacity: 1,
       },
     },
-    withLabel: {
-      true: {},
-      false: {},
-    },
   },
 });
 export const twistInAnimation = keyframes({
@@ -269,19 +207,15 @@ export const closeChevron = recipe({
         pointerEvents: 'none',
       },
     },
-    withLabel: {
-      true: {
-        position: 'relative',
-      },
-    },
   },
 });
 
 export const imageStyles = recipe({
   base: {
     transition: transition(['opacity', 'width']),
-    width: '24px',
-    height: '24px',
+    height: '32px',
+    width: '32px',
+    minWidth: '32px',
   },
   variants: {
     isOpen: {
@@ -293,29 +227,5 @@ export const imageStyles = recipe({
         opacity: 1,
       },
     },
-    withLabel: {
-      true: {
-        // position: 'relative',
-        height: '24px',
-        width: '24px',
-      },
-      false: {
-        height: '32px',
-        width: '32px',
-        minWidth: '32px',
-      },
-    },
   },
-  compoundVariants: [
-    {
-      variants: {
-        withLabel: true,
-        isOpen: true,
-      },
-      style: {
-        height: '0px',
-        width: '0px',
-      },
-    },
-  ],
 });

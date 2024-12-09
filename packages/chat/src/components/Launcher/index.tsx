@@ -7,6 +7,7 @@ import { ClassName } from '@/constants';
 
 import { Button } from '../Button';
 import { ChevronIcon } from './ChevronIcon';
+import { LauncherWithLabel } from './LauncherWithLabel';
 import { PlayIcon } from './PlayIcon';
 import {
   closeChevron,
@@ -46,7 +47,7 @@ export interface LauncherProps {
   /**
    * A callback that will be executed when the button is clicked.
    */
-  onClick: MouseEventHandler<HTMLDivElement>;
+  onClick: MouseEventHandler<HTMLDivElement | HTMLButtonElement>;
 }
 
 /**
@@ -54,22 +55,21 @@ export interface LauncherProps {
  *
  * @see {@link https://voiceflow.github.io/react-chat/?path=/story/components-launcher--default}
  */
-export const Launcher: React.FC<LauncherProps> = ({ type, image, isOpen, label, onClick }) => {
+export const Launcher: React.FC<LauncherProps> = ({ image, type, isOpen, label, onClick }) => {
   const withIcon = type !== 'label';
   const withLabel = type !== 'icon' && !!label?.length;
+  if (withLabel) {
+    return <LauncherWithLabel image={image} isOpen={isOpen} label={label} onClick={onClick} />;
+  }
   return (
     <div className={launcherContainer} onClick={onClick}>
-      <Button className={clsx(ClassName.LAUNCHER, launcherStyles({ withLabel, isOpen }))}>
-        <div className={iconContainer({ isOpen, withLabel, withIcon })}>
-          <ChevronIcon className={clsx(closeChevron({ isOpen, withLabel }), launcherIconStyles())} />
+      <Button className={clsx(ClassName.LAUNCHER, launcherStyles({ isOpen }))}>
+        <div className={iconContainer({ isOpen, withIcon })}>
+          <ChevronIcon className={clsx(closeChevron({ isOpen }), launcherIconStyles())} />
           {withIcon && image && (
-            <img
-              src={image}
-              className={clsx(imageStyles({ isOpen, withLabel }), playIconStyles({ withLabel }))}
-              alt="open chat"
-            />
+            <img src={image} className={clsx(imageStyles({ isOpen }), playIconStyles({}))} alt="open chat" />
           )}
-          {withIcon && !image && <PlayIcon className={playIconStyles({ withLabel, isOpen })} />}
+          {withIcon && !image && <PlayIcon className={playIconStyles({ isOpen })} />}
         </div>
         {withLabel && <div className={launcherLabelStyles({ isOpen })}>{label} </div>}
       </Button>
