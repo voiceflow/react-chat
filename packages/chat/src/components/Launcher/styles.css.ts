@@ -24,18 +24,7 @@ export const launcherStyles = recipe({
       minWidth: '48px',
       backgroundColor: PALETTE.colors[500],
       position: 'relative', // Establish positioning context
-      transition: transition([
-        'color',
-        'background-color',
-        'width',
-        'height',
-        'max-width',
-        'max-height',
-        'filter',
-        'min-width',
-        'min-height',
-        'padding',
-      ]),
+      transition: 'all 0.15s ease-in-out',
       boxShadow:
         '0px 1px 0px 0px rgba(22, 26, 30, 0.02), 0px 0px 0px 1px rgba(22, 26, 30, 0.04), 0px 1px 5px -4px rgba(22, 26, 30, 0.08), 0px 4px 8px -6px rgba(22, 26, 30, 0.08), 0px 1px 3px 1px rgba(22, 26, 30, 0.01)',
 
@@ -295,7 +284,6 @@ export const imageStyles = recipe({
     },
     withLabel: {
       true: {
-        // position: 'relative',
         height: '24px',
         width: '24px',
       },
