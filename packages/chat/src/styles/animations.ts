@@ -19,5 +19,21 @@ export const delay = {
 };
 
 export const componentAnimations = {
-  widgetAppearance: '0.3s',
+  widgetAppearance: {
+    transform: '0.3s',
+    opacity: duration.default,
+  },
+  endChat: {
+    transform: '0.25s',
+    opacity: duration.fast,
+    boxShadow: duration.slow,
+  },
+  welcomeMessage: {
+    duration: '0.6s',
+    delays: {
+      avatar: '0.25s',
+      title: '0.35s',
+      description: '0.45s',
+    },
+  },
 };
