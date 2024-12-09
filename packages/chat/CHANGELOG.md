@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.15.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.14.0...@voiceflow/react-chat@2.15.0) (2024-12-09)
+
+### Features
+
+* show feedback buttons on last text message (COR-4153) ([#428](https://github.com/voiceflow/react-chat/issues/428)) ([a7b5b1e](https://github.com/voiceflow/react-chat/commit/a7b5b1ea9703628870f71219a52660c4f024f888))
+
 # [2.14.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.13.1...@voiceflow/react-chat@2.14.0) (2024-12-09)
 
 ### Bug Fixes
