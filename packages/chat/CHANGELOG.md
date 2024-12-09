@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.14.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.13.1...@voiceflow/react-chat@2.14.0) (2024-12-09)
+
+### Bug Fixes
+
+* spacing for cards with only buttons (COR-2603) ([#425](https://github.com/voiceflow/react-chat/issues/425)) ([4418099](https://github.com/voiceflow/react-chat/commit/4418099a926c7d541f05712a688539420b400311))
+
+### Features
+
+* Improve Launcher w/ Label animations (DSN-2522) ([#424](https://github.com/voiceflow/react-chat/issues/424)) ([40e4512](https://github.com/voiceflow/react-chat/commit/40e451219eee93641a878ad2529fec9ef60d2b74))
+
 ## [2.13.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.13.0...@voiceflow/react-chat@2.13.1) (2024-12-06)
 
 ### Bug Fixes

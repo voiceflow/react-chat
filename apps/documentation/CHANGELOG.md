@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.33.0](https://github.com/voiceflow/react-chat/compare/documentation@0.32.5...documentation@0.33.0) (2024-12-09)
+
+### Features
+
+* Improve Launcher w/ Label animations (DSN-2522) ([#424](https://github.com/voiceflow/react-chat/issues/424)) ([40e4512](https://github.com/voiceflow/react-chat/commit/40e451219eee93641a878ad2529fec9ef60d2b74))
+
 ## [0.32.5](https://github.com/voiceflow/react-chat/compare/documentation@0.32.4...documentation@0.32.5) (2024-12-06)
 
 **Note:** Version bump only for package documentation
