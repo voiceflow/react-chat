@@ -109,6 +109,7 @@ export const feedbackButtonContainer = style({
   right: '-6px',
   bottom: '-14px',
   transition: transition(['opacity']),
+  zIndex: 10,
   selectors: {
     [`${systemMessageContainer}:hover &`]: {
       opacity: 1,
