@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.15.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.15.0...@voiceflow/react-chat@2.15.1) (2024-12-09)
+
+### Bug Fixes
+
+* animation timing consistency (DSN-2598) ([#429](https://github.com/voiceflow/react-chat/issues/429)) ([6f93399](https://github.com/voiceflow/react-chat/commit/6f9339969c03c59901ff0dfc0a0429383bf75a9f))
+
 # [2.15.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.14.0...@voiceflow/react-chat@2.15.0) (2024-12-09)
 
 ### Features
