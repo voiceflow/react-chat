@@ -128,8 +128,8 @@ export const closeChevron = recipe({
 
 export const imageIconStyle = recipe({
   base: {
-    width: 32,
-    height: 32,
+    height: '24px',
+    width: '24px',
     position: 'absolute',
     borderRadius: 2,
     left: 0,
@@ -145,12 +145,6 @@ export const imageIconStyle = recipe({
       },
       false: {
         opacity: 1,
-      },
-    },
-    isImage: {
-      true: {
-        height: '24px',
-        width: '24px',
       },
     },
   },

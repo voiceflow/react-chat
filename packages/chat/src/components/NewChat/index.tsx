@@ -74,7 +74,7 @@ const Chat: React.FC<INewChat> = ({
 }) => {
   const [hasAlert, setAlert] = useState(false);
 
-  const { config, toggleAudioOutput } = useContext(RuntimeStateAPIContext);
+  const { config } = useContext(RuntimeStateAPIContext);
   const state = useContext(RuntimeStateContext);
 
   const handleClose = (event: React.MouseEvent<HTMLButtonElement>): void => {
@@ -91,13 +91,6 @@ const Chat: React.FC<INewChat> = ({
     const items: HeaderActionProps[] = [{ svg: 'reset', onClick: handleClose }];
     if (isMobile) {
       items.push({ svg: 'close', onClick: onMinimize });
-    }
-
-    if (audioInterface) {
-      items.unshift({
-        svg: state.audioOutput ? 'volume' : 'mute',
-        onClick: toggleAudioOutput,
-      });
     }
 
     return items;
