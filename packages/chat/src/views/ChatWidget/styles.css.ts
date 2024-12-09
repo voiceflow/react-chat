@@ -1,6 +1,8 @@
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
+import { componentAnimations } from '@/styles/animations';
+
 export const CHAT_WIDTH = 400;
 const MAX_CHAT_HEIGHT = 800;
 
@@ -54,13 +56,13 @@ export const chatContainer = recipe({
         opacity: 1,
         pointerEvents: 'auto',
         transform: 'translateY(0%)',
-        transition: 'transform 300ms cubic-bezier(0, 0.95, 0.1, 1), opacity 150ms linear',
+        transition: `transform ${componentAnimations.widgetAppearance} cubic-bezier(0, 0.95, 0.1, 1), opacity ${componentAnimations.widgetAppearance.opacity} linear`,
       },
       [`.${widgetContainer.classNames.variants.withChat.false} &`]: {
         opacity: 0,
         pointerEvents: 'none',
         transform: 'translateY(100%)',
-        transition: 'transform 300ms cubic-bezier(0.85, 0, 0.6, 1), opacity 150ms linear',
+        transition: `transform ${componentAnimations.widgetAppearance} cubic-bezier(0.85, 0, 0.6, 1), opacity ${componentAnimations.widgetAppearance.opacity} linear`,
       },
     },
   },

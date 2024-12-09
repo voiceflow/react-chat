@@ -17,3 +17,7 @@ export const delay = {
   initial: 0.04,
   increment: 0.03,
 };
+
+export const componentAnimations = {
+  widgetAppearance: '0.3s',
+};

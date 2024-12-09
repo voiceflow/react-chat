@@ -40,7 +40,7 @@ export const footerContainer = style({
       animation: `${fadeInAndSlideUp} .6s ${timingFunction.gentle} forwards`,
     },
     [`.${chatIsClosed} &`]: {
-      animationDelay: '0.5s', // Added delay
+      animationDelay: '0.5s',
       animation: `${fadeOutSlideDown} 300ms ${timingFunction.gentle} forwards`,
     },
   },
