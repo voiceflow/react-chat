@@ -51,7 +51,7 @@ export const NewFooter: React.FC<INewFooter> = ({
   scrollableAreaRef,
   onStart,
 }) => {
-  const showExtraLink = extraLinkText && extraLinkUrl;
+  console.log({ extraLinkText, extraLinkUrl });
   return (
     <div className={clsx(ClassName.FOOTER, footerContainer)}>
       <div className={promptContainer({ visible: messageInputProps.hasEnded })}>
@@ -84,9 +84,10 @@ export const NewFooter: React.FC<INewFooter> = ({
               </a>
             </div>
           )}
-          {showPoweredBy && showExtraLink && <div className={separator} />}
-          {showExtraLink && (
-            <a href={extraLinkUrl} target="_blank" className={extraLinkStyles}>
+          {showPoweredBy && extraLinkText && <div className={separator} />}
+          {extraLinkText && !extraLinkUrl && <div className={extraLinkStyles({ isLink: false })}>{extraLinkText}</div>}
+          {extraLinkText && extraLinkUrl && (
+            <a href={extraLinkUrl} target="_blank" className={extraLinkStyles({ isLink: true })}>
               {extraLinkText}
             </a>
           )}
