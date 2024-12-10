@@ -58,6 +58,7 @@ export const launcherStyles = recipe({
     isOpen: {
       true: {
         filter: 'drop-shadow(rgba(0, 0, 0, 0.06) 0px 1px 6px) drop-shadow(rgba(0, 0, 0, 0.16) 0px 2px 32px)',
+        overflow: 'initial',
         height: '48px',
         width: '48px',
       },
