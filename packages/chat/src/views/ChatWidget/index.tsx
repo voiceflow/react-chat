@@ -1,5 +1,6 @@
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 import type { Trace } from '@voiceflow/base-types';
+import { WidgetSettingsChatRenderMode } from '@voiceflow/dtos-interact';
 import clsx from 'clsx';
 import { useContext, useMemo, useState } from 'react';
 
@@ -8,7 +9,6 @@ import { LAUNCHER_SIZE, LAUNCHER_WIDTH_LABEL_SIZE } from '@/components/Launcher/
 import { Proactive } from '@/components/Proactive';
 import { ClassName } from '@/constants';
 import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts';
-import { RenderMode } from '@/dtos/RenderOptions.dto';
 import { useChatAPI } from '@/hooks/useChatAPI';
 import { usePalette } from '@/hooks/usePalette';
 import { PALETTE } from '@/styles/colors.css';
@@ -16,7 +16,14 @@ import { BREAKPOINTS } from '@/styles/sizes';
 import { useResolveAssistantStyleSheet } from '@/utils/stylesheet';
 import { ChatWindow } from '@/views/ChatWindow';
 
-import { chatContainer, LAUNCHER_MARGIN, launcherContainer, popoverBackdrop, widgetContainer } from './styles.css';
+import {
+  chatContainer,
+  LAUNCHER_MARGIN,
+  launcherContainer,
+  POPOVER_SPACING,
+  popoverBackdrop,
+  widgetContainer,
+} from './styles.css';
 
 interface ChatWidgetProps extends React.PropsWithChildren {
   shadowRoot?: ShadowRoot;
@@ -70,7 +77,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
   if (!isStyleSheetResolved) return null;
   if (!palette) return null;
 
-  const isPopover = assistant.chat.renderMode === RenderMode.POPOVER;
+  const isPopover = assistant.chat.renderMode === WidgetSettingsChatRenderMode.POPOVER;
 
   return (
     <div
@@ -93,7 +100,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
         style={
           isMobile || isPopover
             ? {
-                top: 0,
+                top: isPopover ? POPOVER_SPACING : 0,
                 bottom: 0,
               }
             : {
