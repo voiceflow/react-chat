@@ -84,7 +84,7 @@ export const feedbackContainer = recipe({
   variants: {
     withAvatar: {
       false: {
-        marginLeft: 0,
+        marginLeft: -6,
       },
     },
   },
