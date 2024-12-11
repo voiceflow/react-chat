@@ -8,7 +8,7 @@ import { PALETTE } from '@/styles/colors.css';
 
 export const WithDefaultPalette = (Story: any, { args }: { args: any }) => {
   return (
-    <div style={assignInlineVars(PALETTE, { colors: createPalette() })}>
+    <div style={assignInlineVars(PALETTE, { colors: createPalette(), fontFamily: 'UCityPro' })}>
       <Story args={{ ...args }} />
     </div>
   );

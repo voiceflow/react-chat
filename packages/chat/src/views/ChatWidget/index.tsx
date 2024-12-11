@@ -1,7 +1,7 @@
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 import type { Trace } from '@voiceflow/base-types';
 import clsx from 'clsx';
-import { useContext, useMemo, useState } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
 
 import { Launcher } from '@/components/Launcher';
 import { LAUNCHER_SIZE, LAUNCHER_WIDTH_LABEL_SIZE } from '@/components/Launcher/styles.css';
@@ -12,6 +12,7 @@ import { RenderMode } from '@/dtos/RenderOptions.dto';
 import { useChatAPI } from '@/hooks/useChatAPI';
 import { usePalette } from '@/hooks/usePalette';
 import { PALETTE } from '@/styles/colors.css';
+import { FAMILY } from '@/styles/font';
 import { BREAKPOINTS } from '@/styles/sizes';
 import { useResolveAssistantStyleSheet } from '@/utils/stylesheet';
 import { ChatWindow } from '@/views/ChatWindow';
@@ -65,20 +66,35 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
   const chatHeight = `calc(100% - ${launcherButtonSize + LAUNCHER_MARGIN + parseInt(assistant.common.bottomSpacing, 10) + 20}px)`;
 
   const isStyleSheetResolved = useResolveAssistantStyleSheet(assistant, shadowRoot);
+  const customFontFamily = assistant.common.fontFamily;
+  const isDefaultFont = customFontFamily === 'UCity Pro';
+  // eslint-disable-next-line consistent-return
+  useEffect(() => {
+    if (!isDefaultFont) {
+      const link = document.createElement('link');
+
+      const fontFamilyNameForImport = customFontFamily.replace(/ /g, '+');
+      link.href = `https://fonts.googleapis.com/css2?family=${fontFamilyNameForImport}&display=swap`;
+      link.rel = 'stylesheet';
+      document.head.appendChild(link);
+
+      return () => {
+        document.head.removeChild(link);
+      };
+    }
+  }, []);
+  const isPopover = assistant.chat.renderMode === RenderMode.POPOVER;
 
   if (!isStyleSheetResolved) return null;
   if (!palette) return null;
 
-  const isPopover = assistant.chat.renderMode === RenderMode.POPOVER;
-
-  const mockFont = 'Poppins';
-
   return (
     <>
-      <link rel="stylesheet" href={`https://fonts.googleapis.com/css?family=${mockFont}`} />
-
       <div
-        style={assignInlineVars(PALETTE, { colors: palette, fontFamily: mockFont })}
+        style={assignInlineVars(PALETTE, {
+          colors: palette,
+          fontFamily: isDefaultFont ? FAMILY : `'${customFontFamily}'`,
+        })}
         className={clsx(ClassName.WIDGET, widgetContainer({ hidden: isHidden, withChat: isOpen }))}
       >
         <div className={launcherContainer} style={position}>

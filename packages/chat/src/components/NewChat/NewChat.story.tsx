@@ -108,7 +108,7 @@ export const Base = {
 
 export const BaseThemed = {
   render: () => (
-    <div style={assignInlineVars(PALETTE, { colors: createPalette('red') })}>
+    <div style={assignInlineVars(PALETTE, { colors: createPalette('red'), fontFamily: 'UCityPro' })}>
       <MockBaseComponent />
     </div>
   ),
@@ -121,7 +121,12 @@ export const LoadingState = {
 export const Themed: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: '32px' }}>
-      <div style={{ width: '400px', ...assignInlineVars(PALETTE, { colors: createPalette('red') }) }}>
+      <div
+        style={{
+          width: '400px',
+          ...assignInlineVars(PALETTE, { colors: createPalette('red'), fontFamily: 'UCityPro' }),
+        }}
+      >
         <NewChat
           welcomeMessageProps={{
             enabled: true,
@@ -146,7 +151,12 @@ export const Themed: Story = {
         />
       </div>
 
-      <div style={{ width: '400px', ...assignInlineVars(PALETTE, { colors: createPalette('green') }) }}>
+      <div
+        style={{
+          width: '400px',
+          ...assignInlineVars(PALETTE, { colors: createPalette('green'), fontFamily: 'UCityPro' }),
+        }}
+      >
         <NewChat
           welcomeMessageProps={{
             enabled: true,
@@ -171,7 +181,12 @@ export const Themed: Story = {
         />
       </div>
 
-      <div style={{ width: '400px', ...assignInlineVars(PALETTE, { colors: createPalette('purple') }) }}>
+      <div
+        style={{
+          width: '400px',
+          ...assignInlineVars(PALETTE, { colors: createPalette('purple'), fontFamily: 'UCityPro' }),
+        }}
+      >
         <NewChat
           welcomeMessageProps={{
             enabled: true,
