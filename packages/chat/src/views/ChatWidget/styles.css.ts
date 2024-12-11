@@ -7,7 +7,8 @@ export const CHAT_WIDTH = 400;
 const MAX_CHAT_HEIGHT = 800;
 
 const POPOVER_WIDTH = 750;
-const POPOVER_HEIGHT = 400;
+const POPOVER_MIN_HEIGHT = 400;
+export const POPOVER_SPACING = 42;
 
 export const LAUNCHER_MARGIN = 16;
 
@@ -70,11 +71,11 @@ export const chatContainer = recipe({
   variants: {
     popover: {
       true: {
-        height: POPOVER_HEIGHT,
-        maxHeight: POPOVER_HEIGHT,
+        minHeight: POPOVER_MIN_HEIGHT,
         width: POPOVER_WIDTH,
         left: `calc(50% - ${POPOVER_WIDTH / 2}px)`,
-        top: 42,
+        top: POPOVER_SPACING,
+        marginBottom: POPOVER_SPACING,
       },
     },
   },
