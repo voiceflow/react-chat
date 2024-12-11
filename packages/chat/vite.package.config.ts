@@ -38,7 +38,10 @@ export default defineConfig({
     dts({ tsconfigPath: 'tsconfig.build.json' }),
     ...createPlugins(),
     viteStaticCopy({
-      targets: [{ src: 'src/assets/vf_chat.png', dest: '' }],
+      targets: [
+        { src: 'src/assets/vf_chat.png', dest: '' },
+        { src: 'src/assets/message.png', dest: '' },
+      ],
     }),
   ],
 });
