@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.16.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.16.1...@voiceflow/react-chat@2.16.2) (2024-12-11)
+
+### Bug Fixes
+
+* adjust placeholder font size (COR-4169) ([#437](https://github.com/voiceflow/react-chat/issues/437)) ([182ab0c](https://github.com/voiceflow/react-chat/commit/182ab0c401ac39853aafa13a4c4a50471b1fe4d4))
+
 ## [2.16.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.16.0...@voiceflow/react-chat@2.16.1) (2024-12-11)
 
 ### Bug Fixes
