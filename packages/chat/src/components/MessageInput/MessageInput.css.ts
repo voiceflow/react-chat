@@ -4,6 +4,7 @@ import { recipe } from '@vanilla-extract/recipes';
 import { COLORS } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
 import { FAMILY } from '@/styles/font';
+import { BREAKPOINTS } from '@/styles/sizes';
 import { transition } from '@/styles/transitions';
 
 export const themedFocusRing = createVar();
@@ -16,7 +17,6 @@ export const inputContainer = recipe({
     zIndex: 1,
     justifyContent: 'space-between',
     padding: '7px 7px 7px 20px',
-    fontSize: '14px',
     boxSizing: 'border-box',
     border: `1px solid ${COLORS.NEUTRAL_LIGHT[100]}`,
     backgroundColor: COLORS.white,
@@ -89,6 +89,11 @@ export const input = style({
     '&::placeholder': {
       color: COLORS.NEUTRAL_DARK[100],
       fontSize: '14px',
+    },
+  },
+  '@media': {
+    [`screen and (${BREAKPOINTS.mobile})`]: {
+      fontSize: '16px',
     },
   },
 });

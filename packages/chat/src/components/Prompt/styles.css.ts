@@ -1,6 +1,6 @@
 import { recipe } from '@vanilla-extract/recipes';
 
-import { componentAnimations } from '@/styles/animations';
+import { componentAnimations, timingFunction } from '@/styles/animations';
 import { COLORS } from '@/styles/colors';
 import { SIZES } from '@/styles/sizes';
 import { transition } from '@/styles/transitions';
@@ -11,8 +11,8 @@ export const promptContainer = recipe({
     bottom: 0,
     width: '100%',
     boxSizing: 'border-box',
-    transition: `transform ${componentAnimations.endChat.transform} cubic-bezier(0.45, 1.29, 0.64, 1), box-shadow ${componentAnimations.endChat.boxShadow} ease, opacity ${componentAnimations.endChat.opacity} ease`,
-    transform: 'translateY(100%)',
+    transition: `transform ${componentAnimations.endChat.transform} ${timingFunction.gentle}, box-shadow ${componentAnimations.endChat.boxShadow} ease, opacity ${componentAnimations.endChat.opacity} ease`,
+    transform: 'translateY(130px)',
     padding: '12px 12px 30px 12px',
     borderRadius: SIZES.radius.lg,
     backgroundColor: COLORS.white,
@@ -22,7 +22,7 @@ export const promptContainer = recipe({
     gap: 8,
     zIndex: 300,
     opacity: 0,
-    pointerEvents: 'none', // Prevent interaction when invisible
+    pointerEvents: 'none',
   },
 
   variants: {
@@ -30,11 +30,12 @@ export const promptContainer = recipe({
       true: {
         transform: 'translateY(18px)',
         opacity: 1,
-        pointerEvents: 'auto', // Allow interaction when visible
+        pointerEvents: 'auto',
       },
       false: {
-        transform: 'translateY(100%)', // Slide it down out of view
-        opacity: 0, // Fade it out
+        transform: 'translateY(130px)',
+        transition: `all 0.25s ${timingFunction.gentle}`,
+        opacity: 0,
       },
     },
   },
