@@ -20,6 +20,8 @@ import {
   playIconStyles,
 } from './styles.css';
 
+export const DEFAULT_ICON = 'https://cdn.voiceflow.com/widget-next/message.png';
+
 export interface LauncherProps {
   /**
    * The type of launcher we show.
@@ -66,10 +68,13 @@ export const Launcher: React.FC<LauncherProps> = ({ image, type, isOpen, label, 
       <Button className={clsx(ClassName.LAUNCHER, launcherStyles({ isOpen }))}>
         <div className={iconContainer({ isOpen, withIcon })}>
           <ChevronIcon className={clsx(closeChevron({ isOpen }), launcherIconStyles())} />
-          {withIcon && image && (
-            <img src={image} className={clsx(imageStyles({ isOpen }), playIconStyles({}))} alt="open chat" />
+          {withIcon && (
+            <img
+              src={image ?? DEFAULT_ICON}
+              className={clsx(imageStyles({ isOpen }), playIconStyles({}))}
+              alt="open chat"
+            />
           )}
-          {withIcon && !image && <PlayIcon className={playIconStyles({ isOpen })} />}
         </div>
         {withLabel && <div className={launcherLabelStyles({ isOpen })}>{label} </div>}
       </Button>
