@@ -7,7 +7,6 @@ import type { ChatConfig } from '@/dtos/ChatConfig.dto';
 import type { WidgetOverrides } from '@/dtos/WidgetOverrides.dto';
 import { createPalette, DEFAULT_PRIMARY } from '@/styles/colors';
 import type { ChatWidgetSettings } from '@/types/settings';
-import { RenderMode } from '@/main';
 
 export const mergeAssistantOptions = async (
   config: ChatConfig, // general chat configurations
