@@ -16,7 +16,15 @@ import { BREAKPOINTS } from '@/styles/sizes';
 import { useResolveAssistantStyleSheet } from '@/utils/stylesheet';
 import { ChatWindow } from '@/views/ChatWindow';
 
-import { chatContainer, LAUNCHER_MARGIN, launcherContainer, popoverBackdrop, widgetContainer } from './styles.css';
+import {
+  chatContainer,
+  LAUNCHER_MARGIN,
+  launcherContainer,
+  POPOVER_SPACING,
+  popoverBackdrop,
+  widgetContainer,
+} from './styles.css';
+import { WidgetSettingsChatRenderMode } from '@voiceflow/dtos-interact';
 
 interface ChatWidgetProps extends React.PropsWithChildren {
   shadowRoot?: ShadowRoot;
@@ -70,7 +78,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
   if (!isStyleSheetResolved) return null;
   if (!palette) return null;
 
-  const isPopover = assistant.chat.renderMode === RenderMode.POPOVER;
+  const isPopover = assistant.chat.renderMode === WidgetSettingsChatRenderMode.POPOVER;
 
   return (
     <div
@@ -93,7 +101,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
         style={
           isMobile || isPopover
             ? {
-                top: 0,
+                top: isPopover ? POPOVER_SPACING : 0,
                 bottom: 0,
               }
             : {
