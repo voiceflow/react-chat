@@ -107,8 +107,8 @@ export const closeChevron = recipe({
     transform: 'rotate(0deg)',
     transition: transition(['width']),
     position: 'absolute',
-    width: '24px',
-    height: '24px',
+    width: '32px',
+    height: '32px',
     left: 0,
     opacity: 0,
   },
@@ -150,8 +150,22 @@ export const imageIconStyle = recipe({
   },
 });
 
-export const imageIconWrapper = style({
-  position: 'relative',
-  minWidth: '24px',
-  minHeight: '24px',
+export const imageIconWrapper = recipe({
+  base: {
+    position: 'relative',
+    transition: transition(['min-width', 'min-height']),
+  },
+  variants: {
+    isOpen: {
+      true: {
+        transitionDelay: '0.2s',
+        minWidth: '32px',
+        minHeight: '32px',
+      },
+      false: {
+        minWidth: '24px',
+        minHeight: '24px',
+      },
+    },
+  },
 });
