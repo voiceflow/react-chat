@@ -42,7 +42,7 @@ export interface LauncherProps {
 export const LauncherWithLabel: React.FC<LauncherProps> = ({ image, isOpen, label, onClick }) => {
   return (
     <Button className={clsx(launcherStyles({ isOpen }), ClassName.LAUNCHER)} onClick={onClick}>
-      <div className={imageIconWrapper}>
+      <div className={imageIconWrapper({ isOpen })}>
         {image ? (
           <img src={image} className={clsx(imageIconStyle({ isOpen }))} alt="open chat" />
         ) : (
