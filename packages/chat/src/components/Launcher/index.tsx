@@ -8,7 +8,6 @@ import { ClassName } from '@/constants';
 import { Button } from '../Button';
 import { ChevronIcon } from './ChevronIcon';
 import { LauncherWithLabel } from './LauncherWithLabel';
-import { PlayIcon } from './PlayIcon';
 import {
   closeChevron,
   iconContainer,
