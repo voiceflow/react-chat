@@ -1,5 +1,6 @@
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 import type { Trace } from '@voiceflow/base-types';
+import { WidgetSettingsChatRenderMode } from '@voiceflow/dtos-interact';
 import clsx from 'clsx';
 import { useContext, useMemo, useState } from 'react';
 
@@ -8,7 +9,6 @@ import { LAUNCHER_SIZE, LAUNCHER_WIDTH_LABEL_SIZE } from '@/components/Launcher/
 import { Proactive } from '@/components/Proactive';
 import { ClassName } from '@/constants';
 import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts';
-import { RenderMode } from '@/dtos/RenderOptions.dto';
 import { useChatAPI } from '@/hooks/useChatAPI';
 import { usePalette } from '@/hooks/usePalette';
 import { PALETTE } from '@/styles/colors.css';
@@ -24,7 +24,6 @@ import {
   popoverBackdrop,
   widgetContainer,
 } from './styles.css';
-import { WidgetSettingsChatRenderMode } from '@voiceflow/dtos-interact';
 
 interface ChatWidgetProps extends React.PropsWithChildren {
   shadowRoot?: ShadowRoot;
