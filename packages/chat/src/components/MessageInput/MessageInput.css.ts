@@ -88,6 +88,7 @@ export const input = style({
   selectors: {
     '&::placeholder': {
       color: COLORS.NEUTRAL_DARK[100],
+      fontSize: '14px',
     },
   },
 });
