@@ -28,7 +28,6 @@ interface ChatWidgetProps extends React.PropsWithChildren {
 export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, ready }) => {
   const { assistant, open, close, interact } = useContext(RuntimeStateAPIContext);
   const { isOpen } = useContext(RuntimeStateContext);
-
   /** initialization  */
   const [isHidden, setHidden] = useState(false);
   const [proactiveMessages, setProactiveMessages] = useState<Trace.AnyTrace[]>([]);
@@ -72,39 +71,45 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
 
   const isPopover = assistant.chat.renderMode === RenderMode.POPOVER;
 
+  const mockFont = 'Poppins';
+
   return (
-    <div
-      style={assignInlineVars(PALETTE, { colors: palette })}
-      className={clsx(ClassName.WIDGET, widgetContainer({ hidden: isHidden, withChat: isOpen }))}
-    >
-      <div className={launcherContainer} style={position}>
-        <Proactive side={side} messages={proactiveMessages} />
-        <Launcher
-          onClick={toggleChat}
-          isOpen={isOpen}
-          type={assistant.common.launcher.type}
-          image={assistant.common.launcher.imageURL}
-          label={assistant.common.launcher.text}
-        />
-      </div>
-      <div className={popoverBackdrop({ visible: isPopover && isOpen })} onClick={() => close()} />
+    <>
+      <link rel="stylesheet" href={`https://fonts.googleapis.com/css?family=${mockFont}`} />
+
       <div
-        className={chatContainer({ popover: isPopover && !isMobile })}
-        style={
-          isMobile || isPopover
-            ? {
-                top: 0,
-                bottom: 0,
-              }
-            : {
-                [side]: position[side],
-                bottom: `${parseInt(position.bottom, 10) + launcherButtonSize + LAUNCHER_MARGIN}px`,
-                height: chatHeight,
-              }
-        }
+        style={assignInlineVars(PALETTE, { colors: palette, fontFamily: mockFont })}
+        className={clsx(ClassName.WIDGET, widgetContainer({ hidden: isHidden, withChat: isOpen }))}
       >
-        <ChatWindow isMobile={isMobile} />
+        <div className={launcherContainer} style={position}>
+          <Proactive side={side} messages={proactiveMessages} />
+          <Launcher
+            onClick={toggleChat}
+            isOpen={isOpen}
+            type={assistant.common.launcher.type}
+            image={assistant.common.launcher.imageURL}
+            label={assistant.common.launcher.text}
+          />
+        </div>
+        <div className={popoverBackdrop({ visible: isPopover && isOpen })} onClick={() => close()} />
+        <div
+          className={chatContainer({ popover: isPopover && !isMobile })}
+          style={
+            isMobile || isPopover
+              ? {
+                  top: 0,
+                  bottom: 0,
+                }
+              : {
+                  [side]: position[side],
+                  bottom: `${parseInt(position.bottom, 10) + launcherButtonSize + LAUNCHER_MARGIN}px`,
+                  height: chatHeight,
+                }
+          }
+        >
+          <ChatWindow isMobile={isMobile} />
+        </div>
       </div>
-    </div>
+    </>
   );
 };

@@ -4,7 +4,7 @@ import { recipe } from '@vanilla-extract/recipes';
 import { timingFunction } from '@/styles/animations';
 import { COLORS } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
-import { FAMILY, hideTextOverflow } from '@/styles/font';
+import { hideTextOverflow } from '@/styles/font';
 import { SIZES } from '@/styles/sizes';
 import { transition } from '@/styles/transitions';
 import { chatIsClosed, chatIsOpen } from '@/views/ChatWidget/styles.css';
@@ -60,7 +60,7 @@ export const headerInnerContainer = style({
 
 export const headerTitle = recipe({
   base: {
-    fontFamily: FAMILY,
+    fontFamily: PALETTE.fontFamily,
     fontSize: 16,
     color: COLORS.white,
     fontWeight: 700,

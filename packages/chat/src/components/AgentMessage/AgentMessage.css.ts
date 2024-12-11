@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { COLORS } from '@/styles/colors';
-import { FAMILY } from '@/styles/font';
+import { PALETTE } from '@/styles/colors.css';
 import { BREAKPOINTS, SIZES } from '@/styles/sizes';
 import { transition } from '@/styles/transitions';
 
@@ -12,7 +12,7 @@ import { systemMessageContainer } from '../SystemResponse/styles.css';
 export const agentMessageContainer = style({
   backgroundColor: COLORS.NEUTRAL_LIGHT[50],
   color: COLORS.NEUTRAL_DARK[900],
-  fontFamily: FAMILY,
+  fontFamily: PALETTE.fontFamily,
   position: 'relative',
   fontSize: '14px',
   lineHeight: '20px',
@@ -52,7 +52,7 @@ export const generatedChin = style({
   right: 0,
   bottom: 0,
   color: COLORS.NEUTRAL_DARK[200],
-  fontFamily: FAMILY,
+  fontFamily: PALETTE.fontFamily,
   fontSize: '12px',
   whiteSpace: 'nowrap',
   lineHeight: '17px',

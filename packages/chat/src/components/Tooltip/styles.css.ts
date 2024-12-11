@@ -2,7 +2,6 @@ import { style, styleVariants } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { PALETTE } from '@/styles/colors.css';
-import { FAMILY } from '@/styles/font';
 import { SIZES } from '@/styles/sizes';
 
 export const buttonStyle = style({
@@ -27,7 +26,7 @@ export const withActionVariant = styleVariants({
 
 export const containerStyle = recipe({
   base: {
-    fontFamily: FAMILY,
+    fontFamily: PALETTE.fontFamily,
     fontSize: '12px',
     display: 'inline-flex',
     flexDirection: 'column',

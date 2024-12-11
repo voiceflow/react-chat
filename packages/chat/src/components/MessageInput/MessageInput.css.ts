@@ -3,7 +3,6 @@ import { recipe } from '@vanilla-extract/recipes';
 
 import { COLORS } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
-import { FAMILY } from '@/styles/font';
 import { transition } from '@/styles/transitions';
 
 export const themedFocusRing = createVar();
@@ -76,7 +75,7 @@ export const input = style({
   scrollbarWidth: 'none',
   borderColor: 'transparent',
   resize: 'none',
-  fontFamily: FAMILY,
+  fontFamily: PALETTE.fontFamily,
   fontSize: '14px',
   boxSizing: 'border-box',
   outline: 'transparent 0px',
