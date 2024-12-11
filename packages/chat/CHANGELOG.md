@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.17.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.16.2...@voiceflow/react-chat@2.17.0) (2024-12-11)
+
+### Features
+
+* adjust popover height by content (COR-4186) ([#436](https://github.com/voiceflow/react-chat/issues/436)) ([98c12c4](https://github.com/voiceflow/react-chat/commit/98c12c434c1654402dbbd99a373fd6ff22eb4bf7))
+* default launcher icon (COR-4181) ([#439](https://github.com/voiceflow/react-chat/issues/439)) ([e162f16](https://github.com/voiceflow/react-chat/commit/e162f167cc1cd505a1e883604530c4463cd2cff1))
+
 ## [2.16.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.16.1...@voiceflow/react-chat@2.16.2) (2024-12-11)
 
 ### Bug Fixes
