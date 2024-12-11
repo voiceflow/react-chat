@@ -4,7 +4,6 @@ import { recipe } from '@vanilla-extract/recipes';
 import { fadeInSlideUp } from '@/components/UserResponse/styles.css';
 import { duration } from '@/styles/animations';
 import { PALETTE } from '@/styles/colors.css';
-import { FAMILY } from '@/styles/font';
 import { transition } from '@/styles/transitions';
 
 const LAUNCHER_WITH_LABEL_SIZE = 40;
@@ -24,7 +23,7 @@ export const launcherStyles = recipe({
     alignItems: 'center',
     justifyContent: 'center',
     gap: '6px',
-    fontFamily: FAMILY,
+    fontFamily: PALETTE.fontFamily,
     fontSize: '14px',
     lineHeight: '20px',
     animation: `${fadeInSlideUp} ${duration.fast} ease-out`,

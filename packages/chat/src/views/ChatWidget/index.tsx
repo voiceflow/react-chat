@@ -35,7 +35,6 @@ interface ChatWidgetProps extends React.PropsWithChildren {
 export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, ready }) => {
   const { assistant, open, close, interact } = useContext(RuntimeStateAPIContext);
   const { isOpen } = useContext(RuntimeStateContext);
-
   /** initialization  */
   const [isHidden, setHidden] = useState(false);
   const [proactiveMessages, setProactiveMessages] = useState<Trace.AnyTrace[]>([]);
@@ -88,25 +87,33 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
   if (!isStyleSheetResolved) return null;
   if (!palette) return null;
 
+  const isPopover = assistant.chat.renderMode === WidgetSettingsChatRenderMode.POPOVER;
+
+  const mockFont = 'Poppins';
+
   return (
-    <div
-      style={assignInlineVars(PALETTE, { colors: palette })}
-      className={clsx(ClassName.WIDGET, widgetContainer({ hidden: isHidden, withChat: isOpen }))}
-    >
-      <div className={launcherContainer} style={position}>
-        <Proactive side={side} messages={proactiveMessages} />
-        <Launcher
-          onClick={toggleChat}
-          isOpen={isOpen}
-          type={assistant.common.launcher.type}
-          image={assistant.common.launcher.imageURL}
-          label={assistant.common.launcher.text}
-        />
+    <>
+      <link rel="stylesheet" href={`https://fonts.googleapis.com/css?family=${mockFont}`} />
+
+      <div
+        style={assignInlineVars(PALETTE, { colors: palette, fontFamily: mockFont })}
+        className={clsx(ClassName.WIDGET, widgetContainer({ hidden: isHidden, withChat: isOpen }))}
+      >
+        <div className={launcherContainer} style={position}>
+          <Proactive side={side} messages={proactiveMessages} />
+          <Launcher
+            onClick={toggleChat}
+            isOpen={isOpen}
+            type={assistant.common.launcher.type}
+            image={assistant.common.launcher.imageURL}
+            label={assistant.common.launcher.text}
+          />
+        </div>
+        <div className={popoverBackdrop({ visible: isPopover && isOpen })} onClick={() => close()} />
+        <div className={chatContainer({ popover: isPopover && !isMobile })} style={chatContainerPosition}>
+          <ChatWindow isMobile={isMobile} />
+        </div>
       </div>
-      <div className={popoverBackdrop({ visible: isPopover && isOpen })} onClick={() => close()} />
-      <div className={chatContainer({ popover: isPopover && !isMobile })} style={chatContainerPosition}>
-        <ChatWindow isMobile={isMobile} />
-      </div>
-    </div>
+    </>
   );
 };

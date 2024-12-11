@@ -2,7 +2,7 @@ import { keyframes, style } from '@vanilla-extract/css';
 
 import { componentAnimations, timingFunction } from '@/styles/animations';
 import { COLORS } from '@/styles/colors';
-import { FAMILY } from '@/styles/font';
+import { PALETTE } from '@/styles/colors.css';
 import { widgetContainer } from '@/views/ChatWidget/styles.css';
 
 export const fadeIn = keyframes({
@@ -31,7 +31,7 @@ export const welcomeMessageContainer = style({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  fontFamily: FAMILY,
+  fontFamily: PALETTE.fontFamily,
   padding: '48px 20px 28px 20px',
   textAlign: 'center',
 });

@@ -2,7 +2,7 @@ import { recipe } from '@vanilla-extract/recipes';
 
 import { COLORS } from '@/styles/colors';
 import { PALETTE } from '@/styles/colors.css';
-import { FAMILY, hideTextOverflow } from '@/styles/font';
+import { hideTextOverflow } from '@/styles/font';
 import { SIZES } from '@/styles/sizes';
 import { transition } from '@/styles/transitions';
 
@@ -13,7 +13,7 @@ export const buttonStyles = recipe({
   base: [
     buttonReset,
     {
-      fontFamily: FAMILY,
+      fontFamily: PALETTE.fontFamily,
       fontSize: '14px',
       display: 'flex',
       justifyContent: 'center',
