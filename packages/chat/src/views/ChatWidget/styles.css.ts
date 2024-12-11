@@ -2,6 +2,7 @@ import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { componentAnimations } from '@/styles/animations';
+import { BREAKPOINTS } from '@/styles/sizes';
 
 export const CHAT_WIDTH = 400;
 const MAX_CHAT_HEIGHT = 800;
@@ -41,9 +42,17 @@ export const chatContainer = recipe({
     maxHeight: MAX_CHAT_HEIGHT,
     pointerEvents: 'auto',
 
+    // vanilla-extract places all @media directives at the end of the CSS file
+    // so it will take precedence over all other stylings.
     '@media': {
-      '(max-width: 768px)': {
+      [`(max-width: ${BREAKPOINTS.mobile})`]: {
         width: '100%',
+        height: '100%',
+        maxHeight: 'none',
+        top: 0,
+        bottom: 0,
+        right: 0,
+        left: 0,
         borderRadius: 0,
       },
     },
@@ -75,6 +84,7 @@ export const chatContainer = recipe({
         width: POPOVER_WIDTH,
         left: `calc(50% - ${POPOVER_WIDTH / 2}px)`,
         top: POPOVER_SPACING,
+        bottom: 0,
         marginBottom: POPOVER_SPACING,
       },
     },
