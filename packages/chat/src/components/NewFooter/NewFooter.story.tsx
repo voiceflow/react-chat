@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { WithDefaultPalette } from '@/storybook/decorators';
 import { widgetContainer } from '@/views/ChatWidget/styles.css';
 
 import type { INewFooter } from '.';
@@ -42,6 +43,7 @@ const meta: Meta<typeof NewFooter> = {
   title: 'Components/Chat/NewFooter',
   component: NewFooter,
   decorators: [
+    WithDefaultPalette,
     (Story) => (
       <div className={widgetContainer.classNames.variants.withChat.true} style={{ width: '400px', marginTop: '100px' }}>
         <Story />
@@ -84,9 +86,19 @@ export const WithButtons: Story = {
   },
 };
 
-export const WithPoweredBy: Story = {
+export const WithPoweredByAndText: Story = {
   ...Default,
   args: {
     showPoweredBy: true,
+    extraLinkText: 'Extra Link',
+  },
+};
+
+export const WithPoweredByAndLink: Story = {
+  ...Default,
+  args: {
+    showPoweredBy: true,
+    extraLinkText: 'Extra Link',
+    extraLinkUrl: 'https://voiceflow.com',
   },
 };
