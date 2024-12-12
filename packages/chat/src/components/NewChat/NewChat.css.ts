@@ -3,6 +3,7 @@ import { recipe } from '@vanilla-extract/recipes';
 
 import { duration, timingFunction } from '@/styles/animations';
 import { COLORS } from '@/styles/colors';
+import { BREAKPOINTS } from '@/styles/sizes';
 import { transition } from '@/styles/transitions';
 import { chatIsClosed, chatIsOpen } from '@/views/ChatWidget/styles.css';
 
@@ -10,27 +11,24 @@ import { fadeIn, fadeOut } from '../Header/styles.css';
 
 export const DIALOG_PADDING = 20;
 
-export const chatContainer = recipe({
-  base: {
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    borderRadius: '16px',
-    backgroundColor: COLORS.white,
-    position: 'relative',
-    boxShadow: '0 0 0 1px rgb(22 26 30 / 6%), rgba(22, 26, 30, 0.16) 0px 8px 80px',
-    overflow: 'hidden',
-  },
-  variants: {
-    mobile: {
-      true: {
-        borderRadius: 0,
-      },
+export const chatContainer = style({
+  height: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  borderRadius: '16px',
+  backgroundColor: COLORS.white,
+  position: 'relative',
+  boxShadow: '0 0 0 1px rgb(22 26 30 / 6%), rgba(22, 26, 30, 0.16) 0px 8px 80px',
+  overflow: 'hidden',
+
+  '@media': {
+    [`(max-width: ${BREAKPOINTS.mobile})`]: {
+      borderRadius: 0,
     },
   },
 });
 
-globalStyle(`${chatContainer.classNames.base} *`, {
+globalStyle(`${chatContainer} *`, {
   boxSizing: 'border-box',
 });
 

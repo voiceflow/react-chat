@@ -99,7 +99,7 @@ const Chat: React.FC<INewChat> = ({
   const scrollableAreaRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className={clsx(ClassName.CHAT, chatContainer({ mobile: isMobile }))}>
+    <div className={clsx(ClassName.CHAT, chatContainer)}>
       <Header {...headerProps} actions={headerActions} />
       <AutoScrollProvider target={scrollableAreaRef}>
         <div ref={scrollableAreaRef} className={dialogContainer}>

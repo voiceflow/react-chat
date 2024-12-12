@@ -2,6 +2,7 @@ import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { componentAnimations } from '@/styles/animations';
+import { BREAKPOINTS } from '@/styles/sizes';
 
 export const CHAT_WIDTH = 400;
 const MAX_CHAT_HEIGHT = 800;
@@ -41,10 +42,19 @@ export const chatContainer = recipe({
     maxHeight: MAX_CHAT_HEIGHT,
     pointerEvents: 'auto',
 
+    // vanilla-extract places all @media directives at the end of the CSS file
+    // so it will take precedence over all other stylings.
     '@media': {
-      '(max-width: 768px)': {
+      [`(max-width: ${BREAKPOINTS.mobile})`]: {
         width: '100%',
+        height: '100%',
+        maxHeight: 'none',
+        top: 0,
+        bottom: 0,
+        right: 0,
+        left: 0,
         borderRadius: 0,
+        margin: 0,
       },
     },
 
@@ -55,7 +65,7 @@ export const chatContainer = recipe({
 
       [`.${widgetContainer.classNames.variants.withChat.true} &`]: {
         opacity: 1,
-        pointerEvents: 'auto',
+        pointerEvents: 'all',
         transform: 'translateY(0%)',
         transition: `transform ${componentAnimations.widgetAppearance.transform} cubic-bezier(0, 0.95, 0.1, 1), opacity ${componentAnimations.widgetAppearance.opacity} linear`,
       },
@@ -71,11 +81,20 @@ export const chatContainer = recipe({
   variants: {
     popover: {
       true: {
+        display: 'flex',
+        flexDirection: 'column',
         minHeight: POPOVER_MIN_HEIGHT,
+        maxHeight: '100%',
         width: POPOVER_WIDTH,
         left: `calc(50% - ${POPOVER_WIDTH / 2}px)`,
-        top: POPOVER_SPACING,
-        marginBottom: POPOVER_SPACING,
+        top: 0,
+        bottom: 0,
+        margin: `${POPOVER_SPACING}px 0`,
+        selectors: {
+          [`.${widgetContainer.classNames.variants.withChat.true} &`]: {
+            pointerEvents: 'none',
+          },
+        },
       },
     },
   },

@@ -20,9 +20,10 @@ import { SessionStatus, TurnType } from '@/types';
 export interface ChatWindowProps {
   className?: string;
   isMobile?: boolean;
+  isPopover?: boolean;
 }
 
-export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile }) => {
+export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile, isPopover }) => {
   const runtime = useContext(RuntimeStateAPIContext);
   const state = useContext(RuntimeStateContext);
   const { assistant, config } = runtime;
@@ -51,7 +52,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile }) => {
   const hasEnded = runtime.isStatus(SessionStatus.ENDED);
 
   return (
-    <NewChat.Container embedded={config.render.mode === RenderMode.EMBEDDED} palette={palette}>
+    <NewChat.Container embedded={config.render.mode === RenderMode.EMBEDDED} palette={palette} isPopover={isPopover}>
       <NewChat
         headerProps={{
           title: assistant.chat.banner.title,

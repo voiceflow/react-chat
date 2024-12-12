@@ -2,7 +2,7 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 import type { Trace } from '@voiceflow/base-types';
 import { WidgetSettingsChatRenderMode } from '@voiceflow/dtos-interact';
 import clsx from 'clsx';
-import { useContext, useMemo, useState } from 'react';
+import { useContext, useLayoutEffect, useMemo, useState } from 'react';
 
 import { Launcher } from '@/components/Launcher';
 import { LAUNCHER_SIZE, LAUNCHER_WIDTH_LABEL_SIZE } from '@/components/Launcher/styles.css';
@@ -39,7 +39,12 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
   /** initialization  */
   const [isHidden, setHidden] = useState(false);
   const [proactiveMessages, setProactiveMessages] = useState<Trace.AnyTrace[]>([]);
-  const isMobile = useMemo(() => window.matchMedia(`(max-width: ${BREAKPOINTS.mobile})`).matches, []);
+
+  const checkMobile = () => window.matchMedia(`(max-width: ${BREAKPOINTS.mobile})`).matches;
+  const [isMobile, setIsMobile] = useState(checkMobile());
+  useLayoutEffect(() => {
+    setIsMobile(checkMobile());
+  });
 
   const palette = usePalette(assistant);
 
@@ -96,13 +101,10 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
       </div>
       <div className={popoverBackdrop({ visible: isPopover && isOpen })} onClick={() => close()} />
       <div
-        className={chatContainer({ popover: isPopover && !isMobile })}
+        className={chatContainer({ popover: isPopover })}
         style={
           isMobile || isPopover
-            ? {
-                top: isPopover ? POPOVER_SPACING : 0,
-                bottom: 0,
-              }
+            ? {}
             : {
                 [side]: position[side],
                 bottom: `${parseInt(position.bottom, 10) + launcherButtonSize + LAUNCHER_MARGIN}px`,
@@ -110,7 +112,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
               }
         }
       >
-        <ChatWindow isMobile={isMobile} />
+        <ChatWindow isMobile={isMobile} isPopover={isPopover} />
       </div>
     </div>
   );
