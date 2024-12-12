@@ -92,7 +92,7 @@ export const input = style({
     },
   },
   '@media': {
-    [`screen and (${BREAKPOINTS.mobile})`]: {
+    [`screen and (max-width: ${BREAKPOINTS.mobile})`]: {
       fontSize: '16px',
     },
   },
