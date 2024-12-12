@@ -3,8 +3,8 @@ import { recipe } from '@vanilla-extract/recipes';
 
 import { duration, timingFunction } from '@/styles/animations';
 import { COLORS } from '@/styles/colors';
-import { PALETTE } from '@/styles/colors.css';
-import { FAMILY, hideTextOverflow } from '@/styles/font';
+import { THEME } from '@/styles/colors.css';
+import { hideTextOverflow } from '@/styles/font';
 import { SIZES } from '@/styles/sizes';
 import { transition } from '@/styles/transitions';
 import { chatIsClosed, chatIsOpen } from '@/views/ChatWidget/styles.css';
@@ -86,7 +86,7 @@ export const messageInputContainer = style({
 
 export const footerLinksContainer = style({
   color: COLORS.NEUTRAL_DARK[100],
-  fontFamily: FAMILY,
+  fontFamily: THEME.fontFamily,
   fontSize: '12px',
   lineHeight: '17px',
   width: '100%',
@@ -111,7 +111,7 @@ export const separator = style({
 
 export const externalLink = style({
   color: COLORS.NEUTRAL_DARK[100],
-  fontFamily: FAMILY,
+  fontFamily: THEME.fontFamily,
   fontSize: '12px',
   lineHeight: '17px',
   textDecorationColor: 'transparent',
@@ -120,19 +120,19 @@ export const externalLink = style({
   selectors: {
     '&:hover': {
       textDecoration: 'underline',
-      color: PALETTE.colors[500],
-      textDecorationColor: PALETTE.colors[500],
+      color: THEME.colors[500],
+      textDecorationColor: THEME.colors[500],
     },
     '&:active': {
-      color: PALETTE.colors[600],
-      textDecorationColor: PALETTE.colors[600],
+      color: THEME.colors[600],
+      textDecorationColor: THEME.colors[600],
     },
   },
 });
 
 export const footerNote = style({
   color: COLORS.NEUTRAL_DARK[100],
-  fontFamily: FAMILY,
+  fontFamily: THEME.fontFamily,
   fontSize: '12px',
   lineHeight: '17px',
   textDecorationColor: 'transparent',
@@ -147,11 +147,11 @@ export const voiceflowLink = style({
   transition: transition(['color', 'text-decoration-color']),
   selectors: {
     '&:hover': {
-      color: PALETTE.colors[500],
-      textDecorationColor: PALETTE.colors[500],
+      color: THEME.colors[500],
+      textDecorationColor: THEME.colors[500],
     },
     '&:active': {
-      color: PALETTE.colors[600],
+      color: THEME.colors[600],
       textDecorationColor: 'transparent',
     },
   },

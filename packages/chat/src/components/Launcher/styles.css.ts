@@ -2,7 +2,7 @@ import { keyframes, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { duration } from '@/styles/animations';
-import { PALETTE } from '@/styles/colors.css';
+import { THEME } from '@/styles/colors.css';
 import { transition } from '@/styles/transitions';
 
 import { buttonStyles } from '../Button/styles.css';
@@ -22,7 +22,7 @@ export const launcherStyles = recipe({
       display: 'flex',
       height: LAUNCHER_SIZE,
       minWidth: '48px',
-      backgroundColor: PALETTE.colors[500],
+      backgroundColor: THEME.colors[500],
       position: 'relative', // Establish positioning context
       transition: 'all 0.15s ease-in-out',
       boxShadow:
@@ -33,11 +33,11 @@ export const launcherStyles = recipe({
       padding: '8px',
       ':hover': {
         transform: 'scale(1.1)',
-        backgroundColor: PALETTE.colors[600],
+        backgroundColor: THEME.colors[600],
       },
       ':active': {
         transform: 'scale(0.8)',
-        backgroundColor: PALETTE.colors[700],
+        backgroundColor: THEME.colors[700],
       },
 
       '::before': {
@@ -103,7 +103,7 @@ export const launcherLabelStyles = recipe({
   base: {
     fontSize: '14px',
     fontWeight: 600,
-    color: PALETTE.colors[50],
+    color: THEME.colors[50],
     lineHeight: '20px',
     marginLeft: '6px',
     paddingTop: 1,
@@ -130,7 +130,7 @@ export const launcherLabelStyles = recipe({
 
 export const launcherIconStyles = recipe({
   base: {
-    color: PALETTE.colors[50],
+    color: THEME.colors[50],
     width: 32,
     height: 32,
     borderRadius: 2,
