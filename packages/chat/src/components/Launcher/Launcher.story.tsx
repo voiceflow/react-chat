@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import { WithDefaultPalette } from '@/storybook/decorators';
 
+import defaultLauncherImage from '../../__fixtures__/default-launcher-image.png';
 import tiledBg from '../../__fixtures__/tiled-bg.png';
 import { Launcher } from '.';
 
@@ -27,6 +28,10 @@ const CollapsableLauncher = (props: any) => {
 
 export const Base: Story = {
   render: () => <CollapsableLauncher />,
+};
+
+export const WithDefaultImage: Story = {
+  render: () => <CollapsableLauncher image={defaultLauncherImage} />,
 };
 
 export const WithCustomIcon: Story = { render: () => <CollapsableLauncher image={tiledBg} /> };
