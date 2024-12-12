@@ -101,7 +101,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
       </div>
       <div className={popoverBackdrop({ visible: isPopover && isOpen })} onClick={() => close()} />
       <div
-        className={chatContainer({ popover: isPopover && !isMobile })}
+        className={chatContainer({ popover: isPopover })}
         style={
           isMobile || isPopover
             ? {}
@@ -112,7 +112,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
               }
         }
       >
-        <ChatWindow isMobile={isMobile} />
+        <ChatWindow isMobile={isMobile} isPopover={isPopover} />
       </div>
     </div>
   );
