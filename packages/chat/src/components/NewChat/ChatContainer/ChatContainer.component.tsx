@@ -18,13 +18,8 @@ export interface IChatContainer {
 export const ChatContainer: React.FC<IChatContainer> = ({ palette, children, embedded, isPopover }) => {
   return (
     <div
-<<<<<<< HEAD
-      style={assignInlineVars(PALETTE, { colors: palette })}
-      className={clsx(chatWindowStyle({ popover: isPopover }), embedded ? chatIsOpen : '')}
-=======
       style={assignInlineVars(THEME, { colors: palette, fontFamily: FAMILY })}
-      className={clsx(chatWindowStyle, embedded ? chatIsOpen : '')}
->>>>>>> master
+      className={clsx(chatWindowStyle({ popover: isPopover }), embedded ? chatIsOpen : '')}
     >
       {children}
     </div>

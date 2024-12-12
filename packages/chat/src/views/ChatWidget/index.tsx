@@ -2,7 +2,7 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 import type { Trace } from '@voiceflow/base-types';
 import { WidgetSettingsChatRenderMode } from '@voiceflow/dtos-interact';
 import clsx from 'clsx';
-import { useContext, useLayoutEffect, useState } from 'react';
+import { useContext, useEffect, useLayoutEffect, useState } from 'react';
 
 import { Launcher } from '@/components/Launcher';
 import { LAUNCHER_SIZE, LAUNCHER_WIDTH_LABEL_SIZE } from '@/components/Launcher/styles.css';
