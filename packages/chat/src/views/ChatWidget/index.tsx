@@ -102,8 +102,6 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
     }
   }, []);
 
-  const isPopover = assistant.chat.renderMode === WidgetSettingsChatRenderMode.POPOVER;
-
   if (!isStyleSheetResolved) return null;
   if (!palette) return null;
 
