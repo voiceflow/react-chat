@@ -2,7 +2,7 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 import type { Trace } from '@voiceflow/base-types';
 import { WidgetSettingsChatRenderMode } from '@voiceflow/dtos-interact';
 import clsx from 'clsx';
-import { useContext, useLayoutEffect, useMemo, useState } from 'react';
+import { useContext, useLayoutEffect, useState } from 'react';
 
 import { Launcher } from '@/components/Launcher';
 import { LAUNCHER_SIZE, LAUNCHER_WIDTH_LABEL_SIZE } from '@/components/Launcher/styles.css';
@@ -16,14 +16,7 @@ import { BREAKPOINTS } from '@/styles/sizes';
 import { useResolveAssistantStyleSheet } from '@/utils/stylesheet';
 import { ChatWindow } from '@/views/ChatWindow';
 
-import {
-  chatContainer,
-  LAUNCHER_MARGIN,
-  launcherContainer,
-  POPOVER_SPACING,
-  popoverBackdrop,
-  widgetContainer,
-} from './styles.css';
+import { chatContainer, LAUNCHER_MARGIN, launcherContainer, popoverBackdrop, widgetContainer } from './styles.css';
 
 interface ChatWidgetProps extends React.PropsWithChildren {
   shadowRoot?: ShadowRoot;
@@ -44,7 +37,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
   const [isMobile, setIsMobile] = useState(checkMobile());
   useLayoutEffect(() => {
     setIsMobile(checkMobile());
-  });
+  }, []);
 
   const palette = usePalette(assistant);
 
