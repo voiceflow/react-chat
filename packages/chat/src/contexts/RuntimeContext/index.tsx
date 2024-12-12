@@ -15,7 +15,7 @@ export const RuntimeProvider = ({ children, extend, ...settings }: RuntimeProvid
   const store = useRuntimeState(settings);
 
   // api is a static object, so we can use useMemo to prevent unnecessary re-renders
-  const api = useMemo(() => extend?.(store.api) ?? store.api, []);
+  const api = useMemo(() => extend?.(store.api) ?? store.api, [settings]);
 
   return (
     <RuntimeStateAPIContext.Provider value={api}>
