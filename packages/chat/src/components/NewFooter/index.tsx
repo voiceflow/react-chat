@@ -11,9 +11,10 @@ import { promptContainer } from '../Prompt/styles.css';
 import { ScrollToBottom } from '../ScrollToBottom';
 import {
   buttonsContainer,
-  extraLinkStyles,
+  externalLink,
   footerContainer,
   footerLinksContainer,
+  footerNote,
   hasEnded,
   messageContainer,
   poweredByLink,
@@ -51,7 +52,6 @@ export const NewFooter: React.FC<INewFooter> = ({
   scrollableAreaRef,
   onStart,
 }) => {
-  console.log({ extraLinkText, extraLinkUrl });
   return (
     <div className={clsx(ClassName.FOOTER, footerContainer)}>
       <div className={promptContainer({ visible: messageInputProps.hasEnded })}>
@@ -85,9 +85,9 @@ export const NewFooter: React.FC<INewFooter> = ({
             </div>
           )}
           {showPoweredBy && extraLinkText && <div className={separator} />}
-          {extraLinkText && !extraLinkUrl && <div className={extraLinkStyles({ isLink: false })}>{extraLinkText}</div>}
+          {extraLinkText && !extraLinkUrl && <div className={footerNote}>{extraLinkText}</div>}
           {extraLinkText && extraLinkUrl && (
-            <a href={extraLinkUrl} target="_blank" className={extraLinkStyles({ isLink: true })}>
+            <a href={extraLinkUrl} target="_blank" className={externalLink}>
               {extraLinkText}
             </a>
           )}

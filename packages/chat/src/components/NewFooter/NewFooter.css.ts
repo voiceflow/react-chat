@@ -109,34 +109,35 @@ export const separator = style({
   backgroundColor: COLORS.NEUTRAL_LIGHT[500],
 });
 
-export const extraLinkStyles = recipe({
-  base: {
-    color: COLORS.NEUTRAL_DARK[100],
-    fontFamily: FAMILY,
-    fontSize: '12px',
-    lineHeight: '17px',
-    textDecorationColor: 'transparent',
-    transition: transition(['color', 'text-decoration-color']),
-    ...hideTextOverflow(),
-  },
-  variants: {
-    isLink: {
-      true: {
-        selectors: {
-          '&:hover': {
-            textDecoration: 'underline',
-            color: PALETTE.colors[500],
-            textDecorationColor: PALETTE.colors[500],
-          },
-          '&:active': {
-            color: PALETTE.colors[600],
-            textDecorationColor: PALETTE.colors[600],
-          },
-        },
-      },
-      false: {},
+export const externalLink = style({
+  color: COLORS.NEUTRAL_DARK[100],
+  fontFamily: FAMILY,
+  fontSize: '12px',
+  lineHeight: '17px',
+  textDecorationColor: 'transparent',
+  transition: transition(['color', 'text-decoration-color']),
+  ...hideTextOverflow(),
+  selectors: {
+    '&:hover': {
+      textDecoration: 'underline',
+      color: PALETTE.colors[500],
+      textDecorationColor: PALETTE.colors[500],
+    },
+    '&:active': {
+      color: PALETTE.colors[600],
+      textDecorationColor: PALETTE.colors[600],
     },
   },
+});
+
+export const footerNote = style({
+  color: COLORS.NEUTRAL_DARK[100],
+  fontFamily: FAMILY,
+  fontSize: '12px',
+  lineHeight: '17px',
+  textDecorationColor: 'transparent',
+  transition: transition(['color', 'text-decoration-color']),
+  ...hideTextOverflow(),
 });
 
 export const voiceflowLink = style({
