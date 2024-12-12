@@ -2,7 +2,7 @@ import { createVar, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { COLORS } from '@/styles/colors';
-import { PALETTE } from '@/styles/colors.css';
+import { THEME } from '@/styles/colors.css';
 import { BREAKPOINTS } from '@/styles/sizes';
 import { transition } from '@/styles/transitions';
 
@@ -52,12 +52,12 @@ export const mockFocusRing = recipe({
     borderRadius: '25px',
     pointerEvents: 'none',
     opacity: 0,
-    boxShadow: `inset 0 0 0 0px ${PALETTE.colors[500]}`,
+    boxShadow: `inset 0 0 0 0px ${THEME.colors[500]}`,
     transition: transition(['opacity', 'box-shadow', 'border-radius']),
     selectors: {
       [`${inputContainer()}:focus-within &`]: {
         opacity: 1,
-        boxShadow: `inset 0 0 0 2px ${PALETTE.colors[500]}`,
+        boxShadow: `inset 0 0 0 2px ${THEME.colors[500]}`,
       },
     },
   },
@@ -75,7 +75,7 @@ export const input = style({
   scrollbarWidth: 'none',
   borderColor: 'transparent',
   resize: 'none',
-  fontFamily: PALETTE.fontFamily,
+  fontFamily: THEME.fontFamily,
   fontSize: '14px',
   boxSizing: 'border-box',
   outline: 'transparent 0px',

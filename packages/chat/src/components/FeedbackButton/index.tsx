@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 import { ClassName } from '@/constants';
 import { FeedbackName } from '@/contexts/RuntimeContext/useRuntimeAPI';
-import { PALETTE } from '@/styles/colors.css';
+import { THEME } from '@/styles/colors.css';
 
 import { Icon } from '../Icon';
 import { CopyButtonIcon } from './CopyButtonIcon.component';
@@ -22,8 +22,8 @@ import { ThumbsDownIcon } from './ThumbsDownIcon.component';
 import { ThumbsUpIcon } from './ThumbsUpIcon.component';
 
 export const FeedbackButton: React.FC<IFeedbackButton> = ({ variant, onClick, testID, textContent }) => {
-  const buttonActiveColor = PALETTE.colors[500];
-  const iconActiveColor = PALETTE.colors[50];
+  const buttonActiveColor = THEME.colors[500];
+  const iconActiveColor = THEME.colors[50];
   const [hasCopied, setHasCopied] = useState(false);
   const [isPositiveOrNegativeSelected, setIsPositiveOrNegativeSelected] = useState<FeedbackName | null>(null);
 

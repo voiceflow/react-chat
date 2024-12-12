@@ -11,7 +11,7 @@ import { ClassName } from '@/constants';
 import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts';
 import { useChatAPI } from '@/hooks/useChatAPI';
 import { usePalette } from '@/hooks/usePalette';
-import { PALETTE } from '@/styles/colors.css';
+import { THEME } from '@/styles/colors.css';
 import { FAMILY } from '@/styles/font';
 import { BREAKPOINTS } from '@/styles/sizes';
 import { useResolveAssistantStyleSheet } from '@/utils/stylesheet';
@@ -86,7 +86,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
   const isStyleSheetResolved = useResolveAssistantStyleSheet(assistant, shadowRoot);
   const customFontFamily = assistant.common.fontFamily;
   const isDefaultFont = customFontFamily === 'UCity Pro';
-  // eslint-disable-next-line consistent-return
+
   useEffect(() => {
     if (!isDefaultFont) {
       const link = document.createElement('link');
@@ -95,10 +95,6 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
       link.href = `https://fonts.googleapis.com/css2?family=${fontFamilyNameForImport}&display=swap`;
       link.rel = 'stylesheet';
       document.head.appendChild(link);
-
-      return () => {
-        document.head.removeChild(link);
-      };
     }
   }, []);
 
@@ -108,7 +104,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
   return (
     <>
       <div
-        style={assignInlineVars(PALETTE, {
+        style={assignInlineVars(THEME, {
           colors: palette,
           fontFamily: isDefaultFont ? FAMILY : `'${customFontFamily}'`,
         })}

@@ -1,7 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
 import { COLORS } from '@/styles/colors';
-import { PALETTE } from '@/styles/colors.css';
+import { THEME } from '@/styles/colors.css';
 import { SIZES } from '@/styles/sizes';
 
 export const CARD_WIDTH = 256;
@@ -26,7 +26,7 @@ export const cardContent = style({
   display: 'flex',
   flexDirection: 'column',
   gap: 4,
-  fontFamily: PALETTE.fontFamily,
+  fontFamily: THEME.fontFamily,
   lineHeight: '20px',
   padding: '11px 16px 10px 16px',
 });

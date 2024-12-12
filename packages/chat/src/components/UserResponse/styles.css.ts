@@ -2,7 +2,7 @@ import { keyframes, style } from '@vanilla-extract/css';
 
 import { duration } from '@/styles/animations';
 import { COLORS } from '@/styles/colors';
-import { PALETTE } from '@/styles/colors.css';
+import { THEME } from '@/styles/colors.css';
 import { SIZES } from '@/styles/sizes';
 
 import { SMALL_AVATAR_SIZE } from '../Avatar/styles.css';
@@ -21,10 +21,10 @@ export const fadeInSlideUp = keyframes({
 });
 
 export const messageContainer = style({
-  backgroundColor: PALETTE.colors[500],
-  color: PALETTE.colors[50],
+  backgroundColor: THEME.colors[500],
+  color: THEME.colors[50],
   padding: '11px 16px 10px',
-  fontFamily: PALETTE.fontFamily,
+  fontFamily: THEME.fontFamily,
   position: 'relative',
   fontSize: '14px',
   lineHeight: '20px',

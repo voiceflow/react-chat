@@ -4,11 +4,11 @@ import { DEFAULT_WIDGET_SETTINGS } from '@/__fixtures__/mock-assistant';
 import { RuntimeProvider } from '@/contexts';
 import { RenderMode } from '@/dtos/RenderOptions.dto';
 import { createPalette } from '@/styles/colors';
-import { PALETTE } from '@/styles/colors.css';
+import { THEME } from '@/styles/colors.css';
 
 export const WithDefaultPalette = (Story: any, { args }: { args: any }) => {
   return (
-    <div style={assignInlineVars(PALETTE, { colors: createPalette(), fontFamily: 'UCityPro' })}>
+    <div style={assignInlineVars(THEME, { colors: createPalette(), fontFamily: 'UCityPro' })}>
       <Story args={{ ...args }} />
     </div>
   );

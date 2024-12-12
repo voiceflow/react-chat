@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { COLORS } from '@/styles/colors';
-import { PALETTE } from '@/styles/colors.css';
+import { THEME } from '@/styles/colors.css';
 import { hideTextOverflow, lineClamp } from '@/styles/font';
 import { SIZES } from '@/styles/sizes';
 import { transition } from '@/styles/transitions';
@@ -14,7 +14,7 @@ export const linkPreviewContainer = recipe({
       borderRadius: SIZES.radius.sm,
       padding: '6px 8px 6px 6px',
       backgroundColor: COLORS.NEUTRAL_LIGHT[50],
-      fontFamily: PALETTE.fontFamily,
+      fontFamily: THEME.fontFamily,
       transition: transition(['color', 'background-color']),
       ':hover': {
         cursor: 'pointer',

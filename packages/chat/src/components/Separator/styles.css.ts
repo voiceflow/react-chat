@@ -1,7 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
 import { COLORS } from '@/styles/colors';
-import { PALETTE } from '@/styles/colors.css';
+import { THEME } from '@/styles/colors.css';
 
 export const separatorContainer = style({
   height: 17,
@@ -20,7 +20,7 @@ export const line = style({
 export const separatorText = style({
   backgroundColor: COLORS.white,
   color: COLORS.NEUTRAL_DARK[200],
-  fontFamily: PALETTE.fontFamily,
+  fontFamily: THEME.fontFamily,
   fontSize: '12px',
   lineHeight: '17px',
   fontWeight: 600,
