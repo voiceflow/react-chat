@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.18.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.17.2...@voiceflow/react-chat@2.18.0) (2024-12-12)
+
+### Features
+
+* Google Font Support (DSN-2621) ([#447](https://github.com/voiceflow/react-chat/issues/447)) ([eb94f97](https://github.com/voiceflow/react-chat/commit/eb94f97c0e876de2263b563f93719f20693b06d0))
+
 ## [2.17.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.17.1...@voiceflow/react-chat@2.17.2) (2024-12-12)
 
 ### Bug Fixes
