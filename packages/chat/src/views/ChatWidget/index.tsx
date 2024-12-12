@@ -2,7 +2,7 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 import type { Trace } from '@voiceflow/base-types';
 import { WidgetSettingsChatRenderMode } from '@voiceflow/dtos-interact';
 import clsx from 'clsx';
-import { useContext, useEffect, useMemo, useState } from 'react';
+import { useContext, useLayoutEffect, useState } from 'react';
 
 import { Launcher } from '@/components/Launcher';
 import { LAUNCHER_SIZE, LAUNCHER_WIDTH_LABEL_SIZE } from '@/components/Launcher/styles.css';
@@ -17,14 +17,7 @@ import { BREAKPOINTS } from '@/styles/sizes';
 import { useResolveAssistantStyleSheet } from '@/utils/stylesheet';
 import { ChatWindow } from '@/views/ChatWindow';
 
-import {
-  chatContainer,
-  LAUNCHER_MARGIN,
-  launcherContainer,
-  POPOVER_SPACING,
-  popoverBackdrop,
-  widgetContainer,
-} from './styles.css';
+import { chatContainer, LAUNCHER_MARGIN, launcherContainer, popoverBackdrop, widgetContainer } from './styles.css';
 
 interface ChatWidgetProps extends React.PropsWithChildren {
   shadowRoot?: ShadowRoot;
@@ -39,7 +32,12 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
   /** initialization  */
   const [isHidden, setHidden] = useState(false);
   const [proactiveMessages, setProactiveMessages] = useState<Trace.AnyTrace[]>([]);
-  const isMobile = useMemo(() => window.matchMedia(`(max-width: ${BREAKPOINTS.mobile})`).matches, []);
+
+  const checkMobile = () => window.matchMedia(`(max-width: ${BREAKPOINTS.mobile})`).matches;
+  const [isMobile, setIsMobile] = useState(checkMobile());
+  useLayoutEffect(() => {
+    setIsMobile(checkMobile());
+  }, []);
 
   const palette = usePalette(assistant);
 
@@ -71,18 +69,15 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
   const position = { bottom: `${assistant.common.bottomSpacing}px`, [side]: `${assistant.common.sideSpacing}px` };
   const launcherButtonSize = assistant.common.launcher.type === 'label' ? LAUNCHER_WIDTH_LABEL_SIZE : LAUNCHER_SIZE;
   const chatHeight = `calc(100% - ${launcherButtonSize + LAUNCHER_MARGIN + parseInt(assistant.common.bottomSpacing, 10) + 20}px)`;
+
   const widgetPosition = {
     [side]: position[side],
     bottom: `${parseInt(position.bottom, 10) + launcherButtonSize + LAUNCHER_MARGIN}px`,
     height: chatHeight,
   };
   const isPopover = assistant.chat.renderMode === WidgetSettingsChatRenderMode.POPOVER;
-  const mobilePopoverPosition = {
-    top: isPopover ? POPOVER_SPACING : 0,
-    bottom: 0,
-  };
 
-  const chatContainerPosition = isMobile || isPopover ? mobilePopoverPosition : widgetPosition;
+  const chatContainerPosition = isMobile || isPopover ? {} : widgetPosition;
   const isStyleSheetResolved = useResolveAssistantStyleSheet(assistant, shadowRoot);
   const customFontFamily = assistant.common.fontFamily;
   const isDefaultFont = customFontFamily === 'UCity Pro';
@@ -121,8 +116,8 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
           />
         </div>
         <div className={popoverBackdrop({ visible: isPopover && isOpen })} onClick={() => close()} />
-        <div className={chatContainer({ popover: isPopover && !isMobile })} style={chatContainerPosition}>
-          <ChatWindow isMobile={isMobile} />
+        <div className={chatContainer({ popover: isPopover })} style={chatContainerPosition}>
+          <ChatWindow isMobile={isMobile} isPopover={isPopover} />
         </div>
       </div>
     </>
