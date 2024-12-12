@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.17.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.17.1...@voiceflow/react-chat@2.17.2) (2024-12-12)
+
+### Bug Fixes
+
+* Launcher spacing, icon (DSN-2616) ([#442](https://github.com/voiceflow/react-chat/issues/442)) ([71c68c4](https://github.com/voiceflow/react-chat/commit/71c68c434a04bf5da226898d3aafb0aee5630835))
+
 ## [2.17.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.17.0...@voiceflow/react-chat@2.17.1) (2024-12-12)
 
 ### Bug Fixes
