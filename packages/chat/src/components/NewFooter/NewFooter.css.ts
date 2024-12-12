@@ -132,7 +132,7 @@ export const externalLink = style({
 
 export const footerNote = style({
   color: COLORS.NEUTRAL_DARK[100],
-  fontFamily: FAMILY,
+  fontFamily: THEME.fontFamily,
   fontSize: '12px',
   lineHeight: '17px',
   textDecorationColor: 'transparent',
