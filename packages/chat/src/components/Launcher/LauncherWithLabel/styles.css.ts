@@ -3,8 +3,7 @@ import { recipe } from '@vanilla-extract/recipes';
 
 import { fadeInSlideUp } from '@/components/UserResponse/styles.css';
 import { duration } from '@/styles/animations';
-import { PALETTE } from '@/styles/colors.css';
-import { FAMILY } from '@/styles/font';
+import { THEME } from '@/styles/colors.css';
 import { transition } from '@/styles/transitions';
 
 const LAUNCHER_WITH_LABEL_SIZE = 40;
@@ -17,14 +16,14 @@ export const launcherStyles = recipe({
     overflow: 'hidden',
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
-    color: PALETTE.colors[50],
+    color: THEME.colors[50],
     willChange: 'max-width, transform',
     height: LAUNCHER_WITH_LABEL_SIZE,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     gap: '6px',
-    fontFamily: FAMILY,
+    fontFamily: THEME.fontFamily,
     fontSize: '14px',
     lineHeight: '20px',
     animation: `${fadeInSlideUp} ${duration.fast} ease-out`,
@@ -33,15 +32,15 @@ export const launcherStyles = recipe({
       '0px 1px 0px 0px rgba(22, 26, 30, 0.02), 0px 0px 0px 1px rgba(22, 26, 30, 0.04), 0px 1px 5px -4px rgba(22, 26, 30, 0.08), 0px 4px 8px -6px rgba(22, 26, 30, 0.08), 0px 1px 3px 1px rgba(22, 26, 30, 0.01)',
     fontWeight: '600',
     overflowWrap: 'anywhere',
-    backgroundColor: PALETTE.colors[500],
+    backgroundColor: THEME.colors[500],
     maxWidth: '500px',
     ':hover': {
       transform: 'scale(1.1)',
-      backgroundColor: PALETTE.colors[600],
+      backgroundColor: THEME.colors[600],
     },
     ':active': {
       transform: 'scale(0.8)',
-      backgroundColor: PALETTE.colors[700],
+      backgroundColor: THEME.colors[700],
     },
 
     '::before': {

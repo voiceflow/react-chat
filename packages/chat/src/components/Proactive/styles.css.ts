@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { COLORS } from '@/styles/colors';
-import { FAMILY } from '@/styles/font';
+import { THEME } from '@/styles/colors.css';
 import { SIZES } from '@/styles/sizes';
 import { transition } from '@/styles/transitions';
 
@@ -39,7 +39,7 @@ export const singleMessage = style({
   backgroundColor: COLORS.white,
   fontSize: 14,
   lineHeight: '20px',
-  fontFamily: FAMILY,
+  fontFamily: THEME.fontFamily,
 });
 
 export const messageContainer = style({

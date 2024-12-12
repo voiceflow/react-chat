@@ -1,7 +1,7 @@
 import { recipe } from '@vanilla-extract/recipes';
 
 import { COLORS } from '@/styles/colors';
-import { PALETTE } from '@/styles/colors.css';
+import { THEME } from '@/styles/colors.css';
 import { transition } from '@/styles/transitions';
 
 import { buttonStyles } from '../Button/styles.css';
@@ -29,14 +29,14 @@ export const sendButtonStyle = recipe({
         },
       },
       false: {
-        backgroundColor: PALETTE.colors[500],
+        backgroundColor: THEME.colors[500],
         ':hover': {
           transform: 'scale(1.15)',
-          backgroundColor: PALETTE.colors[600],
+          backgroundColor: THEME.colors[600],
         },
         ':active': {
           transform: 'scale(1)',
-          backgroundColor: PALETTE.colors[700],
+          backgroundColor: THEME.colors[700],
         },
       },
     },
@@ -50,7 +50,7 @@ export const sendIconStyle = recipe({
         color: COLORS.NEUTRAL_DARK[100],
       },
       false: {
-        color: PALETTE.colors[50],
+        color: THEME.colors[50],
       },
     },
   },

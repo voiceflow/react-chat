@@ -11,7 +11,8 @@ import { ClassName } from '@/constants';
 import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts';
 import { useChatAPI } from '@/hooks/useChatAPI';
 import { usePalette } from '@/hooks/usePalette';
-import { PALETTE } from '@/styles/colors.css';
+import { THEME } from '@/styles/colors.css';
+import { FAMILY } from '@/styles/font';
 import { BREAKPOINTS } from '@/styles/sizes';
 import { useResolveAssistantStyleSheet } from '@/utils/stylesheet';
 import { ChatWindow } from '@/views/ChatWindow';
@@ -28,7 +29,6 @@ interface ChatWidgetProps extends React.PropsWithChildren {
 export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, ready }) => {
   const { assistant, open, close, interact } = useContext(RuntimeStateAPIContext);
   const { isOpen } = useContext(RuntimeStateContext);
-
   /** initialization  */
   const [isHidden, setHidden] = useState(false);
   const [proactiveMessages, setProactiveMessages] = useState<Trace.AnyTrace[]>([]);
@@ -79,29 +79,47 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
 
   const chatContainerPosition = isMobile || isPopover ? {} : widgetPosition;
   const isStyleSheetResolved = useResolveAssistantStyleSheet(assistant, shadowRoot);
+  const customFontFamily = assistant.common.fontFamily;
+  const isDefaultFont = customFontFamily === 'UCity Pro';
+
+  useEffect(() => {
+    if (!isDefaultFont) {
+      const link = document.createElement('link');
+
+      const fontFamilyNameForImport = customFontFamily.replace(/ /g, '+');
+      link.href = `https://fonts.googleapis.com/css2?family=${fontFamilyNameForImport}&display=swap`;
+      link.rel = 'stylesheet';
+      document.head.appendChild(link);
+    }
+  }, []);
 
   if (!isStyleSheetResolved) return null;
   if (!palette) return null;
 
   return (
-    <div
-      style={assignInlineVars(PALETTE, { colors: palette })}
-      className={clsx(ClassName.WIDGET, widgetContainer({ hidden: isHidden, withChat: isOpen }))}
-    >
-      <div className={launcherContainer} style={position}>
-        <Proactive side={side} messages={proactiveMessages} />
-        <Launcher
-          onClick={toggleChat}
-          isOpen={isOpen}
-          type={assistant.common.launcher.type}
-          image={assistant.common.launcher.imageURL}
-          label={assistant.common.launcher.text}
-        />
+    <>
+      <div
+        style={assignInlineVars(THEME, {
+          colors: palette,
+          fontFamily: isDefaultFont ? FAMILY : `'${customFontFamily}'`,
+        })}
+        className={clsx(ClassName.WIDGET, widgetContainer({ hidden: isHidden, withChat: isOpen }))}
+      >
+        <div className={launcherContainer} style={position}>
+          <Proactive side={side} messages={proactiveMessages} />
+          <Launcher
+            onClick={toggleChat}
+            isOpen={isOpen}
+            type={assistant.common.launcher.type}
+            image={assistant.common.launcher.imageURL}
+            label={assistant.common.launcher.text}
+          />
+        </div>
+        <div className={popoverBackdrop({ visible: isPopover && isOpen })} onClick={() => close()} />
+        <div className={chatContainer({ popover: isPopover })} style={chatContainerPosition}>
+          <ChatWindow isMobile={isMobile} isPopover={isPopover} />
+        </div>
       </div>
-      <div className={popoverBackdrop({ visible: isPopover && isOpen })} onClick={() => close()} />
-      <div className={chatContainer({ popover: isPopover })} style={chatContainerPosition}>
-        <ChatWindow isMobile={isMobile} isPopover={isPopover} />
-      </div>
-    </div>
+    </>
   );
 };

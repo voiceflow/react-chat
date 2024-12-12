@@ -1,8 +1,8 @@
 import { recipe } from '@vanilla-extract/recipes';
 
 import { COLORS } from '@/styles/colors';
-import { PALETTE } from '@/styles/colors.css';
-import { FAMILY, hideTextOverflow } from '@/styles/font';
+import { THEME } from '@/styles/colors.css';
+import { hideTextOverflow } from '@/styles/font';
 import { SIZES } from '@/styles/sizes';
 import { transition } from '@/styles/transitions';
 
@@ -13,7 +13,7 @@ export const buttonStyles = recipe({
   base: [
     buttonReset,
     {
-      fontFamily: FAMILY,
+      fontFamily: THEME.fontFamily,
       fontSize: '14px',
       display: 'flex',
       justifyContent: 'center',
@@ -31,8 +31,8 @@ export const buttonStyles = recipe({
     type: {
       inline: {
         borderRadius: SIZES.radius.xs,
-        color: PALETTE.colors[500],
-        backgroundColor: PALETTE.colors[50],
+        color: THEME.colors[500],
+        backgroundColor: THEME.colors[50],
         lineHeight: '20px',
         padding: '7px 12px 6px 12px',
         whiteSpace: 'normal',
@@ -40,28 +40,28 @@ export const buttonStyles = recipe({
         textAlign: 'left',
         height: 'fit-content',
         ':hover': {
-          color: PALETTE.colors[700],
-          backgroundColor: PALETTE.colors[100],
+          color: THEME.colors[700],
+          backgroundColor: THEME.colors[100],
         },
         ':active': {
-          color: PALETTE.colors[800],
-          backgroundColor: PALETTE.colors[200],
+          color: THEME.colors[800],
+          backgroundColor: THEME.colors[200],
         },
       },
       primary: {
         paddingTop: 2,
         color: COLORS.white,
-        backgroundColor: PALETTE.colors[500],
+        backgroundColor: THEME.colors[500],
         borderRadius: SIZES.radius.xxs,
         height: SIZES.sm,
         fontWeight: 600,
         display: 'block',
         width: '100%',
         ':hover': {
-          backgroundColor: PALETTE.colors[600],
+          backgroundColor: THEME.colors[600],
         },
         ':active': {
-          backgroundColor: PALETTE.colors[700],
+          backgroundColor: THEME.colors[700],
         },
       },
       secondary: {

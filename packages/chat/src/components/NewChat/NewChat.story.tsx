@@ -6,7 +6,7 @@ import EMPTY_IMAGE from '@/__fixtures__/empty-image.png';
 import { SystemResponse } from '@/components';
 import { WithDefaultPalette, WithRuntimeProvider } from '@/storybook/decorators';
 import { createPalette } from '@/styles/colors';
-import { PALETTE } from '@/styles/colors.css';
+import { THEME } from '@/styles/colors.css';
 
 import Indicator from '../SystemResponse/Indicator/Indicator';
 import { UserResponse } from '../UserResponse';
@@ -108,7 +108,7 @@ export const Base = {
 
 export const BaseThemed = {
   render: () => (
-    <div style={assignInlineVars(PALETTE, { colors: createPalette('red') })}>
+    <div style={assignInlineVars(THEME, { colors: createPalette('red'), fontFamily: 'UCityPro' })}>
       <MockBaseComponent />
     </div>
   ),
@@ -121,7 +121,12 @@ export const LoadingState = {
 export const Themed: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: '32px' }}>
-      <div style={{ width: '400px', ...assignInlineVars(PALETTE, { colors: createPalette('red') }) }}>
+      <div
+        style={{
+          width: '400px',
+          ...assignInlineVars(THEME, { colors: createPalette('red'), fontFamily: 'UCityPro' }),
+        }}
+      >
         <NewChat
           welcomeMessageProps={{
             enabled: true,
@@ -146,7 +151,12 @@ export const Themed: Story = {
         />
       </div>
 
-      <div style={{ width: '400px', ...assignInlineVars(PALETTE, { colors: createPalette('green') }) }}>
+      <div
+        style={{
+          width: '400px',
+          ...assignInlineVars(THEME, { colors: createPalette('green'), fontFamily: 'UCityPro' }),
+        }}
+      >
         <NewChat
           welcomeMessageProps={{
             enabled: true,
@@ -171,7 +181,12 @@ export const Themed: Story = {
         />
       </div>
 
-      <div style={{ width: '400px', ...assignInlineVars(PALETTE, { colors: createPalette('purple') }) }}>
+      <div
+        style={{
+          width: '400px',
+          ...assignInlineVars(THEME, { colors: createPalette('purple'), fontFamily: 'UCityPro' }),
+        }}
+      >
         <NewChat
           welcomeMessageProps={{
             enabled: true,
