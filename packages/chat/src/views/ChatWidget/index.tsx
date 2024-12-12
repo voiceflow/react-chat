@@ -67,15 +67,21 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
 
   const side = assistant.common.position;
   const position = { bottom: `${assistant.common.bottomSpacing}px`, [side]: `${assistant.common.sideSpacing}px` };
-  const launcherButtonSize = assistant.common.launcher.text ? LAUNCHER_WIDTH_LABEL_SIZE : LAUNCHER_SIZE;
+  const launcherButtonSize = assistant.common.launcher.type === 'label' ? LAUNCHER_WIDTH_LABEL_SIZE : LAUNCHER_SIZE;
   const chatHeight = `calc(100% - ${launcherButtonSize + LAUNCHER_MARGIN + parseInt(assistant.common.bottomSpacing, 10) + 20}px)`;
 
+  const widgetPosition = {
+    [side]: position[side],
+    bottom: `${parseInt(position.bottom, 10) + launcherButtonSize + LAUNCHER_MARGIN}px`,
+    height: chatHeight,
+  };
+  const isPopover = assistant.chat.renderMode === WidgetSettingsChatRenderMode.POPOVER;
+
+  const chatContainerPosition = isMobile || isPopover ? {} : widgetPosition;
   const isStyleSheetResolved = useResolveAssistantStyleSheet(assistant, shadowRoot);
 
   if (!isStyleSheetResolved) return null;
   if (!palette) return null;
-
-  const isPopover = assistant.chat.renderMode === WidgetSettingsChatRenderMode.POPOVER;
 
   return (
     <div
@@ -93,18 +99,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
         />
       </div>
       <div className={popoverBackdrop({ visible: isPopover && isOpen })} onClick={() => close()} />
-      <div
-        className={chatContainer({ popover: isPopover })}
-        style={
-          isMobile || isPopover
-            ? {}
-            : {
-                [side]: position[side],
-                bottom: `${parseInt(position.bottom, 10) + launcherButtonSize + LAUNCHER_MARGIN}px`,
-                height: chatHeight,
-              }
-        }
-      >
+      <div className={chatContainer({ popover: isPopover })} style={chatContainerPosition}>
         <ChatWindow isMobile={isMobile} isPopover={isPopover} />
       </div>
     </div>

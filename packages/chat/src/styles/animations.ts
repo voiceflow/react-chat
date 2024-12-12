@@ -25,7 +25,7 @@ export const componentAnimations = {
     opacity: duration.default,
   },
   endChat: {
-    transform: '0.15s',
+    transform: '0.25s',
     opacity: duration.fast,
     boxShadow: duration.slow,
   },
