@@ -14,6 +14,7 @@ import type { FeedbackName } from '@/contexts/RuntimeContext/useRuntimeAPI';
 import { DEFAULT_CHAT_AVATAR } from '@/dtos/AssistantOptions.dto';
 import { RenderMode } from '@/dtos/RenderOptions.dto';
 import { usePalette } from '@/hooks/usePalette';
+import { FAMILY } from '@/styles/font';
 import type { UserTurnProps } from '@/types';
 import { SessionStatus, TurnType } from '@/types';
 
@@ -52,7 +53,12 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile, isPopover }) =
   const hasEnded = runtime.isStatus(SessionStatus.ENDED);
 
   return (
-    <NewChat.Container embedded={config.render.mode === RenderMode.EMBEDDED} palette={palette} isPopover={isPopover}>
+    <NewChat.Container
+      embedded={config.render.mode === RenderMode.EMBEDDED}
+      palette={palette}
+      fontFamily={assistant.common.fontFamily === 'UCity Pro' ? FAMILY : assistant.common.fontFamily}
+      isPopover={isPopover}
+    >
       <NewChat
         headerProps={{
           title: assistant.chat.banner.title,
@@ -68,6 +74,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile, isPopover }) =
         footerProps={{
           showPoweredBy: assistant.common.poweredBy,
           messageInputProps: {
+            placeholder: assistant.chat.placeholderText,
             onSubmit: runtime.reply,
             audioInterface: assistant.chat.voiceInput,
             hasEnded,

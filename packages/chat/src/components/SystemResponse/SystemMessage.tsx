@@ -18,6 +18,11 @@ import { ExtensionMessage } from './ExtensionMessage';
 import { hide, messageContainer, responseAvatar, systemMessageContainer } from './styles.css';
 import type { MessageProps } from './types';
 
+export interface AIDisclaimerProps {
+  enabled?: boolean;
+  text?: string;
+}
+
 export interface SystemMessageProps {
   /**
    * An image URL for an avatar to associate this message with.
@@ -54,6 +59,8 @@ export interface SystemMessageProps {
    * The entire text content of a response over a number of responses
    */
   textContent?: string;
+
+  aiDisclaimer?: AIDisclaimerProps;
 }
 
 /**
@@ -66,9 +73,9 @@ export const SystemMessage: React.FC<SystemMessageProps> = ({
   isLast,
   withImage,
   textContent,
+  aiDisclaimer,
 }) => {
-  const { config, assistant } = useContext(RuntimeStateAPIContext);
-  const aiMessage = assistant.chat.aiDisclaimer.text;
+  const { config } = useContext(RuntimeStateAPIContext);
 
   return (
     <div className={clsx(ClassName.SYSTEM_RESPONSE, systemMessageContainer)}>
@@ -86,8 +93,8 @@ export const SystemMessage: React.FC<SystemMessageProps> = ({
                 .with({ type: MessageType.TEXT }, ({ text, ai }) => (
                   <AgentMessage
                     text={text}
-                    disclaimerMessage={aiMessage}
-                    ai={ai}
+                    disclaimerMessage={aiDisclaimer?.text}
+                    ai={ai && aiDisclaimer?.enabled}
                     isLast={isLast}
                     feedback={feedback}
                     textContent={textContent}

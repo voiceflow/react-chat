@@ -128,7 +128,7 @@ export const launcherLabelStyles = recipe({
   },
 });
 
-export const launcherIconStyles = recipe({
+export const closeIconStyles = recipe({
   base: {
     color: THEME.colors[50],
     width: 32,
@@ -146,7 +146,7 @@ export const launcherIconStyles = recipe({
   },
 });
 
-export const playIconStyles = recipe({
+export const launcherIconStyles = recipe({
   base: {
     width: 32,
     height: 32,
@@ -167,6 +167,7 @@ export const playIconStyles = recipe({
     },
   },
 });
+
 export const twistInAnimation = keyframes({
   '0%': {
     opacity: 0,
