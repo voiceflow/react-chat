@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.33.13](https://github.com/voiceflow/react-chat/compare/documentation@0.33.12...documentation@0.33.13) (2024-12-13)
+
+### Bug Fixes
+
+* fixing the docs app (COR-4237) ([#460](https://github.com/voiceflow/react-chat/issues/460)) ([378e328](https://github.com/voiceflow/react-chat/commit/378e328b2a98c478ca44b68985b5c8714b10f314))
+
 ## [0.33.12](https://github.com/voiceflow/react-chat/compare/documentation@0.33.11...documentation@0.33.12) (2024-12-13)
 
 **Note:** Version bump only for package documentation
