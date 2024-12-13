@@ -2,28 +2,33 @@ import type { StoryObj } from '@storybook/react';
 import type { DecoratorFunction } from '@storybook/types';
 import { useEffect, useMemo, useState } from 'react';
 
-const Stories = typeof window !== 'undefined' ? require('@voiceflow/react-chat/stories') : {};
-
 const ComponentNotFound: React.FC = () => <h2>🚨 Component not found! 🚨</h2>;
 
 export interface IStoryEmbed {
-  for: keyof typeof Stories;
+  for: string; // This should be `keyof type Stories` but we load this dynamically
   name: string;
   props?: Record<string, any>;
   clientOnly?: boolean;
 }
 
 export const StoryEmbed: React.FC<IStoryEmbed> = ({ for: componentName, name, props, clientOnly = false }) => {
-  const module = Stories[componentName];
-  const target = (module as any)?.[name] as StoryObj<any>;
   const [shouldRender, setShouldRender] = useState(!clientOnly);
+  const [stories, setStories] = useState<any>();
 
-  const decorators = useMemo(
-    () => (target?.decorators || module?.default.decorators || []) as DecoratorFunction<any>[],
-    [target?.decorators, module?.default.decorators]
-  );
+  useEffect(() => {
+    const initStories = async () => {
+      setStories(await import('@voiceflow/react-chat/stories'));
+    };
+    initStories();
+  }, []);
 
   useEffect(() => setShouldRender(true), []);
+  if (!stories) return null;
+
+  const module = stories[componentName] as any;
+  const target = (module as any)?.[name] as StoryObj<any>;
+
+  const decorators = (target?.decorators || module?.default.decorators || []) as DecoratorFunction<any>[];
 
   if (!shouldRender) return null;
 
