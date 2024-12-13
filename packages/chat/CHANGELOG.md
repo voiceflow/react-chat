@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.21.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.20.0...@voiceflow/react-chat@2.21.0) (2024-12-13)
+
+### Features
+
+* sync some missing settings (COR-4228) ([#458](https://github.com/voiceflow/react-chat/issues/458)) ([9dc48da](https://github.com/voiceflow/react-chat/commit/9dc48daa887280fe49b577eef1dc43ee5294a586))
+
 # [2.20.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.19.0...@voiceflow/react-chat@2.20.0) (2024-12-12)
 
 ### Features
