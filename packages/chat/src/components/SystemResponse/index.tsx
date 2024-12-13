@@ -16,7 +16,7 @@ import { useAnimatedMessages } from './hooks';
 import Indicator from './Indicator/Indicator';
 import EndState from './state/end';
 import { actionsContainer, feedbackContainer } from './styles.css';
-import type { SystemMessageProps } from './SystemMessage';
+import type { AIDisclaimerProps, SystemMessageProps } from './SystemMessage';
 import { SystemMessage } from './SystemMessage';
 import type { MessageProps } from './types';
 
@@ -68,6 +68,8 @@ export interface SystemResponseProps {
    */
   feedback?: IFeedbackButton | undefined;
 
+  aiDisclaimer?: AIDisclaimerProps;
+
   /**
    * Override the rendering of individual messages.
    */
@@ -86,6 +88,7 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
   messages,
   actions = [],
   isLast,
+  aiDisclaimer,
   Message = SystemMessage,
 }) => {
   const runtime = useContext(RuntimeStateAPIContext);
@@ -143,6 +146,7 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
               feedback={showFeedback || (addFeedback && message.type === MessageType.CAROUSEL) ? feedback : undefined}
               textContent={allTextContentForMessage}
               key={index}
+              aiDisclaimer={aiDisclaimer}
             />
             {addFeedback && message.type !== MessageType.CAROUSEL && (
               <div className={feedbackContainer({ withAvatar: !!avatar })}>
