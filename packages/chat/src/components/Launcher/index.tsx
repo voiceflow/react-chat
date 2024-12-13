@@ -10,13 +10,12 @@ import { ChevronIcon } from './ChevronIcon';
 import { LauncherWithLabel } from './LauncherWithLabel';
 import {
   closeChevron,
+  closeIconStyles,
   iconContainer,
   imageStyles,
   launcherContainer,
   launcherIconStyles,
-  launcherLabelStyles,
   launcherStyles,
-  playIconStyles,
 } from './styles.css';
 
 export const DEFAULT_ICON = 'https://cdn.voiceflow.com/widget-next/message.png';
@@ -59,23 +58,31 @@ export interface LauncherProps {
 export const Launcher: React.FC<LauncherProps> = ({ image, type, isOpen, label, onClick }) => {
   const withIcon = type !== 'label';
   const withLabel = type !== 'icon' && !!label?.length;
+
   if (withLabel) {
-    return <LauncherWithLabel image={image} isOpen={isOpen} label={label} onClick={onClick} />;
+    return (
+      <LauncherWithLabel
+        image={withIcon ? (image ?? DEFAULT_ICON) : undefined}
+        isOpen={isOpen}
+        label={label}
+        onClick={onClick}
+      />
+    );
   }
+
   return (
     <div className={launcherContainer} onClick={onClick}>
       <Button className={clsx(ClassName.LAUNCHER, launcherStyles({ isOpen }))}>
         <div className={iconContainer({ isOpen, withIcon })}>
-          <ChevronIcon className={clsx(closeChevron({ isOpen }), launcherIconStyles())} />
+          <ChevronIcon className={clsx(closeChevron({ isOpen }), closeIconStyles())} />
           {withIcon && (
             <img
               src={image ?? DEFAULT_ICON}
-              className={clsx(imageStyles({ isOpen }), playIconStyles({}))}
+              className={clsx(imageStyles({ isOpen }), launcherIconStyles({}))}
               alt="open chat"
             />
           )}
         </div>
-        {withLabel && <div className={launcherLabelStyles({ isOpen })}>{label} </div>}
       </Button>
     </div>
   );

@@ -67,6 +67,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile }) => {
         footerProps={{
           showPoweredBy: assistant.common.poweredBy,
           messageInputProps: {
+            placeholder: assistant.chat.placeholderText,
             onSubmit: runtime.reply,
             audioInterface: assistant.chat.voiceInput,
             hasEnded,

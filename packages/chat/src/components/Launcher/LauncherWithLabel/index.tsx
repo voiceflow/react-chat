@@ -6,7 +6,6 @@ import { Button } from '@/components/Button';
 import { ClassName } from '@/constants';
 
 import { ChevronIcon } from '../ChevronIcon';
-import { PlayIcon } from '../PlayIcon';
 import { closeChevron, imageIconStyle, imageIconWrapper, launcherLabelStyles, launcherStyles } from './styles.css';
 
 export interface LauncherProps {
@@ -43,11 +42,7 @@ export const LauncherWithLabel: React.FC<LauncherProps> = ({ image, isOpen, labe
   return (
     <Button className={clsx(launcherStyles({ isOpen }), ClassName.LAUNCHER)} onClick={onClick}>
       <div className={imageIconWrapper({ isOpen })}>
-        {image ? (
-          <img src={image} className={clsx(imageIconStyle({ isOpen }))} alt="open chat" />
-        ) : (
-          <PlayIcon className={imageIconStyle({ isOpen })} />
-        )}
+        {image && <img src={image} className={clsx(imageIconStyle({ isOpen }))} alt="open chat" />}
         <ChevronIcon className={clsx(closeChevron({ isOpen }))} />
       </div>
       <div className={launcherLabelStyles}>{label}</div>
