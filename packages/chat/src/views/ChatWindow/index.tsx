@@ -14,9 +14,9 @@ import type { FeedbackName } from '@/contexts/RuntimeContext/useRuntimeAPI';
 import { DEFAULT_CHAT_AVATAR } from '@/dtos/AssistantOptions.dto';
 import { RenderMode } from '@/dtos/RenderOptions.dto';
 import { usePalette } from '@/hooks/usePalette';
+import { FAMILY } from '@/styles/font';
 import type { UserTurnProps } from '@/types';
 import { SessionStatus, TurnType } from '@/types';
-import { FAMILY } from '@/styles/font';
 
 export interface ChatWindowProps {
   className?: string;
