@@ -28,7 +28,7 @@ export const StoryEmbed: React.FC<IStoryEmbed> = ({ for: componentName, name, pr
   const module = stories[componentName] as any;
   const target = (module as any)?.[name] as StoryObj<any>;
 
-  const decorators = target?.decorators || module?.default.decorators || ([] as DecoratorFunction<any>[]);
+  const decorators = (target?.decorators || module?.default.decorators || []) as DecoratorFunction<any>[];
 
   if (!shouldRender) return null;
 
