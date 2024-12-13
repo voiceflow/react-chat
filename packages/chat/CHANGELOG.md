@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.21.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.21.0...@voiceflow/react-chat@2.21.1) (2024-12-13)
+
+### Bug Fixes
+
+* actually pass in the disclaimer props (COR-4228) ([#462](https://github.com/voiceflow/react-chat/issues/462)) ([120ea01](https://github.com/voiceflow/react-chat/commit/120ea01aac0745b65989409cd8e33f908a898312))
+
 # [2.21.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.20.0...@voiceflow/react-chat@2.21.0) (2024-12-13)
 
 ### Features
