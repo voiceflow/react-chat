@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.20.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.19.0...@voiceflow/react-chat@2.20.0) (2024-12-12)
+
+### Features
+
+* update widget when settings are updated (COR-4159) ([#456](https://github.com/voiceflow/react-chat/issues/456)) ([690b0f1](https://github.com/voiceflow/react-chat/commit/690b0f103f2aa56f2d24eb76119d006699c0aaa0))
+
+# [2.19.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.18.0...@voiceflow/react-chat@2.19.0) (2024-12-12)
+
+### Features
+
+* mobile & responsiveness adjustments (COR-4185) ([#448](https://github.com/voiceflow/react-chat/issues/448)) ([392bee9](https://github.com/voiceflow/react-chat/commit/392bee9a9cdf4720274bedadb60d4e69cd568c34))
+
 # [2.18.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.17.2...@voiceflow/react-chat@2.18.0) (2024-12-12)
 
 ### Features

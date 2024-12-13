@@ -12,13 +12,14 @@ export interface IChatContainer {
   palette: WidgetSettingsColorPalette;
   children?: React.ReactNode;
   embedded?: boolean;
+  isPopover?: boolean;
 }
 
-export const ChatContainer: React.FC<IChatContainer> = ({ palette, children, embedded }) => {
+export const ChatContainer: React.FC<IChatContainer> = ({ palette, children, embedded, isPopover }) => {
   return (
     <div
       style={assignInlineVars(THEME, { colors: palette, fontFamily: FAMILY })}
-      className={clsx(chatWindowStyle, embedded ? chatIsOpen : '')}
+      className={clsx(chatWindowStyle({ popover: isPopover }), embedded ? chatIsOpen : '')}
     >
       {children}
     </div>
