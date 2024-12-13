@@ -83,15 +83,15 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
   const isDefaultFont = customFontFamily === 'UCity Pro';
 
   useEffect(() => {
-    if (!isDefaultFont) {
-      const link = document.createElement('link');
+    if (isDefaultFont) return;
 
-      const fontFamilyNameForImport = customFontFamily.replace(/ /g, '+');
-      link.href = `https://fonts.googleapis.com/css2?family=${fontFamilyNameForImport}&display=swap`;
-      link.rel = 'stylesheet';
-      document.head.appendChild(link);
-    }
-  }, []);
+    const link = document.createElement('link');
+
+    const fontFamilyNameForImport = customFontFamily.replace(/ /g, '+');
+    link.href = `https://fonts.googleapis.com/css2?family=${fontFamilyNameForImport}&display=swap`;
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+  }, [customFontFamily]);
 
   if (!isStyleSheetResolved) return null;
   if (!palette) return null;

@@ -16,6 +16,7 @@ import { RenderMode } from '@/dtos/RenderOptions.dto';
 import { usePalette } from '@/hooks/usePalette';
 import type { UserTurnProps } from '@/types';
 import { SessionStatus, TurnType } from '@/types';
+import { FAMILY } from '@/styles/font';
 
 export interface ChatWindowProps {
   className?: string;
@@ -52,7 +53,12 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile, isPopover }) =
   const hasEnded = runtime.isStatus(SessionStatus.ENDED);
 
   return (
-    <NewChat.Container embedded={config.render.mode === RenderMode.EMBEDDED} palette={palette} isPopover={isPopover}>
+    <NewChat.Container
+      embedded={config.render.mode === RenderMode.EMBEDDED}
+      palette={palette}
+      fontFamily={assistant.common.fontFamily === 'UCity Pro' ? FAMILY : assistant.common.fontFamily}
+      isPopover={isPopover}
+    >
       <NewChat
         headerProps={{
           title: assistant.chat.banner.title,

@@ -10,15 +10,16 @@ import { chatWindowStyle } from './ChatContainer.css';
 
 export interface IChatContainer {
   palette: WidgetSettingsColorPalette;
+  fontFamily?: string;
   children?: React.ReactNode;
   embedded?: boolean;
   isPopover?: boolean;
 }
 
-export const ChatContainer: React.FC<IChatContainer> = ({ palette, children, embedded, isPopover }) => {
+export const ChatContainer: React.FC<IChatContainer> = ({ palette, fontFamily, children, embedded, isPopover }) => {
   return (
     <div
-      style={assignInlineVars(THEME, { colors: palette, fontFamily: FAMILY })}
+      style={assignInlineVars(THEME, { colors: palette, fontFamily: fontFamily ?? FAMILY })}
       className={clsx(chatWindowStyle({ popover: isPopover }), embedded ? chatIsOpen : '')}
     >
       {children}
