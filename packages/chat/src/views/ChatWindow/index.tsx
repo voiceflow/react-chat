@@ -115,6 +115,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile, isPopover }) =
                   },
                 }}
                 isLast={turnIndex === state.session.turns.length - 1}
+                aiDisclaimer={assistant.chat.aiDisclaimer}
               />
             ))
             .exhaustive();
