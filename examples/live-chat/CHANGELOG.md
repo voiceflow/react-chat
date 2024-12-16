@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.27](https://github.com/voiceflow/react-chat/compare/@voiceflow-example/live-chat@0.4.26...@voiceflow-example/live-chat@0.4.27) (2024-12-16)
+
+**Note:** Version bump only for package @voiceflow-example/live-chat
+
 ## [0.4.26](https://github.com/voiceflow/react-chat/compare/@voiceflow-example/live-chat@0.4.25...@voiceflow-example/live-chat@0.4.26) (2024-12-13)
 
 **Note:** Version bump only for package @voiceflow-example/live-chat

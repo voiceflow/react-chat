@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.21.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.21.1...@voiceflow/react-chat@2.21.2) (2024-12-16)
+
+### Bug Fixes
+
+* Launcher with label only spacing (COR-4241) ([#464](https://github.com/voiceflow/react-chat/issues/464)) ([3e0ba57](https://github.com/voiceflow/react-chat/commit/3e0ba57c526086927936d3bde946b581df516d5f))
+
 ## [2.21.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.21.0...@voiceflow/react-chat@2.21.1) (2024-12-13)
 
 ### Bug Fixes
