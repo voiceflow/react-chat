@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 
 import { ClassName } from '@/constants';
-import { DEFAULT_CHAT_AVATAR } from '@/main';
+import { DEFAULT_CHAT_AVATAR } from '@/dtos/AssistantOptions.dto';
 
 import { Avatar } from '../Avatar';
 import {
