@@ -68,7 +68,19 @@ export const launcherStyles = recipe({
         padding: '8px 16px 8px 12px',
       },
     },
+    noImage: { true: {} },
   },
+  compoundVariants: [
+    {
+      variants: {
+        isOpen: false,
+        noImage: true,
+      },
+      style: {
+        paddingLeft: '10px',
+      },
+    },
+  ],
 });
 
 export const launcherLabelStyles = style({
@@ -155,6 +167,7 @@ export const imageIconWrapper = recipe({
     transition: transition(['min-width', 'min-height']),
   },
   variants: {
+    noImage: { true: {}, false: {} },
     isOpen: {
       true: {
         transitionDelay: '0.2s',
@@ -167,4 +180,24 @@ export const imageIconWrapper = recipe({
       },
     },
   },
+  compoundVariants: [
+    {
+      variants: {
+        noImage: true,
+        isOpen: false,
+      },
+      style: {
+        minWidth: '0 !important',
+      },
+    },
+    {
+      variants: {
+        noImage: true,
+        isOpen: true,
+      },
+      style: {
+        minWidth: '32px',
+      },
+    },
+  ],
 });
