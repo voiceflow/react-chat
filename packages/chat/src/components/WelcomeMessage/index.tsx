@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 
 import { ClassName } from '@/constants';
+import { DEFAULT_CHAT_AVATAR } from '@/main';
 
 import { Avatar } from '../Avatar';
 import {
@@ -37,7 +38,9 @@ export const WelcomeMessage: React.FC<IWelcomeMessage> = ({ enabled, title, desc
 
   return (
     <div className={clsx(ClassName.ASSISTANT_INFO, welcomeMessageContainer)}>
-      <div className={avatarContainer}>{avatar && <Avatar size="large" avatar={avatar} />}</div>
+      <div className={avatarContainer}>
+        <Avatar size="large" avatar={avatar ?? DEFAULT_CHAT_AVATAR} />
+      </div>
       <div className={welcomeMessageTitle} title={title}>
         {title}
       </div>
