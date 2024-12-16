@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.22.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.21.2...@voiceflow/react-chat@2.22.0) (2024-12-16)
+
+### Features
+
+* show default banner image (COR-4235) ([#466](https://github.com/voiceflow/react-chat/issues/466)) ([ed42b9c](https://github.com/voiceflow/react-chat/commit/ed42b9c1a68ea6b8dd5a8105f4d3f6b42c3c8ea4))
+
 ## [2.21.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.21.1...@voiceflow/react-chat@2.21.2) (2024-12-16)
 
 ### Bug Fixes
