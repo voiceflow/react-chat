@@ -13,6 +13,7 @@ export const proactiveContainer = recipe({
     width: 256,
     display: 'flex',
     flexDirection: 'column',
+    transition: transition(['opacity']),
   },
 
   variants: {
@@ -40,6 +41,8 @@ export const singleMessage = style({
   fontSize: 14,
   lineHeight: '20px',
   fontFamily: THEME.fontFamily,
+  opacity: 0,
+  transition: transition(['opacity']),
 });
 
 export const messageContainer = style({
@@ -81,4 +84,9 @@ export const closeButtonIcon = style({
   width: 10,
   height: 10,
   marginBottom: 2,
+});
+
+export const closed = style({
+  opacity: 0,
+  pointerEvents: 'none',
 });
