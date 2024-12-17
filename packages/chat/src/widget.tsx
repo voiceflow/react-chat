@@ -54,7 +54,7 @@ window.voiceflow.chat ??= {
 
   load: async (loadConfig: LoadConfig) => {
     const config = ChatConfig.parse(loadConfig);
-    const assistant = await mergeAssistantOptions(config, WidgetOverrides.parse(loadConfig.assistant));
+    const assistant = await mergeAssistantOptions(config, WidgetOverrides.parse(loadConfig.assistant ?? {}));
 
     const { reactRoot, shadowRoot } = createChatRoot(config);
 

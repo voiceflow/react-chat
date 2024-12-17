@@ -36,7 +36,7 @@ export default defineConfig(({ mode }) => {
     },
     define: {
       __USE_SHADOW_ROOT__: true,
-      __STYLES_URL__: JSON.stringify(env.VF_STYLES_URL ?? 'https://cdn.voiceflow.com/widget/style.css'),
+      __STYLES_URL__: JSON.stringify(env.VF_STYLES_URL ?? 'https://cdn.voiceflow.com/widget-next/style.css'),
       'process.env': {},
     },
     build: {
