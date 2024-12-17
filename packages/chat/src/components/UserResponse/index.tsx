@@ -49,11 +49,6 @@ export interface UserResponseProps {
 export const UserResponse: React.FC<UserResponseProps> = ({ message, debug, isLast }) => {
   useAutoScroll();
 
-  // TODO: Check this in different render modes
-  //       In the 'old' chat app - Messages have a maximum width in different screen modes.
-  //       Should we preserve this ?
-  // const { config } = useContext(RuntimeStateAPIContext);
-
   return (
     <MessageContainer className={clsx(ClassName.USER_RESPONSE, userResponse)} isLast={isLast}>
       <div className={messageContainer}>{message}</div>

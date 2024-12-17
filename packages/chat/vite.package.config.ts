@@ -9,7 +9,7 @@ import { createPlugins } from './vite.widget.config';
 export default defineConfig({
   define: {
     __USE_SHADOW_ROOT__: false,
-    __STYLES_URL__: JSON.stringify('https://cdn.voiceflow.com/widget/style.css'),
+    __STYLES_URL__: JSON.stringify('https://cdn.voiceflow.com/widget-next/style.css'),
     'process.env': {},
   },
   build: {
