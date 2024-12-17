@@ -19,7 +19,6 @@ export class VoiceflowRuntime<T> {
 
   public constructor(options: VoiceflowRuntimeOptions<T>) {
     this.trace = new TraceService(options);
-
     if (isPrototypeRuntimeOptions(options)) {
       this.runtime = new PrototypeRuntimeService(options);
     } else if (isAuthRuntimeOptions(options)) {
@@ -36,8 +35,12 @@ export class VoiceflowRuntime<T> {
     return this;
   }
 
-  public async interact(context: T, request: RuntimeInteractRequest): Promise<T> {
+  public async interact(
+    context: T,
+    request: RuntimeInteractRequest
+  ): Promise<AsyncGenerator<T | ReadableStream, void, unknown>> {
     const response = await this.runtime.interact(request);
+    console.log({ response });
     return this.trace.processTrace(context, response);
   }
 

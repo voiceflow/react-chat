@@ -21,19 +21,16 @@ export class PublicRuntimeService extends RuntimeService {
     this.chatVersion = options.verify.chatVersion;
   }
 
-  public async interact(request: RuntimeInteractRequest): Promise<Pick<RuntimeInteractResponse, 'trace'>> {
+  public async interact(request: RuntimeInteractRequest): Promise<Response> {
     const { action, config, sessionID, versionID } = request;
-
-    return this.send<Pick<RuntimeInteractResponse, 'trace'>>(
-      `public/${this.projectID}/state/user/${encodeURIComponent(sessionID)}/interact`,
-      {
-        method: 'POST',
-        body: { action, config },
-        headers: {
-          ...(versionID && { versionID }),
-        },
-      }
-    );
+    const URL = `v2/public/project/${this.projectID}/user/${encodeURIComponent(sessionID)}/interact/stream?completion_events=true`;
+    return this.send<Response>(URL, {
+      method: 'POST',
+      body: { action, config },
+      headers: {
+        ...(versionID && { versionID }),
+      },
+    });
   }
 
   public async feedback(request: RuntimeFeedbackRequest): Promise<void> {

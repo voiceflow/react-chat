@@ -7672,7 +7672,7 @@ __metadata:
     cuid: 2.1.8
     eslint-plugin-mdx: 3.1.5
     eslint-plugin-storybook: 0.8.0
-    eventsource-parser: ^3.0.0
+    eventsource-parser: 3.0.0
     happy-dom: 14.7.1
     http-server: 14.1.1
     react: 18.2.0
@@ -12749,7 +12749,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eventsource-parser@npm:^3.0.0":
+"eventsource-parser@npm:3.0.0":
   version: 3.0.0
   resolution: "eventsource-parser@npm:3.0.0"
   checksum: af7df874537a65e996568e5fed12db6eb27b4e041a70f5cc3a12b8b5b6f2ce229ba260d76b01f70f45ae0bf263e644d8f3768d24242f9ad86a8305991f61c7c0
