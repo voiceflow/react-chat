@@ -33,12 +33,28 @@ export const MESSAGE_TRACES: TraceDeclaration<RuntimeMessage, any>[] = [
 
     return context;
   }),
+  {
+    canHandle: ({ type }) => type === 'completion',
+    handle: ({ context }, trace) => {
+      const { slate, content, ai, delay } = trace.payload;
+
+      context.messages.push({
+        type: MessageType.TEXT,
+        text: slate?.content || content,
+        delay,
+        ...(ai ? { ai } : {}),
+      });
+
+      return context;
+    },
+  },
   VisualTraceComponent(({ context }, trace) => {
     if (!VisualTraceDTO.safeParse(trace).success) return context;
 
     context.messages.push({ type: MessageType.IMAGE, url: trace.payload.image });
     return context;
   }),
+
   ChoiceTraceComponent(({ context }, trace) => {
     if (!ChoiceTraceDTO.safeParse(trace).success) return context;
 

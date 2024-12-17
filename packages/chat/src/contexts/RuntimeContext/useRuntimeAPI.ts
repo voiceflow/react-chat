@@ -39,13 +39,14 @@ export const useRuntimeAPI = ({
     []
   );
 
-  const interact = async (action: RuntimeAction, config?: any) =>
-    runtime.interact(createContext(), {
+  const interact = async (action: RuntimeAction, config?: any) => {
+    return runtime.interact(createContext(), {
       sessionID: userID,
       action,
       config,
       ...(versionID && { versionID }),
     });
+  };
 
   const saveFeedback = async (name: FeedbackName, lastTurnMessages: MessageProps[], userTurn: UserTurnProps | null) => {
     const aiMessages: string[] = [];

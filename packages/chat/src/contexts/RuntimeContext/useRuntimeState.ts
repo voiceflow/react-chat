@@ -107,38 +107,37 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
     }
 
     const userAction = resolveAction(action, getTurns());
-
     setIndicator(true);
-    const context = await runtime.interact(userAction, { tts: isAudioOutputEnabled() }).catch((error) => {
-      // TODO: better define error condition
-      console.error(error);
-      return createContext();
-    });
-    setIndicator(false);
-
-    addTurn({
-      id: cuid(),
-      type: TurnType.SYSTEM,
-      timestamp: Date.now(),
-      ...context,
-    });
-
-    const shouldPlay = isAudioOutputEnabled() && playAudiosStack.current.length === 0;
-
-    if (isAudioOutputEnabled()) {
-      context.messages.forEach((message) => {
-        if (message.type === MessageType.TEXT && message.audio?.src) {
-          playAudiosStack.current.push(message.audio.src);
-        }
+    const newInteraction = await runtime.interact(userAction, { tts: isAudioOutputEnabled() });
+    for await (const updatedContext of newInteraction) {
+      // updatedContext contains partial or complete results
+      // // Display to the user in real-time
+      addTurn({
+        id: cuid(),
+        type: TurnType.SYSTEM,
+        timestamp: Date.now(),
+        ...updatedContext,
       });
     }
+    // console.log({ context });
+    setIndicator(false);
 
-    if (shouldPlay) {
-      // eslint-disable-next-line no-promise-executor-return
-      await new Promise((resolve) => setTimeout(resolve, DEFAULT_MESSAGE_DELAY));
+    // const shouldPlay = isAudioOutputEnabled() && playAudiosStack.current.length === 0;
 
-      playAudioCircle();
-    }
+    // if (isAudioOutputEnabled()) {
+    //   context.messages.forEach((message) => {
+    //     if (message.type === MessageType.TEXT && message.audio?.src) {
+    //       playAudiosStack.current.push(message.audio.src);
+    //     }
+    //   });
+    // }
+
+    // if (shouldPlay) {
+    //   // eslint-disable-next-line no-promise-executor-return
+    //   await new Promise((resolve) => setTimeout(resolve, DEFAULT_MESSAGE_DELAY));
+
+    //   playAudioCircle();
+    // }
 
     broadcast({ type: BroadcastType.INTERACT, payload: { session: sessionRef.current, action: userAction } });
     saveSession(assistant.common.persistence as ChatPersistence, config.verify.projectID, sessionRef.current);
