@@ -5,10 +5,18 @@ import { useEffect, useMemo, useState } from 'react';
 import { match } from 'ts-pattern';
 
 import { ClassName } from '@/constants';
+import { fadeInAndUp } from '@/styles/animation-utils.css';
 
 import { Button } from '../Button';
 import { Icon } from '../Icon';
-import { closeButton, closeButtonIcon, messageContainer, proactiveContainer, singleMessage } from './styles.css';
+import {
+  closeButton,
+  closeButtonIcon,
+  closed,
+  messageContainer,
+  proactiveContainer,
+  singleMessage,
+} from './styles.css';
 
 interface ProactiveQueueProps {
   side: WidgetSettingsWidgetPosition;
@@ -23,7 +31,7 @@ export const Proactive: React.FC<ProactiveQueueProps> = ({ side, messages }) => 
       messages.map((message, index) =>
         match(message)
           .with({ type: Trace.TraceType.TEXT }, ({ payload }) => (
-            <div className={singleMessage} key={index}>
+            <div className={clsx(singleMessage, fadeInAndUp)} key={index}>
               {String(payload.message)}
             </div>
           ))
@@ -37,11 +45,15 @@ export const Proactive: React.FC<ProactiveQueueProps> = ({ side, messages }) => 
     setIsClosed(false);
   }, [queue]);
 
-  if (isClosed || !queue.length) return null;
+  const close = () => {
+    setIsClosed(true);
+  };
+
+  if (!queue.length) return null;
 
   return (
-    <div className={clsx(ClassName.PROACTIVE, proactiveContainer({ side }))}>
-      <Button round className={closeButton} onClick={() => setIsClosed(true)}>
+    <div className={clsx(ClassName.PROACTIVE, proactiveContainer({ side }), isClosed && closed)}>
+      <Button round className={closeButton} onClick={() => close()}>
         <Icon className={closeButtonIcon} svg="closeV2" />
       </Button>
       <div className={messageContainer}>{queue}</div>
