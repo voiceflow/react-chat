@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.34.0](https://github.com/voiceflow/react-chat/compare/documentation@0.33.18...documentation@0.34.0) (2024-12-18)
+
+### Features
+
+* add animations to proactive messages (COR-4271) ([#471](https://github.com/voiceflow/react-chat/issues/471)) ([04c0363](https://github.com/voiceflow/react-chat/commit/04c0363ac04ec34147941beef3443643e7e3ba6b))
+
 ## [0.33.18](https://github.com/voiceflow/react-chat/compare/documentation@0.33.17...documentation@0.33.18) (2024-12-18)
 
 **Note:** Version bump only for package documentation

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.23.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.22.2...@voiceflow/react-chat@2.23.0) (2024-12-18)
+
+### Features
+
+* add animations to proactive messages (COR-4271) ([#471](https://github.com/voiceflow/react-chat/issues/471)) ([04c0363](https://github.com/voiceflow/react-chat/commit/04c0363ac04ec34147941beef3443643e7e3ba6b))
+
 ## [2.22.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.22.1...@voiceflow/react-chat@2.22.2) (2024-12-18)
 
 ### Bug Fixes
