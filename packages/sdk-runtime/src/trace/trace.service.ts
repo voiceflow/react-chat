@@ -20,11 +20,12 @@ export class TraceService<T = unknown> {
     return this;
   }
 
-  // eslint-disable-next-line sonarjs/cognitive-complexity
   public async *processTrace(context: T, traceStreams: ReadableStream): AsyncGenerator<T, void, unknown> {
     const meta: TraceHandlerMeta<T> = { context };
-    let currentMessageBuffer = '';
-
+    const currentMessageBuffer = '';
+    const inMessage = false;
+    let isDone = false;
+    const processedIDs: string[] = [];
     if (!(traceStreams instanceof ReadableStream)) {
       throw new Error('traceStreams is not a valid ReadableStream');
     }
@@ -36,8 +37,15 @@ export class TraceService<T = unknown> {
     const parser = createParser({
       onEvent: (event: EventSourceMessage) => {
         try {
-          const parsedData = JSON.parse(event.data);
-          events.push(parsedData);
+          const eventID = event.id;
+          if (eventID && !processedIDs.includes(eventID)) {
+            console.log('Processing event:', eventID);
+            processedIDs.push(eventID);
+            const parsedData = JSON.parse(event.data);
+            events.push(parsedData);
+          } else {
+            console.log('Skipping event:', eventID);
+          }
         } catch (err) {
           console.error('Failed to parse event data:', event.data, err);
         }
@@ -45,46 +53,37 @@ export class TraceService<T = unknown> {
     });
 
     try {
-      while (true) {
+      while (!isDone) {
+        // eslint-disable-next-line no-await-in-loop
         const { value, done } = await reader.read();
-        if (done) break;
+
+        if (done) {
+          isDone = true;
+          break;
+        }
 
         const text = decoder.decode(value, { stream: true });
         parser.feed(text);
+        // Process all newly parsed events one-by-one
 
         while (events.length > 0) {
-          const parsedData = events[0]; // Peek the first event
-          events.shift();
+          const parsedData = events.shift();
           try {
+            if (parsedData.type !== 'completion') {
+              const step = this.traces.find((step) => step.canHandle(parsedData));
+              if (step) {
+                const result = step.handle(meta, parsedData);
+                meta.context = result;
+              }
+            }
             if (parsedData.type === 'completion' && parsedData.payload) {
               const { state, content } = parsedData.payload;
-
               if (state === 'start') {
-                currentMessageBuffer = '';
+                yield { stage: 'start' };
               } else if (state === 'content' && content) {
-                currentMessageBuffer += content;
+                yield { stage: 'content', content };
               } else if (state === 'end') {
-                const completeMessage = currentMessageBuffer;
-                currentMessageBuffer = '';
-                const step = this.traces.find((step) => step.canHandle(parsedData));
-
-                if (step) {
-                  // eslint-disable-next-line no-await-in-loop
-                  meta.context = await step.handle(meta, {
-                    ...parsedData,
-                    payload: { ...parsedData.payload, content: completeMessage },
-                  });
-                  yield meta.context;
-                }
-              }
-            } else {
-              const step = this.traces.find((step) => step.canHandle(parsedData));
-
-              if (step) {
-                // eslint-disable-next-line no-await-in-loop
-                meta.context = await step.handle(meta, parsedData);
-
-                yield meta.context;
+                yield { stage: 'end' };
               }
             }
           } catch (err) {
@@ -92,6 +91,7 @@ export class TraceService<T = unknown> {
           }
         }
       }
+      yield meta.context;
     } catch (err) {
       console.error('Error processing stream:', err);
     } finally {

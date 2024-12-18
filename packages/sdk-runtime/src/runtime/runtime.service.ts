@@ -43,7 +43,10 @@ export abstract class RuntimeService {
 
   public abstract feedback(request: RuntimeFeedbackRequest): Promise<void>;
 
-  protected async send<T>(path: string, args: RuntimeHttpRequest = {}): Promise<T | ReadableStream> {
+  protected async send<T>(
+    path: string,
+    args: RuntimeHttpRequest = {}
+  ): Promise<T | ReadableStream<Uint8Array<ArrayBufferLike>> | null> {
     const url = new URL(path, this.options.url);
     if (args.params) url.search = args.params.toString();
 
@@ -56,8 +59,6 @@ export abstract class RuntimeService {
       },
     });
 
-    console.log({ result });
-
     if (!result.ok) {
       // Attempt to parse the error response as JSON if possible
       const errorResponse = await result.json().catch(() => null);
@@ -66,10 +67,8 @@ export abstract class RuntimeService {
 
     // Return either JSON or ReadableStream
     if (result.headers.get('content-type')?.includes('stream')) {
-      console.log({ readsableStreamResult: result });
       return result.body; // Return the ReadableStream for the caller to handle
     }
-    console.log({ jsonResult: result });
     return result.json(); // Parse and return the JSON response
   }
 }
