@@ -1,4 +1,4 @@
-import { style } from '@vanilla-extract/css';
+import { keyframes, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { COLORS } from '@/styles/colors';
@@ -142,4 +142,13 @@ export const markdownParagraph = recipe({
       },
     },
   },
+});
+
+const fadeInKeyframes = keyframes({
+  '0%': { opacity: 0 },
+  '100%': { opacity: 1 },
+});
+
+export const fadeInClass = style({
+  animation: `${fadeInKeyframes} 0.5s ease-in forwards`,
 });

@@ -40,7 +40,6 @@ export class VoiceflowRuntime<T> {
     request: RuntimeInteractRequest
   ): Promise<AsyncGenerator<T | ReadableStream, void, unknown>> {
     const response = await this.runtime.interact(request);
-    console.log({ response });
     return this.trace.processTrace(context, response);
   }
 

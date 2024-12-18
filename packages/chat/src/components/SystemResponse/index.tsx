@@ -70,6 +70,8 @@ export interface SystemResponseProps {
 
   aiDisclaimer?: AIDisclaimerProps;
 
+  isStreaming?: boolean;
+
   /**
    * Override the rendering of individual messages.
    */
