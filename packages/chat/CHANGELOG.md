@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.22.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.22.1...@voiceflow/react-chat@2.22.2) (2024-12-18)
+
+### Bug Fixes
+
+* launcher spacing to chat (COR-4256) ([#472](https://github.com/voiceflow/react-chat/issues/472)) ([7cd52c4](https://github.com/voiceflow/react-chat/commit/7cd52c457ec0756b0a22ff808b1fa8aef2c55af6))
+
 ## [2.22.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.22.0...@voiceflow/react-chat@2.22.1) (2024-12-17)
 
 **Note:** Version bump only for package @voiceflow/react-chat
