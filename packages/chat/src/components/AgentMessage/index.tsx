@@ -3,6 +3,7 @@ import '../../styles.css';
 import type { Text } from '@voiceflow/base-types';
 import { serializeToMarkdown } from '@voiceflow/slate-serializer/markdown';
 import clsx from 'clsx';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import Markdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import remarkGfm from 'remark-gfm';
@@ -35,9 +36,22 @@ interface IAgentMessage {
 
   isLast?: boolean;
   feedback?: IFeedbackButton | undefined;
-
   debug?: boolean;
   textContent?: string;
+}
+
+function useStreamingContent(initialContent = '') {
+  const [streamedContent, setStreamedContent] = useState(initialContent);
+
+  const appendContent = useCallback((newText: string) => {
+    setStreamedContent((prev) => prev + newText);
+  }, []);
+
+  const resetContent = useCallback(() => {
+    setStreamedContent('');
+  }, []);
+
+  return { streamedContent, appendContent, resetContent };
 }
 
 export const AgentMessage: React.FC<IAgentMessage> = ({
@@ -49,14 +63,70 @@ export const AgentMessage: React.FC<IAgentMessage> = ({
   feedback,
   textContent,
 }) => {
+  // Convert text to markdown if it's not a string
   const content = typeof text === 'string' ? text : serializeToMarkdown(text);
 
-  const isCodeBlock = content?.startsWith('```javascript');
+  const { streamedContent, appendContent, resetContent } = useStreamingContent('');
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    // Clear any ongoing interval
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current!);
+      intervalRef.current = null;
+    }
+
+    if (!content) {
+      // If there's no content, just reset
+      resetContent();
+      return;
+    }
+
+    // Determine how much has already been streamed
+    const streamedLength = streamedContent.length;
+
+    // If the new content is longer, stream the difference
+    if (content.length > streamedLength) {
+      const newSegment = content.slice(streamedLength);
+      let index = 0;
+
+      intervalRef.current = setInterval(() => {
+        if (index < newSegment.length) {
+          appendContent(newSegment[index]);
+          index++;
+        } else {
+          // Done streaming this new segment
+          clearInterval(intervalRef.current!);
+          intervalRef.current = null;
+        }
+      }, 10);
+    } else if (content.length < streamedLength) {
+      // If content somehow got shorter, reset to the new shorter content
+      resetContent();
+      // Then stream from scratch if needed
+      if (content.length > 0) {
+        let index = 0;
+        intervalRef.current = setInterval(() => {
+          if (index < content.length) {
+            appendContent(content[index]);
+            index++;
+          } else {
+            clearInterval(intervalRef.current!);
+            intervalRef.current = null;
+          }
+        }, 10);
+      }
+    }
+    // If content length is the same as streamedContent length, do nothing
+    // as we've already streamed it all.
+  }, [content, streamedContent, appendContent, resetContent]);
+
+  const isCodeBlock = streamedContent.startsWith('```javascript');
 
   return (
     <div className={clsx(agentMessageContainer)}>
       <Markdown
-        children={content}
+        children={streamedContent}
         className={clsx('markdown', clsx(contentStyle({ isCodeBlock })))}
         remarkPlugins={[remarkGfm]}
         components={{
@@ -85,25 +155,25 @@ export const AgentMessage: React.FC<IAgentMessage> = ({
             );
           },
           li: ({ children, ...props }) => {
-            // NOTE: this accounts for when the last item in a response is a li and we remove the bottom margin from that.
+            // Only apply lastItem styling if this li is at the end of the entire streamed text
             const position = props.node?.position;
-            if (position && position.end.offset === text.length - 1) {
+            if (position && position.end.offset === streamedContent.length - 1) {
               return (
                 <li className={lastListItem} {...props}>
                   {children}
                 </li>
               );
             }
-            return <li {...props}> {children}</li>;
+            return <li {...props}>{children}</li>;
           },
           p: ({ children, ...props }) => {
             const position = props.node?.position;
             const isFirst = position && position.start.offset === 0;
-            const isLast = position && position.end.offset === text.length - 1;
+            const isParagraphEnd = position && position.end.offset === streamedContent.length - 1;
             return (
               <p
                 {...props}
-                className={clsx(markdownParagraph({ first: isFirst }), isLast && lastListItem, lastPElement)}
+                className={clsx(markdownParagraph({ first: isFirst }), isParagraphEnd && lastListItem, lastPElement)}
               >
                 {children}
               </p>

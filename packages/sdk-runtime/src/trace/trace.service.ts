@@ -1,4 +1,5 @@
-import type { RuntimeInteractResponse } from '@/runtime/runtime.interface';
+/* eslint-disable max-depth */
+import { createParser, type EventSourceMessage } from 'eventsource-parser';
 
 import type { TraceDeclaration, TraceHandlerMeta, TraceOptions } from './trace.interface';
 
@@ -19,16 +20,82 @@ export class TraceService<T = unknown> {
     return this;
   }
 
-  public async processTrace(context: T, response: Pick<RuntimeInteractResponse, 'trace'>): Promise<T> {
+  public async *processTrace(context: T, traceStreams: ReadableStream): AsyncGenerator<T, void, unknown> {
     const meta: TraceHandlerMeta<T> = { context };
-
-    for (const trace of response.trace) {
-      const step = this.traces.find((step) => step.canHandle(trace));
-      if (step) {
-        // eslint-disable-next-line no-await-in-loop
-        meta.context = await step.handle(meta, trace);
-      }
+    const currentMessageBuffer = '';
+    const inMessage = false;
+    let isDone = false;
+    const processedIDs: string[] = [];
+    if (!(traceStreams instanceof ReadableStream)) {
+      throw new Error('traceStreams is not a valid ReadableStream');
     }
-    return meta.context;
+
+    const reader = traceStreams.getReader();
+    const decoder = new TextDecoder();
+    const events: any[] = [];
+
+    const parser = createParser({
+      onEvent: (event: EventSourceMessage) => {
+        try {
+          const eventID = event.id;
+          if (eventID && !processedIDs.includes(eventID)) {
+            console.log('Processing event:', eventID);
+            processedIDs.push(eventID);
+            const parsedData = JSON.parse(event.data);
+            events.push(parsedData);
+          } else {
+            console.log('Skipping event:', eventID);
+          }
+        } catch (err) {
+          console.error('Failed to parse event data:', event.data, err);
+        }
+      },
+    });
+
+    try {
+      while (!isDone) {
+        // eslint-disable-next-line no-await-in-loop
+        const { value, done } = await reader.read();
+
+        if (done) {
+          isDone = true;
+          break;
+        }
+
+        const text = decoder.decode(value, { stream: true });
+        parser.feed(text);
+        // Process all newly parsed events one-by-one
+
+        while (events.length > 0) {
+          const parsedData = events.shift();
+          try {
+            if (parsedData.type !== 'completion') {
+              const step = this.traces.find((step) => step.canHandle(parsedData));
+              if (step) {
+                const result = step.handle(meta, parsedData);
+                meta.context = result;
+              }
+            }
+            if (parsedData.type === 'completion' && parsedData.payload) {
+              const { state, content } = parsedData.payload;
+              if (state === 'start') {
+                yield { stage: 'start' };
+              } else if (state === 'content' && content) {
+                yield { stage: 'content', content };
+              } else if (state === 'end') {
+                yield { stage: 'end' };
+              }
+            }
+          } catch (err) {
+            console.error('Error processing trace:', err);
+          }
+        }
+      }
+      yield meta.context;
+    } catch (err) {
+      console.error('Error processing stream:', err);
+    } finally {
+      reader.releaseLock();
+    }
   }
 }

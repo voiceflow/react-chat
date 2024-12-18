@@ -107,38 +107,63 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
     }
 
     const userAction = resolveAction(action, getTurns());
-
     setIndicator(true);
-    const context = await runtime.interact(userAction, { tts: isAudioOutputEnabled() }).catch((error) => {
-      // TODO: better define error condition
-      console.error(error);
-      return createContext();
-    });
+    const newInteraction = await runtime.interact(userAction, { tts: isAudioOutputEnabled() });
+    for await (const interaction of newInteraction) {
+      // updatedContext contains partial or complete results
+      // // Display to the user in real-time
+      console.log({ interaction });
+
+      if (interaction.stage === 'start') {
+        addTurn({
+          id: cuid(),
+          type: TurnType.SYSTEM,
+          timestamp: Date.now(),
+          messages: [{ type: MessageType.TEXT, text: '', ai: true }],
+        });
+      }
+      if (interaction.stage === 'content') {
+        setIndicator(false);
+        console.log('Content', { interaction });
+        setTurns((prev) => {
+          const lastSystemTurn = [...prev].reverse().find((turn) => turn.type === TurnType.SYSTEM);
+          if (lastSystemTurn && lastSystemTurn.messages && lastSystemTurn.messages.length > 0) {
+            const lastMessage = lastSystemTurn.messages[lastSystemTurn.messages.length - 1];
+            if (lastMessage.type === MessageType.TEXT) {
+              lastMessage.text += interaction.content;
+            }
+          }
+          return [...prev];
+        });
+      }
+      if (!interaction.stage) {
+        addTurn({
+          id: cuid(),
+          type: TurnType.SYSTEM,
+          timestamp: Date.now(),
+          ...interaction,
+        });
+      }
+    }
+    // console.log({ context });
     setIndicator(false);
 
-    addTurn({
-      id: cuid(),
-      type: TurnType.SYSTEM,
-      timestamp: Date.now(),
-      ...context,
-    });
+    // const shouldPlay = isAudioOutputEnabled() && playAudiosStack.current.length === 0;
 
-    const shouldPlay = isAudioOutputEnabled() && playAudiosStack.current.length === 0;
+    // if (isAudioOutputEnabled()) {
+    //   context.messages.forEach((message) => {
+    //     if (message.type === MessageType.TEXT && message.audio?.src) {
+    //       playAudiosStack.current.push(message.audio.src);
+    //     }
+    //   });
+    // }
 
-    if (isAudioOutputEnabled()) {
-      context.messages.forEach((message) => {
-        if (message.type === MessageType.TEXT && message.audio?.src) {
-          playAudiosStack.current.push(message.audio.src);
-        }
-      });
-    }
+    // if (shouldPlay) {
+    //   // eslint-disable-next-line no-promise-executor-return
+    //   await new Promise((resolve) => setTimeout(resolve, DEFAULT_MESSAGE_DELAY));
 
-    if (shouldPlay) {
-      // eslint-disable-next-line no-promise-executor-return
-      await new Promise((resolve) => setTimeout(resolve, DEFAULT_MESSAGE_DELAY));
-
-      playAudioCircle();
-    }
+    //   playAudioCircle();
+    // }
 
     broadcast({ type: BroadcastType.INTERACT, payload: { session: sessionRef.current, action: userAction } });
     saveSession(assistant.common.persistence as ChatPersistence, config.verify.projectID, sessionRef.current);
