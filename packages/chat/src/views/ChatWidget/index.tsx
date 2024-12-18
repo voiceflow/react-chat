@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import { useContext, useEffect, useLayoutEffect, useState } from 'react';
 
 import { Launcher } from '@/components/Launcher';
-import { LAUNCHER_SIZE, LAUNCHER_WIDTH_LABEL_SIZE } from '@/components/Launcher/styles.css';
+import { LAUNCHER_SIZE, LAUNCHER_WITH_LABEL_SIZE } from '@/components/Launcher/styles.css';
 import { Proactive } from '@/components/Proactive';
 import { ClassName } from '@/constants';
 import { RuntimeStateAPIContext, RuntimeStateContext } from '@/contexts';
@@ -67,7 +67,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
 
   const side = assistant.common.position;
   const position = { bottom: `${assistant.common.bottomSpacing}px`, [side]: `${assistant.common.sideSpacing}px` };
-  const launcherButtonSize = assistant.common.launcher.type === 'label' ? LAUNCHER_WIDTH_LABEL_SIZE : LAUNCHER_SIZE;
+  const launcherButtonSize = assistant.common.launcher.type === 'icon' ? LAUNCHER_SIZE : LAUNCHER_WITH_LABEL_SIZE;
   const chatHeight = `calc(100% - ${launcherButtonSize + LAUNCHER_MARGIN + parseInt(assistant.common.bottomSpacing, 10) + 20}px)`;
 
   const widgetPosition = {

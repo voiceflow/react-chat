@@ -9,7 +9,7 @@ import { buttonStyles } from '../Button/styles.css';
 import { fadeInSlideUp } from '../UserResponse/styles.css';
 
 export const LAUNCHER_SIZE = 48;
-export const LAUNCHER_WIDTH_LABEL_SIZE = 40;
+export const LAUNCHER_WITH_LABEL_SIZE = 40;
 
 export const launcherContainer = style({
   width: 'fit-content',
