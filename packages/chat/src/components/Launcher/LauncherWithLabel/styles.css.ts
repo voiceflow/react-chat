@@ -144,6 +144,7 @@ export const imageIconStyle = recipe({
     position: 'absolute',
     borderRadius: 2,
     left: 0,
+    pointerEvents: 'none',
 
     flexShrink: 0,
     transition: transition(['opacity']),

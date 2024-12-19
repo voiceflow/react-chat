@@ -218,6 +218,7 @@ export const imageStyles = recipe({
     height: '32px',
     width: '32px',
     minWidth: '32px',
+    pointerEvents: 'none',
   },
   variants: {
     isOpen: {
