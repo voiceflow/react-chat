@@ -22,7 +22,7 @@ export const voiceWidgetContainer = recipe({
     padding: '16px 20px',
     background: 'white',
     borderRadius: '16px',
-    boxShadow: SHADOWS.Z64_Light,
+    boxShadow: SHADOWS.Z32_Light,
     overflow: 'hidden',
     width: 'fit-content',
     position: 'relative',
@@ -33,11 +33,13 @@ export const voiceWidgetContainer = recipe({
     type: {
       full: {},
       expanded: {
+        boxShadow: SHADOWS.Z64_Light,
         flexDirection: 'column',
         padding: '32px 24px 24px 24px',
       },
       compact: {
         borderRadius: '100px',
+        boxShadow: SHADOWS.Z16_Light,
         gap: '8px',
         padding: '8px',
       },
