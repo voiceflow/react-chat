@@ -40,10 +40,8 @@ export const VoiceWidget: React.FC<IVoiceWidget> = ({ imageSrc, variant = 'full'
     setIsCalling((prev) => !prev);
     if (isCalling) {
       endCall();
-      // End call
     } else {
       startCall();
-      // Start call
     }
   };
 
@@ -61,7 +59,7 @@ export const VoiceWidget: React.FC<IVoiceWidget> = ({ imageSrc, variant = 'full'
   } else if (isListening) {
     title = 'Listening...';
   } else if (isTalking) {
-    title = 'Talk to interupt';
+    title = 'Talk to interrupt';
   }
 
   return (
