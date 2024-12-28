@@ -18,6 +18,7 @@ export default meta;
 export const Base: Story = {
   args: {
     imageSrc: logo,
+    isListening: true,
     footer: {
       extraLinkText: 'Privacy',
       extraLinkUrl: 'https://www.google.com',
