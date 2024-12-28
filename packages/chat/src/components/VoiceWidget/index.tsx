@@ -59,7 +59,7 @@ export const VoiceWidget: React.FC<IVoiceWidget> = ({ imageSrc, variant = 'full'
   if (!isCalling) {
     title = 'How can I help you?';
   } else if (isListening) {
-    title = 'Listening';
+    title = 'Listening...';
   } else if (isTalking) {
     title = 'Talk to interupt';
   }
