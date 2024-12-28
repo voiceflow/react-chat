@@ -28,10 +28,10 @@ export const ShrinkingCircle = () => {
 
         analyserRef.current.getByteFrequencyData(dataArray);
         const avgVolume = dataArray.reduce((sum, value) => sum + value, 0) / bufferLength;
-        console.log({ avgVolume });
+
         const newRadius = Math.min(avgVolume, 54);
         setRadius(newRadius);
-        console.log({ newRadius });
+
         requestAnimationFrame(animate);
       };
 
