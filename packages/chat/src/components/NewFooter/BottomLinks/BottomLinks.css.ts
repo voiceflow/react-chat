@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
 import { COLORS } from '@/styles/colors';
 import { THEME } from '@/styles/colors.css';
@@ -6,18 +7,30 @@ import { hideTextOverflow } from '@/styles/font';
 import { SIZES } from '@/styles/sizes';
 import { transition } from '@/styles/transitions';
 
-export const footerLinksContainer = style({
-  color: COLORS.NEUTRAL_DARK[100],
-  fontFamily: THEME.fontFamily,
-  fontSize: '12px',
-  lineHeight: '17px',
-  width: '100%',
-  minHeight: 20,
-  padding: '10px 0',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  gap: '8px',
+export const smallStyle = style({});
+
+export const footerLinksContainer = recipe({
+  base: {
+    color: COLORS.NEUTRAL_DARK[100],
+    fontFamily: THEME.fontFamily,
+    width: '100%',
+    padding: '10px 0',
+    fontSize: '12px',
+    lineHeight: '17px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '8px',
+  },
+  variants: {
+    small: {
+      true: {
+        fontSize: '11px',
+        lineHeight: '15px',
+      },
+      false: {},
+    },
+  },
 });
 
 export const separator = style({
@@ -30,8 +43,8 @@ export const separator = style({
 export const extraLinkStyles = style({
   color: COLORS.NEUTRAL_DARK[100],
   fontFamily: THEME.fontFamily,
-  fontSize: '12px',
-  lineHeight: '17px',
+  fontSize: 'inherit',
+  lineHeight: 'inherit',
   textDecorationColor: 'transparent',
   transition: transition(['color', 'text-decoration-color']),
   selectors: {
@@ -67,8 +80,8 @@ export const voiceflowLink = style({
 export const footerNote = style({
   color: COLORS.NEUTRAL_DARK[100],
   fontFamily: THEME.fontFamily,
-  fontSize: '12px',
-  lineHeight: '17px',
+  fontSize: 'inherit',
+  lineHeight: 'inherit',
   textDecorationColor: 'transparent',
   transition: transition(['color', 'text-decoration-color']),
   ...hideTextOverflow(),
