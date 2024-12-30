@@ -3,7 +3,7 @@ import { recipe } from '@vanilla-extract/recipes';
 
 import { SHADOWS } from '@/styles/box-shadows';
 import { COLORS } from '@/styles/colors';
-import { FAMILY } from '@/styles/font';
+import { THEME } from '@/styles/colors.css';
 import { transition } from '@/styles/transitions';
 
 export const voiceWrapper = style({
@@ -32,7 +32,7 @@ export const voiceWidgetContainer = recipe({
   variants: {
     type: {
       full: {},
-      expanded: {
+      expand: {
         boxShadow: SHADOWS.Z64_Light,
         flexDirection: 'column',
         padding: '32px 24px 24px 24px',
@@ -60,7 +60,7 @@ export const controlSection = recipe({
       full: {
         gap: '6px',
       },
-      expanded: {
+      expand: {
         alignItems: 'center',
         paddingTop: '12px',
         gap: '12px',
@@ -73,7 +73,7 @@ export const controlSection = recipe({
 });
 
 export const titleStyle = style({
-  fontFamily: FAMILY,
+  fontFamily: THEME.fontFamily,
   fontSize: '14px',
   fontWeight: 400,
 
@@ -92,7 +92,7 @@ export const buttonModifier = recipe({
   variants: {
     type: {
       full: {},
-      expanded: {
+      expand: {
         width: '182px',
       },
       compact: {
@@ -121,7 +121,7 @@ export const circle = recipe({
         minHeight: '58px',
         marginRight: '16px',
       },
-      expanded: {
+      expand: {
         height: '80px',
         width: '80px',
         minWidth: '80px',
@@ -154,6 +154,7 @@ export const buttonContent = recipe({
     borderRadius: '8px',
     top: '50%',
     left: '50%',
+    fontFamily: THEME.fontFamily,
 
     transform: 'translate(-50%, -50%)',
 
@@ -176,8 +177,9 @@ export const buttonContent = recipe({
 
 export const buttonText = style({
   paddingTop: '2px',
+  fontFamily: THEME.fontFamily,
 });
 
 export const linkSectionModifier = style({
-  paddingBottom: 0,
+  paddingBottom: '0 !important',
 });

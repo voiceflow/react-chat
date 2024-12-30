@@ -106,6 +106,13 @@ export const ChatConfig = z
     user: UserOptions.optional(),
     render: RenderOptions,
     launch: LaunchOptions.optional(),
+
+    voice: z
+      .object({
+        url: z.string(),
+        accessToken: z.string(),
+      })
+      .optional(),
   })
   .transform((config) => ({
     ...config,

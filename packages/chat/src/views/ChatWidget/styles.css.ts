@@ -97,6 +97,13 @@ export const chatContainer = recipe({
         },
       },
     },
+
+    voice: {
+      true: {
+        width: 'auto',
+        height: 'auto',
+      },
+    },
   },
 });
 

@@ -1,4 +1,9 @@
-import { useState } from 'react';
+import type { WidgetSettingsCommonSettingsFooterLink, WidgetSettingsVoiceSettings } from '@voiceflow/dtos-interact';
+import { WidgetSettingsVoiceRenderMode } from '@voiceflow/dtos-interact';
+
+import type { VoiceState } from '@/constant/voice.constant';
+import { VOICE_STATE } from '@/constant/voice.constant';
+import { DEFAULT_CHAT_AVATAR } from '@/dtos/AssistantOptions.dto';
 
 import { Button } from '../Button';
 import { ButtonIcon } from '../Button/ButtonIcon';
@@ -19,25 +24,33 @@ import {
 } from './VoiceWidget.css';
 
 interface IVoiceWidget {
-  imageSrc: string;
-  isListening?: boolean;
-  isTalking?: boolean;
-  variant: 'full' | 'expanded' | 'compact';
-  footer: {
-    extraLinkText: string;
-    extraLinkUrl: string;
-    showPoweredBy: boolean;
-  };
+  state: VoiceState;
+  footer?: WidgetSettingsCommonSettingsFooterLink;
+  settings?: WidgetSettingsVoiceSettings;
+  poweredBy?: boolean;
+  onStartCall?: () => void;
+  onEndCall?: () => void;
 }
 
-export const VoiceWidget: React.FC<IVoiceWidget> = ({ imageSrc, variant = 'full', isListening, isTalking, footer }) => {
-  const [isCalling, setIsCalling] = useState(false);
-  const { showPoweredBy, extraLinkText, extraLinkUrl } = footer;
+export const VoiceWidget: React.FC<IVoiceWidget> = ({ state, settings, footer, poweredBy, onStartCall, onEndCall }) => {
+  const { content, renderMode = WidgetSettingsVoiceRenderMode.FULL } = settings ?? {};
 
-  const amplitude = useMicrophoneAmplitude();
+  const startCall = () => {
+    onStartCall?.();
+  };
+
+  const endCall = () => {
+    onEndCall?.();
+  };
+
+  const isIdle = state === VOICE_STATE.IDLE;
+  const isEnded = state === VOICE_STATE.ENDED;
+  const isTalking = state === VOICE_STATE.TALKING;
+  const isListening = state === VOICE_STATE.LISTENING;
+  const isInitializing = state === VOICE_STATE.INITIALIZING;
+  const isCalling = isTalking || isListening || isInitializing;
 
   const handleButtonClick = () => {
-    setIsCalling((prev) => !prev);
     if (isCalling) {
       endCall();
     } else {
@@ -45,63 +58,73 @@ export const VoiceWidget: React.FC<IVoiceWidget> = ({ imageSrc, variant = 'full'
     }
   };
 
-  const startCall = () => {
-    // Start call
+  const getTitle = () => {
+    if (isIdle || isEnded) {
+      return content?.callToActionText ?? 'How can I help you?';
+    }
+
+    if (isInitializing) {
+      return 'Connecting...';
+    }
+
+    if (isListening) {
+      return content?.listeningText ?? 'Listening...';
+    }
+
+    return content?.talkingText ?? 'Talk to interrupt';
   };
 
-  const endCall = () => {
-    // End call
-  };
+  const amplitude = useMicrophoneAmplitude();
 
-  let title = '';
-  if (!isCalling) {
-    title = 'How can I help you?';
-  } else if (isListening) {
-    title = 'Listening...';
-  } else if (isTalking) {
-    title = 'Talk to interrupt';
-  }
+  const isCompact = renderMode === WidgetSettingsVoiceRenderMode.COMPACT;
+  const isExpanded = renderMode === WidgetSettingsVoiceRenderMode.EXPAND;
+
+  const bottomLinks = (
+    <BottomLinks
+      isSmall={isExpanded}
+      className={linkSectionModifier}
+      extraLinkUrl={footer?.enabled ? footer.url : ''}
+      extraLinkText={footer?.enabled ? footer.text : ''}
+      showPoweredBy={poweredBy}
+    />
+  );
 
   return (
     <div className={voiceWrapper}>
-      <div className={voiceWidgetContainer({ type: variant })}>
-        <div className={circle({ type: variant })}>
+      <div className={voiceWidgetContainer({ type: renderMode })}>
+        <div className={circle({ type: renderMode })}>
           <img
-            style={{ transform: `scale(${amplitude})` }}
-            src={imageSrc}
+            src={content?.imageURL || DEFAULT_CHAT_AVATAR}
             alt="agent brand image"
+            style={{ transform: isListening ? `scale(${amplitude})` : 'none' }}
             className={imageStyles}
           />
         </div>
-        <div className={controlSection({ type: variant })}>
-          {variant !== 'compact' && <div className={titleStyle}>{title}</div>}
+
+        <div className={controlSection({ type: renderMode })}>
+          {!isCompact && <div className={titleStyle}>{getTitle()}</div>}
+
           <Button
             onClick={handleButtonClick}
             variant={isCalling ? ButtonVariant.SECONDARY : ButtonVariant.PRIMARY}
-            className={buttonModifier({ type: variant })}
+            className={buttonModifier({ type: renderMode })}
           >
             <span className={buttonContent({ isVisible: isCalling })}>
               <ButtonIcon svg="endCall" />
-              <div className={buttonText}>End</div>
+              <div className={buttonText}>{content?.endButtonText ?? 'End'}</div>
             </span>
+
             <span className={buttonContent({ isVisible: !isCalling })}>
               <ButtonIcon svg="phone" />
-              <div className={buttonText}>Start a call</div>
+              <div className={buttonText}>{content?.startButtonText ?? 'Start a call'}</div>
             </span>
           </Button>
         </div>
-        {variant === 'expanded' && (
-          <BottomLinks
-            extraLinkText={extraLinkText}
-            extraLinkUrl={extraLinkUrl}
-            showPoweredBy={showPoweredBy}
-            className={linkSectionModifier}
-          />
-        )}
+
+        {isExpanded && bottomLinks}
       </div>
-      {variant !== 'expanded' && (
-        <BottomLinks extraLinkText={extraLinkText} extraLinkUrl={extraLinkUrl} showPoweredBy={showPoweredBy} />
-      )}
+
+      {!isExpanded && bottomLinks}
     </div>
   );
 };
