@@ -2,13 +2,13 @@ import { style } from '@vanilla-extract/css';
 
 import { COLORS } from '@/styles/colors';
 import { THEME } from '@/styles/colors.css';
-import { FAMILY, hideTextOverflow } from '@/styles/font';
+import { hideTextOverflow } from '@/styles/font';
 import { SIZES } from '@/styles/sizes';
 import { transition } from '@/styles/transitions';
 
 export const footerLinksContainer = style({
   color: COLORS.NEUTRAL_DARK[100],
-  fontFamily: FAMILY,
+  fontFamily: THEME.fontFamily,
   fontSize: '12px',
   lineHeight: '17px',
   width: '100%',
@@ -29,7 +29,7 @@ export const separator = style({
 
 export const extraLinkStyles = style({
   color: COLORS.NEUTRAL_DARK[100],
-  fontFamily: FAMILY,
+  fontFamily: THEME.fontFamily,
   fontSize: '12px',
   lineHeight: '17px',
   textDecorationColor: 'transparent',
