@@ -30,7 +30,13 @@ const useMicrophoneAmplitude = (): number => {
           analyser.getByteTimeDomainData(dataArray);
           const amplitudeValue = dataArray.reduce((acc, val) => acc + Math.abs(val - 128), 0) / dataArray.length;
 
-          setAmplitude(amplitudeValue);
+          // Calculate scale based on instantaneous amplitude
+          const baseScale = 1; // when silent
+          const scaleFactor = 0.1; // Controls how much it shrinks with loudness
+
+          const amplitude = amplitudeValue > 2 ? Math.max(0.66, baseScale - amplitudeValue * scaleFactor) : baseScale;
+
+          setAmplitude(amplitude);
           requestAnimationFrame(updateAmplitude);
         };
 
@@ -48,10 +54,7 @@ const useMicrophoneAmplitude = (): number => {
     };
   }, []);
 
-  // Calculate scale based on instantaneous amplitude
-  const baseScale = 1; // when silent
-  const scaleFactor = 0.1; // Controls how much it shrinks with loudness
-  return amplitude > 2 ? Math.max(0.66, baseScale - amplitude * scaleFactor) : baseScale;
+  return amplitude;
 };
 
 export default useMicrophoneAmplitude;
