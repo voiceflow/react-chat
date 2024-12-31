@@ -126,8 +126,6 @@ export class AudioService {
         sourceOpen = true;
         ref.outputSourceBuffer = outputMediaSource.addSourceBuffer('audio/mpeg');
 
-        ref.outputSourceBuffer.abort
-
         // (Optional) Set the mode to 'segments'
         // outputSourceBuffer.mode = 'segments';
 

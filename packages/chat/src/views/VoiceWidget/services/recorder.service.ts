@@ -32,8 +32,8 @@ export class RecorderService {
     return this.createAudioStreamPromise;
   }
 
-  private onMediaRecorderError = (event: ErrorEvent) => {
-    console.error('MediaRecorder error:', event.error);
+  private onMediaRecorderError = (event: Event) => {
+    console.error('MediaRecorder error:', (event as ErrorEvent).error);
   };
 
   private onMediaRecorderDataAvailable = (event: BlobEvent) => {

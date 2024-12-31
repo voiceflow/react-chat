@@ -1,5 +1,3 @@
-import debounce from 'lodash.debounce';
-
 interface QueueItem {
   markIndex: number;
   arrayBuffer: ArrayBuffer;
@@ -42,10 +40,12 @@ export class AudioService {
 
   private onAudioWaiting = () => {
     this.sendMark();
+    this.onListening();
   };
 
   private onAudioStalled = () => {
     this.sendMark();
+    this.onListening();
   };
 
   private onAudioPlaying = () => {
@@ -87,8 +87,6 @@ export class AudioService {
       this.playQueue();
     } else {
       this.sendMark();
-      this.onListening();
-      this.stopAudioDebounced();
     }
   }
 
@@ -135,8 +133,6 @@ export class AudioService {
     this.audio.currentTime = 0;
     this.audio.src = '';
   }
-
-  private stopAudioDebounced = debounce(this.stopAudio, 500);
 
   private startAudio() {
     if (this.stopped || this.mediaSource) return Promise.resolve();
