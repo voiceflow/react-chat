@@ -6,7 +6,7 @@ export class TraceService<T = unknown> {
   private readonly traces: TraceDeclaration<T, any>[] = [];
 
   public constructor(options: TraceOptions<T> = {}) {
-    this.traces = options.traces ?? [];
+    this.registerTraces(options.traces ?? []);
   }
 
   public registerTrace(step: TraceDeclaration<T, any>): this {
@@ -14,7 +14,12 @@ export class TraceService<T = unknown> {
     return this;
   }
 
-  public async processResponse(context: T, response: Pick<RuntimeInteractResponse, 'trace'>): Promise<T> {
+  public registerTraces(steps: TraceDeclaration<T, any>[]): this {
+    steps.forEach((step) => this.registerTrace(step));
+    return this;
+  }
+
+  public async processTrace(context: T, response: Pick<RuntimeInteractResponse, 'trace'>): Promise<T> {
     const meta: TraceHandlerMeta<T> = { context };
 
     for (const trace of response.trace) {
