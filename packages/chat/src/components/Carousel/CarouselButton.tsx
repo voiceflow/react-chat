@@ -1,9 +1,11 @@
+import clsx from 'clsx';
 import type { MouseEventHandler } from 'react';
 import { forwardRef } from 'react';
 
 import { Icon } from '@/components/Icon';
 
-import { carouselButton, rotate180 } from './carouselButtonStyles.css';
+import { buttonReset } from '../Button/reset.css';
+import { buttonWrapper, carouselButton, rotate180 } from './carouselButtonStyles.css';
 
 export interface CarouselButtonProps {
   /**
@@ -33,8 +35,14 @@ export interface CarouselButtonProps {
  */
 export const CarouselButton = forwardRef<HTMLButtonElement, CarouselButtonProps>(
   ({ onClick, visible, direction, noAvatar }, ref) => (
-    <button ref={ref} className={carouselButton({ visible, direction, withAvatar: !noAvatar })} onClick={onClick}>
-      <Icon svg="arrowRight" className={direction === 'left' ? rotate180 : ''} />
+    <button
+      ref={ref}
+      className={clsx(buttonReset, buttonWrapper({ direction, visible, withAvatar: !noAvatar }))}
+      onClick={onClick}
+    >
+      <div className={carouselButton()}>
+        <Icon svg="arrowRight" className={direction === 'left' ? rotate180 : ''} />
+      </div>
     </button>
   )
 );

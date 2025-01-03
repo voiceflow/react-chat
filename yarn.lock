@@ -7045,15 +7045,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vanilla-extract/babel-plugin-debug-ids@npm:^1.0.6":
-  version: 1.0.6
-  resolution: "@vanilla-extract/babel-plugin-debug-ids@npm:1.0.6"
-  dependencies:
-    "@babel/core": ^7.23.9
-  checksum: 55f173c0c6a95a8da35a8625e6400dd90a126a4cd3d52d6a5583573e957c0f13c408fd86873d1d65ac1cfa9dfd743306ed866ad8ed1793370b3857e0636b88df
-  languageName: node
-  linkType: hard
-
 "@vanilla-extract/babel-plugin-debug-ids@npm:^1.1.0":
   version: 1.1.0
   resolution: "@vanilla-extract/babel-plugin-debug-ids@npm:1.1.0"
@@ -7063,9 +7054,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vanilla-extract/css@npm:1.15.5, @vanilla-extract/css@npm:^1.15.5":
-  version: 1.15.5
-  resolution: "@vanilla-extract/css@npm:1.15.5"
+"@vanilla-extract/css@npm:1.16.1, @vanilla-extract/css@npm:^1.16.1":
+  version: 1.16.1
+  resolution: "@vanilla-extract/css@npm:1.16.1"
   dependencies:
     "@emotion/hash": ^0.9.0
     "@vanilla-extract/private": ^1.0.6
@@ -7079,7 +7070,7 @@ __metadata:
     media-query-parser: ^2.0.2
     modern-ahocorasick: ^1.0.0
     picocolors: ^1.0.0
-  checksum: 0c260e55a1648a827df74cae4475a1a61767e4ef3a7a3a299853ae3f77ed220d7a4b604737886140ea9e72a379eda4ee45b7349a4651cf3d5a4f2c8697448d6d
+  checksum: ff58f32778cbc15458aff951ad771ba46f772d78633ff99f849f590b83a22ce67e017af28351c68c32edcdaae4454146dd90f369842a627ee79dc9c3ab434e1e
   languageName: node
   linkType: hard
 
@@ -7132,14 +7123,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vanilla-extract/integration@npm:^7.1.9":
-  version: 7.1.9
-  resolution: "@vanilla-extract/integration@npm:7.1.9"
+"@vanilla-extract/integration@npm:^7.1.11":
+  version: 7.1.11
+  resolution: "@vanilla-extract/integration@npm:7.1.11"
   dependencies:
     "@babel/core": ^7.23.9
     "@babel/plugin-syntax-typescript": ^7.23.3
-    "@vanilla-extract/babel-plugin-debug-ids": ^1.0.6
-    "@vanilla-extract/css": ^1.15.5
+    "@vanilla-extract/babel-plugin-debug-ids": ^1.1.0
+    "@vanilla-extract/css": ^1.16.1
     dedent: ^1.5.3
     esbuild: "npm:esbuild@>=0.17.6 <0.24.0"
     eval: 0.1.8
@@ -7148,7 +7139,7 @@ __metadata:
     mlly: ^1.4.2
     vite: ^5.0.11
     vite-node: ^1.2.0
-  checksum: 6f6b1eab9f67091c47c070cdf8128034458f7cc649a3188037b85f7cd466466405b91321e3d909b8a5b81452280bc885a4c08530ab8bad20d6c22b5e69ec4602
+  checksum: 23196f388045c0cdaa35bf26cf484ca4423e336026770b743017056aed7704c74c2134b425571eee9c6859ed1a1553a435e4d0c502ff5a78f8dc2c02db00707a
   languageName: node
   linkType: hard
 
@@ -7179,14 +7170,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vanilla-extract/vite-plugin@npm:4.0.15":
-  version: 4.0.15
-  resolution: "@vanilla-extract/vite-plugin@npm:4.0.15"
+"@vanilla-extract/vite-plugin@npm:4.0.18":
+  version: 4.0.18
+  resolution: "@vanilla-extract/vite-plugin@npm:4.0.18"
   dependencies:
-    "@vanilla-extract/integration": ^7.1.9
+    "@vanilla-extract/integration": ^7.1.11
   peerDependencies:
     vite: ^4.0.3 || ^5.0.0
-  checksum: b99f1bb339ea5bdb12129f7689dba01506329bc9a3234d25db7da599e58b98a3380abb3cbcfa18a891630f275c5129209bc0dc655c24502303c9ed9e4a4efa99
+  checksum: 99f816370e93153a77be9882206eda948626305bd7d18d7121f849024ab194266b7ae0823f2f2f69a7cfb76e027b21d0a6c99f02c56aa495b04993fd9aa9816d
   languageName: node
   linkType: hard
 
@@ -7654,10 +7645,10 @@ __metadata:
     "@types/react-dom": 18.2.4
     "@types/react-speech-recognition": ^3.9.5
     "@types/react-syntax-highlighter": 15.5.13
-    "@vanilla-extract/css": 1.15.5
+    "@vanilla-extract/css": 1.16.1
     "@vanilla-extract/dynamic": 2.1.2
     "@vanilla-extract/recipes": 0.5.5
-    "@vanilla-extract/vite-plugin": 4.0.15
+    "@vanilla-extract/vite-plugin": 4.0.18
     "@vitejs/plugin-react": 4.2.1
     "@voiceflow/base-types": 2.113.1
     "@voiceflow/dtos-interact": 1.10.0

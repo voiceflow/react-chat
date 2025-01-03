@@ -19,6 +19,10 @@ export const cardsContainer = style({
   paddingRight: `${DIALOG_PADDING}px`,
 });
 
+export const firstCard = style({
+  marginLeft: 2,
+});
+
 export const cardsInnerContainer = style({
   display: 'flex',
   alignItems: 'start',

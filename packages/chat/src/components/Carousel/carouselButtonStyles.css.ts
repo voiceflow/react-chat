@@ -55,46 +55,17 @@ const fadeOutToRight = keyframes({
   },
 });
 
-export const carouselButton = recipe({
-  base: [
-    buttonStyles({ round: true }),
-    {
-      height: BUTTON_SIZE,
-      width: BUTTON_SIZE,
-      color: COLORS.NEUTRAL_DARK[100],
-      border: `solid 1px ${COLORS.NEUTRAL_LIGHT[100]}`,
-      backgroundColor: COLORS.white,
-      boxShadow: '0px 3px 4px 0px rgba(0, 0, 0, 0.02), 0px 8px 42px -16px rgba(0, 0, 0, 0.06)',
-      transition: transition(['opacity', 'color', 'transform']),
-      ':hover': {
-        color: COLORS.NEUTRAL_DARK[600],
-        transform: 'scale(1.15)',
-      },
-      ':active': {
-        color: COLORS.NEUTRAL_DARK[800],
-        transform: 'scale(0.8)',
-      },
-
-      // When the buttons are inside a carousel
-      [`.${carouselContainer} &`]: {
-        position: 'absolute',
-        top: '64px',
-      },
-    },
-  ],
+export const buttonWrapper = recipe({
+  base: {
+    backgroundColor: 'transparent',
+    height: BUTTON_SIZE + 6,
+    width: BUTTON_SIZE + 6,
+    padding: 2,
+    position: 'absolute',
+    top: '64px',
+  },
 
   variants: {
-    visible: {
-      true: {
-        opacity: 1,
-        pointerEvents: 'auto',
-      },
-      false: {
-        opacity: 0,
-        pointerEvents: 'none',
-      },
-    },
-
     direction: {
       right: {
         [`.${carouselContainer} &`]: {
@@ -107,11 +78,20 @@ export const carouselButton = recipe({
         },
       },
     },
+    visible: {
+      true: {
+        opacity: 1,
+        pointerEvents: 'auto',
+      },
+      false: {
+        opacity: 0,
+        pointerEvents: 'none',
+      },
+    },
     withAvatar: {
       false: {},
     },
   },
-
   compoundVariants: [
     {
       variants: {
@@ -174,6 +154,28 @@ export const carouselButton = recipe({
       style: {
         opacity: 0,
         animation: `${fadeOutToRight} .15s ease-in`,
+      },
+    },
+  ],
+});
+
+export const carouselButton = recipe({
+  base: [
+    buttonStyles({ round: true }),
+    {
+      borderRadius: '50%',
+      color: COLORS.NEUTRAL_DARK[100],
+      border: `solid 1px ${COLORS.NEUTRAL_LIGHT[100]}`,
+      backgroundColor: COLORS.white,
+      boxShadow: '0px 3px 4px 0px rgba(0, 0, 0, 0.02), 0px 8px 42px -16px rgba(0, 0, 0, 0.06)',
+      transition: transition(['opacity', 'color', 'transform']),
+      ':hover': {
+        color: COLORS.NEUTRAL_DARK[600],
+        transform: 'scale(1.15)',
+      },
+      ':active': {
+        color: COLORS.NEUTRAL_DARK[800],
+        transform: 'scale(0.8)',
       },
     },
   ],
