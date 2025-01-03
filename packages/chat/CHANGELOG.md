@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.24.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.24.0...@voiceflow/react-chat@2.24.1) (2025-01-03)
+
+### Bug Fixes
+
+* carousel hitbox edges fix (COR-4364) ([#486](https://github.com/voiceflow/react-chat/issues/486)) ([eb119f0](https://github.com/voiceflow/react-chat/commit/eb119f0aaa94065196c130cb3da26299cc6fbdbd))
+
 # [2.24.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.23.0...@voiceflow/react-chat@2.24.0) (2025-01-03)
 
 ### Features
