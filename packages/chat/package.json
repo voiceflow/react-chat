@@ -75,7 +75,7 @@
     "test:unit": "yarn g:vitest run --coverage"
   },
   "dependencies": {
-    "@vanilla-extract/css": "1.15.5",
+    "@vanilla-extract/css": "1.16.1",
     "@vanilla-extract/recipes": "0.5.5",
     "@voiceflow/base-types": "2.113.1",
     "@voiceflow/dtos-interact": "1.10.0",
@@ -123,7 +123,7 @@
     "@types/react-speech-recognition": "^3.9.5",
     "@types/react-syntax-highlighter": "15.5.13",
     "@vanilla-extract/dynamic": "2.1.2",
-    "@vanilla-extract/vite-plugin": "4.0.15",
+    "@vanilla-extract/vite-plugin": "4.0.18",
     "@vitejs/plugin-react": "4.2.1",
     "@voiceflow/test-common": "1.10.3",
     "chromatic": "11.2.0",

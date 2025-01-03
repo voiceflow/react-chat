@@ -5,6 +5,7 @@ import { RuntimeProvider } from '@/contexts';
 import { MOCK_IMAGE } from '@/fixtures';
 import { DEFAULT_AVATAR, RenderMode } from '@/main';
 import { WithDefaultPalette } from '@/storybook/decorators';
+import { widgetContainer } from '@/views/ChatWidget/styles.css';
 
 import { NewChat } from '../NewChat';
 import { MessageType } from '../SystemResponse/constants';
@@ -30,7 +31,32 @@ const meta: Meta<typeof Carousel> = {
           ...DEFAULT_WIDGET_SETTINGS,
         }}
       >
-        {Story()}
+        <div style={{ width: '380px' }} className={widgetContainer.classNames.variants.withChat.true}>
+          <NewChat
+            welcomeMessageProps={{
+              enabled: true,
+              title: 'Your awesome assistant',
+              description: 'Im hot, youre not, deal with it',
+            }}
+            headerProps={{
+              showImage: true,
+              title: 'Your awesome assistant',
+            }}
+            footerProps={{
+              showPoweredBy: true,
+              extraLinkText: 'Privacy',
+              extraLinkUrl: 'https://voiceflow.com',
+              messageInputProps: {
+                onSubmit: async (_) => Promise.resolve(),
+                placeholder: 'Message...',
+              },
+            }}
+            isLoading={false}
+            hasEnded={false}
+          >
+            {Story()}
+          </NewChat>
+        </div>
       </RuntimeProvider>
     ),
     WithDefaultPalette,
@@ -72,64 +98,69 @@ const MULTIPLE_CARDS = [
 
 export const Default: Story = {
   render: () => (
-    <div style={{ width: '380px' }}>
-      <NewChat
-        welcomeMessageProps={{
-          enabled: true,
-          title: 'Your awesome assistant',
-          description: 'Im hot, youre not, deal with it',
+    <>
+      <SystemMessage
+        avatar={DEFAULT_AVATAR}
+        message={{
+          type: MessageType.CAROUSEL,
+          cards: MULTIPLE_CARDS,
         }}
-        headerProps={{
-          showImage: true,
-          title: 'Your awesome assistant',
+        withImage={false}
+      />
+      <SystemMessage
+        avatar={DEFAULT_AVATAR}
+        message={{
+          type: MessageType.TEXT,
+          text: 'Do you like this carousel ?',
         }}
-        footerProps={{
-          showPoweredBy: true,
-          extraLinkText: 'Privacy',
-          extraLinkUrl: 'https://voiceflow.com',
-          messageInputProps: {
-            onSubmit: async (_) => Promise.resolve(),
-            placeholder: 'Message...',
-          },
-        }}
-        isLoading={false}
-        hasEnded={false}
-      >
-        <SystemMessage
-          avatar={DEFAULT_AVATAR}
-          message={{
-            type: MessageType.CAROUSEL,
-            cards: MULTIPLE_CARDS,
-          }}
-          withImage={false}
-        />
-        <SystemMessage
-          avatar={DEFAULT_AVATAR}
-          message={{
-            type: MessageType.TEXT,
-            text: 'Do you like this carousel ?',
-          }}
-          withImage={true}
-        />
-      </NewChat>
-    </div>
+        withImage={true}
+      />
+    </>
   ),
 };
 
 export const SingleCard: Story = {
-  args: {
-    cards: [FIRST_CARD],
-  },
+  render: () => (
+    <>
+      <SystemMessage
+        avatar={DEFAULT_AVATAR}
+        message={{
+          type: MessageType.CAROUSEL,
+          cards: [FIRST_CARD],
+        }}
+        withImage={false}
+      />
+      <SystemMessage
+        avatar={DEFAULT_AVATAR}
+        message={{
+          type: MessageType.TEXT,
+          text: 'Do you like this carousel ?',
+        }}
+        withImage={true}
+      />
+    </>
+  ),
 };
 
 export const MultipleCards: Story = {
-  args: {
-    cards: MULTIPLE_CARDS,
-  },
-};
-
-export const WithControls: Story = {
-  args: {
-    cards: MULTIPLE_CARDS,
-  },
+  render: () => (
+    <>
+      <SystemMessage
+        avatar={DEFAULT_AVATAR}
+        message={{
+          type: MessageType.CAROUSEL,
+          cards: MULTIPLE_CARDS,
+        }}
+        withImage={false}
+      />
+      <SystemMessage
+        avatar={DEFAULT_AVATAR}
+        message={{
+          type: MessageType.TEXT,
+          text: 'Do you like this carousel ?',
+        }}
+        withImage={true}
+      />
+    </>
+  ),
 };

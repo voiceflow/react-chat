@@ -18,6 +18,7 @@ import {
   cardsContainer,
   cardsInnerContainer,
   carouselContainer,
+  firstCard,
   GUTTER_WIDTH,
   lastCardSpacer,
 } from './styles.css';
@@ -65,7 +66,7 @@ export const Carousel: React.FC<CarouselProps> = ({ cards, avatar, withImage, fe
           {avatar && <Avatar avatar={avatar} className={clsx(withImage ? '' : hide, responseAvatar, avatarStyle)} />}
           {cards.map((card, i) => (
             <div
-              className={fadeInAndUp}
+              className={clsx(fadeInAndUp, i === 0 ? firstCard : '')}
               key={i}
               style={{
                 animationDelay: `${i * 0.1}s`,
