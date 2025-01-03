@@ -11,9 +11,9 @@ export const ChatScript = ({ projectID, embedded = false }: { projectID: string;
       const s = d.getElementsByTagName(t)[0];
       v.onload = function () {
         window.voiceflow.chat.load({
-          url: 'https://general-runtime-review-new-widget.us-2.development.voiceflow.com',
-          verify: { projectID: "${projectID}"  },
-            assistant: {
+          url: 'https://general-runtime.voiceflow.com',
+          verify: { projectID: "${projectID}" },
+          assistant: {
             stylesheet: '../../bundle/style.css',
           }
           ${embedded ? ', render: { mode: "embedded", target: document.getElementById("chat_embed") }' : ''}

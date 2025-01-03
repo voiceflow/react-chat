@@ -1,15 +1,21 @@
+import { createId } from '@paralleldrive/cuid2';
 import type { BaseRequest } from '@voiceflow/dtos-interact';
 import { isTextRequest, RequestType } from '@voiceflow/dtos-interact';
 import type { TraceDeclaration } from '@voiceflow/sdk-runtime';
-import cuid from 'cuid';
 import { useEffect, useRef, useState } from 'react';
 
-import { DEFAULT_MESSAGE_DELAY, MessageType } from '@/components/SystemResponse/constants';
 import { isIOS } from '@/device';
 import type { ChatConfig } from '@/dtos/ChatConfig.dto';
 import { useStateRef } from '@/hooks/useStateRef';
 import { useLocalStorageState } from '@/hooks/useStorage';
-import type { ChatPersistence, ChatWidgetSettings, SendMessage, SessionOptions, TurnProps } from '@/types';
+import type {
+  ChatPersistence,
+  ChatWidgetSettings,
+  SendMessage,
+  SessionOptions,
+  SystemTurnProps,
+  TurnProps,
+} from '@/types';
 import { SessionStatus, TurnType } from '@/types';
 import { handleActions } from '@/utils/actions';
 import { broadcast, BroadcastType } from '@/utils/broadcast';
@@ -22,8 +28,9 @@ import { silentAudio } from './silent-audio';
 import { EffectExtensions } from './traces/EffectExtensions.trace';
 import { NoReply } from './traces/NoReply.trace';
 import { ResponseExtensions } from './traces/ResponseExtensions.trace';
+import { StreamedMessage } from './traces/StreamedMessage.trace';
 import { useNoReply } from './useNoReply';
-import { createContext, useRuntimeAPI } from './useRuntimeAPI';
+import { useRuntimeAPI } from './useRuntimeAPI';
 
 export interface Settings {
   assistant: ChatWidgetSettings;
@@ -50,7 +57,7 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
     status: config.autostart ? SessionStatus.IDLE : SessionStatus.ENDED,
     // retrieve stored session
     ...getSession(assistant.common.persistence as ChatPersistence, config.verify.projectID, config.userID),
-    ...{ userID: config.userID || cuid() },
+    ...{ userID: config.userID || createId() },
   }));
 
   const [indicator, setIndicator] = useState(false);
@@ -60,6 +67,7 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
     ...config,
     ...session,
     traceHandlers: [
+      StreamedMessage(),
       NoReply(setNoReplyTimeout),
       ...EffectExtensions(assistant.extensions),
       ...ResponseExtensions(assistant.extensions),
@@ -84,6 +92,30 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
 
   const addTurn = (turn: TurnProps) => setTurns((prev) => [...prev, turn]);
 
+  const updateTurn = (turnID: string, data: RuntimeMessage) =>
+    setTurns((prev) => {
+      if (!prev.length) return prev;
+
+      const turn = [...prev]
+        .reverse()
+        .find((turn): turn is SystemTurnProps => turn.id === turnID && turn.type === TurnType.SYSTEM);
+      if (!turn) return prev;
+
+      const turnIndex = prev.indexOf(turn);
+      const cloned = [...prev];
+
+      cloned.splice(turnIndex, 1, {
+        ...turn,
+        messages: [...turn.messages, ...data.messages],
+        actions: data.actions ?? turn.actions,
+      });
+
+      console.log('updated', cloned);
+      console.log('data', data);
+
+      return cloned;
+    });
+
   const reset = () => setTurns(() => []);
 
   const interact: SendMessage = async (action: BaseRequest, message?: string) => {
@@ -99,7 +131,7 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
     const userMessage = message || (isTextRequest(action) ? action.payload : null);
     if (userMessage) {
       addTurn({
-        id: cuid(),
+        id: createId(),
         type: TurnType.USER,
         message: userMessage,
         timestamp: Date.now(),
@@ -109,36 +141,49 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
     const userAction = resolveAction(action, getTurns());
 
     setIndicator(true);
-    const context = await runtime.interact(userAction, { tts: isAudioOutputEnabled() }).catch((error) => {
+    const stream = await runtime.interactStream(userAction).catch((error) => {
       // TODO: better define error condition
       console.error(error);
-      return createContext();
+      return new ReadableStream<RuntimeMessage>();
     });
     setIndicator(false);
 
+    const turnID = createId();
+
     addTurn({
-      id: cuid(),
+      id: turnID,
       type: TurnType.SYSTEM,
       timestamp: Date.now(),
-      ...context,
+      messages: [],
     });
 
-    const shouldPlay = isAudioOutputEnabled() && playAudiosStack.current.length === 0;
+    const reader = stream.getReader();
 
-    if (isAudioOutputEnabled()) {
-      context.messages.forEach((message) => {
-        if (message.type === MessageType.TEXT && message.audio?.src) {
-          playAudiosStack.current.push(message.audio.src);
-        }
-      });
+    // eslint-disable-next-line no-constant-condition
+    while (true) {
+      // eslint-disable-next-line no-await-in-loop
+      const { done, value } = await reader.read();
+      if (done) break;
+
+      updateTurn(turnID, value);
     }
 
-    if (shouldPlay) {
-      // eslint-disable-next-line no-promise-executor-return
-      await new Promise((resolve) => setTimeout(resolve, DEFAULT_MESSAGE_DELAY));
+    // const shouldPlay = isAudioOutputEnabled() && playAudiosStack.current.length === 0;
 
-      playAudioCircle();
-    }
+    // if (isAudioOutputEnabled()) {
+    //   stream.messages.forEach((message) => {
+    //     if (message.type === MessageType.TEXT && message.audio?.src) {
+    //       playAudiosStack.current.push(message.audio.src);
+    //     }
+    //   });
+    // }
+
+    // if (shouldPlay) {
+    //   // eslint-disable-next-line no-promise-executor-return
+    //   await new Promise((resolve) => setTimeout(resolve, DEFAULT_MESSAGE_DELAY));
+
+    //   playAudioCircle();
+    // }
 
     broadcast({ type: BroadcastType.INTERACT, payload: { session: sessionRef.current, action: userAction } });
     saveSession(assistant.common.persistence as ChatPersistence, config.verify.projectID, sessionRef.current);
@@ -192,13 +237,13 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
     audio.stop();
   };
 
-  const playAudioCircle = async () => {
-    if (!isAudioOutputEnabled() || !playAudiosStack.current.length) return;
+  // const playAudioCircle = async () => {
+  //   if (!isAudioOutputEnabled() || !playAudiosStack.current.length) return;
 
-    await audio.play(playAudiosStack.current.shift());
+  //   await audio.play(playAudiosStack.current.shift());
 
-    playAudioCircle();
-  };
+  //   playAudioCircle();
+  // };
 
   const toggleAudioOutput = () => {
     stopAudios();

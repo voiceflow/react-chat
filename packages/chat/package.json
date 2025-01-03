@@ -75,6 +75,7 @@
     "test:unit": "yarn g:vitest run --coverage"
   },
   "dependencies": {
+    "@paralleldrive/cuid2": "2.2.2",
     "@vanilla-extract/css": "1.15.5",
     "@vanilla-extract/recipes": "0.5.5",
     "@voiceflow/base-types": "2.113.1",
@@ -94,6 +95,7 @@
     "react-textarea-autosize": "8.5.3",
     "regenerator-runtime": "0.13.11",
     "remark-gfm": "4.0.0",
+    "remeda": "1.0.1",
     "slate": "0.94.1",
     "ts-pattern": "4.3.0",
     "zod": "3.22.4"

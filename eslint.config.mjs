@@ -1,6 +1,6 @@
 import baseConfig from '@voiceflow/eslint-config';
 
-/** @type {import('eslint').Linter.FlatConfig[]} */
+/** @type {import('eslint').Linter.Config[]} */
 export default [
   ...baseConfig,
   {
@@ -10,6 +10,8 @@ export default [
   {
     rules: {
       'no-console': ['error', { allow: ['info', 'warn', 'error'] }],
+
+      'sonarjs/no-one-iteration-loop': 'off',
     },
   },
 ];

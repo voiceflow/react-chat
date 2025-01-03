@@ -30,7 +30,8 @@
     "http-errors": "2.0.0"
   },
   "devDependencies": {
-    "@types/http-errors": "^1.8.2"
+    "@types/http-errors": "^1.8.2",
+    "eventsource-parser": "3.0.0"
   },
   "volta": {
     "extends": "../../package.json"
