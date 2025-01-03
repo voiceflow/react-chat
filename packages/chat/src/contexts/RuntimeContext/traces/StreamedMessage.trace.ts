@@ -1,8 +1,8 @@
 import type { TraceDeclaration } from '@voiceflow/sdk-runtime';
-import { useEffect, useState } from 'react';
 import { match } from 'ts-pattern';
 
-import type { StreamedMessageProps } from '@/components/SystemResponse';
+import type { TextMessageProps } from '@/components/SystemResponse';
+import { MessageType } from '@/components/SystemResponse/constants';
 
 import type { RuntimeMessage } from '../messages';
 
@@ -32,7 +32,7 @@ interface CompletionTrace {
 
 export const StreamedMessage = (): TraceDeclaration<RuntimeMessage, any> => {
   let message:
-    | (StreamedMessageProps & {
+    | (TextMessageProps & {
         stream: TransformStream;
       })
     | null = null;
@@ -45,38 +45,9 @@ export const StreamedMessage = (): TraceDeclaration<RuntimeMessage, any> => {
           const stream = new TransformStream();
 
           message = {
-            type: 'stream',
+            type: MessageType.TEXT,
             text: '',
             stream,
-            useStream: () => {
-              const [state, setState] = useState('');
-
-              useEffect(() => {
-                try {
-                  const reader = stream.readable.getReader();
-
-                  const read = async () => {
-                    const { done, value } = await reader.read();
-
-                    if (done) return;
-
-                    setState((prev) => prev + value);
-                  };
-
-                  read();
-
-                  return () => {
-                    reader.cancel();
-                  };
-                } catch (e) {
-                  console.error('cannot read stream', e);
-                }
-
-                return undefined;
-              }, []);
-
-              return state;
-            },
           };
           context.messages.push(message);
         })

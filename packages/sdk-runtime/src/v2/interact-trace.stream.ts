@@ -8,9 +8,6 @@ export class InteractTraceStream<T> extends TransformStream<EventSourceMessage, 
     private readonly trace: TraceService<T>
   ) {
     super({
-      // start: () => {},
-      // flush: () => {},
-
       transform: async (chunk, controller) => {
         const data = JSON.parse(chunk.data);
         const trace = await this.trace.processTrace(this.createContext(), data);

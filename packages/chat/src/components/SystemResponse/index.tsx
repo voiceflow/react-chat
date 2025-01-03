@@ -93,6 +93,7 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
 }) => {
   const runtime = useContext(RuntimeStateAPIContext);
 
+  // TODO: undo changes to this file
   // const { showIndicator, visibleMessages, complete } = useAnimatedMessages({
   //   messages,
   //   isLast,

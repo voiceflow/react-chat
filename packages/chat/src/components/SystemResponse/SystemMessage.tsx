@@ -100,16 +100,6 @@ export const SystemMessage: React.FC<SystemMessageProps> = ({
                     textContent={textContent}
                   />
                 ))
-                .with({ type: MessageType.STREAM }, ({ text, ai }) => (
-                  <AgentMessage
-                    text={text}
-                    disclaimerMessage={aiDisclaimer?.text}
-                    ai={ai && aiDisclaimer?.enabled}
-                    isLast={isLast}
-                    feedback={feedback}
-                    textContent={textContent}
-                  />
-                ))
                 .with({ type: MessageType.IMAGE }, ({ url }) => <Image image={url} mode={config.render?.mode} />)
                 .with({ type: MessageType.CARD }, (props) => <Card {...R.omit(props, ['type'])} />)
                 .with({ type: MessageType.EXTENSION }, ({ payload }) => (

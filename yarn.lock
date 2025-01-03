@@ -7346,7 +7346,6 @@ __metadata:
     eslint-plugin-storybook: 0.8.0
     happy-dom: 14.7.1
     http-server: 14.1.1
-    nanoevents: 9.1.0
     react: 18.2.0
     react-dom: 18.2.0
     react-markdown: 9.0.0
@@ -17110,13 +17109,6 @@ __metadata:
   version: 8.0.0
   resolution: "nanoevents@npm:8.0.0"
   checksum: 46806fb1bca823de1dac0ec38352c9ebd25dd9f2186eada6357f2941983203c1c77fc383e460852a139b4ced569af2a2777f82cb574f705fd6f8402497f4bfc2
-  languageName: node
-  linkType: hard
-
-"nanoevents@npm:9.1.0":
-  version: 9.1.0
-  resolution: "nanoevents@npm:9.1.0"
-  checksum: 77abbc15c4efc15518a0075b604e5db045e5d6184f4d08892c771928a84f53b1dd46138902213f66e8a9989e6c930168ca6441b80ff9098aec83c01a782bd42b
   languageName: node
   linkType: hard
 

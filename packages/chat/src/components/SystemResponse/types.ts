@@ -17,15 +17,6 @@ export interface TextMessageProps extends BaseMessageProps {
   audio?: { src: string };
 }
 
-export interface StreamedMessageProps extends BaseMessageProps {
-  type: StringifiedEnum<MessageType.STREAM>;
-  text: string | Text.SlateTextValue;
-
-  // // a promise that resolves when the stream is finished
-  // finished: Promise<void>;
-  useStream: () => string;
-}
-
 export interface ImageMessageProps extends BaseMessageProps {
   type: StringifiedEnum<MessageType.IMAGE>;
   url: string | null;
@@ -59,7 +50,6 @@ export interface CustomMessage extends BaseMessageProps {
 
 export type MessageProps =
   | TextMessageProps
-  | StreamedMessageProps
   | ImageMessageProps
   | CardMessageProps
   | CarouselMessageProps
