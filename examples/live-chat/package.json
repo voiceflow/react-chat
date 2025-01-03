@@ -1,6 +1,6 @@
 {
   "name": "@voiceflow-example/live-chat",
-  "version": "0.4.31",
+  "version": "0.4.32",
   "private": true,
   "license": "MIT",
   "scripts": {

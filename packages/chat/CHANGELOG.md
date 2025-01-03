@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.24.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.23.0...@voiceflow/react-chat@2.24.0) (2025-01-03)
+
+### Features
+
+* change padding on welcome banner (COR-4248) ([#479](https://github.com/voiceflow/react-chat/issues/479)) ([f186c2e](https://github.com/voiceflow/react-chat/commit/f186c2e6f08d188772f81c364b57fd3bd8f8865e))
+* make launcher image undraggable (COR-4295) ([#480](https://github.com/voiceflow/react-chat/issues/480)) ([4327a42](https://github.com/voiceflow/react-chat/commit/4327a42c5587a743708b0227734c63fa73407eb5))
+
 # [2.23.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.22.2...@voiceflow/react-chat@2.23.0) (2024-12-18)
 
 ### Features
