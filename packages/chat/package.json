@@ -75,6 +75,7 @@
     "test:unit": "yarn g:vitest run --coverage"
   },
   "dependencies": {
+    "@paralleldrive/cuid2": "2.2.2",
     "@vanilla-extract/css": "1.15.5",
     "@vanilla-extract/recipes": "0.5.5",
     "@voiceflow/base-types": "2.113.1",
@@ -86,6 +87,7 @@
     "chroma-js": "2.4.2",
     "clsx": "1.2.1",
     "cuid": "2.1.8",
+    "nanoevents": "9.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-markdown": "9.0.0",
@@ -94,6 +96,7 @@
     "react-textarea-autosize": "8.5.3",
     "regenerator-runtime": "0.13.11",
     "remark-gfm": "4.0.0",
+    "remeda": "1.0.1",
     "slate": "0.94.1",
     "ts-pattern": "4.3.0",
     "zod": "3.22.4"

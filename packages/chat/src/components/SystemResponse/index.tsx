@@ -93,12 +93,12 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
 }) => {
   const runtime = useContext(RuntimeStateAPIContext);
 
-  const { showIndicator, visibleMessages, complete } = useAnimatedMessages({
-    messages,
-    isLast,
-  });
+  // const { showIndicator, visibleMessages, complete } = useAnimatedMessages({
+  //   messages,
+  //   isLast,
+  // });
 
-  useAutoScroll([showIndicator, complete, visibleMessages.length]);
+  // useAutoScroll([showIndicator, complete, messages.length]);
 
   if (!messages.length && !actions.length) return null;
 
@@ -108,9 +108,9 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
     }
     return -1;
   };
-  const lastTextMessageIndex = getLastTextMessageIndex(visibleMessages);
+  const lastTextMessageIndex = getLastTextMessageIndex(messages);
 
-  const allTextContentForMessage = visibleMessages.reduce<string>((acc, message) => {
+  const allTextContentForMessage = messages.reduce<string>((acc, message) => {
     if (message.type === MessageType.TEXT) {
       return (
         acc + (acc ? '\n' : '') + (typeof message.text !== 'string' ? serializeToText(message.text) : message.text)
@@ -121,34 +121,35 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
 
   return (
     <MessageContainer isLast={isLast}>
-      {visibleMessages.map((message, index) => {
+      {messages.map((message, index) => {
         const endConversation = message?.type === MessageType.END;
         if (endConversation) {
           return <EndState />;
         }
 
-        const lastMessageInGroup = index === visibleMessages.length - 1;
+        // const lastMessageInGroup = index === messages.length - 1;
 
         // Showing feedback on previous messages that were in the chat
         const showFeedback = index === lastTextMessageIndex; // lastMessageInGroup && message.type === MessageType.TEXT;
 
-        // Showing feedback on the most recent system message of the chat
-        const addFeedback = feedback && isLast && complete && lastMessageInGroup;
+        // // Showing feedback on the most recent system message of the chat
+        // const addFeedback = feedback && isLast && complete && lastMessageInGroup;
 
         return (
           <>
             <Message
               message={message}
-              withImage={!showIndicator && lastMessageInGroup}
+              // withImage={!showIndicator && lastMessageInGroup}
+              withImage
               avatar={avatar}
               timestamp={timestamp}
               isLast={isLast}
-              feedback={showFeedback || (addFeedback && message.type === MessageType.CAROUSEL) ? feedback : undefined}
+              // feedback={showFeedback || (addFeedback && message.type === MessageType.CAROUSEL) ? feedback : undefined}
               textContent={allTextContentForMessage}
               key={index}
               aiDisclaimer={aiDisclaimer}
             />
-            {addFeedback && message.type !== MessageType.CAROUSEL && (
+            {/* {addFeedback && message.type !== MessageType.CAROUSEL && (
               <div className={feedbackContainer({ withAvatar: !!avatar })}>
                 <FeedbackButton
                   {...feedback}
@@ -156,11 +157,11 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
                   variant={FeedbackButtonVariant.LAST_RESPONSE}
                 />
               </div>
-            )}
+            )} */}
           </>
         );
       })}
-      {isLast && complete && !!actions.length && (
+      {/* {isLast && complete && !!actions.length && (
         <div className={actionsContainer({ withAvatar: !!avatar })}>
           {actions.map(({ request, name }, index) => (
             <div
@@ -176,7 +177,7 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
           ))}
         </div>
       )}
-      {showIndicator && <Indicator avatar={avatar} isLast={isLast} />}
+      {showIndicator && <Indicator avatar={avatar} isLast={isLast} />} */}
     </MessageContainer>
   );
 };

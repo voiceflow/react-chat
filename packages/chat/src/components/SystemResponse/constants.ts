@@ -1,5 +1,6 @@
 export enum MessageType {
   TEXT = 'text',
+  STREAM = 'stream',
   IMAGE = 'image',
   CARD = 'card',
   CAROUSEL = 'carousel',

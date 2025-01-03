@@ -6,6 +6,6 @@ export default {
     title: 'Chat',
     type: 'page',
     // eslint-disable-next-line no-secrets/no-secrets
-    href: '/chat?projectID=672a5d31e7c18363c7363e3f',
+    href: '/chat?projectID=67646b005e623ff04fdf1f05',
   },
 };

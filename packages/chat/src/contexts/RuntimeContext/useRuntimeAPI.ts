@@ -1,5 +1,5 @@
 import type { RuntimeAction } from '@voiceflow/sdk-runtime';
-import { VoiceflowRuntime } from '@voiceflow/sdk-runtime';
+import { RuntimeClient, VoiceflowRuntime } from '@voiceflow/sdk-runtime';
 import { serializeToText } from '@voiceflow/slate-serializer/text';
 import { useMemo } from 'react';
 
@@ -29,6 +29,14 @@ export const useRuntimeAPI = ({
   versionID,
   traceHandlers = [],
 }: ChatConfig & Pick<SessionOptions, 'userID'> & { traceHandlers?: typeof MESSAGE_TRACES }) => {
+  const client: RuntimeClient<RuntimeMessage> = useMemo(
+    () =>
+      new RuntimeClient({
+        baseURL: url,
+        traces: [...MESSAGE_TRACES, ...traceHandlers],
+      }),
+    []
+  );
   const runtime: VoiceflowRuntime<RuntimeMessage> = useMemo(
     () =>
       new VoiceflowRuntime<RuntimeMessage>({
@@ -45,6 +53,14 @@ export const useRuntimeAPI = ({
       action,
       config,
       ...(versionID && { versionID }),
+    });
+
+  const interactStream = (action: RuntimeAction) =>
+    client.interactStream(createContext, {
+      userID,
+      action,
+      projectID: verify.projectID,
+      ...(versionID && { environment: versionID }),
     });
 
   const saveFeedback = async (name: FeedbackName, lastTurnMessages: MessageProps[], userTurn: UserTurnProps | null) => {
@@ -82,5 +98,5 @@ export const useRuntimeAPI = ({
     });
   };
 
-  return { interact, saveFeedback, saveTranscript };
+  return { interact, interactStream, saveFeedback, saveTranscript };
 };
