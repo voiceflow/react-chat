@@ -38,7 +38,7 @@ export class VoiceflowRuntime<T> {
 
   public async interact(context: T, request: RuntimeInteractRequest): Promise<T> {
     const response = await this.runtime.interact(request);
-    return this.trace.processTrace(context, response);
+    return this.trace.processResponse(context, response);
   }
 
   public async feedback(request: RuntimeFeedbackRequest) {
