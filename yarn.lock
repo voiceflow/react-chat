@@ -6388,15 +6388,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash.debounce@npm:^4.0.9":
-  version: 4.0.9
-  resolution: "@types/lodash.debounce@npm:4.0.9"
-  dependencies:
-    "@types/lodash": "*"
-  checksum: 8183a152e01928e3b97ca773f6ae6038b8695e76493ba8bf6b743ec143948a62294fbc9d49fa4a78b52265b3ba4892ef57534e0c13d04aa0f111671b5a944feb
-  languageName: node
-  linkType: hard
-
 "@types/lodash.memoize@npm:^4.1.7":
   version: 4.1.9
   resolution: "@types/lodash.memoize@npm:4.1.9"
@@ -7658,7 +7649,6 @@ __metadata:
     "@testing-library/jest-dom": 6.4.2
     "@testing-library/react": 15.0.2
     "@types/chroma-js": 2.1.4
-    "@types/lodash.debounce": ^4.0.9
     "@types/node": 20.12.7
     "@types/react": 18.2.8
     "@types/react-dom": 18.2.4
