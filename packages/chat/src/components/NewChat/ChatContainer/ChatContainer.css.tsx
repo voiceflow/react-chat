@@ -19,6 +19,7 @@ export const chatWindowStyle = recipe({
     popover: {
       true: {
         height: 'auto',
+        minHeight: '400px',
         maxHeight: '100%',
         boxSizing: 'border-box',
         pointerEvents: 'all',
