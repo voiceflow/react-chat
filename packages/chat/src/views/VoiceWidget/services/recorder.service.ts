@@ -62,7 +62,7 @@ export class RecorderService {
     this.mediaRecorder.addEventListener('error', this.onMediaRecorderError);
     this.mediaRecorder.addEventListener('dataavailable', this.onMediaRecorderDataAvailable);
 
-    this.mediaRecorder?.start(500);
+    this.mediaRecorder?.start(1000);
 
     console.info('Started audio streaming...');
   }
