@@ -19,7 +19,10 @@ export const BottomLinks: React.FC<IBottomLinks> = ({
   extraLinkText,
   showPoweredBy,
 }) => {
-  const showExtraLink = extraLinkText && extraLinkUrl;
+  const showExtraLink = !!extraLinkText && !!extraLinkUrl;
+  const showExtraText = !!extraLinkText && !extraLinkUrl;
+
+  const showSeparator = showPoweredBy && (showExtraLink || showExtraText);
 
   return (
     <div className={clsx(footerLinksContainer({ small: isSmall }), className)}>
@@ -31,9 +34,9 @@ export const BottomLinks: React.FC<IBottomLinks> = ({
         </div>
       )}
 
-      {showPoweredBy && showExtraLink && <div className={separator} />}
+      {showSeparator && <div className={separator} />}
 
-      {extraLinkText && !extraLinkUrl && <div className={footerNote}>{extraLinkText}</div>}
+      {showExtraText && <div className={footerNote}>{extraLinkText}</div>}
 
       {showExtraLink && (
         <a href={extraLinkUrl} target="_blank" className={extraLinkStyles}>

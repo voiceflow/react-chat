@@ -95,7 +95,7 @@ export const Base = {
         allowDangerousHTML: true,
         voice: {
           url: 'https://runtime-api-review-operator.us-2.development.voiceflow.com',
-          accessToken: 'VF.DM.67703df8c466f3697baf4df9.OY8scQUFwMJAt3c1',
+          accessToken: 'test',
         },
       }}
       assistant={{

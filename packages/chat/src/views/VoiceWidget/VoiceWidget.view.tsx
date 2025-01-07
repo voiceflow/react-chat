@@ -5,7 +5,7 @@ import type { VoiceState } from '@/constant/voice.constant';
 import { VOICE_STATE } from '@/constant/voice.constant';
 import { RuntimeStateAPIContext } from '@/contexts';
 
-import { useVoiceController } from './hooks/use-voice-controller.hook';
+import { useVoiceService } from './hooks/use-voice-service.hook';
 
 export const VoiceWidget = () => {
   const { assistant, config } = useContext(RuntimeStateAPIContext);
@@ -15,14 +15,14 @@ export const VoiceWidget = () => {
     throw new Error('Voice is not configured in the config');
   }
 
-  const voiceController = useVoiceController({
+  const voiceService = useVoiceService({
     url: config.voice.url,
     userID: config.userID,
     assistantID: config.verify.projectID,
     accessToken: config.voice.accessToken,
   });
 
-  useEffect(() => voiceController.onStateUpdate((state) => setState(state)), [voiceController]);
+  useEffect(() => voiceService.onStateUpdate((state) => setState(state)), [voiceService]);
 
   return (
     <VoiceView
@@ -30,8 +30,8 @@ export const VoiceWidget = () => {
       footer={assistant.common.footerLink}
       settings={assistant.voice}
       poweredBy={assistant.common.poweredBy}
-      onEndCall={voiceController.endConversation}
-      onStartCall={voiceController.startConversation}
+      onEndCall={voiceService.endConversation}
+      onStartCall={voiceService.startConversation}
     />
   );
 };

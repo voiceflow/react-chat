@@ -17,12 +17,22 @@ export default meta;
 
 export const Base: Story = {
   args: {
-    imageSrc: logo,
-    isListening: true,
+    state: 'listening',
+    settings: {
+      content: {
+        talkingText: '',
+        endButtonText: '',
+        listeningText: '',
+        startButtonText: '',
+        callToActionText: '',
+        imageURL: logo,
+      },
+      renderMode: 'full',
+    },
     footer: {
-      extraLinkText: 'Privacy',
-      extraLinkUrl: 'https://www.google.com',
-      showPoweredBy: true,
+      text: 'Privacy',
+      url: 'https://www.google.com',
+      enabled: true,
     },
   },
 };
@@ -30,29 +40,47 @@ export const Base: Story = {
 export const Listening: Story = {
   args: {
     ...Base.args,
-    isListening: true,
+    state: 'listening',
   },
 };
 
 export const Talking: Story = {
   args: {
     ...Base.args,
-    isTalking: true,
+    state: 'talking',
   },
 };
 
 export const Compact: Story = {
   args: {
     ...Base.args,
-    variant: 'compact',
-    isListening: true,
+    settings: {
+      content: {
+        talkingText: '',
+        endButtonText: '',
+        listeningText: '',
+        startButtonText: '',
+        callToActionText: '',
+      },
+      renderMode: 'compact',
+    },
+    state: 'listening',
   },
 };
 
 export const Expand: Story = {
   args: {
     ...Base.args,
-    variant: 'expanded',
-    isListening: true,
+    settings: {
+      content: {
+        talkingText: '',
+        endButtonText: '',
+        listeningText: '',
+        startButtonText: '',
+        callToActionText: '',
+      },
+      renderMode: 'expand',
+    },
+    state: 'listening',
   },
 };
