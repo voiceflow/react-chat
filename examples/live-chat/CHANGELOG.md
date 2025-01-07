@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/voiceflow/react-chat/compare/@voiceflow-example/live-chat@0.4.35...@voiceflow-example/live-chat@0.5.0) (2025-01-07)
+
+### Features
+
+* update voice widget (COR-4323) ([#482](https://github.com/voiceflow/react-chat/issues/482)) ([cfc70e5](https://github.com/voiceflow/react-chat/commit/cfc70e52061ad764017d7fe19fbadb8044fed0c1))
+
 ## [0.4.35](https://github.com/voiceflow/react-chat/compare/@voiceflow-example/live-chat@0.4.34...@voiceflow-example/live-chat@0.4.35) (2025-01-07)
 
 **Note:** Version bump only for package @voiceflow-example/live-chat
