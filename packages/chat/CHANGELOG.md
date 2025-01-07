@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.25.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.24.1...@voiceflow/react-chat@2.25.0) (2025-01-07)
+
+### Features
+
+* bump dto interact (COR-4274) ([#478](https://github.com/voiceflow/react-chat/issues/478)) ([8ac190d](https://github.com/voiceflow/react-chat/commit/8ac190d1f45df9c9f84e5df3eb9759ad75c21b25))
+
 ## [2.24.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.24.0...@voiceflow/react-chat@2.24.1) (2025-01-03)
 
 ### Bug Fixes
