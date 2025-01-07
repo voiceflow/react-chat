@@ -1,6 +1,10 @@
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 import type { Trace } from '@voiceflow/base-types';
-import { WidgetSettingsChatRenderMode } from '@voiceflow/dtos-interact';
+import {
+  WidgetSettingsChatRenderMode,
+  WidgetSettingsVoiceRenderMode,
+  WidgetSettingsWidgetType,
+} from '@voiceflow/dtos-interact';
 import clsx from 'clsx';
 import { useContext, useEffect, useLayoutEffect, useState } from 'react';
 
@@ -16,6 +20,7 @@ import { FAMILY } from '@/styles/font';
 import { BREAKPOINTS } from '@/styles/sizes';
 import { useResolveAssistantStyleSheet } from '@/utils/stylesheet';
 import { ChatWindow } from '@/views/ChatWindow';
+import { VoiceWidget } from '@/views/VoiceWidget/VoiceWidget.view';
 
 import { chatContainer, LAUNCHER_MARGIN, launcherContainer, popoverBackdrop, widgetContainer } from './styles.css';
 
@@ -35,9 +40,21 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
 
   const checkMobile = () => window.matchMedia(`(max-width: ${BREAKPOINTS.mobile})`).matches;
   const [isMobile, setIsMobile] = useState(checkMobile());
+
+  const isVoice = assistant.type === WidgetSettingsWidgetType.VOICE;
+  const isPopover = assistant.chat.renderMode === WidgetSettingsChatRenderMode.POPOVER;
+  const isVoiceWithoutLauncher =
+    isVoice &&
+    (assistant.voice.renderMode === WidgetSettingsVoiceRenderMode.COMPACT ||
+      assistant.voice.renderMode === WidgetSettingsVoiceRenderMode.FULL);
+
   useLayoutEffect(() => {
+    if (isVoiceWithoutLauncher) {
+      open();
+    }
+
     setIsMobile(checkMobile());
-  }, []);
+  }, [isVoiceWithoutLauncher]);
 
   const palette = usePalette(assistant);
 
@@ -72,10 +89,11 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
 
   const widgetPosition = {
     [side]: position[side],
-    bottom: `${parseInt(position.bottom, 10) + launcherButtonSize + LAUNCHER_MARGIN}px`,
-    height: chatHeight,
+    bottom: isVoiceWithoutLauncher
+      ? position.bottom
+      : `${parseInt(position.bottom, 10) + launcherButtonSize + LAUNCHER_MARGIN}px`,
+    height: isVoice ? 'auto' : chatHeight,
   };
-  const isPopover = assistant.chat.renderMode === WidgetSettingsChatRenderMode.POPOVER;
 
   const chatContainerPosition = isMobile || isPopover ? {} : widgetPosition;
   const isStyleSheetResolved = useResolveAssistantStyleSheet(assistant, shadowRoot);
@@ -105,19 +123,25 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
         })}
         className={clsx(ClassName.WIDGET, widgetContainer({ hidden: isHidden, withChat: isOpen }))}
       >
-        <div className={launcherContainer} style={position}>
-          <Proactive side={side} messages={proactiveMessages} />
-          <Launcher
-            onClick={toggleChat}
-            isOpen={isOpen}
-            type={assistant.common.launcher.type}
-            image={assistant.common.launcher.imageURL}
-            label={assistant.common.launcher.text}
-          />
-        </div>
+        {!isVoiceWithoutLauncher && (
+          <div className={launcherContainer} style={position}>
+            <Proactive side={side} messages={proactiveMessages} />
+
+            <Launcher
+              type={assistant.common.launcher.type}
+              image={assistant.common.launcher.imageURL}
+              label={assistant.common.launcher.text}
+              isOpen={isOpen}
+              isVoice={isVoice}
+              onClick={toggleChat}
+            />
+          </div>
+        )}
+
         <div className={popoverBackdrop({ visible: isPopover && isOpen })} onClick={() => close()} />
-        <div className={chatContainer({ popover: isPopover })} style={chatContainerPosition}>
-          <ChatWindow isMobile={isMobile} isPopover={isPopover} />
+
+        <div className={chatContainer({ popover: isPopover, voice: isVoice })} style={chatContainerPosition}>
+          {isVoice ? <VoiceWidget /> : <ChatWindow isMobile={isMobile} isPopover={isPopover} />}
         </div>
       </div>
     </>

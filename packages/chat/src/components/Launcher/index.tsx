@@ -7,7 +7,9 @@ import { ClassName } from '@/constants';
 
 import { Button } from '../Button';
 import { ChevronIcon } from './ChevronIcon';
+import { DEFAULT_ICON } from './constant';
 import { LauncherWithLabel } from './LauncherWithLabel';
+import { PhoneIcon } from './PhoneIcon';
 import {
   closeChevron,
   closeIconStyles,
@@ -18,7 +20,7 @@ import {
   launcherStyles,
 } from './styles.css';
 
-export const DEFAULT_ICON = 'https://cdn.voiceflow.com/widget-next/message.png';
+export { DEFAULT_ICON };
 
 export interface LauncherProps {
   /**
@@ -48,6 +50,11 @@ export interface LauncherProps {
    * A callback that will be executed when the button is clicked.
    */
   onClick: MouseEventHandler<HTMLDivElement | HTMLButtonElement>;
+
+  /**
+   * Flag to use the default phone icon.
+   */
+  isVoice?: boolean;
 }
 
 /**
@@ -55,20 +62,24 @@ export interface LauncherProps {
  *
  * @see {@link https://voiceflow.github.io/react-chat/?path=/story/components-launcher--default}
  */
-export const Launcher: React.FC<LauncherProps> = ({ image, type, isOpen, label, onClick }) => {
+export const Launcher: React.FC<LauncherProps> = ({ image, type, isVoice, isOpen, label, onClick }) => {
   const withIcon = type !== 'label';
   const withLabel = type !== 'icon' && !!label?.length;
 
   if (withLabel) {
     return (
       <LauncherWithLabel
-        image={withIcon ? (image ?? DEFAULT_ICON) : undefined}
-        isOpen={isOpen}
+        image={image}
         label={label}
+        isOpen={isOpen}
         onClick={onClick}
+        isVoice={isVoice}
+        withIcon={withIcon}
       />
     );
   }
+
+  const showDefaultPhoneIcon = !image && isVoice;
 
   return (
     <div className={launcherContainer} onClick={onClick}>
@@ -76,11 +87,19 @@ export const Launcher: React.FC<LauncherProps> = ({ image, type, isOpen, label, 
         <div className={iconContainer({ isOpen, withIcon })}>
           <ChevronIcon className={clsx(closeChevron({ isOpen }), closeIconStyles())} />
           {withIcon && (
-            <img
-              src={image ?? DEFAULT_ICON}
-              className={clsx(imageStyles({ isOpen }), launcherIconStyles({}))}
-              alt="open chat"
-            />
+            <>
+              {showDefaultPhoneIcon && (
+                <PhoneIcon className={clsx(imageStyles({ isOpen }), launcherIconStyles({}))} fill="white" />
+              )}
+
+              {!showDefaultPhoneIcon && (
+                <img
+                  src={image ?? DEFAULT_ICON}
+                  className={clsx(imageStyles({ isOpen }), launcherIconStyles({}))}
+                  alt="open chat"
+                />
+              )}
+            </>
           )}
         </div>
       </Button>
