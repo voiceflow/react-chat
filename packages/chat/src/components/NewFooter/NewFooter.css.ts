@@ -2,11 +2,6 @@ import { keyframes, style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { duration, timingFunction } from '@/styles/animations';
-import { COLORS } from '@/styles/colors';
-import { THEME } from '@/styles/colors.css';
-import { hideTextOverflow } from '@/styles/font';
-import { SIZES } from '@/styles/sizes';
-import { transition } from '@/styles/transitions';
 import { chatIsClosed, chatIsOpen } from '@/views/ChatWidget/styles.css';
 
 const BUTTON_ROW_MARGIN = 10;
@@ -72,87 +67,4 @@ export const messageContainer = recipe({
 
 export const hasEnded = style({
   top: '-24px',
-});
-
-export const messageInputContainer = style({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '8px',
-  padding: '20px',
-  backgroundColor: COLORS.white,
-  borderTopLeftRadius: '20px',
-  borderTopRightRadius: '20px',
-});
-
-export const footerLinksContainer = style({
-  color: COLORS.NEUTRAL_DARK[100],
-  fontFamily: THEME.fontFamily,
-  fontSize: '12px',
-  lineHeight: '17px',
-  width: '100%',
-  minHeight: 20,
-  padding: '10px 0',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  gap: '8px',
-});
-
-export const poweredByLink = style({
-  flexShrink: 0,
-});
-
-export const separator = style({
-  height: '2px',
-  width: '2px',
-  borderRadius: SIZES.radius.round,
-  backgroundColor: COLORS.NEUTRAL_LIGHT[500],
-});
-
-export const externalLink = style({
-  color: COLORS.NEUTRAL_DARK[100],
-  fontFamily: THEME.fontFamily,
-  fontSize: '12px',
-  lineHeight: '17px',
-  textDecorationColor: 'transparent',
-  transition: transition(['color', 'text-decoration-color']),
-  ...hideTextOverflow(),
-  selectors: {
-    '&:hover': {
-      textDecoration: 'underline',
-      color: THEME.colors[500],
-      textDecorationColor: THEME.colors[500],
-    },
-    '&:active': {
-      color: THEME.colors[600],
-      textDecorationColor: THEME.colors[600],
-    },
-  },
-});
-
-export const footerNote = style({
-  color: COLORS.NEUTRAL_DARK[100],
-  fontFamily: THEME.fontFamily,
-  fontSize: '12px',
-  lineHeight: '17px',
-  textDecorationColor: 'transparent',
-  transition: transition(['color', 'text-decoration-color']),
-  ...hideTextOverflow(),
-});
-
-export const voiceflowLink = style({
-  color: COLORS.NEUTRAL_DARK[100],
-  textDecoration: 'underline',
-  textDecorationColor: 'transparent',
-  transition: transition(['color', 'text-decoration-color']),
-  selectors: {
-    '&:hover': {
-      color: THEME.colors[500],
-      textDecorationColor: THEME.colors[500],
-    },
-    '&:active': {
-      color: THEME.colors[600],
-      textDecorationColor: 'transparent',
-    },
-  },
 });
