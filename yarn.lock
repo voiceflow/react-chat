@@ -7471,12 +7471,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@voiceflow/dtos-interact@npm:1.10.0":
-  version: 1.10.0
-  resolution: "@voiceflow/dtos-interact@npm:1.10.0"
+"@voiceflow/dtos-interact@npm:1.11.0":
+  version: 1.11.0
+  resolution: "@voiceflow/dtos-interact@npm:1.11.0"
   peerDependencies:
     zod: ^3
-  checksum: f8fe486eb043e51bbf8acc54a389eb13f4b4bcccd90c45cd5010c87458b8e94a170241abcd8ac31a64eb7bd3f93dab74adbc8a8d9e239402c204a3948efeabad
+  checksum: d6126ff860f32f652fd2195c00f43d982a191cc778af2fa879f7b29ebd0e3b8f7faa239d97e3aceb5cff5775935491293238cacba7495a20f07f7150ecc081ef
   languageName: node
   linkType: hard
 
@@ -7651,7 +7651,7 @@ __metadata:
     "@vanilla-extract/vite-plugin": 4.0.18
     "@vitejs/plugin-react": 4.2.1
     "@voiceflow/base-types": 2.113.1
-    "@voiceflow/dtos-interact": 1.10.0
+    "@voiceflow/dtos-interact": 1.11.0
     "@voiceflow/sdk-runtime": "workspace:*"
     "@voiceflow/slate-serializer": 1.5.5
     "@voiceflow/test-common": 1.10.3
