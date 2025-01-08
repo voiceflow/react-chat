@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.27.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.26.0...@voiceflow/react-chat@2.27.0) (2025-01-08)
+
+### Features
+
+* expose widget settings type (COR-4405) ([#498](https://github.com/voiceflow/react-chat/issues/498)) ([51b719d](https://github.com/voiceflow/react-chat/commit/51b719d49e4827dd1c122787bfe513c803d95761))
+
 # [2.26.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.25.1...@voiceflow/react-chat@2.26.0) (2025-01-07)
 
 ### Features
