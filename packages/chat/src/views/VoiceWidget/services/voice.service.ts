@@ -64,11 +64,11 @@ export class VoiceService {
   private onSocketMessage = (message: SocketInputMessage) => {
     if (message.type === 'audio') {
       this.audio?.addChunk(message.payload.audio, message.payload.markIndex);
-    } else if (message.type === 'end') {
-      console.info('Conversation ended by server.', 'system');
-      this.recorder.stop();
     } else if (message.type === 'interrupt') {
       this.audio?.interrupt();
+    } else if (message.type === 'end') {
+      console.info('Conversation ended by server.', 'system');
+      this.stop();
     }
   };
 
