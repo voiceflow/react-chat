@@ -11,7 +11,7 @@ export enum FeedbackButtonVariant {
 }
 
 export interface IFeedbackButton {
-  onClick: (feedback: FeedbackName) => void;
+  onClick?: (feedback: FeedbackName) => void;
   variant?: FeedbackButtonVariant;
   active?: boolean;
   textContent?: string;
