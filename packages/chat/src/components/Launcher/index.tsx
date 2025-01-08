@@ -6,6 +6,7 @@ import React from 'react';
 import { ClassName } from '@/constants';
 
 import { Button } from '../Button';
+import { LoadingSpinner } from '../LoadingSpinner/LoadingSpinner';
 import { ChevronIcon } from './ChevronIcon';
 import { DEFAULT_ICON } from './constant';
 import { LauncherWithLabel } from './LauncherWithLabel';
@@ -18,6 +19,7 @@ import {
   launcherContainer,
   launcherIconStyles,
   launcherStyles,
+  loadingSpinnerStyles,
 } from './styles.css';
 
 export { DEFAULT_ICON };
@@ -55,6 +57,16 @@ export interface LauncherProps {
    * Flag to use the default phone icon.
    */
   isVoice?: boolean;
+
+  /**
+   * Flag to show loader in the launcher.
+   */
+  isLoading?: boolean;
+
+  /**
+   * Flag to disable the launcher.
+   */
+  isDisabled?: boolean;
 }
 
 /**
@@ -62,7 +74,16 @@ export interface LauncherProps {
  *
  * @see {@link https://voiceflow.github.io/react-chat/?path=/story/components-launcher--default}
  */
-export const Launcher: React.FC<LauncherProps> = ({ image, type, isVoice, isOpen, label, onClick }) => {
+export const Launcher: React.FC<LauncherProps> = ({
+  image,
+  type,
+  isVoice,
+  isOpen,
+  label,
+  onClick,
+  isLoading = false,
+  isDisabled = false,
+}) => {
   const withIcon = type !== 'label';
   const withLabel = type !== 'icon' && !!label?.length;
 
@@ -83,19 +104,22 @@ export const Launcher: React.FC<LauncherProps> = ({ image, type, isVoice, isOpen
 
   return (
     <div className={launcherContainer} onClick={onClick}>
-      <Button className={clsx(ClassName.LAUNCHER, launcherStyles({ isOpen }))}>
+      <Button className={clsx(ClassName.LAUNCHER, launcherStyles({ isOpen, isDisabled, isLoading }))}>
         <div className={iconContainer({ isOpen, withIcon })}>
-          <ChevronIcon className={clsx(closeChevron({ isOpen }), closeIconStyles())} />
+          <ChevronIcon className={clsx(closeChevron({ isOpen, isLoading }), closeIconStyles())} />
+
+          {isLoading && <LoadingSpinner className={loadingSpinnerStyles} variant="light" size="large" />}
+
           {withIcon && (
             <>
               {showDefaultPhoneIcon && (
-                <PhoneIcon className={clsx(imageStyles({ isOpen }), launcherIconStyles({}))} fill="white" />
+                <PhoneIcon className={clsx(imageStyles({ isOpen, isLoading }), launcherIconStyles({}))} fill="white" />
               )}
 
               {!showDefaultPhoneIcon && (
                 <img
                   src={image ?? DEFAULT_ICON}
-                  className={clsx(imageStyles({ isOpen }), launcherIconStyles({}))}
+                  className={clsx(imageStyles({ isOpen, isLoading }), launcherIconStyles({}))}
                   alt="open chat"
                 />
               )}

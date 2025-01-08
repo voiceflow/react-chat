@@ -63,7 +63,32 @@ export const launcherStyles = recipe({
         width: '48px',
       },
     },
+
+    isDisabled: {
+      true: {
+        backgroundColor: THEME.colors[300],
+
+        ':hover': {
+          transform: 'none',
+          backgroundColor: THEME.colors[300],
+        },
+        ':active': {
+          transform: 'none',
+          backgroundColor: THEME.colors[300],
+        },
+      },
+    },
+
+    isLoading: {
+      true: {},
+    },
   },
+});
+
+export const loadingSpinnerStyles = style({
+  color: 'white',
+  height: '24px',
+  width: '24px',
 });
 
 export const iconContainer = recipe({
@@ -192,24 +217,63 @@ export const twistOutAnimation = keyframes({
 export const closeChevron = recipe({
   base: {
     transform: 'rotate(0deg)',
-    transition: transition(['width']),
+    transition: transition(['width', 'opacity']),
     position: 'absolute',
     width: '32px',
     opacity: 0,
   },
   variants: {
     isOpen: {
-      true: {
+      true: {},
+      false: {},
+    },
+
+    isLoading: {
+      true: {},
+    },
+  },
+
+  compoundVariants: [
+    {
+      variants: {
+        isOpen: true,
+        isLoading: false,
+      },
+      style: {
         animation: `${twistInAnimation} 0.2s ease-in-out`,
         opacity: 1,
       },
-      false: {
+    },
+    {
+      variants: {
+        isOpen: false,
+        isLoading: false,
+      },
+      style: {
         animation: `${twistOutAnimation} 0.2s ease-in-out`,
         opacity: 0,
         pointerEvents: 'none',
       },
     },
-  },
+    {
+      variants: {
+        isLoading: true,
+        isOpen: true,
+      },
+      style: {
+        opacity: 0,
+      },
+    },
+    {
+      variants: {
+        isLoading: true,
+        isOpen: false,
+      },
+      style: {
+        opacity: 0,
+      },
+    },
+  ],
 });
 
 export const imageStyles = recipe({
@@ -228,6 +292,11 @@ export const imageStyles = recipe({
       },
       false: {
         opacity: 1,
+      },
+    },
+    isLoading: {
+      true: {
+        opacity: 0,
       },
     },
   },
