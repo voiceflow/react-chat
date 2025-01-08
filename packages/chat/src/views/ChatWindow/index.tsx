@@ -78,6 +78,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ isMobile, isPopover }) =
             onSubmit: runtime.reply,
             audioInterface: assistant.chat.voiceInput,
             hasEnded,
+            isPopover,
           },
           extraLinkText: assistant.common.footerLink.enabled ? assistant.common.footerLink.text : undefined,
           extraLinkUrl: assistant.common.footerLink.enabled ? assistant.common.footerLink.url : undefined,

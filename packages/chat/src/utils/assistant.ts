@@ -47,7 +47,8 @@ const mergeChatSettings = (publishedSettings: WidgetSettings, overrides?: Widget
     voiceInput: overrides?.enableVoiceInput ?? publishedSettings.chat.voiceInput ?? false,
     voiceOutput: overrides?.enableVoiceOutput ?? publishedSettings.chat.voiceOutput ?? false,
 
-    renderMode: overrides?.renderMode ?? publishedSettings?.chat?.renderMode ?? WidgetSettingsChatRenderMode.WIDGET,
+    // renderMode: overrides?.renderMode ?? publishedSettings?.chat?.renderMode ?? WidgetSettingsChatRenderMode.WIDGET,
+    renderMode: WidgetSettingsChatRenderMode.POPOVER,
     headerImage: {
       enabled: overrides?.header?.hideImage ? false : (publishedSettings?.chat?.headerImage?.enabled ?? true),
       url: overrides?.header?.imageUrl ?? publishedSettings?.chat?.headerImage?.url,

@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 
 import type { ChatSpeechRecognitionConfig } from '@/main';
@@ -16,6 +16,7 @@ export interface IMessageInput {
   audioInterface?: boolean | undefined;
   speechRecognition?: ChatSpeechRecognitionConfig;
   hasEnded?: boolean;
+  isPopover?: boolean;
 }
 
 export const MessageInput: React.FC<IMessageInput> = ({
@@ -25,6 +26,7 @@ export const MessageInput: React.FC<IMessageInput> = ({
   placeholder = 'Message...',
   speechRecognition: customSpeechRecognition,
   hasEnded,
+  isPopover,
 }) => {
   const [message, setMessage] = useState('');
   const [isMultiLine, setIsMultiLine] = useState(false);
@@ -34,6 +36,12 @@ export const MessageInput: React.FC<IMessageInput> = ({
     onValueChange: setMessage,
     customSpeechRecognition,
   });
+
+  useEffect(() => {
+    if (!speechRecognition?.textareaRef?.current) return;
+    speechRecognition.textareaRef.current.onkeydown = (e) => console.log(e);
+  }, [speechRecognition.textareaRef]);
+
   const withSendButton = !!message?.length && !disableSend && !speechRecognition.listening;
   const withAudioInput =
     audioInterface && speechRecognition.available && speechRecognition.microphoneAvailable && !withSendButton;
@@ -51,7 +59,13 @@ export const MessageInput: React.FC<IMessageInput> = ({
   };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    console.log(event);
     event.stopPropagation();
+
+    if (isPopover && event.key === 'Esc') {
+      console.log('esc');
+      return;
+    }
 
     const { shiftKey } = event;
 

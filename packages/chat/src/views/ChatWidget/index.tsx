@@ -42,7 +42,8 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
   const [isMobile, setIsMobile] = useState(checkMobile());
 
   const isVoice = assistant.type === WidgetSettingsWidgetType.VOICE;
-  const isPopover = assistant.chat.renderMode === WidgetSettingsChatRenderMode.POPOVER;
+  // const isPopover = assistant.chat.renderMode === WidgetSettingsChatRenderMode.POPOVER;
+  const isPopover = true;
   const isVoiceWithoutLauncher =
     isVoice &&
     (assistant.voice.renderMode === WidgetSettingsVoiceRenderMode.COMPACT ||

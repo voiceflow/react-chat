@@ -13,8 +13,9 @@ export const ChatScript = ({ projectID, embedded = false }: { projectID: string;
         window.voiceflow.chat.load({
           url: 'https://general-runtime-review-damp-haze.us-2.development.voiceflow.com',
           verify: { projectID: "${projectID}"  },
-            assistant: {
+          assistant: {
             stylesheet: '../../bundle/style.css',
+            renderMode: 'popover'
           },
           versionID: 'production'
           ${embedded ? ', render: { mode: "embedded", target: document.getElementById("chat_embed") }' : ''}

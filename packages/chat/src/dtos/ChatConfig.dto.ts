@@ -113,6 +113,7 @@ export const ChatConfig = z
         accessToken: z.string(),
       })
       .optional(),
+    speechRecognition: ChatSpeechRecognitionConfig.optional(),
   })
   .transform((config) => ({
     ...config,
