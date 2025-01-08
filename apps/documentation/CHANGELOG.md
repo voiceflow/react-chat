@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.35.3](https://github.com/voiceflow/react-chat/compare/documentation@0.35.2...documentation@0.35.3) (2025-01-08)
+
+**Note:** Version bump only for package documentation
+
 ## [0.35.2](https://github.com/voiceflow/react-chat/compare/documentation@0.35.1...documentation@0.35.2) (2025-01-08)
 
 **Note:** Version bump only for package documentation

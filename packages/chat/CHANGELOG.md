@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.29.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.28.0...@voiceflow/react-chat@2.29.0) (2025-01-08)
+
+### Features
+
+* add disabled and loading states to launcher (COR-4421) ([#503](https://github.com/voiceflow/react-chat/issues/503)) ([af83dbf](https://github.com/voiceflow/react-chat/commit/af83dbf6249a320f69cd365b09a1e037770acfdb))
+
 # [2.28.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.27.0...@voiceflow/react-chat@2.28.0) (2025-01-08)
 
 ### Features
