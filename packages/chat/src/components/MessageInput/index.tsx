@@ -17,6 +17,7 @@ export interface IMessageInput {
   speechRecognition?: ChatSpeechRecognitionConfig;
   hasEnded?: boolean;
   isPopover?: boolean;
+  close?: () => void;
 }
 
 export const MessageInput: React.FC<IMessageInput> = ({
@@ -27,6 +28,7 @@ export const MessageInput: React.FC<IMessageInput> = ({
   speechRecognition: customSpeechRecognition,
   hasEnded,
   isPopover,
+  close,
 }) => {
   const [message, setMessage] = useState('');
   const [isMultiLine, setIsMultiLine] = useState(false);
@@ -36,11 +38,6 @@ export const MessageInput: React.FC<IMessageInput> = ({
     onValueChange: setMessage,
     customSpeechRecognition,
   });
-
-  useEffect(() => {
-    if (!speechRecognition?.textareaRef?.current) return;
-    speechRecognition.textareaRef.current.onkeydown = (e) => console.log(e);
-  }, [speechRecognition.textareaRef]);
 
   const withSendButton = !!message?.length && !disableSend && !speechRecognition.listening;
   const withAudioInput =
@@ -59,11 +56,13 @@ export const MessageInput: React.FC<IMessageInput> = ({
   };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    console.log(event);
     event.stopPropagation();
 
-    if (isPopover && event.key === 'Esc') {
-      console.log('esc');
+    if (event.key === 'Escape') {
+      speechRecognition.textareaRef.current?.blur();
+      if (isPopover) {
+        close?.();
+      }
       return;
     }
 

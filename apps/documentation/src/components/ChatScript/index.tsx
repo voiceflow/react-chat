@@ -15,7 +15,6 @@ export const ChatScript = ({ projectID, embedded = false }: { projectID: string;
           verify: { projectID: "${projectID}"  },
           assistant: {
             stylesheet: '../../bundle/style.css',
-            renderMode: 'popover'
           },
           versionID: 'production'
           ${embedded ? ', render: { mode: "embedded", target: document.getElementById("chat_embed") }' : ''}
