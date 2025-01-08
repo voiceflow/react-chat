@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.28.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.27.0...@voiceflow/react-chat@2.28.0) (2025-01-08)
+
+### Features
+
+* unsubscribe from all services on end conversation (COR-4408) ([#500](https://github.com/voiceflow/react-chat/issues/500)) ([faf691f](https://github.com/voiceflow/react-chat/commit/faf691f5b53cd95e56a9a51811f6518a4b9db4c9))
+
 # [2.27.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.26.0...@voiceflow/react-chat@2.27.0) (2025-01-08)
 
 ### Features
