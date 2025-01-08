@@ -75,8 +75,10 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
       show: () => setHidden(false),
       interact,
       proactive: {
-        clear: () => setProactiveMessages([]),
-        push: (...messages: Trace.AnyTrace[]) => setProactiveMessages((prev) => [...prev, ...messages]),
+        clear: () => console.info('This feature is not supported at the moment.'),
+        push: () => console.info('This feature is not supported at the moment.'),
+        // clear: () => setProactiveMessages([]),
+        // push: (...messages: Trace.AnyTrace[]) => setProactiveMessages((prev) => [...prev, ...messages]),
       },
     }),
     ready
