@@ -25,13 +25,21 @@ import { VoiceWidget } from '@/views/VoiceWidget/VoiceWidget.view';
 import { chatContainer, LAUNCHER_MARGIN, launcherContainer, popoverBackdrop, widgetContainer } from './styles.css';
 
 interface ChatWidgetProps extends React.PropsWithChildren {
-  shadowRoot?: ShadowRoot;
-  chatAPI: VoiceflowChat | undefined;
   ready?: () => void;
+  chatAPI: VoiceflowChat | undefined;
+  shadowRoot?: ShadowRoot;
   chatWindow?: React.ReactNode;
+  isLauncherLoading?: boolean;
+  isLauncherDisabled?: boolean;
 }
 
-export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, ready }) => {
+export const ChatWidget: React.FC<ChatWidgetProps> = ({
+  shadowRoot,
+  chatAPI,
+  ready,
+  isLauncherDisabled,
+  isLauncherLoading,
+}) => {
   const { assistant, open, close, interact } = useContext(RuntimeStateAPIContext);
   const { isOpen } = useContext(RuntimeStateContext);
   /** initialization  */
@@ -134,6 +142,8 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ shadowRoot, chatAPI, rea
               isOpen={isOpen}
               isVoice={isVoice}
               onClick={toggleChat}
+              isLoading={isLauncherLoading}
+              isDisabled={isLauncherDisabled}
             />
           </div>
         )}
