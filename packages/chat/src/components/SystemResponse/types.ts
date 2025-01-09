@@ -14,6 +14,7 @@ export interface BaseMessageProps {
 export interface TextMessageProps extends BaseMessageProps {
   type: StringifiedEnum<MessageType.TEXT>;
   text: string | Text.SlateTextValue;
+  stream?: TransformStream | null;
   audio?: { src: string };
 }
 

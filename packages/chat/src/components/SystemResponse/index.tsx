@@ -92,12 +92,13 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
   Message = SystemMessage,
 }) => {
   // TODO: undo changes to this file
-  const { showIndicator, visibleMessages, complete } = useAnimatedMessages({
+  const { showIndicator, complete } = useAnimatedMessages({
     messages,
     isLast,
   });
 
-  // useAutoScroll([showIndicator, complete, messages.length]);
+  const runtime = useContext(RuntimeStateAPIContext);
+  useAutoScroll([showIndicator, complete, messages.length]);
 
   if (!messages.length && !actions.length) return null;
 
@@ -156,7 +157,7 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
           </>
         );
       })}
-      {/* {isLast && complete && !!actions.length && (
+      {isLast && complete && !!actions.length && (
         <div className={actionsContainer({ withAvatar: !!avatar })}>
           {actions.map(({ request, name }, index) => (
             <div
@@ -172,7 +173,7 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
           ))}
         </div>
       )}
-      {showIndicator && <Indicator avatar={avatar} isLast={isLast} />} */}
+      {showIndicator && <Indicator avatar={avatar} isLast={isLast} />}
     </MessageContainer>
   );
 };

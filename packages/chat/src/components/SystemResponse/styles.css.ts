@@ -1,26 +1,16 @@
-import { keyframes, style } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { duration } from '@/styles/animations';
 import { SIZES } from '@/styles/sizes';
 
 import { SMALL_AVATAR_SIZE } from '../Avatar/styles.css';
+import { fadeInSlideUp } from '../UserResponse/styles.css';
 
 export const MESSAGE_PADDING = 12;
 
 export const hide = style({
   visibility: 'hidden',
-});
-
-const fadeInSlideUp = keyframes({
-  from: {
-    opacity: 0,
-    transform: 'translateY(5px)',
-  },
-  to: {
-    opacity: 1,
-    transform: 'translateY(0)',
-  },
 });
 
 export const systemMessageContainer = style({
