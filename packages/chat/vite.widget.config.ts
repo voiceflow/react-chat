@@ -1,7 +1,6 @@
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 import react from '@vitejs/plugin-react';
 import path from 'path';
-import Unfonts from 'unplugin-fonts/vite';
 import type { PluginOption } from 'vite';
 import { defineConfig, loadEnv } from 'vite';
 import { createHtmlPlugin } from 'vite-plugin-html';
@@ -9,22 +8,7 @@ import { viteStaticCopy } from 'vite-plugin-static-copy';
 import svgr from 'vite-plugin-svgr';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
-export const createPlugins = (): PluginOption[] => [
-  vanillaExtractPlugin(),
-  tsconfigPaths(),
-  svgr(),
-  Unfonts({
-    google: {
-      families: [
-        {
-          name: 'Open Sans',
-          styles: 'wght@400;600',
-          defer: true,
-        },
-      ],
-    },
-  }),
-];
+export const createPlugins = (): PluginOption[] => [vanillaExtractPlugin(), tsconfigPaths(), svgr()];
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd());
@@ -68,6 +52,7 @@ export default defineConfig(({ mode }) => {
         targets: [
           { src: 'src/assets/vf_chat.png', dest: '' },
           { src: 'src/assets/message.png', dest: '' },
+          { src: 'src/assets/fonts/UCityProWeb*', dest: '' },
         ],
       }),
     ],

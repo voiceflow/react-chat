@@ -41,6 +41,7 @@ export default defineConfig({
       targets: [
         { src: 'src/assets/vf_chat.png', dest: '' },
         { src: 'src/assets/message.png', dest: '' },
+        { src: 'src/assets/fonts/UCityProWeb*', dest: '' },
       ],
     }),
   ],

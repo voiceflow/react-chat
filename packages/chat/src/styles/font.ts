@@ -1,6 +1,8 @@
 import type { ComplexStyleRule } from '@vanilla-extract/css';
 
-export const FAMILY = "'UCityProWeb', 'Open Sans', 'Arial', 'sans-serif'";
+import { defaultFontFace } from './font.css';
+
+export const FAMILY = `'${defaultFontFace}', 'Open Sans', 'Arial', 'sans-serif'`;
 
 export const hideTextOverflow = () => ({
   overflow: 'hidden',
