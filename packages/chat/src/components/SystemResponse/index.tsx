@@ -131,7 +131,7 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
 
         const lastMessageInGroup = index === messagesDisplayedToUser.length - 1;
         const showFeedback = index === lastTextMessageIndex;
-
+        const addFeedback = feedback && isLast && complete && showFeedback;
         return (
           <>
             <Message
@@ -140,7 +140,7 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
               avatar={avatar}
               timestamp={timestamp}
               isLast={isLast}
-              // feedback={showFeedback || (addFeedback && message.type === MessageType.CAROUSEL) ? feedback : undefined}
+              feedback={showFeedback || (addFeedback && message.type === MessageType.CAROUSEL) ? feedback : undefined}
               textContent={allTextContentForMessage}
               key={index}
               aiDisclaimer={aiDisclaimer}
