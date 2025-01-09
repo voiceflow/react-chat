@@ -46,6 +46,7 @@ export const scrollToBottomButton = recipe({
       true: {
         opacity: 0,
         animation: `${fadeOut} .15s ease-in`,
+        pointerEvents: 'none',
       },
     },
   },
