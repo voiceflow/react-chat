@@ -2,7 +2,7 @@ import type { ComplexStyleRule } from '@vanilla-extract/css';
 
 import { defaultFontFace } from './font.css';
 
-export const FAMILY = `'${defaultFontFace}', 'Open Sans', 'Arial', 'sans-serif'`;
+export const FAMILY = `${defaultFontFace}, 'Open Sans', 'Arial', 'sans-serif'`;
 
 export const hideTextOverflow = () => ({
   overflow: 'hidden',
