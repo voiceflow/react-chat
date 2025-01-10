@@ -24,6 +24,11 @@ export interface AvatarProps {
    * Class name to pass into the Avatar component.
    */
   className?: string;
+
+  /**
+   * Flag to remove the background from the Avatar.
+   */
+  withoutBackground?: boolean;
 }
 
 /**
@@ -31,9 +36,9 @@ export interface AvatarProps {
  *
  * @see {@link https://voiceflow.github.io/react-chat/?path=/story/core-avatar--small}
  */
-export const Avatar: React.FC<AvatarProps> = ({ avatar, size, className }) => (
+export const Avatar: React.FC<AvatarProps> = ({ avatar, size, className, withoutBackground = false }) => (
   <div
-    className={clsx(ClassName.AVATAR, avatarStyles({ size }), className)}
+    className={clsx(ClassName.AVATAR, avatarStyles({ size, withoutBackground }), className)}
     style={{ backgroundImage: `url(${avatar})` }}
   ></div>
 );

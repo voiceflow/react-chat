@@ -12,6 +12,7 @@ const meta: Meta<typeof Header> = {
     title: 'Agent name',
     image: EMPTY_IMAGE,
     actions: [],
+    showImage: true,
   },
   render: (args) => <Header {...args} />,
   decorators: [WithDefaultPalette],

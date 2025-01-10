@@ -52,7 +52,7 @@ export interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ title, showImage, image, actions = [] }) => {
   return (
     <div className={clsx(ClassName.HEADER, headerContainer)}>
-      {showImage && <Avatar size="small" avatar={image ?? DEFAULT_CHAT_AVATAR} />}
+      {showImage && <Avatar size="small" avatar={image ?? DEFAULT_CHAT_AVATAR} withoutBackground />}
       <div className={headerInnerContainer}>
         <div className={headerTitle({ hasAvatar: showImage })}>{title}</div>
         <div className={headerActions}>
