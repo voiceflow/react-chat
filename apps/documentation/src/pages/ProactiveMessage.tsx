@@ -6,7 +6,7 @@ const inputStyle = {
   padding: '2px',
 };
 
-const sendButtonStyle = {
+export const sendButtonStyle = {
   background: '#e8e8e8',
   borderRadius: '4px',
   padding: '4px 8px',
