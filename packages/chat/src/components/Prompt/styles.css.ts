@@ -30,11 +30,12 @@ export const promptContainer = recipe({
       true: {
         transform: 'translateY(18px)',
         opacity: 1,
+        transition: `transform .6s ${timingFunction.gentle}`,
         pointerEvents: 'auto',
       },
       false: {
         transform: 'translateY(130px)',
-        transition: `all 0.25s ${timingFunction.gentle}`,
+        transition: `all .3s ${timingFunction.gentle}`,
         opacity: 0,
       },
     },
