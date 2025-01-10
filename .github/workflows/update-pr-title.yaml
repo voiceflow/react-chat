@@ -10,7 +10,7 @@ jobs:
       - name: Get branch name
         if: ${{ github.actor != 'github-actions' }}
         id: branch-name
-        uses: tj-actions/branch-names@v6
+        uses: tj-actions/branch-names@v8
 
       - name: Check for hotfix label
         uses: Dreamcodeio/pr-has-label-action@v1.2
