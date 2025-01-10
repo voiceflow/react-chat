@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.30.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.30.0...@voiceflow/react-chat@2.30.1) (2025-01-10)
+
+### Bug Fixes
+
+* fix loading indicator when chat ends (COR-4425) ([#512](https://github.com/voiceflow/react-chat/issues/512)) ([6ea3505](https://github.com/voiceflow/react-chat/commit/6ea35057d0d3aec9c6e8aee5d667d7ad8b2659d7))
+
 # [2.30.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.29.1...@voiceflow/react-chat@2.30.0) (2025-01-10)
 
 ### Features
