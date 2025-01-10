@@ -5,7 +5,7 @@ import { ChatScript } from '@/components/ChatScript';
 import ProactiveMessage, { sendButtonStyle } from './ProactiveMessage';
 
 export const getServerSideProps = async (context: any) => ({
-  // will be passed to the page component as props
+  // will be passed to the page component as props.
   props: {
     projectID: context.query.projectID,
     embedded: !!context.query.embed,
