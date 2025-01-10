@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.30.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.30.1...@voiceflow/react-chat@2.30.2) (2025-01-10)
+
+### Bug Fixes
+
+* hide/show chat callbacks (DSN-2664) ([#514](https://github.com/voiceflow/react-chat/issues/514)) ([c183dad](https://github.com/voiceflow/react-chat/commit/c183dad69d9e91cf2aa15092da12d6f8269d66a9))
+
 ## [2.30.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.30.0...@voiceflow/react-chat@2.30.1) (2025-01-10)
 
 ### Bug Fixes
