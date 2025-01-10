@@ -34,7 +34,7 @@ export const FeedbackButton: React.FC<IFeedbackButton> = ({ variant, onClick, te
   };
 
   const handleOnClick = (type: FeedbackName) => {
-    onClick(type);
+    onClick?.(type);
     setIsPositiveOrNegativeSelected(type);
   };
 

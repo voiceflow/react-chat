@@ -14,6 +14,7 @@ export const agentMessageContainer = style({
   color: COLORS.NEUTRAL_DARK[900],
   fontFamily: THEME.fontFamily,
   position: 'relative',
+  minHeight: '41px',
   fontSize: '14px',
   lineHeight: '20px',
   borderRadius: SIZES.radius.sm,

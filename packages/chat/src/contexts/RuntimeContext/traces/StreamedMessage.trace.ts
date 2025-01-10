@@ -65,8 +65,6 @@ export const StreamedMessage = (): TraceDeclaration<RuntimeMessage, any> => {
           writer.releaseLock();
 
           message.text += content;
-
-          console.log('message', message.text);
         })
         .exhaustive();
 

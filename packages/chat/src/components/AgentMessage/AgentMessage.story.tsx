@@ -28,6 +28,12 @@ export const Small: Story = {
   },
 };
 
+export const Empty: Story = {
+  args: {
+    text: '',
+  },
+};
+
 export const AIGenerated: Story = {
   args: {
     text: SAMPLE_SLATE_TEXT as unknown as string,

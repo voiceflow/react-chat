@@ -110,9 +110,6 @@ export const useRuntimeState = ({ assistant, config, traceHandlers }: Settings) 
         actions: data.actions ?? turn.actions,
       });
 
-      console.log('updated', cloned);
-      console.log('data', data);
-
       return cloned;
     });
 

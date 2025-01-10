@@ -91,15 +91,14 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
   aiDisclaimer,
   Message = SystemMessage,
 }) => {
-  const runtime = useContext(RuntimeStateAPIContext);
-
   // TODO: undo changes to this file
-  // const { showIndicator, visibleMessages, complete } = useAnimatedMessages({
-  //   messages,
-  //   isLast,
-  // });
+  const { showIndicator, complete } = useAnimatedMessages({
+    messages,
+    isLast,
+  });
 
-  // useAutoScroll([showIndicator, complete, messages.length]);
+  const runtime = useContext(RuntimeStateAPIContext);
+  useAutoScroll([showIndicator, complete, messages.length]);
 
   if (!messages.length && !actions.length) return null;
 
@@ -120,6 +119,8 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
     return acc;
   }, '');
 
+  const messagesDisplayedToUser = messages.filter((message) => message.type !== MessageType.END);
+
   return (
     <MessageContainer isLast={isLast}>
       {messages.map((message, index) => {
@@ -128,29 +129,23 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
           return <EndState />;
         }
 
-        // const lastMessageInGroup = index === messages.length - 1;
-
-        // Showing feedback on previous messages that were in the chat
-        const showFeedback = index === lastTextMessageIndex; // lastMessageInGroup && message.type === MessageType.TEXT;
-
-        // // Showing feedback on the most recent system message of the chat
-        // const addFeedback = feedback && isLast && complete && lastMessageInGroup;
-
+        const lastMessageInGroup = index === messagesDisplayedToUser.length - 1;
+        const showFeedback = index === lastTextMessageIndex;
+        const addFeedback = feedback && isLast && complete && showFeedback;
         return (
           <>
             <Message
               message={message}
-              // withImage={!showIndicator && lastMessageInGroup}
-              withImage
+              withImage={!showIndicator && lastMessageInGroup}
               avatar={avatar}
               timestamp={timestamp}
               isLast={isLast}
-              // feedback={showFeedback || (addFeedback && message.type === MessageType.CAROUSEL) ? feedback : undefined}
+              feedback={showFeedback || (addFeedback && message.type === MessageType.CAROUSEL) ? feedback : undefined}
               textContent={allTextContentForMessage}
               key={index}
               aiDisclaimer={aiDisclaimer}
             />
-            {/* {addFeedback && message.type !== MessageType.CAROUSEL && (
+            {showFeedback && message.type !== MessageType.CAROUSEL && (
               <div className={feedbackContainer({ withAvatar: !!avatar })}>
                 <FeedbackButton
                   {...feedback}
@@ -158,11 +153,11 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
                   variant={FeedbackButtonVariant.LAST_RESPONSE}
                 />
               </div>
-            )} */}
+            )}
           </>
         );
       })}
-      {/* {isLast && complete && !!actions.length && (
+      {isLast && complete && !!actions.length && (
         <div className={actionsContainer({ withAvatar: !!avatar })}>
           {actions.map(({ request, name }, index) => (
             <div
@@ -178,7 +173,7 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
           ))}
         </div>
       )}
-      {showIndicator && <Indicator avatar={avatar} isLast={isLast} />} */}
+      {showIndicator && <Indicator avatar={avatar} isLast={isLast} />}
     </MessageContainer>
   );
 };
