@@ -6,7 +6,7 @@ import { chatIsClosed, chatIsOpen } from '@/views/ChatWidget/styles.css';
 
 const BUTTON_ROW_MARGIN = 10;
 
-const fadeInAndSlideUp = keyframes({
+export const fadeInAndSlideUp = keyframes({
   from: {
     opacity: 0,
     transform: 'translateY(40px)',
@@ -17,7 +17,7 @@ const fadeInAndSlideUp = keyframes({
   },
 });
 
-const fadeOutSlideDown = keyframes({
+export const fadeOutSlideDown = keyframes({
   from: {
     opacity: 1,
     transform: 'translateY(0)',

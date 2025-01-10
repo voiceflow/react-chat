@@ -80,6 +80,7 @@ export const feedbackContainer = recipe({
     marginTop: 6,
     zIndex: 1,
     marginLeft: MESSAGE_PADDING + SMALL_AVATAR_SIZE - 6,
+    animation: `${fadeInSlideUp} ${duration.fast} ease-in`,
   },
   variants: {
     withAvatar: {
