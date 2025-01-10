@@ -23,9 +23,6 @@ export const widgetContainer = recipe({
     zIndex: WIDGET_Z_INDEX,
   },
   variants: {
-    hidden: {
-      true: {},
-    },
     withChat: {
       true: {},
       false: {},
@@ -131,11 +128,20 @@ export const popoverBackdrop = recipe({
   },
 });
 
-export const launcherContainer = style({
-  pointerEvents: 'auto',
-  selectors: {
-    [`${widgetContainer.classNames.base} &`]: {
-      position: 'absolute',
+export const launcherContainer = recipe({
+  base: {
+    pointerEvents: 'auto',
+    selectors: {
+      [`${widgetContainer.classNames.base} &`]: {
+        position: 'absolute',
+      },
+    },
+  },
+  variants: {
+    isHidden: {
+      true: {
+        display: 'none',
+      },
     },
   },
 });

@@ -66,6 +66,11 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({
 
   const palette = usePalette(assistant);
 
+  const onHideChat = () => {
+    setHidden(true);
+    close();
+  };
+
   const toggleChat = () => {
     if (isOpen) {
       close();
@@ -79,7 +84,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({
     () => ({
       open,
       close,
-      hide: () => setHidden(true),
+      hide: () => onHideChat(),
       show: () => setHidden(false),
       interact,
       proactive: {
@@ -129,10 +134,10 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({
           colors: palette,
           fontFamily: isDefaultFont ? FAMILY : `'${customFontFamily}'`,
         })}
-        className={clsx(ClassName.WIDGET, widgetContainer({ hidden: isHidden, withChat: isOpen }))}
+        className={clsx(ClassName.WIDGET, widgetContainer({ withChat: isOpen }))}
       >
         {!isVoiceWithoutLauncher && (
-          <div className={launcherContainer} style={position}>
+          <div className={launcherContainer({ isHidden })} style={position}>
             <Proactive side={side} messages={proactiveMessages} />
 
             <Launcher
