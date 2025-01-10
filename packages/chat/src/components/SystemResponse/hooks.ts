@@ -3,7 +3,7 @@ import { match } from 'ts-pattern';
 
 import { useDidUpdateEffect } from '@/hooks/useDidUpdateEffect';
 
-import { DEFAULT_MESSAGE_DELAY } from './constants';
+import { DEFAULT_MESSAGE_DELAY, MessageType } from './constants';
 import type { MessageProps } from './types';
 
 export * from './types';
@@ -43,10 +43,11 @@ export const useAnimatedMessages = ({
   useEffect(() => {
     if (!shouldAnimate) return undefined;
 
-    const animations = messages.flatMap<Animation>((message) => [
-      createAnimateIndicator(message.delay),
-      { type: AnimationType.MESSAGE, message },
-    ]);
+    const animations = messages.flatMap<Animation>((message) =>
+      message.type === MessageType.END
+        ? [{ type: AnimationType.MESSAGE, message }]
+        : [createAnimateIndicator(message.delay), { type: AnimationType.MESSAGE, message }]
+    );
 
     let timer: NodeJS.Timeout;
     const setTimer = (callback: VoidFunction, messageDelay: number) => {
