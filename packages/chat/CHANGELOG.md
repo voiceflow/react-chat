@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.29.1](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.29.0...@voiceflow/react-chat@2.29.1) (2025-01-10)
+
+### Bug Fixes
+
+* change header image background (COR-4419) ([#508](https://github.com/voiceflow/react-chat/issues/508)) ([e19d970](https://github.com/voiceflow/react-chat/commit/e19d97058e8d216d5e7ccd6d5c1ddfa5a335a22b))
+
 # [2.29.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.28.0...@voiceflow/react-chat@2.29.0) (2025-01-08)
 
 ### Features
