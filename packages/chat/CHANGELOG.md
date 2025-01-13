@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.31.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.30.2...@voiceflow/react-chat@2.31.0) (2025-01-13)
+
+### Features
+
+* add loading state to launcher with label (COR-4435) ([#523](https://github.com/voiceflow/react-chat/issues/523)) ([08fd1b2](https://github.com/voiceflow/react-chat/commit/08fd1b2a67b2e776fe1c9ffe16fdd315cc6dad65))
+* expose voice api (COR-4463) ([#524](https://github.com/voiceflow/react-chat/issues/524)) ([ed0befc](https://github.com/voiceflow/react-chat/commit/ed0befc1da00ba0fdc0e69531b5e9821c0493719))
+
 ## [2.30.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.30.1...@voiceflow/react-chat@2.30.2) (2025-01-10)
 
 ### Bug Fixes
