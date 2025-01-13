@@ -1,4 +1,4 @@
-import { keyframes, style } from '@vanilla-extract/css';
+import { keyframes, style, styleVariants } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { fadeInSlideUp } from '@/components/UserResponse/styles.css';
@@ -8,6 +8,14 @@ import { transition } from '@/styles/transitions';
 
 const LAUNCHER_WITH_LABEL_SIZE = 40;
 const BEZIER = 'cubic-bezier(0.4, 0, 0.2, 1)';
+
+const loadingVariant = styleVariants({
+  true: {},
+});
+
+const noImageVariant = styleVariants({
+  true: {},
+});
 
 export const launcherStyles = recipe({
   base: {
@@ -68,7 +76,23 @@ export const launcherStyles = recipe({
         padding: '8px 16px 8px 12px',
       },
     },
-    noImage: { true: {} },
+    isDisabled: {
+      true: {
+        backgroundColor: THEME.colors[300],
+
+        ':hover': {
+          transform: 'none',
+          backgroundColor: THEME.colors[300],
+        },
+        ':active': {
+          transform: 'none',
+          backgroundColor: THEME.colors[300],
+        },
+      },
+    },
+
+    noImage: noImageVariant,
+    isLoading: loadingVariant,
   },
   compoundVariants: [
     {
@@ -90,6 +114,12 @@ export const launcherLabelStyles = style({
   textAlign: 'left',
   padding: '3px 0 1px 0',
   transition: `all ${duration.mid} ${BEZIER}`,
+
+  selectors: {
+    [`${loadingVariant.true}${noImageVariant.true} &`]: {
+      opacity: 0,
+    },
+  },
 });
 
 export const twistInAnimation = keyframes({
@@ -116,12 +146,18 @@ export const twistOutAnimation = keyframes({
 export const closeChevron = recipe({
   base: {
     transform: 'rotate(0deg)',
-    transition: transition(['width']),
+    transition: transition(['width', 'opacity']),
     position: 'absolute',
     width: '32px',
     height: '32px',
     left: 0,
     opacity: 0,
+
+    selectors: {
+      [`${loadingVariant.true} &`]: {
+        opacity: '0 !important',
+      },
+    },
   },
   variants: {
     isOpen: {
@@ -148,6 +184,12 @@ export const imageIconStyle = recipe({
 
     flexShrink: 0,
     transition: transition(['opacity']),
+
+    selectors: {
+      [`${loadingVariant.true} &`]: {
+        opacity: 0,
+      },
+    },
   },
   variants: {
     isOpen: {
@@ -201,4 +243,20 @@ export const imageIconWrapper = recipe({
       },
     },
   ],
+});
+
+export const loadingSpinnerStyles = style({
+  color: 'white',
+  height: '24px',
+  width: '24px',
+});
+
+export const containerLoaderStyles = style({
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+
+  height: '24px',
+
+  transform: 'translate(-50%, -50%)',
 });
