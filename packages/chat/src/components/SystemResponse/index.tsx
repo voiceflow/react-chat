@@ -145,7 +145,7 @@ export const SystemResponse: React.FC<SystemResponseProps> = ({
               key={index}
               aiDisclaimer={aiDisclaimer}
             />
-            {showFeedback && message.type !== MessageType.CAROUSEL && (
+            {addFeedback && (
               <div className={feedbackContainer({ withAvatar: !!avatar })}>
                 <FeedbackButton
                   {...feedback}
