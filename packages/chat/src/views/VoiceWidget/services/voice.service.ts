@@ -107,17 +107,17 @@ export class VoiceService {
     this.updateState(VOICE_STATE.ENDED);
   }
 
-  endConversation = () => this.stop();
-
-  startConversation = () => this.start();
-
-  updateState = (state: VoiceState) => {
+  private updateState = (state: VoiceState) => {
     if (this.state === state) return;
 
     this.state = state;
 
     this.listeners.forEach((listener) => listener(state));
   };
+
+  startConversation = () => this.start();
+
+  endConversation = () => this.stop();
 
   onStateUpdate = (cb: (state: VoiceState) => void) => {
     this.listeners.push(cb);

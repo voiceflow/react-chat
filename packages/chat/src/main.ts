@@ -12,3 +12,4 @@ export * from './types/trace';
 export * from './types/turn';
 export * from './utils/functional';
 export * from './views';
+export type { VoiceAPI } from './views/VoiceWidget/VoiceWidget.interface';

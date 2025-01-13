@@ -1,4 +1,4 @@
-import { style } from '@vanilla-extract/css';
+import { style, styleVariants } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { SHADOWS } from '@/styles/box-shadows';
@@ -12,6 +12,10 @@ export const voiceWrapper = style({
   alignItems: 'center',
   flexDirection: 'column',
   width: 'fit-content',
+});
+
+const loadingVariant = styleVariants({
+  true: {},
 });
 
 export const voiceWidgetContainer = recipe({
@@ -44,6 +48,8 @@ export const voiceWidgetContainer = recipe({
         padding: '8px',
       },
     },
+
+    isLoading: loadingVariant,
   },
 });
 
@@ -88,6 +94,19 @@ export const buttonModifier = recipe({
     position: 'relative',
     borderRadius: '8px',
     padding: '16px 4px',
+
+    selectors: {
+      [`${loadingVariant.true} &`]: {
+        cursor: 'default',
+        backgroundColor: THEME.colors[300],
+      },
+      [`${loadingVariant.true} &:active`]: {
+        backgroundColor: THEME.colors[300],
+      },
+      [`${loadingVariant.true} &:hover`]: {
+        backgroundColor: THEME.colors[300],
+      },
+    },
   },
   variants: {
     type: {
@@ -162,6 +181,12 @@ export const buttonContent = recipe({
     gap: '6px',
     lineHeight: '20px',
     transition: transition(['opacity']),
+
+    selectors: {
+      [`${loadingVariant.true} &`]: {
+        opacity: 0,
+      },
+    },
   },
   variants: {
     isVisible: {
@@ -182,4 +207,30 @@ export const buttonText = style({
 
 export const linkSectionModifier = style({
   paddingBottom: '0 !important',
+});
+
+export const loaderStyles = style({
+  color: 'white',
+  height: '20px',
+  width: '20px',
+});
+
+export const containerLoaderStyles = style({
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+
+  width: '20px',
+  height: '20px',
+
+  transform: 'translate(-50%, -50%)',
+  transition: transition(['opacity']),
+
+  opacity: 0,
+
+  selectors: {
+    [`${loadingVariant.true} &`]: {
+      opacity: 1,
+    },
+  },
 });

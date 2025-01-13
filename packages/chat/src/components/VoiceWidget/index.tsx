@@ -8,6 +8,7 @@ import { DEFAULT_CHAT_AVATAR } from '@/dtos/AssistantOptions.dto';
 import { Button } from '../Button';
 import { ButtonIcon } from '../Button/ButtonIcon';
 import { ButtonVariant } from '../Button/constants';
+import { LoadingSpinner } from '../LoadingSpinner/LoadingSpinner';
 import { BottomLinks } from '../NewFooter/BottomLinks';
 import useMicrophoneAmplitude from './use-microphone-amplitude';
 import {
@@ -15,9 +16,11 @@ import {
   buttonModifier,
   buttonText,
   circle,
+  containerLoaderStyles,
   controlSection,
   imageStyles,
   linkSectionModifier,
+  loaderStyles,
   titleStyle,
   voiceWidgetContainer,
   voiceWrapper,
@@ -28,11 +31,20 @@ interface IVoiceWidget {
   footer?: WidgetSettingsCommonSettingsFooterLink;
   settings?: WidgetSettingsVoiceSettings;
   poweredBy?: boolean;
+  isLoading: boolean;
   onStartCall?: () => void;
   onEndCall?: () => void;
 }
 
-export const VoiceWidget: React.FC<IVoiceWidget> = ({ state, settings, footer, poweredBy, onStartCall, onEndCall }) => {
+export const VoiceWidget: React.FC<IVoiceWidget> = ({
+  state,
+  settings,
+  footer,
+  onEndCall,
+  poweredBy,
+  isLoading,
+  onStartCall,
+}) => {
   const { content, renderMode = WidgetSettingsVoiceRenderMode.FULL } = settings ?? {};
 
   const startCall = () => {
@@ -51,6 +63,8 @@ export const VoiceWidget: React.FC<IVoiceWidget> = ({ state, settings, footer, p
   const isCalling = isTalking || isListening || isInitializing;
 
   const handleButtonClick = () => {
+    if (isLoading) return;
+
     if (isCalling) {
       endCall();
     } else {
@@ -91,7 +105,7 @@ export const VoiceWidget: React.FC<IVoiceWidget> = ({ state, settings, footer, p
 
   return (
     <div className={voiceWrapper}>
-      <div className={voiceWidgetContainer({ type: renderMode })}>
+      <div className={voiceWidgetContainer({ type: renderMode, isLoading })}>
         <div className={circle({ type: renderMode })}>
           <img
             src={content?.imageURL || DEFAULT_CHAT_AVATAR}
@@ -109,6 +123,10 @@ export const VoiceWidget: React.FC<IVoiceWidget> = ({ state, settings, footer, p
             variant={isCalling ? ButtonVariant.SECONDARY : ButtonVariant.PRIMARY}
             className={buttonModifier({ type: renderMode })}
           >
+            <div className={containerLoaderStyles}>
+              <LoadingSpinner className={loaderStyles} variant="light" size="large" />
+            </div>
+
             <span className={buttonContent({ isVisible: isCalling })}>
               <ButtonIcon svg="endCall" />
               <div className={buttonText}>{content?.endButtonText ?? 'End'}</div>
@@ -116,6 +134,7 @@ export const VoiceWidget: React.FC<IVoiceWidget> = ({ state, settings, footer, p
 
             <span className={buttonContent({ isVisible: !isCalling })}>
               <ButtonIcon svg="phone" />
+
               <div className={buttonText}>{content?.startButtonText ?? 'Start a call'}</div>
             </span>
           </Button>

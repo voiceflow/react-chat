@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useImperativeHandle, useState } from 'react';
 
 import { VoiceWidget as VoiceView } from '@/components/VoiceWidget';
 import type { VoiceState } from '@/constant/voice.constant';
@@ -6,8 +6,15 @@ import { VOICE_STATE } from '@/constant/voice.constant';
 import { RuntimeStateAPIContext } from '@/contexts';
 
 import { useVoiceService } from './hooks/use-voice-service.hook';
+import type { VoiceAPI } from './VoiceWidget.interface';
 
-export const VoiceWidget = () => {
+export interface IVoiceWidget {
+  apiRef?: React.MutableRefObject<VoiceAPI | undefined | null>;
+  isLoading?: boolean;
+  onCallOverride?: () => void;
+}
+
+export const VoiceWidget = ({ apiRef, isLoading = false, onCallOverride }: IVoiceWidget) => {
   const { assistant, config } = useContext(RuntimeStateAPIContext);
   const [state, setState] = useState<VoiceState>(VOICE_STATE.IDLE);
 
@@ -22,6 +29,8 @@ export const VoiceWidget = () => {
     accessToken: config.voice.accessToken,
   });
 
+  useImperativeHandle(apiRef, () => voiceService, [voiceService]);
+
   useEffect(() => voiceService.onStateUpdate((state) => setState(state)), [voiceService]);
 
   return (
@@ -30,8 +39,9 @@ export const VoiceWidget = () => {
       footer={assistant.common.footerLink}
       settings={assistant.voice}
       poweredBy={assistant.common.poweredBy}
+      isLoading={isLoading}
       onEndCall={voiceService.endConversation}
-      onStartCall={voiceService.startConversation}
+      onStartCall={onCallOverride ?? voiceService.startConversation}
     />
   );
 };
