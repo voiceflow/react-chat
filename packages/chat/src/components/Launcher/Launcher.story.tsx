@@ -22,14 +22,23 @@ export default meta;
 
 const CollapsableLauncher = (props: any) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [counter, setCounter] = useState(0);
+  const [isDisabled, setIsDisabled] = useState(false);
 
   return (
     <Launcher
       isOpen={isOpen}
+      isLoading={isDisabled}
+      isDisabled={isDisabled}
       {...props}
       onClick={() => {
         setIsOpen((prev) => !prev);
-        props.onClick?.();
+
+        setCounter((prev) => prev + 1);
+
+        if (counter % 3 === 0) return;
+
+        setIsDisabled(!isDisabled);
       }}
     />
   );
@@ -51,23 +60,7 @@ export const Loading: Story = { render: () => <CollapsableLauncher isLoading /> 
 
 export const DisabledAndLoading: Story = {
   render: () => {
-    const [counter, setCounter] = useState(0);
-    const [isDisabled, setIsDisabled] = useState(true);
-
-    return (
-      <CollapsableLauncher
-        isLoading={isDisabled}
-        isDisabled={isDisabled}
-        image={tiledBg}
-        onClick={() => {
-          setCounter((prev) => prev + 1);
-
-          if (counter % 3 === 0) return;
-
-          setIsDisabled(!isDisabled);
-        }}
-      />
-    );
+    return <CollapsableLauncher image={tiledBg} />;
   },
 };
 

@@ -96,6 +96,8 @@ export const Launcher: React.FC<LauncherProps> = ({
         onClick={onClick}
         isVoice={isVoice}
         withIcon={withIcon}
+        isLoading={isLoading}
+        isDisabled={isDisabled}
       />
     );
   }
