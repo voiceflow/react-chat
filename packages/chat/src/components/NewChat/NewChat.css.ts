@@ -63,6 +63,7 @@ export const bottomSpacer = recipe({
 
 export const chatEndedContainer = style({
   padding: '4px 0',
+  marginTop: '16px',
 });
 
 export const chatContentWrapper = style({
