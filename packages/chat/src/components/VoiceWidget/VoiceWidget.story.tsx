@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
 
 import { WithDefaultPalette } from '@/storybook/decorators';
 
@@ -14,6 +15,12 @@ const meta: Meta<typeof VoiceWidget> = {
 };
 
 export default meta;
+
+const CustomVoiceWidget = (args: React.ComponentProps<typeof VoiceWidget>) => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  return <VoiceWidget {...args} isLoading={isLoading} onStartCall={() => setIsLoading((prev) => !prev)} />;
+};
 
 export const Base: Story = {
   args: {
@@ -35,20 +42,24 @@ export const Base: Story = {
       enabled: true,
     },
   },
+
+  render: CustomVoiceWidget,
 };
 
 export const Listening: Story = {
   args: {
     ...Base.args,
-    state: 'listening',
+    state: 'LISTENING',
   },
+  render: CustomVoiceWidget,
 };
 
 export const Talking: Story = {
   args: {
     ...Base.args,
-    state: 'talking',
+    state: 'TALKING',
   },
+  render: CustomVoiceWidget,
 };
 
 export const Compact: Story = {
@@ -64,8 +75,9 @@ export const Compact: Story = {
       },
       renderMode: 'compact',
     },
-    state: 'listening',
+    state: 'IDLE',
   },
+  render: CustomVoiceWidget,
 };
 
 export const Expand: Story = {
@@ -81,6 +93,7 @@ export const Expand: Story = {
       },
       renderMode: 'expand',
     },
-    state: 'listening',
+    state: 'IDLE',
   },
+  render: CustomVoiceWidget,
 };

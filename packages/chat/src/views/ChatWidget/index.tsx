@@ -20,6 +20,7 @@ import { FAMILY } from '@/styles/font';
 import { BREAKPOINTS } from '@/styles/sizes';
 import { useResolveAssistantStyleSheet } from '@/utils/stylesheet';
 import { ChatWindow } from '@/views/ChatWindow';
+import type { VoiceAPI } from '@/views/VoiceWidget/VoiceWidget.interface';
 import { VoiceWidget } from '@/views/VoiceWidget/VoiceWidget.view';
 
 import { chatContainer, LAUNCHER_MARGIN, launcherContainer, popoverBackdrop, widgetContainer } from './styles.css';
@@ -29,16 +30,20 @@ interface ChatWidgetProps extends React.PropsWithChildren {
   chatAPI: VoiceflowChat | undefined;
   shadowRoot?: ShadowRoot;
   chatWindow?: React.ReactNode;
+  voiceApiRef?: React.MutableRefObject<VoiceAPI | undefined | null>;
   isLauncherLoading?: boolean;
   isLauncherDisabled?: boolean;
+  onVoiceCallOverride?: () => void;
 }
 
 export const ChatWidget: React.FC<ChatWidgetProps> = ({
   shadowRoot,
   chatAPI,
   ready,
-  isLauncherDisabled,
+  voiceApiRef,
   isLauncherLoading,
+  isLauncherDisabled,
+  onVoiceCallOverride,
 }) => {
   const { assistant, open, close, interact } = useContext(RuntimeStateAPIContext);
   const { isOpen } = useContext(RuntimeStateContext);
@@ -156,7 +161,11 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({
         <div className={popoverBackdrop({ visible: isPopover && isOpen })} onClick={() => close()} />
 
         <div className={chatContainer({ popover: isPopover, voice: isVoice })} style={chatContainerPosition}>
-          {isVoice ? <VoiceWidget /> : <ChatWindow isMobile={isMobile} isPopover={isPopover} />}
+          {isVoice ? (
+            <VoiceWidget apiRef={voiceApiRef} isLoading={isLauncherLoading} onCallOverride={onVoiceCallOverride} />
+          ) : (
+            <ChatWindow isMobile={isMobile} isPopover={isPopover} />
+          )}
         </div>
       </div>
     </>
