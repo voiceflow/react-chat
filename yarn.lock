@@ -6052,7 +6052,7 @@ __metadata:
     "@types/react-dom": 18.2.4
     "@voiceflow/exception": 1.4.0
     "@voiceflow/fetch": 1.5.2
-    "@voiceflow/react-chat-legacy": "workspace:*"
+    "@voiceflow/react-chat": "workspace:*"
     "@voiceflow/slate-serializer": 1.4.2
     nanoevents: 8.0.0
     react: 18.2.0
@@ -6194,9 +6194,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@voiceflow/react-chat-legacy@workspace:*, @voiceflow/react-chat-legacy@workspace:packages/react-chat":
+"@voiceflow/react-chat@workspace:*, @voiceflow/react-chat@workspace:packages/react-chat":
   version: 0.0.0-use.local
-  resolution: "@voiceflow/react-chat-legacy@workspace:packages/react-chat"
+  resolution: "@voiceflow/react-chat@workspace:packages/react-chat"
   dependencies:
     "@babel/core": 7.18.10
     "@babel/preset-env": 7.24.1
