@@ -1,6 +1,6 @@
 # React Chat
 
-A `react`-based chat widget built to interact seamlessly with Voiceflow's runtime.
+A `react`-based chat widget built to interact seamlessly with Voiceflow's runtime. This component can be easily integrated into any React application.
 
 ## Installation
 
