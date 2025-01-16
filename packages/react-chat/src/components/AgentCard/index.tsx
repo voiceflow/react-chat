@@ -34,7 +34,7 @@ const AgentCard: React.FC<AgentCardProps> = ({
   className,
   ...props 
 }) => (
-  <AgentButton className={className} {...props}>
+  <AgentButton type="button" className={className} {...props}>
     <Avatar
       size="small"
       avatar=""
@@ -57,6 +57,19 @@ const AgentCard: React.FC<AgentCardProps> = ({
 
 /**
  * A button component that displays agent information with an avatar.
+ */
+/**
+ * A button component that displays agent information with an avatar.
+ * 
+ * @example
+ * ```tsx
+ * <AgentCard
+ *   name="John Smith"
+ *   timestamp="2 hours ago"
+ *   initials="JS"
+ *   avatarColor="#4a9b57"
+ * />
+ * ```
  */
 export default Object.assign(AgentCard, {
   Button: AgentButton,
