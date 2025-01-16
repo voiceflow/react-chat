@@ -6,6 +6,7 @@ import '@testing-library/jest-dom';
 
 import { ClassName } from '@/constants';
 import AgentCard from '..';
+import { styled } from '@/styles';
 
 describe('AgentCard', () => {
   const defaultProps = {
@@ -69,6 +70,89 @@ describe('AgentCard', () => {
     expect(timestampElement).toHaveStyle({
       fontSize: '12px',
       color: 'rgb(115, 115, 118)', // $darkGrey
+    });
+  });
+
+  it('handles empty or missing props gracefully', () => {
+    const { container } = render(
+      <AgentCard
+        name=""
+        timestamp=""
+        initials=""
+      />
+    );
+    expect(container.firstChild).toBeInTheDocument();
+    expect(screen.queryByText(defaultProps.name)).not.toBeInTheDocument();
+  });
+
+  it('spreads additional props to button element', () => {
+    const testId = 'test-agent-card';
+    const ariaLabel = 'Agent Card';
+    render(
+      <AgentCard
+        {...defaultProps}
+        data-testid={testId}
+        aria-label={ariaLabel}
+      />
+    );
+    const button = screen.getByRole('button');
+    expect(button).toHaveAttribute('data-testid', testId);
+    expect(button).toHaveAttribute('aria-label', ariaLabel);
+  });
+
+  it('maintains correct layout structure', () => {
+    const { container } = render(<AgentCard {...defaultProps} />);
+    const button = screen.getByRole('button');
+    const avatar = container.querySelector(`.${ClassName.AVATAR}`);
+    const contentContainer = button.querySelector('[class*="content"]');
+
+    expect(button).toHaveStyle({
+      display: 'flex',
+      alignItems: 'center',
+    });
+    expect(avatar).toBeInTheDocument();
+    expect(contentContainer).toBeInTheDocument();
+    expect(contentContainer).toHaveStyle({
+      display: 'flex',
+      flexDirection: 'column',
+    });
+  });
+
+  it('handles keyboard navigation', async () => {
+    const handleClick = vi.fn();
+    const user = userEvent.setup();
+    render(<AgentCard {...defaultProps} onClick={handleClick} />);
+    
+    const button = screen.getByRole('button');
+    await user.tab();
+    expect(button).toHaveFocus();
+    await user.keyboard('[Space]');
+    expect(handleClick).toHaveBeenCalledTimes(1);
+    
+    handleClick.mockClear();
+    await user.keyboard('[Enter]');
+    expect(handleClick).toHaveBeenCalledTimes(1);
+  });
+
+  it('applies hover styles correctly', async () => {
+    const { container } = render(<AgentCard {...defaultProps} />);
+    const button = screen.getByRole('button');
+    
+    // Initial state
+    expect(button).toHaveStyle({
+      backgroundColor: 'rgb(255, 255, 255)', // $white
+    });
+    
+    // Hover state
+    await userEvent.hover(button);
+    expect(button).toHaveStyle({
+      backgroundColor: 'rgb(244, 244, 244)', // $lightGrey
+    });
+    
+    // Remove hover
+    await userEvent.unhover(button);
+    expect(button).toHaveStyle({
+      backgroundColor: 'rgb(255, 255, 255)', // $white
     });
   });
 });
