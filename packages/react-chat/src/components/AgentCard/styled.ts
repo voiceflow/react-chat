@@ -2,7 +2,7 @@ import { ClassName } from '@/constants';
 import { tagFactory } from '@/hocs';
 import { styled } from '@/styles';
 
-const tag = tagFactory(ClassName.DASHBOARD_CARD);
+const tag = tagFactory(ClassName.AGENT_CARD);
 
 export const Container = styled(tag('div'), {
   borderRadius: '6px',

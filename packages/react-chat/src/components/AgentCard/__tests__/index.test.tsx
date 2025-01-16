@@ -5,20 +5,20 @@ import { describe, expect, it } from 'vitest';
 import '@testing-library/jest-dom';
 
 import { ClassName } from '../../../constants';
-import DashboardCard from '..';
+import AgentCard from '..';
 
-describe('DashboardCard', () => {
+describe('AgentCard', () => {
   const testContent = 'Test Content';
 
   it('renders children correctly', () => {
-    render(<DashboardCard>{testContent}</DashboardCard>);
+    render(<AgentCard>{testContent}</AgentCard>);
     expect(screen.getByText(testContent)).toBeInTheDocument();
   });
 
   it('passes through additional props', () => {
-    const testId = 'test-dashboard-card';
-    const ariaLabel = 'Dashboard Card';
-    render(<DashboardCard data-testid={testId} aria-label={ariaLabel}>{testContent}</DashboardCard>);
+    const testId = 'test-agent-card';
+    const ariaLabel = 'Agent Card';
+    render(<AgentCard data-testid={testId} aria-label={ariaLabel}>{testContent}</AgentCard>);
     
     const card = screen.getByTestId(testId);
     expect(card).toHaveAttribute('aria-label', ariaLabel);
@@ -26,13 +26,13 @@ describe('DashboardCard', () => {
 
   it('applies custom className', () => {
     const customClass = 'custom-class';
-    const { container } = render(<DashboardCard className={customClass}>{testContent}</DashboardCard>);
+    const { container } = render(<AgentCard className={customClass}>{testContent}</AgentCard>);
     expect(container.firstChild).toHaveClass(customClass);
-    expect(container.firstChild).toHaveClass(ClassName.DASHBOARD_CARD);
+    expect(container.firstChild).toHaveClass(ClassName.AGENT_CARD);
   });
 
   it('maintains correct styling', () => {
-    const { container } = render(<DashboardCard>{testContent}</DashboardCard>);
+    const { container } = render(<AgentCard>{testContent}</AgentCard>);
     const card = container.firstChild as HTMLElement;
     
     expect(card).toHaveStyle({
@@ -46,7 +46,7 @@ describe('DashboardCard', () => {
   });
 
   it('applies box shadow correctly', () => {
-    const { container } = render(<DashboardCard>{testContent}</DashboardCard>);
+    const { container } = render(<AgentCard>{testContent}</AgentCard>);
     const card = container.firstChild as HTMLElement;
     
     const boxShadow = window.getComputedStyle(card).boxShadow;
@@ -66,7 +66,7 @@ describe('DashboardCard', () => {
       </div>
     );
     
-    render(<DashboardCard>{complexContent}</DashboardCard>);
+    render(<AgentCard>{complexContent}</AgentCard>);
     const content = screen.getByTestId('complex-content');
     expect(content).toBeInTheDocument();
     expect(screen.getByText('Title')).toBeInTheDocument();
@@ -75,7 +75,7 @@ describe('DashboardCard', () => {
   });
 
   it('handles empty content gracefully', () => {
-    const { container } = render(<DashboardCard />);
+    const { container } = render(<AgentCard />);
     expect(container.firstChild).toBeInTheDocument();
     expect(container.firstChild).toHaveStyle({
       display: 'flex',
@@ -84,20 +84,20 @@ describe('DashboardCard', () => {
   });
 
   it('maintains layout with different content types', () => {
-    const { rerender, container } = render(<DashboardCard>Short text</DashboardCard>);
+    const { rerender, container } = render(<AgentCard>Short text</AgentCard>);
     expect(container.firstChild).toHaveStyle({
       display: 'flex',
       flexDirection: 'column',
     });
 
     rerender(
-      <DashboardCard>
+      <AgentCard>
         <div style={{ padding: '20px' }}>
           <h1>Large Content</h1>
           <p>With multiple paragraphs</p>
           <p>And more content</p>
         </div>
-      </DashboardCard>
+      </AgentCard>
     );
     
     expect(container.firstChild).toHaveStyle({

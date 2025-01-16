@@ -1,19 +1,19 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import DashboardCard from '.';
+import AgentCard from '.';
 
-const meta: Meta<typeof DashboardCard> = {
-  title: 'Components/DashboardCard',
-  component: DashboardCard,
+const meta: Meta<typeof AgentCard> = {
+  title: 'Components/AgentCard',
+  component: AgentCard,
   tags: ['autodocs'],
-} satisfies Meta<typeof DashboardCard>;
+} satisfies Meta<typeof AgentCard>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Simple: Story = {
   args: {
-    children: <div style={{ padding: '16px' }}>Sample content inside the DashboardCard</div>,
+    children: <div style={{ padding: '16px' }}>Sample content inside the AgentCard</div>,
   },
 };
 

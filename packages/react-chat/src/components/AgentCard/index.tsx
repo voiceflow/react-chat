@@ -2,20 +2,20 @@ import React from 'react';
 
 import { Container } from './styled';
 
-export interface DashboardCardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface AgentCardProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * The content to be rendered inside the card.
    */
   children?: React.ReactNode;
 }
 
-const DashboardCard: React.FC<DashboardCardProps> = ({ children, ...props }) => (
+const AgentCard: React.FC<AgentCardProps> = ({ children, ...props }) => (
   <Container {...props}>{children}</Container>
 );
 
 /**
  * A flexible card component with a rounded rectangle shape and subtle shadow effects.
  */
-export default Object.assign(DashboardCard, {
+export default Object.assign(AgentCard, {
   Container,
 });
