@@ -29,6 +29,7 @@ export enum ClassName {
   PROACTIVE_CLOSE = 'vfrc-proactive-close',
   PROACTIVE_MESSAGE = 'vfrc-proactive-message',
   PROACTIVE = 'vfrc-proactive',
+  DASHBOARD_CARD = 'vfrc-dashboard-card',
 }
 
 export const DEVICE_INFO = Bowser.parse(window.navigator.userAgent);
