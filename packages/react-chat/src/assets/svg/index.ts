@@ -1,5 +1,7 @@
 export { default as close } from './close.svg?react';
 export { default as closeV2 } from './closeV2.svg?react';
+export { default as coffee } from './coffee.svg?react';
+export { default as arrowRight } from './arrow-right.svg?react';
 export { default as largeArrowLeft } from './large-arrow-left.svg?react';
 export { default as microphone } from './microphone.svg?react';
 export { default as minus } from './minus.svg?react';
