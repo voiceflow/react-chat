@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.67.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.66.2...@voiceflow/react-chat@1.67.0) (2025-01-24)
+
+### Features
+
+* add console warn deprecation notice to react-chat (COR-4436) ([#522](https://github.com/voiceflow/react-chat/issues/522)) ([2929e34](https://github.com/voiceflow/react-chat/commit/2929e340972b1c9690365bb085743e7a28b8977c))
+
 ## [1.66.2](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@2.31.0...@voiceflow/react-chat@1.66.2) (2025-01-14)
 
 **Note:** Version bump only for package @voiceflow/react-chat
