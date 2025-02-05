@@ -1,3 +1,10 @@
+> [!CAUTION]
+> This repository has been archived, will no longer be maintained and should not be referenced as an example of consuming our APIs going forward.
+> The bundled version of this widget will continue to be hosted on our CDN until its sunset date of April 15th, 2025.
+>
+> For the latest details on our APIs [see our documentation](https://docs.voiceflow.com/reference/stateinteract-1).
+
+
 # React Chat
 
 A `react`-based chat widget built to interact seamlessly with Voiceflow's runtime.
