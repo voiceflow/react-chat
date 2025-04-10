@@ -4,7 +4,6 @@
 >
 > For the latest details on our APIs [see our documentation](https://docs.voiceflow.com/reference/stateinteract-1).
 
-
 # React Chat
 
 A `react`-based chat widget built to interact seamlessly with Voiceflow's runtime.
