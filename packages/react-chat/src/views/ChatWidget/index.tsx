@@ -11,7 +11,7 @@ import ChatWindow from '@/views/ChatWindow';
 import { ChatContainer, Container, LauncherContainer } from './styled';
 
 console.warn(
-  '%c⚠️ VoiceFlow Webchat V2 Deprecation Notice\n-------------------------------------------\nThis version will reach end-of-support on April 15th, 2025. To continue receiving updates and support, please upgrade to the latest version. Migration guide: https://docs.voiceflow.com/docs/web-chat-migration',
+  '%c⚠️ VoiceFlow Webchat V2 Deprecation Notice\n-------------------------------------------\nThis version will reach end-of-support on June 15th, 2025. To continue receiving updates and support, please upgrade to the latest version. Migration guide: https://docs.voiceflow.com/docs/web-chat-migration',
   'font-size: 18px; font-weight: bold;'
 );
 
