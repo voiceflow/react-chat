@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.68.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.67.0...@voiceflow/react-chat@1.68.0) (2025-04-11)
+
+### Features
+
+* update deprecation message to users ([#533](https://github.com/voiceflow/react-chat/issues/533)) ([f2af9f3](https://github.com/voiceflow/react-chat/commit/f2af9f33f35ba49facd7c6cf1864148385bf3233))
+
 # [1.67.0](https://github.com/voiceflow/react-chat/compare/@voiceflow/react-chat@1.66.2...@voiceflow/react-chat@1.67.0) (2025-01-24)
 
 ### Features
