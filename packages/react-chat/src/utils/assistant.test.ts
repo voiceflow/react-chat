@@ -1,7 +1,7 @@
 import { VoiceflowRuntime } from '@voiceflow/sdk-runtime';
 import { createMock } from '@voiceflow/test-common/vitest';
 import type { Mock } from 'vitest';
-import { describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import type { RawAssistantOptions } from '@/dtos/AssistantOptions.dto';
 import { DEFAULT_AVATAR } from '@/dtos/AssistantOptions.dto';
@@ -146,6 +146,23 @@ describe('assistant utils', () => {
           bottom: 100,
         },
         extensions: [],
+      });
+    });
+
+    describe('window.location', () => {
+      beforeEach(() => {
+        vi.spyOn(window, 'location', 'get').mockReturnValue({
+          ...window.location,
+          hostname: 'store.myshopify.com',
+        });
+      });
+
+      it('should not show watermark on myshopify.com', async () => {
+        mockGetPublishing().mockResolvedValue({ watermark: true });
+
+        const merged = await mergeAssistantOptions(config, {});
+
+        expect(merged.watermark).toBe(false);
       });
     });
   });

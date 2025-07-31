@@ -25,7 +25,7 @@ export const mergeAssistantOptions = async (
     ...publishing,
     ...overrides,
     // watermark can not be overridden with local config
-    watermark: publishing?.watermark,
+    watermark: showWatermark(publishing?.watermark),
     feedback: publishing?.feedback,
     spacing: {
       ...publishing?.spacing,
@@ -33,4 +33,11 @@ export const mergeAssistantOptions = async (
     },
     extensions: [...(publishing?.extensions ?? []), ...(overrides?.extensions ?? [])],
   });
+};
+
+const showWatermark = (watermark: boolean | undefined) => {
+  if (window.location.hostname.endsWith('.myshopify.com')) {
+    return false;
+  }
+  return watermark;
 };
